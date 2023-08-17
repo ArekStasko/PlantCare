@@ -54,6 +54,11 @@ ESP32 Upgrades :
   - Add moisture level edit service and repository for plants
   - Add moisutre level save controller to save data from esp module ( it should collect data like moisture level, time of rehydration )
   - Perform sending back to esp module info about required moisture level
+
   Fronted App :
   - On details page add statistics about the plant ( mouisture level in different timesheets, times of rehydrations )
   - Add esp module configuration stage to plant creation form
+
+
+UI Flow Diagram : 
+![alt text](https://github.com/ArekStasko/PlantCare/blob/master/PlantCareDiagram.png?raw=true)
