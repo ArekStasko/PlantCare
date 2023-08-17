@@ -14,50 +14,50 @@ TODO:
 [ This list will be continuously modified due to changes in app ]
 
 Backend API :
-- Create backend Structure ( API, DataAccess, Services )
-- Add docker support via docker-compose and configure docker services (API and mssql database)
-- Add Plant model
-- Add Plant repository
-- Add create, get, delete, edit methods to Plant repository
-- Add Plant Service
-- Add service methods :
-  - Create
-  - Get
-  - Get via Id
-  - Delete
-  - Edit
-- Add Plant API Controllers :
-  - Create
-  - Get
-  - Get via Id
-  - Delete
-  - Edit
+- [ ] Create backend Structure ( API, DataAccess, Services )
+- [ ] Add docker support via docker-compose and configure docker services (API and mssql database)
+- [ ] Add Plant model
+- [ ] Add Plant repository
+- [ ] Add create, get, delete, edit methods to Plant repository
+- [ ] Add Plant Service
+- [ ] Add service methods :
+  - [ ] Create
+  - [ ] Get
+  - [ ] Get via Id
+  - [ ] Delete
+  - [ ] Edit
+- [ ] Add Plant API Controllers :
+  - [ ] Create
+  - [ ] Get
+  - [ ] Get via Id
+  - [ ] Delete
+  - [ ] Edit
 
 Fronted App :
-- Create frontend App Structure ( ReactApp + Redux + TS )
-- Add Dashboard layout
-- Perform plants fetching for dashboard ( via slices in react redux )
-- Add delete popup for deletion flow
-- Add delete action via redux slices and redirect user to portfolio
-- Make details page with plant description, diagram of moisture etc, there should also be option to edit plant data
-- Perfom plant details fetching via plant Id
-- Add plant creation page with wizard view : 
-  - Add plant name, description etc
-  - Informations about plant (what minerals it needs etc)
-  - Moisture level
-- Add plant create form validation and redirection to dashboard after successfull validation
+- [ ] Create frontend App Structure ( ReactApp + Redux + TS )
+- [ ] Add Dashboard layout
+- [ ] Perform plants fetching for dashboard ( via slices in react redux )
+- [ ] Add delete popup for deletion flow
+- [ ] Add delete action via redux slices and redirect user to portfolio
+- [ ] Make details page with plant description, diagram of moisture etc, there should also be option to edit plant data
+- [ ] Perfom plant details fetching via plant Id
+- [ ] Add plant creation page with wizard view : 
+  - [ ] Add plant name, description etc
+  - [ ] Informations about plant (what minerals it needs etc)
+  - [ ] Moisture level
+- [ ] Add plant create form validation and redirection to dashboard after successfull validation
 
 ESP32 Upgrades :
   Backend API :
-  - create esp module controllers file structure
-  - Add moisture level edit to esp module controllers
-  - Add moisture level edit service and repository for plants
-  - Add moisutre level save controller to save data from esp module ( it should collect data like moisture level, time of rehydration )
-  - Perform sending back to esp module info about required moisture level
+  - [ ] create esp module controllers file structure
+  - [ ] Add moisture level edit to esp module controllers
+  - [ ] Add moisture level edit service and repository for plants
+  - [ ] Add moisutre level save controller to save data from esp module ( it should collect data like moisture level, time of rehydration )
+  - [ ] Perform sending back to esp module info about required moisture level
 
   Fronted App :
-  - On details page add statistics about the plant ( mouisture level in different timesheets, times of rehydrations )
-  - Add esp module configuration stage to plant creation form
+  - [ ] On details page add statistics about the plant ( mouisture level in different timesheets, times of rehydrations )
+  - [ ] Add esp module configuration stage to plant creation form
 
 
 UI Flow Diagram : 
