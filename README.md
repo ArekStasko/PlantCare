@@ -65,4 +65,4 @@ UI Flow Diagram :
 
 
 Also here is Figma with App design : 
-![PlantCare Figma](https://www.figma.com/file/1ysZcEEvvSVtgEayMXtAmA/PlantCare?type=design&node-id=0%3A1&mode=design&t=wdd6EHnrYPlem866-1)
+[PlantCare Figma](https://www.figma.com/file/1ysZcEEvvSVtgEayMXtAmA/PlantCare?type=design&node-id=0%3A1&mode=design&t=wdd6EHnrYPlem866-1)
