@@ -61,4 +61,8 @@ ESP32 Upgrades :
 
 
 UI Flow Diagram : 
-![alt text](https://github.com/ArekStasko/PlantCare/blob/master/PlantCareDiagram.png?raw=true)
+![UIFlow_Diagram](https://github.com/ArekStasko/PlantCare/blob/master/PlantCareDiagram.png?raw=true)
+
+
+Also here is Figma with App design : 
+[PlantCare Figma](https://www.figma.com/file/1ysZcEEvvSVtgEayMXtAmA/PlantCare?type=design&node-id=0%3A1&mode=design&t=wdd6EHnrYPlem866-1)
