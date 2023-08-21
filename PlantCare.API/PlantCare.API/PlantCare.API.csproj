@@ -22,4 +22,8 @@
       <ProjectReference Include="..\PlantCare.API.Services\PlantCare.API.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>

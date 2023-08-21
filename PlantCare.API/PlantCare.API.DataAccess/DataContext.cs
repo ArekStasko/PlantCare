@@ -1,5 +1,6 @@
 ﻿namespace PlantCare.API.DataAccess;
 
-public class Class1
+public class DataContext
 {
+    
 }
