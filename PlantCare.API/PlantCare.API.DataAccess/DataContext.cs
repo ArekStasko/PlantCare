@@ -1,6 +1,13 @@
-﻿namespace PlantCare.API.DataAccess;
+﻿using Microsoft.EntityFrameworkCore;
+using PlantCare.API.DataAccess.Models;
 
-public class DataContext
+namespace PlantCare.API.DataAccess;
+
+public class DataContext : DbContext
 {
+    public DataContext(){}
+
+    public DataContext(DbContextOptions options) : base(options){}
     
+    public virtual DbSet<Plant> Plants { get; set; } = null!;
 }

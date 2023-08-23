@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "vQFRMp5eWpu5EnLRc1W308zUlp+yD6uDvFtCYrcYE8qAsRzwyIhtbjBtmb68G4tP41oP4JmePcKzeaV+b5Yx6w==",
+  "dgSpecHash": "yY7EwLIbA0P5xikHe6GzxG1XjrgQQaXR2niTfjh7gi0szyiDZr1m2O3EtqP0ev/9JW1wTmCw4yhY24qXdGTnKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\areks\\sources\\repos\\PlantCare\\PlantCare.API\\PlantCare.API.Services\\PlantCare.API.Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\areks\\.nuget\\packages\\autofac\\7.1.0\\autofac.7.1.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
