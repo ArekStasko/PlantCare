@@ -14,8 +14,8 @@ TODO:
 [ This list will be continuously modified due to changes in app ]
 
 Backend API :
-- [ ] Create backend Structure ( API, DataAccess, Services )
-- [ ] Add docker support via docker-compose and configure docker services (API and mssql database)
+- [x] Create backend Structure ( API, DataAccess, Services )
+- [x] Add docker support via docker-compose and configure docker services (API and mssql database)
 - [ ] Add Plant model
 - [ ] Add Plant repository
 - [ ] Add create, get, delete, edit methods to Plant repository
