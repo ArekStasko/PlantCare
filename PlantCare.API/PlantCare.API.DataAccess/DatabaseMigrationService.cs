@@ -9,6 +9,8 @@ public class DatabaseMigrationService
     public static void MigrationInitialization(IApplicationBuilder app)
     {
         using var serviceScope = app.ApplicationServices.CreateScope();
-        serviceScope.ServiceProvider.GetService<DataContext>().Database.Migrate();
+        _ = serviceScope ?? throw new NullReferenceException(nameof(serviceScope));
+        
+        serviceScope.ServiceProvider.GetService<DataContext>()!.Database.Migrate();
     }
 }
