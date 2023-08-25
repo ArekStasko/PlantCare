@@ -27,10 +27,6 @@ public static class DataExtensions
         
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";
-        
-        Console.WriteLine("CONNECTION STRING");
-        Console.WriteLine(connectionString);
-        
         return connectionString;
     }
 }

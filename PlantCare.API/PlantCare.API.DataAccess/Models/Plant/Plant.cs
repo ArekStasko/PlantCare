@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using PlantCare.API.DataAccess.Enums;
 
 namespace PlantCare.API.DataAccess.Models;
 
@@ -14,13 +15,17 @@ public class Plant : IPlant
     [Required]
     [MaxLength(550)]
     public string Description { get; set; } = "Description";
-    
-    [Required] 
-    public string ImageUrl { get; set; } = "Default URL";
+
+    [Required]
+    public PlantType Type { get; set; }
     
     [Required]
-    public int RequiredMoistureLevel { get; set; }
+    public byte CriticalMoistureLevel { get; set; }
     
-    public int MoistureLevel { get; set; } = 0;
+    [Required]
+    public byte RequiredMoistureLevel { get; set; }
+    
+    public byte MoistureLevel { get; set; } = 0;
+    
     public string ModuleId { get; set; } = "";
 }
