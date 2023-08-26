@@ -1,4 +1,6 @@
 using PlantCare.API.DataAccess;
+using Serilog;
+using Serilog.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -9,9 +11,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataContext();
 
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom
+    .Configuration(builder.Configuration)
+    .CreateLogger();
+
+Log.Information("Logger is Successfully Configured");
+        
 var app = builder.Build();
 
-app.Migrate();
+app.Migrate();  
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
