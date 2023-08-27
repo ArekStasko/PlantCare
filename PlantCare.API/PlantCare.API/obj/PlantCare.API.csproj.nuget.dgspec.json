@@ -53,10 +53,6 @@
               "target": "Package",
               "version": "[12.1.1, )"
             },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[11.1.0, )"
-            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -169,10 +165,6 @@
               "target": "Package",
               "version": "[12.1.1, )"
             },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[11.1.0, )"
-            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -255,10 +247,6 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"
-            },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[11.1.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
