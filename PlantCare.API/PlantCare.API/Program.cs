@@ -1,6 +1,6 @@
 using PlantCare.API.DataAccess;
 using Serilog;
-using Serilog.Core;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataContext();
+builder.Services.AddMediatR(typeof(Program));
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom
