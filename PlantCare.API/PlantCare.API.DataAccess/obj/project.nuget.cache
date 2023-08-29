@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "i3rBIHM73KUE8k5IYcLjYKio5mUeZwrpaMVzj/cjB4tdOVOt8wsoLib+EFvqUS09C4lB1A3C6oR7/rrpqr2QUw==",
+  "dgSpecHash": "BUT+fN46bp1G0NW8e6mnlOBcH71wGheDkpzBZzXxCRKq5NT72bx9WW2Ss4PE3jO7GYtA6r3XRB3pQFODiB3ywQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\areks\\sources\\repos\\PlantCare\\PlantCare.API\\PlantCare.API.DataAccess\\PlantCare.API.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,8 @@
     "C:\\Users\\areks\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\netstandard.library\\2.0.0-preview1-25301-01\\netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.507\\stylecop.analyzers.1.2.0-beta.507.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.507\\stylecop.analyzers.unstable.1.2.0.507.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

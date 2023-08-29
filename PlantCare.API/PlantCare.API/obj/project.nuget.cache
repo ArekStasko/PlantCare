@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YkLLLCzYwmC1tBOOcuhdvx0pXqNVVMOHG3PGzjbCd2gkPk8nEClPPqbyLzoyIW0ZDTpoX5pbDbOQx44lEeeEkg==",
+  "dgSpecHash": "TO/a+A251C1V4nT7N1eBvStt7GLPonOQeHN1rsPGRNHuQzM1gzRtouNRfikZ3YVDHJ1bwIO2knxuEqC7YLgJ7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\areks\\sources\\repos\\PlantCare\\PlantCare.API\\PlantCare.API\\PlantCare.API.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,8 @@
     "C:\\Users\\areks\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\netstandard.library\\2.0.0-preview1-25301-01\\netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.507\\stylecop.analyzers.1.2.0-beta.507.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.507\\stylecop.analyzers.unstable.1.2.0.507.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

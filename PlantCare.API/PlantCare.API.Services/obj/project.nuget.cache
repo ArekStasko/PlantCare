@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VGtb6499Of7iBmzqjoh1HD9Om1DjLmne6rlNNUmcKE4kKoU08GSYlxm4qIaxrACSxm/e8WTJJnl5QD9sCJYDOg==",
+  "dgSpecHash": "pJ9nWGOM7oqgNdEGRJ9gi3y6AAUeIcHlRYTQkH3pipmcx/PaW3c5JgpsKiDQlZPBn0eTDmlshpSZbywLcBzrpw==",
   "success": true,
   "projectFilePath": "C:\\Users\\areks\\sources\\repos\\PlantCare\\PlantCare.API\\PlantCare.API.Services\\PlantCare.API.Services.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,8 @@
     "C:\\Users\\areks\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\netstandard.library\\2.0.0-preview1-25301-01\\netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.507\\stylecop.analyzers.1.2.0-beta.507.nupkg.sha512",
+    "C:\\Users\\areks\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.507\\stylecop.analyzers.unstable.1.2.0.507.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\areks\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lx1ef1xBEy2sUAPLy65vvckhMmLNqfG72HZ73P5XEsk=",
+  "Source": "PlantCare.API",
+  "BasePath": "_content/PlantCare.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
