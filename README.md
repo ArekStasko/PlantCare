@@ -16,6 +16,9 @@ TODO:
 Backend API :
 - [x] Create backend Structure ( API, DataAccess, Services )
 - [x] Add docker support via docker-compose and configure docker services (API and mssql database)
+- [x] Add Serilog with Seq
+- [ ] Add MediatR configuration
+- [ ] Add Exception handling pattern, figure out how to perform efficient exception handling 
 - [ ] Add Plant model
 - [ ] Add Plant repository
 - [ ] Add create, get, delete, edit methods to Plant repository
