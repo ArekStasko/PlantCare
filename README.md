@@ -1,4 +1,4 @@
-kobieta# PlantCare
+PlantCare
 Web App that will allows me to control ESP32 modules to irrigate my plants and check their soil moisture levels
 
 This Web App have to connect to my ESP32 modules via API. What is more me as a user should be able to see moisture levels of my plants in a user interface,
