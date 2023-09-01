@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: PlantCare Pipeline
 
 on:
   push:
@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      working-directory: PlantCare.API/PlantCare.API
+      working-directory: PlantCare.API
       run: docker build . --file Dockerfile --tag plantcareapp:$(date +%s)

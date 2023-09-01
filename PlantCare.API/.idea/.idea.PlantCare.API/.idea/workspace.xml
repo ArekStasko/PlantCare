@@ -9,31 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantCare.API.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantCare.API.DataAccess.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/Debug/net7.0/PlantCare.API.DataAccess.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/Debug/net7.0/PlantCare.API.DataAccess.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/Debug/net7.0/PlantCare.API.DataAccess.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/Debug/net7.0/PlantCare.API.DataAccess.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/PlantCare.API.DataAccess.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/PlantCare.API.DataAccess.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/Debug/net7.0/PlantCare.API.Services.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/Debug/net7.0/PlantCare.API.Services.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/Debug/net7.0/PlantCare.API.Services.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/Debug/net7.0/PlantCare.API.Services.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/PlantCare.API.Services.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/PlantCare.API.Services.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/Debug/net7.0/PlantCare.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/Debug/net7.0/PlantCare.API.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/Debug/net7.0/PlantCare.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/Debug/net7.0/PlantCare.API.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/PlantCare.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/PlantCare.API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/obj/rider.project.restore.info" afterDir="false" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="Delete wrong gitignore">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/docker-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/docker-image.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +200,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692981312637</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix gitignore issue">
+      <created>1693598573475</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693598573475</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Delete wrong gitignore">
+      <created>1693598650840</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693598650840</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +242,8 @@
     <MESSAGE value="Add docker compose and move dockerfile up" />
     <MESSAGE value="Add Plant and Record models" />
     <MESSAGE value="Add Serilog and Seq packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Serilog and Seq packages" />
+    <MESSAGE value="Fix gitignore issue" />
+    <MESSAGE value="Delete wrong gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete wrong gitignore" />
   </component>
 </project>
