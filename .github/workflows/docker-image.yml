@@ -16,4 +16,4 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       working-directory: PlantCare.API/PlantCare.API
-      run: docker build . --file Dockerfile --tag PlantCareApp:$(date +%s)
+      run: docker build . --file Dockerfile --tag plantcareapp:$(date +%s)
