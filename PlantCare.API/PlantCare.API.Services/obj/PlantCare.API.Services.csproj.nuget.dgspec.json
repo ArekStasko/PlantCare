@@ -49,13 +49,13 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.3, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"
-            },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[11.1.0, )"
             },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
@@ -94,6 +94,12 @@
             "Serilog.Sinks.Seq": {
               "target": "Package",
               "version": "[5.2.3-dev-00262, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.507, )"
             }
           },
           "imports": [
@@ -165,13 +171,13 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.3, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"
-            },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[11.1.0, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
@@ -184,6 +190,12 @@
             "Serilog.Sinks.Seq": {
               "target": "Package",
               "version": "[5.2.3-dev-00262, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.507, )"
             }
           },
           "imports": [

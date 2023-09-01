@@ -11,18 +11,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\" />
       <Folder Include="DTO\" />
-      <Folder Include="Handlers\" />
-      <Folder Include="Queries\" />
-      <Folder Include="Responses\" />
+      <Folder Include="Services\" />
       <Folder Include="Utils\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
       <PackageReference Include="MediatR" Version="12.1.1" />
-      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+      <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="..\stylecop.json">
+        <Link>stylecop.json</Link>
+      </EmbeddedResource>
       <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
       <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
       <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262" />
