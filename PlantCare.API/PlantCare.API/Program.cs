@@ -1,6 +1,7 @@
 using PlantCare.API.DataAccess;
 using Serilog;
 using MediatR;
+using PlantCare.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -9,7 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDataContext();
+builder.Services.ConfigureServices();
+builder.Services.SetupDataAccess();
 builder.Services.AddMediatR(typeof(Program));
 
 Log.Logger = new LoggerConfiguration()
