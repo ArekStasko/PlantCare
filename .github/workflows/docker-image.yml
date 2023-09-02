@@ -28,4 +28,4 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Run tests
-        run: dotnet test PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
+        run: dotnet test PlantCare.API/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
