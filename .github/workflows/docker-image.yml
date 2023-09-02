@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0' # Zaktualizuj do wersji .NET, której używasz.
+          dotnet-version: '7.0' # Zaktualizuj do wersji .NET, której używasz.
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
