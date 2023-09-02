@@ -1,10 +1,8 @@
-name: Docker Image CI
+name: PlantCare Pipeline
 
 on:
   push:
-    branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
 
 jobs:
 
@@ -14,6 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      working-directory: PlantCare.API/PlantCare.API
-      run: docker build . --file Dockerfile --tag plantcareapp:$(date +%s)
+    - name: Build Docker Compose
+      run: docker-compose build
