@@ -6,26 +6,26 @@ on:
 
 jobs:
 
-build:
-  runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - name: Build Docker Compose
-      run: docker-compose build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker Compose
+        run: docker-compose build
 
-test:
-  runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0' # Zaktualizuj do wersji .NET, której używasz.
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Run tests
-      run: dotnet test PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0' # Zaktualizuj do wersji .NET, której używasz.
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Run tests
+        run: dotnet test PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
