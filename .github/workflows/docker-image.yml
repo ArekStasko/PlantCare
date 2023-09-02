@@ -28,5 +28,6 @@ jobs:
         working-directory: PlantCare.API
       - name: Build
         run: dotnet build --no-restore
+        working-directory: PlantCare.API
       - name: Run tests
         run: dotnet test PlantCare.API/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
