@@ -25,6 +25,7 @@ jobs:
           dotnet-version: '7.0' # Zaktualizuj do wersji .NET, której używasz.
       - name: Restore dependencies
         run: dotnet restore
+        working-directory: PlantCare.API
       - name: Build
         run: dotnet build --no-restore
       - name: Run tests
