@@ -1,0 +1,19 @@
+using AutoMapper;
+using PlantCare.API.DataAccess.Models;
+
+namespace PlantCare.API.Services.Mapper;
+
+public class AutoMapperProfile : Profile
+{
+    public AutoMapperProfile()
+    {
+        CreateMap<Plant, IPlant>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
+            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
+            .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+    }
+}

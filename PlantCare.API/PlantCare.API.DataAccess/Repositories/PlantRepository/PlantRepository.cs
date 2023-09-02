@@ -1,32 +1,125 @@
+using AutoMapper;
 using LanguageExt.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 public class PlantRepository : IPlantRepository
 {
-    public Result<bool> Create(IPlant plant)
+    private DataContext _context;
+    private Logger<PlantRepository> _logger;
+    private IMapper _mapper;
+
+    public PlantRepository(DataContext context, Logger<PlantRepository> logger, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _context = context;
+        _logger = logger;
+        _mapper = mapper;
+    }
+    
+    public async ValueTask<Result<bool>> Create(IPlant plant)
+    {
+        try
+        {
+            await _context.Plants.AddAsync((Plant)plant);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<bool>(e);
+        }
     }
 
-    public Result<bool> Delete(int id)
+    public async ValueTask<Result<bool>> Delete(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var plantToDelete = await _context.Plants.SingleOrDefaultAsync(plant => plant.Id == id);
+
+            if (plantToDelete == null)
+            {
+                _logger.LogError("There is no plant to delete with {plantId} Id", id);
+                return new Result<bool>(new NullReferenceException());
+            }
+
+            _context.Plants.Remove(plantToDelete);
+            await _context.SaveChangesAsync();
+            
+            _logger.LogInformation("Plant with {plantId} successfully deleted", id);
+            
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<bool>(e);
+        }
     }
 
-    public Result<bool> Edit(IPlant plant)
+    public async ValueTask<Result<bool>> Edit(IPlant plant)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var plantToEdit = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
+
+            if (plantToEdit == null)
+            {
+                _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
+                return new Result<bool>(new NullReferenceException());
+            }
+
+            _mapper.Map(plant, plantToEdit);
+            await _context.SaveChangesAsync();
+            
+            _logger.LogInformation("Plant with {plantId} successfully edited", plant.Id);
+
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<bool>(e);
+        }
     }
 
-    public Result<List<IPlant>> GetAll()
+    public async ValueTask<Result<List<IPlant>>> Get()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var plants = await _context.Plants.ToListAsync<IPlant>();
+            _logger.LogInformation("Successfull get opreation");
+            return new Result<List<IPlant>>(plants);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<List<IPlant>>(e);
+        }
     }
 
-    public Result<IPlant> GetById(int id)
+    public async ValueTask<Result<IPlant>> Get(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var plant = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == id);
+
+            if (plant == null)
+            {
+                _logger.LogError("There is no plant with {plantId} Id", plant.Id);
+                return new Result<IPlant>(new NullReferenceException());
+            }
+
+            return new Result<IPlant>(plant);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<IPlant>(e);
+        }
     }
 }

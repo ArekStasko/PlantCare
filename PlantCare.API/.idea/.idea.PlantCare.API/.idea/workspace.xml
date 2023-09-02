@@ -10,11 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/IPlantRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantCare.API.DataAccess.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantCare.API.DataAccess.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/IPlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/IPlantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +40,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d0bcc4bf2c8861b14e66e1ed5a504fcab175d846d15bab35964c1fd5144/RelationalDatabaseFacadeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -147,7 +151,7 @@
       <workItem from="1692895755234" duration="6476000" />
       <workItem from="1693329735487" duration="3983000" />
       <workItem from="1693417199007" duration="1872000" />
-      <workItem from="1693602828551" duration="453000" />
+      <workItem from="1693602828551" duration="6632000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
