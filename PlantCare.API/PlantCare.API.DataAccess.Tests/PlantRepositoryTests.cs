@@ -38,4 +38,29 @@ public class Tests
         
         Assert.IsTrue(result.IsCompletedSuccessfully);
     }
+
+    [Test]
+    public void Delete_Should_DeletePlant()
+    {
+        IPlant plantToDelete = new Plant()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            Type = PlantType.Fruit,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 70,
+            ModuleId = "da2r094hafhn"
+        };
+
+        var mockSet = Setups.GetMockData();
+        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+        
+        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var result = plantRepository.Delete(plantToDelete.Id);
+        
+        _dataContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
+        
+        Assert.IsTrue(result.IsCompletedSuccessfully);
+    }
 }

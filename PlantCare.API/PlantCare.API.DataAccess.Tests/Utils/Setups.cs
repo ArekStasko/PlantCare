@@ -1,6 +1,10 @@
+using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Query;
 using Moq;
+using PlantCare.API.DataAccess.Enums;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.Services.Mapper;
 
@@ -17,11 +21,139 @@ public class Setups
 
     public static Mock<DataContext> SetupDataContext()
     {
+        IPlant defaultPlant = new Plant()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            Type = PlantType.Fruit,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 70,
+            ModuleId = "da2r094hafhn"
+        };
+        
         var dataContextMock = new Mock<DataContext>();
+        
+        dataContextMock.Setup(_ => _.Plants.Remove(It.IsAny<Plant>())).Returns((EntityEntry<Plant>)null).Verifiable();
         
         dataContextMock.Setup(_ => _.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()))
             .Returns(ValueTask.FromResult((EntityEntry<Plant>)null)).Verifiable();
 
         return dataContextMock;
+    }
+
+    public static Mock<DbSet<Plant>> GetMockData()
+    {
+        var data = new List<Plant>()
+        {
+            new()
+            {
+                Id = 1,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 3,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 4,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 5,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 6,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 7,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 8,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 9,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            },
+            new()
+            {
+                Id = 10,
+                Name = "Test Name",
+                Description = "Test Description",
+                Type = PlantType.Fruit,
+                CriticalMoistureLevel = 30,
+                RequiredMoistureLevel = 70,
+                ModuleId = "da2r094hafhn"
+            }
+        }.AsQueryable();
+
+        var mockSet = new Mock<DbSet<Plant>>();
+        mockSet.As<IQueryable<Plant>>().Setup(p => p.Provider).Returns(data.Provider);
+        mockSet.As<IQueryable<Plant>>().Setup(p => p.Expression).Returns(data.Expression);
+        mockSet.As<IQueryable<Plant>>().Setup(p => p.ElementType).Returns(data.ElementType);
+        mockSet.As<IQueryable<Plant>>().Setup(p => p.GetEnumerator()).Returns(data.GetEnumerator);
+
+        return mockSet;
     }
 }
