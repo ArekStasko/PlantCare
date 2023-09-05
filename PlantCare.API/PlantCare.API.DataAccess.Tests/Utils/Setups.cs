@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
+using MockQueryable.Moq;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
 using PlantCare.API.DataAccess.Models;
@@ -146,14 +147,8 @@ public class Setups
                 RequiredMoistureLevel = 70,
                 ModuleId = "da2r094hafhn"
             }
-        }.AsQueryable();
+        }.AsQueryable().BuildMockDbSet();
 
-        var mockSet = new Mock<DbSet<Plant>>();
-        mockSet.As<IQueryable<Plant>>().Setup(p => p.Provider).Returns(data.Provider);
-        mockSet.As<IQueryable<Plant>>().Setup(p => p.Expression).Returns(data.Expression);
-        mockSet.As<IQueryable<Plant>>().Setup(p => p.ElementType).Returns(data.ElementType);
-        mockSet.As<IQueryable<Plant>>().Setup(p => p.GetEnumerator()).Returns(data.GetEnumerator);
-
-        return mockSet;
+        return data;
     }
 }
