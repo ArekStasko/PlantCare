@@ -1,6 +1,4 @@
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
@@ -60,6 +58,55 @@ public class Tests
         var result = plantRepository.Delete(plantToDelete.Id);
         
         _dataContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
+        
+        Assert.IsTrue(result.IsCompletedSuccessfully);
+    }
+
+    [Test]
+    public void Edit_Should_EditPlant()
+    {
+        IPlant EditedPlant = new Plant()
+        {
+            Id = 1,
+            Name = "Test Name UPDATED",
+            Description = "Test Description UPDATED",
+            Type = PlantType.Fruit,
+            CriticalMoistureLevel = 40,
+            RequiredMoistureLevel = 80,
+            ModuleId = "da2r094hafhn"
+        };
+
+        var mockSet = Setups.GetMockData();
+        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+
+        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var result = plantRepository.Edit(EditedPlant);
+        
+        Assert.IsTrue(result.IsCompletedSuccessfully);
+    }
+
+    [Test]
+    public void Get_Should_ReturnPlants()
+    {
+        var mockSet = Setups.GetMockData();
+        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+
+        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var result = plantRepository.Get();
+        
+        Assert.IsTrue(result.IsCompletedSuccessfully);
+    }
+    
+    [Test]
+    public void GetById_Should_ReturnPlants()
+    {
+        var plantIdToGet = 1;
+        
+        var mockSet = Setups.GetMockData();
+        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+
+        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var result = plantRepository.Get(plantIdToGet);
         
         Assert.IsTrue(result.IsCompletedSuccessfully);
     }
