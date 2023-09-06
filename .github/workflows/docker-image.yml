@@ -7,10 +7,27 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build Docker Compose
-      run: docker-compose build
+      - uses: actions/checkout@v2
+      - name: Build Docker Compose
+        run: docker-compose build
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0' # Zaktualizuj do wersji .NET, której używasz.
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: PlantCare.API
+      - name: Build
+        run: dotnet build --no-restore
+        working-directory: PlantCare.API
+      - name: Run tests
+        run: dotnet test PlantCare.API/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build

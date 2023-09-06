@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="Delete wrong gitignore">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/docker-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/docker-image.yml" afterDir="false" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="Resolve conflict">
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/TestResources.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +34,11 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e8feaadf5c3fa14d36ea2a638c432a2e1a47b7837d8b83d88303c5d9c15cf/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c98ac4189b6d4c45630c6165b8e43b4feb4a6bbb658a343f5660cfbcd0e556/MethodWrapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b187261058fa986938df785f054eb6195e6a67e694894827255e0b7d7cf3/Mock.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d0bcc4bf2c8861b14e66e1ed5a504fcab175d846d15bab35964c1fd5144/RelationalDatabaseFacadeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -49,6 +55,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49610677&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -143,6 +150,7 @@
       <workItem from="1692895755234" duration="6476000" />
       <workItem from="1693329735487" duration="3983000" />
       <workItem from="1693417199007" duration="1872000" />
+      <workItem from="1693938890860" duration="1976000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -245,5 +253,63 @@
     <MESSAGE value="Fix gitignore issue" />
     <MESSAGE value="Delete wrong gitignore" />
     <option name="LAST_COMMIT_MESSAGE" value="Delete wrong gitignore" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
+          <line>22</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="22" containingFunctionPresentation="Method 'Create'">
+            <startOffsets>
+              <option value="645" />
+            </startOffsets>
+            <endOffsets>
+              <option value="646" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs</url>
+          <line>20</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess.Tests\PlantRepositoryTests.cs" initialLine="20" containingFunctionPresentation="Method 'Create_Should_CreateOnePlant'">
+            <startOffsets>
+              <option value="690" />
+            </startOffsets>
+            <endOffsets>
+              <option value="691" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs</url>
+          <line>43</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess.Tests\PlantRepositoryTests.cs" initialLine="43" containingFunctionPresentation="Method 'Delete_Should_DeletePlant'">
+            <startOffsets>
+              <option value="1438" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1439" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
+          <line>38</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="38" containingFunctionPresentation="Method 'Delete'">
+            <startOffsets>
+              <option value="1121" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1122" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
