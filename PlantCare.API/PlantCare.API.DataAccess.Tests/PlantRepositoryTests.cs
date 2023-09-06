@@ -1,4 +1,6 @@
+using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
@@ -15,7 +17,7 @@ public class Tests
     private IMapper _mapper = Setups.SetupMapper();
 
     [Test]
-    public void Create_Should_CreateOnePlant()
+    public async Task Create_Should_CreateOnePlant()
     {
         IPlant plantToCreate = new Plant()
         {
@@ -30,15 +32,15 @@ public class Tests
         
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = plantRepository.Create(plantToCreate);
+        var result = await plantRepository.Create(plantToCreate);
         
         _dataContextMock.Verify(dbSet => dbSet.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()), Times.Once);
         
-        Assert.IsTrue(result.IsCompletedSuccessfully);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [Test]
-    public void Delete_Should_DeletePlant()
+    public async Task Delete_Should_DeletePlant()
     {
         IPlant plantToDelete = new Plant()
         {
@@ -55,15 +57,14 @@ public class Tests
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
         
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = plantRepository.Delete(plantToDelete.Id);
+        var result = await plantRepository.Delete(plantToDelete.Id);
         
         _dataContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
-        
-        Assert.IsTrue(result.IsCompletedSuccessfully);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [Test]
-    public void Edit_Should_EditPlant()
+    public async Task Edit_Should_EditPlant()
     {
         IPlant EditedPlant = new Plant()
         {
@@ -80,25 +81,25 @@ public class Tests
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = plantRepository.Edit(EditedPlant);
+        var result = await plantRepository.Edit(EditedPlant);
         
-        Assert.IsTrue(result.IsCompletedSuccessfully);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [Test]
-    public void Get_Should_ReturnPlants()
+    public async Task Get_Should_ReturnPlants()
     {
         var mockSet = Setups.GetMockData();
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = plantRepository.Get();
+        var result = await plantRepository.Get();
         
-        Assert.IsTrue(result.IsCompletedSuccessfully);
+        Assert.IsTrue(result.IsSuccess);
     }
     
     [Test]
-    public void GetById_Should_ReturnPlants()
+    public async Task GetById_Should_ReturnPlants()
     {
         var plantIdToGet = 1;
         
@@ -106,8 +107,8 @@ public class Tests
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = plantRepository.Get(plantIdToGet);
+        var result = await plantRepository.Get(plantIdToGet);
         
-        Assert.IsTrue(result.IsCompletedSuccessfully);
+        Assert.IsTrue(result.IsSuccess);
     }
 }
