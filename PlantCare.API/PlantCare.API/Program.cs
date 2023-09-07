@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
 builder.Services.SetupDataAccess();
-builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(x => x.AsScoped(), typeof(Program));
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom
