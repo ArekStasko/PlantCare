@@ -6,14 +6,11 @@ namespace PlantCare.API.Controllers;
 
 public static class ControllerExtensions
 {
-    public static IActionResult ToOk<TResult, TContract>(this Result<TResult> result, Func<TResult, TContract> mapper)
+    public static IActionResult ToOk<TResult>(this Result<TResult> result)
     {
-        return result.Match<IActionResult>(obj =>
-        {
-            var response = mapper(obj);
-            return new OkObjectResult(response);
-
-        }, exception =>
+        return result.Match<IActionResult>(
+            obj => new OkObjectResult(obj),
+        exception =>
         {
             if (exception is ValidationException validationException)
             {

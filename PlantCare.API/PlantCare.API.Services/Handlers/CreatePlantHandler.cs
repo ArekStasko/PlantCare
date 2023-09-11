@@ -32,11 +32,17 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
             {
                 if (succ)
                 {
+                    _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
                 }
 
+                _logger.LogInformation("Something went wrong");
                 return new Result<bool>(new Exception("Something went wrong"));
-            }, err => new Result<bool>(err));
+            }, err =>
+            {
+                _logger.LogError("Error has occured during CreatePlantRequest handling: {exception}", err.Message);
+                return new Result<bool>(err);
+            });
         }
         catch (Exception e)
         {
