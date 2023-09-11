@@ -20,7 +20,7 @@ public class Setups
         return new Mapper(configuration);
     }
 
-    public static Mock<DataContext> SetupDataContext()
+    public static Mock<PlantContext> SetupDataContext()
     {
         IPlant defaultPlant = new Plant()
         {
@@ -33,7 +33,7 @@ public class Setups
             ModuleId = "da2r094hafhn"
         };
         
-        var dataContextMock = new Mock<DataContext>();
+        var dataContextMock = new Mock<PlantContext>();
         
         dataContextMock.Setup(_ => _.Plants.Remove(It.IsAny<Plant>())).Returns((EntityEntry<Plant>)null).Verifiable();
         

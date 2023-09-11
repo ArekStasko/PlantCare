@@ -11,7 +11,7 @@ using PlantCare.API.DataAccess;
 
 namespace PlantCare.API.DataAccess.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(PlantContext))]
     [Migration("20230825160937_Add Plant and Record models")]
     partial class AddPlantandRecordmodels
     {

@@ -12,7 +12,7 @@ namespace PlantCare.API.DataAccess.Tests;
 
 public class Tests
 {
-    private Mock<DataContext> _dataContextMock = Setups.SetupDataContext();
+    private Mock<PlantContext> _dataContextMock = Setups.SetupDataContext();
     private IMock<ILogger<IPlantRepository>> _loggerMock = new Mock<ILogger<IPlantRepository>>();
     private IMapper _mapper = Setups.SetupMapper();
 

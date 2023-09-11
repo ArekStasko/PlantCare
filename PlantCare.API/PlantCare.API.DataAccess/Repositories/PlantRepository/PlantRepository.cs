@@ -8,11 +8,11 @@ namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 public class PlantRepository : IPlantRepository
 {
-    private DataContext _context;
+    private PlantContext _context;
     private ILogger<IPlantRepository> _logger;
     private IMapper _mapper;
 
-    public PlantRepository(DataContext context, ILogger<IPlantRepository> logger, IMapper mapper)
+    public PlantRepository(PlantContext context, ILogger<IPlantRepository> logger, IMapper mapper)
     {
         _context = context;
         _logger = logger;

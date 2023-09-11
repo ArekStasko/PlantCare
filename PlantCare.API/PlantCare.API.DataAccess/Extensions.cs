@@ -16,7 +16,7 @@ public static class DataExtensions
     private static void AddDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
-        services.AddDbContext<DataContext>(options =>
+        services.AddDbContext<PlantContext>(options =>
         {
             options.UseSqlServer(connectionString);
         });

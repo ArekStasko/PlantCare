@@ -1,5 +1,6 @@
 using AutoMapper;
 using PlantCare.API.DataAccess.Models;
+using PlantCare.API.Services.Requests;
 
 namespace PlantCare.API.Services.Mapper;
 
@@ -7,6 +8,8 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
+        CreateMap<CreatePlantRequest, IPlant>();
+
         CreateMap<Plant, IPlant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
