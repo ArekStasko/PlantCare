@@ -1,3 +1,4 @@
+using System.Reflection;
 using PlantCare.API.DataAccess;
 using Serilog;
 using MediatR;
@@ -12,7 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
 builder.Services.SetupDataAccess();
-builder.Services.AddMediatR(x => x.AsScoped(), typeof(Program));
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom
