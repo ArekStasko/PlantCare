@@ -10,7 +10,7 @@ using PlantCare.API.DataAccess;
 
 namespace PlantCare.API.DataAccess.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(PlantContext))]
     [Migration("20230822163042_InitMigration")]
     partial class InitMigration
     {

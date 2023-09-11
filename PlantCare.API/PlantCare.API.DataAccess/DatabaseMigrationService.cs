@@ -11,6 +11,6 @@ public class DatabaseMigrationService
         using var serviceScope = app.ApplicationServices.CreateScope();
         _ = serviceScope ?? throw new NullReferenceException(nameof(serviceScope));
         
-        serviceScope.ServiceProvider.GetService<DataContext>()!.Database.Migrate();
+        serviceScope.ServiceProvider.GetService<PlantContext>()!.Database.Migrate();
     }
 }

@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <NoWarn>1701;1702;SA1116;SA1117</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.API.DataAccess\PlantCare.API.DataAccess.csproj" />
     </ItemGroup>
