@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "77b4c116-a791-4f0d-ba5a-55de057eda1c",
+		"name": "PlantCare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "11070618"
+	},
+	"item": [
+		{
+			"name": "Plants",
+			"item": [
+				{
+					"name": "Create Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test Name\",\r\n    \"description\": \"Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/plants/Create"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
