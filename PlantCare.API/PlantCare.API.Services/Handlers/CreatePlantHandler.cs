@@ -26,7 +26,7 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
         try
         {
             _logger.LogInformation("AddPlantHandler handles request");
-            var plantToCreate = _mapper.Map<IPlant>(request);
+            var plantToCreate = _mapper.Map<Plant>(request);
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
             {

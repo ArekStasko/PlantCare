@@ -16,7 +16,7 @@ public class PlantController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost(Name = "CreatePlant")]
+    [HttpPost(Name = "Create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlantRequest request)
