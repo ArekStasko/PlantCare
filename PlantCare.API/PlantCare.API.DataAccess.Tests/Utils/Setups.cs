@@ -30,7 +30,7 @@ public class Setups
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
-            ModuleId = "da2r094hafhn"
+            ModuleId = Guid.NewGuid()
         };
         
         var dataContextMock = new Mock<PlantContext>();
@@ -55,7 +55,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -65,7 +65,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -75,7 +75,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -85,7 +85,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -95,7 +95,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -105,7 +105,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -115,7 +115,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -125,7 +125,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -135,7 +135,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             },
             new()
             {
@@ -145,7 +145,7 @@ public class Setups
                 Type = PlantType.Fruit,
                 CriticalMoistureLevel = 30,
                 RequiredMoistureLevel = 70,
-                ModuleId = "da2r094hafhn"
+                ModuleId = Guid.NewGuid()
             }
         }.AsQueryable().BuildMockDbSet();
 
