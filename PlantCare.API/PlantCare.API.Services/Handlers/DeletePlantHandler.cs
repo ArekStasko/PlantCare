@@ -21,8 +21,31 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantRequest, Result<boo
         _logger = logger;
     }
     
-    public Task<Result<bool>> Handle(DeletePlantRequest request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(DeletePlantRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        try
+        {
+            _logger.LogInformation("DeletePlantHandler handles request");
+            var result = await _plantRepository.Delete(request.Id);
+            return result.Match(succ =>
+            {
+                if (succ)
+                {
+                    _logger.LogInformation("Operation Successfully completed");
+                    return new Result<bool>(true);
+                }
+
+                return new Result<bool>(false);
+            }, err =>
+            {
+                _logger.LogError("Error has occured during CreatePlantRequest handling: {exception}", err.Message);
+                return new Result<bool>(err);
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Exception has been thrown in AddPlantHandler: {exception}", e.Message);
+            return new Result<bool>(e);
+        }
     }
 }

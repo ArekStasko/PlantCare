@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/Utils/Setups.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlantCare.API.Services.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlantCare.API.Services.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/DeletePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/DeletePlantHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
