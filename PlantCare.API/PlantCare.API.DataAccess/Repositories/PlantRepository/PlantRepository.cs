@@ -19,7 +19,7 @@ public class PlantRepository : IPlantRepository
         _mapper = mapper;
     }
     
-    public async ValueTask<Result<bool>> Create(IPlant plant)
+    public virtual async ValueTask<Result<bool>> Create(IPlant plant)
     {
         try
         {
@@ -35,7 +35,7 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(int id)
+    public virtual async ValueTask<Result<bool>> Delete(int id)
     {
         try
         {
@@ -61,7 +61,7 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Edit(IPlant plant)
+    public virtual async ValueTask<Result<bool>> Edit(IPlant plant)
     {
         try
         {
@@ -87,7 +87,7 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public async ValueTask<Result<List<IPlant>>> Get()
+    public virtual async ValueTask<Result<List<IPlant>>> Get()
     {
         try
         {
@@ -102,7 +102,7 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public async ValueTask<Result<IPlant>> Get(int id)
+    public virtual async ValueTask<Result<IPlant>> Get(int id)
     {
         try
         {
