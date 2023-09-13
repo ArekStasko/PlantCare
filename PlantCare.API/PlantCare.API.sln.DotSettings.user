@@ -2,9 +2,5 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\areks\AppData\Local\JetBrains\Rider2023.1\resharper-host\temp\Rider\vAny\CoverageData\_PlantCare.API.-1634371690\Snapshot\snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fbef02f9_002Dcf13_002D45a7_002Db627_002D3474c8b97e5e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Create_Should_CreateOnePlant" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::21FD358E-AD09-42C2-B43F-E061D93C711F::net7.0::PlantCare.API.DataAccess.Tests.Tests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::8BC28B1D-954D-43DF-BE0C-5258D44384E5::net7.0::PlantCare.API.Services.Tests.Tests.CreatePlantHandler_Should_CreateOnePlant&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::8655D7FE-8467-4FEF-A21C-3A1FE496E587::net7.0::PlantCare.API.Services.Tests.HandlersTests.CreatePlantHandler_Should_CreateOnePlant&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
