@@ -12,9 +12,9 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
 {
     private readonly IPlantRepository _plantRepository;
     private readonly IMapper _mapper;
-    private readonly ILogger<CreatePlantRequest> _logger;
+    private readonly ILogger<CreatePlantHandler> _logger;
 
-    public CreatePlantHandler(IPlantRepository plantRepository, IMapper mapper, ILogger<CreatePlantRequest> logger)
+    public CreatePlantHandler(IPlantRepository plantRepository, IMapper mapper, ILogger<CreatePlantHandler> logger)
     {
         _plantRepository = plantRepository;
         _logger = logger;

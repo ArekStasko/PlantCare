@@ -26,7 +26,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<CreatePlantRequest>> loggerMock = new Mock<ILogger<CreatePlantRequest>>();
+        IMock<ILogger<CreatePlantHandler>> loggerMock = new Mock<ILogger<CreatePlantHandler>>();
         
         var handler = new CreatePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = await handler.Handle(plantToCreate, new CancellationToken());
@@ -50,7 +50,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<CreatePlantRequest>> loggerMock = new Mock<ILogger<CreatePlantRequest>>();
+        IMock<ILogger<CreatePlantHandler>> loggerMock = new Mock<ILogger<CreatePlantHandler>>();
         
         var handler = new CreatePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = await handler.Handle(plantToCreate, new CancellationToken());
