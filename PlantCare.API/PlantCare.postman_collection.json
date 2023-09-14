@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "77b4c116-a791-4f0d-ba5a-55de057eda1c",
 		"name": "PlantCare",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11070618"
 	},
 	"item": [
@@ -23,7 +23,40 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/plants/Create"
+						"url": {
+							"raw": "{{BaseURL}}/plants/Create",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/plants/Delete?Id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "Id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
 					},
 					"response": []
 				}

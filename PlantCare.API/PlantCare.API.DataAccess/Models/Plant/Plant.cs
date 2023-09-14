@@ -27,5 +27,5 @@ public class Plant : IPlant
     
     public byte MoistureLevel { get; set; } = 0;
     
-    public Guid? ModuleId { get; set; }
+    public string? ModuleId { get; set; }
 }

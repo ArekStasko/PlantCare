@@ -21,7 +21,7 @@ public class HandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
-            ModuleId = Guid.NewGuid()
+            ModuleId = ""
         };
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
@@ -45,7 +45,7 @@ public class HandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 130,
-            ModuleId = Guid.NewGuid()
+            ModuleId = ""
         };
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();

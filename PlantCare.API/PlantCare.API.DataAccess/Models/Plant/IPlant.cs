@@ -13,5 +13,5 @@ public interface IPlant
     byte CriticalMoistureLevel { get; set; }
     byte RequiredMoistureLevel { get; set; }
     byte MoistureLevel { get; set; }
-    Guid? ModuleId { get; set; }
+    string? ModuleId { get; set; }
 }
