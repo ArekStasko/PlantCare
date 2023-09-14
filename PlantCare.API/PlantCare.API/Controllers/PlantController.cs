@@ -24,4 +24,14 @@ public class PlantController : ControllerBase
         var result = await _mediator.Send(request);
         return result.ToOk();
     }
+
+    [HttpDelete(Name = "Delete")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Delete([FromQuery] int Id)
+    {
+        var deletePlantRequest = new DeletePlantRequest() { Id = Id };
+        var result = await _mediator.Send(deletePlantRequest);
+        return result.ToOk();
+    }
 }

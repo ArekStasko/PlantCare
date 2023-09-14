@@ -4,40 +4,38 @@ using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
-
-public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<bool>>
+using Serilog;
+using ILogger = Serilog.ILogger;
+public class DeletePlantHandler : IRequestHandler<DeletePlantRequest, Result<bool>>
 {
     private readonly IPlantRepository _plantRepository;
     private readonly IMapper _mapper;
-    private readonly ILogger<CreatePlantHandler> _logger;
-
-    public CreatePlantHandler(IPlantRepository plantRepository, IMapper mapper, ILogger<CreatePlantHandler> logger)
+    private readonly ILogger<DeletePlantHandler> _logger;
+    
+    public DeletePlantHandler(IPlantRepository plantRepository, IMapper mapper, ILogger<DeletePlantHandler> logger)
     {
         _plantRepository = plantRepository;
-        _logger = logger;
         _mapper = mapper;
+        _logger = logger;
     }
-
-    public async Task<Result<bool>> Handle(CreatePlantRequest request, CancellationToken cancellationToken)
+    
+    public async Task<Result<bool>> Handle(DeletePlantRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            _logger.LogInformation("AddPlantHandler handles request");
-            var plantToCreate = _mapper.Map<Plant>(request);
-            var result = await _plantRepository.Create(plantToCreate);
+            _logger.LogInformation("DeletePlantHandler handles request");
+            var result = await _plantRepository.Delete(request.Id);
             return result.Match(succ =>
             {
                 if (succ)
                 {
-                    _logger.LogInformation("Operation succesfully completed");
+                    _logger.LogInformation("Operation Successfully completed");
                     return new Result<bool>(true);
                 }
 
-                _logger.LogInformation("Something went wrong");
-                return new Result<bool>(new Exception("Something went wrong"));
+                return new Result<bool>(false);
             }, err =>
             {
                 _logger.LogError("Error has occured during CreatePlantRequest handling: {exception}", err.Message);

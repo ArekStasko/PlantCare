@@ -26,7 +26,7 @@ public class Tests
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
-            ModuleId = Guid.NewGuid()
+            ModuleId = ""
         };
         
         
@@ -50,7 +50,7 @@ public class Tests
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
-            ModuleId = Guid.NewGuid()
+            ModuleId = ""
         };
 
         var mockSet = Setups.GetMockData();
@@ -74,7 +74,7 @@ public class Tests
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 40,
             RequiredMoistureLevel = 80,
-            ModuleId = Guid.NewGuid()
+            ModuleId = ""
         };
 
         var mockSet = Setups.GetMockData();

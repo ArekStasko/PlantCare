@@ -9,5 +9,5 @@ public class CreatePlantRequest : IHttpPostRequest
     public PlantType Type { get; set; }
     public byte CriticalMoistureLevel { get; set; }
     public byte RequiredMoistureLevel { get; set; }
-    public Guid? ModuleId { get; set; }
+    public string? ModuleId { get; set; }
 }
