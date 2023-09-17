@@ -17,22 +17,22 @@ Backend API :
 - [x] Create backend Structure ( API, DataAccess, Services )
 - [x] Add docker support via docker-compose and configure docker services (API and mssql database)
 - [x] Add Plant mode
-- [ ] Add error handling 
-- [ ] Add MediatR configuration
-- [ ] Add Plant repository
-- [ ] Add create, get, delete, edit methods to Plant repository
-- [ ] Add Plant Service
+- [x] Add error handling 
+- [x] Add MediatR configuration
+- [x] Add Plant repository
+- [x] Add create, get, delete, edit methods to Plant repository
+- [x] Add Plant Service
 - [ ] Add service methods :
-  - [ ] Create
+  - [x] Create
   - [ ] Get
   - [ ] Get via Id
-  - [ ] Delete
+  - [x] Delete
   - [ ] Edit
 - [ ] Add Plant API Controllers :
-  - [ ] Create
+  - [x] Create
   - [ ] Get
   - [ ] Get via Id
-  - [ ] Delete
+  - [x] Delete
   - [ ] Edit
 
 Fronted App :
