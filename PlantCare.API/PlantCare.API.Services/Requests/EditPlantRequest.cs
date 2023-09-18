@@ -4,6 +4,7 @@ namespace PlantCare.API.Services.Requests;
 
 public class EditPlantRequest : IHttpPostRequest
 {
+    public int Id { get; set; }
     public string Name { get; set; } = "Name";
     public string Description { get; set; } = "Description";
     public PlantType Type { get; set; }
