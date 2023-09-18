@@ -26,7 +26,7 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
         try
         {
             _logger.LogInformation("AddPlantHandler handles request");
-            var plantToCreate = _mapper.Map<Plant>(request);
+            IPlant plantToCreate = _mapper.Map<Plant>(request);
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
             {
@@ -46,7 +46,7 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception has been thrown in AddPlantHandler: {exception}", e.Message);
+            _logger.LogError("Exception has been thrown in CreatePlantHandler: {exception}", e.Message);
             return new Result<bool>(e);
         }
     }
