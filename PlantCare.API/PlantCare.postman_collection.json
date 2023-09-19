@@ -59,6 +59,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Edit Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Edited Test Name\",\r\n    \"description\": \"Edited Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 80,\r\n    \"requiredMoistureLevel\" : 30,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/plants/Edit",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Edit"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
