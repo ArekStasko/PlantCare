@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.API.DataAccess\PlantCare.API.DataAccess.csproj" />
+      <ProjectReference Include="..\PlantCare.API.Services.Tests\PlantCare.API.Services.Tests.csproj" />
       <ProjectReference Include="..\PlantCare.API.Services\PlantCare.API.Services.csproj" />
     </ItemGroup>
 

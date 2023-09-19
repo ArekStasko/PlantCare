@@ -99,4 +99,52 @@ public class HandlersTests
         
         plantRepoMock.Verify(repo => repo.Delete(It.IsAny<int>()), Times.Once);
     }
+
+    [Test]
+    public async Task EditPlantHandler_Should_EditPlant()
+    {
+        EditPlantRequest plantToEdit = new EditPlantRequest()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            Type = 0,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 130,
+            ModuleId = ""
+        };
+
+        var plantRepoMock = Setups.GetSuccessfullPlantRepository();
+        var mapper = Setups.GetMapper();
+        IMock<ILogger<EditPlantRequest>> loggerMock = new Mock<ILogger<EditPlantRequest>>();
+
+        var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
+        var result = handler.Handle(plantToEdit, new CancellationToken());
+        
+        plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+    }
+    
+    [Test]
+    public async Task EditPlantHandler_ShouldNot_EditPlant()
+    {
+        EditPlantRequest plantToEdit = new EditPlantRequest()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            Type = 0,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 130,
+            ModuleId = ""
+        };
+
+        var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
+        var mapper = Setups.GetMapper();
+        IMock<ILogger<EditPlantRequest>> loggerMock = new Mock<ILogger<EditPlantRequest>>();
+
+        var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
+        var result = handler.Handle(plantToEdit, new CancellationToken());
+        
+        plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+    }
 }
