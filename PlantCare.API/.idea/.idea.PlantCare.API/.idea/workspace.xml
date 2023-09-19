@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/EditPlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Requests/EditPlantRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/AutoMapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/DeletePlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Requests/DeletePlantRequest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,19 +329,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs</url>
-          <line>83</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services.Tests\HandlersTests.cs" initialLine="83" containingFunctionPresentation="Method 'DeletePlantHandler_ShouldNot_DeletePlantById'">
-            <startOffsets>
-              <option value="2997" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2998" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.Services/Handlers/DeletePlantHandler.cs</url>
