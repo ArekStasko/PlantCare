@@ -1,3 +1,5 @@
+using PlantCare.API.DataAccess.Models;
+
 namespace PlantCare.API.Controllers;
 
 using MediatR;
@@ -49,6 +51,17 @@ public class PlantController : ControllerBase
         _logger.LogInformation("Edit controller method start processing");
         var result = await _mediator.Send(request);
         _logger.LogInformation("Edit controller method ends processing");
+        return result.ToOk();
+    }
+
+    [HttpGet(Name = "Get")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Get(GetPlantRequest request)
+    {
+        _logger.LogInformation("Get controller method start processing");
+        var result = await _mediator.Send(request);
+        _logger.LogInformation("Get controller method ends processing");
         return result.ToOk();
     }
 }
