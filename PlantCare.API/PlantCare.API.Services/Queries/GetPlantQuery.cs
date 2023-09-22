@@ -1,6 +1,6 @@
 namespace PlantCare.API.Services.Requests;
 
-public class GetPlantRequest : IHttpGetRequest
+public class GetPlantQuery : IHttpGetRequest
 {
     public int? Id { get; set; }
 }

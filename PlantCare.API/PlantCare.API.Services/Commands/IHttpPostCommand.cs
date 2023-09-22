@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace PlantCare.API.Services.Requests;
 
-public interface IHttpPostRequest : IRequest<Result<bool>>
+public interface IHttpPostCommand : IRequest<Result<bool>>
 {
     
 }
