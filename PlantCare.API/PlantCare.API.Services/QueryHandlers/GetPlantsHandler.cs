@@ -7,7 +7,7 @@ using PlantCare.API.Services.Requests;
 
 namespace PlantCare.API.Services.Handlers;
 
-public class GetPlantsHandler : IRequestHandler<GetPlantRequest, Result<List<IPlant>>>
+public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<List<IPlant>>>
 {
     private readonly IPlantRepository _repository;
     private readonly ILogger<GetPlantHandler> _logger;
@@ -18,7 +18,7 @@ public class GetPlantsHandler : IRequestHandler<GetPlantRequest, Result<List<IPl
         _logger = logger;
     }
 
-    public async Task<Result<List<IPlant>>> Handle(GetPlantRequest request, CancellationToken cancellationToken)
+    public async Task<Result<List<IPlant>>> Handle(GetPlantsQuery query, CancellationToken cancellationToken)
     {
         try
         {

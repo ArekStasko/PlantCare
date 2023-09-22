@@ -8,7 +8,7 @@ using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
 
-public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<bool>>
+public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<bool>>
 {
     private readonly IPlantRepository _plantRepository;
     private readonly IMapper _mapper;
@@ -21,12 +21,12 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantRequest, Result<boo
         _mapper = mapper;
     }
 
-    public async Task<Result<bool>> Handle(CreatePlantRequest request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(CreatePlantCommand command, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("AddPlantHandler handles request");
-            IPlant plantToCreate = _mapper.Map<Plant>(request);
+            IPlant plantToCreate = _mapper.Map<Plant>(command);
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
             {

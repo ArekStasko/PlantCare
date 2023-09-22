@@ -16,7 +16,7 @@ public class HandlersTests
     [Test]
     public async Task CreatePlantHandler_Should_CreateOnePlant()
     {
-        CreatePlantRequest plantToCreate = new CreatePlantRequest()
+        CreatePlantCommand plantToCreate = new CreatePlantCommand()
         {
             Name = "Test Name",
             Description = "Test Description",
@@ -40,7 +40,7 @@ public class HandlersTests
     [Test]
     public async Task CreatePlantHandler_ShouldNot_CreateOnePlant()
     {
-        CreatePlantRequest plantToCreate = new CreatePlantRequest()
+        CreatePlantCommand plantToCreate = new CreatePlantCommand()
         {
             Name = "Test Name",
             Description = "Test Description",
@@ -65,7 +65,7 @@ public class HandlersTests
     public async Task DeletePlantHandler_Should_DeletePlantById()
     {
         int IdOfPlantToDelete = 1;
-        DeletePlantRequest deletePlantRequest = new DeletePlantRequest()
+        DeletePlantCommand deletePlantCommand = new DeletePlantCommand()
         {
             Id = IdOfPlantToDelete
         };
@@ -75,7 +75,7 @@ public class HandlersTests
         IMock<ILogger<DeletePlantHandler>> loggerMock = new Mock<ILogger<DeletePlantHandler>>();
 
         var handler = new DeletePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = await handler.Handle(deletePlantRequest, new CancellationToken());
+        var result = await handler.Handle(deletePlantCommand, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Delete(It.IsAny<int>()), Times.Once);
         Assert.IsTrue(result.IsSuccess);
@@ -85,7 +85,7 @@ public class HandlersTests
     public async Task DeletePlantHandler_ShouldNot_DeletePlantById()
     {
         int IdOfPlantToDelete = 1;
-        DeletePlantRequest deletePlantRequest = new DeletePlantRequest()
+        DeletePlantCommand deletePlantCommand = new DeletePlantCommand()
         {
             Id = IdOfPlantToDelete
         };
@@ -95,7 +95,7 @@ public class HandlersTests
         IMock<ILogger<DeletePlantHandler>> loggerMock = new Mock<ILogger<DeletePlantHandler>>();
 
         var handler = new DeletePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = await handler.Handle(deletePlantRequest, new CancellationToken());
+        var result = await handler.Handle(deletePlantCommand, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Delete(It.IsAny<int>()), Times.Once);
     }
@@ -103,7 +103,7 @@ public class HandlersTests
     [Test]
     public async Task EditPlantHandler_Should_EditPlant()
     {
-        EditPlantRequest plantToEdit = new EditPlantRequest()
+        EditPlantCommand plantToEdit = new EditPlantCommand()
         {
             Id = 1,
             Name = "Test Name",
@@ -116,7 +116,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantRequest>> loggerMock = new Mock<ILogger<EditPlantRequest>>();
+        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = handler.Handle(plantToEdit, new CancellationToken());
@@ -127,7 +127,7 @@ public class HandlersTests
     [Test]
     public async Task EditPlantHandler_ShouldNot_EditPlant()
     {
-        EditPlantRequest plantToEdit = new EditPlantRequest()
+        EditPlantCommand plantToEdit = new EditPlantCommand()
         {
             Id = 1,
             Name = "Test Name",
@@ -140,7 +140,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantRequest>> loggerMock = new Mock<ILogger<EditPlantRequest>>();
+        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = handler.Handle(plantToEdit, new CancellationToken());

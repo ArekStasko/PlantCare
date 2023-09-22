@@ -2,7 +2,7 @@ using PlantCare.API.DataAccess.Enums;
 
 namespace PlantCare.API.Services.Requests;
 
-public class CreatePlantRequest : IHttpPostRequest
+public record CreatePlantCommand : IHttpPostCommand
 {
     public string Name { get; set; } = "Name";
     public string Description { get; set; } = "Description";

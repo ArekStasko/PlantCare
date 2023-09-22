@@ -1,6 +1,10 @@
+using LanguageExt.Common;
+using MediatR;
+using PlantCare.API.DataAccess.Models;
+
 namespace PlantCare.API.Services.Requests;
 
-public class GetPlantsQuery
+public record GetPlantsQuery : IRequest<Result<List<IPlant>>>
 {
     
 }

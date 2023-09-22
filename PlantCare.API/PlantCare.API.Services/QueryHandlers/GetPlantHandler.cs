@@ -9,7 +9,7 @@ using PlantCare.API.Services.Requests;
 
 namespace PlantCare.API.Services.Handlers;
 
-public class GetPlantHandler : IRequestHandler<GetPlantRequest, Result<IPlant>>
+public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<IPlant>>
 {
     private readonly IPlantRepository _repository;
     private readonly ILogger<GetPlantHandler> _logger;
@@ -20,18 +20,12 @@ public class GetPlantHandler : IRequestHandler<GetPlantRequest, Result<IPlant>>
         _logger = logger;
     }
 
-    public async Task<Result<IPlant>> Handle(GetPlantRequest request, CancellationToken cancellationToken)
+    public async Task<Result<IPlant>> Handle(GetPlantQuery query, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("GetPlantHandler handles request");
-            if (request.Id == null)
-            {
-                _logger.LogError("Id of plant cannot be null !");
-                return new Result<IPlant>(new NullReferenceException());
-            }
-
-            var plant = await _repository.Get(request.Id ?? 0);
+            var plant = await _repository.Get(query.Id);
             return plant.Match(succ =>
             {
                 _logger.LogInformation("GetPlantHandler successfully processed the request");

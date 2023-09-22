@@ -23,10 +23,10 @@ public class PlantController : ControllerBase
     [HttpPost(Name = "Create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(CreatePlantRequest request)
+    public async ValueTask<IActionResult> Create(CreatePlantCommand command)
     {
         _logger.LogInformation("Create controller method start processing");
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(command);
         _logger.LogInformation("Create controller method ends processing");
         return result.ToOk();
     }
@@ -37,7 +37,7 @@ public class PlantController : ControllerBase
     public async ValueTask<IActionResult> Delete([FromQuery] int Id)
     {
         _logger.LogInformation("Delete controller method start processing");
-        var deletePlantRequest = new DeletePlantRequest() { Id = Id };
+        var deletePlantRequest = new DeletePlantCommand() { Id = Id };
         var result = await _mediator.Send(deletePlantRequest);
         _logger.LogInformation("Delete controller method ends processing");
         return result.ToOk();
@@ -46,10 +46,10 @@ public class PlantController : ControllerBase
     [HttpPost(Name = "Edit")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Edit(EditPlantRequest request)
+    public async ValueTask<IActionResult> Edit(EditPlantCommand command)
     {
         _logger.LogInformation("Edit controller method start processing");
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(command);
         _logger.LogInformation("Edit controller method ends processing");
         return result.ToOk();
     }
@@ -57,11 +57,22 @@ public class PlantController : ControllerBase
     [HttpGet(Name = "Get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get(GetPlantRequest request)
+    public async ValueTask<IActionResult> Get(GetPlantQuery query)
     {
         _logger.LogInformation("Get controller method start processing");
-        var result = await _mediator.Send(request);
+        var result = await _mediator.Send(query);
         _logger.LogInformation("Get controller method ends processing");
+        return result.ToOk();
+    }
+    
+    [HttpGet(Name = "GetAll")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> GetAll(GetPlantsQuery query)
+    {
+        _logger.LogInformation("GetAll controller method start processing");
+        var result = await _mediator.Send(query);
+        _logger.LogInformation("GetAll controller method ends processing");
         return result.ToOk();
     }
 }
