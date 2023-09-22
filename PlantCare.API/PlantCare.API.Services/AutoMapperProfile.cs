@@ -33,5 +33,11 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+
+        CreateMap<int, DeletePlantCommand>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+        
+        CreateMap<int, GetPlantQuery>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
     }
 }

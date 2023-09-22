@@ -42,7 +42,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/plants/Delete?Id={{CurrentPlantId}}",
+							"raw": "{{BaseURL}}/plants/Delete?id={{CurrentPlantId}}",
 							"host": [
 								"{{BaseURL}}"
 							],
@@ -52,7 +52,7 @@
 							],
 							"query": [
 								{
-									"key": "Id",
+									"key": "id",
 									"value": "{{CurrentPlantId}}"
 								}
 							]
@@ -82,6 +82,60 @@
 							"path": [
 								"plants",
 								"Edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/plants/Get?id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll Plants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/plants/GetAll",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"GetAll"
 							]
 						}
 					},

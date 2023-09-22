@@ -1,3 +1,4 @@
+using AutoMapper;
 using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.Controllers;
@@ -12,11 +13,13 @@ using PlantCare.API.Services.Requests;
 public class PlantController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IMapper _mapper;
     private readonly ILogger<PlantController> _logger;
 
-    public PlantController(IMediator mediator, ILogger<PlantController> logger)
+    public PlantController(IMediator mediator, IMapper mapper, ILogger<PlantController> logger)
     {
         _mediator = mediator;
+        _mapper = mapper;
         _logger = logger;
     }
 
@@ -34,11 +37,11 @@ public class PlantController : ControllerBase
     [HttpDelete(Name = "Delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int Id)
+    public async ValueTask<IActionResult> Delete([FromQuery] int id)
     {
         _logger.LogInformation("Delete controller method start processing");
-        var deletePlantRequest = new DeletePlantCommand() { Id = Id };
-        var result = await _mediator.Send(deletePlantRequest);
+        var deletePlantQuery = _mapper.Map<DeletePlantCommand>(id);
+        var result = await _mediator.Send(deletePlantQuery);
         _logger.LogInformation("Delete controller method ends processing");
         return result.ToOk();
     }
@@ -57,10 +60,11 @@ public class PlantController : ControllerBase
     [HttpGet(Name = "Get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get(GetPlantQuery query)
+    public async ValueTask<IActionResult> Get([FromQuery] int id)
     {
+        var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
         _logger.LogInformation("Get controller method start processing");
-        var result = await _mediator.Send(query);
+        var result = await _mediator.Send(getPlantQuery);
         _logger.LogInformation("Get controller method ends processing");
         return result.ToOk();
     }
