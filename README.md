@@ -22,18 +22,26 @@ Backend API :
 - [x] Add Plant repository
 - [x] Add create, get, delete, edit methods to Plant repository
 - [x] Add Plant Service
-- [ ] Add service methods :
+- [x] Add service methods :
   - [x] Create
-  - [ ] Get
-  - [ ] Get via Id
+  - [x] Get
+  - [x] Get via Id
   - [x] Delete
-  - [ ] Edit
-- [ ] Add Plant API Controllers :
+  - [x] Edit
+- [x] Add Plant API Controllers :
   - [x] Create
-  - [ ] Get
-  - [ ] Get via Id
+  - [x] Get
+  - [x] Get via Id
   - [x] Delete
-  - [ ] Edit
+  - [x] Edit
+- [ ] Add Performance Tests
+- [ ] Add Unit tests to :
+  - [ ] Create command
+  - [ ] Edit command
+  - [ ] Delete command
+  - [ ] Get query
+  - [ ] GetAll query
+- [x] Add Postman collection
 
 Fronted App :
 - [ ] Create frontend App Structure ( ReactApp + Redux + TS )
