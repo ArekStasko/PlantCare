@@ -10,10 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/GetPlantsQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/AutoMapperProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/AutoMapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/CreatePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/CreatePlantHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/DeletePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/DeletePlantHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/EditPlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/EditPlantHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/GetPlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Handlers/GetPlantsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantsHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/PlantCare.API.Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/DeletePlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Requests/DeletePlantRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/CreatePlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/CreatePlantCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/DeletePlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/DeletePlantCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/EditPlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/EditPlantCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/GetPlantRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/GetPlantQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/IHttpDeleteRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/IHttpDeleteCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/IHttpGetRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Requests/IHttpPostRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/IHttpPostCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +171,7 @@
       <workItem from="1693417199007" duration="1872000" />
       <workItem from="1693938890860" duration="8180000" />
       <workItem from="1694358106291" duration="5009000" />
+      <workItem from="1695219925495" duration="6642000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -331,7 +346,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API.Services/Handlers/DeletePlantHandler.cs</url>
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/DeletePlantHandler.cs</url>
           <line>24</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Handlers\DeletePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'">
             <startOffsets>

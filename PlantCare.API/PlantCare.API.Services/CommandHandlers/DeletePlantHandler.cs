@@ -8,7 +8,7 @@ using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
 using Serilog;
 using ILogger = Serilog.ILogger;
-public class DeletePlantHandler : IRequestHandler<DeletePlantRequest, Result<bool>>
+public class DeletePlantHandler : IRequestHandler<DeletePlantCommand, Result<bool>>
 {
     private readonly IPlantRepository _plantRepository;
     private readonly IMapper _mapper;
@@ -21,12 +21,12 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantRequest, Result<boo
         _logger = logger;
     }
     
-    public async Task<Result<bool>> Handle(DeletePlantRequest request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(DeletePlantCommand command, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("DeletePlantHandler handles request");
-            var result = await _plantRepository.Delete(request.Id);
+            var result = await _plantRepository.Delete(command.Id);
             return result.Match(succ =>
             {
                 if (succ)
