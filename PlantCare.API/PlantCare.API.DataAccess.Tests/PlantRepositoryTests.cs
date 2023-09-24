@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -35,8 +36,15 @@ public class Tests
         var result = await plantRepository.Create(plantToCreate);
         
         _dataContextMock.Verify(dbSet => dbSet.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()), Times.Once);
-        
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
 
     [Test]
@@ -60,7 +68,15 @@ public class Tests
         var result = await plantRepository.Delete(plantToDelete.Id);
         
         _dataContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
 
     [Test]
@@ -82,8 +98,15 @@ public class Tests
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Edit(EditedPlant);
-        
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
 
     [Test]
@@ -94,12 +117,19 @@ public class Tests
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Get();
-        
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsNotNull(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
     
     [Test]
-    public async Task GetById_Should_ReturnPlants()
+    public async Task GetById_Should_ReturnPlant()
     {
         var plantIdToGet = 1;
         
@@ -108,7 +138,14 @@ public class Tests
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Get(plantIdToGet);
-        
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsNotNull(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
 }
