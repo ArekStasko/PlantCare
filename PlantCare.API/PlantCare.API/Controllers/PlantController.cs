@@ -64,7 +64,8 @@ public class PlantController : ControllerBase
     {
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
         _logger.LogInformation("Get controller method start processing");
-        var result = await _mediator.Send(getPlantQuery);
+        var result = await _mediator.
+            Send(getPlantQuery);
         _logger.LogInformation("Get controller method ends processing");
         return result.ToOk();
     }

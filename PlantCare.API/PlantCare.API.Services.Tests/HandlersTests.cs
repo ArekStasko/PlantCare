@@ -34,7 +34,15 @@ public class HandlersTests
         var result = await handler.Handle(plantToCreate, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Create(It.IsAny<IPlant>()), Times.Once);
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+           Assert.IsNull(err);
+           return new EmptyResult();
+        });
     }
     
     [Test]
@@ -58,7 +66,16 @@ public class HandlersTests
         var result = await handler.Handle(plantToCreate, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Create(It.IsAny<IPlant>()), Times.Once);
-        Assert.IsFalse(result.IsSuccess);
+        
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsFalse(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNotNull(err);
+            return new EmptyResult();
+        });
     }
 
     [Test]
@@ -78,7 +95,15 @@ public class HandlersTests
         var result = await handler.Handle(deletePlantCommand, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Delete(It.IsAny<int>()), Times.Once);
-        Assert.IsTrue(result.IsSuccess);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
     
     [Test]
@@ -98,6 +123,15 @@ public class HandlersTests
         var result = await handler.Handle(deletePlantCommand, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Delete(It.IsAny<int>()), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsFalse(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNotNull(err);
+            return new EmptyResult();
+        });
     }
 
     [Test]
@@ -119,9 +153,18 @@ public class HandlersTests
         IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = handler.Handle(plantToEdit, new CancellationToken());
+        var result = await handler.Handle(plantToEdit, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsTrue(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
     }
     
     [Test]
@@ -143,8 +186,90 @@ public class HandlersTests
         IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = handler.Handle(plantToEdit, new CancellationToken());
+        var result = await handler.Handle(plantToEdit, new CancellationToken());
         
         plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsFalse(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNotNull(err);
+            return new EmptyResult();
+        });
+    }
+    
+    [Test]
+    public async Task GetPlantsHandler_Should_ReturnPlants()
+    {
+        var plantRepoMock = Setups.GetSuccessfullPlantRepository();
+        IMock<ILogger<GetPlantsHandler>> loggerMock = new Mock<ILogger<GetPlantsHandler>>();
+
+        var handler = new GetPlantsHandler(plantRepoMock.Object, loggerMock.Object);
+        var result = await handler.Handle(new GetPlantsQuery(), new CancellationToken());
+        
+        plantRepoMock.Verify(repo => repo.Get(), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsNotNull(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
+    }
+    
+    [Test]
+    public async Task GetPlantHandler_Should_ReturnPlant()
+    {
+        var getPlantQuery = new GetPlantQuery()
+        {
+            Id = 1
+        };
+        
+        var plantRepoMock = Setups.GetSuccessfullPlantRepository();
+        IMock<ILogger<GetPlantHandler>> loggerMock = new Mock<ILogger<GetPlantHandler>>();
+
+        var handler = new GetPlantHandler(plantRepoMock.Object, loggerMock.Object);
+        var result = await handler.Handle(getPlantQuery, new CancellationToken());
+        
+        plantRepoMock.Verify(repo => repo.Get(It.IsAny<int>()), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsNotNull(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNull(err);
+            return new EmptyResult();
+        });
+    }
+    
+    [Test]
+    public async Task GetPlantHandler_ShouldNot_ReturnPlant()
+    {
+        var getPlantQuery = new GetPlantQuery()
+        {
+            Id = 1
+        };
+        
+        var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
+        IMock<ILogger<GetPlantHandler>> loggerMock = new Mock<ILogger<GetPlantHandler>>();
+
+        var handler = new GetPlantHandler(plantRepoMock.Object, loggerMock.Object);
+        var result = await handler.Handle(getPlantQuery, new CancellationToken());
+        
+        plantRepoMock.Verify(repo => repo.Get(It.IsAny<int>()), Times.Once);
+        result.Match<IActionResult>(succ =>
+        {
+            Assert.IsNull(succ);
+            return new EmptyResult();
+        }, err =>
+        {
+            Assert.IsNotNull(err);
+            return new EmptyResult();
+        });
     }
 }

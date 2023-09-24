@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/Utils/Setups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/Utils/Setups.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -331,6 +337,58 @@
           <line>24</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Handlers\DeletePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'" />
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs</url>
+          <line>49</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services.Tests\HandlersTests.cs" initialLine="49" containingFunctionPresentation="Method 'CreatePlantHandler_ShouldNot_CreateOnePlant'">
+            <startOffsets>
+              <option value="1618" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1619" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/CreatePlantHandler.cs</url>
+          <line>24</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\CreatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'">
+            <startOffsets>
+              <option value="855" />
+            </startOffsets>
+            <endOffsets>
+              <option value="856" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs</url>
+          <line>225</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services.Tests\HandlersTests.cs" initialLine="225" containingFunctionPresentation="Method 'GetPlantHandler_Should_ReturnPlant'">
+            <startOffsets>
+              <option value="7626" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7627" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantHandler.cs</url>
+          <line>23</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\QueryHandlers\GetPlantHandler.cs" initialLine="23" containingFunctionPresentation="Method 'Handle'">
+            <startOffsets>
+              <option value="767" />
+            </startOffsets>
+            <endOffsets>
+              <option value="768" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NotSupportedException" isInternal="false" displayValue="NotSupportedException" namespaceName="System">
