@@ -1,22 +1,31 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 namespace PlantCare.API.DataAccess;
 
 public static class DataExtensions
 {
-    public static void AddDataContext(this IServiceCollection services)
+    public static void Migrate(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
+    public static void SetupDataAccess(this IServiceCollection services)
+    {
+        services.AddDataContext();
+        services.AddRepositories();
+    }
+    private static void AddDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
-        services.AddDbContext<DataContext>(options =>
+        services.AddDbContext<PlantContext>(options =>
         {
             options.UseSqlServer(connectionString);
         });
     }
-
-    public static void Migrate(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
-
+    private static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IPlantRepository, PlantRepository>();
+    }
+    
     private static string GetConnectionString()
     {
         var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");

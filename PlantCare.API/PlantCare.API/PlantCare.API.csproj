@@ -7,7 +7,14 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+      <WarningsAsErrors>;NU1605;SYSLIB0011</WarningsAsErrors>
+      <NoWarn>1701;1702;SYSLIB0011;SA1101</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
         <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />

@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "77b4c116-a791-4f0d-ba5a-55de057eda1c",
+		"name": "PlantCare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11070618"
+	},
+	"item": [
+		{
+			"name": "Plants",
+			"item": [
+				{
+					"name": "Create Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test Name\",\r\n    \"description\": \"Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/plants/Create",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/plants/Delete?id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Edited Test Name\",\r\n    \"description\": \"Edited Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 80,\r\n    \"requiredMoistureLevel\" : 30,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/plants/Edit",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/plants/Get?id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"Get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll Plants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/plants/GetAll",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"plants",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

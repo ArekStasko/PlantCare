@@ -1,4 +1,4 @@
-PlantCare
+kobieta# PlantCare
 Web App that will allows me to control ESP32 modules to irrigate my plants and check their soil moisture levels
 
 This Web App have to connect to my ESP32 modules via API. What is more me as a user should be able to see moisture levels of my plants in a user interface,
@@ -18,22 +18,30 @@ Backend API :
 - [x] Add docker support via docker-compose and configure docker services (API and mssql database)
 - [x] Add Plant mode
 - [x] Add error handling 
-- [ ] Add MediatR configuration
+- [x] Add MediatR configuration
 - [x] Add Plant repository
 - [x] Add create, get, delete, edit methods to Plant repository
-- [ ] Add Plant Service
-- [ ] Add service methods :
-  - [ ] Create
-  - [ ] Get
-  - [ ] Get via Id
-  - [ ] Delete
-  - [ ] Edit
-- [ ] Add Plant API Controllers :
-  - [ ] Create
-  - [ ] Get
-  - [ ] Get via Id
-  - [ ] Delete
-  - [ ] Edit
+- [x] Add Plant Service
+- [x] Add service methods :
+  - [x] Create
+  - [x] Get
+  - [x] Get via Id
+  - [x] Delete
+  - [x] Edit
+- [x] Add Plant API Controllers :
+  - [x] Create
+  - [x] Get
+  - [x] Get via Id
+  - [x] Delete
+  - [x] Edit
+- [ ] Add Performance Tests
+- [ ] Add Unit tests to :
+  - [ ] Create command
+  - [ ] Edit command
+  - [ ] Delete command
+  - [ ] Get query
+  - [ ] GetAll query
+- [x] Add Postman collection
 
 Fronted App :
 - [ ] Create frontend App Structure ( ReactApp + Redux + TS )

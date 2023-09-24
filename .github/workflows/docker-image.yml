@@ -1,19 +1,35 @@
-name: Docker Image CI
+name: PlantCare Pipeline
 
 on:
   push:
-    branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      working-directory: PlantCare.API/PlantCare.API
-      run: docker build . --file Dockerfile --tag plantcareapp:$(date +%s)
+      - uses: actions/checkout@v2
+      - name: Build Docker Compose
+        run: docker-compose build
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0' # Zaktualizuj do wersji .NET, której używasz.
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: PlantCare.API
+      - name: Build
+        run: dotnet build --no-restore
+        working-directory: PlantCare.API
+      - name: Run DataAccess Tests
+        run: dotnet test PlantCare.API/PlantCare.API.DataAccess.Tests/PlantCare.API.DataAccess.Tests.csproj --no-build
+      - name: Run Services Tests
+        run: dotnet test PlantCare.API/PlantCare.API.Services.Tests/PlantCare.API.Services.Tests.csproj --no-build

@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.Services", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.DataAccess", "PlantCare.API.DataAccess\PlantCare.API.DataAccess.csproj", "{C223DED6-906A-42A0-9053-9BB6A4D9D1DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.DataAccess.Tests", "PlantCare.API.DataAccess.Tests\PlantCare.API.DataAccess.Tests.csproj", "{21FD358E-AD09-42C2-B43F-E061D93C711F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.Services.Tests", "PlantCare.API.Services.Tests\PlantCare.API.Services.Tests.csproj", "{8655D7FE-8467-4FEF-A21C-3A1FE496E587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{C223DED6-906A-42A0-9053-9BB6A4D9D1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C223DED6-906A-42A0-9053-9BB6A4D9D1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C223DED6-906A-42A0-9053-9BB6A4D9D1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FD358E-AD09-42C2-B43F-E061D93C711F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FD358E-AD09-42C2-B43F-E061D93C711F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FD358E-AD09-42C2-B43F-E061D93C711F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FD358E-AD09-42C2-B43F-E061D93C711F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8655D7FE-8467-4FEF-A21C-3A1FE496E587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8655D7FE-8467-4FEF-A21C-3A1FE496E587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8655D7FE-8467-4FEF-A21C-3A1FE496E587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8655D7FE-8467-4FEF-A21C-3A1FE496E587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
