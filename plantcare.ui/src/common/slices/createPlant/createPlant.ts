@@ -1,12 +1,13 @@
 import emptyApi from "../../../app/api/emptyApi";
+import {CreatePlantRequest} from "./createPlantRequest";
 
 export const createPlantApi = emptyApi.injectEndpoints({
     endpoints: build => ({
-        CreatePlant: build.mutation({
-            query: ({ ...rest }) => ({
+        CreatePlant: build.mutation<boolean, CreatePlantRequest>({
+            query: ({ ...data }) => ({
                 url: "/plants/Create",
                 method: "POST",
-                body: rest,
+                body: data,
             })
         })
     }),
