@@ -1,5 +1,5 @@
 import emptyApi from "../../../app/api/emptyApi";
-import {UpdatePlantRequest} from "./updatePlantQuery";
+import {UpdatePlantRequest} from "./updatePlantRequest";
 
 export const updatePlantApi = emptyApi.injectEndpoints({
     endpoints: build => ({
