@@ -44,7 +44,7 @@ Backend API :
 - [x] Add Postman collection
 
 Fronted App :
-- [ ] Create frontend App Structure ( ReactApp + Redux + TS )
+- [x] Create frontend App Structure ( ReactApp + Redux + TS )
 - [ ] Add Dashboard layout
 - [ ] Perform plants fetching for dashboard ( via slices in react redux )
 - [ ] Add delete popup for deletion flow
