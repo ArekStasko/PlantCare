@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MainPage from "./pages/mainPage/mainPage";
+import BaseLayout from "./common/Layouts/baseLayout/baseLayout";
+import {Typography} from "@mui/material";
 
 function App() {
   return (
     <div className="App">
-      <MainPage />
+      <BaseLayout>
+          <Typography>Test</Typography>
+      </BaseLayout>
     </div>
   );
 }
