@@ -1,5 +1,7 @@
 import React, {FunctionComponent, ReactElement} from "react";
 import {Box, Container, Typography} from "@mui/material";
+import Navbar from "../../compontents/navbar/navbar";
+import styles from './baseLayout.styles'
 
 type BaseLayoutProps = {
     children: ReactElement
@@ -8,11 +10,12 @@ type BaseLayoutProps = {
 export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({children}) => {
 
     return(
-        <Container>
+        <Box sx={styles.container}>
+            <Navbar />
             <Box>
                 {children}
             </Box>
-        </Container>
+        </Box>
     )
 }
 
