@@ -1,15 +1,23 @@
 import React from 'react';
 import './App.css';
 import BaseLayout from "./common/Layouts/baseLayout/baseLayout";
-import {Typography} from "@mui/material";
+import {createTheme, ThemeProvider, Typography} from "@mui/material";
+
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
 function App() {
   return (
-    <div className="App">
-      <BaseLayout>
-          <Typography>Test</Typography>
-      </BaseLayout>
-    </div>
+      <ThemeProvider theme={darkTheme}>
+        <div className="App">
+         <BaseLayout>
+             <Typography>Test</Typography>
+        </BaseLayout>
+         </div>
+      </ThemeProvider>
   );
 }
 
