@@ -1,9 +1,7 @@
-import {Route, Routes} from "react-router-dom";
+const RoutingPaths = {
+    root: "/dashboard",
+    createPlant: "/create-plant",
+    updatePlant: "/update-plant"
+};
 
-export const MainRouting = () => {
-    <Routes>
-        <Route />
-    </Routes>
-}
-
-export default  MainRouting;
+export default RoutingPaths;
