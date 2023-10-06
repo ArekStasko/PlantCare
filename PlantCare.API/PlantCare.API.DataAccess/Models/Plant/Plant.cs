@@ -8,6 +8,8 @@ public class Plant : IPlant
     [Key]
     public int Id { get; set; }
     
+    public int PlaceId { get; set; }
+    
     [Required]
     [MaxLength(150)]
     public string Name { get; set; } = "Name";
