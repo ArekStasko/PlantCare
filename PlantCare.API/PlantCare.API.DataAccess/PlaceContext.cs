@@ -7,7 +7,7 @@ public class PlaceContext : DbContext
 {
     public PlaceContext(){}
 
-    public PlaceContext(DbContextOptions options) : base(options){}
+    public PlaceContext(DbContextOptions<PlaceContext> options) : base(options){}
 
     public virtual DbSet<Place> Places { get; set; } = null!;
 }

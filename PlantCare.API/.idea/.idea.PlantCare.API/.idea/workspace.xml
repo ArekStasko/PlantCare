@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/IPlaceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlaceContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlaceContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,14 +35,9 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1e8feaadf5c3fa14d36ea2a638c432a2e1a47b7837d8b83d88303c5d9c15cf/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c98ac4189b6d4c45630c6165b8e43b4feb4a6bbb658a343f5660cfbcd0e556/MethodWrapper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6879c9ed20391a5ccfea363be5964fbcfe4f1dfde9558aa84b36df6b6ec92c6/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b187261058fa986938df785f054eb6195e6a67e694894827255e0b7d7cf3/Mock.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ca4271bab3e53b61f244a7ba081b39413d465de6262bbffb78775592f4228f5/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d0bcc4bf2c8861b14e66e1ed5a504fcab175d846d15bab35964c1fd5144/RelationalDatabaseFacadeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Models/Plant/Plant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
