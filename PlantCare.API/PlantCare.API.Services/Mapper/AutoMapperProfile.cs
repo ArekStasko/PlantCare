@@ -1,13 +1,16 @@
+namespace PlantCare.API.Services.Mapper;
+
 using AutoMapper;
 using PlantCare.API.DataAccess.Models;
+using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.Services.Requests;
-
-namespace PlantCare.API.Services.Mapper;
+using PlantCare.API.Services.Requests.PlaceCommands;
 
 public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
+        // PLANT MAPPINGS
         CreateMap<CreatePlantCommand, Plant>()
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
@@ -15,7 +18,7 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
-        
+
         CreateMap<EditPlantCommand, Plant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
@@ -36,8 +39,20 @@ public class AutoMapperProfile : Profile
 
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
-        
+
         CreateMap<int, GetPlantQuery>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+        // PLACES MAPPINGS
+        CreateMap<CreatePlaceCommand, Place>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
+        CreateMap<EditPlaceCommand, Place>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Plants, opt => opt.MapFrom(src => src.Plants));
+
+        CreateMap<int, DeletePlaceCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
     }
 }
