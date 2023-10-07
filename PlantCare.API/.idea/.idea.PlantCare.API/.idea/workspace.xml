@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/IPlaceRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlaceContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlaceContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,8 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Models/Plant/Plant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/PlantContext.cs" root0="FORCE_HIGHLIGHTING" />
@@ -333,7 +333,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/DeletePlantHandler.cs</url>
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/DeletePlantHandler.cs</url>
           <line>24</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Handlers\DeletePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'" />
           <option name="timeStamp" value="9" />
@@ -352,7 +352,7 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/CreatePlantHandler.cs</url>
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/CreatePlantHandler.cs</url>
           <line>24</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\CreatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'">
             <startOffsets>
@@ -378,7 +378,7 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/GetPlantHandler.cs</url>
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/PlantQueryHandlers/GetPlantHandler.cs</url>
           <line>23</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\QueryHandlers\GetPlantHandler.cs" initialLine="23" containingFunctionPresentation="Method 'Handle'">
             <startOffsets>
