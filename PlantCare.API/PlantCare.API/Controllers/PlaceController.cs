@@ -22,7 +22,7 @@ public class PlaceController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost(Name = "Create")]
+    [HttpPost(Name = "[controller]/Create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
@@ -33,7 +33,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "Delete")]
+    [HttpDelete(Name = "[controller]/Delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
@@ -45,7 +45,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpPost(Name = "Edit")]
+    [HttpPost(Name = "[controller]/Edit")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Edit(EditPlaceCommand command)
@@ -56,7 +56,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpGet(Name = "GetAll")]
+    [HttpGet(Name = "[controller]/GetAll")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetAll(GetPlacesQuery query)
