@@ -1,5 +1,4 @@
 using LanguageExt.Common;
-using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess.Repositories.PlaceRepository;

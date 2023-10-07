@@ -1,3 +1,5 @@
+namespace PlantCare.API.Services.Handlers;
+
 using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
@@ -6,15 +8,13 @@ using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
 
-namespace PlantCare.API.Services.Handlers;
-
 public class EditPlantHandler : IRequestHandler<EditPlantCommand, Result<bool>>
 {
     private readonly IPlantRepository _repository;
     private readonly IMapper _mapper;
-    private readonly ILogger<EditPlantCommand> _logger;
+    private readonly ILogger<EditPlantHandler> _logger;
 
-    public EditPlantHandler(IPlantRepository repository, IMapper mapper, ILogger<EditPlantCommand> logger)
+    public EditPlantHandler(IPlantRepository repository, IMapper mapper, ILogger<EditPlantHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;

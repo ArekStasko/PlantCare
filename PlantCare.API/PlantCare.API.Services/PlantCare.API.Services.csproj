@@ -33,11 +33,5 @@
       <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
       <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="CommandHandlers\PlaceCommandHandlers\" />
-      <Folder Include="Commands\PlaceCommands\" />
-      <Folder Include="Queries\PlaceQueries\" />
-      <Folder Include="QueryHandlers\PlaceQueryHandlers\" />
-    </ItemGroup>
 
 </Project>

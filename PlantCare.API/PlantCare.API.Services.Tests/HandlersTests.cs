@@ -150,7 +150,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
+        IMock<ILogger<EditPlantHandler>> loggerMock = new Mock<ILogger<EditPlantHandler>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = await handler.Handle(plantToEdit, new CancellationToken());
@@ -183,7 +183,7 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
+        IMock<ILogger<EditPlantHandler>> loggerMock = new Mock<ILogger<EditPlantHandler>>();
 
         var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
         var result = await handler.Handle(plantToEdit, new CancellationToken());
