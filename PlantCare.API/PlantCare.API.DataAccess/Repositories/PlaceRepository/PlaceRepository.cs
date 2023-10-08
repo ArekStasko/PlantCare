@@ -44,7 +44,7 @@ public class PlaceRepository : IPlaceRepository
 
             if (placeToDelete == null)
             {
-                _logger.LogError("There is no plant to delete with {plantId} Id", id);
+                _logger.LogError("There is no plant to delete with {placeId} Id", id);
                 return new Result<bool>(new NullReferenceException());
             }
 
@@ -70,7 +70,7 @@ public class PlaceRepository : IPlaceRepository
 
             if (placeToEdit == null)
             {
-                _logger.LogError("There is no place to edit with {plantId} Id", place.Id);
+                _logger.LogError("There is no place to edit with {placeId} Id", place.Id);
                 return new Result<bool>(new NullReferenceException());
             }
 

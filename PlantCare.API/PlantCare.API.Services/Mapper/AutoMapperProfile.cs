@@ -16,6 +16,7 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
@@ -25,12 +26,14 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
         CreateMap<Plant, IPlant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
@@ -49,8 +52,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<EditPlaceCommand, Place>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Plants, opt => opt.MapFrom(src => src.Plants));
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
         CreateMap<int, DeletePlaceCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
