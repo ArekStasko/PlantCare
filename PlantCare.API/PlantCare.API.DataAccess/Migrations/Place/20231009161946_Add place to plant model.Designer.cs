@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantCare.API.DataAccess;
 
@@ -10,9 +11,11 @@ using PlantCare.API.DataAccess;
 namespace PlantCare.API.DataAccess.Migrations.Place
 {
     [DbContext(typeof(PlaceContext))]
-    partial class PlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20231009161946_Add place to plant model")]
+    partial class Addplacetoplantmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

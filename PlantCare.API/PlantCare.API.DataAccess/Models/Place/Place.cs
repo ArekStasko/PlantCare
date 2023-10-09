@@ -1,18 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PlantCare.API.DataAccess.Models.Place;
 
 public class Place : IPlace
 {
-    [Key]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<RoomPlant> Plants { get; set; }
-}
-
-public class RoomPlant
-{
-    [Key]
-    public int Id { get; set; }
-    public Plant Plant { get; set; }
+    public virtual ICollection<Plant> Plants { get; set; } = new HashSet<Plant>();
 }

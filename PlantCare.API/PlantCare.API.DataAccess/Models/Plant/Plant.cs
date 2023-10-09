@@ -8,7 +8,11 @@ public class Plant : IPlant
     [Key]
     public int Id { get; set; }
     
+    [Required]
     public int PlaceId { get; set; }
+    
+    [Required]
+    public virtual Place.Place Place { get; set; }
     
     [Required]
     [MaxLength(150)]

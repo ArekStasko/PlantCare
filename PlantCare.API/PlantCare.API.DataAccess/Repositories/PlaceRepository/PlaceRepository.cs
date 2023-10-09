@@ -74,9 +74,9 @@ public class PlaceRepository : IPlaceRepository
                 return new Result<bool>(new NullReferenceException());
             }
 
-            _mapper.Map(place, placeToEdit);
+            _context.Places.Update((Place)place);
             await _context.SaveChangesAsync();
-            
+
             _logger.LogInformation("Place with {placeId} successfully edited", place.Id);
 
             return new Result<bool>(true);

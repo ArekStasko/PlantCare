@@ -44,7 +44,7 @@ public static class DataExtensions
         var databaseName = Environment.GetEnvironmentVariable("DatabaseName");
 
         var connectionString =
-            $"Server=172.25.224.1,1433;Database=PlantCare_DB;User Id=sa;Password=Password.1234;TrustServerCertificate=true";
+            $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";
         return connectionString;
     }
 }

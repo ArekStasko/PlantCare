@@ -56,5 +56,11 @@ public class AutoMapperProfile : Profile
 
         CreateMap<int, DeletePlaceCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+        CreateMap<Place, IPlace>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Plants, opt => opt.MapFrom(src => src.Plants));
+
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantCare.API.DataAccess;
 
@@ -10,9 +11,11 @@ using PlantCare.API.DataAccess;
 namespace PlantCare.API.DataAccess.Migrations.Place
 {
     [DbContext(typeof(PlaceContext))]
-    partial class PlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20231009161559_Change Plants property type")]
+    partial class ChangePlantspropertytype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,13 +86,11 @@ namespace PlantCare.API.DataAccess.Migrations.Place
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>
                 {
-                    b.HasOne("PlantCare.API.DataAccess.Models.Place.Place", "Place")
+                    b.HasOne("PlantCare.API.DataAccess.Models.Place.Place", null)
                         .WithMany("Plants")
                         .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Place.Place", b =>
