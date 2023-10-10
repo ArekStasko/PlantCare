@@ -48,7 +48,7 @@ public class PlaceController : ControllerBase
     [HttpPost(Name = "[controller]/Edit")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Edit(EditPlaceCommand command)
+    public async ValueTask<IActionResult> Edit(UpdatePlaceCommand command)
     {
         _logger.LogInformation("Edit place controller method start processing");
         var result = await _mediator.Send(command);

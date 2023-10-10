@@ -4,5 +4,5 @@ public interface IPlace
 { 
     int Id { get; set; }
     string Name { get; set; }
-    ICollection<Plant> Plants { get; set; }
+    ICollection<Plant> Plants { get; }
 }

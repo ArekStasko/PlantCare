@@ -2,7 +2,6 @@ using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess.Repositories.PlaceRepository;
@@ -44,7 +43,7 @@ public class PlaceRepository : IPlaceRepository
 
             if (placeToDelete == null)
             {
-                _logger.LogError("There is no plant to delete with {placeId} Id", id);
+                _logger.LogError("There is no place to delete with {placeId} Id", id);
                 return new Result<bool>(new NullReferenceException());
             }
 
@@ -62,7 +61,7 @@ public class PlaceRepository : IPlaceRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Edit(IPlace place)
+    public async ValueTask<Result<bool>> Update(IPlace place)
     {
         try
         {

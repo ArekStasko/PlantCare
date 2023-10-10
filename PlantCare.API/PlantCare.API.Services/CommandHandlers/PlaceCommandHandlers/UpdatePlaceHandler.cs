@@ -8,26 +8,26 @@ using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.Services.Requests.PlaceCommands;
 
-public class EditPlaceHandler : IRequestHandler<EditPlaceCommand, Result<bool>>
+public class UpdatePlaceHandler : IRequestHandler<UpdatePlaceCommand, Result<bool>>
 {
     private readonly IPlaceRepository _repository;
     private readonly IMapper _mapper;
-    private readonly ILogger<EditPlaceHandler> _logger;
+    private readonly ILogger<UpdatePlaceHandler> _logger;
 
-    public EditPlaceHandler(IPlaceRepository repository, IMapper mapper, ILogger<EditPlaceHandler> logger)
+    public UpdatePlaceHandler(IPlaceRepository repository, IMapper mapper, ILogger<UpdatePlaceHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
         _logger = logger;
     }
 
-    public async Task<Result<bool>> Handle(EditPlaceCommand command, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(UpdatePlaceCommand command, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("EditPlaceHandler handles request");
             IPlace placeToEdit = _mapper.Map<Place>(command);
-            var result = await _repository.Edit(placeToEdit);
+            var result = await _repository.Update(placeToEdit);
             return result.Match(succ =>
             {
                 if (succ)

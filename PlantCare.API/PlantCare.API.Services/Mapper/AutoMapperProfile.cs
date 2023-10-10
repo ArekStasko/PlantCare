@@ -50,7 +50,7 @@ public class AutoMapperProfile : Profile
         CreateMap<CreatePlaceCommand, Place>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
-        CreateMap<EditPlaceCommand, Place>()
+        CreateMap<UpdatePlaceCommand, Place>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
