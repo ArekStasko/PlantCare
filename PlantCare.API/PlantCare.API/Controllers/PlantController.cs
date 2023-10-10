@@ -44,10 +44,10 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/Edit")]
+    [HttpPost(Name = "[controller]/Update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Edit(EditPlantCommand command)
+    public async ValueTask<IActionResult> Update(UpdatePlantCommand command)
     {
         _logger.LogInformation("Edit plant controller method start processing");
         var result = await _mediator.Send(command);

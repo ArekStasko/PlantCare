@@ -10,8 +10,8 @@ using PlantCare.API.DataAccess;
 
 namespace PlantCare.API.DataAccess.Migrations
 {
-    [DbContext(typeof(PlantContext))]
-    [Migration("20231010182312_RESET MIGRATIONS")]
+    [DbContext(typeof(PlaceContext))]
+    [Migration("20231010185955_RESET MIGRATIONS")]
     partial class RESETMIGRATIONS
     {
         /// <inheritdoc />
@@ -81,7 +81,7 @@ namespace PlantCare.API.DataAccess.Migrations
 
                     b.HasIndex("PlaceId");
 
-                    b.ToTable("Plants");
+                    b.ToTable("Plant");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>

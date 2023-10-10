@@ -97,7 +97,7 @@ public class Tests
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = await plantRepository.Edit(EditedPlant);
+        var result = await plantRepository.Update(EditedPlant);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsTrue(succ);

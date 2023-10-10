@@ -8,26 +8,26 @@ using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
 
-public class EditPlantHandler : IRequestHandler<EditPlantCommand, Result<bool>>
+public class UpdatePlantHandler : IRequestHandler<UpdatePlantCommand, Result<bool>>
 {
     private readonly IPlantRepository _repository;
     private readonly IMapper _mapper;
-    private readonly ILogger<EditPlantHandler> _logger;
+    private readonly ILogger<UpdatePlantHandler> _logger;
 
-    public EditPlantHandler(IPlantRepository repository, IMapper mapper, ILogger<EditPlantHandler> logger)
+    public UpdatePlantHandler(IPlantRepository repository, IMapper mapper, ILogger<UpdatePlantHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
         _logger = logger;
     }
 
-    public async Task<Result<bool>> Handle(EditPlantCommand command, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(UpdatePlantCommand command, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("EditPlantHandler handles request");
             IPlant plantToEdit = _mapper.Map<Plant>(command);
-            var result = await _repository.Edit(plantToEdit);
+            var result = await _repository.Update(plantToEdit);
             return result.Match(succ =>
             {
                 if (succ)

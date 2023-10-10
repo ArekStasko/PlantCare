@@ -2,17 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantCare.API.DataAccess;
 
 #nullable disable
 
-namespace PlantCare.API.DataAccess.Migrations.Place
+namespace PlantCare.API.DataAccess.Migrations.Plant
 {
-    [DbContext(typeof(PlaceContext))]
-    partial class PlaceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PlantContext))]
+    [Migration("20231010190010_RESET MIGRATIONS")]
+    partial class RESETMIGRATIONS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +38,7 @@ namespace PlantCare.API.DataAccess.Migrations.Place
 
                     b.HasKey("Id");
 
-                    b.ToTable("Places");
+                    b.ToTable("Place");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>

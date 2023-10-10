@@ -4,6 +4,7 @@ using PlantCare.API.DataAccess.Enums;
 
 namespace PlantCare.API.DataAccess.Models;
 
+[Table("Plant")]
 public class Plant : IPlant
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,8 +13,9 @@ public class Plant : IPlant
     [Required]
     public int PlaceId { get; set; }
 
-    [Required] 
-    public virtual Place.Place Place { get; set; } = null!;
+    [Required]
+    [ForeignKey("PlaceId")]
+    public Place.Place Place { get; set; } = null!;
     
     [Required]
     [MaxLength(150)]

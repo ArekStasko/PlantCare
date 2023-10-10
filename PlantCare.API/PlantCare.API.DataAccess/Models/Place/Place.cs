@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PlantCare.API.DataAccess.Models.Place;
 
+[Table("Place")]
 public class Place : IPlace
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

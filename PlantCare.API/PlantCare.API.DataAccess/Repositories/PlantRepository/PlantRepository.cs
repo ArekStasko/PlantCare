@@ -61,7 +61,7 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public virtual async ValueTask<Result<bool>> Edit(IPlant plant)
+    public virtual async ValueTask<Result<bool>> Update(IPlant plant)
     {
         try
         {

@@ -7,7 +7,7 @@ using PlantCare.API.DataAccess;
 
 #nullable disable
 
-namespace PlantCare.API.DataAccess.Migrations
+namespace PlantCare.API.DataAccess.Migrations.Plant
 {
     [DbContext(typeof(PlantContext))]
     partial class PlantContextModelSnapshot : ModelSnapshot
@@ -78,7 +78,7 @@ namespace PlantCare.API.DataAccess.Migrations
 
                     b.HasIndex("PlaceId");
 
-                    b.ToTable("Plants");
+                    b.ToTable("Plant");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>

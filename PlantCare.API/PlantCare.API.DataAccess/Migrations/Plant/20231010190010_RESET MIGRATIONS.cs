@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PlantCare.API.DataAccess.Migrations
+namespace PlantCare.API.DataAccess.Migrations.Plant
 {
     /// <inheritdoc />
     public partial class RESETMIGRATIONS : Migration
@@ -24,7 +24,7 @@ namespace PlantCare.API.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Plants",
+                name: "Plant",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -40,9 +40,9 @@ namespace PlantCare.API.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Plants", x => x.Id);
+                    table.PrimaryKey("PK_Plant", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Plants_Place_PlaceId",
+                        name: "FK_Plant_Place_PlaceId",
                         column: x => x.PlaceId,
                         principalTable: "Place",
                         principalColumn: "Id",
@@ -50,8 +50,8 @@ namespace PlantCare.API.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plants_PlaceId",
-                table: "Plants",
+                name: "IX_Plant_PlaceId",
+                table: "Plant",
                 column: "PlaceId");
         }
 
@@ -59,7 +59,7 @@ namespace PlantCare.API.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Plants");
+                name: "Plant");
 
             migrationBuilder.DropTable(
                 name: "Place");

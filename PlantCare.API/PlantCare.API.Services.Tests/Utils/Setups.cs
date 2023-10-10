@@ -69,7 +69,7 @@ public static class Setups
         
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(true).Verifiable();
-        plantRepositoryMock.Setup(repo => repo.Edit(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get()).ReturnsAsync(plantList).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).ReturnsAsync(plant).Verifiable();
         
@@ -86,7 +86,7 @@ public static class Setups
 
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(false).Verifiable();
-        plantRepositoryMock.Setup(repo => repo.Edit(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).ThrowsAsync(It.IsAny<ArgumentNullException>()).Verifiable();
 
         return plantRepositoryMock;
