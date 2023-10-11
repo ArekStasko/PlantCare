@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
@@ -19,11 +20,7 @@ public static class DataExtensions
     private static void AddDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
-        services.AddDbContext<PlantContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddDbContext<PlaceContext>(options =>
+        services.AddDbContext<DataContext>(options =>
         {
             options.UseSqlServer(connectionString);
         });
@@ -31,6 +28,8 @@ public static class DataExtensions
 
     private static void AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IPlaceContext, DataContext>();
+        services.AddScoped<IPlantContext, DataContext>();
         services.AddScoped<IPlantRepository, PlantRepository>();
         services.AddScoped<IPlaceRepository, PlaceRepository>();
     }

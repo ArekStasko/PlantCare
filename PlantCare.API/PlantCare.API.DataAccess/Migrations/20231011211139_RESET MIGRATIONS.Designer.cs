@@ -8,10 +8,10 @@ using PlantCare.API.DataAccess;
 
 #nullable disable
 
-namespace PlantCare.API.DataAccess.Migrations.Plant
+namespace PlantCare.API.DataAccess.Migrations
 {
-    [DbContext(typeof(PlantContext))]
-    [Migration("20231010190010_RESET MIGRATIONS")]
+    [DbContext(typeof(DataContext))]
+    [Migration("20231011211139_RESET MIGRATIONS")]
     partial class RESETMIGRATIONS
     {
         /// <inheritdoc />

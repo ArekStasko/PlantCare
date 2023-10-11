@@ -3,6 +3,7 @@ using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Mapper;
@@ -21,7 +22,7 @@ public static class Setups
     
     public static Mock<PlantRepository> GetSuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<PlantContext>();
+        var plantContextMock = new Mock<IPlantContext>();
         var logger = new Mock<ILogger<PlantRepository>>();
         var mapper = GetMapper();
         
@@ -78,7 +79,7 @@ public static class Setups
     
     public static Mock<PlantRepository> GetUnsuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<PlantContext>();
+        var plantContextMock = new Mock<IPlantContext>();
         var logger = new Mock<ILogger<PlantRepository>>();
         var mapper = GetMapper();
         

@@ -9,8 +9,8 @@ using PlantCare.API.DataAccess;
 
 namespace PlantCare.API.DataAccess.Migrations
 {
-    [DbContext(typeof(PlaceContext))]
-    partial class PlaceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DataContext))]
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -1,18 +1,17 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PlantCare.API.DataAccess.Interfaces;
+using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess;
 
-public class PlaceContext : DbContext
+internal class DataContext : DbContext, IPlaceContext, IPlantContext
 {
-    public PlaceContext()
-    {
-    }
+    public DataContext(){}
 
-    public PlaceContext(DbContextOptions<PlaceContext> options) : base(options)
-    {
-    }
-
+    public DataContext(DbContextOptions<DataContext> options) : base(options){}
+    
+    public virtual DbSet<Plant> Plants { get; set; } = null!;
     public virtual DbSet<Place> Places { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,5 +23,4 @@ public class PlaceContext : DbContext
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
     }
-
 }

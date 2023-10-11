@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Query;
 using MockQueryable.Moq;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.Services.Mapper;
 
@@ -20,7 +21,7 @@ public class Setups
         return new Mapper(configuration);
     }
 
-    public static Mock<PlantContext> SetupDataContext()
+    public static Mock<IPlantContext> SetupDataContext()
     {
         IPlant defaultPlant = new Plant()
         {
@@ -33,7 +34,7 @@ public class Setups
             ModuleId = ""
         };
         
-        var dataContextMock = new Mock<PlantContext>();
+        var dataContextMock = new Mock<IPlantContext>();
         
         dataContextMock.Setup(_ => _.Plants.Remove(It.IsAny<Plant>())).Returns((EntityEntry<Plant>)null).Verifiable();
         

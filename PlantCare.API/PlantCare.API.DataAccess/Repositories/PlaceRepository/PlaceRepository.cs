@@ -2,17 +2,18 @@ using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess.Repositories.PlaceRepository;
 
 public class PlaceRepository : IPlaceRepository
 {
-    private PlaceContext _context;
+    private IPlaceContext _context;
     private IMapper _mapper;
     private ILogger<PlaceRepository> _logger;
 
-    public PlaceRepository(PlaceContext context, IMapper mapper, ILogger<PlaceRepository> logger)
+    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<PlaceRepository> logger)
     {
         _context = context;
         _mapper = mapper;
