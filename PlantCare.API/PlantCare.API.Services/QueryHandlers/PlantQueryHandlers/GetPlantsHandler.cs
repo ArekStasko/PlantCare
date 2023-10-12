@@ -1,11 +1,11 @@
+namespace PlantCare.API.Services.Handlers;
+
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Requests;
-
-namespace PlantCare.API.Services.Handlers;
 
 public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<List<IPlant>>>
 {

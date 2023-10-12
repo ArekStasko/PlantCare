@@ -38,13 +38,13 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantCommand, Result<boo
                 return new Result<bool>(false);
             }, err =>
             {
-                _logger.LogError("Error has occured during CreatePlantRequest handling: {exception}", err.Message);
+                _logger.LogError("Error has occured during DeletePlantHandler handling: {exception}", err.Message);
                 return new Result<bool>(err);
             });
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception has been thrown in AddPlantHandler: {exception}", e.Message);
+            _logger.LogError("Exception has been thrown in DeletePlantHandler: {exception}", e.Message);
             return new Result<bool>(e);
         }
     }

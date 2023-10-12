@@ -1,12 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using PlantCare.API.DataAccess.Enums;
 
 namespace PlantCare.API.DataAccess.Models;
 
+[Table("Plant")]
 public class Plant : IPlant
 {
-    [Key]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
+    
+    [Required]
+    public int PlaceId { get; set; }
+
+    [Required]
+    [ForeignKey("PlaceId")]
+    public Place.Place Place { get; set; } = null!;
     
     [Required]
     [MaxLength(150)]

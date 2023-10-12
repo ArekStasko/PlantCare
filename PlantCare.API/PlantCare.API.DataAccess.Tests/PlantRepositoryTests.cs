@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.DataAccess.Tests.Utils;
@@ -13,7 +14,7 @@ namespace PlantCare.API.DataAccess.Tests;
 
 public class Tests
 {
-    private Mock<PlantContext> _dataContextMock = Setups.SetupDataContext();
+    private Mock<IPlantContext> _dataContextMock = Setups.SetupDataContext();
     private IMock<ILogger<IPlantRepository>> _loggerMock = new Mock<ILogger<IPlantRepository>>();
     private IMapper _mapper = Setups.SetupMapper();
 
@@ -97,7 +98,7 @@ public class Tests
         _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
         var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
-        var result = await plantRepository.Edit(EditedPlant);
+        var result = await plantRepository.Update(EditedPlant);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsTrue(succ);

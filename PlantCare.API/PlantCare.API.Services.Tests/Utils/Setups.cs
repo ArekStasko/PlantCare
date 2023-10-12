@@ -3,6 +3,7 @@ using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Mapper;
@@ -21,7 +22,7 @@ public static class Setups
     
     public static Mock<PlantRepository> GetSuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<PlantContext>();
+        var plantContextMock = new Mock<IPlantContext>();
         var logger = new Mock<ILogger<PlantRepository>>();
         var mapper = GetMapper();
         
@@ -69,7 +70,7 @@ public static class Setups
         
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(true).Verifiable();
-        plantRepositoryMock.Setup(repo => repo.Edit(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get()).ReturnsAsync(plantList).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).ReturnsAsync(plant).Verifiable();
         
@@ -78,7 +79,7 @@ public static class Setups
     
     public static Mock<PlantRepository> GetUnsuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<PlantContext>();
+        var plantContextMock = new Mock<IPlantContext>();
         var logger = new Mock<ILogger<PlantRepository>>();
         var mapper = GetMapper();
         
@@ -86,7 +87,7 @@ public static class Setups
 
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(false).Verifiable();
-        plantRepositoryMock.Setup(repo => repo.Edit(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).ThrowsAsync(It.IsAny<ArgumentNullException>()).Verifiable();
 
         return plantRepositoryMock;
