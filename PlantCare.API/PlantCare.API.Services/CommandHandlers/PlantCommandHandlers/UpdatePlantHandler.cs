@@ -25,9 +25,9 @@ public class UpdatePlantHandler : IRequestHandler<UpdatePlantCommand, Result<boo
     {
         try
         {
-            _logger.LogInformation("EditPlantHandler handles request");
-            IPlant plantToEdit = _mapper.Map<Plant>(command);
-            var result = await _repository.Update(plantToEdit);
+            _logger.LogInformation("UpdatePlantHandler handles request");
+            IPlant plantToUpdate = _mapper.Map<Plant>(command);
+            var result = await _repository.Update(plantToUpdate);
             return result.Match(succ =>
             {
                 if (succ)
@@ -40,13 +40,13 @@ public class UpdatePlantHandler : IRequestHandler<UpdatePlantCommand, Result<boo
                 return new Result<bool>(false);
             }, err =>
             {
-                _logger.LogError("Error has occured during EditPlantHandler handling: {exception}", err.Message);
+                _logger.LogError("Error has occured during UpdatePlantHandler handling: {exception}", err.Message);
                 return new Result<bool>(err);
             });
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception has been thrown in EditPlantHandler: {exception}", e.Message);
+            _logger.LogError("Exception has been thrown in UpdatePlantHandler: {exception}", e.Message);
             return new Result<bool>(e);
         }
     }

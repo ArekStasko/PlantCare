@@ -66,18 +66,22 @@ public class PlantRepository : IPlantRepository
     {
         try
         {
-            var plantToEdit = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
+            var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
 
-            if (plantToEdit == null)
+            if (plantToUpdate == null)
             {
                 _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
                 return new Result<bool>(new NullReferenceException());
             }
 
-            _mapper.Map(plant, plantToEdit);
+            plantToUpdate.Name = plant.Name;
+            plantToUpdate.Description = plant.Description;
+            plantToUpdate.Type = plant.Type;
+            plantToUpdate.CriticalMoistureLevel = plant.CriticalMoistureLevel;
+            plantToUpdate.RequiredMoistureLevel = plant.RequiredMoistureLevel;
             await _context.SaveChangesAsync();
             
-            _logger.LogInformation("Plant with {plantId} successfully edited", plant.Id);
+            _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
 
             return new Result<bool>(true);
         }
