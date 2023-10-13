@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test Name\",\r\n    \"description\": \"Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Test Name\",\r\n    \"description\": \"Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -61,13 +61,13 @@
 					"response": []
 				},
 				{
-					"name": "Edit Plant",
+					"name": "Update Plant",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Edited Test Name\",\r\n    \"description\": \"Edited Test Description\",\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 80,\r\n    \"requiredMoistureLevel\" : 30,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Updated Test Name\",\r\n    \"description\": \"Updated Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{FruitType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,13 +75,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/plants/Edit",
+							"raw": "{{BaseURL}}/plants/Update",
 							"host": [
 								"{{BaseURL}}"
 							],
 							"path": [
 								"plants",
-								"Edit"
+								"Update"
 							]
 						}
 					},
@@ -135,6 +135,119 @@
 							],
 							"path": [
 								"plants",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "Update Place",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{CurrentPlaceId}},\r\n  \"name\": \"Updated place name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/places/Update",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"places",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Place",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/places/Create",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"places",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Place",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/places/Delete?id={{CurrentPlaceId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"places",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlaceId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll Places",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/places/GetAll",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"places",
 								"GetAll"
 							]
 						}
