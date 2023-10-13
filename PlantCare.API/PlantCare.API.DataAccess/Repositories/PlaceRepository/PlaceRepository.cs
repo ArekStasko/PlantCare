@@ -70,14 +70,14 @@ public class PlaceRepository : IPlaceRepository
 
             if (placeToEdit == null)
             {
-                _logger.LogError("There is no place to edit with {placeId} Id", place.Id);
+                _logger.LogError("There is no place to update with {placeId} Id", place.Id);
                 return new Result<bool>(new NullReferenceException());
             }
 
-            _context.Places.Update((Place)place);
+            placeToEdit.Name = place.Name;
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation("Place with {placeId} successfully edited", place.Id);
+            _logger.LogInformation("Place with {placeId} successfully updated", place.Id);
 
             return new Result<bool>(true);
         }

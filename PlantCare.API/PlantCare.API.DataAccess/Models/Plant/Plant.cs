@@ -12,10 +12,6 @@ public class Plant : IPlant
     
     [Required]
     public int PlaceId { get; set; }
-
-    [Required]
-    [ForeignKey("PlaceId")]
-    public Place.Place Place { get; set; } = null!;
     
     [Required]
     [MaxLength(150)]

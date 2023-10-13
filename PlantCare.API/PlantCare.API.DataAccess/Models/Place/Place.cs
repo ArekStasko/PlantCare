@@ -9,5 +9,5 @@ public class Place : IPlace
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public string Name { get; set; }
-    public ICollection<Plant> Plants { get; } = new List<Plant>();
+    public virtual ICollection<Plant> Plants { get; } = new List<Plant>();
 }

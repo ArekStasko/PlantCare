@@ -22,7 +22,9 @@ public static class DataExtensions
         var connectionString = GetConnectionString();
         services.AddDbContext<DataContext>(options =>
         {
-            options.UseSqlServer(connectionString);
+            options
+                .UseLazyLoadingProxies()
+                .UseSqlServer(connectionString);
         });
     }
 

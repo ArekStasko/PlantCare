@@ -18,7 +18,7 @@ internal class DataContext : DbContext, IPlaceContext, IPlantContext
     {
         modelBuilder.Entity<Place>()
             .HasMany(e => e.Plants)
-            .WithOne(e => e.Place)
+            .WithOne()
             .HasForeignKey(e => e.PlaceId)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
