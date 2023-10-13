@@ -16,13 +16,14 @@ builder.Services.SetupDataAccess();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
 
-Log.Logger = new LoggerConfiguration()
+var logger = new LoggerConfiguration()
     .ReadFrom
     .Configuration(builder.Configuration)
     .CreateLogger();
 
-Log.Information("Logger is Successfully Configured");
-        
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 var app = builder.Build();
 
 app.Migrate();  

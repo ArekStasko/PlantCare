@@ -137,7 +137,7 @@ public class HandlersTests
     [Test]
     public async Task EditPlantHandler_Should_EditPlant()
     {
-        EditPlantCommand plantToEdit = new EditPlantCommand()
+        UpdatePlantCommand plantToUpdate = new UpdatePlantCommand()
         {
             Id = 1,
             Name = "Test Name",
@@ -150,12 +150,12 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
+        IMock<ILogger<UpdatePlantHandler>> loggerMock = new Mock<ILogger<UpdatePlantHandler>>();
 
-        var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = await handler.Handle(plantToEdit, new CancellationToken());
+        var handler = new UpdatePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
+        var result = await handler.Handle(plantToUpdate, new CancellationToken());
         
-        plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+        plantRepoMock.Verify(repo => repo.Update(It.IsAny<IPlant>()), Times.Once);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsTrue(succ);
@@ -170,7 +170,7 @@ public class HandlersTests
     [Test]
     public async Task EditPlantHandler_ShouldNot_EditPlant()
     {
-        EditPlantCommand plantToEdit = new EditPlantCommand()
+        UpdatePlantCommand plantToUpdate = new UpdatePlantCommand()
         {
             Id = 1,
             Name = "Test Name",
@@ -183,12 +183,12 @@ public class HandlersTests
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
         var mapper = Setups.GetMapper();
-        IMock<ILogger<EditPlantCommand>> loggerMock = new Mock<ILogger<EditPlantCommand>>();
+        IMock<ILogger<UpdatePlantHandler>> loggerMock = new Mock<ILogger<UpdatePlantHandler>>();
 
-        var handler = new EditPlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
-        var result = await handler.Handle(plantToEdit, new CancellationToken());
+        var handler = new UpdatePlantHandler(plantRepoMock.Object, mapper, loggerMock.Object);
+        var result = await handler.Handle(plantToUpdate, new CancellationToken());
         
-        plantRepoMock.Verify(repo => repo.Edit(It.IsAny<IPlant>()), Times.Once);
+        plantRepoMock.Verify(repo => repo.Update(It.IsAny<IPlant>()), Times.Once);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsFalse(succ);

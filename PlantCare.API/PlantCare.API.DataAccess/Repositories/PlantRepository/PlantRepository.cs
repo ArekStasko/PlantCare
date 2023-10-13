@@ -2,17 +2,18 @@ using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 public class PlantRepository : IPlantRepository
 {
-    private PlantContext _context;
+    private IPlantContext _context;
     private ILogger<IPlantRepository> _logger;
     private IMapper _mapper;
 
-    public PlantRepository(PlantContext context, ILogger<IPlantRepository> logger, IMapper mapper)
+    public PlantRepository(IPlantContext context, ILogger<IPlantRepository> logger, IMapper mapper)
     {
         _context = context;
         _logger = logger;
@@ -61,22 +62,26 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public virtual async ValueTask<Result<bool>> Edit(IPlant plant)
+    public virtual async ValueTask<Result<bool>> Update(IPlant plant)
     {
         try
         {
-            var plantToEdit = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
+            var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
 
-            if (plantToEdit == null)
+            if (plantToUpdate == null)
             {
                 _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
                 return new Result<bool>(new NullReferenceException());
             }
 
-            _mapper.Map(plant, plantToEdit);
+            plantToUpdate.Name = plant.Name;
+            plantToUpdate.Description = plant.Description;
+            plantToUpdate.Type = plant.Type;
+            plantToUpdate.CriticalMoistureLevel = plant.CriticalMoistureLevel;
+            plantToUpdate.RequiredMoistureLevel = plant.RequiredMoistureLevel;
             await _context.SaveChangesAsync();
             
-            _logger.LogInformation("Plant with {plantId} successfully edited", plant.Id);
+            _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
 
             return new Result<bool>(true);
         }

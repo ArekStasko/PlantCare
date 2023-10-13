@@ -34,17 +34,17 @@ Backend API :
   - [x] Get via Id
   - [x] Delete
   - [x] Edit
-- [ ] Add Performance Tests
-- [ ] Add Unit tests to :
-  - [ ] Create command
-  - [ ] Edit command
-  - [ ] Delete command
-  - [ ] Get query
-  - [ ] GetAll query
+- [x] Add Performance Tests
+- [x] Add Unit tests to :
+  - [x] Create command
+  - [x] Edit command
+  - [x] Delete command
+  - [x] Get query
+  - [x] GetAll query
 - [x] Add Postman collection
 
 Fronted App :
-- [ ] Create frontend App Structure ( ReactApp + Redux + TS )
+- [x] Create frontend App Structure ( ReactApp + Redux + TS )
 - [ ] Add Dashboard layout
 - [ ] Perform plants fetching for dashboard ( via slices in react redux )
 - [ ] Add delete popup for deletion flow
