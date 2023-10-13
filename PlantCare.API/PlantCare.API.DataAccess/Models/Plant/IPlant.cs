@@ -7,7 +7,6 @@ public interface IPlant
 {
     int Id { get; set; }
     int PlaceId { get; set; }
-    Place.Place Place { get; set; }
     string Name { get; set; }
     string Description { get; set; }
     PlantType Type { get; set; }

@@ -18,9 +18,8 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
-            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
-            .ForMember(dest => dest.Place, opt => opt.MapFrom(src => src.Place));
-        
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+
         CreateMap<UpdatePlantCommand, Plant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
@@ -29,17 +28,6 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
-            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
-            .ForMember(dest => dest.Place, opt => opt.MapFrom(src => src.Place));
-
-        CreateMap<Plant, IPlant>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
-            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
-            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
-            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
-            .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
         CreateMap<int, DeletePlantCommand>()
