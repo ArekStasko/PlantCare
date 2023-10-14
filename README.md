@@ -10,6 +10,9 @@ How should it work with ESP32 ?
 - ESP32 will call our Web App API with moisture parameters and it will receive current options like irrigating level etc.
 - Our API will save data to database based on data from ESP32.
 
+Important Information about TODO list :
+- This todo list is quite outdated, during development a lot of new topics came out and there were no time to update this list with new informations. I will do it asap and describe it a little more.
+
 TODO: 
 [ This list will be continuously modified due to changes in app ]
 
