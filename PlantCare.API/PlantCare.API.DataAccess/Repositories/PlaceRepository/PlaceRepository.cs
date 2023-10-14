@@ -20,7 +20,7 @@ public class PlaceRepository : IPlaceRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<bool>> Create(IPlace place)
+    public virtual async ValueTask<Result<bool>> Create(IPlace place)
     {
         try
         {
@@ -36,7 +36,7 @@ public class PlaceRepository : IPlaceRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(int id)
+    public virtual async ValueTask<Result<bool>> Delete(int id)
     {
         try
         {
@@ -62,7 +62,7 @@ public class PlaceRepository : IPlaceRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Update(IPlace place)
+    public virtual async ValueTask<Result<bool>> Update(IPlace place)
     {
         try
         {
@@ -88,7 +88,7 @@ public class PlaceRepository : IPlaceRepository
         }
     }
 
-    public async ValueTask<Result<List<IPlace>>> Get()
+    public virtual async ValueTask<Result<List<IPlace>>> Get()
     {
         try
         {
