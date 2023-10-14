@@ -10,12 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlaceRepositoryTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Commands/PlaceCommands/UpdatePlaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/PlaceCommands/UpdatePlaceCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Commands/PlantCommands/UpdatePlantCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/PlantCommands/UpdatePlantCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/HandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlantHandlersTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,10 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3b1ca9ae4c42542ce48c7e78c36ad9b5cf71ebddb89c151a8eeeea532549/MapperConfigurationExpression.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -328,6 +333,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlaceRepositoryTests.cs</url>
+          <line>95</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess.Tests\PlaceRepositoryTests.cs" initialLine="95" containingFunctionPresentation="Method 'Get_Should_ReturnPlaces'">
+            <startOffsets>
+              <option value="2949" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2950" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NotSupportedException" isInternal="false" displayValue="NotSupportedException" namespaceName="System">

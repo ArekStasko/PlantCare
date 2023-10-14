@@ -11,9 +11,9 @@ public class PlaceRepository : IPlaceRepository
 {
     private IPlaceContext _context;
     private IMapper _mapper;
-    private ILogger<PlaceRepository> _logger;
+    private ILogger<IPlaceRepository> _logger;
 
-    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<PlaceRepository> logger)
+    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<IPlaceRepository> logger)
     {
         _context = context;
         _mapper = mapper;
