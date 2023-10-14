@@ -5,6 +5,8 @@ using Moq;
 using PlantCare.API.DataAccess;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
+using PlantCare.API.DataAccess.Models.Place;
+using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.API.Services.Mapper;
 using Serilog;
@@ -91,5 +93,106 @@ public static class Setups
         plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).ThrowsAsync(It.IsAny<ArgumentNullException>()).Verifiable();
 
         return plantRepositoryMock;
+    }
+    
+    
+    public static Mock<PlaceRepository> GetSuccessfullPlaceRepository()
+    {
+        var placeContextMock = new Mock<IPlaceContext>();
+        var logger = new Mock<ILogger<IPlaceContext>>();
+        var mapper = GetMapper();
+
+        var defaultPlant = new Plant()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            PlaceId = 1,
+            Type = 0,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 130,
+            ModuleId = ""
+        };
+        
+        var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);
+        var placeList = new List<IPlace>()
+        {
+            new Place()
+            {
+                Id = 1,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            },
+            new Place()
+            {
+                Id = 2,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            },
+            new Place()
+            {
+                Id = 3,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            }
+        };
+        
+        placeRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlace>())).ReturnsAsync(true).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(true).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlace>())).ReturnsAsync(true).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Get()).ReturnsAsync(placeList).Verifiable();
+        
+        return placeRepositoryMock;
+    }
+    
+    public static Mock<PlaceRepository> GetUnsuccessfullPlaceRepository()
+    {
+        var placeContextMock = new Mock<IPlaceContext>();
+        var logger = new Mock<ILogger<IPlaceContext>>();
+        var mapper = GetMapper();
+
+        var defaultPlant = new Plant()
+        {
+            Id = 1,
+            Name = "Test Name",
+            Description = "Test Description",
+            PlaceId = 1,
+            Type = 0,
+            CriticalMoistureLevel = 30,
+            RequiredMoistureLevel = 130,
+            ModuleId = ""
+        };
+        
+        var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);
+        var placeList = new List<IPlace>()
+        {
+            new Place()
+            {
+                Id = 1,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            },
+            new Place()
+            {
+                Id = 2,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            },
+            new Place()
+            {
+                Id = 3,
+                Name = "Test Name",
+                Plants = { defaultPlant }
+            }
+        };
+        
+        //TODO To make it work i had to make my repo methods virtual, is it a good practice ? 
+        
+        placeRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlace>())).ReturnsAsync(false).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(false).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Update(It.IsAny<IPlace>())).ReturnsAsync(false).Verifiable();
+        placeRepositoryMock.Setup(repo => repo.Get()).ReturnsAsync(placeList).Verifiable();
+        
+        return placeRepositoryMock;
     }
 }

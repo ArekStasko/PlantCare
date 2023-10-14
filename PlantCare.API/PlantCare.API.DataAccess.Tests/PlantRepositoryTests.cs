@@ -14,7 +14,7 @@ namespace PlantCare.API.DataAccess.Tests;
 
 public class Tests
 {
-    private Mock<IPlantContext> _dataContextMock = Setups.SetupDataContext();
+    private Mock<IPlantContext> _plantContextMock = Setups.SetupPlantContext();
     private IMock<ILogger<IPlantRepository>> _loggerMock = new Mock<ILogger<IPlantRepository>>();
     private IMapper _mapper = Setups.SetupMapper();
 
@@ -25,6 +25,7 @@ public class Tests
         {
             Name = "Test Name",
             Description = "Test Description",
+            PlaceId = 1,
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
@@ -33,10 +34,10 @@ public class Tests
         
         
 
-        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Create(plantToCreate);
         
-        _dataContextMock.Verify(dbSet => dbSet.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()), Times.Once);
+        _plantContextMock.Verify(dbSet => dbSet.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()), Times.Once);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsTrue(succ);
@@ -56,19 +57,20 @@ public class Tests
             Id = 1,
             Name = "Test Name",
             Description = "Test Description",
+            PlaceId = 1,
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
             ModuleId = ""
         };
 
-        var mockSet = Setups.GetMockData();
-        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+        var mockSet = Setups.GetPlantMockData();
+        _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
         
-        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Delete(plantToDelete.Id);
         
-        _dataContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
+        _plantContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
         result.Match<IActionResult>(succ =>
         {
             Assert.IsTrue(succ);
@@ -81,23 +83,24 @@ public class Tests
     }
 
     [Test]
-    public async Task Edit_Should_EditPlant()
+    public async Task Update_Should_UpdatePlant()
     {
         IPlant EditedPlant = new Plant()
         {
             Id = 1,
             Name = "Test Name UPDATED",
             Description = "Test Description UPDATED",
+            PlaceId = 1,
             Type = PlantType.Fruit,
             CriticalMoistureLevel = 40,
             RequiredMoistureLevel = 80,
             ModuleId = ""
         };
 
-        var mockSet = Setups.GetMockData();
-        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+        var mockSet = Setups.GetPlantMockData();
+        _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Update(EditedPlant);
         result.Match<IActionResult>(succ =>
         {
@@ -113,10 +116,10 @@ public class Tests
     [Test]
     public async Task Get_Should_ReturnPlants()
     {
-        var mockSet = Setups.GetMockData();
-        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+        var mockSet = Setups.GetPlantMockData();
+        _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Get();
         result.Match<IActionResult>(succ =>
         {
@@ -134,10 +137,10 @@ public class Tests
     {
         var plantIdToGet = 1;
         
-        var mockSet = Setups.GetMockData();
-        _dataContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
+        var mockSet = Setups.GetPlantMockData();
+        _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_dataContextMock.Object, _loggerMock.Object, _mapper);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _mapper);
         var result = await plantRepository.Get(plantIdToGet);
         result.Match<IActionResult>(succ =>
         {
