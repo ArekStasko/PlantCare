@@ -12,6 +12,7 @@ How should it work with ESP32 ?
 
 Important Information about TODO list :
 - This todo list is quite outdated, during development a lot of new topics came out and there were no time to update this list with new informations. I will do it asap and describe it a little more.
+- Figma and Workflow diagrams will be replaced with new sources
 
 TODO: 
 [ This list will be continuously modified due to changes in app ]
