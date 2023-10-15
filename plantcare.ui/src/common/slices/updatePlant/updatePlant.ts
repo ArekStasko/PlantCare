@@ -5,7 +5,7 @@ export const updatePlantApi = emptyApi.injectEndpoints({
     endpoints: build => ({
         UpdatePlant: build.mutation<boolean, UpdatePlantRequest>({
             query: ({ ...data }) => ({
-                url: "/plants/Edit",
+                url: "/plants/Update",
                 method: "POST",
                 body: data,
             })

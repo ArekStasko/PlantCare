@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using PlantCare.API.DataAccess.Models;
 using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.Services.CommandHandlers.PlaceCommandHandlers;
-using PlantCare.API.Services.Handlers;
 using PlantCare.API.Services.Queries.PlaceQueries;
 using PlantCare.API.Services.QueryHandlers.PlaceQueryHandlers;
-using PlantCare.API.Services.Requests;
 using PlantCare.API.Services.Requests.PlaceCommands;
 using PlantCare.API.Services.Tests.Utils;
 
