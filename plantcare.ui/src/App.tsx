@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import BaseLayout from "./common/Layouts/baseLayout/baseLayout";
-import {createTheme, ThemeProvider, Typography} from "@mui/material";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {BrowserRouter} from "react-router-dom";
+import MainRouting from "./app/routing/mainRouting";
 
 const darkTheme = createTheme({
     palette: {
@@ -11,13 +12,13 @@ const darkTheme = createTheme({
 
 function App() {
   return (
+      <BrowserRouter>
       <ThemeProvider theme={darkTheme}>
         <div className="App">
-         <BaseLayout>
-             <Typography>Test</Typography>
-        </BaseLayout>
-         </div>
+            <MainRouting />
+        </div>
       </ThemeProvider>
+      </BrowserRouter>
   );
 }
 
