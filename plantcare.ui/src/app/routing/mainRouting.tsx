@@ -3,12 +3,13 @@ import RoutingConstants from "./routingConstants";
 import {Typography} from "@mui/material";
 import React from "react";
 import BaseLayout from "../../common/Layouts/baseLayout/baseLayout";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 
 export const MainRouting = () => (
     <Routes>
         <Route path={RoutingConstants.root} element={
             <BaseLayout>
-                <Typography>Test</Typography>
+                <Dashboard />
             </BaseLayout>
         } />
     </Routes>
