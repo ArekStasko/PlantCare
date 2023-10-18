@@ -8,5 +8,5 @@ public interface IPlaceRepository
     ValueTask<Result<bool>> Create(IPlace plant);
     ValueTask<Result<bool>> Delete(int id);
     ValueTask<Result<bool>> Update(IPlace plant);
-    ValueTask<Result<List<IPlace>>> Get();
+    ValueTask<Result<IReadOnlyCollection<IPlace>>> Get();
 }
