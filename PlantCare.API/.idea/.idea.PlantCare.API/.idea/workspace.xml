@@ -10,11 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/slices/createPlace/createPlace.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/slices/createPlace/createPlaceRequest.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/slices/deletePlace/deletePlace.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/IPlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/IPlaceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlaceRepository/PlaceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/IPlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/IPlantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/PlaceQueries/GetPlacesQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/PlaceQueries/GetPlacesQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/PlantQueries/GetPlantsQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/PlantQueries/GetPlantsQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/PlaceQueryHandlers/GetPlacesHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/PlaceQueryHandlers/GetPlacesHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/PlantQueryHandlers/GetPlantsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/PlantQueryHandlers/GetPlantsHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

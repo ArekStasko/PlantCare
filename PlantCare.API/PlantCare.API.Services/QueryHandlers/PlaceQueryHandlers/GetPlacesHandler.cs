@@ -7,7 +7,7 @@ using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.Services.Queries.PlaceQueries;
 
-public class GetPlacesHandler : IRequestHandler<GetPlacesQuery, Result<List<IPlace>>>
+public class GetPlacesHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnlyCollection<IPlace>>>
 {
     private readonly IPlaceRepository _repository;
     private readonly ILogger<GetPlacesHandler> _logger;
@@ -18,7 +18,7 @@ public class GetPlacesHandler : IRequestHandler<GetPlacesQuery, Result<List<IPla
         _logger = logger;
     }
 
-    public async Task<Result<List<IPlace>>> Handle(GetPlacesQuery query, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyCollection<IPlace>>> Handle(GetPlacesQuery query, CancellationToken cancellationToken)
     {
         try
         {
@@ -28,17 +28,17 @@ public class GetPlacesHandler : IRequestHandler<GetPlacesQuery, Result<List<IPla
             return place.Match(succ =>
             {
                 _logger.LogInformation("GetPlacesHandler successfully processed the request");
-                return new Result<List<IPlace>>(succ);
+                return new Result<IReadOnlyCollection<IPlace>>(succ);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetPlacesHandler request");
-                return new Result<List<IPlace>>(err);
+                return new Result<IReadOnlyCollection<IPlace>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetPlacesHandler: {exception}", e.Message);
-            return new Result<List<IPlace>>(e);
+            return new Result<IReadOnlyCollection<IPlace>>(e);
         }
     }
 }
