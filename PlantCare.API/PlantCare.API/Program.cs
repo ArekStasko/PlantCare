@@ -4,7 +4,16 @@ using Serilog;
 using MediatR;
 using PlantCare.API.Services;
 
+const string AllowSpecifiOrigin = "AllowSpecifiOrigin";
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowSpecifiOrigin, policy => policy.WithOrigins(Environment.GetEnvironmentVariable("SpecificCorsOrigin"))
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+    );
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -25,6 +34,10 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.Migrate();  
 // Configure the HTTP request pipeline.
@@ -35,6 +48,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(AllowSpecifiOrigin);
 
 app.UseAuthorization();
 
