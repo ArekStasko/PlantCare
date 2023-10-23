@@ -1,23 +1,44 @@
-import {Accordion, AccordionDetails, AccordionSummary, Box, Skeleton, Typography} from "@mui/material";
+import React from "react";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary, Backdrop,
+    Box,
+    CircularProgress,
+    Skeleton,
+    Typography
+} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useGetPlacesQuery } from "../../common/slices/getPlaces/getPlaces";
-import React from "react";
+import styles  from './dashboard.styles';
 
 const Dashboard = () => {
+    const [currentAccordion, setCurrentAccordion] = React.useState<number>();
     const {data, isLoading} = useGetPlacesQuery();
 
 
     return(
         isLoading ? (
-            <Box>
-                <Skeleton />
-            </Box>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={isLoading}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         ) : (
             data ? (
                 <Box>
                     {
                         data.map(place => (
-                            <Accordion key={place.id}>
+                            <Accordion
+                                expanded={currentAccordion == place.id}
+                                onChange={e => {
+                                    if(currentAccordion == place.id) setCurrentAccordion(undefined)
+                                    else setCurrentAccordion(place.id)
+                                }}
+                                key={place.id}
+                                disableGutters
+                            >
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
