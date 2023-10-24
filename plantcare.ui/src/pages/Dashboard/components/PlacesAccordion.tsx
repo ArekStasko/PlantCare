@@ -2,6 +2,8 @@ import {Place} from "../../../common/models/Place";
 import {Accordion, AccordionDetails, AccordionSummary, Box, Typography} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
+import PlantsAccordionDetails from "./PlantsAccordionDetails";
+import styles from '../dashboard.styles';
 
 
 interface PlaceAccordionProps{
@@ -12,7 +14,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
     const [currentAccordion, setCurrentAccordion] = React.useState<number>();
 
     return(
-        <Box>
+        <Box sx={styles.placesAccordionWrapper}>
             {
                 props.data!.map(place => (
                     <Accordion
@@ -33,16 +35,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
                         </AccordionSummary>
                         {
                             place.plants ? (
-                                place!.plants.map(plant => (
-                                    <AccordionDetails>
-                                        <Typography>
-                                            {plant.name}
-                                        </Typography>
-                                        <Typography>
-                                            {plant.description}
-                                        </Typography>
-                                    </AccordionDetails>
-                                ))
+                                <PlantsAccordionDetails place={place!} />
                             ) : (
                                 <AccordionDetails>
                                     <Typography>

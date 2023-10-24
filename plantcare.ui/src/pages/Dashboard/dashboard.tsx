@@ -13,21 +13,23 @@ const Dashboard = () => {
 
 
     return(
-        <Box>
-            isLoading ? (
+            placesLoading ? (
                 <CustomBackdrop isLoading={placesLoading} />
             ) : (
-            places ? (
-                <PlacesAccordion data={places!} />
-            ) : (
-            <Box>
-                <Typography>
-                    you dont have any data
-                </Typography>
-            </Box>
+                <Box sx={styles.dashboardWrapper}>
+                    {
+                        places ? (
+                            <PlacesAccordion data={places!} />
+                        ) : (
+                            <Box>
+                                <Typography>
+                                    you dont have any data
+                                </Typography>
+                            </Box>
+                        )
+                    }
+                </Box>
             )
-            )
-        </Box>
     )
 }
 
