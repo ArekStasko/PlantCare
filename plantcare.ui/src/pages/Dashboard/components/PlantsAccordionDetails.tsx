@@ -1,6 +1,7 @@
 import {AccordionDetails, Typography} from "@mui/material";
 import React from "react";
 import {Place} from "../../../common/models/Place";
+import styles from "../dashboard.styles"
 
 
 interface PlantsAccordionDetailsProps{
@@ -13,7 +14,9 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
         <>
             {
                 props.place.plants!.map(plant => (
-                    <AccordionDetails>
+                    <AccordionDetails
+                        sx={styles.plantsAccordionDetailsWrapper}
+                    >
                         <Typography>
                             {plant.name}
                         </Typography>

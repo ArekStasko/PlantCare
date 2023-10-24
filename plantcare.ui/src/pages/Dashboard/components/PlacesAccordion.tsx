@@ -18,6 +18,9 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             {
                 props.data!.map(place => (
                     <Accordion
+                        sx={{
+                            border: '1px solid black'
+                        }}
                         expanded={currentAccordion == place.id}
                         onChange={e => {
                             if(currentAccordion == place.id) setCurrentAccordion(undefined)
