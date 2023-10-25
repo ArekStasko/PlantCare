@@ -14,12 +14,31 @@ const placesAccordionWrapper = {
 }
 
 const plantsAccordionDetailsWrapper = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     borderTop: 1,
     borderColor: "#4C4E52",
+}
+
+const plantsAccordionDetailsInfo = {
+    width: "50%",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+}
+
+const plantsAccordionDetailsButtons = {
+    width: "50%",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
 }
 
 export default {
     dashboardWrapper,
     placesAccordionWrapper,
-    plantsAccordionDetailsWrapper
+    plantsAccordionDetailsWrapper,
+    plantsAccordionDetailsInfo,
+    plantsAccordionDetailsButtons
 }

@@ -34,7 +34,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography>{place.name}</Typography>
+                            <Typography variant="h6">{place.name}</Typography>
                         </AccordionSummary>
                         {
                             place.plants ? (
