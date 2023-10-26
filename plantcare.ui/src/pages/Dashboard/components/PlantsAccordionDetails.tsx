@@ -1,4 +1,4 @@
-import {AccordionDetails, Box, IconButton, Typography} from "@mui/material";
+import {AccordionDetails, Box, IconButton, Tooltip, Typography} from "@mui/material";
 import React from "react";
 import {Place} from "../../../common/models/Place";
 import styles from "../dashboard.styles"
@@ -7,6 +7,7 @@ import {PlantType} from "../../../common/models/plantTypes";
 import Decorative from "../../../app/images/Decorative.png";
 import Fruit from "../../../app/images/Fruit.png";
 import Vegetable from "../../../app/images/Vegetable.png";
+import {ShrinkText} from "../../../common/services/TextService";
 
 interface PlantsAccordionDetailsProps{
     place: Place
@@ -33,17 +34,19 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
                         sx={styles.plantsAccordionDetailsWrapper}
                     >
                         <Box sx={styles.plantsAccordionDetailsInfo}>
-                            <Typography variant="overline">
+                            <Typography sx={{mr: 5}} variant="overline">
                                 {plant.name}
                             </Typography>
-                            <Typography variant="body2">
-                                {plant.description}
+                            <Typography sx={{ml: 5}} variant="body2">
+                                {ShrinkText(plant.description)}
                             </Typography>
                         </Box>
                         <Box sx={styles.plantsAccordionDetailsButtons}>
-                            <IconButton size="large" color="primary">
-                                <InsertChartIcon />
-                            </IconButton>
+                            <Tooltip title={`Show Statistics of ${plant.name}`}>
+                                <IconButton size="large" sx={{mr: 5}} color="primary">
+                                    <InsertChartIcon />
+                                </IconButton>
+                            </Tooltip>
                             <Box
                                 component="img"
                                 sx={{

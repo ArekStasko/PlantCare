@@ -22,9 +22,9 @@ const plantsAccordionDetailsWrapper = {
 }
 
 const plantsAccordionDetailsInfo = {
-    width: "50%",
+    width: "80%",
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
     alignItems: "center",
 }
 
