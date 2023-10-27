@@ -21,12 +21,12 @@ export const MainRouting = () => (
                 <CreatePlant />
             </BaseLayout>
         } />
-        <Route path={RoutingConstants.updatePlant} element={
+        <Route path={`${RoutingConstants.updatePlant}/:id`} element={
             <BaseLayout>
                 <UpdatePlant />
             </BaseLayout>
         } />
-        <Route path={RoutingConstants.plantStatistics} element={
+        <Route path={`${RoutingConstants.plantStatistics}/:id`} element={
             <BaseLayout>
                 <Statistics />
             </BaseLayout>
@@ -36,7 +36,7 @@ export const MainRouting = () => (
                 <CreatePlace />
             </BaseLayout>
         } />
-        <Route path={RoutingConstants.updatePlace} element={
+        <Route path={`${RoutingConstants.updatePlace}/:id`} element={
             <BaseLayout>
                 <UpdatePlace />
             </BaseLayout>

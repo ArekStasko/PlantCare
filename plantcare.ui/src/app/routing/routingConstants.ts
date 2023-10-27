@@ -1,3 +1,7 @@
+interface Dictionary<T>{
+    [Key: string]: T,
+}
+
 const RoutingPaths = {
     root: "/dashboard",
     createPlant: "/create-plant",
@@ -6,5 +10,13 @@ const RoutingPaths = {
     createPlace: "/create-place",
     updatePlace: "/update-place",
 };
+
+export const ActionsTranslation: Dictionary<string> = {
+    "/dashboard": "Dashboard",
+    "/create-plant": "Create Plant",
+    "/create-place": "Create Place"
+}
+
+export const ActionsToPerform = [RoutingPaths.root, RoutingPaths.createPlant, RoutingPaths.createPlace]
 
 export default RoutingPaths;
