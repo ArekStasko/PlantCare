@@ -88,18 +88,18 @@ public class PlaceRepository : IPlaceRepository
         }
     }
 
-    public virtual async ValueTask<Result<List<IPlace>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
         try
         {
             var places = await _context.Places.ToListAsync<IPlace>();
             _logger.LogInformation("Successfull get opreation");
-            return new Result<List<IPlace>>(places);
+            return new Result<IReadOnlyCollection<IPlace>>(places);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<List<IPlace>>(e);
+            return new Result<IReadOnlyCollection<IPlace>>(e);
         }
     }
 

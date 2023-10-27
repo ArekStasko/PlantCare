@@ -4,4 +4,4 @@ using LanguageExt.Common;
 using MediatR;
 using PlantCare.API.DataAccess.Models;
 
-public record GetPlantsQuery : IRequest<Result<List<IPlant>>>;
+public record GetPlantsQuery : IRequest<Result<IReadOnlyCollection<IPlant>>>;
