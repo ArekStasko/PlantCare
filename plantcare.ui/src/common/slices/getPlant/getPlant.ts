@@ -1,4 +1,5 @@
 import emptyApi from "../../../app/api/emptyApi";
+import {Plant} from "../../models/Plant";
 
 export const getPlantApi = emptyApi.injectEndpoints({
     endpoints: build => ({
