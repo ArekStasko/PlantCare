@@ -12,6 +12,15 @@ export const CustomMenu = ({setOpenMenu, openMenu, menuActions} : CustomMenuProp
             MenuListProps={{
                 'aria-labelledby': 'basic-button',
             }}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            sx={{mt: 5}}
         >
             {menuActions()}
         </Menu>
