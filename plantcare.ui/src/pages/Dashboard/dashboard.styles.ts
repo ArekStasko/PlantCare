@@ -13,6 +13,13 @@ const placesAccordionWrapper = {
     mt: 5,
 }
 
+const placesAccordionSummary = {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+}
+
 const plantsAccordionDetailsWrapper = {
     display: "flex",
     justifyContent: "space-between",
@@ -22,9 +29,8 @@ const plantsAccordionDetailsWrapper = {
 }
 
 const plantsAccordionDetailsInfo = {
-    width: "80%",
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "space-around",
     alignItems: "center",
 }
 
@@ -38,6 +44,7 @@ const plantsAccordionDetailsButtons = {
 export default {
     dashboardWrapper,
     placesAccordionWrapper,
+    placesAccordionSummary,
     plantsAccordionDetailsWrapper,
     plantsAccordionDetailsInfo,
     plantsAccordionDetailsButtons
