@@ -1,6 +1,7 @@
 import React from "react";
-import {Menu, MenuItem} from "@mui/material";
+import {Menu} from "@mui/material";
 import {CustomMenuProps} from "./interfaces";
+import styles from "./customMenu.styles"
 
 export const CustomMenu = ({setOpenMenu, openMenu, menuActions} : CustomMenuProps) => {
 
@@ -20,7 +21,7 @@ export const CustomMenu = ({setOpenMenu, openMenu, menuActions} : CustomMenuProp
                 vertical: 'top',
                 horizontal: 'left',
             }}
-            sx={{mt: 5}}
+            sx={styles.customMenuWrapper}
         >
             {menuActions()}
         </Menu>
