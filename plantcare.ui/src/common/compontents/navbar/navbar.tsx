@@ -12,11 +12,9 @@ import {
 } from "@mui/material";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import styles from './navbar.styles';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
 import CustomMenu from "../customMenu/customMenu";
 import {useNavigate} from "react-router";
-import RoutingConstants, {ActionsToPerform, ActionsTranslation} from "../../../app/routing/routingConstants";
+import {ActionsToPerform, ActionsTranslation} from "../../../app/routing/routingConstants";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {update} from "../../slices/routeSlice/routeSlice"
 
