@@ -1,5 +1,8 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography} from "@mui/material";
 import React from "react";
+import {useGetPlacesQuery} from "../../slices/getPlaces/getPlaces";
+import {useDeletePlantMutation} from "../../slices/deletePlant/deletePlant";
+import {useDeletePlaceMutation} from "../../slices/deletePlace/deletePlace";
 
 interface DeleteDialogProps{
     setOpenDialog:  React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,19 +11,33 @@ interface DeleteDialogProps{
     resourceType: string;
 }
 
-export const DeleteDialog = (props: DeleteDialogProps) => {
+export const DeleteDialog = ({setOpenDialog, openDialog, resourceId, resourceType}: DeleteDialogProps) => {
+    const [deletePlant, plantResult] = useDeletePlantMutation();
+    const [deletePlace, placeResult] = useDeletePlaceMutation();
+
+    const confirmDelete = async () => {
+        if(resourceType === "plant"){
+            await deletePlant(resourceId)
+        }
+
+        if(resourceType === "place"){
+            await deletePlace(resourceId)
+        }
+
+        setOpenDialog(!openDialog);
+    }
 
     return(
         <Dialog
-            open={props.openDialog}
-            onClose={props.setOpenDialog}
+            open={openDialog}
+            onClose={setOpenDialog}
         >
             <DialogTitle id="alert-dialog-title">
-                {`Do you want do delete this ${props.resourceType} ?`}
+                {`Do you want do delete this ${resourceType} ?`}
             </DialogTitle>
             <DialogContent>
                     {
-                        props.resourceType === "plant" ? (
+                        resourceType === "plant" ? (
                             <DialogContentText>
                                 By clicking confirm this plant will be deleted permanently.
                                 You won't be able to restore the deleted resource.
@@ -34,8 +51,8 @@ export const DeleteDialog = (props: DeleteDialogProps) => {
                     }
             </DialogContent>
             <DialogActions>
-                <Button variant="contained" onClick={() => props.setOpenDialog(!props.openDialog)}>Cancel</Button>
-                <Button variant="outlined" color="error" onClick={() => props.setOpenDialog(!props.openDialog)} >
+                <Button variant="contained" onClick={() => setOpenDialog(!openDialog)}>Cancel</Button>
+                <Button variant="outlined" color="error" onClick={async () => await confirmDelete()} >
                     Confirm
                 </Button>
             </DialogActions>
