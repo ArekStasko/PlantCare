@@ -1,13 +1,18 @@
 import React from "react";
 import {Menu} from "@mui/material";
-import {CustomMenuProps} from "./interfaces";
 import styles from "./customMenu.styles"
+
+interface CustomMenuProps {
+    setOpenMenu:  React.Dispatch<React.SetStateAction<boolean>>;
+    openMenu: boolean;
+    menuActions: Function;
+}
+
 
 export const CustomMenu = ({setOpenMenu, openMenu, menuActions} : CustomMenuProps) => {
 
     return(
         <Menu
-            id="basic-menu"
             open={openMenu}
             onClose={() => setOpenMenu(!openMenu)}
             MenuListProps={{

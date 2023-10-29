@@ -9,6 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {useNavigate} from "react-router";
 import {useAppDispatch} from "../../../common/hooks";
 import {update} from "../../../common/slices/routeSlice/routeSlice";
+import CustomDeleteIcon from "../../../common/compontents/CustomDeleteIcon/customDeleteIcon";
 
 
 interface PlaceAccordionProps{
@@ -49,11 +50,14 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
                         >
                             <Box sx={styles.placesAccordionSummary}>
                                 <Typography variant="h6">{place.name}</Typography>
-                                <Tooltip title={`Update ${place.name}`} arrow>
-                                    <IconButton onClick={() => redirectUser(`${RoutingConstants.updatePlace}/${place.id}`)} size="large" sx={{mr: 5}} color="primary">
-                                        <BorderColorIcon />
-                                    </IconButton>
-                                </Tooltip>
+                                <Box>
+                                    <CustomDeleteIcon resourceId={place.id} resourceName={place.name} resourceType="place" />
+                                    <Tooltip title={`Update ${place.name}`} arrow>
+                                        <IconButton onClick={() => redirectUser(`${RoutingConstants.updatePlace}/${place.id}`)} size="large" sx={{mr: 5}} color="primary">
+                                            <BorderColorIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Box>
                             </Box>
                         </AccordionSummary>
                         {

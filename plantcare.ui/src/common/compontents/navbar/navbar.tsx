@@ -31,12 +31,12 @@ export const Navbar = () => {
     }
 
     const menuActions = () =>
-        ActionsToPerform.map((action, index, array) => {
+        ActionsToPerform.map((action, index) => {
             if(action === currentRoute) return null
 
             return (
                 <>
-                    <MenuItem onClick={() => redirectUser(action)}>
+                    <MenuItem key={index} onClick={() => redirectUser(action)}>
                         <ListItemIcon>
                             <DashboardIcon fontSize="small" />
                         </ListItemIcon>

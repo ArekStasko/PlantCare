@@ -13,6 +13,7 @@ import styles from "../dashboard.styles"
 import RoutingConstants from "../../../app/routing/routingConstants";
 import {update} from "../../../common/slices/routeSlice/routeSlice";
 import {useAppDispatch} from "../../../common/hooks";
+import CustomDeleteIcon from "../../../common/compontents/CustomDeleteIcon/customDeleteIcon";
 
 interface PlantsAccordionDetailsProps{
     place: Place
@@ -43,6 +44,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
             {
                 props.place.plants!.map(plant => (
                     <AccordionDetails
+                        key={plant.id}
                         sx={styles.plantsAccordionDetailsWrapper}
                     >
                         <Box sx={styles.plantsAccordionDetailsInfo}>
@@ -54,6 +56,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
                             </Typography>
                         </Box>
                         <Box sx={styles.plantsAccordionDetailsButtons}>
+                            <CustomDeleteIcon resourceId={plant.id} resourceName={plant.name} resourceType="plant" />
                             <Tooltip title={`Update ${plant.name}`} arrow>
                             <IconButton onClick={() => redirectUser(`${RoutingConstants.updatePlant}/${plant.id}`)} size="large" sx={{mr: 5}} color="primary">
                                 <EditIcon />
