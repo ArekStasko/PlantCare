@@ -4,7 +4,7 @@ import PlantDetails from "./Steps/PlantDetails/plantDetails";
 import {IWizardStep} from "../../common/Layouts/Wizard/interfaces";
 import PlaceSelect from "./Steps/PlaceSelect/placeSelect";
 import PlantSummary from "./Steps/PlantSummary/plantSummary";
-import {ICreatePlantState, IPlantDetails} from "./interfaces";
+import {IPlantDetails} from "./interfaces";
 import {PlantType} from "../../common/models/plantTypes";
 
 export const CreatePlant = () => {
