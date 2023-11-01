@@ -1,8 +1,9 @@
 import {Box, Typography} from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
+import {ICreatePlantState} from "../../interfaces";
 
 
-export const PlaceSelect = () => {
+export const PlaceSelect = ({state}: ICreatePlantState) => {
 
     return(
         <Box>

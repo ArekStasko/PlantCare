@@ -4,23 +4,31 @@ import PlantDetails from "./Steps/PlantDetails/plantDetails";
 import {IWizardStep} from "../../common/Layouts/Wizard/interfaces";
 import PlaceSelect from "./Steps/PlaceSelect/placeSelect";
 import PlantSummary from "./Steps/PlantSummary/plantSummary";
+import {ICreatePlantState, IPlantDetails} from "./interfaces";
+import {PlantType} from "../../common/models/plantTypes";
 
 export const CreatePlant = () => {
+    const state : IPlantDetails = {
+            name: "",
+            description: "",
+            placeId: "",
+            type: PlantType.Fruit,
+    }
 
     const steps : IWizardStep[] = [
         {
             title: "Plant Details",
-            component: <PlantDetails />,
+            component: <PlantDetails state={state}/>,
             order: 0
         },
         {
             title: "Place Select",
-            component: <PlaceSelect />,
+            component: <PlaceSelect state={state} />,
             order: 1
         },
         {
             title: "Plant Summary",
-            component: <PlantSummary />,
+            component: <PlantSummary state={state} />,
             order: 2
         }
     ]
