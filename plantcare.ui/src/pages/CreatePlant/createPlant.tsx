@@ -1,31 +1,32 @@
 import React from "react";
-import {Box, Container, Step, StepLabel, Stepper, Typography} from "@mui/material"
-import CardLayout from "../../common/Layouts/CardLayout/cardLayout";
-import styles from './createPlant.styles'
+import WizardContext from "../../common/Layouts/Wizard/WizardContext/wizardContext";
+import PlantDetails from "./Steps/PlantDetails/plantDetails";
+import {IWizardStep} from "../../common/Layouts/Wizard/interfaces";
+import PlaceSelect from "./Steps/PlaceSelect/placeSelect";
+import PlantSummary from "./Steps/PlantSummary/plantSummary";
 
 export const CreatePlant = () => {
 
+    const steps : IWizardStep[] = [
+        {
+            title: "Plant Details",
+            component: <PlantDetails />,
+            order: 0
+        },
+        {
+            title: "Place Select",
+            component: <PlaceSelect />,
+            order: 1
+        },
+        {
+            title: "Plant Summary",
+            component: <PlantSummary />,
+            order: 2
+        }
+    ]
+
     return(
-        <Container sx={styles.container}>
-            <Box sx={styles.contentWrapper}>
-                <Stepper sx={styles.stepper}>
-                    <Step>
-                        <StepLabel>Test step label 1</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Test step label 2</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Test step label 3</StepLabel>
-                    </Step>
-                </Stepper>
-                <CardLayout>
-                    <Typography>
-                        Test
-                    </Typography>
-                </CardLayout>
-            </Box>
-        </Container>
+       <WizardContext steps={steps}/>
     )
 }
 
