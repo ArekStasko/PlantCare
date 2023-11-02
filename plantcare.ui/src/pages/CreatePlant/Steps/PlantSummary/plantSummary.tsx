@@ -1,17 +1,12 @@
-import React, {useEffect} from "react";
-import {Box, Typography} from "@mui/material";
-import {ICreatePlantState} from "../../interfaces";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 
-
-export const PlantSummary = ({state}: ICreatePlantState) => {
-
-    return(
-        <Box>
-            <Typography>
-                Plant Summary
-            </Typography>
-        </Box>
-    )
-}
+export const PlantSummary = () => {
+  return (
+    <Box>
+      <Typography>Plant Summary</Typography>
+    </Box>
+  );
+};
 
 export default PlantSummary;

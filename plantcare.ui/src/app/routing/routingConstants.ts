@@ -1,22 +1,26 @@
-interface Dictionary<T>{
-    [Key: string]: T,
+interface Dictionary<T> {
+  [Key: string]: T;
 }
 
 const RoutingPaths = {
-    root: "/dashboard",
-    createPlant: "/create-plant",
-    updatePlant: "/update-plant",
-    plantStatistics: "/statistics",
-    createPlace: "/create-place",
-    updatePlace: "/update-place",
+  root: '/dashboard',
+  createPlant: '/create-plant',
+  updatePlant: '/update-plant',
+  plantStatistics: '/statistics',
+  createPlace: '/create-place',
+  updatePlace: '/update-place'
 };
 
 export const ActionsTranslation: Dictionary<string> = {
-    "/dashboard": "Dashboard",
-    "/create-plant": "Create Plant",
-    "/create-place": "Create Place"
-}
+  '/dashboard': 'Dashboard',
+  '/create-plant': 'Create Plant',
+  '/create-place': 'Create Place'
+};
 
-export const ActionsToPerform = [RoutingPaths.root, RoutingPaths.createPlant, RoutingPaths.createPlace]
+export const ActionsToPerform = [
+  RoutingPaths.root,
+  RoutingPaths.createPlant,
+  RoutingPaths.createPlace
+];
 
 export default RoutingPaths;
