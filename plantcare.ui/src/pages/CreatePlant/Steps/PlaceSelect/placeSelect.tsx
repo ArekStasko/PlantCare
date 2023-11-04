@@ -2,8 +2,7 @@ import { Box, CircularProgress, InputLabel, MenuItem, Select, Typography } from 
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
-import styles from '../PlantDetails/plantDetails.styles';
-import { PlantType } from '../../../../common/models/plantTypes';
+import styles from './placeSelect.styles';
 
 export const PlaceSelect = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
@@ -14,9 +13,11 @@ export const PlaceSelect = () => {
   } = useFormContext();
 
   return (
-    <Box>
+    <Box sx={styles.placeSelectWrapper}>
       <InputLabel id="SelectPlantPlace">Choose a place where your plant will be</InputLabel>
-      {places ? (
+      {placesLoading ? (
+        <CircularProgress />
+      ) : (
         <Controller
           control={control}
           name="plantPlace"
@@ -29,13 +30,11 @@ export const PlaceSelect = () => {
               error={!!errors.plantPlace}
               labelId="SelectPlantPlace">
               {places!.map((p) => (
-                <MenuItem value={p.id}>p.name</MenuItem>
+                <MenuItem value={p.id}>{p.name}</MenuItem>
               ))}
             </Select>
           )}
         />
-      ) : (
-        <CircularProgress />
       )}
     </Box>
   );
