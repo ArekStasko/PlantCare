@@ -46,6 +46,7 @@ export const WizardContext = ({ steps, methods }: wizardContextProps) => {
           <FormProvider {...methods}>
             <WizardStep
               currentStep={currentStep}
+              validators={steps[currentStep].validators}
               goToStep={goToStep}
               previousStep={previousStep}
               nextStep={nextStep}>

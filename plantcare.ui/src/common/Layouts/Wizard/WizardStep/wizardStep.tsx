@@ -7,19 +7,21 @@ import routingConstants from '../../../../app/routing/routingConstants';
 import CancelDialog from '../../../compontents/CancelDialog/cancelDialog';
 import { useFormContext } from 'react-hook-form';
 
-export const WizardStep = ({ children, currentStep, nextStep, previousStep }: wizardStepProps) => {
+export const WizardStep = ({
+  children,
+  currentStep,
+  validators,
+  nextStep,
+  previousStep
+}: wizardStepProps) => {
   const [openDialog, setOpenDialog] = React.useState(false);
 
   const {
-    formState: { errors, isValid }
+    formState: { errors, isValid },
+    watch
   } = useFormContext();
-
-  const isFormCorrect = () => {
-    console.log(errors);
-    console.log(isValid);
-
-    return errors !== null && isValid;
-  };
+  const isFormCorrect = () =>
+    !validators.some((validator) => errors[validator] || watch(validator) === undefined);
 
   return (
     <Card sx={styles.card}>

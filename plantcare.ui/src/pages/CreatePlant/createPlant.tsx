@@ -18,16 +18,19 @@ export const CreatePlant = () => {
     {
       title: 'Plant Details',
       component: <PlantDetails />,
+      validators: ['name', 'description', 'plantType'],
       order: 0
     },
     {
       title: 'Place Select',
       component: <PlaceSelect />,
+      validators: ['plantPlace'],
       order: 1
     },
     {
       title: 'Plant Summary',
       component: <PlantSummary />,
+      validators: [],
       order: 2
     }
   ];

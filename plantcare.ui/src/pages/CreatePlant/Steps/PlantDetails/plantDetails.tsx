@@ -12,10 +12,6 @@ export const PlantDetails = () => {
     control
   } = useFormContext();
 
-  const handlePlantTypeChange = (e: SelectChangeEvent<PlantType>) => {
-    setValue('plantType', e.target.value);
-  };
-
   return (
     <Box sx={styles.plantDetailsWrapper}>
       <Box sx={styles.nameNtypeWrapper}>
@@ -61,7 +57,6 @@ export const PlantDetails = () => {
           label="Description"
           id="description"
           multiline
-          maxRows={9}
           rows={8}
           {...register('description')}
         />
