@@ -38,7 +38,7 @@ export const CancelDialog = ({ setOpenDialog, openDialog }: cancelDialogProps) =
       </DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={() => setOpenDialog(!openDialog)}>
-          Cancel
+          Back
         </Button>
         <Button variant="outlined" color="warning" onClick={async () => await confirmDelete()}>
           Confirm

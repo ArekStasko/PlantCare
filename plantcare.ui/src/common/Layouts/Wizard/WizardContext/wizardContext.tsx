@@ -43,9 +43,15 @@ export const WizardContext = ({ steps, methods }: wizardContextProps) => {
               </Step>
             ))}
           </Stepper>
-          <WizardStep goToStep={goToStep} previousStep={previousStep} nextStep={nextStep}>
-            <FormProvider {...methods}>{steps[currentStep].component}</FormProvider>
-          </WizardStep>
+          <FormProvider {...methods}>
+            <WizardStep
+              currentStep={currentStep}
+              goToStep={goToStep}
+              previousStep={previousStep}
+              nextStep={nextStep}>
+              {steps[currentStep].component}
+            </WizardStep>
+          </FormProvider>
         </Box>
       </Container>
     </>

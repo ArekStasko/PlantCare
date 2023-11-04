@@ -3,6 +3,7 @@ import { UseFormReturn } from 'react-hook-form';
 
 export interface wizardStepProps {
   children: ReactElement;
+  currentStep: number;
   goToStep(step: number): any;
   nextStep(): any;
   previousStep(): any;

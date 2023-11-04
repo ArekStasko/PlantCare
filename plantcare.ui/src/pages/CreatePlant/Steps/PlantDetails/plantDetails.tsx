@@ -26,6 +26,7 @@ export const PlantDetails = () => {
             label="Name"
             id="name"
             error={!!errors.name}
+            helperText={errors?.name?.message?.toString()}
             variant="filled"
             {...register('name')}
           />
@@ -35,13 +36,13 @@ export const PlantDetails = () => {
           <Controller
             control={control}
             name="plantType"
-            render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+            render={({ field: { onChange, value }, formState: { errors } }) => (
               <Select
                 sx={styles.typeSelect}
                 onChange={onChange}
                 value={value}
                 id="plantType"
-                error={!!errors.name}
+                error={!!errors.plantType}
                 labelId="SelectType">
                 <MenuItem value={PlantType.Vegetable}>Vegetable</MenuItem>
                 <MenuItem value={PlantType.Fruit}>Fruit</MenuItem>
@@ -56,6 +57,7 @@ export const PlantDetails = () => {
         <TextField
           sx={styles.descriptionInput}
           error={!!errors.description}
+          helperText={errors?.description?.message?.toString()}
           label="Description"
           id="description"
           multiline
