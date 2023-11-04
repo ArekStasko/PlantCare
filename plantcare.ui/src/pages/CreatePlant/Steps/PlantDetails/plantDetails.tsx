@@ -2,13 +2,14 @@ import React from 'react';
 import { Box, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import styles from './plantDetails.styles';
 import { PlantType } from '../../../../common/models/plantTypes';
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
 export const PlantDetails = () => {
   const {
     register,
     formState: { errors },
-    setValue
+    setValue,
+    control
   } = useFormContext();
 
   const handlePlantTypeChange = (e: SelectChangeEvent<PlantType>) => {
@@ -31,15 +32,23 @@ export const PlantDetails = () => {
         </Box>
         <Box sx={styles.inputWrapper}>
           <InputLabel id="SelectType">Select Type</InputLabel>
-          <Select
-            {...register('plantType')}
-            sx={styles.typeSelect}
-            id="plantType"
-            labelId="SelectType">
-            <MenuItem value={PlantType.Vegetable}>Vegetable</MenuItem>
-            <MenuItem value={PlantType.Fruit}>Fruit</MenuItem>
-            <MenuItem value={PlantType.Decorative}>Decorative</MenuItem>
-          </Select>
+          <Controller
+            control={control}
+            name="plantType"
+            render={({ field: { onChange, value, ref }, formState: { errors } }) => (
+              <Select
+                sx={styles.typeSelect}
+                onChange={onChange}
+                value={value}
+                id="plantType"
+                error={!!errors.name}
+                labelId="SelectType">
+                <MenuItem value={PlantType.Vegetable}>Vegetable</MenuItem>
+                <MenuItem value={PlantType.Fruit}>Fruit</MenuItem>
+                <MenuItem value={PlantType.Decorative}>Decorative</MenuItem>
+              </Select>
+            )}
+          />
         </Box>
       </Box>
       <Box sx={styles.descriptionWrapper}>
