@@ -1,5 +1,3 @@
-
-
-export class CreatePlaceRequest{
-    name!: string;
+export class CreatePlaceRequest {
+  name!: string;
 }

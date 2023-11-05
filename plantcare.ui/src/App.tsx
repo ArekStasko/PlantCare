@@ -1,24 +1,24 @@
 import React from 'react';
 import './App.css';
-import {createTheme, ThemeProvider} from "@mui/material";
-import {BrowserRouter} from "react-router-dom";
-import MainRouting from "./app/routing/mainRouting";
+import { createTheme, ThemeProvider } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
+import MainRouting from './app/routing/mainRouting';
 
 const darkTheme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
+  palette: {
+    mode: 'dark'
+  }
 });
 
 function App() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <ThemeProvider theme={darkTheme}>
         <div className="App">
-            <MainRouting />
+          <MainRouting />
         </div>
       </ThemeProvider>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

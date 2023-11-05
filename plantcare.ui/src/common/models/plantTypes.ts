@@ -1,6 +1,5 @@
-
 export enum PlantType {
-    Vegetable,
-    Fruit,
-    Decorative
+  Vegetable,
+  Fruit,
+  Decorative
 }

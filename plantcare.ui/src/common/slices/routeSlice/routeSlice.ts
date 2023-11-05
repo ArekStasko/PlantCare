@@ -1,24 +1,23 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import RoutingConstants from "../../../app/routing/routingConstants";
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import RoutingConstants from '../../../app/routing/routingConstants';
 
 interface routeState {
-    currentRoute: string;
+  currentRoute: string;
 }
 
-const initialState : routeState = {
-    currentRoute: RoutingConstants.root
-}
+const initialState: routeState = {
+  currentRoute: RoutingConstants.root
+};
 
 const routeSlice = createSlice({
-    name: 'route',
-    initialState,
-    reducers: {
-        update: (state, action: PayloadAction<string>) => {
-            state.currentRoute = action.payload;
-        }
+  name: 'route',
+  initialState,
+  reducers: {
+    update: (state, action: PayloadAction<string>) => {
+      state.currentRoute = action.payload;
     }
-})
+  }
+});
 
-export const {update} = routeSlice.actions
-export default routeSlice.reducer
+export const { update } = routeSlice.actions;
+export default routeSlice.reducer;

@@ -1,8 +1,7 @@
-import {Plant} from "./Plant";
-
+import { Plant } from './Plant';
 
 export class Place {
-    id!: number;
-    name!: string;
-    plants?: Plant[] | undefined
+  id!: number;
+  name!: string;
+  plants?: Plant[] | undefined;
 }
