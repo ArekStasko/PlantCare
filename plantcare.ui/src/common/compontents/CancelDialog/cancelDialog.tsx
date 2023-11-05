@@ -10,8 +10,6 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import { update } from '../../slices/routeSlice/routeSlice';
-import { useAppDispatch } from '../../hooks';
 
 interface cancelDialogProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,11 +17,9 @@ interface cancelDialogProps {
 }
 
 export const CancelDialog = ({ setOpenDialog, openDialog }: cancelDialogProps) => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const confirmDelete = async () => {
-    dispatch(update(RoutingConstants.root));
     navigate(RoutingConstants.root);
   };
 

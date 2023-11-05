@@ -15,37 +15,28 @@ import styles from './navbar.styles';
 import CustomMenu from '../customMenu/customMenu';
 import { useNavigate } from 'react-router';
 import { ActionsToPerform, ActionsTranslation } from '../../../app/routing/routingConstants';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { update } from '../../slices/routeSlice/routeSlice';
 
 export const Navbar = () => {
-  const currentRoute = useAppSelector((state) => state.route.currentRoute);
-  const dispatch = useAppDispatch();
   const [openMenu, setOpenMenu] = React.useState(false);
   const navigate = useNavigate();
 
   const redirectUser = (pathToRedirect: string) => {
     setOpenMenu(!openMenu);
-    dispatch(update(pathToRedirect));
     navigate(pathToRedirect);
   };
 
   const menuActions = () =>
-    ActionsToPerform.map((action, index) => {
-      if (action === currentRoute) return null;
-
-      return (
-        <>
-          <MenuItem key={index} onClick={() => redirectUser(action)}>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>{ActionsTranslation[action]}</ListItemText>
-          </MenuItem>
-          <Divider variant="inset" />
-        </>
-      );
-    });
+    ActionsToPerform.map((action) => (
+      <Box key={action}>
+        <MenuItem onClick={() => redirectUser(action)}>
+          <ListItemIcon>
+            <DashboardIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>{ActionsTranslation[action]}</ListItemText>
+        </MenuItem>
+        <Divider variant="inset" />
+      </Box>
+    ));
 
   return (
     <Box sx={styles.wrapper}>

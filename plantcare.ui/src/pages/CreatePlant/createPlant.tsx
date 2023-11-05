@@ -10,9 +10,11 @@ import validators from '../../common/services/Validators';
 import { Plant } from '../../common/models/Plant';
 import { CreatePlantRequest } from '../../common/slices/createPlant/createPlantRequest';
 import { useCreatePlantMutation } from '../../common/slices/createPlant/createPlant';
+import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 
 export const CreatePlant = () => {
   const [createPlant, createPlantResult] = useCreatePlantMutation();
+  const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantSchema)
@@ -26,6 +28,7 @@ export const CreatePlant = () => {
       placeId: methods.getValues('plantPlace')
     };
     await createPlant(request);
+    refetch();
   };
 
   const steps: IWizardStep[] = [
