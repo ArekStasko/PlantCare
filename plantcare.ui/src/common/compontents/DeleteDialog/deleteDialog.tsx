@@ -11,6 +11,15 @@ import React from 'react';
 import { useGetPlacesQuery } from '../../slices/getPlaces/getPlaces';
 import { useDeletePlantMutation } from '../../slices/deletePlant/deletePlant';
 import { useDeletePlaceMutation } from '../../slices/deletePlace/deletePlace';
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+  QueryActionCreatorResult,
+  QueryDefinition
+} from '@reduxjs/toolkit/query';
+import { Place } from '../../models/Place';
 
 interface DeleteDialogProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,14 +36,17 @@ export const DeleteDialog = ({
 }: DeleteDialogProps) => {
   const [deletePlant, plantResult] = useDeletePlantMutation();
   const [deletePlace, placeResult] = useDeletePlaceMutation();
+  const { refetch } = useGetPlacesQuery();
 
   const confirmDelete = async () => {
     if (resourceType === 'plant') {
       await deletePlant(resourceId);
+      refetch();
     }
 
     if (resourceType === 'place') {
       await deletePlace(resourceId);
+      refetch();
     }
 
     setOpenDialog(!openDialog);

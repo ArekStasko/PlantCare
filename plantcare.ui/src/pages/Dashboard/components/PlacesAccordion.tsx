@@ -15,9 +15,9 @@ import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { useNavigate } from 'react-router';
-import { useAppDispatch } from '../../../common/hooks';
-import { update } from '../../../common/slices/routeSlice/routeSlice';
-import CustomDeleteIcon from '../../../common/compontents/CustomDeleteIcon/customDeleteIcon';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteDialog from '../../../common/compontents/DeleteDialog/deleteDialog';
+import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
 
 interface PlaceAccordionProps {
   data: Place[];
@@ -25,13 +25,8 @@ interface PlaceAccordionProps {
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
   const [currentAccordion, setCurrentAccordion] = React.useState<number>();
+  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const redirectUser = (pathToRedirect: string) => {
-    dispatch(update(pathToRedirect));
-    navigate(pathToRedirect);
-  };
 
   return (
     <Box sx={styles.placesAccordionWrapper}>
@@ -46,28 +41,35 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             else setCurrentAccordion(place.id);
           }}
           key={place.id}
-          disableGutters
-        >
+          disableGutters>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
+            id="panel1a-header">
             <Box sx={styles.placesAccordionSummary}>
               <Typography variant="h6">{place.name}</Typography>
               <Box>
-                <CustomDeleteIcon
+                <Tooltip title={`Delete ${place.name}`} arrow>
+                  <IconButton
+                    onClick={() => setOpenDialog(!openDialog)}
+                    size="large"
+                    sx={{ mr: 5 }}
+                    color="error">
+                    <DeleteForeverIcon />
+                  </IconButton>
+                </Tooltip>
+                <DeleteDialog
+                  openDialog={openDialog}
+                  setOpenDialog={setOpenDialog}
                   resourceId={place.id}
-                  resourceName={place.name}
                   resourceType="place"
                 />
                 <Tooltip title={`Update ${place.name}`} arrow>
                   <IconButton
-                    onClick={() => redirectUser(`${RoutingConstants.updatePlace}/${place.id}`)}
+                    onClick={() => navigate(`${RoutingConstants.updatePlace}/${place.id}`)}
                     size="large"
                     sx={{ mr: 5 }}
-                    color="primary"
-                  >
+                    color="primary">
                     <BorderColorIcon />
                   </IconButton>
                 </Tooltip>

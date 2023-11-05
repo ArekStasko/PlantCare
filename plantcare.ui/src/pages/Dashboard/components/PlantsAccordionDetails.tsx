@@ -11,22 +11,17 @@ import { ShrinkText } from '../../../common/services/TextService';
 import { Place } from '../../../common/models/Place';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import { update } from '../../../common/slices/routeSlice/routeSlice';
-import { useAppDispatch } from '../../../common/hooks';
-import CustomDeleteIcon from '../../../common/compontents/CustomDeleteIcon/customDeleteIcon';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteDialog from '../../../common/compontents/DeleteDialog/deleteDialog';
+import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
 
 interface PlantsAccordionDetailsProps {
   place: Place;
 }
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
+  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const redirectUser = (pathToRedirect: string) => {
-    dispatch(update(pathToRedirect));
-    navigate(pathToRedirect);
-  };
 
   const getImage = (plantType: PlantType) => {
     switch (plantType) {
@@ -52,28 +47,36 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
             </Typography>
           </Box>
           <Box sx={styles.plantsAccordionDetailsButtons}>
-            <CustomDeleteIcon
+            <Tooltip title={`Delete ${plant.name}`} arrow>
+              <IconButton
+                onClick={() => setOpenDialog(!openDialog)}
+                size="large"
+                sx={{ mr: 5 }}
+                color="error">
+                <DeleteOutlineIcon />
+              </IconButton>
+            </Tooltip>
+            <DeleteDialog
+              openDialog={openDialog}
+              setOpenDialog={setOpenDialog}
               resourceId={plant.id}
-              resourceName={plant.name}
               resourceType="plant"
             />
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
-                onClick={() => redirectUser(`${RoutingConstants.updatePlant}/${plant.id}`)}
+                onClick={() => navigate(`${RoutingConstants.updatePlant}/${plant.id}`)}
                 size="large"
                 sx={{ mr: 5 }}
-                color="primary"
-              >
+                color="primary">
                 <EditIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title={`Show Statistics of ${plant.name}`} arrow>
               <IconButton
-                onClick={() => redirectUser(`${RoutingConstants.plantStatistics}/${plant.id}`)}
+                onClick={() => navigate(`${RoutingConstants.plantStatistics}/${plant.id}`)}
                 size="large"
                 sx={{ mr: 5 }}
-                color="primary"
-              >
+                color="primary">
                 <InsertChartIcon />
               </IconButton>
             </Tooltip>
