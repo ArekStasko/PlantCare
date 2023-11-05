@@ -7,12 +7,26 @@ import PlantSummary from './Steps/PlantSummary/plantSummary';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../common/services/Validators';
+import { Plant } from '../../common/models/Plant';
+import { CreatePlantRequest } from '../../common/slices/createPlant/createPlantRequest';
+import { useCreatePlantMutation } from '../../common/slices/createPlant/createPlant';
 
 export const CreatePlant = () => {
+  const [createPlant, createPlantResult] = useCreatePlantMutation();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantSchema)
   });
+
+  const onCreate = async () => {
+    const request: CreatePlantRequest = {
+      name: methods.getValues('name'),
+      description: methods.getValues('description'),
+      type: +methods.getValues('plantType'),
+      placeId: methods.getValues('plantPlace')
+    };
+    await createPlant(request);
+  };
 
   const steps: IWizardStep[] = [
     {
@@ -35,7 +49,7 @@ export const CreatePlant = () => {
     }
   ];
 
-  return <WizardContext steps={steps} methods={methods} />;
+  return <WizardContext onSubmit={onCreate} steps={steps} methods={methods} />;
 };
 
 export default CreatePlant;

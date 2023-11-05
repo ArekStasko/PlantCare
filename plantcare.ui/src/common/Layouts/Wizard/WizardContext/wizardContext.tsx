@@ -4,8 +4,11 @@ import styles from './wizardContext.styles';
 import { Box, Container, Step, StepLabel, Stepper } from '@mui/material';
 import WizardStep from '../WizardStep/wizardStep';
 import { FormProvider } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import RoutingConstants from '../../../../app/routing/routingConstants';
 
-export const WizardContext = ({ steps, methods }: wizardContextProps) => {
+export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const goToStep = (step: number) => {
@@ -31,6 +34,11 @@ export const WizardContext = ({ steps, methods }: wizardContextProps) => {
     }
     return;
   };
+  const isLastStep = (): boolean => currentStep === steps.length - 1;
+  const submitDecorator = async () => {
+    await onSubmit();
+    navigate(RoutingConstants.root);
+  };
 
   return (
     <>
@@ -47,6 +55,8 @@ export const WizardContext = ({ steps, methods }: wizardContextProps) => {
             <WizardStep
               currentStep={currentStep}
               validators={steps[currentStep].validators}
+              isLastStep={isLastStep}
+              onSubmit={submitDecorator}
               goToStep={goToStep}
               previousStep={previousStep}
               nextStep={nextStep}>

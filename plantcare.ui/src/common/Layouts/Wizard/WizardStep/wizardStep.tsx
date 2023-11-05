@@ -11,6 +11,8 @@ export const WizardStep = ({
   children,
   currentStep,
   validators,
+  onSubmit,
+  isLastStep,
   nextStep,
   previousStep
 }: wizardStepProps) => {
@@ -44,14 +46,25 @@ export const WizardStep = ({
             onClick={() => setOpenDialog(!openDialog)}>
             Cancel
           </Button>
-          <Button
-            disabled={!isFormCorrect()}
-            sx={styles.btn}
-            variant="contained"
-            onClick={() => nextStep()}
-            size="medium">
-            Proceed
-          </Button>
+          {isLastStep() ? (
+            <Button
+              disabled={!isFormCorrect()}
+              sx={styles.btn}
+              variant="contained"
+              onClick={async () => await onSubmit()}
+              size="medium">
+              Submit
+            </Button>
+          ) : (
+            <Button
+              disabled={!isFormCorrect()}
+              sx={styles.btn}
+              variant="contained"
+              onClick={() => nextStep()}
+              size="medium">
+              Proceed
+            </Button>
+          )}
         </Box>
       </CardActions>
     </Card>

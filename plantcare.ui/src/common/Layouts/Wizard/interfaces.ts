@@ -5,9 +5,11 @@ export interface wizardStepProps {
   children: ReactElement;
   currentStep: number;
   validators: string[];
-  goToStep(step: number): any;
-  nextStep(): any;
-  previousStep(): any;
+  isLastStep(): boolean;
+  onSubmit(): Promise<void>;
+  goToStep(step: number): void;
+  nextStep(): void;
+  previousStep(): void;
 }
 
 export interface IWizardStep {
@@ -18,6 +20,7 @@ export interface IWizardStep {
 }
 
 export interface wizardContextProps {
+  onSubmit(): Promise<void>;
   steps: IWizardStep[];
   methods: UseFormReturn<
     { name: string; description: string; plantType: string; plantPlace: string },
