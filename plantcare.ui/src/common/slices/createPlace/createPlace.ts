@@ -5,7 +5,7 @@ export const createPlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     CreatePlace: build.mutation<boolean, CreatePlaceRequest>({
       query: ({ ...data }) => ({
-        url: '/place/Create',
+        url: '/places/Create',
         method: 'POST',
         body: data
       })

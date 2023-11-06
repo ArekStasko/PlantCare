@@ -8,7 +8,6 @@ export const PlantDetails = () => {
   const {
     register,
     formState: { errors },
-    setValue,
     control
   } = useFormContext();
 
