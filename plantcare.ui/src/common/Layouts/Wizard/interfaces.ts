@@ -22,9 +22,5 @@ export interface IWizardStep {
 export interface wizardContextProps {
   onSubmit(): Promise<void>;
   steps: IWizardStep[];
-  methods: UseFormReturn<
-    { name: string; description: string; plantType: string; plantPlace: string },
-    any,
-    undefined
-  >;
+  methods: UseFormReturn<any, undefined>;
 }
