@@ -5,7 +5,8 @@ export class UpdatePlantRequest {
   name!: string;
   description!: string;
   type!: PlantType;
-  criticalMoistureLevel!: number;
-  requiredMoistureLevel!: number;
+  placeId!: string;
+  criticalMoistureLevel?: number;
+  requiredMoistureLevel?: number;
   moduleId?: string;
 }

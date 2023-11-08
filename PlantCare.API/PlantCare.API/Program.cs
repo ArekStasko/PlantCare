@@ -9,7 +9,7 @@ const string AllowSpecifiOrigin = "AllowSpecifiOrigin";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: AllowSpecifiOrigin, policy => policy.WithOrigins(Environment.GetEnvironmentVariable("SpecificCorsOrigin"))
+    options.AddPolicy(name: AllowSpecifiOrigin, policy => policy.WithOrigins("\nhttp://192.168.1.42:3000")
         .AllowAnyHeader()
         .AllowAnyMethod()
     );

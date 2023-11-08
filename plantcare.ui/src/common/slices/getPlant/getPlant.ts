@@ -3,11 +3,11 @@ import { Plant } from '../../models/Plant';
 
 export const getPlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
-    GetPlant: build.query({
-      query: ({ plantId }) => `/plants/Get?id=${plantId}`
+    GetPlant: build.query<Plant, string>({
+      query: (plantId: string) => `/plants/Get?id=${plantId}`
     })
   }),
   overrideExisting: false
 });
 
-export const { useGetPlantQuery } = getPlantApi;
+export const { useLazyGetPlantQuery, useGetPlantQuery } = getPlantApi;
