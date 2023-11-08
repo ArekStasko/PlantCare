@@ -55,13 +55,13 @@ export const UpdatePlant = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Plant Details',
-      component: <PlantDetails />,
+      component: <PlantDetails plantData={plant!} />,
       validators: ['name', 'description', 'plantType'],
       order: 0
     },
     {
       title: 'Place Select',
-      component: <PlaceSelect />,
+      component: <PlaceSelect plantData={plant!} />,
       validators: ['plantPlace'],
       order: 1
     },

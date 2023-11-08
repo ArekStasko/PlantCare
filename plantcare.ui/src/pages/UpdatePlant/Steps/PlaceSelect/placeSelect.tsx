@@ -3,8 +3,13 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import styles from './placeSelect.styles';
+import { Plant } from '../../../../common/models/Plant';
 
-export const PlaceSelect = () => {
+interface PlaceSelectProps {
+  plantData: Plant;
+}
+
+export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
 
   const {
@@ -26,6 +31,7 @@ export const PlaceSelect = () => {
               sx={styles.typeSelect}
               onChange={onChange}
               value={value}
+              defaultValue={plantData.placeId}
               id="plantPlace"
               error={!!errors.plantPlace}
               labelId="SelectPlantPlace">

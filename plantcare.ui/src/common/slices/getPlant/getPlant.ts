@@ -10,4 +10,4 @@ export const getPlantApi = emptyApi.injectEndpoints({
   overrideExisting: false
 });
 
-export const { useGetPlantQuery } = getPlantApi;
+export const { useLazyGetPlantQuery, useGetPlantQuery } = getPlantApi;
