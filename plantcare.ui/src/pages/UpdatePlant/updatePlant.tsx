@@ -14,6 +14,7 @@ import { useGetPlantQuery } from '../../common/slices/getPlant/getPlant';
 import validators from '../../common/services/Validators';
 import * as yup from 'yup';
 import { Backdrop, CircularProgress } from '@mui/material';
+import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 
 export const UpdatePlant = () => {
   const { id } = useParams();
@@ -74,11 +75,9 @@ export const UpdatePlant = () => {
   ];
 
   return plantLoading ? (
-    <Backdrop
-      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={plantLoading}>
-      <CircularProgress color="inherit" />
-    </Backdrop>
+    <>
+      <CustomBackdrop isLoading={plantLoading} />
+    </>
   ) : (
     <>
       <WizardContext onSubmit={onUpdate} steps={steps} methods={methods} />

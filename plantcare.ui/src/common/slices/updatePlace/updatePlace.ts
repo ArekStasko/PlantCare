@@ -5,7 +5,7 @@ export const updatePlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     UpdatePlace: build.mutation<boolean, UpdatePlaceRequest>({
       query: ({ ...data }) => ({
-        url: '/place/Update',
+        url: '/places/Update',
         method: 'POST',
         body: data
       })
