@@ -4,22 +4,12 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  Typography
+  DialogTitle
 } from '@mui/material';
-import React from 'react';
-import { useGetPlacesQuery } from '../../slices/getPlaces/getPlaces';
-import { useDeletePlantMutation } from '../../slices/deletePlant/deletePlant';
-import { useDeletePlaceMutation } from '../../slices/deletePlace/deletePlace';
-import {
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta,
-  QueryActionCreatorResult,
-  QueryDefinition
-} from '@reduxjs/toolkit/query';
-import { Place } from '../../models/Place';
+import React, { useEffect } from 'react';
+import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
+import { useDeletePlantMutation } from '../../../slices/deletePlant/deletePlant';
+import { useDeletePlaceMutation } from '../../../slices/deletePlace/deletePlace';
 
 interface DeleteDialogProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,11 +24,13 @@ export const DeleteDialog = ({
   resourceId,
   resourceType
 }: DeleteDialogProps) => {
-  const [deletePlant, plantResult] = useDeletePlantMutation();
-  const [deletePlace, placeResult] = useDeletePlaceMutation();
+  const [deletePlant] = useDeletePlantMutation();
+  const [deletePlace] = useDeletePlaceMutation();
   const { refetch } = useGetPlacesQuery();
 
   const confirmDelete = async () => {
+    console.log('RESOURCE ID');
+    console.log(resourceId);
     if (resourceType === 'plant') {
       await deletePlant(resourceId);
       refetch();
