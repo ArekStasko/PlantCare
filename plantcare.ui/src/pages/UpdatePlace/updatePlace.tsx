@@ -6,11 +6,11 @@ import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import React, { useEffect } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
 import { useUpdatePlaceMutation } from '../../common/slices/updatePlace/updatePlace';
-import PlaceDetails from './steps/PlaceDetails/placeDetails';
 import PlaceSummary from './steps/PlaceSummary/placeSummary';
 import { useParams } from 'react-router';
 import { UpdatePlaceRequest } from '../../common/slices/updatePlace/updatePlaceRequest';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
+import PlaceDetails from './steps/PlaceDetails/placeDetails';
 
 export const UpdatePlace = () => {
   const { id } = useParams();
