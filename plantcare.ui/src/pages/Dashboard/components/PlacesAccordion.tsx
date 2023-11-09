@@ -16,8 +16,9 @@ import RoutingConstants from '../../../app/routing/routingConstants';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { useNavigate } from 'react-router';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import DeleteDialog from '../../../common/compontents/DeleteDialog/deleteDialog';
+import DeleteDialog from '../../../common/compontents/DeleteIcon/DeleteDialog/deleteDialog';
 import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
+import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
 
 interface PlaceAccordionProps {
   data: Place[];
@@ -25,7 +26,6 @@ interface PlaceAccordionProps {
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
   const [currentAccordion, setCurrentAccordion] = React.useState<number>();
-  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
 
   return (
@@ -49,20 +49,11 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             <Box sx={styles.placesAccordionSummary}>
               <Typography variant="h6">{place.name}</Typography>
               <Box>
-                <Tooltip title={`Delete ${place.name}`} arrow>
-                  <IconButton
-                    onClick={() => setOpenDialog(!openDialog)}
-                    size="large"
-                    sx={{ mr: 5 }}
-                    color="error">
-                    <DeleteForeverIcon />
-                  </IconButton>
-                </Tooltip>
-                <DeleteDialog
-                  openDialog={openDialog}
-                  setOpenDialog={setOpenDialog}
-                  resourceId={place.id}
+                <DeleteIcon
+                  key={place.id}
                   resourceType="place"
+                  resourceId={place.id}
+                  resourceName={place.name}
                 />
                 <Tooltip title={`Update ${place.name}`} arrow>
                   <IconButton
