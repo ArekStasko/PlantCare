@@ -9,9 +9,8 @@ using PlantCare.API.Services.Tests.Utils;
 
 namespace PlantCare.API.Services.Tests;
 
-public class HandlersTests
+public class PlantHandlersTests
 {
-    // TODO: Make this tests work correctly, and test exact value that is returned from result
     
     [Test]
     public async Task CreatePlantHandler_Should_CreateOnePlant()

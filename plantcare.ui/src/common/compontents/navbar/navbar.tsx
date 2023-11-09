@@ -1,61 +1,58 @@
-import React from "react";
+import React from 'react';
 import {
-    AppBar,
-    Box,
-    Button,
-    Divider,
-    IconButton,
-    ListItemIcon,
-    ListItemText,
-    MenuItem,
-    Toolbar,
-    Typography
-} from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+  AppBar,
+  Box,
+  Button,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Toolbar,
+  Typography
+} from '@mui/material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import styles from './navbar.styles';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import CustomMenu from "../customMenu/customMenu";
+import CustomMenu from '../customMenu/customMenu';
+import { useNavigate } from 'react-router';
+import { ActionsToPerform, ActionsTranslation } from '../../../app/routing/routingConstants';
 
 export const Navbar = () => {
-    const [openMenu, setOpenMenu] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(false);
+  const navigate = useNavigate();
 
-    const menuActions = () => (
-        <>
-            <MenuItem onClick={() => setOpenMenu(!openMenu)}>
-                <ListItemIcon>
-                    <AddIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Create Plant</ListItemText>
-            </MenuItem>
-            <Divider />
-            <MenuItem onClick={() => setOpenMenu(!openMenu)}>
-                <ListItemIcon>
-                    <EditIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Update Plant</ListItemText>
-            </MenuItem>
-        </>
-    )
+  const redirectUser = (pathToRedirect: string) => {
+    setOpenMenu(!openMenu);
+    navigate(pathToRedirect);
+  };
 
-    return(
-        <Box sx={styles.wrapper}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Button
-                        variant="contained"
-                        onClick={() => setOpenMenu(!openMenu)}
-                    >
-                        Actions
-                    </Button>
-                    <CustomMenu setOpenMenu={setOpenMenu} openMenu={openMenu} menuActions={menuActions}/>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        PlantCare
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-        </Box>
-    )
-}
+  const menuActions = () =>
+    ActionsToPerform.map((action) => (
+      <Box key={action}>
+        <MenuItem onClick={() => redirectUser(action)}>
+          <ListItemIcon>
+            <DashboardIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>{ActionsTranslation[action]}</ListItemText>
+        </MenuItem>
+        <Divider variant="inset" />
+      </Box>
+    ));
+
+  return (
+    <Box sx={styles.wrapper}>
+      <AppBar position="static">
+        <Toolbar>
+          <Button variant="contained" onClick={() => setOpenMenu(!openMenu)}>
+            Actions
+          </Button>
+          <CustomMenu setOpenMenu={setOpenMenu} openMenu={openMenu} menuActions={menuActions} />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            PlantCare
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+};
 
 export default Navbar;

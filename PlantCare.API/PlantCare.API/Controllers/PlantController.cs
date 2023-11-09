@@ -71,10 +71,10 @@ public class PlantController : ControllerBase
     [HttpGet(Name = "[controller]/GetAll")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetAll(GetPlantsQuery query)
+    public async ValueTask<IActionResult> GetAll()
     {
         _logger.LogInformation("GetAll plant controller method start processing");
-        var result = await _mediator.Send(query);
+        var result = await _mediator.Send(new GetPlantsQuery());
         _logger.LogInformation("GetAll plant controller method ends processing");
         return result.ToOk();
     }

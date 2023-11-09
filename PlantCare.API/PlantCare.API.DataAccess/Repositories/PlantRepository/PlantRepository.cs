@@ -92,18 +92,18 @@ public class PlantRepository : IPlantRepository
         }
     }
 
-    public virtual async ValueTask<Result<List<IPlant>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {
         try
         {
             var plants = await _context.Plants.ToListAsync<IPlant>();
             _logger.LogInformation("Successfull get opreation");
-            return new Result<List<IPlant>>(plants);
+            return new Result<IReadOnlyCollection<IPlant>>(plants);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<List<IPlant>>(e);
+            return new Result<IReadOnlyCollection<IPlant>>(e);
         }
     }
 
