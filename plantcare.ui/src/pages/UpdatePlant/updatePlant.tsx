@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
-import PlantDetails from './Steps/PlantDetails/plantDetails';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import PlaceSelect from './Steps/PlaceSelect/placeSelect';
-import PlantSummary from './Steps/PlantSummary/plantSummary';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
@@ -13,8 +10,10 @@ import { useParams } from 'react-router';
 import { useGetPlantQuery } from '../../common/slices/getPlant/getPlant';
 import validators from '../../common/services/Validators';
 import * as yup from 'yup';
-import { Backdrop, CircularProgress } from '@mui/material';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
+import Summary from '../components/plantWizardSteps/Summary/summary';
+import Details from '../components/plantWizardSteps/Details/details';
+import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
 
 export const UpdatePlant = () => {
   const { id } = useParams();
@@ -56,7 +55,7 @@ export const UpdatePlant = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Plant Details',
-      component: <PlantDetails plantData={plant!} />,
+      component: <Details plantData={plant!} />,
       validators: ['name', 'description', 'plantType'],
       order: 0
     },
@@ -68,7 +67,7 @@ export const UpdatePlant = () => {
     },
     {
       title: 'Plant Update Summary',
-      component: <PlantSummary />,
+      component: <Summary />,
       validators: [],
       order: 2
     }

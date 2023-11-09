@@ -1,4 +1,3 @@
-import { Box, Typography } from '@mui/material';
 import { useCreatePlaceMutation } from '../../common/slices/createPlace/createPlace';
 import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import validators from '../../common/services/Validators';
@@ -6,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceRequest';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import PlaceDetails from './Steps/PlaceDetails/placeDetails';
-import PlaceSummary from './Steps/PlaceSummary/placeSummary';
 import React from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
+import Summary from '../components/placeWizardSteps/Summary/summary';
+import Details from '../components/placeWizardSteps/Details/details';
 
 export const CreatePlace = () => {
   const [createPlace, createPlaceResult] = useCreatePlaceMutation();
@@ -30,13 +29,13 @@ export const CreatePlace = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Place Details',
-      component: <PlaceDetails />,
+      component: <Details />,
       validators: ['name'],
       order: 0
     },
     {
       title: 'Place Summary',
-      component: <PlaceSummary />,
+      component: <Summary />,
       validators: [],
       order: 1
     }

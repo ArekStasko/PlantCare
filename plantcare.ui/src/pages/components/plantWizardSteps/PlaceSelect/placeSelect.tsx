@@ -1,12 +1,12 @@
 import { Box, CircularProgress, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import styles from './placeSelect.styles';
+import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import { Plant } from '../../../../common/models/Plant';
 
 interface PlaceSelectProps {
-  plantData: Plant;
+  plantData?: Plant | undefined;
 }
 
 export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
@@ -31,7 +31,7 @@ export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
               sx={styles.typeSelect}
               onChange={onChange}
               value={value}
-              defaultValue={plantData.placeId}
+              defaultValue={plantData?.placeId ?? ''}
               id="plantPlace"
               error={!!errors.plantPlace}
               labelId="SelectPlantPlace">

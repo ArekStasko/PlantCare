@@ -1,10 +1,15 @@
 import React from 'react';
 import { Box, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import styles from './plantDetails.styles';
-import { PlantType } from '../../../../common/models/plantTypes';
+import styles from './details.styles';
 import { Controller, useFormContext } from 'react-hook-form';
+import { Plant } from '../../../../common/models/Plant';
+import { PlantType } from '../../../../common/models/plantTypes';
 
-export const PlantDetails = () => {
+interface PlantDetailsProps {
+  plantData?: Plant | undefined;
+}
+
+export const Details = ({ plantData }: PlantDetailsProps) => {
   const {
     register,
     formState: { errors },
@@ -20,6 +25,7 @@ export const PlantDetails = () => {
             sx={styles.nameInput}
             label="Name"
             id="name"
+            defaultValue={plantData?.name ?? ''}
             error={!!errors.name}
             helperText={errors?.name?.message?.toString()}
             variant="filled"
@@ -35,6 +41,7 @@ export const PlantDetails = () => {
               <Select
                 sx={styles.typeSelect}
                 onChange={onChange}
+                defaultValue={plantData?.type ?? ''}
                 value={value}
                 id="plantType"
                 error={!!errors.plantType}
@@ -52,6 +59,7 @@ export const PlantDetails = () => {
         <TextField
           sx={styles.descriptionInput}
           error={!!errors.description}
+          defaultValue={plantData?.description ?? ''}
           helperText={errors?.description?.message?.toString()}
           label="Description"
           id="description"
@@ -64,4 +72,4 @@ export const PlantDetails = () => {
   );
 };
 
-export default PlantDetails;
+export default Details;

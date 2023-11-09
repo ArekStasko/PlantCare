@@ -1,16 +1,15 @@
 import React from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
-import PlantDetails from './Steps/PlantDetails/plantDetails';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import PlaceSelect from './Steps/PlaceSelect/placeSelect';
-import PlantSummary from './Steps/PlantSummary/plantSummary';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../common/services/Validators';
-import { Plant } from '../../common/models/Plant';
 import { CreatePlantRequest } from '../../common/slices/createPlant/createPlantRequest';
 import { useCreatePlantMutation } from '../../common/slices/createPlant/createPlant';
 import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
+import Summary from '../components/plantWizardSteps/Summary/summary';
+import Details from '../components/plantWizardSteps/Details/details';
+import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
 
 export const CreatePlant = () => {
   const [createPlant, createPlantResult] = useCreatePlantMutation();
@@ -34,7 +33,7 @@ export const CreatePlant = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Plant Details',
-      component: <PlantDetails />,
+      component: <Details />,
       validators: ['name', 'description', 'plantType'],
       order: 0
     },
@@ -46,7 +45,7 @@ export const CreatePlant = () => {
     },
     {
       title: 'Plant Summary',
-      component: <PlantSummary />,
+      component: <Summary />,
       validators: [],
       order: 2
     }

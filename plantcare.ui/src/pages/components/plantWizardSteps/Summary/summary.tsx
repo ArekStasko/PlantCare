@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import styles from './plantSummary.styles';
+import styles from './summary.styles';
 import { useFormContext } from 'react-hook-form';
-import { PlantType } from '../../../../common/models/plantTypes';
 import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import { ShrinkText } from '../../../../common/services/TextService';
+import { PlantType } from '../../../../common/models/plantTypes';
 
-export const PlantSummary = () => {
+export const Summary = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
   const { getValues } = useFormContext();
   const titlesToDisplay = ['Name', 'Description', 'Type of Plant', 'Place'];
@@ -34,4 +34,4 @@ export const PlantSummary = () => {
   );
 };
 
-export default PlantSummary;
+export default Summary;
