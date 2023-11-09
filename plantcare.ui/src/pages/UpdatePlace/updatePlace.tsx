@@ -15,7 +15,7 @@ import Details from '../components/placeWizardSteps/Details/details';
 export const UpdatePlace = () => {
   const { id } = useParams();
 
-  const [updatePlace, updatePlaceResult] = useUpdatePlaceMutation();
+  const [updatePlace] = useUpdatePlaceMutation();
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
   const { refetch } = useGetPlacesQuery();
   const methods = useForm({

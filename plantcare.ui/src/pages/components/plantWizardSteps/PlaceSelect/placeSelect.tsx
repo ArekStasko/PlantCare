@@ -1,4 +1,4 @@
-import { Box, CircularProgress, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Box, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './placeSelect.styles';
@@ -12,10 +12,7 @@ interface PlaceSelectProps {
 export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
 
-  const {
-    formState: { errors },
-    control
-  } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <Box sx={styles.placeSelectWrapper}>

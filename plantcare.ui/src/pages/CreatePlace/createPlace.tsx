@@ -11,7 +11,7 @@ import Summary from '../components/placeWizardSteps/Summary/summary';
 import Details from '../components/placeWizardSteps/Details/details';
 
 export const CreatePlace = () => {
-  const [createPlace, createPlaceResult] = useCreatePlaceMutation();
+  const [createPlace] = useCreatePlaceMutation();
   const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',

@@ -9,7 +9,6 @@ import { UpdatePlantRequest } from '../../common/slices/updatePlant/updatePlantR
 import { useParams } from 'react-router';
 import { useGetPlantQuery } from '../../common/slices/getPlant/getPlant';
 import validators from '../../common/services/Validators';
-import * as yup from 'yup';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
@@ -18,7 +17,7 @@ import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect'
 export const UpdatePlant = () => {
   const { id } = useParams();
 
-  const [updatePlant, updatePlantResult] = useUpdatePlantMutation();
+  const [updatePlant] = useUpdatePlantMutation();
   const { data: plant, isLoading: plantLoading, refetch: refetchPlant } = useGetPlantQuery(id!);
   const { refetch: refetchPlaces } = useGetPlacesQuery();
 

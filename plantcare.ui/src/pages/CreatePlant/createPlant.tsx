@@ -12,7 +12,7 @@ import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
 
 export const CreatePlant = () => {
-  const [createPlant, createPlantResult] = useCreatePlantMutation();
+  const [createPlant] = useCreatePlantMutation();
   const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',

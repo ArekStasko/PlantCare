@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Box, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import styles from './details.styles';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Plant } from '../../../../common/models/Plant';
