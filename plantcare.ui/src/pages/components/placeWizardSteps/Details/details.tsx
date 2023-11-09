@@ -1,9 +1,9 @@
-import { Typography, Box, InputLabel, TextField } from '@mui/material';
-import styles from './placeDetails.styles';
+import { Typography, Box, TextField } from '@mui/material';
+import styles from './details.styles';
 import { useFormContext } from 'react-hook-form';
 import React from 'react';
 
-export const PlaceDetails = () => {
+export const Details = () => {
   const {
     register,
     formState: { errors }
@@ -25,4 +25,4 @@ export const PlaceDetails = () => {
   );
 };
 
-export default PlaceDetails;
+export default Details;

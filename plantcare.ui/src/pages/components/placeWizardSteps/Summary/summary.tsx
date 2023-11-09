@@ -1,11 +1,9 @@
-import { Typography, Box, CircularProgress } from '@mui/material';
-import styles from './placeSummary.styles';
+import { Typography, Box } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
+import styles from './summary.styles';
 import React from 'react';
-import { ShrinkText } from '../../../../common/services/TextService';
-import { PlantType } from '../../../../common/models/plantTypes';
 
-export const PlaceSummary = () => {
+export const Summary = () => {
   const { getValues } = useFormContext();
 
   return (
@@ -23,4 +21,4 @@ export const PlaceSummary = () => {
   );
 };
 
-export default PlaceSummary;
+export default Summary;

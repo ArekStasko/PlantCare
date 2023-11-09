@@ -43,6 +43,13 @@ const descriptionInput = {
   height: '100%'
 };
 
+const option = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+};
+
 export default {
   plantDetailsWrapper,
   inputWrapper,
@@ -50,5 +57,6 @@ export default {
   descriptionWrapper,
   nameInput,
   descriptionInput,
-  typeSelect
+  typeSelect,
+  option
 };

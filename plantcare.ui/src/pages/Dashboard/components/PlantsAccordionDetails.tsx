@@ -11,16 +11,13 @@ import { ShrinkText } from '../../../common/services/TextService';
 import { Place } from '../../../common/models/Place';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import DeleteDialog from '../../../common/compontents/DeleteDialog/deleteDialog';
-import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
+import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
 
 interface PlantsAccordionDetailsProps {
   place: Place;
 }
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
-  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
 
   const getImage = (plantType: PlantType) => {
@@ -47,20 +44,11 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
             </Typography>
           </Box>
           <Box sx={styles.plantsAccordionDetailsButtons}>
-            <Tooltip title={`Delete ${plant.name}`} arrow>
-              <IconButton
-                onClick={() => setOpenDialog(!openDialog)}
-                size="large"
-                sx={{ mr: 5 }}
-                color="error">
-                <DeleteOutlineIcon />
-              </IconButton>
-            </Tooltip>
-            <DeleteDialog
-              openDialog={openDialog}
-              setOpenDialog={setOpenDialog}
-              resourceId={plant.id}
+            <DeleteIcon
+              key={plant.id}
               resourceType="plant"
+              resourceId={plant.id}
+              resourceName={plant.name}
             />
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
