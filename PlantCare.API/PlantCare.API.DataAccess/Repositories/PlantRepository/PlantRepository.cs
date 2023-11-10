@@ -77,8 +77,6 @@ public class PlantRepository : IPlantRepository
             plantToUpdate.Name = plant.Name;
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
-            plantToUpdate.CriticalMoistureLevel = plant.CriticalMoistureLevel;
-            plantToUpdate.RequiredMoistureLevel = plant.RequiredMoistureLevel;
             await _context.SaveChangesAsync();
             
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);

@@ -27,9 +27,6 @@ public class Tests
             Description = "Test Description",
             PlaceId = 1,
             Type = PlantType.Fruit,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 70,
-            ModuleId = ""
         };
         
         
@@ -59,9 +56,6 @@ public class Tests
             Description = "Test Description",
             PlaceId = 1,
             Type = PlantType.Fruit,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 70,
-            ModuleId = ""
         };
 
         var mockSet = Setups.GetPlantMockData();
@@ -92,9 +86,6 @@ public class Tests
             Description = "Test Description UPDATED",
             PlaceId = 1,
             Type = PlantType.Fruit,
-            CriticalMoistureLevel = 40,
-            RequiredMoistureLevel = 80,
-            ModuleId = ""
         };
 
         var mockSet = Setups.GetPlantMockData();

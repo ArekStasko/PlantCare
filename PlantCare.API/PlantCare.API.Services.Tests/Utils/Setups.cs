@@ -36,27 +36,18 @@ public static class Setups
                 Name = "Test Name",
                 Description = "Test Description",
                 Type = 0,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 130,
-                ModuleId = ""
             },
             new Plant()
             {
                 Name = "Test Name",
                 Description = "Test Description",
                 Type = 0,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 130,
-                ModuleId = ""
             },
             new Plant()
             {
                 Name = "Test Name",
                 Description = "Test Description",
                 Type = 0,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 130,
-                ModuleId = ""
             }
         };
 
@@ -65,9 +56,6 @@ public static class Setups
             Name = "Test Name",
             Description = "Test Description",
             Type = 0,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 130,
-            ModuleId = ""
         };
         
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(true).Verifiable();
@@ -109,9 +97,6 @@ public static class Setups
             Description = "Test Description",
             PlaceId = 1,
             Type = 0,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 130,
-            ModuleId = ""
         };
         
         var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);
@@ -158,9 +143,6 @@ public static class Setups
             Description = "Test Description",
             PlaceId = 1,
             Type = 0,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 130,
-            ModuleId = ""
         };
         
         var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);

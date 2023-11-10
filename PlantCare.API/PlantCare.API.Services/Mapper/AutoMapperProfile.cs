@@ -14,20 +14,16 @@ public class AutoMapperProfile : Profile
         CreateMap<CreatePlantCommand, Plant>()
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
-            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
-            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
         CreateMap<UpdatePlantCommand, Plant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
-            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
-            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
         CreateMap<int, DeletePlantCommand>()

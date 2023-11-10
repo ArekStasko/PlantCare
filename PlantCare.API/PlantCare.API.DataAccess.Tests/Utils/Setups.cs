@@ -30,9 +30,6 @@ public class Setups
             Name = "Test Name",
             Description = "Test Description",
             Type = PlantType.Fruit,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 70,
-            ModuleId = ""
         };
         
         var plantContextMock = new Mock<IPlantContext>();
@@ -56,9 +53,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -67,9 +61,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -78,9 +69,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -89,9 +77,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -100,9 +85,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -111,9 +93,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -122,9 +101,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -133,9 +109,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -144,9 +117,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             },
             new()
             {
@@ -155,9 +125,6 @@ public class Setups
                 Description = "Test Description",
                 PlaceId = 1,
                 Type = PlantType.Fruit,
-                CriticalMoistureLevel = 30,
-                RequiredMoistureLevel = 70,
-                ModuleId = ""
             }
         }.AsQueryable().BuildMockDbSet();
 
@@ -186,9 +153,6 @@ public class Setups
             Description = "Test Description",
             PlaceId = 1,
             Type = PlantType.Fruit,
-            CriticalMoistureLevel = 30,
-            RequiredMoistureLevel = 70,
-            ModuleId = ""
         };
         
         var data = new List<Place>()
