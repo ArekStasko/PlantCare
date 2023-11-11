@@ -7,7 +7,7 @@ using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess;
 
-internal class DataContext : DbContext, IPlaceContext, IPlantContext
+internal class DataContext : DbContext, IPlaceContext, IPlantContext, IHumidityMeasurementContext, IModuleContext
 {
     public DataContext(){}
 
@@ -15,8 +15,8 @@ internal class DataContext : DbContext, IPlaceContext, IPlantContext
     
     public virtual DbSet<Plant> Plants { get; set; } = null!;
     public virtual DbSet<Place> Places { get; set; } = null!;
-    public virtual DbSet<Module> Modules { get; set; } = null;
-    public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null;
+    public virtual DbSet<Module> Modules { get; set; } = null!;
+    public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +33,11 @@ internal class DataContext : DbContext, IPlaceContext, IPlantContext
             .HasForeignKey(e => e.ModuleId)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
-  
+
+        modelBuilder.Entity<Module>()
+            .HasOne(e => e.Plant)
+            .WithOne(e => e.Module)
+            .HasForeignKey<Plant>(e => e.ModuleId)
+            .IsRequired();
     }
 }

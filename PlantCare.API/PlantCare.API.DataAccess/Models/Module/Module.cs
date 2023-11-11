@@ -9,9 +9,6 @@ public class Module : IModule
     [Required]
     public int Id { get; set; }
 
-    [Required]
-    public int PlantId { get; set; }
-
     public int? CurrentMoistureLevel { get; set; }
 
     [Required]
@@ -21,5 +18,8 @@ public class Module : IModule
     public int CriticalMoistureLevel { get; set; }
 
     [Required]
-    public List<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
+    public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
+    
+    [Required]
+    public virtual Plant Plant { get; set; }
 }

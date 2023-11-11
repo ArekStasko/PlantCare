@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantCare.API.DataAccess;
 
@@ -11,9 +12,11 @@ using PlantCare.API.DataAccess;
 namespace PlantCare.API.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231111165252_Add Module model")]
+    partial class AddModulemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +64,9 @@ namespace PlantCare.API.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("CurrentMoistureLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlantId")
                         .HasColumnType("int");
 
                     b.Property<int>("RequiredMoistureLevel")
