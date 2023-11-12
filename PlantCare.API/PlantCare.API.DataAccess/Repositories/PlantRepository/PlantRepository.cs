@@ -11,13 +11,11 @@ public class PlantRepository : IPlantRepository
 {
     private IPlantContext _context;
     private ILogger<IPlantRepository> _logger;
-    private IMapper _mapper;
 
-    public PlantRepository(IPlantContext context, ILogger<IPlantRepository> logger, IMapper mapper)
+    public PlantRepository(IPlantContext context, ILogger<IPlantRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _mapper = mapper;
     }
     
     public virtual async ValueTask<Result<bool>> Create(IPlant plant)

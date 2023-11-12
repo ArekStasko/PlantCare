@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.DataAccess.Repositories.ModuleRepository;
 
@@ -14,12 +13,10 @@ public class ModuleRepository : IModuleRepository
 {
     private readonly IModuleContext _context;
     private readonly ILogger<IModuleRepository> _logger;
-    private readonly IMapper _mapper;
-    public ModuleRepository(IModuleContext context, ILogger<IModuleRepository> logger, IMapper mapper)
+    public ModuleRepository(IModuleContext context, ILogger<IModuleRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _mapper = mapper;
     }
     
     public async ValueTask<Result<bool>> Add(int id)

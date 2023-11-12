@@ -1,3 +1,6 @@
+using PlantCare.API.DataAccess.Models.Module;
+using PlantCare.API.Services.Requests.ModuleCommands;
+
 namespace PlantCare.API.Services.Mapper;
 
 using AutoMapper;
@@ -25,6 +28,10 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+
+        CreateMap<UpdateModuleCommand, Module>()
+            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
+            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel));
 
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
