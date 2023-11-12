@@ -6,7 +6,7 @@ namespace PlantCare.API.DataAccess.Repositories.ModuleRepository;
 
 public interface IModuleRepository
 {
-    ValueTask<Result<bool>> Create(IModule module);
+    ValueTask<Result<bool>> Add(int Id);
     ValueTask<Result<bool>> Delete(int id);
     ValueTask<Result<bool>> Update(IModule module);
     ValueTask<Result<IReadOnlyCollection<IModule>>> Get();

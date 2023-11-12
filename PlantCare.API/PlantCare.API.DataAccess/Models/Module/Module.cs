@@ -12,10 +12,10 @@ public class Module : IModule
     public int? CurrentMoistureLevel { get; set; }
 
     [Required]
-    public int RequiredMoistureLevel { get; set; }
+    public int? RequiredMoistureLevel { get; set; }
 
     [Required]
-    public int CriticalMoistureLevel { get; set; }
+    public int? CriticalMoistureLevel { get; set; }
 
     [Required]
     public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
