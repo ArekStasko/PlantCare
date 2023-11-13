@@ -1,4 +1,6 @@
+using PlantCare.API.DataAccess.Models.HumidityMeasurement;
 using PlantCare.API.DataAccess.Models.Module;
+using PlantCare.API.Services.Requests.HumidityMeasurementCommands;
 using PlantCare.API.Services.Requests.ModuleCommands;
 
 namespace PlantCare.API.Services.Mapper;
@@ -32,6 +34,11 @@ public class AutoMapperProfile : Profile
         CreateMap<UpdateModuleCommand, Module>()
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel));
+
+        CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
+            .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
+            .ForMember(dest => dest.Humidity, opt => opt.MapFrom(src => src.Humidity))
+            .ForMember(dest => dest.MeasurementDate, opt => opt.MapFrom(src => src.MeasurementDate));
 
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
