@@ -1,5 +1,6 @@
 using PlantCare.API.DataAccess.Models.HumidityMeasurement;
 using PlantCare.API.DataAccess.Models.Module;
+using PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
 using PlantCare.API.Services.Requests.HumidityMeasurementCommands;
 using PlantCare.API.Services.Requests.ModuleCommands;
 
@@ -44,6 +45,9 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
         CreateMap<int, GetPlantQuery>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+        CreateMap<int, GetHumidityMeasurementQuery>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
         // PLACES MAPPINGS
