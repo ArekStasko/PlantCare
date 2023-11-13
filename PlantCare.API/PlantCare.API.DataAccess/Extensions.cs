@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlantCare.API.DataAccess.Interfaces;
+using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
+using PlantCare.API.DataAccess.Repositories.ModuleRepository;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
@@ -32,8 +34,13 @@ public static class DataExtensions
     {
         services.AddScoped<IPlaceContext, DataContext>();
         services.AddScoped<IPlantContext, DataContext>();
+        services.AddScoped<IModuleContext, DataContext>();
+        services.AddScoped<IHumidityMeasurementContext, DataContext>();
+        
         services.AddScoped<IPlantRepository, PlantRepository>();
         services.AddScoped<IPlaceRepository, PlaceRepository>();
+        services.AddScoped<IModuleRepository, ModuleRepository>();
+        services.AddScoped<IHumidityMeasurementRepository, HumidityMeasurementRepository>();
     }
 
     private static string GetConnectionString()
