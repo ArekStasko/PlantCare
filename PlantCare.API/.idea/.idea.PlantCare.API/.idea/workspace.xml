@@ -9,21 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Module/IModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Module/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/PlantRepositoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess.Tests/Utils/Setups.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/HumidityMeasurement/HumidityMeasurement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/HumidityMeasurement/HumidityMeasurement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/HumidityMeasurement/IHumidityMeasurement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/HumidityMeasurement/IHumidityMeasurement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/Plant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services.Tests/Utils/Setups.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services.Tests/Utils/Setups.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,6 +162,7 @@
       <workItem from="1698935121988" duration="593000" />
       <workItem from="1699371366379" duration="1587000" />
       <workItem from="1699566880240" duration="3578000" />
+      <workItem from="1699712876896" duration="17444000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -312,13 +299,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
-          <line>65</line>
+          <line>63</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="2008" />
+              <option value="1937" />
             </startOffsets>
             <endOffsets>
-              <option value="2009" />
+              <option value="1938" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="25" />
@@ -361,6 +348,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/ModuleQueryHandlers/GetModuleHandler.cs</url>
+          <line>18</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\QueryHandlers\ModuleQueryHandlers\GetModuleHandler.cs" initialLine="18" containingFunctionPresentation="Constructor 'GetModuleHandler'">
+            <startOffsets>
+              <option value="661" />
+            </startOffsets>
+            <endOffsets>
+              <option value="662" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NotSupportedException" isInternal="false" displayValue="NotSupportedException" namespaceName="System">
