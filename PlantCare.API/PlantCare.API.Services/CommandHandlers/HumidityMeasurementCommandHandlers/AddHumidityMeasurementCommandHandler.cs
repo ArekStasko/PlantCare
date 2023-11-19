@@ -10,11 +10,11 @@ namespace PlantCare.API.Services.CommandHandlers.HumidityMeasurementCommandHandl
 
 public class AddHumidityMeasurementCommandHandler : IRequestHandler<AddHumidityMeasurementCommand, Result<bool>>
 {
-    private readonly IHumidityMeasurementRepository _repository;
+    private readonly IWriteHumidityMeasurementRepository _repository;
     private readonly ILogger<AddHumidityMeasurementCommandHandler> _logger;
     private readonly IMapper _mapper;
 
-    public AddHumidityMeasurementCommandHandler(IHumidityMeasurementRepository repository, ILogger<AddHumidityMeasurementCommandHandler> logger, IMapper mapper)
+    public AddHumidityMeasurementCommandHandler(IWriteHumidityMeasurementRepository repository, ILogger<AddHumidityMeasurementCommandHandler> logger, IMapper mapper)
     {
         _repository = repository;
         _logger = logger;

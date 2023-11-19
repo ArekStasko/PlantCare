@@ -9,10 +9,10 @@ namespace PlantCare.API.Services.QueryHandlers.HumidityMeasurementsQueryHandlers
 
 public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasurementQuery, Result<IReadOnlyCollection<IHumidityMeasurement>>>
 {
-    private readonly IHumidityMeasurementRepository _repository;
+    private readonly IReadHumidityMeasurementRepository _repository;
     private readonly ILogger<GetHumidityMeasurementsHandler> _logger;
 
-    public GetHumidityMeasurementsHandler(IHumidityMeasurementRepository repository, ILogger<GetHumidityMeasurementsHandler> logger)
+    public GetHumidityMeasurementsHandler(IReadHumidityMeasurementRepository repository, ILogger<GetHumidityMeasurementsHandler> logger)
     {
         _repository = repository;
         _logger = logger;

@@ -34,6 +34,7 @@ services:
             DatabasePassword: "Password.1234"
             DatabaseName: "PlantCare_DB"
             RedisConnectionString: "http://192.168.1.42:6379/"
+            RedisInstance: "plantcare"
             SpecificCorsOrigin: "http://192.168.1.42:3000"
         depends_on:
             - seq

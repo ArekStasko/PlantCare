@@ -19,6 +19,18 @@ public static class DataExtensions
         services.AddRepositories();
     }
 
+    public static void SetupCache(this IServiceCollection services)
+    {
+        var redisConnectionString = Environment.GetEnvironmentVariable("RedisConnectionString");
+        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString;
+            options.InstanceName = redisInstance;
+        });
+    }
+
     private static void AddDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
@@ -36,11 +48,12 @@ public static class DataExtensions
         services.AddScoped<IPlantContext, DataContext>();
         services.AddScoped<IModuleContext, DataContext>();
         services.AddScoped<IHumidityMeasurementContext, DataContext>();
-        
+
         services.AddScoped<IPlantRepository, PlantRepository>();
         services.AddScoped<IPlaceRepository, PlaceRepository>();
         services.AddScoped<IModuleRepository, ModuleRepository>();
-        services.AddScoped<IHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
     }
 
     private static string GetConnectionString()

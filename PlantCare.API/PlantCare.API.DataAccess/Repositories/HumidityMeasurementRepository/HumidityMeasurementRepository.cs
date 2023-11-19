@@ -8,12 +8,12 @@ using PlantCare.API.DataAccess.Models.HumidityMeasurement;
 
 namespace PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
 
-public class HumidityMeasurementRepository : IHumidityMeasurementRepository
+public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository, IReadHumidityMeasurementRepository
 {
     private readonly IHumidityMeasurementContext _context;
-    private readonly ILogger<IHumidityMeasurementRepository> _logger;
+    private readonly ILogger<HumidityMeasurementRepository> _logger;
 
-    public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<IHumidityMeasurementRepository> logger)
+    public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<HumidityMeasurementRepository> logger)
     {
         _context = context;
         _logger = logger;
