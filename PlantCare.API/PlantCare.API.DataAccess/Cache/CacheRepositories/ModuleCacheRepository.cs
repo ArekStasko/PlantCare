@@ -5,32 +5,17 @@ using PlantCare.API.DataAccess.Repositories.ModuleRepository;
 
 namespace PlantCare.API.DataAccess.Cache.CacheRepositories;
 
-public class ModuleCacheRepository : IModuleRepository
+public class ModuleCacheRepository : IReadModuleRepository
 {
-    private readonly IModuleRepository _repository;
+    private readonly IReadModuleRepository _repository;
     private readonly ILogger<ModuleCacheRepository> _logger;
     
-    public ModuleCacheRepository(IModuleRepository repository, ILogger<ModuleCacheRepository> logger)
+    public ModuleCacheRepository(IReadModuleRepository repository, ILogger<ModuleCacheRepository> logger)
     {
         _repository = repository;
         _logger = logger;
     }
     
-    public ValueTask<Result<bool>> Add(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ValueTask<Result<bool>> Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public ValueTask<Result<bool>> Update(IModule module)
-    {
-        throw new NotImplementedException();
-    }
-
     public ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
     {
         throw new NotImplementedException();

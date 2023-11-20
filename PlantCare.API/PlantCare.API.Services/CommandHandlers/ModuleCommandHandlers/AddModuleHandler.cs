@@ -10,10 +10,10 @@ namespace PlantCare.API.Services.CommandHandlers.ModuleCommandHandlers;
 
 public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<bool>>
 {
-    private readonly IModuleRepository _repository;
+    private readonly IWriteModuleRepository _repository;
     private readonly ILogger<AddModuleHandler> _logger;
 
-    public AddModuleHandler(IModuleRepository repository, ILogger<AddModuleHandler> logger)
+    public AddModuleHandler(IWriteModuleRepository repository, ILogger<AddModuleHandler> logger)
     {
         _repository = repository;
         _logger = logger;

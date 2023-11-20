@@ -9,10 +9,10 @@ namespace PlantCare.API.Services.QueryHandlers.ModuleQueryHandlers;
 
 public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOnlyCollection<IModule>>>
 {
-    private readonly IModuleRepository _repository;
+    private readonly IReadModuleRepository _repository;
     private readonly ILogger<GetModulesHandler> _logger;
 
-    public GetModulesHandler(IModuleRepository repository, ILogger<GetModulesHandler> logger)
+    public GetModulesHandler(IReadModuleRepository repository, ILogger<GetModulesHandler> logger)
     {
         _repository = repository;
         _logger = logger;

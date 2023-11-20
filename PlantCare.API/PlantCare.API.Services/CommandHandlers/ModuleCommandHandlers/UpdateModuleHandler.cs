@@ -11,11 +11,11 @@ namespace PlantCare.API.Services.CommandHandlers.ModuleCommandHandlers;
 
 public class UpdateModuleHandler : IRequestHandler<UpdateModuleCommand, Result<bool>>
 {
-    private readonly IModuleRepository _repository;
+    private readonly IWriteModuleRepository _repository;
     private readonly ILogger<UpdateModuleHandler> _logger;
     private readonly IMapper _mapper;
     
-    public UpdateModuleHandler(IModuleRepository repository, ILogger<UpdateModuleHandler> logger, IMapper mapper)
+    public UpdateModuleHandler(IWriteModuleRepository repository, ILogger<UpdateModuleHandler> logger, IMapper mapper)
     {
         _repository = repository;
         _logger = logger;

@@ -7,13 +7,13 @@ using PlantCare.API.DataAccess.Models.Place;
 
 namespace PlantCare.API.DataAccess.Repositories.PlaceRepository;
 
-public class PlaceRepository : IPlaceRepository
+public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
 {
     private IPlaceContext _context;
     private IMapper _mapper;
-    private ILogger<IPlaceRepository> _logger;
+    private ILogger<PlaceRepository> _logger;
 
-    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<IPlaceRepository> logger)
+    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<PlaceRepository> logger)
     {
         _context = context;
         _mapper = mapper;

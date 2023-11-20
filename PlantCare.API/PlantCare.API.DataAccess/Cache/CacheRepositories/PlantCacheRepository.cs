@@ -6,25 +6,18 @@ using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 namespace PlantCare.API.DataAccess.Cache.CacheRepositories;
 
-public class PlantCacheRepository : IPlantRepository
+public class PlantCacheRepository : IReadPlantRepository
 {
-    private readonly IPlantRepository _repository;
+    private readonly IReadPlantRepository _repository;
     private readonly IDistributedCache _cache;
     private readonly ILogger<PlantCacheRepository> _logger;
 
-    public PlantCacheRepository(IPlantRepository repository, IDistributedCache cache, ILogger<PlantCacheRepository> logger)
+    public PlantCacheRepository(IReadPlantRepository repository, IDistributedCache cache, ILogger<PlantCacheRepository> logger)
     {
         _repository = repository;
         _cache = cache;
         _logger = logger;
     }
-
-    public async ValueTask<Result<bool>> Create(IPlant plant) => await _repository.Create(plant);
-
-
-    public async ValueTask<Result<bool>> Delete(int id) => await _repository.Delete(id);
-
-    public async ValueTask<Result<bool>> Update(IPlant plant) => await _repository.Update(plant);
 
     public async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {

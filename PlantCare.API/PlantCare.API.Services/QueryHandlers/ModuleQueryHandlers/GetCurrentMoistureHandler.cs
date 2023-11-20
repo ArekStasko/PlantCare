@@ -8,10 +8,10 @@ namespace PlantCare.API.Services.QueryHandlers.ModuleQueryHandlers;
 
 public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery, Result<int>>
 {
-    private readonly IModuleRepository _repository;
+    private readonly IReadModuleRepository _repository;
     private readonly ILogger<GetCurrentMoistureHandler> _logger;
 
-    public GetCurrentMoistureHandler(IModuleRepository repository, ILogger<GetCurrentMoistureHandler> logger)
+    public GetCurrentMoistureHandler(IReadModuleRepository repository, ILogger<GetCurrentMoistureHandler> logger)
     {
         _repository = repository;
         _logger = logger;

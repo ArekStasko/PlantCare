@@ -9,11 +9,11 @@ using PlantCare.API.Services.Requests.PlaceCommands;
 
 public class DeletePlaceHandler : IRequestHandler<DeletePlaceCommand, Result<bool>>
 {
-    private readonly IPlaceRepository _placeRepository;
+    private readonly IWritePlaceRepository _placeRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<DeletePlaceHandler> _logger;
 
-    public DeletePlaceHandler(IPlaceRepository placeRepository, IMapper mapper, ILogger<DeletePlaceHandler> logger)
+    public DeletePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, ILogger<DeletePlaceHandler> logger)
     {
         _placeRepository = placeRepository;
         _mapper = mapper;

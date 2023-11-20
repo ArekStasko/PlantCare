@@ -7,12 +7,12 @@ using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
-public class PlantRepository : IPlantRepository
+public class PlantRepository : IWritePlantRepository, IReadPlantRepository
 {
     private IPlantContext _context;
-    private ILogger<IPlantRepository> _logger;
+    private ILogger<PlantRepository> _logger;
 
-    public PlantRepository(IPlantContext context, ILogger<IPlantRepository> logger)
+    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger)
     {
         _context = context;
         _logger = logger;

@@ -49,9 +49,12 @@ public static class DataExtensions
         services.AddScoped<IModuleContext, DataContext>();
         services.AddScoped<IHumidityMeasurementContext, DataContext>();
 
-        services.AddScoped<IPlantRepository, PlantRepository>();
-        services.AddScoped<IPlaceRepository, PlaceRepository>();
-        services.AddScoped<IModuleRepository, ModuleRepository>();
+        services.AddScoped<IWritePlantRepository, PlantRepository>();
+        services.AddScoped<IReadPlantRepository, PlantRepository>();
+        services.AddScoped<IWritePlaceRepository, PlaceRepository>();
+        services.AddScoped<IReadPlaceRepository, PlaceRepository>();
+        services.AddScoped<IWriteModuleRepository, ModuleRepository>();
+        services.AddScoped<IWriteModuleRepository, ModuleRepository>();
         services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
     }

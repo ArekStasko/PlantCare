@@ -8,10 +8,10 @@ namespace PlantCare.API.Services.CommandHandlers.ModuleCommandHandlers;
 
 public class DeleteModuleHandler : IRequestHandler<DeleteModuleCommand, Result<bool>>
 {
-    private readonly IModuleRepository _repository;
+    private readonly IWriteModuleRepository _repository;
     private readonly ILogger<DeleteModuleHandler> _logger;
 
-    public DeleteModuleHandler(IModuleRepository repository, ILogger<DeleteModuleHandler> logger)
+    public DeleteModuleHandler(IWriteModuleRepository repository, ILogger<DeleteModuleHandler> logger)
     {
         _repository = repository;
         _logger = logger;

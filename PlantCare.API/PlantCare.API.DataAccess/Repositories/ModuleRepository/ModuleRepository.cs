@@ -9,11 +9,11 @@ using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models.Module;
 
-public class ModuleRepository : IModuleRepository
+public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
 {
     private readonly IModuleContext _context;
-    private readonly ILogger<IModuleRepository> _logger;
-    public ModuleRepository(IModuleContext context, ILogger<IModuleRepository> logger)
+    private readonly ILogger<ModuleRepository> _logger;
+    public ModuleRepository(IModuleContext context, ILogger<ModuleRepository> logger)
     {
         _context = context;
         _logger = logger;
