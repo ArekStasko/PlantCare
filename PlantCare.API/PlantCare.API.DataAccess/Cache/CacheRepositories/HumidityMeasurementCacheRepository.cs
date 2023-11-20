@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Caching.Distributed;
+
 namespace PlantCare.API.DataAccess.Cache.CacheRepositories;
 
 using LanguageExt.Common;
@@ -9,15 +11,27 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
 {
     private IReadHumidityMeasurementRepository _repository;
     private ILogger<HumidityMeasurementCacheRepository> _logger;
-
-    public HumidityMeasurementCacheRepository(IReadHumidityMeasurementRepository repository, ILogger<HumidityMeasurementCacheRepository> logger)
+    private readonly IDistributedCache _cache;
+    
+    public HumidityMeasurementCacheRepository(IReadHumidityMeasurementRepository repository, ILogger<HumidityMeasurementCacheRepository> logger, IDistributedCache cache)
     {
         _repository = repository;
         _logger = logger;
+        _cache = cache;
     }
 
-    public ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
     {
-        throw new NotImplementedException();
+        string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
+        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IHumidityMeasurement>>(humidityMeasurementsKey);
+
+        if (data == null)
+        {
+            _logger.LogInformation("Saving Humidity Measurements to cache");
+            var humidityMeasurement = await _repository.Get(id);
+            return await humidityMeasurement.ProcessCacheResult(_cache, humidityMeasurementsKey);
+        }
+
+        return new Result<IReadOnlyCollection<IHumidityMeasurement>>(data!);
     }
 }

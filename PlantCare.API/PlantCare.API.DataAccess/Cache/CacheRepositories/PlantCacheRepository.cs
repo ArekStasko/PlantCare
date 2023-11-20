@@ -21,29 +21,31 @@ public class PlantCacheRepository : IReadPlantRepository
 
     public async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {
-        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlant>>("Plants");
+        string plantsKey = "Plants";
+        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlant>>(plantsKey);
 
         if (data == null)
         {
+            _logger.LogInformation("Saving plants to cache");
             var plants = await _repository.Get();
-
-            plants.Match(
-                succ =>
-            {
-                _cache.SetRecordAsync<IReadOnlyCollection<IPlant>>("Plants", succ);
-                return plants;
-            } ,err =>
-            {
-                _logger.LogError(err.Message);
-                return new Result<IReadOnlyCollection<IPlant>>(err);
-            });
+            return await plants.ProcessCacheResult(_cache, plantsKey);
         }
 
-        return new Result<IReadOnlyCollection<IPlant>>(data);
+        return new Result<IReadOnlyCollection<IPlant>>(data!);
     }
 
     public async ValueTask<Result<IPlant>> Get(int id)
     {
-        
+        string singlePlantKey = $"Plant-{id}";
+        var data = await _cache.GetRecordAsync<IPlant>(singlePlantKey);
+
+        if (data == null)
+        {
+            _logger.LogInformation("Saving plant to cache");
+            var plant = await _repository.Get(id);
+            return await plant.ProcessCacheResult(_cache, singlePlantKey);
+        }
+
+        return new Result<IPlant>(data);
     }
 }

@@ -1,4 +1,5 @@
 using LanguageExt.Common;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
@@ -9,15 +10,26 @@ public class PlaceCacheRepository : IReadPlaceRepository
 {
     private readonly IReadPlaceRepository _repository;
     private readonly ILogger<PlaceCacheRepository> _logger;
-
-    public PlaceCacheRepository(IReadPlaceRepository repository, ILogger<PlaceCacheRepository> logger)
+    private readonly IDistributedCache _cache;
+    public PlaceCacheRepository(IReadPlaceRepository repository, ILogger<PlaceCacheRepository> logger, IDistributedCache cache)
     {
         _repository = repository;
         _logger = logger;
+        _cache = cache;
     }
 
-    public ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
-        throw new NotImplementedException();
+        string placesKey = "Places";
+        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlace>>(placesKey);
+
+        if (data == null)
+        {
+            _logger.LogInformation("Saving place to cache");
+            var places = await _repository.Get();
+            return await places.ProcessCacheResult(_cache, placesKey);
+        }
+
+        return new Result<IReadOnlyCollection<IPlace>>(data!);
     }
 }
