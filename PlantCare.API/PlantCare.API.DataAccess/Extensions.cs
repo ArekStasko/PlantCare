@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantCare.API.DataAccess.Cache.CacheRepositories;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
 using PlantCare.API.DataAccess.Repositories.ModuleRepository;
@@ -50,13 +51,19 @@ public static class DataExtensions
         services.AddScoped<IHumidityMeasurementContext, DataContext>();
 
         services.AddScoped<IWritePlantRepository, PlantRepository>();
-        services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IWritePlaceRepository, PlaceRepository>();
-        services.AddScoped<IReadPlaceRepository, PlaceRepository>();
-        services.AddScoped<IWriteModuleRepository, ModuleRepository>();
         services.AddScoped<IWriteModuleRepository, ModuleRepository>();
         services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
+
+        services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IReadPlaceRepository, PlaceRepository>();
+        services.AddScoped<IReadModuleRepository, ModuleRepository>();
+
+        services.AddScoped<IReadPlantRepository, PlantCacheRepository>();
+        services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
+        services.AddScoped<IReadPlaceRepository, PlaceCacheRepository>();
+        services.AddScoped<IReadModuleRepository, ModuleCacheRepository>();
     }
 
     private static string GetConnectionString()

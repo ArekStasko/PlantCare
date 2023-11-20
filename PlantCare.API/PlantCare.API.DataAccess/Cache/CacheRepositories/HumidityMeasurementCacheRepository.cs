@@ -20,6 +20,7 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
         _cache = cache;
     }
 
+    
     public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
     {
         string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
