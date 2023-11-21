@@ -11,8 +11,9 @@ namespace PlantCare.API.DataAccess.Tests;
 
 public class PlaceRepositoryTests
 {
+    
     private Mock<IPlaceContext> _placeContextMock = Setups.SetupPlaceContext();
-    private IMock<ILogger<IPlaceRepository>> _loggerMock = new Mock<ILogger<IPlaceRepository>>();
+    private IMock<ILogger<PlaceRepository>> _loggerMock = new Mock<ILogger<PlaceRepository>>();
     private IMapper _mapper = Setups.SetupMapper();
     
         [Test]

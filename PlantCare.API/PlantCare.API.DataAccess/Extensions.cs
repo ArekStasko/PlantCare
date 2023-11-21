@@ -60,10 +60,10 @@ public static class DataExtensions
         services.AddScoped<IReadPlaceRepository, PlaceRepository>();
         services.AddScoped<IReadModuleRepository, ModuleRepository>();
 
-        services.AddScoped<IReadPlantRepository, PlantCacheRepository>();
-        services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
-        services.AddScoped<IReadPlaceRepository, PlaceCacheRepository>();
-        services.AddScoped<IReadModuleRepository, ModuleCacheRepository>();
+        services.Decorate<IReadPlantRepository, PlantCacheRepository>();
+        services.Decorate<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
+        services.Decorate<IReadPlaceRepository, PlaceCacheRepository>();
+        services.Decorate<IReadModuleRepository, ModuleCacheRepository>();
     }
 
     private static string GetConnectionString()
