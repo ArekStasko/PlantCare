@@ -24,7 +24,7 @@ public class ModuleCacheRepository : IReadModuleRepository
         string modulesKey = "Modules";
         var data = await _cache.GetRecordAsync<IReadOnlyCollection<IModule>>(modulesKey);
 
-        if (data == null)
+        if (data.Count == 0)
         {
             _logger.LogInformation("Saving Modules to cache");
             var modules = await _repository.Get();

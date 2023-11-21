@@ -26,7 +26,7 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
         string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
         var data = await _cache.GetRecordAsync<IReadOnlyCollection<IHumidityMeasurement>>(humidityMeasurementsKey);
 
-        if (data == null)
+        if (data.Count == 0)
         {
             _logger.LogInformation("Saving Humidity Measurements to cache");
             var humidityMeasurement = await _repository.Get(id);

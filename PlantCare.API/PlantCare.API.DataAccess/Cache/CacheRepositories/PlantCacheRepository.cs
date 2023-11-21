@@ -24,7 +24,7 @@ public class PlantCacheRepository : IReadPlantRepository
         string plantsKey = "Plants";
         var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlant>>(plantsKey);
 
-        if (data == null)
+        if (data.Count == 0)
         {
             _logger.LogInformation("Saving plants to cache");
             var plants = await _repository.Get();

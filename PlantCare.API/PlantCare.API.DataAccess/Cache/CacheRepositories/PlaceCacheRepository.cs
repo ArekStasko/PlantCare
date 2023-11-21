@@ -22,8 +22,8 @@ public class PlaceCacheRepository : IReadPlaceRepository
     {
         string placesKey = "Places";
         var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlace>>(placesKey);
-
-        if (data == null)
+        
+        if (data.Count == 0)
         {
             _logger.LogInformation("Saving place to cache");
             var places = await _repository.Get();

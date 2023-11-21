@@ -22,7 +22,7 @@ public static class DataExtensions
 
     public static void SetupCache(this IServiceCollection services)
     {
-        var redisConnectionString = Environment.GetEnvironmentVariable("RedisConnectionString");
+        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
         var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 
         services.AddStackExchangeRedisCache(options =>
