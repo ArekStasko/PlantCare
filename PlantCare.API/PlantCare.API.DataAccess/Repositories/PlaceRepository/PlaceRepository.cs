@@ -1,6 +1,7 @@
 using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models.Place;
@@ -9,15 +10,15 @@ namespace PlantCare.API.DataAccess.Repositories.PlaceRepository;
 
 public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
 {
-    private IPlaceContext _context;
-    private IMapper _mapper;
-    private ILogger<PlaceRepository> _logger;
+    private readonly IPlaceContext _context;
+    private readonly ILogger<PlaceRepository> _logger;
+    private readonly IDistributedCache _cache;
 
-    public PlaceRepository(IPlaceContext context, IMapper mapper, ILogger<PlaceRepository> logger)
+    public PlaceRepository(IPlaceContext context, ILogger<PlaceRepository> logger, IDistributedCache cache)
     {
         _context = context;
-        _mapper = mapper;
         _logger = logger;
+        _cache = cache;
     }
 
     public virtual async ValueTask<Result<bool>> Create(IPlace place)
@@ -27,6 +28,8 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.Places.AddAsync((Place)place);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new place with {placeId} Id", place.Id);
+            _cache.RemoveAsync("Places");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -52,7 +55,8 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.SaveChangesAsync();
             
             _logger.LogInformation("Place with {placeId} successfully deleted", id);
-            
+            _cache.RemoveAsync("Places");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -78,7 +82,8 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Place with {placeId} successfully updated", place.Id);
-
+            _cache.RemoveAsync("Places");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)

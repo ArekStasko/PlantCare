@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Castle.Core.Logging;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models.HumidityMeasurement;
@@ -12,8 +13,7 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
 {
     private readonly IHumidityMeasurementContext _context;
     private readonly ILogger<HumidityMeasurementRepository> _logger;
-
-    public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<HumidityMeasurementRepository> logger)
+    public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<HumidityMeasurementRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;

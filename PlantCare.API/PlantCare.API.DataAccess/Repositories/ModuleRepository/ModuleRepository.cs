@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace PlantCare.API.DataAccess.Repositories.ModuleRepository;
 
@@ -13,10 +14,12 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
 {
     private readonly IModuleContext _context;
     private readonly ILogger<ModuleRepository> _logger;
-    public ModuleRepository(IModuleContext context, ILogger<ModuleRepository> logger)
+    private readonly IDistributedCache _cache;
+    public ModuleRepository(IModuleContext context, ILogger<ModuleRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;
+        _cache = cache;
     }
     
     public async ValueTask<Result<bool>> Add(int id)
@@ -30,6 +33,8 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Module with {Id} Id was successfully created", id);
+            _cache.RemoveAsync("Modules");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -55,6 +60,9 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Successfully deleted module with {Id} id", id);
+            
+            _cache.RemoveAsync("Modules");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -81,6 +89,8 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Module with {Id} successfully updated", module.Id);
+            _cache.RemoveAsync($"Module-{module.Id}");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)

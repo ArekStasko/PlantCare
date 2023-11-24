@@ -1,6 +1,7 @@
 using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
@@ -9,13 +10,14 @@ namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
 public class PlantRepository : IWritePlantRepository, IReadPlantRepository
 {
-    private IPlantContext _context;
-    private ILogger<PlantRepository> _logger;
-
-    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger)
+    private readonly IPlantContext _context;
+    private readonly ILogger<PlantRepository> _logger;
+    private readonly IDistributedCache _cache;
+    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;
+        _cache = cache;
     }
     
     public virtual async ValueTask<Result<bool>> Create(IPlant plant)
@@ -25,6 +27,8 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             await _context.Plants.AddAsync((Plant)plant);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
+            _cache.RemoveAsync("Plants");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -48,9 +52,10 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
 
             _context.Plants.Remove(plantToDelete);
             await _context.SaveChangesAsync();
-            
+
             _logger.LogInformation("Plant with {plantId} successfully deleted", id);
-            
+            _cache.RemoveAsync("Plants");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -76,9 +81,10 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
             await _context.SaveChangesAsync();
-            
-            _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
 
+            _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
+            _cache.RemoveAsync("Plants");
+            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
