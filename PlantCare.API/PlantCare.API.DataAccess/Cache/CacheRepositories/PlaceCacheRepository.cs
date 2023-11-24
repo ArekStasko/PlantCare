@@ -8,25 +8,27 @@ namespace PlantCare.API.DataAccess.Cache.CacheRepositories;
 
 public class PlaceCacheRepository : IReadPlaceRepository
 {
-    private readonly IReadPlaceRepository _repository;
+    private readonly IReadPlaceRepository _readRepository;
     private readonly ILogger<PlaceCacheRepository> _logger;
     private readonly IDistributedCache _cache;
-    public PlaceCacheRepository(IReadPlaceRepository repository, ILogger<PlaceCacheRepository> logger, IDistributedCache cache)
+    public PlaceCacheRepository(IReadPlaceRepository readRepository, ILogger<PlaceCacheRepository> logger, IDistributedCache cache)
     {
-        _repository = repository;
+        _readRepository = readRepository;
         _logger = logger;
         _cache = cache;
     }
 
     public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
+        _logger.LogInformation("Waiting for redis...");
         string placesKey = "Places";
-        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IPlace>>(placesKey);
+        IReadOnlyCollection<IPlace> data = await _cache.GetRecordAsync<List<Place>>(placesKey);
+        _logger.LogInformation("Redis fine go next");
         
-        if (data.Count == 0)
+        if (data == null || data.Count == 0)
         {
             _logger.LogInformation("Saving place to cache");
-            var places = await _repository.Get();
+            var places = await _readRepository.Get();
             return await places.ProcessCacheResult(_cache, placesKey);
         }
 

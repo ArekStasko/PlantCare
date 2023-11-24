@@ -20,13 +20,13 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
         _cache = cache;
     }
 
-    
+
     public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
     {
         string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
-        var data = await _cache.GetRecordAsync<IReadOnlyCollection<IHumidityMeasurement>>(humidityMeasurementsKey);
+        IReadOnlyCollection<IHumidityMeasurement> data = await _cache.GetRecordAsync<List<HumidityMeasurement>>(humidityMeasurementsKey);
 
-        if (data.Count == 0)
+        if (data == null || data.Count == 0)
         {
             _logger.LogInformation("Saving Humidity Measurements to cache");
             var humidityMeasurement = await _repository.Get(id);
@@ -35,4 +35,5 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
 
         return new Result<IReadOnlyCollection<IHumidityMeasurement>>(data!);
     }
+
 }
