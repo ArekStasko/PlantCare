@@ -1,11 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-
 namespace PlantCare.API.DataAccess.Repositories.ModuleRepository;
 
 using AutoMapper;
 using Castle.Core.Logging;
 using LanguageExt.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models.Module;
@@ -22,7 +21,7 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
         _cache = cache;
     }
     
-    public async ValueTask<Result<bool>> Add(int id)
+    public async ValueTask<Result<Guid>> Add(Guid id)
     {
         try
         {
@@ -35,16 +34,16 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
             _logger.LogInformation("Module with {Id} Id was successfully created", id);
             _cache.RemoveAsync("Modules");
             _logger.LogInformation("Redis cache has been updated");
-            return new Result<bool>(true);
+            return new Result<Guid>(id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<bool>(e);
+            return new Result<Guid>(e);
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(int id)
+    public async ValueTask<Result<bool>> Delete(Guid id)
     {
         try
         {
@@ -60,7 +59,7 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Successfully deleted module with {Id} id", id);
-            
+
             _cache.RemoveAsync("Modules");
             _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
@@ -115,7 +114,7 @@ public class ModuleRepository : IWriteModuleRepository, IReadModuleRepository
         }
     }
 
-    public async ValueTask<Result<IModule>> Get(int id)
+    public async ValueTask<Result<IModule>> Get(Guid id)
     {
         try
         {

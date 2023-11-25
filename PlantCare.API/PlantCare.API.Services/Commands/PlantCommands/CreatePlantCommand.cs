@@ -11,5 +11,5 @@ public record CreatePlantCommand : IHttpPostCommand
     public PlantType Type { get; set; }
     public byte CriticalMoistureLevel { get; set; }
     public byte RequiredMoistureLevel { get; set; }
-    public string? ModuleId { get; set; }
+    public Guid? ModuleId { get; set; }
 }

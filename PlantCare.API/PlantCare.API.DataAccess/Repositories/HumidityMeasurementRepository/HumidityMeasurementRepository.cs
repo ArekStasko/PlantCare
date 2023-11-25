@@ -35,7 +35,7 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
         }
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)
     {
         try
         {

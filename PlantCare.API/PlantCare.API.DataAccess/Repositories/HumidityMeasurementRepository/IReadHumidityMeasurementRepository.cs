@@ -5,5 +5,5 @@ namespace PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
 
 public interface IReadHumidityMeasurementRepository
 {
-    ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id);
+    ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id);
 }

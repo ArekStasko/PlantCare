@@ -1,6 +1,5 @@
 namespace PlantCare.API.Services.Requests.ModuleCommands;
 
-public class AddModuleCommand : IHttpPostCommand
+public class AddModuleCommand : IHttpPostCommandGuid
 {
-    public int Id { get; set; }
 }

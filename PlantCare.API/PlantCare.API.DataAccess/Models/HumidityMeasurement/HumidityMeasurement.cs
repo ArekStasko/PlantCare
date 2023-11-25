@@ -11,7 +11,7 @@ public class HumidityMeasurement : IHumidityMeasurement
     public int Id { get; set; }
 
     [Required]
-    public int ModuleId { get; set; }
+    public Guid ModuleId { get; set; }
 
     [Required]
     public int Humidity { get; set; }

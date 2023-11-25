@@ -7,7 +7,7 @@ namespace PlantCare.API.DataAccess.Models.Module;
 public class Module : IModule
 {
     [Required]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public int? CurrentMoistureLevel { get; set; }
 

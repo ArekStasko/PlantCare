@@ -14,7 +14,7 @@ public class Plant : IPlant
     public int PlaceId { get; set; }
 
     [Required]
-    public int ModuleId { get; set; }
+    public Guid ModuleId { get; set; }
 
     [Required]
     [MaxLength(150)]

@@ -5,5 +5,4 @@ using MediatR;
 
 public interface IHttpDeleteCommand : IRequest<Result<bool>>
 {
-    
 }

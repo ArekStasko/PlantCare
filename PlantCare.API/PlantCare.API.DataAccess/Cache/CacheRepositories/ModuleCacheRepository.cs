@@ -34,7 +34,7 @@ public class ModuleCacheRepository : IReadModuleRepository
         return new Result<IReadOnlyCollection<IModule>>(data!);
     }
 
-    public async ValueTask<Result<IModule>> Get(int id)
+    public async ValueTask<Result<IModule>> Get(Guid id)
     {
         string singleModuleKey = $"Module-{id}";
         IModule data = await _cache.GetRecordAsync<Module>(singleModuleKey);

@@ -12,8 +12,8 @@ using PlantCare.API.DataAccess;
 namespace PlantCare.API.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231111165252_Add Module model")]
-    partial class AddModulemodel
+    [Migration("20231125204047_Change module id type")]
+    partial class Changemoduleidtype
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,8 +42,8 @@ namespace PlantCare.API.DataAccess.Migrations
                     b.Property<DateTime>("MeasurementDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ModuleId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ModuleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -54,22 +54,19 @@ namespace PlantCare.API.DataAccess.Migrations
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Module.Module", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CriticalMoistureLevel")
+                    b.Property<int?>("CriticalMoistureLevel")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("CurrentMoistureLevel")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequiredMoistureLevel")
+                    b.Property<int?>("RequiredMoistureLevel")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -107,8 +104,8 @@ namespace PlantCare.API.DataAccess.Migrations
                         .HasMaxLength(550)
                         .HasColumnType("nvarchar(550)");
 
-                    b.Property<int>("ModuleId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ModuleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()

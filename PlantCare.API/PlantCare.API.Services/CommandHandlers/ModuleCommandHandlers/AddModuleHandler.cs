@@ -8,7 +8,7 @@ using PlantCare.API.Services.Requests.ModuleCommands;
 
 namespace PlantCare.API.Services.CommandHandlers.ModuleCommandHandlers;
 
-public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<bool>>
+public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
 {
     private readonly IWriteModuleRepository _repository;
     private readonly ILogger<AddModuleHandler> _logger;
@@ -19,32 +19,27 @@ public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<bool>>
         _logger = logger;
     }
 
-    public async Task<Result<bool>> Handle(AddModuleCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(AddModuleCommand request, CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation("AddModuleHandler start processing");
-            var result = await _repository.Add(request.Id);
+            Guid newId = Guid.NewGuid();
+            var result = await _repository.Add(newId);
             return result.Match(succ =>
             {
-                if (succ)
-                {
-                    _logger.LogInformation("Successfully added module with {id} id", request.Id);
-                    return new Result<bool>(true);
-                }
-                
-                _logger.LogInformation("Something went wrong");
-                return new Result<bool>(new Exception("Something went wrong"));
+                    _logger.LogInformation("Successfully added module with {id} id", newId);
+                    return new Result<Guid>(succ);
             }, err =>
             {
                 _logger.LogError("Error has occured during AddModuleHandler handling: {exception}", err.Message);
-                return new Result<bool>(false);
+                return new Result<Guid>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in AddModuleHandler: {exception}", e.Message);
-            return new Result<bool>(e);
+            return new Result<Guid>(e);
         }
     }
 }

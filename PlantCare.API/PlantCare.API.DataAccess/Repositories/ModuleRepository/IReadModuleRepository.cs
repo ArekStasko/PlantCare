@@ -6,5 +6,6 @@ namespace PlantCare.API.DataAccess.Repositories.ModuleRepository;
 public interface IReadModuleRepository
 {
     ValueTask<Result<IReadOnlyCollection<IModule>>> Get();
-    ValueTask<Result<IModule>> Get(int id);
+
+    ValueTask<Result<IModule>> Get(Guid id);
 }
