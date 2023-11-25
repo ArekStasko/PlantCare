@@ -25,7 +25,7 @@ public class ModuleController
     [HttpPost(Name = "[controller]/Add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(AddModuleCommand command)
+    public async ValueTask<IActionResult> Add(AddModuleCommand command)
     {
         _logger.LogInformation("Create module controller method start processing");
         var result = await _mediator.Send(command);

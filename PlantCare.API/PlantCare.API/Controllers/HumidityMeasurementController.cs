@@ -25,7 +25,7 @@ public class HumidityMeasurementController
     [HttpPost(Name = "[controller]/Add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(AddHumidityMeasurementCommand command)
+    public async ValueTask<IActionResult> Add(AddHumidityMeasurementCommand command)
     {
         _logger.LogInformation("Create humidity measurement controller method start processing");
         var result = await _mediator.Send(command);

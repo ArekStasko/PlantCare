@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test Name\",\r\n    \"description\": \"Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{VegetableType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Pomato\",\r\n    \"description\": \"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{VegetableType}},\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -113,21 +113,9 @@
 				},
 				{
 					"name": "GetAll Plants",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{BaseURL}}/plants/GetAll",
 							"host": [
@@ -180,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Test name\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Salon\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -226,21 +214,9 @@
 				},
 				{
 					"name": "GetAll Places",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{BaseURL}}/places/GetAll",
 							"host": [
@@ -249,6 +225,163 @@
 							"path": [
 								"places",
 								"GetAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Add Module",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/modules/Add",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"modules",
+								"Add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Module",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"RequiredMoistureLevel\": \"80\",\r\n    \"CriticalMoistureLevel\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/modules/Update",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"modules",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Module",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/modules/Delete?id={{ModuleId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"modules",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ModuleId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Modules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/modules/GetAll",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"modules",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Humidity Measurements",
+			"item": [
+				{
+					"name": "Add Humidity Measurement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ModuleId\": \"{{ModuleId}}\",\r\n    \"Humidity\": \"70\",\r\n    \"MeasurementDate\": \"2018-12-10T13:49:51.141Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/humidity-measurements/Add",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"humidity-measurements",
+								"Add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Humidity Measurements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/humidity-measurements/Get?id={{ModuleId}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"humidity-measurements",
+								"Get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ModuleId}}"
+								}
 							]
 						}
 					},
