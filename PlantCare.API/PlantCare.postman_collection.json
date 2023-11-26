@@ -240,15 +240,6 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"Id\": \"{{ModuleId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{BaseURL}}/modules/Add",
 							"host": [
@@ -269,7 +260,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"RequiredMoistureLevel\": \"80\",\r\n    \"CriticalMoistureLevel\": \"50\"\r\n}",
+							"raw": "{\r\n    \"id\": \"b0699bda-09dc-4129-b181-c274f1e1ccc3\",\r\n    \"RequiredMoistureLevel\": \"80\",\r\n    \"CriticalMoistureLevel\": \"50\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
