@@ -26,7 +26,7 @@ public class AddHumidityMeasurementCommandHandler : IRequestHandler<AddHumidityM
         try
         {
             _logger.LogInformation("AddHumidityMeasurementCommandHandler start processing");
-            var humidityMeasurement = _mapper.Map<IHumidityMeasurement>(request);
+            IHumidityMeasurement humidityMeasurement = _mapper.Map<HumidityMeasurement>(request);
             var result = await _repository.Add(humidityMeasurement);
             return result.Match(succ =>
             {

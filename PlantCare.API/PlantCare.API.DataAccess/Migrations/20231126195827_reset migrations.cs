@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PlantCare.API.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Changemoduleidtype : Migration
+    public partial class resetmigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,8 @@ namespace PlantCare.API.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurrentMoistureLevel = table.Column<int>(type: "int", nullable: true),
-                    RequiredMoistureLevel = table.Column<int>(type: "int", nullable: false),
-                    CriticalMoistureLevel = table.Column<int>(type: "int", nullable: false)
+                    RequiredMoistureLevel = table.Column<int>(type: "int", nullable: true),
+                    CriticalMoistureLevel = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,27 +36,6 @@ namespace PlantCare.API.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Place", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HumidityMeasurement",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ModuleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Humidity = table.Column<int>(type: "int", nullable: false),
-                    MeasurementDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HumidityMeasurement", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HumidityMeasurement_Module_ModuleId",
-                        column: x => x.ModuleId,
-                        principalTable: "Module",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,10 +67,42 @@ namespace PlantCare.API.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "HumidityMeasurement",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ModuleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Humidity = table.Column<int>(type: "int", nullable: false),
+                    MeasurementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PlantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HumidityMeasurement", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HumidityMeasurement_Module_ModuleId",
+                        column: x => x.ModuleId,
+                        principalTable: "Module",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HumidityMeasurement_Plant_PlantId",
+                        column: x => x.PlantId,
+                        principalTable: "Plant",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_HumidityMeasurement_ModuleId",
                 table: "HumidityMeasurement",
                 column: "ModuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HumidityMeasurement_PlantId",
+                table: "HumidityMeasurement",
+                column: "PlantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Plant_ModuleId",

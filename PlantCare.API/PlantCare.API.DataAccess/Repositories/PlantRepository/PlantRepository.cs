@@ -27,8 +27,7 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             await _context.Plants.AddAsync((Plant)plant);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
-            _cache.RemoveAsync("Plants");
-            _logger.LogInformation("Redis cache has been updated");
+            await ResetCacheValues();
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -54,8 +53,7 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Plant with {plantId} successfully deleted", id);
-            _cache.RemoveAsync("Plants");
-            _logger.LogInformation("Redis cache has been updated");
+            await ResetCacheValues();
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -81,10 +79,9 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
             await _context.SaveChangesAsync();
-
+            await ResetCacheValues();
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
-            _cache.RemoveAsync("Plants");
-            _logger.LogInformation("Redis cache has been updated");
+            
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -128,5 +125,14 @@ public class PlantRepository : IWritePlantRepository, IReadPlantRepository
             _logger.LogError(e.Message);
             return new Result<IPlant>(e);
         }
+    }
+
+    private async Task ResetCacheValues()
+    {
+        //TODO: Should i run this tasks in parallel ? 
+        await _cache.RemoveAsync("Plants");
+        await _cache.RemoveAsync("Modules");
+        await _cache.RemoveAsync("Places");
+        _logger.LogInformation("Redis cache has been updated");
     }
 }

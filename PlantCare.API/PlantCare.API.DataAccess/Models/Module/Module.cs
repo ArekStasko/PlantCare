@@ -11,15 +11,12 @@ public class Module : IModule
 
     public int? CurrentMoistureLevel { get; set; }
 
-    [Required]
     public int? RequiredMoistureLevel { get; set; }
 
-    [Required]
     public int? CriticalMoistureLevel { get; set; }
 
     [Required]
     public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
-    
-    [Required]
-    public virtual Plant Plant { get; set; }
+
+    public virtual Plant? Plant { get; set; }
 }

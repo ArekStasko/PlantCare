@@ -28,7 +28,7 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.Places.AddAsync((Place)place);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new place with {placeId} Id", place.Id);
-            _cache.RemoveAsync("Places");
+            await _cache.RemoveAsync("Places");
             _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
@@ -55,7 +55,7 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.SaveChangesAsync();
             
             _logger.LogInformation("Place with {placeId} successfully deleted", id);
-            _cache.RemoveAsync("Places");
+            await _cache.RemoveAsync("Places");
             _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
@@ -82,7 +82,7 @@ public class PlaceRepository : IWritePlaceRepository, IReadPlaceRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Place with {placeId} successfully updated", place.Id);
-            _cache.RemoveAsync("Places");
+            await _cache.RemoveAsync("Places");
             _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }

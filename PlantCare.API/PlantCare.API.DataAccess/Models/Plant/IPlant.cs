@@ -11,5 +11,4 @@ public interface IPlant
     string Name { get; set; }
     string Description { get; set; }
     PlantType Type { get; set; }
-    Module.Module Module { get; set; }
 }

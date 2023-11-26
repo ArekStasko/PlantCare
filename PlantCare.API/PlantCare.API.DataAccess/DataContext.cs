@@ -34,12 +34,11 @@ internal class DataContext : DbContext, IPlaceContext, IPlantContext, IHumidityM
             .HasMany(e => e.HumidityMeasurements)
             .WithOne()
             .HasForeignKey(e => e.ModuleId)
-            .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
         modelBuilder.Entity<Module>()
             .HasOne(e => e.Plant)
-            .WithOne(e => e.Module)
+            .WithOne()
             .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
     }

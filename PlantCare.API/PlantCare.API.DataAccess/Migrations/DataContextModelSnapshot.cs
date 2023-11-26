@@ -42,9 +42,14 @@ namespace PlantCare.API.DataAccess.Migrations
                     b.Property<Guid>("ModuleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("PlantId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ModuleId");
+
+                    b.HasIndex("PlantId");
 
                     b.ToTable("HumidityMeasurement");
                 });
@@ -56,14 +61,12 @@ namespace PlantCare.API.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("CriticalMoistureLevel")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("CurrentMoistureLevel")
                         .HasColumnType("int");
 
                     b.Property<int?>("RequiredMoistureLevel")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -132,11 +135,15 @@ namespace PlantCare.API.DataAccess.Migrations
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PlantCare.API.DataAccess.Models.Plant", null)
+                        .WithMany("HumidityMeasurements")
+                        .HasForeignKey("PlantId");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>
                 {
-                    b.HasOne("PlantCare.API.DataAccess.Models.Module.Module", "Module")
+                    b.HasOne("PlantCare.API.DataAccess.Models.Module.Module", null)
                         .WithOne("Plant")
                         .HasForeignKey("PlantCare.API.DataAccess.Models.Plant", "ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -147,21 +154,23 @@ namespace PlantCare.API.DataAccess.Migrations
                         .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Module");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Module.Module", b =>
                 {
                     b.Navigation("HumidityMeasurements");
 
-                    b.Navigation("Plant")
-                        .IsRequired();
+                    b.Navigation("Plant");
                 });
 
             modelBuilder.Entity("PlantCare.API.DataAccess.Models.Place.Place", b =>
                 {
                     b.Navigation("Plants");
+                });
+
+            modelBuilder.Entity("PlantCare.API.DataAccess.Models.Plant", b =>
+                {
+                    b.Navigation("HumidityMeasurements");
                 });
 #pragma warning restore 612, 618
         }

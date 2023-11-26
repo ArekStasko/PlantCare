@@ -26,7 +26,6 @@ public class Plant : IPlant
 
     [Required]
     public PlantType Type { get; set; }
-
-    [Required]
-    public virtual Module.Module Module { get; set; }
+    
+    public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
 }

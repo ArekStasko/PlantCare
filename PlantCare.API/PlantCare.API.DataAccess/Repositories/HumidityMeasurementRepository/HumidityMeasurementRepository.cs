@@ -13,10 +13,13 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
 {
     private readonly IHumidityMeasurementContext _context;
     private readonly ILogger<HumidityMeasurementRepository> _logger;
+    private readonly IDistributedCache _cache;
+
     public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<HumidityMeasurementRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;
+        _cache = cache;
     }
 
     public async ValueTask<Result<bool>> Add(IHumidityMeasurement humidityMeasurement)
@@ -26,6 +29,8 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
             await _context.HumidityMeasurements.AddAsync((HumidityMeasurement)humidityMeasurement);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Humidity measurement was successfully created");
+            await _cache.RemoveAsync("Modules");
+            _logger.LogInformation("Cached modules has been removed");
             return new Result<bool>(true);
         }
         catch (Exception e)

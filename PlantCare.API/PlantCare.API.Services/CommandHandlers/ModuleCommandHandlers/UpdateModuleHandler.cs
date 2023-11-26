@@ -27,7 +27,7 @@ public class UpdateModuleHandler : IRequestHandler<UpdateModuleCommand, Result<b
         try
         {
             _logger.LogInformation("UpdateModuleHandler handles request");
-            IModule moduleToUpdate = _mapper.Map<IModule>(request);
+            IModule moduleToUpdate = _mapper.Map<Module>(request);
             var result = await _repository.Update(moduleToUpdate);
             return result.Match(succ =>
             {

@@ -25,10 +25,10 @@ public class ModuleController
     [HttpPost(Name = "[controller]/Add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Add(AddModuleCommand command)
+    public async ValueTask<IActionResult> Add()
     {
         _logger.LogInformation("Create module controller method start processing");
-        var result = await _mediator.Send(command);
+        var result = await _mediator.Send(new AddModuleCommand());
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();
     }
@@ -36,7 +36,7 @@ public class ModuleController
     [HttpDelete(Name = "[controller]/Delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id)
+    public async ValueTask<IActionResult> Delete([FromQuery] Guid id)
     {
         _logger.LogInformation("Delete module controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeleteModuleCommand>(id);
@@ -62,7 +62,7 @@ public class ModuleController
     public async ValueTask<IActionResult> GetAll()
     {
         _logger.LogInformation("GetAll modules controller method start processing");
-        var result = await _mediator.Send(new GetModuleQuery());
+        var result = await _mediator.Send(new GetModulesQuery());
         _logger.LogInformation("GetAll modules controller method ends processing");
         return result.ToOk();
     }
