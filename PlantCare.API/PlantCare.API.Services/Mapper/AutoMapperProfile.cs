@@ -32,30 +32,26 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
 
-        CreateMap<UpdateModuleCommand, Module>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
-            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel));
-
-        CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
-            .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
-            .ForMember(dest => dest.Humidity, opt => opt.MapFrom(src => src.Humidity))
-            .ForMember(dest => dest.MeasurementDate, opt => opt.MapFrom(src => src.MeasurementDate));
-
         CreateMap<int, DeletePlantCommand>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
-
-        CreateMap<Guid, DeleteModuleCommand>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
-
-        CreateMap<Guid, GetHumidityMeasurementQuery>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
         CreateMap<int, GetPlantQuery>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
-        CreateMap<int, GetHumidityMeasurementQuery>()
+        // MODULE MAPPINGS
+        CreateMap<UpdateModuleCommand, Module>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
+            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel));
+
+        CreateMap<Guid, DeleteModuleCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+        // HUMIDITY MEASUREMENTS MAPPINGS
+        CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
+            .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
+            .ForMember(dest => dest.Humidity, opt => opt.MapFrom(src => src.Humidity))
+            .ForMember(dest => dest.MeasurementDate, opt => opt.MapFrom(src => src.MeasurementDate));
 
         // PLACES MAPPINGS
         CreateMap<CreatePlaceCommand, Place>()
