@@ -10,18 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Migrations/DataContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Module/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Module/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/IPlant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Models/Plant/Plant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/ModuleRepository/ModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/ModuleRepository/ModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/ModuleCommandHandlers/UpdateModuleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/ModuleCommandHandlers/UpdateModuleHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Commands/ModuleCommands/UpdateModuleCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Commands/ModuleCommands/UpdateModuleCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/ModuleQueries/GetModuleQuery.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/ModuleQueryHandlers/GetModuleHandler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/HumidityMeasurementsQueries/GetHumidityMeasurementQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/HumidityMeasurementsQueries/GetHumidityMeasurementQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,14 +36,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3b1ca9ae4c42542ce48c7e78c36ad9b5cf71ebddb89c151a8eeeea532549/MapperConfigurationExpression.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/HumidityMeasurementCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/ModuleCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Cache/CacheRepositories/ModuleCacheRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Cache/CacheRepositories/PlaceCacheRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlaceCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Cache/CacheRepositories/PlantCacheRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlantCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Repositories/PlaceRepository/IWritePlaceRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -189,7 +176,7 @@
       <workItem from="1700592856219" duration="6593000" />
       <workItem from="1700852326695" duration="10106000" />
       <workItem from="1700902276252" duration="5778000" />
-      <workItem from="1700994520500" duration="3368000" />
+      <workItem from="1700994520500" duration="8396000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -326,13 +313,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
-          <line>68</line>
+          <line>66</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="2318" />
+              <option value="2174" />
             </startOffsets>
             <endOffsets>
-              <option value="2319" />
+              <option value="2175" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="25" />

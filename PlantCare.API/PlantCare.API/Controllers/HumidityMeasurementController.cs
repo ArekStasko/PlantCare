@@ -36,10 +36,15 @@ public class HumidityMeasurementController
     [HttpGet(Name = "[controller]/Get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] Guid id)
+    public async ValueTask<IActionResult> Get([FromQuery] Guid id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {
         _logger.LogInformation("Get humidity measurements controller method start processing");
-        var getHumidityMeasurementsQuery = _mapper.Map<GetHumidityMeasurementQuery>(id);
+        var getHumidityMeasurementsQuery = new GetHumidityMeasurementQuery()
+        {
+            Id = id,
+            FromDate = fromDate,
+            ToDate = toDate,
+        };
         var result = await _mediator.Send(getHumidityMeasurementsQuery);
         _logger.LogInformation("Get humidity measurements controller method ends processing");
         return result.ToOk();
