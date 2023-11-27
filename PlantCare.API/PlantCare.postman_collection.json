@@ -360,7 +360,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/humidity-measurements/Get?id={{ModuleId}}",
+							"raw": "{{BaseURL}}/humidity-measurements/Get?id={{ModuleId}}&fromDate=2018-12-10T13:49:51.141Z&toDate=2018-12-20T13:49:51.141Z",
 							"host": [
 								"{{BaseURL}}"
 							],
@@ -372,6 +372,14 @@
 								{
 									"key": "id",
 									"value": "{{ModuleId}}"
+								},
+								{
+									"key": "fromDate",
+									"value": "2018-12-10T13:49:51.141Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2018-12-20T13:49:51.141Z"
 								}
 							]
 						}
