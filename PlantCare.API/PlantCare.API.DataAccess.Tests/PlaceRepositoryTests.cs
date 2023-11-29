@@ -18,7 +18,7 @@ public class PlaceRepositoryTests
     private IMapper _mapper = Setups.SetupMapper();
     private IDistributedCache _cache = Setups.SetupCache();
     
-        [Test]
+    [Test]
     public async Task Create_Should_CreateOnePlace()
     {
         IPlace placeToCreate = new Place()
