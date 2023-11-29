@@ -10,6 +10,8 @@ using Moq;
 using PlantCare.API.DataAccess.Enums;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
+using PlantCare.API.DataAccess.Models.HumidityMeasurement;
+using PlantCare.API.DataAccess.Models.Module;
 using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.Services.Mapper;
 
@@ -29,17 +31,31 @@ public class Setups
         IDistributedCache cache = new MockCache();
         return cache;
     }
+    
+    public static Mock<IModuleContext> SetupModuleContext()
+    {
+        var moduleContextMock = new Mock<IModuleContext>();
+        
+        moduleContextMock.Setup(_ => _.Modules.Remove(It.IsAny<Module>())).Returns((EntityEntry<Module>)null).Verifiable();
+        
+        moduleContextMock.Setup(_ => _.Modules.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()))
+            .Returns(ValueTask.FromResult((EntityEntry<Module>)null)).Verifiable();
+
+        return moduleContextMock;
+    }
+    
+    public static Mock<IHumidityMeasurementContext> SetupHumidityMeasurementsContext()
+    {
+        var humidityMeasurementContextMock = new Mock<IHumidityMeasurementContext>();
+        
+        humidityMeasurementContextMock.Setup(_ => _.HumidityMeasurements.AddAsync(It.IsAny<HumidityMeasurement>(), It.IsAny<CancellationToken>()))
+            .Returns(ValueTask.FromResult((EntityEntry<HumidityMeasurement>)null)).Verifiable();
+
+        return humidityMeasurementContextMock;
+    }
 
     public static Mock<IPlantContext> SetupPlantContext()
     {
-        IPlant defaultPlant = new Plant()
-        {
-            Id = 1,
-            Name = "Test Name",
-            Description = "Test Description",
-            Type = PlantType.Fruit,
-        };
-        
         var plantContextMock = new Mock<IPlantContext>();
         
         plantContextMock.Setup(_ => _.Plants.Remove(It.IsAny<Plant>())).Returns((EntityEntry<Plant>)null).Verifiable();
@@ -151,7 +167,7 @@ public class Setups
         return placeContextMock;
     }
     
-        public static Mock<DbSet<Place>> GetPlaceMockData()
+    public static Mock<DbSet<Place>> GetPlaceMockData()
     {
         
         Plant defaultPlant = new Plant()
@@ -224,6 +240,112 @@ public class Setups
                 Id = 10,
                 Name = "Test Name",
                 Plants = { defaultPlant }
+            }
+        }.AsQueryable().BuildMockDbSet();
+
+        return data;
+    }
+    public static Mock<DbSet<HumidityMeasurement>> GetHumidityMeasurementMockData()
+    {
+        var data = new List<HumidityMeasurement>()
+        {
+            new()
+            {
+                Id = 1,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 2,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 3,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 4,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 5,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 6,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 7,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 8,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 9,
+                Humidity = 70,
+            },
+            new()
+            {
+                Id = 10,
+                Humidity = 70,
+            }
+        }.AsQueryable().BuildMockDbSet();
+
+        return data;
+    }
+    public static Mock<DbSet<Module>> GetModuleMockData()
+    {
+        var data = new List<Module>()
+        {
+            new()
+            {
+                Id = Guid.Parse("22e44148-84ae-4e2f-b698-ae0cea661313"),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
+            },
+            new()
+            {
+                Id = new Guid(),
             }
         }.AsQueryable().BuildMockDbSet();
 
