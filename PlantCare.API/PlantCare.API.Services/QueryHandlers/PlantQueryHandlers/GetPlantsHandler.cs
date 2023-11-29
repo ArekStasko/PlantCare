@@ -9,10 +9,10 @@ using PlantCare.API.Services.Requests;
 
 public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnlyCollection<IPlant>>>
 {
-    private readonly IPlantRepository _repository;
+    private readonly IReadPlantRepository _repository;
     private readonly ILogger<GetPlantsHandler> _logger;
 
-    public GetPlantsHandler(IPlantRepository repository, ILogger<GetPlantsHandler> logger)
+    public GetPlantsHandler(IReadPlantRepository repository, ILogger<GetPlantsHandler> logger)
     {
         _repository = repository;
         _logger = logger;

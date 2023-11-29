@@ -10,11 +10,11 @@ using PlantCare.API.Services.Requests.PlaceCommands;
 
 public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<bool>>
 {
-    private readonly IPlaceRepository _placeRepository;
+    private readonly IWritePlaceRepository _placeRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<CreatePlaceHandler> _logger;
 
-    public CreatePlaceHandler(IPlaceRepository placeRepository, IMapper mapper, ILogger<CreatePlaceHandler> logger)
+    public CreatePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, ILogger<CreatePlaceHandler> logger)
     {
         _placeRepository = placeRepository;
         _logger = logger;

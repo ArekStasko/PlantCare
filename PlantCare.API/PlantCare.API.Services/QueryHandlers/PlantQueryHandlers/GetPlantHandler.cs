@@ -11,10 +11,10 @@ namespace PlantCare.API.Services.Handlers;
 
 public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<IPlant>>
 {
-    private readonly IPlantRepository _repository;
+    private readonly IReadPlantRepository _repository;
     private readonly ILogger<GetPlantHandler> _logger;
 
-    public GetPlantHandler(IPlantRepository repository, ILogger<GetPlantHandler> logger)
+    public GetPlantHandler(IReadPlantRepository repository, ILogger<GetPlantHandler> logger)
     {
         _repository = repository;
         _logger = logger;

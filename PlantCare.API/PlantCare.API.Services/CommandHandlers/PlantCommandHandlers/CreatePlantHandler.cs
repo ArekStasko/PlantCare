@@ -10,11 +10,11 @@ using PlantCare.API.Services.Requests;
 
 public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<bool>>
 {
-    private readonly IPlantRepository _plantRepository;
+    private readonly IWritePlantRepository _plantRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<CreatePlantHandler> _logger;
 
-    public CreatePlantHandler(IPlantRepository plantRepository, IMapper mapper, ILogger<CreatePlantHandler> logger)
+    public CreatePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, ILogger<CreatePlantHandler> logger)
     {
         _plantRepository = plantRepository;
         _logger = logger;

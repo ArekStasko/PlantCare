@@ -1,23 +1,23 @@
 using AutoMapper;
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
 
 namespace PlantCare.API.DataAccess.Repositories.PlantRepository;
 
-public class PlantRepository : IPlantRepository
+public class PlantRepository : IWritePlantRepository, IReadPlantRepository
 {
-    private IPlantContext _context;
-    private ILogger<IPlantRepository> _logger;
-    private IMapper _mapper;
-
-    public PlantRepository(IPlantContext context, ILogger<IPlantRepository> logger, IMapper mapper)
+    private readonly IPlantContext _context;
+    private readonly ILogger<PlantRepository> _logger;
+    private readonly IDistributedCache _cache;
+    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;
-        _mapper = mapper;
+        _cache = cache;
     }
     
     public virtual async ValueTask<Result<bool>> Create(IPlant plant)
@@ -27,6 +27,7 @@ public class PlantRepository : IPlantRepository
             await _context.Plants.AddAsync((Plant)plant);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
+            await ResetCacheValues();
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -50,9 +51,9 @@ public class PlantRepository : IPlantRepository
 
             _context.Plants.Remove(plantToDelete);
             await _context.SaveChangesAsync();
-            
+
             _logger.LogInformation("Plant with {plantId} successfully deleted", id);
-            
+            await ResetCacheValues();
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -77,12 +78,10 @@ public class PlantRepository : IPlantRepository
             plantToUpdate.Name = plant.Name;
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
-            plantToUpdate.CriticalMoistureLevel = plant.CriticalMoistureLevel;
-            plantToUpdate.RequiredMoistureLevel = plant.RequiredMoistureLevel;
             await _context.SaveChangesAsync();
-            
+            await ResetCacheValues();
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
-
+            
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -126,5 +125,14 @@ public class PlantRepository : IPlantRepository
             _logger.LogError(e.Message);
             return new Result<IPlant>(e);
         }
+    }
+
+    private async Task ResetCacheValues()
+    {
+        //TODO: Should i run this tasks in parallel ? 
+        await _cache.RemoveAsync("Plants");
+        await _cache.RemoveAsync("Modules");
+        await _cache.RemoveAsync("Places");
+        _logger.LogInformation("Redis cache has been updated");
     }
 }
