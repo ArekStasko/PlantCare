@@ -1,3 +1,4 @@
+using System.Numerics;
 using AutoMapper;
 using LanguageExt;
 using LanguageExt.Common;
@@ -7,6 +8,8 @@ using Moq;
 using PlantCare.API.DataAccess;
 using PlantCare.API.DataAccess.Interfaces;
 using PlantCare.API.DataAccess.Models;
+using PlantCare.API.DataAccess.Models.HumidityMeasurement;
+using PlantCare.API.DataAccess.Models.Module;
 using PlantCare.API.DataAccess.Models.Place;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
@@ -23,7 +26,111 @@ public static class Setups
         var configuration = new MapperConfiguration(cfg => cfg.AddProfile(autoMapperProfile));
         return new AutoMapper.Mapper(configuration);
     }
+    
+    public static Mock<MockHumidityMeasurementsRepo> GetSuccessfullHumidityMeasurementsRepository()
+    {
+        var HumidityMeasurementsRepositoryMock = new Mock<MockHumidityMeasurementsRepo>();
+        var HumidityMeasurementsList = new List<IHumidityMeasurement>()
+        {
+            new HumidityMeasurement()
+            {
+                Id = 1,
+                ModuleId = new Guid(),
+                Humidity = 90,
+                MeasurementDate = DateTime.Now
+            },
+            new HumidityMeasurement()
+            {
+                Id = 2,
+                ModuleId = new Guid(),
+                Humidity = 90,
+                MeasurementDate = DateTime.Now
+            },
+            new HumidityMeasurement()
+            {
+                Id = 3,
+                ModuleId = new Guid(),
+                Humidity = 90,
+                MeasurementDate = DateTime.Now
+            }
+        };
+        
+        HumidityMeasurementsRepositoryMock.Setup(repo => repo.Add(It.IsAny<IHumidityMeasurement>())).ReturnsAsync(new Result<bool>(true)).Verifiable();
+        HumidityMeasurementsRepositoryMock.Setup(repo => repo.Get(It.IsAny<Guid>())).ReturnsAsync(HumidityMeasurementsList).Verifiable();
+        
+        return HumidityMeasurementsRepositoryMock;
+    }
+    
+    public static Mock<MockHumidityMeasurementsRepo> GetUnsuccessfullHumidityMeasurementsRepository()
+    {
+        var HumidityMeasurementsRepositoryMock = new Mock<MockHumidityMeasurementsRepo>();
 
+        HumidityMeasurementsRepositoryMock.Setup(repo => repo.Add(It.IsAny<IHumidityMeasurement>())).ReturnsAsync(new Result<bool>(false)).Verifiable();
+        HumidityMeasurementsRepositoryMock.Setup(repo => repo.Get(It.IsAny<Guid>())).ReturnsAsync(new Result<IReadOnlyCollection<IHumidityMeasurement>>(new Exception())).Verifiable();
+
+        return HumidityMeasurementsRepositoryMock;
+    }
+
+    public static Mock<MockModuleRepo> GetSuccessfullModuleRepository()
+    {
+        var moduleRepositoryMock = new Mock<MockModuleRepo>();
+        var modulesList = new List<IModule>()
+        {
+            new Module()
+            {
+                Id = new Guid(),
+                RequiredMoistureLevel = 80,
+                CriticalMoistureLevel = 60,
+                HumidityMeasurements = new List<HumidityMeasurement>(){},
+                Plant = new Plant(){}
+            },
+            new Module()
+            {
+                Id = new Guid(),
+                RequiredMoistureLevel = 90,
+                CriticalMoistureLevel = 70,
+                HumidityMeasurements = new List<HumidityMeasurement>(){},
+                Plant = new Plant(){}
+            },
+            new Module()
+            {
+                Id = new Guid(),
+                RequiredMoistureLevel = 70,
+                CriticalMoistureLevel = 50,
+                HumidityMeasurements = new List<HumidityMeasurement>(){},
+                Plant = new Plant(){}
+            }
+        };
+
+        var module = new Module()
+        {
+            Id = new Guid(),
+            RequiredMoistureLevel = 80,
+            CriticalMoistureLevel = 60,
+            HumidityMeasurements = new List<HumidityMeasurement>(){},
+            Plant = new Plant(){}
+        };
+        
+        moduleRepositoryMock.Setup(repo => repo.Add(It.IsAny<Guid>())).ReturnsAsync(new Result<Guid>()).Verifiable();
+        moduleRepositoryMock.Setup(repo => repo.Delete(It.IsAny<Guid>())).ReturnsAsync(true).Verifiable();
+        moduleRepositoryMock.Setup(repo => repo.Update(It.IsAny<IModule>())).ReturnsAsync(true).Verifiable();
+        moduleRepositoryMock.Setup(repo => repo.Get()).ReturnsAsync(modulesList).Verifiable();
+        moduleRepositoryMock.Setup(repo => repo.Get(It.IsAny<Guid>())).ReturnsAsync(module).Verifiable();
+        
+        return moduleRepositoryMock;
+    }
+    
+    public static Mock<MockModuleRepo> GetUnsuccessfullModuleRepository()
+    {
+        var plantRepositoryMock = new Mock<MockModuleRepo>();
+
+        plantRepositoryMock.Setup(repo => repo.Add(It.IsAny<Guid>())).ReturnsAsync(new Result<Guid>(new Exception())).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<Guid>())).ReturnsAsync(false).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Update(It.IsAny<IModule>())).ReturnsAsync(false).Verifiable();
+        plantRepositoryMock.Setup(repo => repo.Get(It.IsAny<Guid>())).ThrowsAsync(It.IsAny<ArgumentNullException>()).Verifiable();
+
+        return plantRepositoryMock;
+    }
     
     public static Mock<MockPlantRepo> GetSuccessfullPlantRepository()
     {
@@ -77,7 +184,6 @@ public static class Setups
 
         return plantRepositoryMock;
     }
-    
     
     public static Mock<MockPlaceRepo> GetSuccessfullPlaceRepository()
     {
