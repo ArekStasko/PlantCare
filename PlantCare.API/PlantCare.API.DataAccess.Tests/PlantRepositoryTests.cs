@@ -1,7 +1,9 @@
 using System.Linq.Expressions;
 using AutoMapper;
+using LanguageExt;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
@@ -16,7 +18,7 @@ public class Tests
 {
     private Mock<IPlantContext> _plantContextMock = Setups.SetupPlantContext();
     private IMock<ILogger<PlantRepository>> _loggerMock = new Mock<ILogger<PlantRepository>>();
-    private IMapper _mapper = Setups.SetupMapper();
+    private IDistributedCache _cache = Setups.SetupCache();
 
     [Test]
     public async Task Create_Should_CreateOnePlant()
@@ -31,7 +33,7 @@ public class Tests
         
         
 
-        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _cache);
         var result = await plantRepository.Create(plantToCreate);
         
         _plantContextMock.Verify(dbSet => dbSet.Plants.AddAsync(It.IsAny<Plant>(), It.IsAny<CancellationToken>()), Times.Once);
@@ -61,7 +63,7 @@ public class Tests
         var mockSet = Setups.GetPlantMockData();
         _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
         
-        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _cache);
         var result = await plantRepository.Delete(plantToDelete.Id);
         
         _plantContextMock.Verify(dbSet => dbSet.Plants.Remove(It.IsAny<Plant>()), Times.Once);
@@ -91,7 +93,7 @@ public class Tests
         var mockSet = Setups.GetPlantMockData();
         _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _cache);
         var result = await plantRepository.Update(EditedPlant);
         result.Match<IActionResult>(succ =>
         {
@@ -110,7 +112,7 @@ public class Tests
         var mockSet = Setups.GetPlantMockData();
         _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _cache);
         var result = await plantRepository.Get();
         result.Match<IActionResult>(succ =>
         {
@@ -131,7 +133,7 @@ public class Tests
         var mockSet = Setups.GetPlantMockData();
         _plantContextMock.Setup(_ => _.Plants).Returns(mockSet.Object);
 
-        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object);
+        var plantRepository = new PlantRepository(_plantContextMock.Object, _loggerMock.Object, _cache);
         var result = await plantRepository.Get(plantIdToGet);
         result.Match<IActionResult>(succ =>
         {

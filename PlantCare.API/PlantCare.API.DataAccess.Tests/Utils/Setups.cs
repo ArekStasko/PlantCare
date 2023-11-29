@@ -3,6 +3,8 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using MockQueryable.Moq;
 using Moq;
 using PlantCare.API.DataAccess.Enums;
@@ -20,6 +22,12 @@ public class Setups
         var autoMapperProfile = new AutoMapperProfile();
         var configuration = new MapperConfiguration(cfg => cfg.AddProfile(autoMapperProfile));
         return new Mapper(configuration);
+    }
+
+    public static IDistributedCache SetupCache()
+    {
+        IDistributedCache cache = new MockCache();
+        return cache;
     }
 
     public static Mock<IPlantContext> SetupPlantContext()

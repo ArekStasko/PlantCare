@@ -1,5 +1,7 @@
 using AutoMapper;
+using LanguageExt;
 using LanguageExt.Common;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess;
@@ -21,14 +23,11 @@ public static class Setups
         var configuration = new MapperConfiguration(cfg => cfg.AddProfile(autoMapperProfile));
         return new AutoMapper.Mapper(configuration);
     }
+
     
-    public static Mock<PlantRepository> GetSuccessfullPlantRepository()
+    public static Mock<MockPlantRepo> GetSuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<IPlantContext>();
-        var logger = new Mock<ILogger<PlantRepository>>();
-        var mapper = GetMapper();
-        
-        var plantRepositoryMock = new Mock<PlantRepository>(plantContextMock.Object, logger.Object, mapper);
+        var plantRepositoryMock = new Mock<MockPlantRepo>();
         var plantList = new List<IPlant>()
         {
             new Plant()
@@ -67,13 +66,9 @@ public static class Setups
         return plantRepositoryMock;
     }
     
-    public static Mock<PlantRepository> GetUnsuccessfullPlantRepository()
+    public static Mock<MockPlantRepo> GetUnsuccessfullPlantRepository()
     {
-        var plantContextMock = new Mock<IPlantContext>();
-        var logger = new Mock<ILogger<PlantRepository>>();
-        var mapper = GetMapper();
-        
-        var plantRepositoryMock = new Mock<PlantRepository>(plantContextMock.Object, logger.Object, mapper);
+        var plantRepositoryMock = new Mock<MockPlantRepo>();
 
         plantRepositoryMock.Setup(repo => repo.Create(It.IsAny<IPlant>())).ReturnsAsync(false).Verifiable();
         plantRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>())).ReturnsAsync(false).Verifiable();
@@ -84,12 +79,8 @@ public static class Setups
     }
     
     
-    public static Mock<PlaceRepository> GetSuccessfullPlaceRepository()
+    public static Mock<MockPlaceRepo> GetSuccessfullPlaceRepository()
     {
-        var placeContextMock = new Mock<IPlaceContext>();
-        var logger = new Mock<ILogger<IPlaceContext>>();
-        var mapper = GetMapper();
-
         var defaultPlant = new Plant()
         {
             Id = 1,
@@ -99,7 +90,7 @@ public static class Setups
             Type = 0,
         };
         
-        var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);
+        var placeRepositoryMock = new Mock<MockPlaceRepo>();
         var placeList = new List<IPlace>()
         {
             new Place()
@@ -130,11 +121,8 @@ public static class Setups
         return placeRepositoryMock;
     }
     
-    public static Mock<PlaceRepository> GetUnsuccessfullPlaceRepository()
+    public static Mock<MockPlaceRepo> GetUnsuccessfullPlaceRepository()
     {
-        var placeContextMock = new Mock<IPlaceContext>();
-        var logger = new Mock<ILogger<IPlaceContext>>();
-        var mapper = GetMapper();
 
         var defaultPlant = new Plant()
         {
@@ -145,7 +133,7 @@ public static class Setups
             Type = 0,
         };
         
-        var placeRepositoryMock = new Mock<PlaceRepository>(placeContextMock.Object, logger.Object, mapper);
+        var placeRepositoryMock = new Mock<MockPlaceRepo>();
         var placeList = new List<IPlace>()
         {
             new Place()

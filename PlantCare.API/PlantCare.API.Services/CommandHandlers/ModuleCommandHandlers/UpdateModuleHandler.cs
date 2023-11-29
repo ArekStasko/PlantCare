@@ -1,5 +1,4 @@
 using AutoMapper;
-using Castle.Core.Logging;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
