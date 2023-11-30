@@ -49,25 +49,25 @@ Backend API :
 
 Fronted App :
 - [x] Create frontend App Structure ( ReactApp + Redux + TS )
-- [ ] Add Dashboard layout
-- [ ] Perform plants fetching for dashboard ( via slices in react redux )
-- [ ] Add delete popup for deletion flow
-- [ ] Add delete action via redux slices and redirect user to portfolio
-- [ ] Make details page with plant description, diagram of moisture etc, there should also be option to edit plant data
-- [ ] Perfom plant details fetching via plant Id
-- [ ] Add plant creation page with wizard view : 
-  - [ ] Add plant name, description etc
-  - [ ] Informations about plant (what minerals it needs etc)
-  - [ ] Moisture level
-- [ ] Add plant create form validation and redirection to dashboard after successfull validation
+- [x] Add Dashboard layout
+- [x] Perform plants fetching for dashboard ( via slices in react redux )
+- [x] Add delete popup for deletion flow
+- [x] Add delete action via redux slices and redirect user to portfolio
+- [x] Make details page with plant description, diagram of moisture etc, there should also be option to edit plant data
+- [x] Perfom plant details fetching via plant Id
+- [x] Add plant creation page with wizard view : 
+  - [x] Add plant name, description etc
+  - [x] Informations about plant (what minerals it needs etc)
+  - [x] Moisture level
+- [x] Add plant create form validation and redirection to dashboard after successfull validation
 
 ESP32 Upgrades :
   Backend API :
-  - [ ] create esp module controllers file structure
-  - [ ] Add moisture level edit to esp module controllers
-  - [ ] Add moisture level edit service and repository for plants
-  - [ ] Add moisutre level save controller to save data from esp module ( it should collect data like moisture level, time of rehydration )
-  - [ ] Perform sending back to esp module info about required moisture level
+  - [x] create esp module controllers file structure
+  - [x] Add moisture level edit to esp module controllers
+  - [x] Add moisture level edit service and repository for plants
+  - [x] Add moisutre level save controller to save data from esp module ( it should collect data like moisture level, time of rehydration )
+  - [x] Perform sending back to esp module info about required moisture level
 
   Fronted App :
   - [ ] On details page add statistics about the plant ( mouisture level in different timesheets, times of rehydrations )
