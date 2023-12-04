@@ -17,6 +17,13 @@ services:
         restart: unless-stopped
         depends_on:
             - mssql-server
+    redis-cache:
+        container_name: redis-cache
+        image: redis:latest
+        restart: always
+        ports:
+            - '6379:6379'
+        command: redis-server --bind redis-cache --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes --loglevel warning
     plantcare-api:
         build: ./PlantCare.API
         container_name: plantcare-api
@@ -26,6 +33,9 @@ services:
             DatabaseUser: "sa"
             DatabasePassword: "Password.1234"
             DatabaseName: "PlantCare_DB"
+            RedisConnectionString: "redis-cache:6379"
+            RedisPassword: "eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"
+            RedisInstance: "plantcare"
             SpecificCorsOrigin: "http://192.168.1.42:3000"
         depends_on:
             - seq

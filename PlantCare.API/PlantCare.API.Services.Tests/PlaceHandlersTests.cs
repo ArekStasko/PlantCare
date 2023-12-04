@@ -13,8 +13,6 @@ namespace PlantCare.API.Services.Tests;
 public class PlaceHandlersTests
 {
     
-    //TODO Add castle proxy configuration
-    
     [Test]
     public async Task CreatePlaceHandler_Should_CreateOnePlace()
     {

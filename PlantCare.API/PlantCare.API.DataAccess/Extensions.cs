@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantCare.API.DataAccess.Cache.CacheRepositories;
 using PlantCare.API.DataAccess.Interfaces;
+using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
+using PlantCare.API.DataAccess.Repositories.ModuleRepository;
 using PlantCare.API.DataAccess.Repositories.PlaceRepository;
 using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
@@ -15,6 +18,18 @@ public static class DataExtensions
     {
         services.AddDataContext();
         services.AddRepositories();
+    }
+
+    public static void SetupCache(this IServiceCollection services)
+    {
+        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
+        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString;
+            options.InstanceName = redisInstance;
+        });
     }
 
     private static void AddDataContext(this IServiceCollection services)
@@ -32,8 +47,23 @@ public static class DataExtensions
     {
         services.AddScoped<IPlaceContext, DataContext>();
         services.AddScoped<IPlantContext, DataContext>();
-        services.AddScoped<IPlantRepository, PlantRepository>();
-        services.AddScoped<IPlaceRepository, PlaceRepository>();
+        services.AddScoped<IModuleContext, DataContext>();
+        services.AddScoped<IHumidityMeasurementContext, DataContext>();
+
+        services.AddScoped<IWritePlantRepository, PlantRepository>();
+        services.AddScoped<IWritePlaceRepository, PlaceRepository>();
+        services.AddScoped<IWriteModuleRepository, ModuleRepository>();
+        services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
+
+        services.AddScoped<IReadPlantRepository, PlantRepository>();
+        services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IReadPlaceRepository, PlaceRepository>();
+        services.AddScoped<IReadModuleRepository, ModuleRepository>();
+
+        services.Decorate<IReadPlantRepository, PlantCacheRepository>();
+        services.Decorate<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
+        services.Decorate<IReadPlaceRepository, PlaceCacheRepository>();
+        services.Decorate<IReadModuleRepository, ModuleCacheRepository>();
     }
 
     private static string GetConnectionString()

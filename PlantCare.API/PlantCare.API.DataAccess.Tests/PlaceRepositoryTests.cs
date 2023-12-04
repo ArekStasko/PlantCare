@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PlantCare.API.DataAccess.Interfaces;
@@ -11,11 +12,13 @@ namespace PlantCare.API.DataAccess.Tests;
 
 public class PlaceRepositoryTests
 {
-    private Mock<IPlaceContext> _placeContextMock = Setups.SetupPlaceContext();
-    private IMock<ILogger<IPlaceRepository>> _loggerMock = new Mock<ILogger<IPlaceRepository>>();
-    private IMapper _mapper = Setups.SetupMapper();
     
-        [Test]
+    private Mock<IPlaceContext> _placeContextMock = Setups.SetupPlaceContext();
+    private IMock<ILogger<PlaceRepository>> _loggerMock = new Mock<ILogger<PlaceRepository>>();
+    private IMapper _mapper = Setups.SetupMapper();
+    private IDistributedCache _cache = Setups.SetupCache();
+    
+    [Test]
     public async Task Create_Should_CreateOnePlace()
     {
         IPlace placeToCreate = new Place()
@@ -25,7 +28,7 @@ public class PlaceRepositoryTests
         
         
 
-        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _mapper, _loggerMock.Object);
+        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _loggerMock.Object, _cache);
         var result = await PlaceRepository.Create(placeToCreate);
         
         _placeContextMock.Verify(dbSet => dbSet.Places.AddAsync(It.IsAny<Place>(), It.IsAny<CancellationToken>()), Times.Once);
@@ -52,7 +55,7 @@ public class PlaceRepositoryTests
         var mockSet = Setups.GetPlaceMockData();
         _placeContextMock.Setup(_ => _.Places).Returns(mockSet.Object);
         
-        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _mapper, _loggerMock.Object);
+        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _loggerMock.Object, _cache);
         var result = await PlaceRepository.Delete(placeToDelete.Id);
         
         _placeContextMock.Verify(dbSet => dbSet.Places.Remove(It.IsAny<Place>()), Times.Once);
@@ -79,7 +82,7 @@ public class PlaceRepositoryTests
         var mockSet = Setups.GetPlaceMockData();
         _placeContextMock.Setup(_ => _.Places).Returns(mockSet.Object);
 
-        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _mapper, _loggerMock.Object);
+        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _loggerMock.Object, _cache);
         var result = await PlaceRepository.Update(updatedPlace);
         result.Match<IActionResult>(succ =>
         {
@@ -98,7 +101,7 @@ public class PlaceRepositoryTests
         var mockSet = Setups.GetPlaceMockData();
         _placeContextMock.Setup(_ => _.Places).Returns(mockSet.Object);
 
-        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _mapper, _loggerMock.Object);
+        var PlaceRepository = new PlaceRepository(_placeContextMock.Object, _loggerMock.Object, _cache);
         var result = await PlaceRepository.Get();
         result.Match<IActionResult>(succ =>
         {

@@ -22,7 +22,7 @@ public class PlantHandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 70,
-            ModuleId = ""
+            ModuleId = new Guid()
         };
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
@@ -54,7 +54,7 @@ public class PlantHandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 130,
-            ModuleId = ""
+            ModuleId = new Guid()
         };
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();
@@ -144,7 +144,7 @@ public class PlantHandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 130,
-            ModuleId = ""
+            ModuleId = new Guid()
         };
 
         var plantRepoMock = Setups.GetSuccessfullPlantRepository();
@@ -177,7 +177,7 @@ public class PlantHandlersTests
             Type = 0,
             CriticalMoistureLevel = 30,
             RequiredMoistureLevel = 130,
-            ModuleId = ""
+            ModuleId = new Guid()
         };
 
         var plantRepoMock = Setups.GetUnsuccessfullPlantRepository();

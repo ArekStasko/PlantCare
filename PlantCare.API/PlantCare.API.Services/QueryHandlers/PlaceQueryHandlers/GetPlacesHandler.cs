@@ -9,10 +9,10 @@ using PlantCare.API.Services.Queries.PlaceQueries;
 
 public class GetPlacesHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnlyCollection<IPlace>>>
 {
-    private readonly IPlaceRepository _repository;
+    private readonly IReadPlaceRepository _repository;
     private readonly ILogger<GetPlacesHandler> _logger;
 
-    public GetPlacesHandler(IPlaceRepository repository, ILogger<GetPlacesHandler> logger)
+    public GetPlacesHandler(IReadPlaceRepository repository, ILogger<GetPlacesHandler> logger)
     {
         _repository = repository;
         _logger = logger;
