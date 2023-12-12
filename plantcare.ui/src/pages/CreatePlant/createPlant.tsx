@@ -10,6 +10,7 @@ import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
+import ModuleSelect from '../components/plantWizardSteps/ModuleSelect/moduleSelect';
 
 export const CreatePlant = () => {
   const [createPlant] = useCreatePlantMutation();
@@ -41,6 +42,12 @@ export const CreatePlant = () => {
       title: 'Place Select',
       component: <PlaceSelect />,
       validators: ['plantPlace'],
+      order: 1
+    },
+    {
+      title: 'Module Select',
+      component: <ModuleSelect />,
+      validators: ['plantModule'],
       order: 1
     },
     {
