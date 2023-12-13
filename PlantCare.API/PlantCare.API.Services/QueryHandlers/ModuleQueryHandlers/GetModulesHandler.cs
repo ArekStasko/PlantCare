@@ -30,7 +30,8 @@ public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOn
             return result.Match(succ =>
             {
                 _logger.LogInformation("Successfully processed GetModulesHandler query handler");
-                IReadOnlyCollection<GetModulesResponse> result = _mapper.Map<IReadOnlyCollection<GetModulesResponse>>(succ);
+                IReadOnlyCollection<GetModulesResponse> result = succ.Select(x => _mapper.Map<GetModulesResponse>(x))
+                    .ToList();
                 return new Result<IReadOnlyCollection<GetModulesResponse>>(result);
             }, err =>
             {
