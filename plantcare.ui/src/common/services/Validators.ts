@@ -4,7 +4,8 @@ const createPlantSchema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
   plantType: yup.string().required(),
-  plantPlace: yup.string().required()
+  plantPlace: yup.string().required(),
+  plantModule: yup.string().required()
 });
 
 const updatePlantSchema = yup.object().shape({

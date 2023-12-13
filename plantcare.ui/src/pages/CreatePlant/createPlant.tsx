@@ -25,7 +25,8 @@ export const CreatePlant = () => {
       name: methods.getValues('name'),
       description: methods.getValues('description'),
       type: +methods.getValues('plantType'),
-      placeId: methods.getValues('plantPlace')
+      placeId: methods.getValues('plantPlace'),
+      moduleId: methods.getValues('plantModule')
     };
     await createPlant(request);
     refetch();
@@ -48,13 +49,13 @@ export const CreatePlant = () => {
       title: 'Module Select',
       component: <ModuleSelect />,
       validators: ['plantModule'],
-      order: 1
+      order: 2
     },
     {
       title: 'Plant Summary',
       component: <Summary />,
       validators: [],
-      order: 2
+      order: 3
     }
   ];
 
