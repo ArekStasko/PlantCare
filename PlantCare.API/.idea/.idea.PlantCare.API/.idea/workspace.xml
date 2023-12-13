@@ -9,9 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="Add datetime generation">
+      <change afterPath="$PROJECT_DIR$/PlantCare.API.Services/Responses/GetModulesResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Mapper/AutoMapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/ModuleQueries/GetModulesQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/ModuleQueries/GetModulesQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +40,8 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/ModuleCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlaceCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlantCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Services.Tests/PlantHandlersTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Services.Tests/PlantHandlersTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Services/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementCommandHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -183,6 +182,7 @@
       <workItem from="1701199231742" duration="7072000" />
       <workItem from="1701807210894" duration="671000" />
       <workItem from="1702321531551" duration="1766000" />
+      <workItem from="1702409611182" duration="3355000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -262,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701203093537</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add datetime generation">
+      <option name="closed" value="true" />
+      <created>1702409756112</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702409756112</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +316,8 @@
     <MESSAGE value="Fix gitignore issue" />
     <MESSAGE value="Delete wrong gitignore" />
     <MESSAGE value="Add test classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add test classes" />
+    <MESSAGE value="Add datetime generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add datetime generation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
