@@ -170,7 +170,7 @@ public class ModulesHandlersTests
         var modulesRepoMock = Setups.GetSuccessfullModuleRepository();
         IMock<ILogger<GetModulesHandler>> loggerMock = new Mock<ILogger<GetModulesHandler>>();
 
-        var handler = new GetModulesHandler(modulesRepoMock.Object, loggerMock.Object);
+        var handler = new GetModulesHandler(modulesRepoMock.Object, loggerMock.Object, Setups.GetMapper());
         var result = await handler.Handle(new GetModulesQuery(), new CancellationToken());
         
         modulesRepoMock.Verify(repo => repo.Get(), Times.Once);

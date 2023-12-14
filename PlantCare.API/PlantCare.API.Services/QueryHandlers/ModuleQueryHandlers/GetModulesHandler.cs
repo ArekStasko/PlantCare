@@ -1,24 +1,27 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.API.DataAccess.Models.Module;
 using PlantCare.API.DataAccess.Repositories.ModuleRepository;
 using PlantCare.API.Services.Queries.ModuleQueries;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.QueryHandlers.ModuleQueryHandlers;
 
-public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOnlyCollection<IModule>>>
+public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOnlyCollection<GetModulesResponse>>>
 {
     private readonly IReadModuleRepository _repository;
     private readonly ILogger<GetModulesHandler> _logger;
+    private readonly IMapper _mapper;
 
-    public GetModulesHandler(IReadModuleRepository repository, ILogger<GetModulesHandler> logger)
+    public GetModulesHandler(IReadModuleRepository repository, ILogger<GetModulesHandler> logger, IMapper mapper)
     {
         _repository = repository;
         _logger = logger;
+        _mapper = mapper;
     }
 
-    public async Task<Result<IReadOnlyCollection<IModule>>> Handle(GetModulesQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyCollection<GetModulesResponse>>> Handle(GetModulesQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -27,17 +30,19 @@ public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOn
             return result.Match(succ =>
             {
                 _logger.LogInformation("Successfully processed GetModulesHandler query handler");
-                return new Result<IReadOnlyCollection<IModule>>(succ);
+                IReadOnlyCollection<GetModulesResponse> result = succ.Select(x => _mapper.Map<GetModulesResponse>(x))
+                    .ToList();
+                return new Result<IReadOnlyCollection<GetModulesResponse>>(result);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetModulesHandler request");
-                return new Result<IReadOnlyCollection<IModule>>(err);
+                return new Result<IReadOnlyCollection<GetModulesResponse>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetModulesHandler: {exception}", e.Message);
-            return new Result<IReadOnlyCollection<IModule>>(e);
+            return new Result<IReadOnlyCollection<GetModulesResponse>>(e);
         }
     }
 }
