@@ -1,4 +1,12 @@
-import { Box, CircularProgress, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography
+} from '@mui/material';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
@@ -16,19 +24,24 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
 
   return (
     <Box sx={styles.moduleSelectWrapper}>
-      <InputLabel id="SelectPlantModule">
-        Choose a module that will monitor your plant moisture
-      </InputLabel>
       {modulesLoading ? (
         <CircularProgress />
       ) : (
         <>
           {modules!.filter((m) => m.plant == null).length == 0 ? (
             <>
-              <Typography>You cant add more plants</Typography>
+              <Alert severity="error">
+                <Typography>
+                  You don't have any module without Plant assinged to it. To create new Plant,
+                  please add new module.
+                </Typography>
+              </Alert>
             </>
           ) : (
             <>
+              <InputLabel id="SelectPlantModule">
+                Choose a module that will monitor your plant moisture
+              </InputLabel>
               <Controller
                 control={control}
                 name="plantModule"
