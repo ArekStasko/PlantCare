@@ -1,10 +1,10 @@
-import { Box } from '@mui/material';
-import NotImplementedDialog from '../../common/compontents/NotImplementedDialog/notImplementedDialog';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 
 export const Statistics = () => {
   return (
     <Box>
-      <NotImplementedDialog />
+      <Typography>Statistics</Typography>
     </Box>
   );
 };
