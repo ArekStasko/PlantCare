@@ -22,7 +22,7 @@ public static class DataExtensions
 
     public static void SetupCache(this IServiceCollection services)
     {
-        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
+        var redisConnectionString = $"192.168.1.40:6379,password=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81";
         var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 
         services.AddStackExchangeRedisCache(options =>
@@ -75,7 +75,7 @@ public static class DataExtensions
         var databaseName = Environment.GetEnvironmentVariable("DatabaseName");
 
         var connectionString =
-            $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";
+            $"Server=192.168.1.40,1433;Database=PlantCare_DB;User Id=sa;Password=Password.1234;TrustServerCertificate=true";
         return connectionString;
     }
 }

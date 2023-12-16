@@ -27,8 +27,13 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
             return result.Match(succ =>
             {
                 _logger.LogInformation("Successfully processed GetHumidityMeasurementsHandler query handler");
-                var filteredMeasurements = getSelectedPeriodOfMeasurements(succ, request.FromDate, request.ToDate);
-                return new Result<IReadOnlyCollection<IHumidityMeasurement>>(filteredMeasurements);
+
+                if (request.FromDate != null || request.ToDate != null)
+                {
+                    succ = getSelectedPeriodOfMeasurements(succ, request.FromDate, request.ToDate);
+                }
+
+                return new Result<IReadOnlyCollection<IHumidityMeasurement>>(succ);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetHumidityMeasurementsHandler request");
