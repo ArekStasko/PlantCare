@@ -49,6 +49,10 @@ public class AutoMapperProfile : Profile
         CreateMap<Guid, DeleteModuleCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
+        CreateMap<Guid, GetCurrentMositureQuery>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+
         CreateMap<Module, GetModulesResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))

@@ -44,6 +44,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.API.Services\PlantCare.API.Services.csproj" />
+      <ProjectReference Include="..\PlantCare.API.SignalR\PlantCare.API.SignalR.csproj" />
     </ItemGroup>
 
 </Project>

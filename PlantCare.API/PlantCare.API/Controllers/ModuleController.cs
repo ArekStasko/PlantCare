@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlantCare.API.DataAccess.Models;
 using PlantCare.API.Services.Queries.ModuleQueries;
 using PlantCare.API.Services.Requests.ModuleCommands;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Controllers;
 
@@ -64,6 +65,18 @@ public class ModuleController
         _logger.LogInformation("GetAll modules controller method start processing");
         var result = await _mediator.Send(new GetModulesQuery());
         _logger.LogInformation("GetAll modules controller method ends processing");
+        return result.ToOk();
+    }
+    
+    [HttpGet(Name = "[controller]/GetCurrentMoisture")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCurrentMoistureResponse))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> GetCurrentMoisture([FromQuery] Guid id)
+    {
+        _logger.LogInformation("GetCurrentMoisture modules method start processing");
+        var getCurrentMoistureQuery = _mapper.Map<GetCurrentMositureQuery>(id);
+        var result = await _mediator.Send(getCurrentMoistureQuery);
+        _logger.LogInformation("GetCurrentMoisture modules controller method ends processing");
         return result.ToOk();
     }
 }

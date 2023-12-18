@@ -36,7 +36,7 @@ export const MainRouting = () => (
       }
     />
     <Route
-      path={`${RoutingConstants.plantStatistics}/:id`}
+      path={`${RoutingConstants.plantStatistics}/:moduleId`}
       element={
         <BaseLayout>
           <Statistics />

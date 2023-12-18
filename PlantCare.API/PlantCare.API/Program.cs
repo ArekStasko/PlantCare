@@ -3,6 +3,8 @@ using PlantCare.API.DataAccess;
 using Serilog;
 using MediatR;
 using PlantCare.API.Services;
+using PlantCare.API.SignalR;
+using PlantCare.API.SignalR.Hubs;
 
 const string AllowSpecifiOrigin = "AllowSpecifiOrigin";
 
@@ -25,6 +27,7 @@ builder.Services.SetupDataAccess();
 builder.Services.SetupCache();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
+builder.Services.ConfigureSignalRService();
 
 var logger = new LoggerConfiguration()
     .ReadFrom
@@ -54,5 +57,7 @@ app.UseCors(AllowSpecifiOrigin);
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<CurrentMoistureHub>("/current-moisture-level/");
 
 app.Run();
