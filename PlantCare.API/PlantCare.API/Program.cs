@@ -58,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<CurrentMoistureHub>("/current-moisture-level/");
+app.MapHub<CurrentMoistureHub>("/current-moisture-level");
 
 app.Run();

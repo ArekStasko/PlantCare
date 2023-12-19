@@ -59,6 +59,10 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
             .ForMember(dest => dest.Plant, opt => opt.MapFrom(src => src.Plant));
 
+        CreateMap<HumidityMeasurement, GetCurrentMoistureResponse>()
+            .ForMember(dest => dest.CurrentMoisture, opt => opt.MapFrom(src => src.Humidity))
+            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.MeasurementDate));
+    
         // HUMIDITY MEASUREMENTS MAPPINGS
         CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
