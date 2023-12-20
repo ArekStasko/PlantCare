@@ -9,7 +9,12 @@ public static class Extensions
 {
     public static void ConfigureSignalRService(this IServiceCollection services)
     {
-        services.AddSignalR();
+        services.AddSignalR(options =>
+        {
+            options.EnableDetailedErrors = true;
+            options.KeepAliveInterval = TimeSpan.FromSeconds(10);
+            options.HandshakeTimeout = TimeSpan.FromSeconds(5);
+        } );
     }
     
     public static IActionResult ToOk<TResult>(this Result<TResult> result)
