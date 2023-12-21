@@ -1,7 +1,9 @@
+using System.Net;
 using System.Reflection;
 using PlantCare.API.DataAccess;
 using Serilog;
 using MediatR;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using PlantCare.API.Services;
 using PlantCare.API.SignalR;
 using PlantCare.API.SignalR.Hubs;
@@ -11,15 +13,19 @@ const string AllowSpecifiOrigin = "AllowSpecifiOrigin";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: AllowSpecifiOrigin, policy => policy.WithOrigins("\nhttp://192.168.1.42:3000")
+    options
+        .AddPolicy(name: AllowSpecifiOrigin, policy => policy.AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod()
     );
 });
+
+builder.WebHost.UseKestrel();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.ConfigureSignalRService();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
@@ -27,7 +33,6 @@ builder.Services.SetupDataAccess();
 builder.Services.SetupCache();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
-builder.Services.ConfigureSignalRService();
 
 var logger = new LoggerConfiguration()
     .ReadFrom
@@ -43,7 +48,7 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader());
 
-app.Migrate();  
+//app.Migrate();  
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -58,6 +63,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<CurrentMoistureHub>("/current-moisture-level");
+app.MapHub<CurrentMoistureHub>("current-moisture-level");
 
 app.Run();

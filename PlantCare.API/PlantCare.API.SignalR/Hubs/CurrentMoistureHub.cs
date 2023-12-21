@@ -1,11 +1,9 @@
 using AutoMapper;
-using LanguageExt.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using PlantCare.API.Services.Queries.ModuleQueries;
-using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.SignalR.Hubs;
 
@@ -22,12 +20,19 @@ public class CurrentMoistureHub : Hub
         _logger = logger;
     }
     
-    public async ValueTask<IActionResult> GetCurrentMoisture(Guid moduleId)
+    public override async Task OnConnectedAsync()
+    {
+        _logger.LogInformation("Connected to Hub");
+        await base.OnConnectedAsync();
+    }
+    
+    public async ValueTask<IActionResult> SendMessage(Guid moduleId)
     {
         _logger.LogInformation("CurrentMoisture Hub start processing");
         var getCurrentMoistureQuery = _mapper.Map<GetCurrentMositureQuery>(moduleId);
         var result = await _mediator.Send(getCurrentMoistureQuery);
         _logger.LogInformation("CurrentMoisture Hub ends processing");
+        await Clients.Caller.SendAsync("ReceiveMoisture", result.ToOk());
         return result.ToOk();
     }
 }
