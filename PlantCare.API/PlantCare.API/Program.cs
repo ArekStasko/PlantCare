@@ -8,7 +8,7 @@ using PlantCare.API.Services;
 using PlantCare.API.SignalR;
 using PlantCare.API.SignalR.Hubs;
 
-const string AllowSpecifiOrigin = "AllowSpecifiOrigin";
+const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>

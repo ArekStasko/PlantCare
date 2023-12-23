@@ -28,9 +28,6 @@ services:
         build: ./PlantCare.API
         container_name: plantcare-api
         environment:
-            ASPNETCORE_URLS: "https://+;http://+"
-            ASPNETCORE_HTTPS_PORT: "8081"
-            ASPNETCORE_ENVIRONMENT: "Development"
             DatabaseServer: "mssql-server"
             DatabasePort: "1433"
             DatabaseUser: "sa"
@@ -44,7 +41,3 @@ services:
             - seq
         ports:
             - "8080:80"
-            - "8081:443"
-        volumes:
-            - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
-            - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
