@@ -28,7 +28,7 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
             {
                 _logger.LogInformation("Successfully processed GetHumidityMeasurementsHandler query handler");
 
-                if (request.FromDate != null || request.ToDate != null)
+                if (request.FromDate != DateTime.MinValue || request.ToDate != DateTime.MinValue)
                 {
                     succ = getSelectedPeriodOfMeasurements(succ, request.FromDate, request.ToDate);
                 }
