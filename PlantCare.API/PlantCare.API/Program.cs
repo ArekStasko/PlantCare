@@ -48,7 +48,7 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader());
 
-//app.Migrate();  
+app.Migrate();  
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
