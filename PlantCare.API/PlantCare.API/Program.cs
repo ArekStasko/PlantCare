@@ -1,12 +1,7 @@
-using System.Net;
 using System.Reflection;
 using PlantCare.API.DataAccess;
 using Serilog;
-using MediatR;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using PlantCare.API.Services;
-using PlantCare.API.SignalR;
-using PlantCare.API.SignalR.Hubs;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
@@ -25,7 +20,6 @@ builder.WebHost.UseKestrel();
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.ConfigureSignalRService();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
@@ -62,7 +56,5 @@ app.UseCors(AllowSpecifiOrigin);
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapHub<CurrentMoistureHub>("current-moisture-level");
 
 app.Run();
