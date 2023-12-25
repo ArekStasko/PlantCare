@@ -4,10 +4,11 @@ using Microsoft.Extensions.Logging;
 using PlantCare.API.DataAccess.Models.HumidityMeasurement;
 using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
 using PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.QueryHandlers.HumidityMeasurementsQueryHandlers;
 
-public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasurementQuery, Result<IReadOnlyCollection<IHumidityMeasurement>>>
+public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasurementQuery, Result<GetHumidityMeasurementsResponse>>
 {
     private readonly IReadHumidityMeasurementRepository _repository;
     private readonly ILogger<GetHumidityMeasurementsHandler> _logger;
@@ -18,7 +19,7 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
         _logger = logger;
     }
 
-    public async Task<Result<IReadOnlyCollection<IHumidityMeasurement>>> Handle(GetHumidityMeasurementQuery request, CancellationToken cancellationToken)
+    public async Task<Result<GetHumidityMeasurementsResponse>> Handle(GetHumidityMeasurementQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -33,17 +34,25 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
                     succ = getSelectedPeriodOfMeasurements(succ, request.FromDate, request.ToDate);
                 }
 
-                return new Result<IReadOnlyCollection<IHumidityMeasurement>>(succ);
+                var response = new GetHumidityMeasurementsResponse();
+
+                foreach (var measurement in succ)
+                {
+                    response.humidityMeasurementsValues.Add(measurement.Humidity);
+                    response.humidityMeasurementsDates.Add(measurement.MeasurementDate);
+                }
+
+                return new Result<GetHumidityMeasurementsResponse>(response);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetHumidityMeasurementsHandler request");
-                return new Result<IReadOnlyCollection<IHumidityMeasurement>>(err);
+                return new Result<GetHumidityMeasurementsResponse>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetHumidityMeasurementsHandler: {exception}", e.Message);
-            return new Result<IReadOnlyCollection<IHumidityMeasurement>>(e);
+            return new Result<GetHumidityMeasurementsResponse>(e);
         }
     }
 
