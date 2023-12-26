@@ -2,7 +2,7 @@ namespace PlantCare.API.Services.Responses;
 
 public class GetHumidityMeasurementsResponse
 {
-    public List<int> humidityMeasurementsValues { get; set; } = new();
+    public int Humidity { get; set; }
 
-    public List<DateTime> humidityMeasurementsDates { get; set; } = new();
+    public DateTime Date { get; set; }
 }

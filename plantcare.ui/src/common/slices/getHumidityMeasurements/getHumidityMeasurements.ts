@@ -1,11 +1,10 @@
 import emptyApi from '../../../app/api/emptyApi';
-import { Plant } from '../../models/Plant';
 import { HumidityMeasurement } from '../../models/HumidityMeasurement';
 
 export class GetHumidityMeasurementsApiParameters {
   moduleId!: string;
-  fromDate!: Date | null;
-  toDate!: Date | null;
+  fromDate!: string | null;
+  toDate!: string | null;
 }
 
 const getCorrectHumidityMeasurementsURL = (parameters: GetHumidityMeasurementsApiParameters) => {

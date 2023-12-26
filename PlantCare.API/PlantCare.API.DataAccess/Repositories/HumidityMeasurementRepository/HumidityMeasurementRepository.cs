@@ -27,7 +27,7 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
             await _context.HumidityMeasurements.AddAsync((HumidityMeasurement)humidityMeasurement);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Humidity measurement was successfully created");
-            await _cache.RemoveAsync("Modules");
+            await _cache.RemoveAsync($"HumidityMeasurements-{humidityMeasurement.ModuleId}");
             _logger.LogInformation("Cached modules has been removed");
             return new Result<bool>(true);
         }

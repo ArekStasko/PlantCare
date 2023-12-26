@@ -6,7 +6,7 @@ using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
 
-public class GetHumidityMeasurementQuery : IRequest<Result<GetHumidityMeasurementsResponse>>
+public class GetHumidityMeasurementQuery : IRequest<Result<List<GetHumidityMeasurementsResponse>>>
 {
     public Guid Id { get; set; }
 
