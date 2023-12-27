@@ -9,21 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/models/HumidityStatistics.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/services/DateService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/services/StatisticsService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Queries/HumidityMeasurementsQueries/GetHumidityMeasurementQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Queries/HumidityMeasurementsQueries/GetHumidityMeasurementQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Services/Responses/GetHumidityMeasurementsResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Services/Responses/GetHumidityMeasurementsResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/models/HumidityMeasurement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/models/HumidityMeasurement.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/slices/getHumidityMeasurements/getHumidityMeasurements.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/slices/getHumidityMeasurements/getHumidityMeasurements.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/pages/Statistics/statistics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/Statistics/statistics.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

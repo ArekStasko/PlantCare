@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/slices/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
-import { ResponsiveBump } from '@nivo/bump';
+import { ResponsiveLine } from '@nivo/line';
 import StatisticsService from '../../common/services/StatisticsService';
 
 export const Statistics = () => {
@@ -23,40 +23,69 @@ export const Statistics = () => {
           <CircularProgress />
         </>
       ) : (
-        <Box sx={{ height: '600px', width: '1500px', backgroundColor: 'white' }}>
-          <ResponsiveBump
+        <Box sx={{ height: '600px', width: '1000px', backgroundColor: 'white' }}>
+          <ResponsiveLine
             data={StatisticsService.convertDataToStatistics(humidityMeasurements!)}
-            colors={{ scheme: 'spectral' }}
-            lineWidth={3}
-            activeLineWidth={6}
-            inactiveLineWidth={3}
-            inactiveOpacity={0.15}
-            pointSize={10}
-            activePointSize={16}
-            inactivePointSize={0}
-            pointColor={{ theme: 'background' }}
-            pointBorderWidth={3}
-            activePointBorderWidth={3}
-            pointBorderColor={{ from: 'serie.color' }}
+            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            xScale={{ type: 'point' }}
+            yScale={{
+              type: 'linear',
+              min: 'auto',
+              max: 'auto',
+              stacked: true,
+              reverse: false
+            }}
+            yFormat=" >-.2f"
             axisTop={null}
+            axisRight={null}
             axisBottom={{
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: '',
-              legendPosition: 'middle',
-              legendOffset: 32
+              legend: 'transportation',
+              legendOffset: 36,
+              legendPosition: 'middle'
             }}
             axisLeft={{
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: 'ranking',
-              legendPosition: 'middle',
-              legendOffset: -40
+              legend: 'count',
+              legendOffset: -40,
+              legendPosition: 'middle'
             }}
-            margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-            axisRight={null}
+            pointSize={10}
+            pointColor={{ theme: 'background' }}
+            pointBorderWidth={2}
+            pointBorderColor={{ from: 'serieColor' }}
+            pointLabelYOffset={-12}
+            useMesh={true}
+            legends={[
+              {
+                anchor: 'bottom-right',
+                direction: 'column',
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1
+                    }
+                  }
+                ]
+              }
+            ]}
           />
         </Box>
       )}
