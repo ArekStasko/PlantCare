@@ -1,5 +1,15 @@
 import moment from 'moment';
 
+const getStartOfGivenDay = (year: number, month: number, day: number): string => {
+  const startOfDay = moment({ year, month: month - 1, day }).startOf('day');
+  return startOfDay.format('YYYY-MM-DD HH:mm:ss');
+};
+
+const getEndOfGivenDay = (year: number, month: number, day: number): string => {
+  const startOfDay = moment({ year, month: month - 1, day }).endOf('day');
+  return startOfDay.format('YYYY-MM-DD HH:mm:ss');
+};
+
 const getStartOfCurrentDay = (): string => {
   const startOfDay = moment().startOf('day');
   return startOfDay.format('YYYY-MM-DD HH:mm:ss');
@@ -24,6 +34,8 @@ const convertDatesToStrings = (date: Date): string => {
 };
 
 export default {
+  getStartOfGivenDay,
+  getEndOfGivenDay,
   getStartOfCurrentDay,
   getEndOfCurrentDay,
   convertDatesToStrings
