@@ -1,5 +1,5 @@
 import {
-  Alert,
+  AlertColor,
   Box,
   CircularProgress,
   InputLabel,
@@ -12,6 +12,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
 import { useGetModulesQuery } from '../../../../common/slices/getModules/getModules';
 import { Plant } from '../../../../common/models/Plant';
+import CustomAlert from '../../../../common/compontents/customAlert/customAlert';
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;
@@ -30,12 +31,13 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
         <>
           {modules!.filter((m) => m.plant == null).length == 0 ? (
             <>
-              <Alert severity="error">
-                <Typography>
-                  You don't have any module without Plant assinged to it. To create new Plant,
-                  please add new module.
-                </Typography>
-              </Alert>
+              <CustomAlert
+                type={'error' as AlertColor}
+                message={
+                  "You don't have any module without Plant assinged to it. To create new Plant,\n" +
+                  '                  please add new module.'
+                }
+              />
             </>
           ) : (
             <>

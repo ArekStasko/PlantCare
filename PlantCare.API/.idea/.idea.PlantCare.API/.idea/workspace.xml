@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/services/DateService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/services/DateService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/pages/Statistics/statistics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/Statistics/statistics.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,7 +196,7 @@
       <workItem from="1703426814749" duration="4555000" />
       <workItem from="1703523955452" duration="870000" />
       <workItem from="1703526799733" duration="109000" />
-      <workItem from="1703526925553" duration="6924000" />
+      <workItem from="1703526925553" duration="7522000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

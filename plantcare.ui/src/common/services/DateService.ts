@@ -13,9 +13,9 @@ const getEndOfCurrentDay = (): string => {
 const getProperTime = (date: Date): string => {
   let minutes = date.getMinutes();
   let hours = date.getHours();
-  minutes = minutes % 60;
-  console.log(`TIME: ${hours}:${minutes}`);
-  return `${hours}.${minutes}`;
+  let convertedMinutes =
+    (minutes % 60).toString().length == 1 ? `0${minutes % 60}` : (minutes % 60).toString();
+  return `${hours}.${convertedMinutes}`;
 };
 
 const convertDatesToStrings = (date: Date): string => {
