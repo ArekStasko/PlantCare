@@ -1,4 +1,4 @@
-import { AlertColor, Box, Card, CircularProgress } from '@mui/material';
+import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/slices/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -51,24 +51,29 @@ export const Statistics = () => {
           </>
         ) : (
           <Card variant="outlined" sx={styles.statisticsWrapper}>
-            <DatePicker
-              label="Measurements Day"
-              onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}
-            />
-            {humidityMeasurements!.length == 0 ? (
-              <>
-                <CustomAlert
-                  type={'warning' as AlertColor}
-                  message={
-                    "You don't have any registered humidity measurements for this period of time"
-                  }
-                />
-              </>
-            ) : (
-              <>
-                <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
-              </>
-            )}
+            <Box sx={styles.datePickerWrapper}>
+              <Typography>Humidity Moisture Statistics</Typography>
+              <DatePicker
+                label="Measurements Day"
+                onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}
+              />
+            </Box>
+            <Box sx={styles.statisticsChartWrapper}>
+              {humidityMeasurements!.length == 0 ? (
+                <>
+                  <CustomAlert
+                    type={'warning' as AlertColor}
+                    message={
+                      "You don't have any registered humidity measurements for this period of time"
+                    }
+                  />
+                </>
+              ) : (
+                <>
+                  <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
+                </>
+              )}
+            </Box>
           </Card>
         )}
       </Box>

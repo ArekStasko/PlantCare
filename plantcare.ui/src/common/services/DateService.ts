@@ -25,7 +25,7 @@ const getProperTime = (date: Date): string => {
   let hours = date.getHours();
   let convertedMinutes =
     (minutes % 60).toString().length == 1 ? `0${minutes % 60}` : (minutes % 60).toString();
-  return `${hours}.${convertedMinutes}`;
+  return `${hours}:${convertedMinutes}`;
 };
 
 const convertDatesToStrings = (date: Date): string => {

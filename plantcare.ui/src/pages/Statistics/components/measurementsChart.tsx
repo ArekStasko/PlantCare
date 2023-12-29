@@ -9,12 +9,19 @@ interface MeasurementsChartProps {
 }
 
 export const MeasurementsChart = (props: MeasurementsChartProps) => {
+  const getSmallestRecord = (): number => {
+    const recordsArray = props.humidityMeasurements.map((a) => a.humidity);
+    return recordsArray.reduce((a, b) => Math.min(a, b));
+  };
+
   return (
-    <Box sx={{ height: '600px', width: '1000px', backgroundColor: 'white' }}>
+    <Box sx={{ height: '100%', width: '100%' }}>
       <ResponsiveLine
         data={StatisticsService.convertDataToStatistics(props.humidityMeasurements!)}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 40, right: 40, bottom: 40, left: 50 }}
         xScale={{ type: 'point' }}
+        enableArea={true}
+        areaBaselineValue={getSmallestRecord()}
         yScale={{
           type: 'linear',
           min: 'auto',
@@ -23,8 +30,6 @@ export const MeasurementsChart = (props: MeasurementsChartProps) => {
           reverse: false
         }}
         yFormat=" >-.2f"
-        axisTop={null}
-        axisRight={null}
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
@@ -41,38 +46,31 @@ export const MeasurementsChart = (props: MeasurementsChartProps) => {
           legendOffset: -40,
           legendPosition: 'middle'
         }}
+        theme={{
+          axis: {
+            ticks: {
+              line: {
+                stroke: 'white'
+              },
+              text: {
+                fill: 'white'
+              }
+            }
+          },
+          crosshair: {
+            line: {
+              stroke: '#fff',
+              strokeWidth: 2,
+              strokeOpacity: 0.35
+            }
+          }
+        }}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
         useMesh={true}
-        legends={[
-          {
-            anchor: 'bottom-right',
-            direction: 'column',
-            justify: false,
-            translateX: 100,
-            translateY: 0,
-            itemsSpacing: 0,
-            itemDirection: 'left-to-right',
-            itemWidth: 80,
-            itemHeight: 20,
-            itemOpacity: 0.75,
-            symbolSize: 12,
-            symbolShape: 'circle',
-            symbolBorderColor: 'rgba(0, 0, 0, .5)',
-            effects: [
-              {
-                on: 'hover',
-                style: {
-                  itemBackground: 'rgba(0, 0, 0, .03)',
-                  itemOpacity: 1
-                }
-              }
-            ]
-          }
-        ]}
       />
     </Box>
   );

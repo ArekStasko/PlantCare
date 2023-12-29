@@ -10,9 +10,9 @@ const statisticsWrapper = {
   width: '50%',
   height: '100%',
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'space-around',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'start'
 };
 
 const plantDetailsWrapper = {
@@ -24,8 +24,26 @@ const plantDetailsWrapper = {
   alignItems: 'center'
 };
 
+const datePickerWrapper = {
+  width: '100%',
+  height: '20%',
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center'
+};
+
+const statisticsChartWrapper = {
+  height: '80%',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 export default {
   statisticsWrapper,
   statisticsContainer,
-  plantDetailsWrapper
+  plantDetailsWrapper,
+  datePickerWrapper,
+  statisticsChartWrapper
 };

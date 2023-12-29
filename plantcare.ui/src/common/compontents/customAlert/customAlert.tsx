@@ -8,7 +8,7 @@ interface customAlertProps {
 
 export const CustomAlert = (props: customAlertProps) => {
   return (
-    <Alert severity={props.type}>
+    <Alert variant="outlined" severity={props.type}>
       <Typography>{props.message}</Typography>
     </Alert>
   );
