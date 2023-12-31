@@ -61,7 +61,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
             </Tooltip>
             <Tooltip title={`Show Statistics of ${plant.name}`} arrow>
               <IconButton
-                onClick={() => navigate(`${RoutingConstants.plantStatistics}/${plant.id}`)}
+                onClick={() => navigate(`${RoutingConstants.plantStatistics}/${plant.moduleId}`)}
                 size="large"
                 sx={{ mr: 5 }}
                 color="primary">

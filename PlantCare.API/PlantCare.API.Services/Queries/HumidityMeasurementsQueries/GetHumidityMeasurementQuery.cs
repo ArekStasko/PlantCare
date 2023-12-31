@@ -2,10 +2,11 @@ using System.Runtime.InteropServices.JavaScript;
 using LanguageExt.Common;
 using MediatR;
 using PlantCare.API.DataAccess.Models.HumidityMeasurement;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
 
-public class GetHumidityMeasurementQuery : IRequest<Result<IReadOnlyCollection<IHumidityMeasurement>>>
+public class GetHumidityMeasurementQuery : IRequest<Result<List<GetHumidityMeasurementsResponse>>>
 {
     public Guid Id { get; set; }
 
