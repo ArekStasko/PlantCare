@@ -1,8 +1,10 @@
 using PlantCare.API.DataAccess.Models.HumidityMeasurement;
 using PlantCare.API.DataAccess.Models.Module;
 using PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
+using PlantCare.API.Services.Queries.ModuleQueries;
 using PlantCare.API.Services.Requests.HumidityMeasurementCommands;
 using PlantCare.API.Services.Requests.ModuleCommands;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.Mapper;
 
@@ -47,6 +49,20 @@ public class AutoMapperProfile : Profile
         CreateMap<Guid, DeleteModuleCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
+        CreateMap<Guid, GetCurrentMositureQuery>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
+
+
+        CreateMap<Module, GetModulesResponse>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.RequiredMoistureLevel, opt => opt.MapFrom(src => src.RequiredMoistureLevel))
+            .ForMember(dest => dest.CriticalMoistureLevel, opt => opt.MapFrom(src => src.CriticalMoistureLevel))
+            .ForMember(dest => dest.Plant, opt => opt.MapFrom(src => src.Plant));
+
+        CreateMap<HumidityMeasurement, GetCurrentMoistureResponse>()
+            .ForMember(dest => dest.CurrentMoisture, opt => opt.MapFrom(src => src.Humidity))
+            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.MeasurementDate));
+    
         // HUMIDITY MEASUREMENTS MAPPINGS
         CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))

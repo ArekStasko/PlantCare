@@ -1,23 +1,27 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.API.DataAccess.Repositories.ModuleRepository;
+using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
 using PlantCare.API.Services.Queries.ModuleQueries;
+using PlantCare.API.Services.Responses;
 
 namespace PlantCare.API.Services.QueryHandlers.ModuleQueryHandlers;
 
-public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery, Result<int>>
+public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery, Result<IReadOnlyCollection<GetCurrentMoistureResponse>>>
 {
-    private readonly IReadModuleRepository _repository;
+    private readonly IReadHumidityMeasurementRepository _repository;
     private readonly ILogger<GetCurrentMoistureHandler> _logger;
-
-    public GetCurrentMoistureHandler(IReadModuleRepository repository, ILogger<GetCurrentMoistureHandler> logger)
+    private readonly IMapper _mapper;
+    
+    public GetCurrentMoistureHandler(IReadHumidityMeasurementRepository repository, ILogger<GetCurrentMoistureHandler> logger, IMapper mapper)
     {
         _repository = repository;
         _logger = logger;
+        _mapper = mapper;
     }
-    
-    public async Task<Result<int>> Handle(GetCurrentMositureQuery request, CancellationToken cancellationToken)
+
+    public async Task<Result<IReadOnlyCollection<GetCurrentMoistureResponse>>> Handle(GetCurrentMositureQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -25,19 +29,20 @@ public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery
             var result = await _repository.Get(request.Id);
             return result.Match(succ =>
             {
-                int currentMoisture = succ.HumidityMeasurements.Last().Humidity;
-                _logger.LogInformation("GetCurrentMoistureHandler successfully loaded current moisture level : {currentMoisture}", currentMoisture);
-                return new Result<int>(currentMoisture);
+                IReadOnlyCollection<GetCurrentMoistureResponse> result = succ.Select(x => _mapper.Map<GetCurrentMoistureResponse>(x))
+                    .ToList();
+                _logger.LogInformation("GetCurrentMoistureHandler successfully loaded current moisture level");
+                return new Result<IReadOnlyCollection<GetCurrentMoistureResponse>>(result);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetCurrentMoistureHandler request");
-                return new Result<int>(err);
+                return new Result<IReadOnlyCollection<GetCurrentMoistureResponse>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetModulesHandler: {exception}", e.Message);
-            return new Result<int>(e);
+            return new Result<IReadOnlyCollection<GetCurrentMoistureResponse>>(e);
         }
     }
 }

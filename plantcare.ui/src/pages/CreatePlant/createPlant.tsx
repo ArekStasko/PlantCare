@@ -10,6 +10,7 @@ import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
+import ModuleSelect from '../components/plantWizardSteps/ModuleSelect/moduleSelect';
 
 export const CreatePlant = () => {
   const [createPlant] = useCreatePlantMutation();
@@ -24,7 +25,8 @@ export const CreatePlant = () => {
       name: methods.getValues('name'),
       description: methods.getValues('description'),
       type: +methods.getValues('plantType'),
-      placeId: methods.getValues('plantPlace')
+      placeId: methods.getValues('plantPlace'),
+      moduleId: methods.getValues('plantModule')
     };
     await createPlant(request);
     refetch();
@@ -44,10 +46,16 @@ export const CreatePlant = () => {
       order: 1
     },
     {
+      title: 'Module Select',
+      component: <ModuleSelect />,
+      validators: ['plantModule'],
+      order: 2
+    },
+    {
       title: 'Plant Summary',
       component: <Summary />,
       validators: [],
-      order: 2
+      order: 3
     }
   ];
 
