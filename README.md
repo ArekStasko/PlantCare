@@ -1,14 +1,8 @@
 # PlantCare
-Web App that will allows me to control ESP32 modules to irrigate my plants and check their soil moisture levels
+PlantCare is a system created for clear purpose, to manage your plants in comfortable and efficient way.
+It allows me to quickly check soil moisture level of individual plant or read some notes about it.
+I have a couple of plants in my room so i wanted to make generic module which can be use with any plant, here we have 
+the ESP32 module with soil moisture sensor, it is responsible for registering soil moisture level and communicating with 
+my backend ( here you can read more about it -> [PlantCare Module](https://github.com/ArekStasko/PlantCare_Module) ). 
 
-This Web App have to connect to my ESP32 modules via API. What is more me as a user should be able to see moisture levels of my plants in a user interface,
-i need to have an option of changing irrigating level via my web app for different plants. 
-
-What is more i want to see the statistics of moisture in different levels, for example in minutes, hours, days and weeks.
-
-How should it work with ESP32 ?
-- ESP32 will call our Web App API with moisture parameters and it will receive current options like irrigating level etc.
-- Our API will save data to database based on data from ESP32.
-
-Important Information about TODO list :
-- This Todo will be rewritten in next few weeks
+Table of Contents 
