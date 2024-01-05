@@ -5,4 +5,8 @@ I have a couple of plants in my room so i wanted to make generic module which ca
 the ESP32 module with soil moisture sensor, it is responsible for registering soil moisture level and communicating with 
 my backend ( here you can read more about it -> [PlantCare Module](https://github.com/ArekStasko/PlantCare_Module) ). 
 
-Table of Contents 
+# Table of Contents 
+[...]
+
+# PlantCare Diagram
+![alt text](https://github.com/ArekStasko/PlantCare/blob/master/PlantCare.png?raw=true)
