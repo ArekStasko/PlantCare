@@ -1,15 +1,12 @@
-using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.API.DataAccess.Models.HumidityMeasurement;
-using PlantCare.API.Services.Queries.HumidityMeasurementsQueries;
-using PlantCare.API.Services.Requests.HumidityMeasurementCommands;
+using PlantCare.Controllers.Place;
 
-namespace PlantCare.API.Controllers;
+namespace PlantCare.Controllers.HumidityMeasurements;
 
-[Route("api/humidity-measurements/[action]")]
+[Route("api/v1/humidity-measurements/[action]")]
 [ApiController]
-public class HumidityMeasurementController
+
+public class HumidityMeasurementsController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
@@ -22,7 +19,7 @@ public class HumidityMeasurementController
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/Add")]
+    [HttpPost(Name = "[controller]/add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Add(AddHumidityMeasurementCommand command)
@@ -33,7 +30,7 @@ public class HumidityMeasurementController
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/Get")]
+    [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromQuery] Guid id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)

@@ -1,15 +1,10 @@
-namespace PlantCare.API.Controllers;
-
-using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.API.DataAccess.Models;
-using PlantCare.API.Services.Queries.PlaceQueries;
-using PlantCare.API.Services.Requests.PlaceCommands;
 
-[Route("api/places/[action]")]
+namespace PlantCare.Controllers.Place;
+
+[Route("api/v1/places/[action]")]
 [ApiController]
-public class PlaceController : ControllerBase
+public class PlaceController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
@@ -22,7 +17,7 @@ public class PlaceController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/Create")]
+    [HttpPost(Name = "[controller]/create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
@@ -33,7 +28,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "[controller]/Delete")]
+    [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
@@ -45,7 +40,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/Update")]
+    [HttpPost(Name = "[controller]/update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdatePlaceCommand command)
@@ -56,7 +51,7 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/GetAll")]
+    [HttpGet(Name = "[controller]/get-all")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetAll()

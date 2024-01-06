@@ -1,22 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace PlantCare.API.SignalR;
+namespace PlantCare.Controllers;
 
 public static class Extensions
 {
-    public static void ConfigureSignalRService(this IServiceCollection services)
-    {
-        services.AddSignalR(options =>
-        {
-            options.EnableDetailedErrors = true;
-            options.KeepAliveInterval = TimeSpan.FromSeconds(10);
-            options.HandshakeTimeout = TimeSpan.FromSeconds(5);
-        } );
-    }
-    
     public static IActionResult ToOk<TResult>(this Result<TResult> result)
     {
         return result.Match<IActionResult>(

@@ -1,8 +1,3 @@
-using System.Reflection;
-using PlantCare.API.DataAccess;
-using Serilog;
-using PlantCare.API.Services;
-
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +5,9 @@ builder.Services.AddCors(options =>
 {
     options
         .AddPolicy(name: AllowSpecifiOrigin, policy => policy.AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-    );
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+        );
 });
 
 builder.WebHost.UseKestrel();

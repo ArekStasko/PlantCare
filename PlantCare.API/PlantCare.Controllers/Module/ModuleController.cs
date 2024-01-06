@@ -1,14 +1,9 @@
-using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.API.DataAccess.Models;
-using PlantCare.API.Services.Queries.ModuleQueries;
-using PlantCare.API.Services.Requests.ModuleCommands;
-using PlantCare.API.Services.Responses;
+using PlantCare.Controllers.Place;
 
-namespace PlantCare.API.Controllers;
+namespace PlantCare.Controllers.Module;
 
-[Route("api/modules/[action]")]
+[Route("api/v1/modules/[action]")]
 [ApiController]
 public class ModuleController
 {
@@ -23,7 +18,7 @@ public class ModuleController
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/Add")]
+    [HttpPost(Name = "[controller]/add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Add()
@@ -34,7 +29,7 @@ public class ModuleController
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "[controller]/Delete")]
+    [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] Guid id)
@@ -46,7 +41,7 @@ public class ModuleController
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/Update")]
+    [HttpPost(Name = "[controller]/update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdateModuleCommand command)
@@ -57,7 +52,7 @@ public class ModuleController
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/GetAll")]
+    [HttpGet(Name = "[controller]/get-all")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetAll()
@@ -68,7 +63,7 @@ public class ModuleController
         return result.ToOk();
     }
     
-    [HttpGet(Name = "[controller]/GetCurrentMoisture")]
+    [HttpGet(Name = "[controller]/get-current-moisture")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCurrentMoistureResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetCurrentMoisture([FromQuery] Guid id)
