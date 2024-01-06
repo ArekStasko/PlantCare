@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.Services.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Controllers", "PlantCare.Controllers\PlantCare.Controllers.csproj", "{A740863D-BA11-44E9-B461-8113F8AD04E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Queries.Abstraction", "PlantCare.Queries.Abstraction\PlantCare.Queries.Abstraction.csproj", "{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Commands.Abstraction", "PlantCare.Commands.Abstraction\PlantCare.Commands.Abstraction.csproj", "{6562B2BE-A3A3-45CF-AF30-E56640DDD415}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{A740863D-BA11-44E9-B461-8113F8AD04E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A740863D-BA11-44E9-B461-8113F8AD04E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A740863D-BA11-44E9-B461-8113F8AD04E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

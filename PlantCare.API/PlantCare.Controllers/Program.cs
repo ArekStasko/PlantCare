@@ -1,3 +1,5 @@
+using PlantCare.Queries.Abstraction;
+
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
 builder.Services.SetupDataAccess();
 builder.Services.SetupCache();
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
+builder.Services.ConfigureQueries();
 
 var logger = new LoggerConfiguration()
     .ReadFrom

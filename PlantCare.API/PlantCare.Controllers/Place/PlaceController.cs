@@ -1,4 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlantCare.Queries.Abstraction.Queries.Place;
 
 namespace PlantCare.Controllers.Place;
 
