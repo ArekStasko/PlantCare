@@ -7,15 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
       <PackageReference Include="MediatR" Version="12.2.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\HumidityMeasurements\" />
-      <Folder Include="Commands\Module\" />
-      <Folder Include="Commands\Place\" />
-      <Folder Include="Commands\Plant\" />
+      <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
     </ItemGroup>
 
 </Project>

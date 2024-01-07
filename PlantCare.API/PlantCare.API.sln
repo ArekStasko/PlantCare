@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Queries.Abstracti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Commands.Abstraction", "PlantCare.Commands.Abstraction\PlantCare.Commands.Abstraction.csproj", "{6562B2BE-A3A3-45CF-AF30-E56640DDD415}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Domain", "PlantCare.Domain\PlantCare.Domain.csproj", "{A48CE3F1-BC76-4D6B-ABEB-49F805895D64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6562B2BE-A3A3-45CF-AF30-E56640DDD415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A48CE3F1-BC76-4D6B-ABEB-49F805895D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A48CE3F1-BC76-4D6B-ABEB-49F805895D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A48CE3F1-BC76-4D6B-ABEB-49F805895D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A48CE3F1-BC76-4D6B-ABEB-49F805895D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

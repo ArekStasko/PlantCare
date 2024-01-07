@@ -1,6 +1,6 @@
+using LanguageExt.Common;
+using MediatR;
+
 namespace PlantCare.Commands.Abstraction.Commands;
 
-public class IHttpDeleteCommand
-{
-    
-}
+public interface IHttpDeleteCommand : IRequest<Result<bool>>;

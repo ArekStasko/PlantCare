@@ -1,3 +1,5 @@
+using PlantCare.Domain.Models.Plant;
+
 namespace PlantCare.Queries.Abstraction.Responses.Module;
 
 public record GetModulesResponse
