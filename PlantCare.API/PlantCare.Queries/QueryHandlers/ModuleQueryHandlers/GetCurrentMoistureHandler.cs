@@ -1,10 +1,13 @@
 using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Queries.Abstraction.Queries.Module;
+using PlantCare.Queries.Abstraction.Responses.Module;
 
 namespace PlantCare.Queries.QueryHandlers.ModuleQueryHandlers;
 
-public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery, Result<IReadOnlyCollection<GetCurrentMoistureResponse>>>
+public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMoistureQuery, Result<IReadOnlyCollection<GetCurrentMoistureResponse>>>
 {
     private readonly IReadHumidityMeasurementRepository _repository;
     private readonly ILogger<GetCurrentMoistureHandler> _logger;
@@ -17,7 +20,7 @@ public class GetCurrentMoistureHandler : IRequestHandler<GetCurrentMositureQuery
         _mapper = mapper;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetCurrentMoistureResponse>>> Handle(GetCurrentMositureQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyCollection<GetCurrentMoistureResponse>>> Handle(GetCurrentMoistureQuery request, CancellationToken cancellationToken)
     {
         try
         {

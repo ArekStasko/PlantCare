@@ -1,6 +1,8 @@
 using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Commands.Abstraction.Commands.Module;
 using PlantCare.Domain.Models.Module;
 
 namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;

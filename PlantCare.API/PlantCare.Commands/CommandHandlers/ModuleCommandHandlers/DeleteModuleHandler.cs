@@ -1,5 +1,7 @@
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Commands.Abstraction.Commands.Module;
 
 namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 

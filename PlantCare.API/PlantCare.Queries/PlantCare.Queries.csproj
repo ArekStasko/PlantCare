@@ -10,10 +10,12 @@
       <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
       <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
+      <ProjectReference Include="..\PlantCare.Queries.Abstraction\PlantCare.Queries.Abstraction.csproj" />
     </ItemGroup>
 
 </Project>

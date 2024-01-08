@@ -1,6 +1,9 @@
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;
+using PlantCare.Queries.Abstraction.Queries.HumidityMeasurements;
+using PlantCare.Queries.Abstraction.Responses.HumidityMeasurements;
 
 namespace PlantCare.Queries.QueryHandlers.HumidityMeasurementsQueryHandlers;
 

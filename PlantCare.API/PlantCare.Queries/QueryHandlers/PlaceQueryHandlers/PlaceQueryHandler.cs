@@ -1,15 +1,17 @@
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Place;
+using PlantCare.Queries.Abstraction.Queries.Place;
 
 namespace PlantCare.Queries.QueryHandlers.PlaceQueryHandlers;
 
 public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnlyCollection<IPlace>>>
 {
     private readonly IReadPlaceRepository _repository;
-    private readonly ILogger<GetPlacesHandler> _logger;
+    private readonly ILogger<PlaceQueryHandler> _logger;
 
-    public GetPlacesHandler(IReadPlaceRepository repository, ILogger<GetPlacesHandler> logger)
+    public GetPlacesHandler(IReadPlaceRepository repository, ILogger<PlaceQueryHandler> logger)
     {
         _repository = repository;
         _logger = logger;

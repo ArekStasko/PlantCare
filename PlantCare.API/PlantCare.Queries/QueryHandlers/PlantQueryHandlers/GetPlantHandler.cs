@@ -1,6 +1,8 @@
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.Queries.Abstraction.Queries.Plant;
 
 namespace PlantCare.Queries.QueryHandlers.PlantQueryHandlers;
 

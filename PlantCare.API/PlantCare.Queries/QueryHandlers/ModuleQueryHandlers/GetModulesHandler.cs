@@ -1,5 +1,9 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Queries.Abstraction.Queries.Module;
+using PlantCare.Queries.Abstraction.Responses.Module;
 
 namespace PlantCare.Queries.QueryHandlers.ModuleQueryHandlers;
 

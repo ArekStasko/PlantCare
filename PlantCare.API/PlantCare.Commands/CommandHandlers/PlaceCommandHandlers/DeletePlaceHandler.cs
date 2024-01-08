@@ -1,6 +1,8 @@
 using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Commands.Abstraction.Commands.Place;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;
 
