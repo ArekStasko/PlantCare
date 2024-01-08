@@ -12,25 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.Commands.Abstraction/Commands/IHttpDeleteCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Commands.Abstraction/Commands/IHttpPostCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/HumidityMeasurements/GetHumidityMeasurementQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/Module/GetCurrentMoistureQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/Module/GetModulesQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/Place/GetPlacesQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/Plant/GetPlantQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Queries/Plant/GetPlantsQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Responses/HumidityMeasurements/GetHumidityMeasurementsResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Responses/Module/GetCurrentMoistureResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Responses/Module/GetModulesResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Controllers/Module/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Controllers/Module/ModuleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Controllers/Place/PlaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Controllers/Place/PlaceController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Controllers/Plant/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Controllers/Plant/PlantController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Controllers/PlantCare.Controllers.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Controllers/PlantCare.Controllers.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Controllers/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Controllers/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -260,6 +242,7 @@
       <workItem from="1703526925553" duration="7597000" />
       <workItem from="1704482611928" duration="1685000" />
       <workItem from="1704534369075" duration="3621000" />
+      <workItem from="1704624875700" duration="4825000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -472,27 +455,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.SignalR/Hubs/CurrentMoistureHub.cs</url>
           <line>29</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="29" containingFunctionPresentation="Method 'SendMessage'">
-            <startOffsets>
-              <option value="840" />
-            </startOffsets>
-            <endOffsets>
-              <option value="841" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="29" containingFunctionPresentation="Method 'SendMessage'" />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.SignalR/Hubs/CurrentMoistureHub.cs</url>
           <line>23</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="23" containingFunctionPresentation="Method 'OnConnectedAsync'">
-            <startOffsets>
-              <option value="663" />
-            </startOffsets>
-            <endOffsets>
-              <option value="664" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="23" containingFunctionPresentation="Method 'OnConnectedAsync'" />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
@@ -524,14 +493,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs</url>
           <line>39</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" initialLine="39" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="1695" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1696" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" initialLine="39" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">

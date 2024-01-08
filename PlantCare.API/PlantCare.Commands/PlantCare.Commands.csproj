@@ -7,10 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="CommandHandlers\HumidityMeasurementCommandHandlers\" />
-      <Folder Include="CommandHandlers\ModuleCommandHandlers\" />
-      <Folder Include="CommandHandlers\PlaceCommandHandlers\" />
-      <Folder Include="CommandHandlers\PlantCommandHandlers\" />
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
+      <PackageReference Include="MediatR" Version="12.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
     </ItemGroup>
 
 </Project>
