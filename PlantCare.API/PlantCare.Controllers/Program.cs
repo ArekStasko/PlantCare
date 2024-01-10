@@ -1,4 +1,8 @@
-using PlantCare.Queries.Abstraction;
+using PlantCare.API.DataAccess;
+using PlantCare.API.Services;
+using PlantCare.Commands;
+using PlantCare.Queries;
+using Serilog;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
@@ -23,6 +27,7 @@ builder.Services.ConfigureServices();
 builder.Services.SetupDataAccess();
 builder.Services.SetupCache();
 builder.Services.ConfigureQueries();
+builder.Services.ConfigureCommands();
 
 var logger = new LoggerConfiguration()
     .ReadFrom

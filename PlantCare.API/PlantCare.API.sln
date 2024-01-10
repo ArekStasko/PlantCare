@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Commands", "Plant
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Queries", "PlantCare.Queries\PlantCare.Queries.csproj", "{36735737-02FE-4948-9433-6830226EDD53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance.ReadDataManager", "PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj", "{BAF765E1-3ADC-4756-B27C-F1068B4A4FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance.WriteDataManager", "PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj", "{2616DE5F-65DC-4205-B49B-A2C820C2AA00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance", "PlantCare.Persistance\PlantCare.Persistance.csproj", "{6571D796-71B8-4772-A21A-57370D135125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +72,17 @@ Global
 		{36735737-02FE-4948-9433-6830226EDD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36735737-02FE-4948-9433-6830226EDD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36735737-02FE-4948-9433-6830226EDD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF765E1-3ADC-4756-B27C-F1068B4A4FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF765E1-3ADC-4756-B27C-F1068B4A4FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF765E1-3ADC-4756-B27C-F1068B4A4FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF765E1-3ADC-4756-B27C-F1068B4A4FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6571D796-71B8-4772-A21A-57370D135125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6571D796-71B8-4772-A21A-57370D135125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6571D796-71B8-4772-A21A-57370D135125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6571D796-71B8-4772-A21A-57370D135125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
