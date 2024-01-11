@@ -3,10 +3,11 @@ using PlantCare.Persistance.DAO.HumidityMeasurement;
 using PlantCare.Persistance.DAO.Module;
 using PlantCare.Persistance.DAO.Place;
 using PlantCare.Persistance.DAO.Plant;
+using PlantCare.Persistance.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
-public class ReadDataContext : DbContext
+public class ReadDataContext : DbContext, IPlantContext, IPlaceContext, IModuleContext, IHumidityMeasurementContext
 {
     public ReadDataContext(){}
 

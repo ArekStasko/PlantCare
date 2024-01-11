@@ -7,7 +7,7 @@ using PlantCare.Persistance.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
 
-public class ModuleRepository : IModelRepository
+public class ModuleRepository : IModuleRepository
 {
     private readonly IModuleContext _context;
     private readonly ILogger<ModuleRepository> _logger;

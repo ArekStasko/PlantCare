@@ -3,7 +3,7 @@ using PlantCare.Persistance.DAO.Module;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
 
-public interface IModelRepository
+public interface IModuleRepository
 {
     ValueTask<Result<IReadOnlyCollection<IModuleDAO>>> Get();
 

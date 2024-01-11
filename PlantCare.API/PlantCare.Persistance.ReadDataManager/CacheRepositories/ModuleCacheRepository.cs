@@ -6,13 +6,13 @@ using PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
 
-public class ModuleCacheRepository : IModelRepository
+public class ModuleCacheRepository : IModuleRepository
 {
-    private readonly IModelRepository _readRepository;
+    private readonly IModuleRepository _readRepository;
     private readonly ILogger<ModuleCacheRepository> _logger;
     private readonly IDistributedCache _cache;
 
-    public ModuleCacheRepository(IModelRepository readRepository, ILogger<ModuleCacheRepository> logger, IDistributedCache cache)
+    public ModuleCacheRepository(IModuleRepository readRepository, ILogger<ModuleCacheRepository> logger, IDistributedCache cache)
     {
         _readRepository = readRepository;
         _logger = logger;
