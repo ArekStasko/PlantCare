@@ -1,5 +1,10 @@
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlantCare.Commands.Abstraction.Commands.HumidityMeasurements;
 using PlantCare.Controllers.Place;
+using PlantCare.Domain.Models.HumidityMeasurement;
+using PlantCare.Queries.Abstraction.Queries.HumidityMeasurements;
 
 namespace PlantCare.Controllers.HumidityMeasurements;
 
@@ -12,7 +17,7 @@ public class HumidityMeasurementsController
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public HumidityMeasurementController(IMediator mediator, IMapper mapper, ILogger<PlaceController> logger)
+    public HumidityMeasurementsController(IMediator mediator, IMapper mapper, ILogger<PlaceController> logger)
     {
         _mediator = mediator;
         _mapper = mapper;

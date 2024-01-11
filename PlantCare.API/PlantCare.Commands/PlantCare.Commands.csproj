@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.Commands.Abstraction\PlantCare.Commands.Abstraction.csproj" />
       <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
+      <ProjectReference Include="..\PlantCare.Persistance\PlantCare.Persistance.csproj" />
     </ItemGroup>
 
 </Project>

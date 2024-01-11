@@ -2,17 +2,17 @@ using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Module;
-using PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
 
-public class ModuleCacheRepository : IModuleRepository
+public class ModuleCacheRepository : IReadModuleRepository
 {
-    private readonly IModuleRepository _readRepository;
+    private readonly IReadModuleRepository _readRepository;
     private readonly ILogger<ModuleCacheRepository> _logger;
     private readonly IDistributedCache _cache;
 
-    public ModuleCacheRepository(IModuleRepository readRepository, ILogger<ModuleCacheRepository> logger, IDistributedCache cache)
+    public ModuleCacheRepository(IReadModuleRepository readRepository, ILogger<ModuleCacheRepository> logger, IDistributedCache cache)
     {
         _readRepository = readRepository;
         _logger = logger;

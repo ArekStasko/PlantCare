@@ -2,6 +2,7 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Place;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 using PlantCare.Queries.Abstraction.Queries.Place;
 
 namespace PlantCare.Queries.QueryHandlers.PlaceQueryHandlers;

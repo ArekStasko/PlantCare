@@ -1,8 +1,12 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlantCare.API.Services.Queries.ModuleQueries;
+using PlantCare.Commands.Abstraction.Commands.Module;
 using PlantCare.Controllers.Place;
+using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Abstraction.Responses.Module;
+using GetModulesQuery = PlantCare.Queries.Abstraction.Queries.Module.GetModulesQuery;
 
 namespace PlantCare.Controllers.Module;
 

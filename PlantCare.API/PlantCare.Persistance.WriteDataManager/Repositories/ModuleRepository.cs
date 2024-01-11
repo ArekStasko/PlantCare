@@ -4,10 +4,11 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Module;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
 
-namespace PlantCare.Persistance.WriteDataManager.Repositories.ModuleRepository;
+namespace PlantCare.Persistance.WriteDataManager.Repositories;
 
-public class ModuleRepository : IModuleRepository
+public class ModuleRepository : IWriteModuleRepository
 {
         private readonly IModuleContext _context;
     private readonly ILogger<ModuleRepository> _logger;

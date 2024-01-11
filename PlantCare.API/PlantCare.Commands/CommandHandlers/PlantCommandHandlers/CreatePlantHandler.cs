@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Abstraction.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 

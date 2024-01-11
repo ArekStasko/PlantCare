@@ -1,9 +1,9 @@
 using LanguageExt.Common;
 using PlantCare.Persistance.DAO.Module;
 
-namespace PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
+namespace PlantCare.Persistance.Interfaces.ReadRepositories;
 
-public interface IModuleRepository
+public interface IReadModuleRepository
 {
     ValueTask<Result<IReadOnlyCollection<IModuleDAO>>> Get();
 

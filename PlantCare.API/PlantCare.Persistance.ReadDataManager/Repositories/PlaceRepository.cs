@@ -4,10 +4,11 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Place;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 
-namespace PlantCare.Persistance.ReadDataManager.Repositories.PlaceRepository;
+namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
-public class PlaceRepository : IPlaceRepository
+public class PlaceRepository : IReadPlaceRepository
 {
     private readonly IPlaceContext _context;
     private readonly ILogger<PlaceRepository> _logger;

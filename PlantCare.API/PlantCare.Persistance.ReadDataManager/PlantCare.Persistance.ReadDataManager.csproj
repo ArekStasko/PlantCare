@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.API.DataAccess\PlantCare.API.DataAccess.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance\PlantCare.Persistance.csproj" />
     </ItemGroup>
 

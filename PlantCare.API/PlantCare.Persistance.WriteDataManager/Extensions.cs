@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
-using PlantCare.API.DataAccess.Repositories.ModuleRepository;
-using PlantCare.API.DataAccess.Repositories.PlaceRepository;
-using PlantCare.API.DataAccess.Repositories.PlantRepository;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Repositories;
 
 namespace PlantCare.Persistance.WriteDataManager;
 

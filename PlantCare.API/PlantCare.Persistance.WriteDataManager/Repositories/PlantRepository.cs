@@ -4,10 +4,11 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
 
-namespace PlantCare.Persistance.WriteDataManager.Repositories.PlantRepository;
+namespace PlantCare.Persistance.WriteDataManager.Repositories;
 
-public class PlantRepository : IPlantRepository
+public class PlantRepository : IWritePlantRepository
 {
     private readonly IPlantContext _context;
     private readonly ILogger<PlantRepository> _logger;

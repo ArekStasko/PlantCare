@@ -1,9 +1,9 @@
 using LanguageExt.Common;
 using PlantCare.Persistance.DAO.HumidityMeasurement;
 
-namespace PlantCare.Persistance.WriteDataManager.Repositories.HumidityMeasurementRepository;
+namespace PlantCare.Persistance.Interfaces.WriteRepositories;
 
-public interface IHumidityMeasurementRepository
+public interface IWriteHumidityMeasurementRepository
 {
     ValueTask<Result<bool>> Add(IHumidityMeasurementDAO humidityMeasurement);
 }

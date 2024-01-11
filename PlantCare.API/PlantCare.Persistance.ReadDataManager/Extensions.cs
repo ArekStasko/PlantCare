@@ -2,11 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 using PlantCare.Persistance.ReadDataManager.CacheRepositories;
-using PlantCare.Persistance.ReadDataManager.Repositories.HumidityMeasurementRepository;
-using PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
-using PlantCare.Persistance.ReadDataManager.Repositories.PlaceRepository;
-using PlantCare.Persistance.ReadDataManager.Repositories.PlantRepository;
+using PlantCare.Persistance.ReadDataManager.Repositories;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
@@ -50,15 +48,15 @@ public static class Extensions
         services.AddScoped<IModuleContext, ReadDataContext>();
         services.AddScoped<IHumidityMeasurementContext, ReadDataContext>();
 
-        services.AddScoped<IPlantRepository, PlantRepository>();
-        services.AddScoped<IHumidityMeasurementRepository, HumidityMeasurementRepository>();
-        services.AddScoped<IPlaceRepository, PlaceRepository>();
-        services.AddScoped<IModuleRepository, ModuleRepository>();
+        services.AddScoped<IReadPlantRepository, PlantRepository>();
+        services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IReadPlaceRepository, PlaceRepository>();
+        services.AddScoped<IReadModuleRepository, ModuleRepository>();
 
-        services.Decorate<IPlantRepository, PlantCacheRepository>();
-        services.Decorate<IHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
-        services.Decorate<IPlaceRepository, PlaceCacheRepository>();
-        services.Decorate<IModuleRepository, ModuleCacheRepository>();
+        services.Decorate<IReadPlantRepository, PlantCacheRepository>();
+        services.Decorate<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
+        services.Decorate<IReadPlaceRepository, PlaceCacheRepository>();
+        services.Decorate<IReadModuleRepository, ModuleCacheRepository>();
     }
 
     private static string GetConnectionString()

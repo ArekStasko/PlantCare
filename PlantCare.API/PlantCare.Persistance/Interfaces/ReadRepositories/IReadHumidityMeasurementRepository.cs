@@ -1,9 +1,9 @@
 using LanguageExt.Common;
 using PlantCare.Persistance.DAO.HumidityMeasurement;
 
-namespace PlantCare.Persistance.ReadDataManager.Repositories.HumidityMeasurementRepository;
+namespace PlantCare.Persistance.Interfaces.ReadRepositories;
 
-public interface IHumidityMeasurementRepository
+public interface IReadHumidityMeasurementRepository
 {
     ValueTask<Result<IReadOnlyCollection<IHumidityMeasurementDAO>>> Get(Guid id);
 }

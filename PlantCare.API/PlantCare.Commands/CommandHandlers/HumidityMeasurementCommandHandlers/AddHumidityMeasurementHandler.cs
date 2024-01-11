@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Abstraction.Commands.HumidityMeasurements;
 using PlantCare.Domain.Models.HumidityMeasurement;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.HumidityMeasurementCommandHandlers;
 
@@ -13,7 +14,7 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
     private readonly ILogger<AddHumidityMeasurementHandler> _logger;
     private readonly IMapper _mapper;
 
-    public AddHumidityMeasurementCommandHandler(IWriteHumidityMeasurementRepository repository, ILogger<AddHumidityMeasurementHandler> logger, IMapper mapper)
+    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, ILogger<AddHumidityMeasurementHandler> logger, IMapper mapper)
     {
         _repository = repository;
         _logger = logger;

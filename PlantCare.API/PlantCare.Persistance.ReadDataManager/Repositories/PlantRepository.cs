@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 
-namespace PlantCare.Persistance.ReadDataManager.Repositories.PlantRepository;
+namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
-public class PlantRepository : IPlantRepository
+public class PlantRepository : IReadPlantRepository
 {
      private readonly IPlantContext _context;
     private readonly ILogger<PlantRepository> _logger;

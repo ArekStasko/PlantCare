@@ -2,16 +2,16 @@ using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.Place;
-using PlantCare.Persistance.ReadDataManager.Repositories.PlaceRepository;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
 
-public class PlaceCacheRepository : IPlaceRepository
+public class PlaceCacheRepository : IReadPlaceRepository
 {
-    private readonly IPlaceRepository _repository;
+    private readonly IReadPlaceRepository _repository;
     private readonly ILogger<PlaceCacheRepository> _logger;
     private readonly IDistributedCache _cache;
-    public PlaceCacheRepository(IPlaceRepository repository, ILogger<PlaceCacheRepository> logger, IDistributedCache cache)
+    public PlaceCacheRepository(IReadPlaceRepository repository, ILogger<PlaceCacheRepository> logger, IDistributedCache cache)
     {
         _repository = repository;
         _logger = logger;

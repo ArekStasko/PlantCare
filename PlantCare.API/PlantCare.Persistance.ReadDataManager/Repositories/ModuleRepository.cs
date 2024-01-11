@@ -4,10 +4,11 @@ using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Persistance.DAO.Module;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadRepositories;
 
-namespace PlantCare.Persistance.ReadDataManager.Repositories.ModelRepository;
+namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
-public class ModuleRepository : IModuleRepository
+public class ModuleRepository : IReadModuleRepository
 {
     private readonly IModuleContext _context;
     private readonly ILogger<ModuleRepository> _logger;

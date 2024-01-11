@@ -3,10 +3,11 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.DAO.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteRepositories;
 
-namespace PlantCare.Persistance.WriteDataManager.Repositories.HumidityMeasurementRepository;
+namespace PlantCare.Persistance.WriteDataManager.Repositories;
 
-public class HumidityMeasurementRepository : IHumidityMeasurementRepository
+public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
 {
     private readonly IHumidityMeasurementContext _context;
     private readonly ILogger<HumidityMeasurementRepository> _logger;
