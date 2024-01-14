@@ -61,6 +61,7 @@ public class PlantController
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromQuery] int id)
     {
+     
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
         _logger.LogInformation("Get plant controller method start processing");
         var result = await _mediator.
