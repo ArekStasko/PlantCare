@@ -12,3 +12,6 @@ my backend ( here you can read more about it -> [PlantCare Module](https://githu
 
 # PlantCare Diagram
 ![alt text](https://github.com/ArekStasko/PlantCare/blob/master/PlantCare.png?raw=true)
+
+# PlantCare Projects Dependency Diagram
+![alt text](https://github.com/ArekStasko/PlantCare/blob/master/PlantCareDiagram.PNG?raw=true)
