@@ -1,5 +1,5 @@
 ﻿namespace PlantCare.Persistance.Mapper;
 
-public class PersistanceMapperProfile
+public class PersistanceMapperProfile : Profile
 {
 }
