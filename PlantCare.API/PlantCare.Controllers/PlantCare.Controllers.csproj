@@ -14,7 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PlantCare.API.Services\PlantCare.API.Services.csproj" />
       <ProjectReference Include="..\PlantCare.Commands.Abstraction\PlantCare.Commands.Abstraction.csproj" />
       <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.Queries.Abstraction\PlantCare.Queries.Abstraction.csproj" />

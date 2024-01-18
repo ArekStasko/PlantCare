@@ -1,5 +1,3 @@
-using PlantCare.API.DataAccess;
-using PlantCare.API.Services;
 using PlantCare.Commands;
 using PlantCare.Queries;
 using Serilog;
