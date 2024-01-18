@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Controllers", "PlantCare.Controllers\PlantCare.Controllers.csproj", "{A740863D-BA11-44E9-B461-8113F8AD04E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API", "PlantCare.API\PlantCare.API.csproj", "{A740863D-BA11-44E9-B461-8113F8AD04E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Queries.Abstraction", "PlantCare.Queries.Abstraction\PlantCare.Queries.Abstraction.csproj", "{C1CFCD2E-3299-409F-A6D7-8A4D1BE02633}"
 EndProject

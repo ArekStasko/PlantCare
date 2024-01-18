@@ -1,24 +1,26 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.ReadRepositories;
-using PlantCare.Persistance.ReadDataManager.CacheRepositories;
-using PlantCare.Persistance.ReadDataManager.Repositories;
+using PlantCare.API.DataAccess.Cache.CacheRepositories;
+using PlantCare.API.DataAccess.Interfaces;
+using PlantCare.API.DataAccess.Repositories.HumidityMeasurementRepository;
+using PlantCare.API.DataAccess.Repositories.ModuleRepository;
+using PlantCare.API.DataAccess.Repositories.PlaceRepository;
+using PlantCare.API.DataAccess.Repositories.PlantRepository;
 
-namespace PlantCare.Persistance.ReadDataManager;
+namespace PlantCare.API.DataAccess;
 
-public static class Extensions
+public static class DataExtensions
 {
-    public static void MigrateReadDatabase(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
+    public static void Migrate(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
 
-    public static void AddReadDataManager(this IServiceCollection services)
+    public static void SetupDataAccess(this IServiceCollection services)
     {
-        services.AddReadDataContext();
-        services.AddReadRepositories();
+        services.AddDataContext();
+        services.AddRepositories();
     }
 
-    public static void AddReadCache(this IServiceCollection services)
+    public static void SetupCache(this IServiceCollection services)
     {
         var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
         var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
@@ -30,10 +32,10 @@ public static class Extensions
         });
     }
 
-    private static void AddReadDataContext(this IServiceCollection services)
+    private static void AddDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
-        services.AddDbContext<ReadDataContext>(options =>
+        services.AddDbContext<DataContext>(options =>
         {
             options
                 .UseLazyLoadingProxies()
@@ -41,12 +43,17 @@ public static class Extensions
         });
     }
 
-    private static void AddReadRepositories(this IServiceCollection services)
+    private static void AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IPlaceContext, ReadDataContext>();
-        services.AddScoped<IPlantContext, ReadDataContext>();
-        services.AddScoped<IModuleContext, ReadDataContext>();
-        services.AddScoped<IHumidityMeasurementContext, ReadDataContext>();
+        services.AddScoped<IPlaceContext, DataContext>();
+        services.AddScoped<IPlantContext, DataContext>();
+        services.AddScoped<IModuleContext, DataContext>();
+        services.AddScoped<IHumidityMeasurementContext, DataContext>();
+
+        services.AddScoped<IWritePlantRepository, PlantRepository>();
+        services.AddScoped<IWritePlaceRepository, PlaceRepository>();
+        services.AddScoped<IWriteModuleRepository, ModuleRepository>();
+        services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
 
         services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
@@ -65,7 +72,7 @@ public static class Extensions
         var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
         var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
         var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
-        var databaseName = Environment.GetEnvironmentVariable("ReadDatabaseName");
+        var databaseName = Environment.GetEnvironmentVariable("DatabaseName");
 
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";

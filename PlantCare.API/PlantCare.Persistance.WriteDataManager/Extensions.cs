@@ -9,15 +9,15 @@ namespace PlantCare.Persistance.WriteDataManager;
 
 public static class Extensions
 {
-    public static void Migrate(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
+    public static void MigrateWriteDatabase(this IApplicationBuilder app) => DatabaseMigrationService.MigrationInitialization(app);
 
-    public static void SetupDataAccess(this IServiceCollection services)
+    public static void AddWriteDataManager(this IServiceCollection services)
     {
-        services.AddDataContext();
-        services.AddRepositories();
+        services.AddWriteDataContext();
+        services.AddWriteRepositories();
     }
 
-    public static void SetupCache(this IServiceCollection services)
+    public static void AddWriteCache(this IServiceCollection services)
     {
         var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
         var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
@@ -29,7 +29,7 @@ public static class Extensions
         });
     }
 
-    private static void AddDataContext(this IServiceCollection services)
+    private static void AddWriteDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
         services.AddDbContext<WriteDataContext>(options =>
@@ -40,7 +40,7 @@ public static class Extensions
         });
     }
 
-    private static void AddRepositories(this IServiceCollection services)
+    private static void AddWriteRepositories(this IServiceCollection services)
     {
         services.AddScoped<IPlaceContext, WriteDataContext>();
         services.AddScoped<IPlantContext, WriteDataContext>();
