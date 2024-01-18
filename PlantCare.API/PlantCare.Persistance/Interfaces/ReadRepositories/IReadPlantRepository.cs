@@ -1,10 +1,10 @@
 using LanguageExt.Common;
-using PlantCare.Persistance.DAO.Plant;
+using PlantCare.Domain.Models.Plant;
 
 namespace PlantCare.Persistance.Interfaces.ReadRepositories;
 
 public interface IReadPlantRepository
 {
-    ValueTask<Result<IReadOnlyCollection<IPlantDAO>>> Get();
-    ValueTask<Result<IPlantDAO>> Get(int id);
+    ValueTask<Result<IReadOnlyCollection<IPlant>>> Get();
+    ValueTask<Result<IPlant>> Get(int id);
 }

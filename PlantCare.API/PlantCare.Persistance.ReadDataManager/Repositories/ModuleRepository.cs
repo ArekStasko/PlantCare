@@ -2,7 +2,6 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Module;
-using PlantCare.Persistance.DAO.Module;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
@@ -18,22 +17,22 @@ public class ModuleRepository : IReadModuleRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IModuleDAO>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
     {
         try
         {
-            var modules = await _context.Modules.ToListAsync<IModuleDAO>();
+            var modules = await _context.Modules.ToListAsync<IModule>();
             _logger.LogInformation("Successfully loaded modules");
-            return new Result<IReadOnlyCollection<IModuleDAO>>(modules);
+            return new Result<IReadOnlyCollection<IModule>>(modules);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IReadOnlyCollection<IModuleDAO>>(e);
+            return new Result<IReadOnlyCollection<IModule>>(e);
         }
     }
 
-    public async ValueTask<Result<IModuleDAO>> Get(Guid id)
+    public async ValueTask<Result<IModule>> Get(Guid id)
     {
         try
         {
@@ -42,16 +41,16 @@ public class ModuleRepository : IReadModuleRepository
             if (module == null)
             {
                 _logger.LogError("There is no module with {Id} id", id);
-                return new Result<IModuleDAO>(new NullReferenceException());
+                return new Result<IModule>(new NullReferenceException());
             }
 
             _logger.LogInformation("Successfully loaded module with {Id} id", id);
-            return new Result<IModuleDAO>(module);
+            return new Result<IModule>(module);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IModuleDAO>(e);
+            return new Result<IModule>(e);
         }
     }
 }

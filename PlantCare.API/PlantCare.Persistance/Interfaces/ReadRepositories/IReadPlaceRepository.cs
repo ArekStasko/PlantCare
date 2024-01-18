@@ -1,9 +1,9 @@
 using LanguageExt.Common;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 
 namespace PlantCare.Persistance.Interfaces.ReadRepositories;
 
 public interface IReadPlaceRepository
 {
-    ValueTask<Result<IReadOnlyCollection<IPlaceDAO>>> Get();
+    ValueTask<Result<IReadOnlyCollection<IPlace>>> Get();
 }

@@ -12,7 +12,7 @@ public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnl
     private readonly IReadPlaceRepository _repository;
     private readonly ILogger<PlaceQueryHandler> _logger;
 
-    public GetPlacesHandler(IReadPlaceRepository repository, ILogger<PlaceQueryHandler> logger)
+    public PlaceQueryHandler(IReadPlaceRepository repository, ILogger<PlaceQueryHandler> logger)
     {
         _repository = repository;
         _logger = logger;

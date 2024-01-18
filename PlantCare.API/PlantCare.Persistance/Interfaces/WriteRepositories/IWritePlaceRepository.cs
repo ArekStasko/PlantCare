@@ -1,11 +1,11 @@
 using LanguageExt.Common;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 
 namespace PlantCare.Persistance.Interfaces.WriteRepositories;
 
 public interface IWritePlaceRepository
 {
-    ValueTask<Result<bool>> Create(IPlaceDAO place);
+    ValueTask<Result<bool>> Create(IPlace place);
     ValueTask<Result<bool>> Delete(int id);
-    ValueTask<Result<bool>> Update(IPlaceDAO place);
+    ValueTask<Result<bool>> Update(IPlace place);
 }

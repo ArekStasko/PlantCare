@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.HumidityMeasurement;
+using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
@@ -20,11 +20,11 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<bool>> Add(IHumidityMeasurementDAO humidityMeasurement)
+    public async ValueTask<Result<bool>> Add(IHumidityMeasurement humidityMeasurement)
     {
         try
         {
-            await _context.HumidityMeasurements.AddAsync((HumidityMeasurementDAO)humidityMeasurement);
+            await _context.HumidityMeasurements.AddAsync((HumidityMeasurement)humidityMeasurement);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Humidity measurement was successfully created");
             await _cache.RemoveAsync($"HumidityMeasurements-{humidityMeasurement.ModuleId}");

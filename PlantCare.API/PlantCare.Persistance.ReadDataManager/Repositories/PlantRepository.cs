@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Plant;
+using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
@@ -17,22 +17,22 @@ public class PlantRepository : IReadPlantRepository
         _logger = logger;
     }
 
-    public virtual async ValueTask<Result<IReadOnlyCollection<IPlantDAO>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {
         try
         {
-            var plants = await _context.Plants.ToListAsync<IPlantDAO>();
+            var plants = await _context.Plants.ToListAsync<IPlant>();
             _logger.LogInformation("Successfull get opreation");
-            return new Result<IReadOnlyCollection<IPlantDAO>>(plants);
+            return new Result<IReadOnlyCollection<IPlant>>(plants);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IReadOnlyCollection<IPlantDAO>>(e);
+            return new Result<IReadOnlyCollection<IPlant>>(e);
         }
     }
 
-    public virtual async ValueTask<Result<IPlantDAO>> Get(int id)
+    public virtual async ValueTask<Result<IPlant>> Get(int id)
     {
         try
         {
@@ -41,15 +41,15 @@ public class PlantRepository : IReadPlantRepository
             if (plant == null)
             {
                 _logger.LogError("There is no plant with {plantId} Id", plant.Id);
-                return new Result<IPlantDAO>(new NullReferenceException());
+                return new Result<IPlant>(new NullReferenceException());
             }
 
-            return new Result<IPlantDAO>(plant);
+            return new Result<IPlant>(plant);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IPlantDAO>(e);
+            return new Result<IPlant>(e);
         }
     }
 

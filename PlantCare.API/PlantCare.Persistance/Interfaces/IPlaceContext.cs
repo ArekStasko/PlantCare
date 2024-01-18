@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 
 namespace PlantCare.Persistance.Interfaces;
 
 public interface IPlaceContext
 {
-    DbSet<PlaceDAO> Places { get; set; }
+    DbSet<Place> Places { get; set; }
     int SaveChanges();
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 }

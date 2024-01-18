@@ -2,7 +2,7 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.HumidityMeasurement;
+using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
@@ -21,25 +21,25 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurementDAO>>> Get(Guid id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)
     {
         try
         {
-            var humidityMeasurements = await _context.HumidityMeasurements.Where(hm => hm.ModuleId == id).ToListAsync<IHumidityMeasurementDAO>();
+            var humidityMeasurements = await _context.HumidityMeasurements.Where(hm => hm.ModuleId == id).ToListAsync<IHumidityMeasurement>();
 
             if (humidityMeasurements == null)
             {
                 _logger.LogError("There is no humidity measurements for module with {Id} id", id);
-                return new Result<IReadOnlyCollection<IHumidityMeasurementDAO>>(new NullReferenceException());
+                return new Result<IReadOnlyCollection<IHumidityMeasurement>>(new NullReferenceException());
             }
 
             _logger.LogInformation("Successfully loaded humidity measurements for {Id} module", id);
-            return new Result<IReadOnlyCollection<IHumidityMeasurementDAO>>(humidityMeasurements);
+            return new Result<IReadOnlyCollection<IHumidityMeasurement>>(humidityMeasurements);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IReadOnlyCollection<IHumidityMeasurementDAO>>(e);
+            return new Result<IReadOnlyCollection<IHumidityMeasurement>>(e);
         }
     }
 }

@@ -2,7 +2,7 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
@@ -21,11 +21,11 @@ public class PlaceRepository : IWritePlaceRepository
         _cache = cache;
     }
 
-    public virtual async ValueTask<Result<bool>> Create(IPlaceDAO place)
+    public virtual async ValueTask<Result<bool>> Create(IPlace place)
     {
         try
         {
-            await _context.Places.AddAsync((PlaceDAO)place);
+            await _context.Places.AddAsync((Place)place);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new place with {placeId} Id", place.Id);
             await _cache.RemoveAsync("Places");
@@ -66,7 +66,7 @@ public class PlaceRepository : IWritePlaceRepository
         }
     }
 
-    public virtual async ValueTask<Result<bool>> Update(IPlaceDAO place)
+    public virtual async ValueTask<Result<bool>> Update(IPlace place)
     {
         try
         {

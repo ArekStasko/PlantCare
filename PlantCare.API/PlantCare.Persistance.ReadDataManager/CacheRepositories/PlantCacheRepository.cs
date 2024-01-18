@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Plant;
+using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
@@ -19,10 +19,10 @@ public class PlantCacheRepository : IReadPlantRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IPlantDAO>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {
         string plantsKey = "Plants";
-        IReadOnlyCollection<IPlantDAO> data = await _cache.GetRecordAsync<List<IPlantDAO>>(plantsKey);
+        IReadOnlyCollection<IPlant> data = await _cache.GetRecordAsync<List<IPlant>>(plantsKey);
 
         if (data == null || data.Count == 0)
         {
@@ -31,13 +31,13 @@ public class PlantCacheRepository : IReadPlantRepository
             return await plants.ProcessCacheResult(_cache, plantsKey);
         }
 
-        return new Result<IReadOnlyCollection<IPlantDAO>>(data!);
+        return new Result<IReadOnlyCollection<IPlant>>(data!);
     }
 
-    public async ValueTask<Result<IPlantDAO>> Get(int id)
+    public async ValueTask<Result<IPlant>> Get(int id)
     {
         string singlePlantKey = $"Plant-{id}";
-        IPlantDAO data = await _cache.GetRecordAsync<IPlantDAO>(singlePlantKey);
+        IPlant data = await _cache.GetRecordAsync<IPlant>(singlePlantKey);
 
         if (data == null)
         {
@@ -46,6 +46,6 @@ public class PlantCacheRepository : IReadPlantRepository
             return await plant.ProcessCacheResult(_cache, singlePlantKey);
         }
 
-        return new Result<IPlantDAO>(data);
+        return new Result<IPlant>(data);
     }
 }

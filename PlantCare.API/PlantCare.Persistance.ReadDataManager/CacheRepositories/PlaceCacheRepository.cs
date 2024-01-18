@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
@@ -18,10 +18,10 @@ public class PlaceCacheRepository : IReadPlaceRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IPlaceDAO>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
         string placesKey = "Places";
-        IReadOnlyCollection<IPlaceDAO> data = await _cache.GetRecordAsync<List<IPlaceDAO>>(placesKey);
+        IReadOnlyCollection<IPlace> data = await _cache.GetRecordAsync<List<IPlace>>(placesKey);
 
         if (data == null || data.Count == 0)
         {
@@ -30,6 +30,6 @@ public class PlaceCacheRepository : IReadPlaceRepository
             return await places.ProcessCacheResult(_cache, placesKey);
         }
 
-        return new Result<IReadOnlyCollection<IPlaceDAO>>(data!);
+        return new Result<IReadOnlyCollection<IPlace>>(data!);
     }
 }

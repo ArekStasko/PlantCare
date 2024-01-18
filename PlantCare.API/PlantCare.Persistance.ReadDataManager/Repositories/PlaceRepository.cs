@@ -2,7 +2,7 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Place;
+using PlantCare.Domain.Models.Place;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
@@ -21,18 +21,18 @@ public class PlaceRepository : IReadPlaceRepository
         _cache = cache;
     }
     
-    public virtual async ValueTask<Result<IReadOnlyCollection<IPlaceDAO>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
         try
         {
-            var places = await _context.Places.ToListAsync<IPlaceDAO>();
+            var places = await _context.Places.ToListAsync<IPlace>();
             _logger.LogInformation("Successfull get opreation");
-            return new Result<IReadOnlyCollection<IPlaceDAO>>(places);
+            return new Result<IReadOnlyCollection<IPlace>>(places);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<IReadOnlyCollection<IPlaceDAO>>(e);
+            return new Result<IReadOnlyCollection<IPlace>>(e);
         }
     }
 }

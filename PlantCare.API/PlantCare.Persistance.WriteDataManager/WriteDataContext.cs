@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Persistance.DAO.HumidityMeasurement;
-using PlantCare.Persistance.DAO.Module;
-using PlantCare.Persistance.DAO.Place;
-using PlantCare.Persistance.DAO.Plant;
+using PlantCare.Domain.Models.HumidityMeasurement;
+using PlantCare.Domain.Models.Module;
+using PlantCare.Domain.Models.Place;
+using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
 
 namespace PlantCare.Persistance.WriteDataManager;
@@ -13,33 +13,33 @@ public class WriteDataContext : DbContext, IPlantContext, IPlaceContext, IModule
 
     public WriteDataContext(DbContextOptions<WriteDataContext> options) : base(options){}
     
-    public virtual DbSet<PlantDAO> Plants { get; set; } = null!;
+    public virtual DbSet<Plant> Plants { get; set; } = null!;
 
-    public virtual DbSet<PlaceDAO> Places { get; set; } = null!;
+    public virtual DbSet<Place> Places { get; set; } = null!;
 
-    public virtual DbSet<ModuleDAO> Modules { get; set; } = null!;
+    public virtual DbSet<Module> Modules { get; set; } = null!;
 
-    public virtual DbSet<HumidityMeasurementDAO> HumidityMeasurements { get; set; } = null!;
+    public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<PlaceDAO>()
+        modelBuilder.Entity<Place>()
             .HasMany(e => e.Plants)
             .WithOne()
             .HasForeignKey(e => e.PlaceId)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
-        modelBuilder.Entity<ModuleDAO>()
+        modelBuilder.Entity<Module>()
             .HasMany(e => e.HumidityMeasurements)
             .WithOne()
             .HasForeignKey(e => e.ModuleId)
             .IsRequired();
 
-        modelBuilder.Entity<ModuleDAO>()
+        modelBuilder.Entity<Module>()
             .HasOne(e => e.Plant)
             .WithOne()
-            .HasForeignKey<PlantDAO>(e => e.ModuleId)
+            .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
     }
 }

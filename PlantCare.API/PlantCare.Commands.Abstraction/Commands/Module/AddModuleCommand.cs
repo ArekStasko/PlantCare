@@ -1,3 +1,3 @@
 namespace PlantCare.Commands.Abstraction.Commands.Module;
 
-public record AddModuleCommand : IHttpPostCommand;
+public record AddModuleCommand : IHttpPostCommandGuid;

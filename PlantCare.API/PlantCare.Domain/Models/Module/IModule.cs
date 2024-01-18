@@ -1,7 +1,7 @@
 namespace PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Plant;
 
-public class IModule
+public interface IModule
 {
     Guid Id { get; set; }
     ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }

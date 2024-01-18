@@ -2,7 +2,7 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Module;
+using PlantCare.Domain.Models.Module;
 using PlantCare.Persistance.Interfaces;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
@@ -24,7 +24,7 @@ public class ModuleRepository : IWriteModuleRepository
     {
         try
         {
-            var module = new ModuleDAO()
+            var module = new Module()
             {
                 Id = id
             };
@@ -70,7 +70,7 @@ public class ModuleRepository : IWriteModuleRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Update(IModuleDAO module)
+    public async ValueTask<Result<bool>> Update(IModule module)
     {
         try
         {

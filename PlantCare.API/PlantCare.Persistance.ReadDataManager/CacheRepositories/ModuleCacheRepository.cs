@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.Module;
+using PlantCare.Domain.Models.Module;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
@@ -19,10 +19,10 @@ public class ModuleCacheRepository : IReadModuleRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IModuleDAO>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
     {
         string modulesKey = "Modules";
-        IReadOnlyCollection<IModuleDAO> data = await _cache.GetRecordAsync<List<IModuleDAO>>(modulesKey);
+        IReadOnlyCollection<IModule> data = await _cache.GetRecordAsync<List<IModule>>(modulesKey);
 
         if (data == null || data.Count == 0)
         {
@@ -31,13 +31,13 @@ public class ModuleCacheRepository : IReadModuleRepository
             return await modules.ProcessCacheResult(_cache, modulesKey);
         }
 
-        return new Result<IReadOnlyCollection<IModuleDAO>>(data!);
+        return new Result<IReadOnlyCollection<IModule>>(data!);
     }
 
-    public async ValueTask<Result<IModuleDAO>> Get(Guid id)
+    public async ValueTask<Result<IModule>> Get(Guid id)
     {
         string singleModuleKey = $"Module-{id}";
-        IModuleDAO data = await _cache.GetRecordAsync<IModuleDAO>(singleModuleKey);
+        IModule data = await _cache.GetRecordAsync<IModule>(singleModuleKey);
 
         if (data == null)
         {
@@ -46,6 +46,6 @@ public class ModuleCacheRepository : IReadModuleRepository
             return await module.ProcessCacheResult(_cache, singleModuleKey);
         }
 
-        return new Result<IModuleDAO>(data);
+        return new Result<IModule>(data);
     }
 }

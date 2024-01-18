@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Persistance.DAO.HumidityMeasurement;
+using PlantCare.Domain.Models.HumidityMeasurement;
 
 namespace PlantCare.Persistance.Interfaces;
 
 public interface IHumidityMeasurementContext
 {
-    DbSet<HumidityMeasurementDAO> HumidityMeasurements { get; set; }
+    DbSet<HumidityMeasurement> HumidityMeasurements { get; set; }
     int SaveChanges();
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 }

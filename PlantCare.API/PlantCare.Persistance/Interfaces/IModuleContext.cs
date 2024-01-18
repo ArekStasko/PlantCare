@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Persistance.DAO.Module;
+using PlantCare.Domain.Models.Module;
 
 namespace PlantCare.Persistance.Interfaces;
 
 public interface IModuleContext
 {
-    DbSet<ModuleDAO> Modules { get; set; }
+    DbSet<Module> Modules { get; set; }
     int SaveChanges();
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 }

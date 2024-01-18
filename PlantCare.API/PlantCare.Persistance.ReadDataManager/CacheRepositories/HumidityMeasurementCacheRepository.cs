@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using PlantCare.Persistance.DAO.HumidityMeasurement;
+using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.CacheRepositories;
@@ -20,10 +20,10 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
     }
 
 
-    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurementDAO>>> Get(Guid id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)
     {
         string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
-        IReadOnlyCollection<IHumidityMeasurementDAO> data = await _cache.GetRecordAsync<List<IHumidityMeasurementDAO>>(humidityMeasurementsKey);
+        IReadOnlyCollection<IHumidityMeasurement> data = await _cache.GetRecordAsync<List<IHumidityMeasurement>>(humidityMeasurementsKey);
 
         if (data == null || data.Count == 0)
         {
@@ -32,6 +32,6 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
             return await humidityMeasurement.ProcessCacheResult(_cache, humidityMeasurementsKey);
         }
 
-        return new Result<IReadOnlyCollection<IHumidityMeasurementDAO>>(data!);
+        return new Result<IReadOnlyCollection<IHumidityMeasurement>>(data!);
     }
 }
