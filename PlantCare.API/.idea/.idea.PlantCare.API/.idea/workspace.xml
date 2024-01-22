@@ -254,7 +254,8 @@
       <workItem from="1705518200759" duration="654000" />
       <workItem from="1705604720239" duration="1060000" />
       <workItem from="1705605812502" duration="4783000" />
-      <workItem from="1705748458248" duration="3090000" />
+      <workItem from="1705748458248" duration="4539000" />
+      <workItem from="1705906082122" duration="1077000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -415,53 +416,25 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.Services/Extensions.cs</url>
           <line>15</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Extensions.cs" initialLine="15" containingFunctionPresentation="Method 'AddMappings'">
-            <startOffsets>
-              <option value="433" />
-            </startOffsets>
-            <endOffsets>
-              <option value="496" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Extensions.cs" initialLine="15" containingFunctionPresentation="Method 'AddMappings'" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
           <line>66</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'">
-            <startOffsets>
-              <option value="2174" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2175" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'" />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs</url>
           <line>24</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\PlantCommandHandlers\UpdatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="845" />
-            </startOffsets>
-            <endOffsets>
-              <option value="846" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\PlantCommandHandlers\UpdatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'" />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs</url>
           <line>41</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="41" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="1662" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1663" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="41" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
@@ -479,27 +452,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/HumidityMeasurementCacheRepository.cs</url>
           <line>24</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Cache\CacheRepositories\HumidityMeasurementCacheRepository.cs" initialLine="24" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="934" />
-            </startOffsets>
-            <endOffsets>
-              <option value="935" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Cache\CacheRepositories\HumidityMeasurementCacheRepository.cs" initialLine="24" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs</url>
           <line>23</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="23" containingFunctionPresentation="Method 'Add'">
-            <startOffsets>
-              <option value="957" />
-            </startOffsets>
-            <endOffsets>
-              <option value="958" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="23" containingFunctionPresentation="Method 'Add'" />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
