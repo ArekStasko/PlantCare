@@ -1,7 +1,9 @@
 using PlantCare.Commands;
+using PlantCare.Commands.Abstraction;
 using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
+using PlantCare.Queries.Abstraction;
 using Serilog;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
@@ -23,6 +25,9 @@ builder.WebHost.UseKestrel();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCommandsMapperProfile();
+builder.Services.AddQueriesMapperProfile();
 
 builder.Services.AddReadDataManager();
 builder.Services.AddReadCache();

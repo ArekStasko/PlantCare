@@ -1,5 +1,8 @@
-﻿namespace PlantCare.Commands.Abstraction;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-public class Extentions
+namespace PlantCare.Commands.Abstraction;
+
+public static class Extentions
 {
+    public static void AddCommandsMapperProfile(this IServiceCollection services) => services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 }

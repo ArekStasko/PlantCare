@@ -8,6 +8,11 @@ public static class Extensions
     public static void ConfigureCommands(this IServiceCollection services)
     {
         services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssemblies(typeof(CommandHandlers.PlantCommandHandlers.CreatePlantHandler).GetTypeInfo().Assembly));
+            cfg.RegisterServicesFromAssemblies(
+                typeof(CommandHandlers.PlantCommandHandlers.CreatePlantHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.ModuleCommandHandlers.AddModuleHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.PlaceCommandHandlers.CreatePlaceHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.HumidityMeasurementCommandHandlers.AddHumidityMeasurementHandler).GetTypeInfo().Assembly
+                ));
     }
 }
