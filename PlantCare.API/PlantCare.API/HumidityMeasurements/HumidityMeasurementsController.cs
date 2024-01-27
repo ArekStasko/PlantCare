@@ -11,7 +11,7 @@ namespace PlantCare.API.HumidityMeasurements;
 [Route("api/v1/humidity-measurements/[action]")]
 [ApiController]
 
-public class HumidityMeasurementsController
+public class HumidityMeasurementsController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
