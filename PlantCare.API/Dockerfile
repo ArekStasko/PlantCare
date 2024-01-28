@@ -1,9 +1,10 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["PlantCare.API/PlantCare.API.csproj", "PlantCare.API/"]
 COPY ["PlantCare.Commands/PlantCare.Commands.csproj", "PlantCare.Commands/"]
@@ -17,10 +18,11 @@ COPY ["PlantCare.Queries.Abstraction/PlantCare.Queries.Abstraction.csproj", "Pla
 RUN dotnet restore "PlantCare.API/PlantCare.API.csproj"
 COPY . .
 WORKDIR "/src/PlantCare.API"
-RUN dotnet build "PlantCare.API.csproj" -c Release -o /app/build
+RUN dotnet build "PlantCare.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "PlantCare.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "PlantCare.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

@@ -1,3 +1,4 @@
+using System.Net;
 using PlantCare.Commands;
 using PlantCare.Commands.Abstraction;
 using PlantCare.Persistance.ReadDataManager;
@@ -18,7 +19,10 @@ builder.Services.AddCors(options =>
         );
 });
 
-builder.WebHost.UseKestrel();
+builder.WebHost.UseKestrel(options =>
+{
+    options.Listen(IPAddress.Parse("0.0.0.0"), 8080);
+});
 
 // Add services to the container.
 
