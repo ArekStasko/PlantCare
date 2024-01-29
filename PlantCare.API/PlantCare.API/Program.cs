@@ -19,10 +19,7 @@ builder.Services.AddCors(options =>
         );
 });
 
-builder.WebHost.UseKestrel(options =>
-{
-    options.Listen(IPAddress.Parse("0.0.0.0"), 8080);
-});
+builder.WebHost.UseKestrel();
 
 // Add services to the container.
 
@@ -37,7 +34,6 @@ builder.Services.AddReadDataManager();
 builder.Services.AddReadCache();
 
 builder.Services.AddWriteDataManager();
-builder.Services.AddWriteCache();
 
 builder.Services.ConfigureQueries();
 builder.Services.ConfigureCommands();

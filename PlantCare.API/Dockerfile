@@ -7,14 +7,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["PlantCare.API/PlantCare.API.csproj", "PlantCare.API/"]
-COPY ["PlantCare.Commands/PlantCare.Commands.csproj", "PlantCare.Commands/"]
-COPY ["PlantCare.Commands.Abstraction/PlantCare.Commands.Abstraction.csproj", "PlantCare.Commands.Abstraction/"]
-COPY ["PlantCare.Domain/PlantCare.Domain.csproj", "PlantCare.Domain/"]
-COPY ["PlantCare.Persistance/PlantCare.Persistance.csproj", "PlantCare.Persistance/"]
-COPY ["PlantCare.Persistance.ReadDataManager/PlantCare.Persistance.ReadDataManager.csproj", "PlantCare.Persistance.ReadDataManager/"]
-COPY ["PlantCare.Persistance.WriteDataManager/PlantCare.Persistance.WriteDataManager.csproj", "PlantCare.Persistance.WriteDataManager/"]
-COPY ["PlantCare.Queries/PlantCare.Queries.csproj", "PlantCare.Queries/"]
-COPY ["PlantCare.Queries.Abstraction/PlantCare.Queries.Abstraction.csproj", "PlantCare.Queries.Abstraction/"]
 RUN dotnet restore "PlantCare.API/PlantCare.API.csproj"
 COPY . .
 WORKDIR "/src/PlantCare.API"

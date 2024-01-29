@@ -5,7 +5,7 @@ using PlantCare.Commands.Abstraction.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Abstraction.Queries.Plant;
 
-namespace PlantCare.API.Plant;
+namespace PlantCare.API.Controllers;
 
 [Route("api/v1/plants/[action]")]
 [ApiController]

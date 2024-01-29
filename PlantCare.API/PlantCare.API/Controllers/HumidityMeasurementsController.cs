@@ -1,12 +1,11 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.API.Place;
 using PlantCare.Commands.Abstraction.Commands.HumidityMeasurements;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Queries.Abstraction.Queries.HumidityMeasurements;
 
-namespace PlantCare.API.HumidityMeasurements;
+namespace PlantCare.API.Controllers;
 
 [Route("api/v1/humidity-measurements/[action]")]
 [ApiController]

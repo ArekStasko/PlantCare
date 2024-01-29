@@ -1,58 +1,58 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.Commands.Abstraction.Commands.Place;
+using PlantCare.Commands.Abstraction.Commands.Module;
 using PlantCare.Domain.Models.Plant;
-using PlantCare.Queries.Abstraction.Queries.Place;
+using GetModulesQuery = PlantCare.Queries.Abstraction.Queries.Module.GetModulesQuery;
 
-namespace PlantCare.API.Place;
+namespace PlantCare.API.Controllers;
 
-[Route("api/v1/places/[action]")]
+[Route("api/v1/modules/[action]")]
 [ApiController]
-public class PlaceController : ControllerBase
+public class ModuleController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public PlaceController(IMediator mediator, IMapper mapper, ILogger<PlaceController> logger)
+    public ModuleController(IMediator mediator, IMapper mapper, ILogger<PlaceController> logger)
     {
         _mediator = mediator;
         _mapper = mapper;
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/create")]
+    [HttpPost(Name = "[controller]/add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
+    public async ValueTask<IActionResult> Add()
     {
-        _logger.LogInformation("Create place controller method start processing");
-        var result = await _mediator.Send(command);
-        _logger.LogInformation("Create place controller method ends processing");
+        _logger.LogInformation("Create module controller method start processing");
+        var result = await _mediator.Send(new AddModuleCommand());
+        _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();
     }
 
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id)
+    public async ValueTask<IActionResult> Delete([FromQuery] Guid id)
     {
-        _logger.LogInformation("Delete place controller method start processing");
-        var deletePlaceCommand = _mapper.Map<DeletePlaceCommand>(id);
+        _logger.LogInformation("Delete module controller method start processing");
+        var deletePlaceCommand = _mapper.Map<DeleteModuleCommand>(id);
         var result = await _mediator.Send(deletePlaceCommand);
-        _logger.LogInformation("Delete place controller method ends processing");
+        _logger.LogInformation("Delete module controller method ends processing");
         return result.ToOk();
     }
 
     [HttpPost(Name = "[controller]/update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Update(UpdatePlaceCommand command)
+    public async ValueTask<IActionResult> Update(UpdateModuleCommand command)
     {
-        _logger.LogInformation("Edit place controller method start processing");
+        _logger.LogInformation("Edit module controller method start processing");
         var result = await _mediator.Send(command);
-        _logger.LogInformation("Edit place controller method ends processing");
+        _logger.LogInformation("Edit module controller method ends processing");
         return result.ToOk();
     }
 
@@ -61,9 +61,9 @@ public class PlaceController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetAll()
     {
-        _logger.LogInformation("GetAll places controller method start processing");
-        var result = await _mediator.Send(new GetPlacesQuery());
-        _logger.LogInformation("GetAll places controller method ends processing");
+        _logger.LogInformation("GetAll modules controller method start processing");
+        var result = await _mediator.Send(new GetModulesQuery());
+        _logger.LogInformation("GetAll modules controller method ends processing");
         return result.ToOk();
     }
 }

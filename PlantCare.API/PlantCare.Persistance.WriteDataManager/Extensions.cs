@@ -17,18 +17,6 @@ public static class Extensions
         services.AddWriteRepositories();
     }
 
-    public static void AddWriteCache(this IServiceCollection services)
-    {
-        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
-        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
-
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = redisConnectionString;
-            options.InstanceName = redisInstance;
-        });
-    }
-
     private static void AddWriteDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();
