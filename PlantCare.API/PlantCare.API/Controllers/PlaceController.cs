@@ -56,10 +56,10 @@ public class PlaceController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/get-all")]
+    [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetAll()
+    public async ValueTask<IActionResult> Get()
     {
         _logger.LogInformation("GetAll places controller method start processing");
         var result = await _mediator.Send(new GetPlacesQuery());

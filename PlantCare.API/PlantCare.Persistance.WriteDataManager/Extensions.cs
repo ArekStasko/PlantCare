@@ -43,11 +43,11 @@ public static class Extensions
 
     private static string GetConnectionString()
     {
-        var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");
-        var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
-        var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
-        var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
-        var databaseName = Environment.GetEnvironmentVariable("WriteDatabaseName");
+        var databaseServer = "192.168.1.42";
+        var databasePort = "1433";
+        var databaseUser = "sa";
+        var databasePassword = "Password.1234";
+        var databaseName = "PlantCare_Write_DB";
 
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";

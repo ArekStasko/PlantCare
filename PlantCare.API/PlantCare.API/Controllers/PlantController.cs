@@ -56,10 +56,10 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/get")]
+    [HttpGet(Name = "[controller]/getById")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int id)
+    public async ValueTask<IActionResult> GetById([FromQuery] int id)
     {
      
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
@@ -70,10 +70,10 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
     
-    [HttpGet(Name = "[controller]/get-all")]
+    [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetAll()
+    public async ValueTask<IActionResult> Get()
     {
         _logger.LogInformation("GetAll plant controller method start processing");
         var result = await _mediator.Send(new GetPlantsQuery());

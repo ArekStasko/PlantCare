@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "77b4c116-a791-4f0d-ba5a-55de057eda1c",
+		"name": "PlantCare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11070618"
+	},
+	"item": [
+		{
+			"name": "Plants",
+			"item": [
+				{
+					"name": "Create Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pomato\",\r\n    \"description\": \"Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{VegetableType}},\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}plants/create",
+							"host": [
+								"{{BaseURL}}plants"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}plants/delete?id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}plants"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Updated Test Name\",\r\n    \"description\": \"Updated Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{FruitType}},\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}plants/update",
+							"host": [
+								"{{BaseURL}}plants"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plant By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}plants/getById?id={{CurrentPlantId}}",
+							"host": [
+								"{{BaseURL}}plants"
+							],
+							"path": [
+								"getById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlantId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List of Plants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}plants/get",
+							"host": [
+								"{{BaseURL}}plants"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "Update Place",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{CurrentPlaceId}},\r\n  \"name\": \"Salon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}places/update",
+							"host": [
+								"{{BaseURL}}places"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Place",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Salon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}places/create",
+							"host": [
+								"{{BaseURL}}places"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Place",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}places/delete?id={{CurrentPlaceId}}",
+							"host": [
+								"{{BaseURL}}places"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{CurrentPlaceId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List Of Places",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}places/get",
+							"host": [
+								"{{BaseURL}}places"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Add Module",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}modules/add",
+							"host": [
+								"{{BaseURL}}modules"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Module",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{ModuleId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}modules/update",
+							"host": [
+								"{{BaseURL}}modules"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Module",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}modules/delete?id={{ModuleId}}",
+							"host": [
+								"{{BaseURL}}modules"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ModuleId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List Of Modules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}modules/get",
+							"host": [
+								"{{BaseURL}}modules"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Humidity Measurements",
+			"item": [
+				{
+					"name": "Add Humidity Measurement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ModuleId\": \"{{ModuleId}}\",\r\n    \"Humidity\": \"70\",\r\n    \"MeasurementDate\": \"2018-12-10T13:49:51.141Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}humidity-measurements/add",
+							"host": [
+								"{{BaseURL}}humidity-measurements"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List Of Humidity Measurements By Module Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}humidity-measurements/get?id={{ModuleId}}",
+							"host": [
+								"{{BaseURL}}humidity-measurements"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ModuleId}}"
+								},
+								{
+									"key": "fromDate",
+									"value": "2023-12-12 19:41:54.0703074",
+									"disabled": true
+								},
+								{
+									"key": "toDate",
+									"value": "2023-12-13 19:46:23.4832095",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

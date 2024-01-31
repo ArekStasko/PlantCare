@@ -20,8 +20,8 @@ public static class Extensions
 
     public static void AddReadCache(this IServiceCollection services)
     {
-        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
-        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
+        var redisConnectionString = $"http://192.168.1.42:6379,password=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81";
+        var redisInstance = "plantcare";
 
         services.AddStackExchangeRedisCache(options =>
         {
@@ -61,11 +61,11 @@ public static class Extensions
 
     private static string GetConnectionString()
     {
-        var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");
-        var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
-        var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
-        var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
-        var databaseName = Environment.GetEnvironmentVariable("ReadDatabaseName");
+        var databaseServer = "192.168.1.42";
+        var databasePort = "1433";
+        var databaseUser = "sa";
+        var databasePassword = "Password.1234";
+        var databaseName = "PlantCare_Read_DB";
 
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";
