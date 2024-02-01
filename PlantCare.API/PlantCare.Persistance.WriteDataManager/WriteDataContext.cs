@@ -4,10 +4,11 @@ using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteContexts;
 
 namespace PlantCare.Persistance.WriteDataManager;
 
-public class WriteDataContext : DbContext, IPlantContext, IPlaceContext, IModuleContext, IHumidityMeasurementContext
+public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContext, IModuleWriteContext, IHumidityMeasurementWriteContext
 {
     public WriteDataContext(){}
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadContexts;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 using PlantCare.Persistance.ReadDataManager.CacheRepositories;
 using PlantCare.Persistance.ReadDataManager.Repositories;
@@ -20,8 +21,8 @@ public static class Extensions
 
     public static void AddReadCache(this IServiceCollection services)
     {
-        var redisConnectionString = $"http://192.168.1.42:6379,password=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81";
-        var redisInstance = "plantcare";
+        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
+        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 
         services.AddStackExchangeRedisCache(options =>
         {
@@ -43,10 +44,10 @@ public static class Extensions
 
     private static void AddReadRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IPlaceContext, ReadDataContext>();
-        services.AddScoped<IPlantContext, ReadDataContext>();
-        services.AddScoped<IModuleContext, ReadDataContext>();
-        services.AddScoped<IHumidityMeasurementContext, ReadDataContext>();
+        services.AddScoped<IPlaceReadContext, ReadDataContext>();
+        services.AddScoped<IPlantReadContext, ReadDataContext>();
+        services.AddScoped<IModuleReadContext, ReadDataContext>();
+        services.AddScoped<IHumidityMeasurementReadContext, ReadDataContext>();
 
         services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
@@ -61,11 +62,11 @@ public static class Extensions
 
     private static string GetConnectionString()
     {
-        var databaseServer = "192.168.1.42";
-        var databasePort = "1433";
-        var databaseUser = "sa";
-        var databasePassword = "Password.1234";
-        var databaseName = "PlantCare_Read_DB";
+        var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");
+        var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
+        var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
+        var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
+        var databaseName = Environment.GetEnvironmentVariable("ReadDatabaseName");
 
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";

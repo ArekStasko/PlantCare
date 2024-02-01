@@ -4,16 +4,17 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteContexts;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Persistance.WriteDataManager.Repositories;
 
 public class PlantRepository : IWritePlantRepository
 {
-    private readonly IPlantContext _context;
+    private readonly IPlantWriteContext _context;
     private readonly ILogger<PlantRepository> _logger;
     private readonly IDistributedCache _cache;
-    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger, IDistributedCache cache)
+    public PlantRepository(IPlantWriteContext context, ILogger<PlantRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;

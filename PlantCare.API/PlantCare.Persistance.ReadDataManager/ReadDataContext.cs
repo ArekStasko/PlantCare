@@ -4,10 +4,11 @@ using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadContexts;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
-public class ReadDataContext : DbContext, IPlantContext, IPlaceContext, IModuleContext, IHumidityMeasurementContext
+public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext
 {
     public ReadDataContext(){}
 

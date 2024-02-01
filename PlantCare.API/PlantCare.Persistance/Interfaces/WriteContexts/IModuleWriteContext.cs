@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.Module;
 
-namespace PlantCare.Persistance.Interfaces;
+namespace PlantCare.Persistance.Interfaces.WriteContexts;
 
-public interface IModuleContext
+public interface IModuleWriteContext
 {
     DbSet<Module> Modules { get; set; }
     int SaveChanges();

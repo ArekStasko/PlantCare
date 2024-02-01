@@ -3,15 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadContexts;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
 public class PlantRepository : IReadPlantRepository
 {
-     private readonly IPlantContext _context;
+     private readonly IPlantReadContext _context;
     private readonly ILogger<PlantRepository> _logger;
-    public PlantRepository(IPlantContext context, ILogger<PlantRepository> logger)
+    public PlantRepository(IPlantReadContext context, ILogger<PlantRepository> logger)
     {
         _context = context;
         _logger = logger;

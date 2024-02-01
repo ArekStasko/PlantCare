@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.HumidityMeasurement;
 
-namespace PlantCare.Persistance.Interfaces;
+namespace PlantCare.Persistance.Interfaces.ReadContexts;
 
-public interface IHumidityMeasurementContext
+public interface IHumidityMeasurementReadContext
 {
     DbSet<HumidityMeasurement> HumidityMeasurements { get; set; }
     int SaveChanges();

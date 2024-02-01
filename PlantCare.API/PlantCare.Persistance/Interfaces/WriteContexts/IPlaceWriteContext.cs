@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.Place;
 
-namespace PlantCare.Persistance.Interfaces;
+namespace PlantCare.Persistance.Interfaces.WriteContexts;
 
-public interface IPlaceContext
+public interface IPlaceWriteContext
 {
     DbSet<Place> Places { get; set; }
     int SaveChanges();

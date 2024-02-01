@@ -1,24 +1,22 @@
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Place;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadContexts;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
 public class PlaceRepository : IReadPlaceRepository
 {
-    private readonly IPlaceContext _context;
+    private readonly IPlaceReadContext _context;
     private readonly ILogger<PlaceRepository> _logger;
-    private readonly IDistributedCache _cache;
 
-    public PlaceRepository(IPlaceContext context, ILogger<PlaceRepository> logger, IDistributedCache cache)
+    public PlaceRepository(IPlaceReadContext context, ILogger<PlaceRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _cache = cache;
     }
     
     public virtual async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()

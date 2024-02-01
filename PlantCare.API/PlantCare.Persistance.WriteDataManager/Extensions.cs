@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.WriteContexts;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 using PlantCare.Persistance.WriteDataManager.Repositories;
 
@@ -30,10 +31,10 @@ public static class Extensions
 
     private static void AddWriteRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IPlaceContext, WriteDataContext>();
-        services.AddScoped<IPlantContext, WriteDataContext>();
-        services.AddScoped<IModuleContext, WriteDataContext>();
-        services.AddScoped<IHumidityMeasurementContext, WriteDataContext>();
+        services.AddScoped<IPlaceWriteContext, WriteDataContext>();
+        services.AddScoped<IPlantWriteContext, WriteDataContext>();
+        services.AddScoped<IModuleWriteContext, WriteDataContext>();
+        services.AddScoped<IHumidityMeasurementWriteContext, WriteDataContext>();
 
         services.AddScoped<IWritePlantRepository, PlantRepository>();
         services.AddScoped<IWritePlaceRepository, PlaceRepository>();
@@ -43,11 +44,11 @@ public static class Extensions
 
     private static string GetConnectionString()
     {
-        var databaseServer = "192.168.1.42";
-        var databasePort = "1433";
-        var databaseUser = "sa";
-        var databasePassword = "Password.1234";
-        var databaseName = "PlantCare_Write_DB";
+        var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");
+        var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
+        var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
+        var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
+        var databaseName = Environment.GetEnvironmentVariable("WriteDatabaseName");
 
         var connectionString =
             $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";

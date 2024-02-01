@@ -4,17 +4,18 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces;
+using PlantCare.Persistance.Interfaces.ReadContexts;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories;
 
 public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
 {
-    private readonly IHumidityMeasurementContext _context;
+    private readonly IHumidityMeasurementReadContext _context;
     private readonly ILogger<HumidityMeasurementRepository> _logger;
     private readonly IDistributedCache _cache;
 
-    public HumidityMeasurementRepository(IHumidityMeasurementContext context, ILogger<HumidityMeasurementRepository> logger, IDistributedCache cache)
+    public HumidityMeasurementRepository(IHumidityMeasurementReadContext context, ILogger<HumidityMeasurementRepository> logger, IDistributedCache cache)
     {
         _context = context;
         _logger = logger;
