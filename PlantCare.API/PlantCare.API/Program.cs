@@ -1,10 +1,8 @@
 using System.Net;
 using PlantCare.Commands;
-using PlantCare.Commands.Abstraction;
 using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
-using PlantCare.Queries.Abstraction;
 using Serilog;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";

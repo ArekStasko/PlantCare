@@ -15,4 +15,7 @@ public static class Extensions
                 typeof(CommandHandlers.HumidityMeasurementCommandHandlers.AddHumidityMeasurementHandler).GetTypeInfo().Assembly
                 ));
     }
+    
+    public static void AddCommandsMapperProfile(this IServiceCollection services) => services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 }

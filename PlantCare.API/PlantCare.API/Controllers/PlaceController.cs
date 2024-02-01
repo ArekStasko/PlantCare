@@ -1,9 +1,9 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.Commands.Abstraction.Commands.Place;
+using PlantCare.Commands.Commands.Place;
 using PlantCare.Domain.Models.Plant;
-using PlantCare.Queries.Abstraction.Queries.Place;
+using PlantCare.Queries.Queries.Place;
 
 namespace PlantCare.API.Controllers;
 

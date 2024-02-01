@@ -3,8 +3,8 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
-using PlantCare.Queries.Abstraction.Queries.Module;
-using PlantCare.Queries.Abstraction.Responses.Module;
+using PlantCare.Queries.Queries.Module;
+using PlantCare.Queries.Responses.Module;
 
 namespace PlantCare.Queries.QueryHandlers.ModuleQueryHandlers;
 

@@ -1,9 +1,9 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.Commands.Abstraction.Commands.HumidityMeasurements;
+using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Domain.Models.HumidityMeasurement;
-using PlantCare.Queries.Abstraction.Queries.HumidityMeasurements;
+using PlantCare.Queries.Queries.HumidityMeasurements;
 
 namespace PlantCare.API.Controllers;
 

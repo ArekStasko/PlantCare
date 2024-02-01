@@ -23,11 +23,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PlantCare.Commands.Abstraction\PlantCare.Commands.Abstraction.csproj" />
       <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
-      <ProjectReference Include="..\PlantCare.Queries.Abstraction\PlantCare.Queries.Abstraction.csproj" />
       <ProjectReference Include="..\PlantCare.Queries\PlantCare.Queries.csproj" />
     </ItemGroup>
 

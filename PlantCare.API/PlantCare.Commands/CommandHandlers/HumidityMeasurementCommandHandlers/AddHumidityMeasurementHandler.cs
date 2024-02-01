@@ -2,7 +2,7 @@ using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.Commands.Abstraction.Commands.HumidityMeasurements;
+using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 

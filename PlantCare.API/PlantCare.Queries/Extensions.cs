@@ -16,4 +16,6 @@ public static class Extensions
                 typeof(QueryHandlers.HumidityMeasurementsQueryHandlers.GetHumidityMeasurementsHandler).GetTypeInfo().Assembly
             ));
     }
+    
+    public static void AddQueriesMapperProfile(this IServiceCollection services) => services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 }
