@@ -1,5 +1,6 @@
 using System.Net;
 using PlantCare.Commands;
+using PlantCare.ConsistencyManager;
 using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
@@ -24,6 +25,9 @@ builder.WebHost.UseKestrel();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddConsistencyManagerMapperProfile();
+builder.Services.AddConsistencyManager();
 
 builder.Services.AddCommandsMapperProfile();
 builder.Services.AddQueriesMapperProfile();

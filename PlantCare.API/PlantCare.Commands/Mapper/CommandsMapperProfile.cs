@@ -3,6 +3,7 @@ using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Commands.Commands.Module;
 using PlantCare.Commands.Commands.Place;
 using PlantCare.Commands.Commands.Plant;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -14,6 +15,12 @@ public class CommandsMapperProfile : Profile
 {
     public CommandsMapperProfile()
     {
+        // DTO MAPPINGS
+        CreateMap<Plant, PlantDto>();
+        CreateMap<Place, PlaceDto>();
+        CreateMap<Module, ModuleDto>();
+        CreateMap<HumidityMeasurement, HumidityMeasurementDto>();
+            
         // PLANT MAPPINGS
         CreateMap<CreatePlantCommand, Plant>()
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
