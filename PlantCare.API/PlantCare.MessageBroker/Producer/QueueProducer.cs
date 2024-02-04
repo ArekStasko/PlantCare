@@ -1,0 +1,51 @@
+using System.Text;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using PlantCare.MessageBroker.Messages;
+using RabbitMQ.Client;
+
+namespace PlantCare.MessageBroker.Producer;
+
+public class QueueProducer<TQueueMessage> : IQueueProducer<TQueueMessage> where TQueueMessage : IQueueMessage
+{
+    private readonly ILogger<QueueProducer<TQueueMessage>> _logger;
+    private readonly string _queueName;
+    private readonly IModel _channel;
+
+    public QueueProducer(ILogger<QueueProducer<TQueueMessage>> logger, IModel channel, string queueName)
+    {
+        _logger = logger;
+        _channel = channel;
+        _queueName = queueName;
+    }
+    
+    public void PublishMessage(TQueueMessage message)
+    {
+        if (Equals(message, default(TQueueMessage))) throw new ArgumentException(nameof(message));
+        if (message.TimeToLive.Ticks <= 0) throw new Exception("Time to live cannot be less or equal 0");
+
+        message.MessageId = Guid.NewGuid();
+
+        try
+        {
+            var serializedMessage = SerializeMessage(message);
+
+            var properties = _channel.CreateBasicProperties();
+            properties.Persistent = true;
+            properties.Type = _queueName;
+            properties.Expiration = message.TimeToLive.TotalMilliseconds.ToString();
+            
+            _channel.BasicPublish(_queueName, _queueName, properties, serializedMessage);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Something went wrong while publishing queue message");
+        }
+    }
+    
+    private static byte[] SerializeMessage(TQueueMessage message)
+    {
+        var stringContent = JsonConvert.SerializeObject(message);
+        return Encoding.UTF8.GetBytes(stringContent);
+    }
+}

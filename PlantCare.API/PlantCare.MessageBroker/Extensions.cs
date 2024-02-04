@@ -2,6 +2,7 @@
 using PlantCare.MessageBroker.Providers.ChannelProvider;
 using PlantCare.MessageBroker.Providers.ConnectionProvider;
 using PlantCare.MessageBroker.Providers.QueueChannelProvider;
+using PlantCare.MessageBroker.Producer;
 using RabbitMQ.Client;
 
 namespace PlantCare.MessageBroker;
@@ -29,5 +30,6 @@ public static class Extensions
         services.AddSingleton<IConnectionProvider, ConnectionProvider>();
         services.AddScoped<IChannelProvider, ChannelProvider>();
         services.AddScoped(typeof(IQueueChannelProvider<>), typeof(QueueChannelProvider<>));
+        services.AddScoped(typeof(IQueueProducer<>), typeof(QueueProducer<>));
     }
 }

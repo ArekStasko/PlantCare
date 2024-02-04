@@ -16,15 +16,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/QueueChannelProvider/IQueueChannelProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/QueueChannelProvider/QueueChannelProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/IQueueMessage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Publishers/IQueueProducer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ChannelProvider/ChannelProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ChannelProvider/ChannelProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ChannelProvider/IChannelProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ChannelProvider/IChannelProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ConnectionProvider/ConnectionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ConnectionProvider/ConnectionProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ConnectionProvider/IConnectionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Providers/ConnectionProvider/IConnectionProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/PlantCare.MessageBroker.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/PlantCare.MessageBroker.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Publishers/WritePublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Publishers/QueueProducer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +295,7 @@
       <workItem from="1706813418646" duration="3565000" />
       <workItem from="1706904579982" duration="628000" />
       <workItem from="1706979067326" duration="5315000" />
-      <workItem from="1707053796379" duration="3602000" />
+      <workItem from="1707053796379" duration="4543000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
