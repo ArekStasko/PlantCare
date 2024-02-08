@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
+      <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
     </ItemGroup>
 
     <ItemGroup>

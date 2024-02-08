@@ -1,6 +1,9 @@
 using System.Net;
 using PlantCare.Commands;
 using PlantCare.ConsistencyManager;
+using PlantCare.ConsistencyManager.Services;
+using PlantCare.MessageBroker;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
@@ -27,7 +30,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddConsistencyManagerMapperProfile();
-builder.Services.AddConsistencyManager();
 
 builder.Services.AddCommandsMapperProfile();
 builder.Services.AddQueriesMapperProfile();
@@ -39,6 +41,13 @@ builder.Services.AddWriteDataManager();
 
 builder.Services.ConfigureQueries();
 builder.Services.ConfigureCommands();
+
+builder.Services.AddMessageBroker();
+builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, HumidityMeasurementMessage>();
+builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, ModuleMessage>();
+builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, PlaceMessage>();
+builder.Services.AddQueueMessageConsumer<PlantConsistencyService, PlantMessage>();
+
 
 var logger = new LoggerConfiguration()
     .ReadFrom

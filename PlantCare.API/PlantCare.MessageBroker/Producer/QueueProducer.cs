@@ -9,14 +9,12 @@ namespace PlantCare.MessageBroker.Producer;
 public class QueueProducer<TQueueMessage> : IQueueProducer<TQueueMessage> where TQueueMessage : IQueueMessage
 {
     private readonly ILogger<QueueProducer<TQueueMessage>> _logger;
-    private readonly string _queueName;
     private readonly IModel _channel;
 
-    public QueueProducer(ILogger<QueueProducer<TQueueMessage>> logger, IModel channel, string queueName)
+    public QueueProducer(ILogger<QueueProducer<TQueueMessage>> logger, IModel channel)
     {
         _logger = logger;
         _channel = channel;
-        _queueName = queueName;
     }
     
     public void PublishMessage(TQueueMessage message)
@@ -29,13 +27,14 @@ public class QueueProducer<TQueueMessage> : IQueueProducer<TQueueMessage> where 
         try
         {
             var serializedMessage = SerializeMessage(message);
-
+            var queueName = message.QueueName;
+            
             var properties = _channel.CreateBasicProperties();
             properties.Persistent = true;
-            properties.Type = _queueName;
+            properties.Type = queueName;
             properties.Expiration = message.TimeToLive.TotalMilliseconds.ToString();
             
-            _channel.BasicPublish(_queueName, _queueName, properties, serializedMessage);
+            _channel.BasicPublish(queueName, queueName, properties, serializedMessage);
         }
         catch (Exception e)
         {

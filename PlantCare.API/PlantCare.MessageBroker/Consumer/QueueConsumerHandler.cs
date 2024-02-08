@@ -32,12 +32,10 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
     {
         var scope = _serviceProvider.CreateScope();
 
-        // Request a channel for registering the Consumer for this Queue
         _consumerRegistrationChannel = scope.ServiceProvider.GetRequiredService<IQueueChannelProvider<TQueueMessage>>().GetChannel();
 
         var consumer = new AsyncEventingBasicConsumer(_consumerRegistrationChannel);
 
-        // Register the trigger
         consumer.Received += HandleMessage;
         try
         {
@@ -65,42 +63,31 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
     
      private async Task HandleMessage(object ch, BasicDeliverEventArgs ea)
     {
-        // Create a new scope for handling the consumption of the queue message
         var consumerScope = _serviceProvider.CreateScope();
 
-        // This is the channel on which the Queue message is delivered to the consumer
         var consumingChannel = ((AsyncEventingBasicConsumer)ch).Model;
 
         IModel producingChannel = null;
         try
         {
-            // Within this processing scope, we will open a new channel that will handle all messages produced within this consumer/scope.
-            // This is neccessairy to be able to commit them as a transaction
             producingChannel = consumerScope.ServiceProvider.GetRequiredService<IChannelProvider>()
                 .GetChannel();
 
-            // Serialize the message
             var message = DeserializeMessage(ea.Body.ToArray());
 
-            // Enable transaction mode
             producingChannel.TxSelect();
 
-            // Request an instance of the consumer from the Service Provider
             var consumerInstance = consumerScope.ServiceProvider.GetRequiredService<TMessageConsumer>();
 
-            // Trigger the consumer to start processing the message
             await consumerInstance.ConsumeAsync(message);
 
-            // Ensure both channels are open before committing
             if (producingChannel.IsClosed || consumingChannel.IsClosed)
             {
                 throw new Exception("A channel is closed during processing");
             }
 
-            // Commit the transaction of any messages produced within this consumer scope
             producingChannel.TxCommit();
 
-            // Acknowledge successfull handling of the message
             consumingChannel.BasicAck(ea.DeliveryTag, false);
         }
         catch (Exception ex)
@@ -111,7 +98,6 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
         }
         finally
         {
-            // Dispose the scope which ensures that all Channels that are created within the consumption process will be disposed
             consumerScope.Dispose();
         }
     }
@@ -120,14 +106,11 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
     {
         try
         {
-            // The consumption process could fail before the scope channel is created
             if (scopeChannel != null)
             {
-                // Rollback any massages within the transaction
                 scopeChannel.TxRollback();
             }
 
-            // Reject the message on the consumption channel
             consumeChannel.BasicReject(deliveryTag, false);
         }
         catch (Exception bex)
