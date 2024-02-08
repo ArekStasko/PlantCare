@@ -2,6 +2,8 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
@@ -9,11 +11,13 @@ namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
 {
     private readonly IWriteModuleRepository _repository;
+    private readonly IQueueProducer<ModuleMessage> _queueProducer;
     private readonly ILogger<AddModuleHandler> _logger;
 
-    public AddModuleHandler(IWriteModuleRepository repository, ILogger<AddModuleHandler> logger)
+    public AddModuleHandler(IWriteModuleRepository repository, IQueueProducer<ModuleMessage> queueProducer, ILogger<AddModuleHandler> logger)
     {
         _repository = repository;
+        _queueProducer = queueProducer;
         _logger = logger;
     }
 

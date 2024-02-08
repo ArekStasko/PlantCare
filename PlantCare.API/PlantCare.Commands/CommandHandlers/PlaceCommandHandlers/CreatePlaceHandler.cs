@@ -3,7 +3,10 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Place;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Place;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;
@@ -12,13 +15,15 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
 {
     private readonly IWritePlaceRepository _placeRepository;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<PlaceMessage> _queueProducer;
     private readonly ILogger<CreatePlaceHandler> _logger;
 
-    public CreatePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, ILogger<CreatePlaceHandler> logger)
+    public CreatePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, IQueueProducer<PlaceMessage> queueProducer, ILogger<CreatePlaceHandler> logger)
     {
         _placeRepository = placeRepository;
-        _logger = logger;
         _mapper = mapper;
+        _queueProducer = queueProducer;
+        _logger = logger;
     }
 
     public async Task<Result<bool>> Handle(CreatePlaceCommand command, CancellationToken cancellationToken)
@@ -27,6 +32,16 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
         {
             _logger.LogInformation("CreatePlaceHandler handles request");
             IPlace placeToCreate = _mapper.Map<Place>(command);
+            // THIS IS FOR TEST PURPOSES
+            var messageToPublish = new PlaceMessage()
+            {
+                MessageId = Guid.NewGuid(),
+                TimeToLive = TimeSpan.FromMinutes(30),
+                QueueName = "place",
+                Action = ActionType.Add,
+                PlaceData = (PlaceDto)placeToCreate
+            };
+            _queueProducer.PublishMessage(messageToPublish);
             var result = await _placeRepository.Create(placeToCreate);
             return result.Match(succ =>
             {

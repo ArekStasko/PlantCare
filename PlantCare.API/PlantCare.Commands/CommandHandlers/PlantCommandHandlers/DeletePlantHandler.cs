@@ -3,6 +3,8 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Plant;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
@@ -11,12 +13,14 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantCommand, Result<boo
 {
     private readonly IWritePlantRepository _plantRepository;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<PlantMessage> _queueProducer;
     private readonly ILogger<DeletePlantHandler> _logger;
     
-    public DeletePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, ILogger<DeletePlantHandler> logger)
+    public DeletePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, IQueueProducer<PlantMessage> queueProducer, ILogger<DeletePlantHandler> logger)
     {
         _plantRepository = plantRepository;
         _mapper = mapper;
+        _queueProducer = queueProducer;
         _logger = logger;
     }
     

@@ -4,6 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Domain.Models.HumidityMeasurement;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.HumidityMeasurementCommandHandlers;
@@ -11,14 +13,16 @@ namespace PlantCare.Commands.CommandHandlers.HumidityMeasurementCommandHandlers;
 public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurementCommand, Result<bool>>
 {
     private readonly IWriteHumidityMeasurementRepository _repository;
-    private readonly ILogger<AddHumidityMeasurementHandler> _logger;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<HumidityMeasurementMessage> _consumer;
+    private readonly ILogger<AddHumidityMeasurementHandler> _logger;
 
-    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, ILogger<AddHumidityMeasurementHandler> logger, IMapper mapper)
+    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, IMapper mapper, IQueueProducer<HumidityMeasurementMessage> consumer, ILogger<AddHumidityMeasurementHandler> logger)
     {
         _repository = repository;
-        _logger = logger;
         _mapper = mapper;
+        _consumer = consumer;
+        _logger = logger;
     }
     
     public async Task<Result<bool>> Handle(AddHumidityMeasurementCommand request, CancellationToken cancellationToken)

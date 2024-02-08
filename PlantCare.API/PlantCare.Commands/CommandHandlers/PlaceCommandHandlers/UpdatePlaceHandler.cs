@@ -4,6 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Place;
 using PlantCare.Domain.Models.Place;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;
@@ -12,12 +14,14 @@ public class UpdatePlaceHandler : IRequestHandler<UpdatePlaceCommand, Result<boo
 {
     private readonly IWritePlaceRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<PlaceMessage> _queueProducer;
     private readonly ILogger<UpdatePlaceHandler> _logger;
 
-    public UpdatePlaceHandler(IWritePlaceRepository repository, IMapper mapper, ILogger<UpdatePlaceHandler> logger)
+    public UpdatePlaceHandler(IWritePlaceRepository repository, IMapper mapper, IQueueProducer<PlaceMessage> queueProducer, ILogger<UpdatePlaceHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
+        _queueProducer = queueProducer;
         _logger = logger;
     }
 

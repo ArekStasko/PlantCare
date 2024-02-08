@@ -4,6 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
 using PlantCare.Domain.Models.Module;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
@@ -11,14 +13,16 @@ namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 public class UpdateModuleHandler : IRequestHandler<UpdateModuleCommand, Result<bool>>
 {
     private readonly IWriteModuleRepository _repository;
-    private readonly ILogger<UpdateModuleHandler> _logger;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<ModuleMessage> _queueProducer;
+    private readonly ILogger<UpdateModuleHandler> _logger;
     
-    public UpdateModuleHandler(IWriteModuleRepository repository, ILogger<UpdateModuleHandler> logger, IMapper mapper)
+    public UpdateModuleHandler(IWriteModuleRepository repository, IMapper mapper, IQueueProducer<ModuleMessage> queueProducer, ILogger<UpdateModuleHandler> logger)
     {
         _repository = repository;
-        _logger = logger;
         _mapper = mapper;
+        _queueProducer = queueProducer;
+        _logger = logger;
     }
     
     public async Task<Result<bool>> Handle(UpdateModuleCommand request, CancellationToken cancellationToken)

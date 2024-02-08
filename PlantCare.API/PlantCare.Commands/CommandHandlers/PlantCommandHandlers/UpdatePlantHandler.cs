@@ -4,6 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
@@ -12,12 +14,14 @@ public class UpdatePlantHandler: IRequestHandler<UpdatePlantCommand, Result<bool
 {
     private readonly IWritePlantRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IQueueProducer<PlantMessage> _queueProducer;
     private readonly ILogger<UpdatePlantHandler> _logger;
 
-    public UpdatePlantHandler(IWritePlantRepository repository, IMapper mapper, ILogger<UpdatePlantHandler> logger)
+    public UpdatePlantHandler(IWritePlantRepository repository, IMapper mapper, IQueueProducer<PlantMessage> queueProducer, ILogger<UpdatePlantHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
+        _queueProducer = queueProducer;
         _logger = logger;
     }
 
