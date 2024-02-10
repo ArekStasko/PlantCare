@@ -25,10 +25,9 @@ services:
             - '6379:6379'
         command: redis-server --bind redis-cache --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes --loglevel warning
     rabbitmq:
-        image: rabbitmq:latest
+        image: rabbitmq:3-management
         container_name: rabbitmq
         ports:
-            - "5672:5672"
             - "15672:15672"
     plantcare-api:
         build: ./PlantCare.API
@@ -45,7 +44,7 @@ services:
             RedisInstance: "plantcare"
             SpecificCorsOrigin: "http://192.168.1.42:3000"
             MessageBrokerHostName: "rabbitmq"
-            MessageBrokerPort: "5672"
+            MessageBrokerPort: "15672"
             MessageBrokerUsername: "plantcareapi"
             MessageBrokerPassword: "Password.1234"
         depends_on:
