@@ -10,11 +10,11 @@ public class ChannelProvider : IChannelProvider
     private readonly ILogger<ChannelProvider> _logger;
     private IModel _model;
 
-    public ChannelProvider(IConnectionProvider connectionProvider, ILogger<ChannelProvider> logger, IModel model)
+    public ChannelProvider(IConnectionProvider connectionProvider, ILogger<ChannelProvider> logger)
     {
         _connectionProvider = connectionProvider;
         _logger = logger;
-        _model = model;
+        _model = _connectionProvider.GetConnection().CreateModel();
     }
 
     public IModel GetChannel()

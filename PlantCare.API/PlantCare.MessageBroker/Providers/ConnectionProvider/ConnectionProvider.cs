@@ -6,10 +6,10 @@ namespace PlantCare.MessageBroker.Providers.ConnectionProvider;
 public class ConnectionProvider : IConnectionProvider
 {
     private readonly ILogger<ConnectionProvider> _logger;
-    private readonly ConnectionFactory _connectionFactory;
+    private readonly IAsyncConnectionFactory _connectionFactory;
     private IConnection _connection;
 
-    public ConnectionProvider(ILogger<ConnectionProvider> logger, ConnectionFactory connectionFactory)
+    public ConnectionProvider(ILogger<ConnectionProvider> logger, IAsyncConnectionFactory connectionFactory)
     {
         _logger = logger;
         _connectionFactory = connectionFactory;

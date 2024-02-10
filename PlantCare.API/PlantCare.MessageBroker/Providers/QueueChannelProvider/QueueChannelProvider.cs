@@ -9,10 +9,9 @@ public class QueueChannelProvider<TQueueMessage> : IQueueChannelProvider<TQueueM
     private IModel _channel;
     private readonly string _queueName;
 
-    public QueueChannelProvider(IChannelProvider channelProvider, IModel channel)
+    public QueueChannelProvider(IChannelProvider channelProvider)
     {
         _channelProvider = channelProvider;
-        _channel = channel; 
     }
 
     public IModel GetChannel()
