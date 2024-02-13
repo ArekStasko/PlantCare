@@ -23,13 +23,7 @@ public static class Extensions
         {
             var factory = new ConnectionFactory()
             {
-                UserName = Environment.GetEnvironmentVariable("MessageBrokerUsername"),
-                Password = Environment.GetEnvironmentVariable("MessageBrokerPassword"),
                 HostName = Environment.GetEnvironmentVariable("MessageBrokerHostName"),
-                Port = int.Parse(Environment.GetEnvironmentVariable("MessageBrokerPort")!),
-
-                DispatchConsumersAsync = true,
-                AutomaticRecoveryEnabled = true,
             };
 
             return factory;
