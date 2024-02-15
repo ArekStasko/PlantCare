@@ -3,9 +3,9 @@ using PlantCare.MessageBroker.Messages;
 
 namespace PlantCare.ConsistencyManager.Services;
 
-public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeasurementMessage>
+public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeasurement>
 {
-    public Task ConsumeAsync(HumidityMeasurementMessage message)
+    public Task ConsumeAsync(HumidityMeasurement message)
     {
         throw new NotImplementedException();
     }

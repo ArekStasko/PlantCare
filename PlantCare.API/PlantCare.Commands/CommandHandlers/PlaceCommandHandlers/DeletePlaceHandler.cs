@@ -13,10 +13,10 @@ public class DeletePlaceHandler : IRequestHandler<DeletePlaceCommand, Result<boo
 {
     private readonly IWritePlaceRepository _placeRepository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlaceMessage> _queueProducer;
+    private readonly IQueueProducer<Place> _queueProducer;
     private readonly ILogger<DeletePlaceHandler> _logger;
 
-    public DeletePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, IQueueProducer<PlaceMessage> queueProducer, ILogger<DeletePlaceHandler> logger)
+    public DeletePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, IQueueProducer<Place> queueProducer, ILogger<DeletePlaceHandler> logger)
     {
         _placeRepository = placeRepository;
         _mapper = mapper;

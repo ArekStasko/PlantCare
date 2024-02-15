@@ -8,6 +8,7 @@ using PlantCare.Domain.Models.Place;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
+using Place = PlantCare.MessageBroker.Messages.Place;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;
 
@@ -15,10 +16,10 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
 {
     private readonly IWritePlaceRepository _placeRepository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlaceMessage> _queueProducer;
+    private readonly IQueueProducer<Place> _queueProducer;
     private readonly ILogger<CreatePlaceHandler> _logger;
 
-    public CreatePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, IQueueProducer<PlaceMessage> queueProducer, ILogger<CreatePlaceHandler> logger)
+    public CreatePlaceHandler(IWritePlaceRepository placeRepository, IMapper mapper, IQueueProducer<Place> queueProducer, ILogger<CreatePlaceHandler> logger)
     {
         _placeRepository = placeRepository;
         _mapper = mapper;
@@ -31,9 +32,9 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
         try
         {
             _logger.LogInformation("CreatePlaceHandler handles request");
-            IPlace placeToCreate = _mapper.Map<Place>(command);
+            IPlace placeToCreate = _mapper.Map<Domain.Models.Place.Place>(command);
             // THIS IS FOR TEST PURPOSES
-            var messageToPublish = new PlaceMessage()
+            var messageToPublish = new Place()
             {
                 MessageId = Guid.NewGuid(),
                 TimeToLive = TimeSpan.FromMinutes(30),

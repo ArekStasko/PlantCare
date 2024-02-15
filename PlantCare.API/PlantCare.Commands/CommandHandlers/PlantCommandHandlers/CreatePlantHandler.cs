@@ -7,6 +7,7 @@ using PlantCare.Domain.Models.Plant;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
+using Plant = PlantCare.MessageBroker.Messages.Plant;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 
@@ -14,10 +15,10 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
 {
     private readonly IWritePlantRepository _plantRepository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlantMessage> _queueProducer;
+    private readonly IQueueProducer<Plant> _queueProducer;
     private readonly ILogger<CreatePlantHandler> _logger;
 
-    public CreatePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, IQueueProducer<PlantMessage> queueProducer, ILogger<CreatePlantHandler> logger)
+    public CreatePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, IQueueProducer<Plant> queueProducer, ILogger<CreatePlantHandler> logger)
     {
         _plantRepository = plantRepository;
         _logger = logger;
@@ -30,7 +31,7 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
         try
         {
             _logger.LogInformation("AddPlantHandler handles request");
-            IPlant plantToCreate = _mapper.Map<Plant>(command);
+            IPlant plantToCreate = _mapper.Map<Domain.Models.Plant.Plant>(command);
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
             {

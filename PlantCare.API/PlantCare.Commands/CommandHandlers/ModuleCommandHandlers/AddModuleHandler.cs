@@ -11,10 +11,10 @@ namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
 {
     private readonly IWriteModuleRepository _repository;
-    private readonly IQueueProducer<ModuleMessage> _queueProducer;
+    private readonly IQueueProducer<Module> _queueProducer;
     private readonly ILogger<AddModuleHandler> _logger;
 
-    public AddModuleHandler(IWriteModuleRepository repository, IQueueProducer<ModuleMessage> queueProducer, ILogger<AddModuleHandler> logger)
+    public AddModuleHandler(IWriteModuleRepository repository, IQueueProducer<Module> queueProducer, ILogger<AddModuleHandler> logger)
     {
         _repository = repository;
         _queueProducer = queueProducer;

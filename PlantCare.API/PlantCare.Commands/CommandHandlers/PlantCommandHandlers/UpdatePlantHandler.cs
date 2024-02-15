@@ -7,6 +7,7 @@ using PlantCare.Domain.Models.Plant;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
+using Plant = PlantCare.MessageBroker.Messages.Plant;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 
@@ -14,10 +15,10 @@ public class UpdatePlantHandler: IRequestHandler<UpdatePlantCommand, Result<bool
 {
     private readonly IWritePlantRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlantMessage> _queueProducer;
+    private readonly IQueueProducer<Plant> _queueProducer;
     private readonly ILogger<UpdatePlantHandler> _logger;
 
-    public UpdatePlantHandler(IWritePlantRepository repository, IMapper mapper, IQueueProducer<PlantMessage> queueProducer, ILogger<UpdatePlantHandler> logger)
+    public UpdatePlantHandler(IWritePlantRepository repository, IMapper mapper, IQueueProducer<Plant> queueProducer, ILogger<UpdatePlantHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
@@ -30,7 +31,7 @@ public class UpdatePlantHandler: IRequestHandler<UpdatePlantCommand, Result<bool
         try
         {
             _logger.LogInformation("UpdatePlantHandler handles request");
-            IPlant plantToUpdate = _mapper.Map<Plant>(command);
+            IPlant plantToUpdate = _mapper.Map<Domain.Models.Plant.Plant>(command);
             var result = await _repository.Update(plantToUpdate);
             return result.Match(succ =>
             {

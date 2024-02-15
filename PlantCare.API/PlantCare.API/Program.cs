@@ -25,6 +25,8 @@ builder.WebHost.UseKestrel();
 
 // Add services to the container.
 
+builder.Services.AddMessageBroker();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,11 +44,10 @@ builder.Services.AddWriteDataManager();
 builder.Services.ConfigureQueries();
 builder.Services.ConfigureCommands();
 
-builder.Services.AddMessageBroker();
-builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, HumidityMeasurementMessage>();
-builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, ModuleMessage>();
-builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, PlaceMessage>();
-builder.Services.AddQueueMessageConsumer<PlantConsistencyService, PlantMessage>();
+builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, HumidityMeasurement>();
+builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
+builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
+builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
 
 
 var logger = new LoggerConfiguration()

@@ -19,13 +19,16 @@ public static class Extensions
     }
     public static void AddMessageBroker(this IServiceCollection services)
     {
+        var userName = Environment.GetEnvironmentVariable("MessageBrokerUsername");
+        var password = Environment.GetEnvironmentVariable("MessageBrokerPassword");
+        var hostName = Environment.GetEnvironmentVariable("MessageBrokerHostName");
+        var port = int.Parse(Environment.GetEnvironmentVariable("MessageBrokerPort")!);
+        
         services.AddSingleton<IAsyncConnectionFactory>(provider =>
         {
-            var factory = new ConnectionFactory()
-            {
-                HostName = Environment.GetEnvironmentVariable("MessageBrokerHostName"),
-            };
-
+            ConnectionFactory factory = new();
+            factory.Uri = new Uri($"amqp://{userName}:{password}@{hostName}:{port}");
+            factory.ClientProvidedName = "PlantCare API";
             return factory;
         });
 

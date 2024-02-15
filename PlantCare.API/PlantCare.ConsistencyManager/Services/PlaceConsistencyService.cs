@@ -3,9 +3,9 @@ using PlantCare.MessageBroker.Messages;
 
 namespace PlantCare.ConsistencyManager.Services;
 
-public class PlaceConsistencyService : IQueueConsumer<PlaceMessage>
+public class PlaceConsistencyService : IQueueConsumer<Place>
 {
-    public Task ConsumeAsync(PlaceMessage message)
+    public Task ConsumeAsync(Place message)
     {
         throw new NotImplementedException();
     }

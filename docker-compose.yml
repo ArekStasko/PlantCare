@@ -46,12 +46,12 @@ services:
             SpecificCorsOrigin: "http://192.168.1.42:3000"
             MessageBrokerHostName: "rabbitmq"
             MessageBrokerPort: "5672"
-            MessageBrokerUsername: "plantcareapi"
-            MessageBrokerPassword: "Password.1234"
+            MessageBrokerUsername: "guest"
+            MessageBrokerPassword: "guest"
         depends_on:
+            - rabbitmq
             - seq
             - redis-cache
-            - rabbitmq
         ports:
             - "8080:8080"
 

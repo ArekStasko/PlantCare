@@ -3,9 +3,9 @@ using PlantCare.MessageBroker.Messages;
 
 namespace PlantCare.ConsistencyManager.Services;
 
-public class PlantConsistencyService : IQueueConsumer<PlantMessage>
+public class PlantConsistencyService : IQueueConsumer<Plant>
 {
-    public Task ConsumeAsync(PlantMessage message)
+    public Task ConsumeAsync(Plant message)
     {
         throw new NotImplementedException();
     }

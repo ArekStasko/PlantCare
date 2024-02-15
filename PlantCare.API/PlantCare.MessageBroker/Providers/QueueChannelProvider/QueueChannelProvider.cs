@@ -12,6 +12,7 @@ public class QueueChannelProvider<TQueueMessage> : IQueueChannelProvider<TQueueM
     public QueueChannelProvider(IChannelProvider channelProvider)
     {
         _channelProvider = channelProvider;
+        _queueName = typeof(TQueueMessage).Name;
     }
 
     public IModel GetChannel()

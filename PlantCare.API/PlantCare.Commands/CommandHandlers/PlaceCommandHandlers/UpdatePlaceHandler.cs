@@ -7,6 +7,7 @@ using PlantCare.Domain.Models.Place;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
+using Place = PlantCare.MessageBroker.Messages.Place;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;
 
@@ -14,10 +15,10 @@ public class UpdatePlaceHandler : IRequestHandler<UpdatePlaceCommand, Result<boo
 {
     private readonly IWritePlaceRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlaceMessage> _queueProducer;
+    private readonly IQueueProducer<Place> _queueProducer;
     private readonly ILogger<UpdatePlaceHandler> _logger;
 
-    public UpdatePlaceHandler(IWritePlaceRepository repository, IMapper mapper, IQueueProducer<PlaceMessage> queueProducer, ILogger<UpdatePlaceHandler> logger)
+    public UpdatePlaceHandler(IWritePlaceRepository repository, IMapper mapper, IQueueProducer<Place> queueProducer, ILogger<UpdatePlaceHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
@@ -30,7 +31,7 @@ public class UpdatePlaceHandler : IRequestHandler<UpdatePlaceCommand, Result<boo
         try
         {
             _logger.LogInformation("EditPlaceHandler handles request");
-            IPlace placeToEdit = _mapper.Map<Place>(command);
+            IPlace placeToEdit = _mapper.Map<Domain.Models.Place.Place>(command);
             var result = await _repository.Update(placeToEdit);
             return result.Match(succ =>
             {

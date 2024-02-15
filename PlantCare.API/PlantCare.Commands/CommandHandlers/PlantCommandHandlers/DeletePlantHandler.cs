@@ -13,10 +13,10 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantCommand, Result<boo
 {
     private readonly IWritePlantRepository _plantRepository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<PlantMessage> _queueProducer;
+    private readonly IQueueProducer<Plant> _queueProducer;
     private readonly ILogger<DeletePlantHandler> _logger;
     
-    public DeletePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, IQueueProducer<PlantMessage> queueProducer, ILogger<DeletePlantHandler> logger)
+    public DeletePlantHandler(IWritePlantRepository plantRepository, IMapper mapper, IQueueProducer<Plant> queueProducer, ILogger<DeletePlantHandler> logger)
     {
         _plantRepository = plantRepository;
         _mapper = mapper;

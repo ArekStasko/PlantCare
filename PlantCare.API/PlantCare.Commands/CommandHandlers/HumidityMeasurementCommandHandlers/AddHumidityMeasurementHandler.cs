@@ -7,6 +7,7 @@ using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.Interfaces.WriteRepositories;
+using HumidityMeasurement = PlantCare.MessageBroker.Messages.HumidityMeasurement;
 
 namespace PlantCare.Commands.CommandHandlers.HumidityMeasurementCommandHandlers;
 
@@ -14,10 +15,10 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
 {
     private readonly IWriteHumidityMeasurementRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<HumidityMeasurementMessage> _consumer;
+    private readonly IQueueProducer<HumidityMeasurement> _consumer;
     private readonly ILogger<AddHumidityMeasurementHandler> _logger;
 
-    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, IMapper mapper, IQueueProducer<HumidityMeasurementMessage> consumer, ILogger<AddHumidityMeasurementHandler> logger)
+    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, IMapper mapper, IQueueProducer<HumidityMeasurement> consumer, ILogger<AddHumidityMeasurementHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
@@ -30,7 +31,7 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
         try
         {
             _logger.LogInformation("AddHumidityMeasurementCommandHandler start processing");
-            IHumidityMeasurement humidityMeasurement = _mapper.Map<HumidityMeasurement>(request);
+            IHumidityMeasurement humidityMeasurement = _mapper.Map<Domain.Models.HumidityMeasurement.HumidityMeasurement>(request);
             humidityMeasurement.MeasurementDate = DateTime.Now;
             var result = await _repository.Add(humidityMeasurement);
             return result.Match(succ =>

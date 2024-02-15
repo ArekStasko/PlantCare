@@ -3,6 +3,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=9C0C9034_002D2F55_002D43D0_002D91D7_002D59652EA0E413_002Fd_003AQueryHandlers_002Fd_003AHumidityMeasurementsQueryHandlers_002Ff_003AGetHumidityMeasurementsHandler_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=A740863D_002DBA11_002D44E9_002DB461_002D8113F8AD04E1_002Fd_003AControllers_002Ff_003AHumidityMeasurementsController_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=A740863D_002DBA11_002D44E9_002DB461_002D8113F8AD04E1_002Ff_003AExtensions_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=AD9443B5_002DE935_002D43AD_002DADE9_002D4C0088BF18F2_002Ff_003AExtensions_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=BAF765E1_002D3ADC_002D4756_002DB27C_002DF1068B4A4FD0_002Ff_003ADatabaseMigrationService_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
 	
