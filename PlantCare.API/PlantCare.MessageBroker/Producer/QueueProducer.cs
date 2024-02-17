@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using PlantCare.MessageBroker.Messages;
+using PlantCare.MessageBroker.Providers.ChannelProvider;
 using RabbitMQ.Client;
 
 namespace PlantCare.MessageBroker.Producer;
@@ -11,10 +12,10 @@ public class QueueProducer<TQueueMessage> : IQueueProducer<TQueueMessage> where 
     private readonly ILogger<QueueProducer<TQueueMessage>> _logger;
     private readonly IModel _channel;
 
-    public QueueProducer(ILogger<QueueProducer<TQueueMessage>> logger, IModel channel)
+    public QueueProducer(ILogger<QueueProducer<TQueueMessage>> logger, IChannelProvider channelProvider)
     {
         _logger = logger;
-        _channel = channel;
+        _channel = channelProvider.GetChannel();
     }
     
     public void PublishMessage(TQueueMessage message)

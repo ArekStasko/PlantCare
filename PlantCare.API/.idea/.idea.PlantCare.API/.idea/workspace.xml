@@ -17,11 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/HumidityMeasurement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/HumidityMeasurement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Place.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Place.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Messages/Plant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +304,7 @@
       <workItem from="1708019325433" duration="1109000" />
       <workItem from="1708020678382" duration="313000" />
       <workItem from="1708021025652" duration="1833000" />
-      <workItem from="1708172778438" duration="2945000" />
+      <workItem from="1708172778438" duration="3672000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
