@@ -3,6 +3,7 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.HumidityMeasurements;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
@@ -15,14 +16,14 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
 {
     private readonly IWriteHumidityMeasurementRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IQueueProducer<HumidityMeasurement> _consumer;
+    private readonly IQueueProducer<HumidityMeasurement> _producer;
     private readonly ILogger<AddHumidityMeasurementHandler> _logger;
 
-    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, IMapper mapper, IQueueProducer<HumidityMeasurement> consumer, ILogger<AddHumidityMeasurementHandler> logger)
+    public AddHumidityMeasurementHandler(IWriteHumidityMeasurementRepository repository, IMapper mapper, IQueueProducer<HumidityMeasurement> producer, ILogger<AddHumidityMeasurementHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
-        _consumer = consumer;
+        _producer = producer;
         _logger = logger;
     }
     
@@ -36,6 +37,22 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
             var result = await _repository.Add(humidityMeasurement);
             return result.Match(succ =>
             {
+                if (succ)
+                {
+                    var humidityMeasurementMessage = new HumidityMeasurement()
+                    {
+                        Action = ActionType.Add,
+                        HumidityMeasurementData = new HumidityMeasurementDto()
+                        {
+                            Id = 1,
+                            Humidity = humidityMeasurement.Humidity,
+                            MeasurementDate = humidityMeasurement.MeasurementDate,
+                            ModuleId = humidityMeasurement.ModuleId
+                        }
+                    };
+                    _producer.PublishMessage(humidityMeasurementMessage);
+                }
+                
                 if (succ)
                 {
                     _logger.LogInformation("Successfully added humidity measurement");
