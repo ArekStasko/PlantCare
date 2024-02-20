@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using PlantCare.Domain.Models.Plant;
 
-namespace PlantCare.Persistance.Interfaces.ReadRepositories;
+namespace PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 public interface IReadPlantRepository
 {

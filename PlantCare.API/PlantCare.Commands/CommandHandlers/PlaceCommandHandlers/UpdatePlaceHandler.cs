@@ -4,9 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Place;
 using PlantCare.Domain.Models.Place;
-using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
-using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using Place = PlantCare.MessageBroker.Messages.Place;
 
 namespace PlantCare.Commands.CommandHandlers.PlaceCommandHandlers;

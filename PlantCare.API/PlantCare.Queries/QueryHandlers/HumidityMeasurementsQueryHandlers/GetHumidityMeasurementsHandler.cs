@@ -2,7 +2,7 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;
-using PlantCare.Persistance.Interfaces.ReadRepositories;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.HumidityMeasurements;
 using PlantCare.Queries.Responses.HumidityMeasurements;
 

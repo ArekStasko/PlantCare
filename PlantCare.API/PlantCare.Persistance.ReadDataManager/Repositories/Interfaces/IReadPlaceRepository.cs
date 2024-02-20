@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using PlantCare.Domain.Models.Place;
 
-namespace PlantCare.Persistance.Interfaces.ReadRepositories;
+namespace PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 public interface IReadPlaceRepository
 {

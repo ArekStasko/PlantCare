@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.WriteContexts;
-using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Interfaces;
 using PlantCare.Persistance.WriteDataManager.Repositories;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Persistance.WriteDataManager;
 

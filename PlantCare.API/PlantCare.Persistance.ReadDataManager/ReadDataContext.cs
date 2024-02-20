@@ -3,8 +3,7 @@ using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.ReadContexts;
+using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 

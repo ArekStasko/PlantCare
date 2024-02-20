@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PlantCare.Persistance\PlantCare.Persistance.csproj" />
+      <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
     </ItemGroup>
 
 </Project>

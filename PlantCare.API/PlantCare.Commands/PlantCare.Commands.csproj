@@ -17,7 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
-      <ProjectReference Include="..\PlantCare.Persistance\PlantCare.Persistance.csproj" />
+      <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
     </ItemGroup>
 
 </Project>

@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance.ReadD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance.WriteDataManager", "PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj", "{2616DE5F-65DC-4205-B49B-A2C820C2AA00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Persistance", "PlantCare.Persistance\PlantCare.Persistance.csproj", "{6571D796-71B8-4772-A21A-57370D135125}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.MessageBroker", "PlantCare.MessageBroker\PlantCare.MessageBroker.csproj", "{AD9443B5-E935-43AD-ADE9-4C0088BF18F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.ConsistencyManager", "PlantCare.ConsistencyManager\PlantCare.ConsistencyManager.csproj", "{438DAD78-D993-4B4F-9450-0E6765B1E907}"
@@ -48,10 +46,6 @@ Global
 		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2616DE5F-65DC-4205-B49B-A2C820C2AA00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6571D796-71B8-4772-A21A-57370D135125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6571D796-71B8-4772-A21A-57370D135125}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6571D796-71B8-4772-A21A-57370D135125}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6571D796-71B8-4772-A21A-57370D135125}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD9443B5-E935-43AD-ADE9-4C0088BF18F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD9443B5-E935-43AD-ADE9-4C0088BF18F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD9443B5-E935-43AD-ADE9-4C0088BF18F2}.Release|Any CPU.ActiveCfg = Release|Any CPU

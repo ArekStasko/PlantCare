@@ -2,9 +2,8 @@ using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Module;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.ReadContexts;
-using PlantCare.Persistance.Interfaces.ReadRepositories;
+using PlantCare.Persistance.ReadDataManager.Interfaces;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager.Repositories;
 

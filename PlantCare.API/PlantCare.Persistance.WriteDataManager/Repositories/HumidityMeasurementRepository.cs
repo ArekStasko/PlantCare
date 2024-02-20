@@ -2,9 +2,8 @@ using LanguageExt.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.WriteContexts;
-using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Interfaces;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Persistance.WriteDataManager.Repositories;
 

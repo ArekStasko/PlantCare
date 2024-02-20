@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
-using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 

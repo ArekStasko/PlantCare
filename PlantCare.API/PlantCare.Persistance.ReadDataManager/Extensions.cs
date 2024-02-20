@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlantCare.Persistance.Interfaces;
-using PlantCare.Persistance.Interfaces.ReadContexts;
-using PlantCare.Persistance.Interfaces.ReadRepositories;
 using PlantCare.Persistance.ReadDataManager.CacheRepositories;
+using PlantCare.Persistance.ReadDataManager.Interfaces;
 using PlantCare.Persistance.ReadDataManager.Repositories;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 

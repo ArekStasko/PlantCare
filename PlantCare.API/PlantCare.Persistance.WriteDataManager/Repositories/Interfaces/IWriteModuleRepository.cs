@@ -1,7 +1,7 @@
 using LanguageExt.Common;
 using PlantCare.Domain.Models.Module;
 
-namespace PlantCare.Persistance.Interfaces.WriteRepositories;
+namespace PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 public interface IWriteModuleRepository
 {

@@ -7,7 +7,7 @@ using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
-using PlantCare.Persistance.Interfaces.WriteRepositories;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using HumidityMeasurement = PlantCare.MessageBroker.Messages.HumidityMeasurement;
 
 namespace PlantCare.Commands.CommandHandlers.HumidityMeasurementCommandHandlers;

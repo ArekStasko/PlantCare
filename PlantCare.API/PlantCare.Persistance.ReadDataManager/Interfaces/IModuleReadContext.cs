@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.Module;
 
-namespace PlantCare.Persistance.Interfaces.ReadContexts;
+namespace PlantCare.Persistance.ReadDataManager.Interfaces;
 
 public interface IModuleReadContext
 {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.Place;
 
-namespace PlantCare.Persistance.Interfaces.WriteContexts;
+namespace PlantCare.Persistance.WriteDataManager.Interfaces;
 
 public interface IPlaceWriteContext
 {

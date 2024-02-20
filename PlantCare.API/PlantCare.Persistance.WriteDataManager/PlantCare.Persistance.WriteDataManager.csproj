@@ -24,7 +24,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
-      <ProjectReference Include="..\PlantCare.Persistance\PlantCare.Persistance.csproj" />
     </ItemGroup>
 
 </Project>

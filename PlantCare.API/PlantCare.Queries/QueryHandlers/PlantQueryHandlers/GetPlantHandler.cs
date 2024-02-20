@@ -2,8 +2,7 @@ using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.Domain.Models.Plant;
-using PlantCare.Persistance.Interfaces.ReadRepositories;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.Plant;
 using PlantCare.Queries.Responses.Plants;
 
