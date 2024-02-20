@@ -1,24 +1,28 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.Interfaces.ReadRepositories;
 using PlantCare.Queries.Queries.Plant;
+using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.Queries.QueryHandlers.PlantQueryHandlers;
 
-public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<IPlant>>
+public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<GetPlantResponse>>
 {
     private readonly IReadPlantRepository _repository;
+    private readonly IMapper _mapper;
     private readonly ILogger<GetPlantHandler> _logger;
 
-    public GetPlantHandler(IReadPlantRepository repository, ILogger<GetPlantHandler> logger)
+    public GetPlantHandler(IReadPlantRepository repository, IMapper mapper, ILogger<GetPlantHandler> logger)
     {
         _repository = repository;
+        _mapper = mapper;
         _logger = logger;
     }
 
-    public async Task<Result<IPlant>> Handle(GetPlantQuery query, CancellationToken cancellationToken)
+    public async Task<Result<GetPlantResponse>> Handle(GetPlantQuery query, CancellationToken cancellationToken)
     {
         try
         {
@@ -27,17 +31,18 @@ public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<IPlant>>
             return plant.Match(succ =>
             {
                 _logger.LogInformation("GetPlantHandler successfully processed the request");
-                return new Result<IPlant>(succ);
+                var plant = _mapper.Map<GetPlantResponse>(succ);
+                return new Result<GetPlantResponse>(plant);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetPlantHandler request");
-                return new Result<IPlant>(err);
+                return new Result<GetPlantResponse>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetPlantHandler: {exception}", e.Message);
-            return new Result<IPlant>(e);
+            return new Result<GetPlantResponse>(e);
         }
     }
 }
