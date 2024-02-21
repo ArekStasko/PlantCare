@@ -35,7 +35,8 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
         _consumerRegistrationChannel = scope.ServiceProvider.GetRequiredService<IQueueChannelProvider<TQueueMessage>>().GetChannel();
 
         var consumer = new AsyncEventingBasicConsumer(_consumerRegistrationChannel);
-
+        
+        _logger.LogInformation("Register new QueueConsumer {consumerName} for {queueName} queue", _queueName, _queueName);
         consumer.Received += HandleMessage;
         try
         {
@@ -70,6 +71,7 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
         IModel producingChannel = null;
         try
         {
+            _logger.LogInformation("Consumer start processing new message");
             producingChannel = consumerScope.ServiceProvider.GetRequiredService<IChannelProvider>()
                 .GetChannel();
 

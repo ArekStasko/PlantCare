@@ -29,7 +29,7 @@ public class QueueProducer<TQueueMessage> : IQueueProducer<TQueueMessage> where 
         {
             var serializedMessage = SerializeMessage(message);
             var queueName = message.QueueName;
-            
+            _logger.LogInformation("QueueProducer: publishing new message to {queueName} queue", queueName);
             var properties = _channel.CreateBasicProperties();
             properties.Persistent = true;
             properties.Type = queueName;
