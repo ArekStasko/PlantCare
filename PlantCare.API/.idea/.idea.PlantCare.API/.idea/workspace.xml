@@ -17,18 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands.Abstraction/Extentions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands.Abstraction/PlantCare.Commands.Abstraction.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.LoadTesting.Tests/stress_tests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/PlantCare.Persistance.ReadDataManager.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/PlantCare.Persistance.ReadDataManager.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/PlantCare.Persistance.WriteDataManager.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/PlantCare.Persistance.WriteDataManager.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/Extensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries.Abstraction/PlantCare.Queries.Abstraction.csproj" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -79,32 +69,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.PlantCare.API: http.executor": "Debug",
-    "ATTACH_DIALOG_SELECTED_CONTAINER": "plantcare-api",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowNuGet.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.49723756",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.PlantCare.API: http.executor&quot;: &quot;Debug&quot;,
+    &quot;ATTACH_DIALOG_SELECTED_CONTAINER&quot;: &quot;plantcare-api&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowNuGet.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\areks\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\areks\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\areks\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\areks\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\areks\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\areks\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlantCare.API: http">
     <configuration name="PlantCare.API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" />
@@ -320,7 +310,7 @@
       <workItem from="1708021025652" duration="1833000" />
       <workItem from="1708172778438" duration="4267000" />
       <workItem from="1708451447072" duration="3202000" />
-      <workItem from="1708540862459" duration="5014000" />
+      <workItem from="1708540862459" duration="7226000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -612,16 +602,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs</url>
-          <line>8</line>
+          <line>15</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.ConsistencyManager\Services\HumidityMeasurementConsistencyService.cs" initialLine="8" containingFunctionPresentation="Method 'ConsumeAsync'">
             <startOffsets>
-              <option value="284" />
+              <option value="540" />
             </startOffsets>
             <endOffsets>
-              <option value="285" />
+              <option value="541" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
+          <line>22</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" initialLine="22" containingFunctionPresentation="Method 'StartAsync'">
+            <startOffsets>
+              <option value="999" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1000" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
+          <line>32</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" initialLine="32" containingFunctionPresentation="Method 'StopAsync'">
+            <startOffsets>
+              <option value="1339" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1340" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NotSupportedException" isInternal="false" displayValue="NotSupportedException" namespaceName="System">

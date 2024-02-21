@@ -17,6 +17,7 @@ public static class Extensions
         services.AddScoped<IQueueConsumerHandler<TMessageConsumer, TQueueMessage>, QueueConsumerHandler<TMessageConsumer, TQueueMessage>>();
         services.AddHostedService<QueueConsumerRegistratorService<TMessageConsumer, TQueueMessage>>();
     }
+    
     public static void AddMessageBroker(this IServiceCollection services)
     {
         var userName = Environment.GetEnvironmentVariable("MessageBrokerUsername");
@@ -26,9 +27,16 @@ public static class Extensions
         
         services.AddSingleton<IAsyncConnectionFactory>(provider =>
         {
-            ConnectionFactory factory = new();
-            factory.Uri = new Uri($"amqp://{userName}:{password}@{hostName}:{port}");
-            factory.ClientProvidedName = "PlantCare API";
+            ConnectionFactory factory = new()
+            {
+                Uri = new Uri($"amqp://{userName}:{password}@{hostName}:{port}"),
+                
+                DispatchConsumersAsync = true,
+                AutomaticRecoveryEnabled = true,
+                
+                ClientProvidedName = "PlantCare API"
+            };
+            
             return factory;
         });
 
