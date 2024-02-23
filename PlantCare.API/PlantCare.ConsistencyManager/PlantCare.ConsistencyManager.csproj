@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\PlantCare.Domain\PlantCare.Domain.csproj" />
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
+      <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
     </ItemGroup>
 
     <ItemGroup>
