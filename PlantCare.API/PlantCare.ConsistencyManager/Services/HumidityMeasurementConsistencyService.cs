@@ -14,7 +14,6 @@ public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeas
     }
     public Task ConsumeAsync(HumidityMeasurement message)
     {
-        _logger.LogInformation("Consuming Humidity measurement message: {message}", message);
         return Task.CompletedTask;
     }
 }

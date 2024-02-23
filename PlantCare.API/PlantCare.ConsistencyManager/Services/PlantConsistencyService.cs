@@ -14,7 +14,6 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
     }
     public Task ConsumeAsync(Plant message)
     {
-        _logger.LogInformation("Consuming Plant message: {message}", message);
         return Task.CompletedTask;
     }
 }

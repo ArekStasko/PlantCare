@@ -14,7 +14,6 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
     }
     public Task ConsumeAsync(Module message)
     {
-        _logger.LogInformation("Consuming Module message: {message}", message);
         return Task.CompletedTask;
     }
 }

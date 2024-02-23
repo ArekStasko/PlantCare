@@ -14,7 +14,6 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
     }
     public Task ConsumeAsync(Place message)
     {
-        _logger.LogInformation("Consuming Place message: {message}", message);
         return Task.CompletedTask;
     }
 }
