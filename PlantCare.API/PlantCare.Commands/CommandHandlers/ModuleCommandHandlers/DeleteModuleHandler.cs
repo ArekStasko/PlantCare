@@ -1,7 +1,9 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
@@ -11,12 +13,14 @@ namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 public class DeleteModuleHandler : IRequestHandler<DeleteModuleCommand, Result<bool>>
 {
     private readonly IWriteModuleRepository _repository;
+    private readonly IMapper _mapper;
     private readonly IQueueProducer<Module> _queueProducer;
     private readonly ILogger<DeleteModuleHandler> _logger;
 
-    public DeleteModuleHandler(IWriteModuleRepository repository, IQueueProducer<Module> queueProducer, ILogger<DeleteModuleHandler> logger)
+    public DeleteModuleHandler(IWriteModuleRepository repository, IMapper mapper, IQueueProducer<Module> queueProducer, ILogger<DeleteModuleHandler> logger)
     {
         _repository = repository;
+        _mapper = mapper;
         _queueProducer = queueProducer;
         _logger = logger;
     }
@@ -30,6 +34,14 @@ public class DeleteModuleHandler : IRequestHandler<DeleteModuleCommand, Result<b
             {
                 if (succ)
                 {
+                    var moduleToSend = new PlantCare.Domain.Models.Module.Module() { Id = request.Id };
+                    var moduleMessage = new Module()
+                    {
+                        Action = ActionType.Delete,
+                        ModuleData = _mapper.Map<ModuleDto>(moduleToSend)
+                    };
+                    _queueProducer.PublishMessage(moduleMessage);
+                    
                     _logger.LogInformation("Module was successfully deleted");
                     return new Result<bool>(true);
                 }

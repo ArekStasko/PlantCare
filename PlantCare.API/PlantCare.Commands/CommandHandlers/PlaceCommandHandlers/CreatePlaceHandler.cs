@@ -33,21 +33,19 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
         {
             _logger.LogInformation("CreatePlaceHandler handles request");
             IPlace placeToCreate = _mapper.Map<Domain.Models.Place.Place>(command);
-            // THIS IS FOR TEST PURPOSES
-            var messageToPublish = new Place()
-            {
-                MessageId = Guid.NewGuid(),
-                TimeToLive = TimeSpan.FromMinutes(30),
-                QueueName = "place",
-                Action = ActionType.Add,
-                PlaceData = (PlaceDto)placeToCreate
-            };
-            _queueProducer.PublishMessage(messageToPublish);
+            
             var result = await _placeRepository.Create(placeToCreate);
             return result.Match(succ =>
             {
                 if (succ)
                 {
+                    var placeMessage = new Place()
+                    {
+                        Action = ActionType.Add,
+                        PlaceData = _mapper.Map<PlaceDto>(placeToCreate)
+                    };
+                    _queueProducer.PublishMessage(placeMessage);
+                    
                     _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
                 }

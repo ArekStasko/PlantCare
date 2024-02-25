@@ -42,19 +42,10 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
                     var humidityMeasurementMessage = new HumidityMeasurement()
                     {
                         Action = ActionType.Add,
-                        HumidityMeasurementData = new HumidityMeasurementDto()
-                        {
-                            Id = 1,
-                            Humidity = humidityMeasurement.Humidity,
-                            MeasurementDate = humidityMeasurement.MeasurementDate,
-                            ModuleId = humidityMeasurement.ModuleId
-                        }
+                        HumidityMeasurementData = _mapper.Map<HumidityMeasurementDto>(humidityMeasurement)
                     };
                     _producer.PublishMessage(humidityMeasurementMessage);
-                }
-                
-                if (succ)
-                {
+                    
                     _logger.LogInformation("Successfully added humidity measurement");
                     return new Result<bool>(true);
                 }

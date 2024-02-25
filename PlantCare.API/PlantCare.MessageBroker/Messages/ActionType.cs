@@ -5,5 +5,4 @@ public enum ActionType
     Delete,
     Update,
     Add,
-    Remove
 }

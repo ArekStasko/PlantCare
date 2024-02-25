@@ -3,7 +3,9 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Module;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using Module = PlantCare.MessageBroker.Messages.Module;
@@ -36,6 +38,13 @@ public class UpdateModuleHandler : IRequestHandler<UpdateModuleCommand, Result<b
             {
                 if (succ)
                 {
+                    var moduleMessage = new Module()
+                    {
+                        Action = ActionType.Update,
+                        ModuleData = _mapper.Map<ModuleDto>(moduleToUpdate)
+                    };
+                    _queueProducer.PublishMessage(moduleMessage);
+                    
                     _logger.LogInformation("Module was successfully updated");
                     return new Result<bool>(true);
                 }

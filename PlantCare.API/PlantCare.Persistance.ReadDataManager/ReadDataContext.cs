@@ -21,6 +21,22 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
 
     public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var databaseServer = Environment.GetEnvironmentVariable("DatabaseServer");
+            var databasePort = Environment.GetEnvironmentVariable("DatabasePort");
+            var databaseUser = Environment.GetEnvironmentVariable("DatabaseUser");
+            var databasePassword = Environment.GetEnvironmentVariable("DatabasePassword");
+            var databaseName = Environment.GetEnvironmentVariable("ReadDatabaseName");
+
+            var connectionString =
+                $"Server={databaseServer},{databasePort};Database={databaseName};User Id={databaseUser};Password={databasePassword};TrustServerCertificate=true";
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Place>()

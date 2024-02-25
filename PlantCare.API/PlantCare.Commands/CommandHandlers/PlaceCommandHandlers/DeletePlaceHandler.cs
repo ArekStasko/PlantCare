@@ -3,6 +3,7 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Place;
+using PlantCare.Domain.Dto;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
@@ -34,6 +35,14 @@ public class DeletePlaceHandler : IRequestHandler<DeletePlaceCommand, Result<boo
             {
                 if (succ)
                 {
+                    var placeToPublish = new Domain.Models.Place.Place() { Id = command.Id };
+                    var placeMessage = new Place()
+                    {
+                        Action = ActionType.Delete,
+                        PlaceData = _mapper.Map<PlaceDto>(placeToPublish)
+                    };
+                    _queueProducer.PublishMessage(placeMessage);
+                    
                     _logger.LogInformation("Operation Successfully completed");
                     return new Result<bool>(true);
                 }

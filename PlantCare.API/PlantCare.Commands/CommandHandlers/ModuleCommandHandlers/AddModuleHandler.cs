@@ -1,7 +1,9 @@
+using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
@@ -11,12 +13,14 @@ namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
 public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
 {
     private readonly IWriteModuleRepository _repository;
+    private readonly IMapper _mapper;
     private readonly IQueueProducer<Module> _queueProducer;
     private readonly ILogger<AddModuleHandler> _logger;
 
-    public AddModuleHandler(IWriteModuleRepository repository, IQueueProducer<Module> queueProducer, ILogger<AddModuleHandler> logger)
+    public AddModuleHandler(IWriteModuleRepository repository, IMapper mapper, IQueueProducer<Module> queueProducer, ILogger<AddModuleHandler> logger)
     {
         _repository = repository;
+        _mapper = mapper;
         _queueProducer = queueProducer;
         _logger = logger;
     }
@@ -30,6 +34,15 @@ public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
             var result = await _repository.Add(newId);
             return result.Match(succ =>
             {
+                var moduleToPublish = new PlantCare.Domain.Models.Module.Module() { Id = succ }; 
+                var moduleMessage = new Module()
+                {
+                    Action = ActionType.Add,
+                    ModuleData = _mapper.Map<ModuleDto>(moduleToPublish)
+                };
+                _queueProducer.PublishMessage(moduleMessage);
+                
+                
                 _logger.LogInformation("Successfully added module with {id} id", newId);
                 return new Result<Guid>(succ);
             }, err =>

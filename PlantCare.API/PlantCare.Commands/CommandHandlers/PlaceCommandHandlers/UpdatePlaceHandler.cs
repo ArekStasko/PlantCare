@@ -3,7 +3,9 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Place;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Place;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using Place = PlantCare.MessageBroker.Messages.Place;
@@ -30,12 +32,19 @@ public class UpdatePlaceHandler : IRequestHandler<UpdatePlaceCommand, Result<boo
         try
         {
             _logger.LogInformation("EditPlaceHandler handles request");
-            IPlace placeToEdit = _mapper.Map<Domain.Models.Place.Place>(command);
-            var result = await _repository.Update(placeToEdit);
+            IPlace placeToUpdate = _mapper.Map<Domain.Models.Place.Place>(command);
+            var result = await _repository.Update(placeToUpdate);
             return result.Match(succ =>
             {
                 if (succ)
                 {
+                    var placeMessage = new Place()
+                    {
+                        Action = ActionType.Update,
+                        PlaceData = _mapper.Map<PlaceDto>(placeToUpdate)
+                    };
+                    _queueProducer.PublishMessage(placeMessage);
+                    
                     _logger.LogInformation("Operation successfully completed");
                     return new Result<bool>(succ);
                 }

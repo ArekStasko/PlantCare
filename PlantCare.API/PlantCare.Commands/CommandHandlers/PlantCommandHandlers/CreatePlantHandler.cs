@@ -3,7 +3,9 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Plant;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using Plant = PlantCare.MessageBroker.Messages.Plant;
@@ -36,6 +38,13 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
             {
                 if (succ)
                 {
+                    var plantMessage = new Plant()
+                    {
+                        Action = ActionType.Add,
+                        PlantData = _mapper.Map<PlantDto>(plantToCreate)
+                    };
+                    _queueProducer.PublishMessage(plantMessage);
+                    
                     _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
                 }
