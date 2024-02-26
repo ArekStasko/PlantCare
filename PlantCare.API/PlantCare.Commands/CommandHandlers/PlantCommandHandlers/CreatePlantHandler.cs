@@ -36,21 +36,17 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
             {
-                if (succ)
-                {
+                    var plantDto = _mapper.Map<PlantDto>(plantToCreate);
+                    plantDto.Id = succ;
                     var plantMessage = new Plant()
                     {
                         Action = ActionType.Add,
-                        PlantData = _mapper.Map<PlantDto>(plantToCreate)
+                        PlantData = plantDto
                     };
                     _queueProducer.PublishMessage(plantMessage);
                     
                     _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
-                }
-
-                _logger.LogInformation("Something went wrong");
-                return new Result<bool>(new Exception("Something went wrong"));
             }, err =>
             {
                 _logger.LogError("Error has occured during CreatePlantRequest handling: {exception}", err.Message);

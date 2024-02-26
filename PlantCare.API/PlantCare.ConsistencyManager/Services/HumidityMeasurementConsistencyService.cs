@@ -24,7 +24,7 @@ public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeas
         {
             case ActionType.Add:
             {
-                var humidityMeasurement = _mapper.Map<PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement>(message.HumidityMeasurementData);
+                var humidityMeasurement = _mapper.Map<PlantCare.Domain.Models.ReadModels.HumidityMeasurement.HumidityMeasurement>(message.HumidityMeasurementData);
                 await _context.HumidityMeasurements.AddAsync(humidityMeasurement);
                 await _context.SaveChangesAsync();
                 return;

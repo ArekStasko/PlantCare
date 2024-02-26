@@ -20,7 +20,7 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<bool>> Add(IHumidityMeasurement humidityMeasurement)
+    public async ValueTask<Result<int>> Add(IHumidityMeasurement humidityMeasurement)
     {
         try
         {
@@ -29,12 +29,12 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
             _logger.LogInformation("Humidity measurement was successfully created");
             await _cache.RemoveAsync($"HumidityMeasurements-{humidityMeasurement.ModuleId}");
             _logger.LogInformation("Cached modules has been removed");
-            return new Result<bool>(true);
+            return new Result<int>(humidityMeasurement.Id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<bool>(e);
+            return new Result<int>(e);
         }
     }
 }

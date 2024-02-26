@@ -5,7 +5,7 @@ namespace PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 public interface IWritePlantRepository
 {
-    ValueTask<Result<bool>> Create(IPlant plant);
+    ValueTask<Result<int>> Create(IPlant plant);
     ValueTask<Result<bool>> Delete(int id);
     ValueTask<Result<bool>> Update(IPlant plant);
 }

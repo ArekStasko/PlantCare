@@ -20,7 +20,7 @@ public class PlantRepository : IWritePlantRepository
         _cache = cache;
     }
     
-    public virtual async ValueTask<Result<bool>> Create(IPlant plant)
+    public virtual async ValueTask<Result<int>> Create(IPlant plant)
     {
         try
         {
@@ -28,12 +28,12 @@ public class PlantRepository : IWritePlantRepository
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
             await ResetCacheValues();
-            return new Result<bool>(true);
+            return new Result<int>(plant.Id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<bool>(e);
+            return new Result<int>(e);
         }
     }
 

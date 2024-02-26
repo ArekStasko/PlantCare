@@ -21,7 +21,7 @@ public class PlaceRepository : IWritePlaceRepository
         _cache = cache;
     }
 
-    public virtual async ValueTask<Result<bool>> Create(IPlace place)
+    public virtual async ValueTask<Result<int>> Create(IPlace place)
     {
         try
         {
@@ -30,12 +30,12 @@ public class PlaceRepository : IWritePlaceRepository
             _logger.LogInformation("Successfully created new place with {placeId} Id", place.Id);
             await _cache.RemoveAsync("Places");
             _logger.LogInformation("Redis cache has been updated");
-            return new Result<bool>(true);
+            return new Result<int>(place.Id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<bool>(e);
+            return new Result<int>(e);
         }
     }
 

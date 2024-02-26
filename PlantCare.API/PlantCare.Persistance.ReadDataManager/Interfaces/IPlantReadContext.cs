@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Domain.Models.Plant;
+using PlantCare.Domain.Models.ReadModels.Plant;
 
 namespace PlantCare.Persistance.ReadDataManager.Interfaces;
 

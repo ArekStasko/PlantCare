@@ -37,21 +37,17 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
             var result = await _repository.Add(humidityMeasurement);
             return result.Match(succ =>
             {
-                if (succ)
-                {
+                    var humidityMeasurementDto = _mapper.Map<HumidityMeasurementDto>(humidityMeasurement);
+                    humidityMeasurementDto.Id = succ;
                     var humidityMeasurementMessage = new HumidityMeasurement()
                     {
                         Action = ActionType.Add,
-                        HumidityMeasurementData = _mapper.Map<HumidityMeasurementDto>(humidityMeasurement)
+                        HumidityMeasurementData = humidityMeasurementDto
                     };
                     _producer.PublishMessage(humidityMeasurementMessage);
                     
                     _logger.LogInformation("Successfully added humidity measurement");
                     return new Result<bool>(true);
-                }
-
-                _logger.LogInformation("Something went wrong");
-                return new Result<bool>(new Exception("Something went wrong"));
             }, err =>
             {
                 _logger.LogError("Error has occured during AddHumidityMeasurementCommandHandler handling: {exception}", err.Message);

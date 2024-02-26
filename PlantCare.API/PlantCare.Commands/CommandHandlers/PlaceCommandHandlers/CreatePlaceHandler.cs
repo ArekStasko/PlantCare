@@ -37,21 +37,17 @@ public class CreatePlaceHandler : IRequestHandler<CreatePlaceCommand, Result<boo
             var result = await _placeRepository.Create(placeToCreate);
             return result.Match(succ =>
             {
-                if (succ)
-                {
+                    var placeDto = _mapper.Map<PlaceDto>(placeToCreate);
+                    placeDto.Id = succ;
                     var placeMessage = new Place()
                     {
                         Action = ActionType.Add,
-                        PlaceData = _mapper.Map<PlaceDto>(placeToCreate)
+                        PlaceData = placeDto
                     };
                     _queueProducer.PublishMessage(placeMessage);
                     
                     _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
-                }
-
-                _logger.LogInformation("Something went wrong");
-                return new Result<bool>(new Exception("Something went wrong"));
             }, err =>
             {
                 _logger.LogError("Error has occured during CreatePlaceHandler handling: {exception}", err.Message);
