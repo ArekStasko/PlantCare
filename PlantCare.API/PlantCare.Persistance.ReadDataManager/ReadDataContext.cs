@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
-using PlantCare.Domain.Models.ReadModels.HumidityMeasurement;
-using PlantCare.Domain.Models.ReadModels.Place;
-using PlantCare.Domain.Models.ReadModels.Plant;
+using PlantCare.Domain.Models.Place;
+using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
@@ -57,5 +57,21 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
             .WithOne()
             .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
+
+        modelBuilder.Entity<Place>()
+            .Property(p => p.Id)
+            .ValueGeneratedNever();
+        
+        modelBuilder.Entity<Plant>()
+            .Property(p => p.Id)
+            .ValueGeneratedNever();
+        
+        modelBuilder.Entity<Module>()
+            .Property(p => p.Id)
+            .ValueGeneratedNever();
+        
+        modelBuilder.Entity<HumidityMeasurement>()
+            .Property(p => p.Id)
+            .ValueGeneratedNever();
     }
 }

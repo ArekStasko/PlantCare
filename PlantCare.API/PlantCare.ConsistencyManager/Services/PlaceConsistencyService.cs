@@ -25,7 +25,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
         {
             case ActionType.Add:
             {
-                var place = _mapper.Map<PlantCare.Domain.Models.ReadModels.Place.Place>(message.PlaceData);
+                var place = _mapper.Map<PlantCare.Domain.Models.Place.Place>(message.PlaceData);
                 await _context.Places.AddAsync(place);
                 await _context.SaveChangesAsync();
                 return;
@@ -33,7 +33,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
             case ActionType.Delete:
             {
                 var placeId = message.PlaceData.Id;
-                var placeToDelete = await _context.Places.SingleOrDefaultAsync(m => m.ConsistencyId == placeId);
+                var placeToDelete = await _context.Places.SingleOrDefaultAsync(m => m.Id == placeId);
 
                 if (placeToDelete == null)
                 {
@@ -47,7 +47,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
             }
             case ActionType.Update:
             {
-                var place = _mapper.Map<PlantCare.Domain.Models.ReadModels.Place.Place>(message.PlaceData);
+                var place = _mapper.Map<PlantCare.Domain.Models.Place.Place>(message.PlaceData);
                 _context.Places.Update(place);
                 await _context.SaveChangesAsync();
                 return;

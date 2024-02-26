@@ -26,7 +26,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
         {
             case ActionType.Add:
             {
-                var plant = _mapper.Map<PlantCare.Domain.Models.ReadModels.Plant.Plant>(message.PlantData);
+                var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
                 await _context.Plants.AddAsync(plant);
                 await _context.SaveChangesAsync();
                 return;
@@ -34,7 +34,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
             case ActionType.Delete:
             {
                 var plantId = message.PlantData.Id;
-                var plantToDelete = await _context.Plants.SingleOrDefaultAsync(m => m.ConsistencyId == plantId);
+                var plantToDelete = await _context.Plants.SingleOrDefaultAsync(m => m.Id == plantId);
 
                 if (plantToDelete == null)
                 {
@@ -48,7 +48,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
             }
             case ActionType.Update:
             {
-                var plant = _mapper.Map<PlantCare.Domain.Models.ReadModels.Plant.Plant>(message.PlantData);
+                var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
                 _context.Plants.Update(plant);
                 await _context.SaveChangesAsync();
                 return;

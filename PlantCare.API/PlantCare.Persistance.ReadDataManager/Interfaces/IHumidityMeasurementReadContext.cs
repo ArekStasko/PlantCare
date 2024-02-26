@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PlantCare.Domain.Models.ReadModels.HumidityMeasurement;
+using PlantCare.Domain.Models.HumidityMeasurement;
 
 namespace PlantCare.Persistance.ReadDataManager.Interfaces;
 

@@ -16,36 +16,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/HumidityMeasurement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/IReadHumidityMeasurement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/IReadPlace.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/Place.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/IReadPlant.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/Plant.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240225173607_WriteDB migration.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240225173607_WriteDB migration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/ReadDataContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240225173645_WriteDB migration.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240225173645_WriteDB migration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/WriteDataContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/HumidityMeasurementCommandHandlers/AddHumidityMeasurementHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlaceCommandHandlers/CreatePlaceHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlaceCommandHandlers/CreatePlaceHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlantCommandHandlers/CreatePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlantCommandHandlers/CreatePlantHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Mapper/DtoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Mapper/DtoMapperProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlantConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlantConsistencyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/HumidityMeasurement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/IReadHumidityMeasurement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/IReadPlace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/Place.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/IReadPlant.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/Plant.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IHumidityMeasurementReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IHumidityMeasurementReadContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlaceReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlaceReadContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlantReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlantReadContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/HumidityMeasurementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/HumidityMeasurementRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteHumiditiMoistureRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteHumiditiMoistureRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlaceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlaceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlantRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +50,6 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/8e941eb42f819adb116b881195158b3887a70a1c/src/DefaultBuilder/src/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/Microsoft.Extensions.Hosting/src/Internal/Host.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/bf5e279d9239bfef5bb1b8d6212f1b971c434606/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
@@ -82,6 +64,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.Commands/Mapper/CommandsMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
