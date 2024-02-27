@@ -54,6 +54,8 @@ public class PlantRepository : IWritePlantRepository
 
             _logger.LogInformation("Plant with {plantId} successfully deleted", id);
             await ResetCacheValues();
+            string singlePlantKey = $"Plant-{id}";
+            await _cache.RemoveAsync(singlePlantKey);
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -68,7 +70,7 @@ public class PlantRepository : IWritePlantRepository
         try
         {
             var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
-
+            
             if (plantToUpdate == null)
             {
                 _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
@@ -80,6 +82,8 @@ public class PlantRepository : IWritePlantRepository
             plantToUpdate.Type = plant.Type;
             await _context.SaveChangesAsync();
             await ResetCacheValues();
+            string singlePlantKey = $"Plant-{plant.Id}";
+            await _cache.RemoveAsync(singlePlantKey);
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
             
             return new Result<bool>(true);

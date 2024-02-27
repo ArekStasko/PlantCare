@@ -20,7 +20,6 @@ public class QueriesMapperProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
         CreateMap<IPlant, GetPlantResponse>();
-            
         
         // MODULE MAPPINGS
 
