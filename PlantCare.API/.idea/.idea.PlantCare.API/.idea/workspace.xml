@@ -4,14 +4,18 @@
     <projectFile profileName="IIS Express">PlantCare.API/PlantCare.API.csproj</projectFile>
     <projectFile profileName="http">PlantCare.API/PlantCare.API.csproj</projectFile>
     <projectFile profileName="https">PlantCare.API/PlantCare.API.csproj</projectFile>
+    <projectFile profileName="IIS Express">PlantCare.Controllers/PlantCare.Controllers.csproj</projectFile>
+    <projectFile profileName="http">PlantCare.Controllers/PlantCare.Controllers.csproj</projectFile>
+    <projectFile profileName="https">PlantCare.Controllers/PlantCare.Controllers.csproj</projectFile>
+    <projectFile profileName="IIS Express">WebApplication1/WebApplication1.csproj</projectFile>
+    <projectFile profileName="http">WebApplication1/WebApplication1.csproj</projectFile>
+    <projectFile profileName="https">WebApplication1/WebApplication1.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,16 +35,23 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/8e941eb42f819adb116b881195158b3887a70a1c/src/DefaultBuilder/src/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/Microsoft.Extensions.Hosting/src/Internal/Host.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/bf5e279d9239bfef5bb1b8d6212f1b971c434606/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/bf5e279d9239bfef5bb1b8d6212f1b971c434606/src/libraries/System.Private.CoreLib/src/System/Threading/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/bf5e279d9239bfef5bb1b8d6212f1b971c434606/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Task.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/bf5e279d9239bfef5bb1b8d6212f1b971c434606/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/TaskContinuation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/477b4e826ead4ecf86f19cf2ddbb4649c8f910/3d/39f14337/AsyncValueTaskMethodBuilder`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/816dbaba8a29ece3dd3dc326642858d27d2d19142f9a2109bb04617985ec9/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aeca8dfcec95a81b42a28e5c138e1c321e89def3fed605511172a8beaec/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cf91eb35ab781c324ad4fa382dce85631ec37cf3813529f7c92208d866c851/TaskContinuation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/HumidityMeasurementCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/ModuleCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlaceCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/PlantCacheRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.Services.Tests/PlaceHandlersTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API.Services/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.Commands/Mapper/CommandsMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -64,11 +75,13 @@
     &quot;ToolWindowNuGet.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -126,6 +139,51 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="PlantCare.Controllers: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="PlantCare.Controllers: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="PlantCare.Controllers: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="PlantCare.API/Dockerfile" type="docker-deploy" factoryName="dockerfile">
       <deployment type="dockerfile">
         <settings>
@@ -136,6 +194,27 @@
         </settings>
       </deployment>
       <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="WebApplication1/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="webapplication1" />
+          <option name="containerName" value="webapplication1" />
+          <option name="contextFolderPath" value="C:\Users\areks\sources\repos\PlantCare\PlantCare.API" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="8080" />
+                <option name="hostIp" value="127.0.0.1" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="WebApplication1/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
@@ -195,6 +274,44 @@
       <workItem from="1703523955452" duration="870000" />
       <workItem from="1703526799733" duration="109000" />
       <workItem from="1703526925553" duration="7597000" />
+      <workItem from="1704482611928" duration="1685000" />
+      <workItem from="1704534369075" duration="3621000" />
+      <workItem from="1704624875700" duration="4825000" />
+      <workItem from="1704906211017" duration="7177000" />
+      <workItem from="1704952738174" duration="624000" />
+      <workItem from="1704986043403" duration="4000" />
+      <workItem from="1704994269409" duration="7070000" />
+      <workItem from="1705518200759" duration="654000" />
+      <workItem from="1705604720239" duration="1060000" />
+      <workItem from="1705605812502" duration="4783000" />
+      <workItem from="1705748458248" duration="4539000" />
+      <workItem from="1705906082122" duration="1077000" />
+      <workItem from="1705946363735" duration="2865000" />
+      <workItem from="1706036650932" duration="603000" />
+      <workItem from="1706120553926" duration="4705000" />
+      <workItem from="1706642022531" duration="89000" />
+      <workItem from="1706718408144" duration="2027000" />
+      <workItem from="1706813418646" duration="3565000" />
+      <workItem from="1706904579982" duration="628000" />
+      <workItem from="1706979067326" duration="5315000" />
+      <workItem from="1707053796379" duration="6751000" />
+      <workItem from="1707163280734" duration="3431000" />
+      <workItem from="1707320985233" duration="623000" />
+      <workItem from="1707405163862" duration="6831000" />
+      <workItem from="1707586146481" duration="3184000" />
+      <workItem from="1707750103048" duration="2156000" />
+      <workItem from="1707843095610" duration="1486000" />
+      <workItem from="1708018028720" duration="617000" />
+      <workItem from="1708019325433" duration="1109000" />
+      <workItem from="1708020678382" duration="313000" />
+      <workItem from="1708021025652" duration="1833000" />
+      <workItem from="1708172778438" duration="4267000" />
+      <workItem from="1708451447072" duration="3202000" />
+      <workItem from="1708540862459" duration="7226000" />
+      <workItem from="1708549685049" duration="672000" />
+      <workItem from="1708714942806" duration="637000" />
+      <workItem from="1708792012471" duration="6743000" />
+      <workItem from="1708974319465" duration="2942000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -355,119 +472,160 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.Services/Extensions.cs</url>
           <line>15</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Extensions.cs" initialLine="15" containingFunctionPresentation="Method 'AddMappings'">
-            <startOffsets>
-              <option value="433" />
-            </startOffsets>
-            <endOffsets>
-              <option value="496" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\Extensions.cs" initialLine="15" containingFunctionPresentation="Method 'AddMappings'" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/PlantRepository/PlantRepository.cs</url>
           <line>66</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'">
-            <startOffsets>
-              <option value="2174" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2175" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\PlantRepository\PlantRepository.cs" initialLine="65" containingFunctionPresentation="Method 'Update'" />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.Services/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs</url>
           <line>24</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\PlantCommandHandlers\UpdatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="845" />
-            </startOffsets>
-            <endOffsets>
-              <option value="846" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.Services\CommandHandlers\PlantCommandHandlers\UpdatePlantHandler.cs" initialLine="24" containingFunctionPresentation="Method 'Handle'" />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs</url>
           <line>41</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="41" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="1662" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1663" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="41" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.SignalR/Hubs/CurrentMoistureHub.cs</url>
           <line>29</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="29" containingFunctionPresentation="Method 'SendMessage'">
-            <startOffsets>
-              <option value="840" />
-            </startOffsets>
-            <endOffsets>
-              <option value="841" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="29" containingFunctionPresentation="Method 'SendMessage'" />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.SignalR/Hubs/CurrentMoistureHub.cs</url>
           <line>23</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="23" containingFunctionPresentation="Method 'OnConnectedAsync'">
-            <startOffsets>
-              <option value="663" />
-            </startOffsets>
-            <endOffsets>
-              <option value="664" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.SignalR\Hubs\CurrentMoistureHub.cs" initialLine="23" containingFunctionPresentation="Method 'OnConnectedAsync'" />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Cache/CacheRepositories/HumidityMeasurementCacheRepository.cs</url>
           <line>24</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Cache\CacheRepositories\HumidityMeasurementCacheRepository.cs" initialLine="24" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="934" />
-            </startOffsets>
-            <endOffsets>
-              <option value="935" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Cache\CacheRepositories\HumidityMeasurementCacheRepository.cs" initialLine="24" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API.DataAccess/Repositories/HumidityMeasurementRepository/HumidityMeasurementRepository.cs</url>
           <line>23</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="23" containingFunctionPresentation="Method 'Add'">
-            <startOffsets>
-              <option value="957" />
-            </startOffsets>
-            <endOffsets>
-              <option value="958" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" initialLine="23" containingFunctionPresentation="Method 'Add'" />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs</url>
           <line>39</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" initialLine="39" containingFunctionPresentation="Method 'Get'">
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" initialLine="39" containingFunctionPresentation="Method 'Get'" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs</url>
+          <line>76</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" initialLine="76" containingFunctionPresentation="Method 'GetAll'">
             <startOffsets>
-              <option value="1695" />
+              <option value="3264" />
             </startOffsets>
             <endOffsets>
-              <option value="1696" />
+              <option value="3265" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="34" />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/PlantRepository.cs</url>
+          <line>20</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.Persistance.ReadDataManager\Repositories\PlantRepository.cs" initialLine="20" containingFunctionPresentation="Method 'Get'">
+            <startOffsets>
+              <option value="720" />
+            </startOffsets>
+            <endOffsets>
+              <option value="721" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
+          <line>52</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" initialLine="52" containingFunctionPresentation="Method 'CancelQueueConsumer'">
+            <startOffsets>
+              <option value="2090" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2091" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
+          <line>31</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" initialLine="31" containingFunctionPresentation="Method 'RegisterQueueConsumer'">
+            <startOffsets>
+              <option value="1292" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1293" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
+          <line>65</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" initialLine="65" containingFunctionPresentation="Method 'HandleMessage'">
+            <startOffsets>
+              <option value="2467" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2468" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs</url>
+          <line>21</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Producer\QueueProducer.cs" initialLine="21" containingFunctionPresentation="Method 'PublishMessage'">
+            <startOffsets>
+              <option value="718" />
+            </startOffsets>
+            <endOffsets>
+              <option value="719" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
+          <line>22</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" initialLine="22" containingFunctionPresentation="Method 'StartAsync'">
+            <startOffsets>
+              <option value="999" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1000" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
+          <line>32</line>
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" initialLine="32" containingFunctionPresentation="Method 'StopAsync'">
+            <startOffsets>
+              <option value="1339" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1340" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <breakpoint enabled="true" type="DotNet Exception Breakpoints">
           <properties exception="System.NotSupportedException" isInternal="false" displayValue="NotSupportedException" namespaceName="System">

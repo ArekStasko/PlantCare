@@ -1,7 +1,13 @@
-using System.Reflection;
-using PlantCare.API.DataAccess;
+using System.Net;
+using PlantCare.Commands;
+using PlantCare.ConsistencyManager;
+using PlantCare.ConsistencyManager.Services;
+using PlantCare.MessageBroker;
+using PlantCare.MessageBroker.Messages;
+using PlantCare.Persistance.ReadDataManager;
+using PlantCare.Persistance.WriteDataManager;
+using PlantCare.Queries;
 using Serilog;
-using PlantCare.API.Services;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 
@@ -10,23 +16,39 @@ builder.Services.AddCors(options =>
 {
     options
         .AddPolicy(name: AllowSpecifiOrigin, policy => policy.AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-    );
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+        );
 });
 
 builder.WebHost.UseKestrel();
 
 // Add services to the container.
 
+builder.Services.AddMessageBroker();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.ConfigureServices();
-builder.Services.SetupDataAccess();
-builder.Services.SetupCache();
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblies(typeof(PlantCare.API.Services.Handlers.CreatePlantHandler).GetTypeInfo().Assembly));
+
+builder.Services.AddConsistencyManagerMapperProfile();
+
+builder.Services.AddCommandsMapperProfile();
+builder.Services.AddQueriesMapperProfile();
+
+builder.Services.AddReadDataManager();
+builder.Services.AddReadCache();
+
+builder.Services.AddWriteDataManager();
+
+builder.Services.ConfigureQueries();
+builder.Services.ConfigureCommands();
+
+builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, HumidityMeasurement>();
+builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
+builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
+builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
+
 
 var logger = new LoggerConfiguration()
     .ReadFrom
@@ -42,7 +64,9 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader());
 
-app.Migrate();  
+app.MigrateReadDatabase();  
+app.MigrateWriteDatabase();  
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -56,5 +80,5 @@ app.UseCors(AllowSpecifiOrigin);
 app.UseAuthorization();
 
 app.MapControllers();
-
+ 
 app.Run();

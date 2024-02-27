@@ -24,13 +24,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/plants/Create",
+							"raw": "{{BaseURL}}plants/create",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}plants"
 							],
 							"path": [
-								"plants",
-								"Create"
+								"create"
 							]
 						}
 					},
@@ -42,13 +41,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/plants/Delete?id={{CurrentPlantId}}",
+							"raw": "{{BaseURL}}plants/delete?id={{CurrentPlantId}}",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}plants"
 							],
 							"path": [
-								"plants",
-								"Delete"
+								"delete"
 							],
 							"query": [
 								{
@@ -67,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Updated Test Name\",\r\n    \"description\": \"Updated Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{FruitType}},\r\n    \"criticalMoistureLevel\" : 70,\r\n    \"requiredMoistureLevel\" : 50,\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
+							"raw": "{\r\n    \"id\": {{CurrentPlantId}},\r\n    \"name\": \"Updated Test Name\",\r\n    \"description\": \"Updated Test Description\",\r\n    \"placeId\": {{CurrentPlaceId}},\r\n    \"type\": {{FruitType}},\r\n    \"moduleId\" : \"{{ModuleId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,31 +73,29 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/plants/Update",
+							"raw": "{{BaseURL}}plants/update",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}plants"
 							],
 							"path": [
-								"plants",
-								"Update"
+								"update"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get Plant",
+					"name": "Get Plant By Id",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/plants/Get?id={{CurrentPlantId}}",
+							"raw": "{{BaseURL}}plants/getById?id={{CurrentPlantId}}",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}plants"
 							],
 							"path": [
-								"plants",
-								"Get"
+								"getById"
 							],
 							"query": [
 								{
@@ -112,18 +108,29 @@
 					"response": []
 				},
 				{
-					"name": "GetAll Plants",
+					"name": "Get List of Plants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{BaseURL}}/plants/GetAll",
+							"raw": "{{BaseURL}}plants/get",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}plants"
 							],
 							"path": [
-								"plants",
-								"GetAll"
+								"get"
 							]
 						}
 					},
@@ -141,7 +148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": {{CurrentPlaceId}},\r\n  \"name\": \"Updated place name\"\r\n}",
+							"raw": "{\r\n  \"id\": {{CurrentPlaceId}},\r\n  \"name\": \"Salon\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,13 +156,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/places/Update",
+							"raw": "{{BaseURL}}places/update",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}places"
 							],
 							"path": [
-								"places",
-								"Update"
+								"update"
 							]
 						}
 					},
@@ -176,13 +182,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/places/Create",
+							"raw": "{{BaseURL}}places/create",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}places"
 							],
 							"path": [
-								"places",
-								"Create"
+								"create"
 							]
 						}
 					},
@@ -194,13 +199,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/places/Delete?id={{CurrentPlaceId}}",
+							"raw": "{{BaseURL}}places/delete?id={{CurrentPlaceId}}",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}places"
 							],
 							"path": [
-								"places",
-								"Delete"
+								"delete"
 							],
 							"query": [
 								{
@@ -213,18 +217,17 @@
 					"response": []
 				},
 				{
-					"name": "GetAll Places",
+					"name": "Get List Of Places",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/places/GetAll",
+							"raw": "{{BaseURL}}places/get",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}places"
 							],
 							"path": [
-								"places",
-								"GetAll"
+								"get"
 							]
 						}
 					},
@@ -241,13 +244,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/modules/Add",
+							"raw": "{{BaseURL}}modules/add",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}modules"
 							],
 							"path": [
-								"modules",
-								"Add"
+								"add"
 							]
 						}
 					},
@@ -260,7 +262,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"b0699bda-09dc-4129-b181-c274f1e1ccc3\",\r\n    \"RequiredMoistureLevel\": \"80\",\r\n    \"CriticalMoistureLevel\": \"50\"\r\n}",
+							"raw": "{\r\n    \"id\": \"{{ModuleId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,13 +270,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/modules/Update",
+							"raw": "{{BaseURL}}modules/update",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}modules"
 							],
 							"path": [
-								"modules",
-								"Update"
+								"update"
 							]
 						}
 					},
@@ -286,13 +287,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/modules/Delete?id={{ModuleId}}",
+							"raw": "{{BaseURL}}modules/delete?id={{ModuleId}}",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}modules"
 							],
 							"path": [
-								"modules",
-								"Delete"
+								"delete"
 							],
 							"query": [
 								{
@@ -305,18 +305,17 @@
 					"response": []
 				},
 				{
-					"name": "Get Modules",
+					"name": "Get List Of Modules",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/modules/GetAll",
+							"raw": "{{BaseURL}}modules/get",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}modules"
 							],
 							"path": [
-								"modules",
-								"GetAll"
+								"get"
 							]
 						}
 					},
@@ -342,31 +341,29 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}/humidity-measurements/Add",
+							"raw": "{{BaseURL}}humidity-measurements/add",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}humidity-measurements"
 							],
 							"path": [
-								"humidity-measurements",
-								"Add"
+								"add"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get Humidity Measurements",
+					"name": "Get List Of Humidity Measurements By Module Id",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/humidity-measurements/Get?id={{ModuleId}}&fromDate=2018-12-10T13:49:51.141Z&toDate=2018-12-20T13:49:51.141Z",
+							"raw": "{{BaseURL}}humidity-measurements/get?id={{ModuleId}}",
 							"host": [
-								"{{BaseURL}}"
+								"{{BaseURL}}humidity-measurements"
 							],
 							"path": [
-								"humidity-measurements",
-								"Get"
+								"get"
 							],
 							"query": [
 								{
@@ -375,11 +372,13 @@
 								},
 								{
 									"key": "fromDate",
-									"value": "2018-12-10T13:49:51.141Z"
+									"value": "2023-12-12 19:41:54.0703074",
+									"disabled": true
 								},
 								{
 									"key": "toDate",
-									"value": "2018-12-20T13:49:51.141Z"
+									"value": "2023-12-13 19:46:23.4832095",
+									"disabled": true
 								}
 							]
 						}
