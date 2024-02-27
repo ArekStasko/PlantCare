@@ -22,7 +22,7 @@ public class ModuleCacheRepository : IReadModuleRepository
     public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
     {
         string modulesKey = "Modules";
-        IReadOnlyCollection<IModule> data = await _cache.GetRecordAsync<List<IModule>>(modulesKey);
+        IReadOnlyCollection<IModule> data = await _cache.GetRecordAsync<List<Module>>(modulesKey);
 
         if (data == null || data.Count == 0)
         {
@@ -37,7 +37,7 @@ public class ModuleCacheRepository : IReadModuleRepository
     public async ValueTask<Result<IModule>> Get(Guid id)
     {
         string singleModuleKey = $"Module-{id}";
-        IModule data = await _cache.GetRecordAsync<IModule>(singleModuleKey);
+        IModule data = await _cache.GetRecordAsync<Module>(singleModuleKey);
 
         if (data == null)
         {

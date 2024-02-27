@@ -15,22 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Mapper/DtoMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Mapper/DtoMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlantConsistencyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlantConsistencyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/HumidityMeasurement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/HumidityMeasurement/IReadHumidityMeasurement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/IReadPlace.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Place/Place.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/IReadPlant.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/ReadModels/Plant/Plant.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IHumidityMeasurementReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IHumidityMeasurementReadContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlaceReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlaceReadContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlantReadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Interfaces/IPlantReadContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

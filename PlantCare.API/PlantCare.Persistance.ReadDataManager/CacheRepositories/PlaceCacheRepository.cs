@@ -21,7 +21,7 @@ public class PlaceCacheRepository : IReadPlaceRepository
     public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
     {
         string placesKey = "Places";
-        IReadOnlyCollection<IPlace> data = await _cache.GetRecordAsync<List<IPlace>>(placesKey);
+        IReadOnlyCollection<IPlace> data = await _cache.GetRecordAsync<List<Place>>(placesKey);
 
         if (data == null || data.Count == 0)
         {

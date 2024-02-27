@@ -22,7 +22,7 @@ public class PlantCacheRepository : IReadPlantRepository
     public async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
     {
         string plantsKey = "Plants";
-        IReadOnlyCollection<IPlant> data = await _cache.GetRecordAsync<List<IPlant>>(plantsKey);
+        IReadOnlyCollection<IPlant> data = await _cache.GetRecordAsync<List<Plant>>(plantsKey);
 
         if (data == null || data.Count == 0)
         {
@@ -37,7 +37,7 @@ public class PlantCacheRepository : IReadPlantRepository
     public async ValueTask<Result<IPlant>> Get(int id)
     {
         string singlePlantKey = $"Plant-{id}";
-        IPlant data = await _cache.GetRecordAsync<IPlant>(singlePlantKey);
+        IPlant data = await _cache.GetRecordAsync<Plant>(singlePlantKey);
 
         if (data == null)
         {
