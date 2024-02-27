@@ -1,12 +1,13 @@
-namespace PlantCare.API.Controllers;
-
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PlantCare.API.DataAccess.Models;
-using PlantCare.API.Services.Requests;
+using PlantCare.Commands.Commands.Plant;
+using PlantCare.Domain.Models.Plant;
+using PlantCare.Queries.Queries.Plant;
 
-[Route("api/plants/[action]")]
+namespace PlantCare.API.Controllers;
+
+[Route("api/v1/plants/[action]")]
 [ApiController]
 public class PlantController : ControllerBase
 {
@@ -21,7 +22,7 @@ public class PlantController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/Create")]
+    [HttpPost(Name = "[controller]/create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlantCommand command)
@@ -32,7 +33,7 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "[controller]/Delete")]
+    [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
@@ -44,7 +45,7 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/Update")]
+    [HttpPost(Name = "[controller]/update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdatePlantCommand command)
@@ -55,11 +56,12 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/Get")]
+    [HttpGet(Name = "[controller]/getById")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int id)
+    public async ValueTask<IActionResult> GetById([FromQuery] int id)
     {
+     
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
         _logger.LogInformation("Get plant controller method start processing");
         var result = await _mediator.
@@ -68,10 +70,10 @@ public class PlantController : ControllerBase
         return result.ToOk();
     }
     
-    [HttpGet(Name = "[controller]/GetAll")]
+    [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetAll()
+    public async ValueTask<IActionResult> Get()
     {
         _logger.LogInformation("GetAll plant controller method start processing");
         var result = await _mediator.Send(new GetPlantsQuery());

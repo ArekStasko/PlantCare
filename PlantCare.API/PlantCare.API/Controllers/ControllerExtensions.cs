@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,14 +10,14 @@ public static class ControllerExtensions
     {
         return result.Match<IActionResult>(
             obj => new OkObjectResult(obj),
-        exception =>
-        {
-            if (exception is ValidationException validationException)
+            exception =>
             {
-                return new BadRequestObjectResult(validationException);
-            }
+                if (exception is ValidationException validationException)
+                {
+                    return new BadRequestObjectResult(validationException);
+                }
 
-            return new StatusCodeResult(500);
-        });
+                return new StatusCodeResult(500);
+            });
     }
 }
