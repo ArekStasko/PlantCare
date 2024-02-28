@@ -10,6 +10,7 @@ import React, { useEffect } from 'react';
 import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
 import { useDeletePlantMutation } from '../../../slices/deletePlant/deletePlant';
 import { useDeletePlaceMutation } from '../../../slices/deletePlace/deletePlace';
+import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
 
 interface DeleteDialogProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,19 +27,18 @@ export const DeleteDialog = ({
 }: DeleteDialogProps) => {
   const [deletePlant] = useDeletePlantMutation();
   const [deletePlace] = useDeletePlaceMutation();
-  const { refetch } = useGetPlacesQuery();
+  const { refetch: refetchPlaces } = useGetPlacesQuery();
+  const { refetch: refetchPlants } = useGetPlantsQuery();
 
   const confirmDelete = async () => {
-    console.log('RESOURCE ID');
-    console.log(resourceId);
     if (resourceType === 'plant') {
       await deletePlant(resourceId);
-      refetch();
+      refetchPlants();
     }
 
     if (resourceType === 'place') {
       await deletePlace(resourceId);
-      refetch();
+      refetchPlaces();
     }
 
     setOpenDialog(!openDialog);
