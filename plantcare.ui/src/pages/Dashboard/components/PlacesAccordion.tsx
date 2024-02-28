@@ -19,9 +19,11 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteDialog from '../../../common/compontents/DeleteIcon/DeleteDialog/deleteDialog';
 import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
 import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
+import { Plant } from '../../../common/models/Plant';
 
 interface PlaceAccordionProps {
-  data: Place[];
+  places: Place[];
+  plants: Plant[];
 }
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
@@ -30,7 +32,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
 
   return (
     <Box sx={styles.placesAccordionWrapper}>
-      {props.data!.map((place) => (
+      {props.places!.map((place) => (
         <Accordion
           sx={{
             border: '1px solid black'
@@ -67,8 +69,8 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
               </Box>
             </Box>
           </AccordionSummary>
-          {place.plants ? (
-            <PlantsAccordionDetails place={place!} />
+          {props.plants && props.plants.length !== 0 ? (
+            <PlantsAccordionDetails plants={props.plants!} />
           ) : (
             <AccordionDetails>
               <Typography>There is no plants</Typography>

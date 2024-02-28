@@ -12,9 +12,10 @@ import { Place } from '../../../common/models/Place';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
+import { Plant } from '../../../common/models/Plant';
 
 interface PlantsAccordionDetailsProps {
-  place: Place;
+  plants: Plant[];
 }
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
@@ -33,7 +34,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
 
   return (
     <>
-      {props.place.plants!.map((plant) => (
+      {props.plants!.map((plant) => (
         <AccordionDetails key={plant.id} sx={styles.plantsAccordionDetailsWrapper}>
           <Box sx={styles.plantsAccordionDetailsInfo}>
             <Typography sx={{ mr: 5 }} variant="overline">

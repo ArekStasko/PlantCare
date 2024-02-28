@@ -6,8 +6,5 @@ export class Plant {
   name!: string;
   description!: string;
   type!: PlantType;
-  criticalMoistureLevel!: number;
-  requiredMoistureLevel!: number;
-  moistureLevel!: number;
   moduleId?: string | undefined;
 }
