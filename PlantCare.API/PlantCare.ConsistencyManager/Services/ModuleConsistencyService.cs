@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.MessageBroker.Consumer;

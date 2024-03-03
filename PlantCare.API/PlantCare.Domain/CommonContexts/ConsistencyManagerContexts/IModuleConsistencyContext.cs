@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.Module;
 
 namespace PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;

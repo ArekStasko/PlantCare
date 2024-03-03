@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.Models.HumidityMeasurement;
 
 namespace PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
