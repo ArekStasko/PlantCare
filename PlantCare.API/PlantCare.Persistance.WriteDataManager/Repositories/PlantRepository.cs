@@ -97,10 +97,12 @@ public class PlantRepository : IWritePlantRepository
 
     private async Task ResetCacheValues()
     {
-        //TODO: Should i run this tasks in parallel ? 
-        await _cache.RemoveAsync("Plants");
-        await _cache.RemoveAsync("Modules");
-        await _cache.RemoveAsync("Places");
+        await Task.WhenAll(
+            _cache.RemoveAsync("Plants"), 
+            _cache.RemoveAsync("Modules"), 
+            _cache.RemoveAsync("Places")
+            );
+        
         _logger.LogInformation("Redis cache has been updated");
     }
 }
