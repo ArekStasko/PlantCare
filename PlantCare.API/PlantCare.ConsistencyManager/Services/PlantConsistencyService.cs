@@ -1,19 +1,18 @@
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.MessageBroker.Consumer;
 using PlantCare.MessageBroker.Messages;
-using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.ConsistencyManager.Services;
 
 public class PlantConsistencyService : IQueueConsumer<Plant>
 {
-    private readonly IPlantReadContext _context;
+    private readonly IPlantConsistencyContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<PlantConsistencyService> _logger;
 
-    public PlantConsistencyService(IPlantReadContext context, IMapper mapper, ILogger<PlantConsistencyService> logger)
+    public PlantConsistencyService(IPlantConsistencyContext context, IMapper mapper, ILogger<PlantConsistencyService> logger)
     {
         _context = context;
         _mapper = mapper;

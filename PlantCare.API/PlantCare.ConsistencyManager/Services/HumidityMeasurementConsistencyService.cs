@@ -1,18 +1,18 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.MessageBroker.Consumer;
 using PlantCare.MessageBroker.Messages;
-using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.ConsistencyManager.Services;
 
 public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeasurement>
 {
-    private readonly IHumidityMeasurementReadContext _context;
+    private readonly IHumidityMeasurementsConsistencyContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<HumidityMeasurementConsistencyService> _logger;
 
-    public HumidityMeasurementConsistencyService(IHumidityMeasurementReadContext context, IMapper mapper, ILogger<HumidityMeasurementConsistencyService> logger)
+    public HumidityMeasurementConsistencyService(IHumidityMeasurementsConsistencyContext context, IMapper mapper, ILogger<HumidityMeasurementConsistencyService> logger)
     {
         _context = context;
         _mapper = mapper;
