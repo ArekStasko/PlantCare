@@ -7,6 +7,13 @@ const dashboardWrapper = {
   alignItems: 'center'
 };
 
+const alertWrapper = {
+  mt: 15,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 const placesAccordionWrapper = {
   width: '80%',
   height: '100%',
@@ -43,6 +50,7 @@ const plantsAccordionDetailsButtons = {
 
 export default {
   dashboardWrapper,
+  alertWrapper,
   placesAccordionWrapper,
   placesAccordionSummary,
   plantsAccordionDetailsWrapper,
