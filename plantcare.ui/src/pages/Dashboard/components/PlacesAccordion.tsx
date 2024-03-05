@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
   Box,
   IconButton,
   Tooltip,
@@ -29,6 +30,10 @@ interface PlaceAccordionProps {
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
   const [currentAccordion, setCurrentAccordion] = React.useState<number>();
   const navigate = useNavigate();
+
+  const filterPlantsByPlaceId = (placeId: number) => {
+    return props.plants.filter((p) => p.placeId === placeId);
+  };
 
   return (
     <Box sx={styles.placesAccordionWrapper}>
@@ -69,11 +74,13 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
               </Box>
             </Box>
           </AccordionSummary>
-          {props.plants && props.plants.length !== 0 ? (
-            <PlantsAccordionDetails plants={props.plants!} />
+          {props.plants && filterPlantsByPlaceId(place.id).length !== 0 ? (
+            <PlantsAccordionDetails plants={filterPlantsByPlaceId(place.id)!} />
           ) : (
             <AccordionDetails>
-              <Typography>There is no plants</Typography>
+              <Alert variant="outlined" severity="warning">
+                There is no plants assigned to {place.name}
+              </Alert>
             </AccordionDetails>
           )}
         </Accordion>
