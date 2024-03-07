@@ -18,18 +18,6 @@ public static class Extensions
         services.AddReadRepositories();
     }
 
-    public static void AddReadCache(this IServiceCollection services)
-    {
-        var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
-        var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
-
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = redisConnectionString;
-            options.InstanceName = redisInstance;
-        });
-    }
-
     private static void AddReadDataContext(this IServiceCollection services)
     {
         var connectionString = GetConnectionString();

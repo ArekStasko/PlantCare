@@ -10,6 +10,8 @@ using PlantCare.Queries;
 using Serilog;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
+var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
+var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -25,18 +27,22 @@ builder.WebHost.UseKestrel();
 
 // Add services to the container.
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = redisConnectionString;
+    options.InstanceName = redisInstance;
+});
+
 builder.Services.AddMessageBroker();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddCommandsMapperProfile();
 builder.Services.AddQueriesMapperProfile();
 
 builder.Services.AddReadDataManager();
-builder.Services.AddReadCache();
 
 builder.Services.AddWriteDataManager();
 

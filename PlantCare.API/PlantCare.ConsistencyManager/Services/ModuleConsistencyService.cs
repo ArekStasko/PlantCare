@@ -19,7 +19,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
     {
         _context = context;
         _mapper = mapper;
-        _cache = _cache;
+        _cache = cache;
         _logger = logger;
     }
     public async Task ConsumeAsync(Module message)
