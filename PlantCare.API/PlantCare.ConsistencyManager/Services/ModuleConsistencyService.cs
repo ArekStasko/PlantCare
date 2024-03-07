@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.MessageBroker.Consumer;
@@ -11,12 +12,14 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
 {
     private readonly IModuleConsistencyContext _context;
     private readonly IMapper _mapper;
+    private readonly IDistributedCache _cache;
     private readonly ILogger<ModuleConsistencyService> _logger;
 
-    public ModuleConsistencyService(IModuleConsistencyContext context, IMapper mapper, ILogger<ModuleConsistencyService> logger)
+    public ModuleConsistencyService(IModuleConsistencyContext context, IMapper mapper, IDistributedCache cache, ILogger<ModuleConsistencyService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _cache = _cache;
         _logger = logger;
     }
     public async Task ConsumeAsync(Module message)
@@ -28,6 +31,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         var module = _mapper.Map<PlantCare.Domain.Models.Module.Module>(message.ModuleData);
                         await _context.Modules.AddAsync(module);
                         await _context.SaveChangesAsync();
+                        await ResetCacheModule();
                         return;
                     }
                     case ActionType.Delete:
@@ -43,6 +47,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         
                         _context.Modules.Remove(moduleToDelete);
                         await _context.SaveChangesAsync();
+                        await ResetCacheModule();
                         return;
                     }
                     case ActionType.Update:
@@ -50,6 +55,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         var module = _mapper.Map<PlantCare.Domain.Models.Module.Module>(message.ModuleData);
                         _context.Modules.Update(module);
                         await _context.SaveChangesAsync();
+                        await ResetCacheModule();
                         return;
                     }
                     default:
@@ -58,5 +64,11 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         return;
                     }
                 }
+    }
+
+    private async Task ResetCacheModule()
+    {
+        await _cache.RemoveAsync("Modules");
+        _logger.LogInformation("Redis cache has been updated");
     }
 }

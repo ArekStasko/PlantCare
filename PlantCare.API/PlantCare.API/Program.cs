@@ -31,7 +31,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddConsistencyManagerMapperProfile();
 
 builder.Services.AddCommandsMapperProfile();
 builder.Services.AddQueriesMapperProfile();
@@ -44,11 +43,12 @@ builder.Services.AddWriteDataManager();
 builder.Services.ConfigureQueries();
 builder.Services.ConfigureCommands();
 
+builder.Services.AddConsistencyManagerMapperProfile();
+
 builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, HumidityMeasurement>();
 builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
 builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
 builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
-
 
 var logger = new LoggerConfiguration()
     .ReadFrom

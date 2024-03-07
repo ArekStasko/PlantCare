@@ -12,13 +12,11 @@ public class PlaceRepository : IWritePlaceRepository
 {
     private readonly IPlaceWriteContext _context;
     private readonly ILogger<PlaceRepository> _logger;
-    private readonly IDistributedCache _cache;
 
-    public PlaceRepository(IPlaceWriteContext context, ILogger<PlaceRepository> logger, IDistributedCache cache)
+    public PlaceRepository(IPlaceWriteContext context, ILogger<PlaceRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _cache = cache;
     }
 
     public virtual async ValueTask<Result<int>> Create(IPlace place)
@@ -28,8 +26,6 @@ public class PlaceRepository : IWritePlaceRepository
             await _context.Places.AddAsync((Place)place);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new place with {placeId} Id", place.Id);
-            await _cache.RemoveAsync("Places");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<int>(place.Id);
         }
         catch (Exception e)
@@ -55,8 +51,6 @@ public class PlaceRepository : IWritePlaceRepository
             await _context.SaveChangesAsync();
             
             _logger.LogInformation("Place with {placeId} successfully deleted", id);
-            await _cache.RemoveAsync("Places");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -82,8 +76,6 @@ public class PlaceRepository : IWritePlaceRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Place with {placeId} successfully updated", place.Id);
-            await _cache.RemoveAsync("Places");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)

@@ -8,8 +8,12 @@ import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
 import NoDataDialog from '../../common/compontents/NoDataAlert/noDataDialog';
 
 const Dashboard = () => {
-  const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
-  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
+  const { data: places, isLoading: placesLoading } = useGetPlacesQuery(undefined, {
+    pollingInterval: 0
+  });
+  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery(undefined, {
+    pollingInterval: 0
+  });
 
   return placesLoading || plantsLoading ? (
     <CustomBackdrop isLoading={placesLoading || plantsLoading} />

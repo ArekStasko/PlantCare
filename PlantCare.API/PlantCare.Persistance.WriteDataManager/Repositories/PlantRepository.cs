@@ -1,6 +1,5 @@
 using LanguageExt.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.WriteDataManager.Interfaces;
@@ -12,12 +11,10 @@ public class PlantRepository : IWritePlantRepository
 {
     private readonly IPlantWriteContext _context;
     private readonly ILogger<PlantRepository> _logger;
-    private readonly IDistributedCache _cache;
-    public PlantRepository(IPlantWriteContext context, ILogger<PlantRepository> logger, IDistributedCache cache)
+    public PlantRepository(IPlantWriteContext context, ILogger<PlantRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _cache = cache;
     }
     
     public virtual async ValueTask<Result<int>> Create(IPlant plant)
@@ -27,7 +24,6 @@ public class PlantRepository : IWritePlantRepository
             await _context.Plants.AddAsync((Plant)plant);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Successfully created new plant with {plantId} Id", plant.Id);
-            await ResetCacheValues();
             return new Result<int>(plant.Id);
         }
         catch (Exception e)
@@ -53,9 +49,6 @@ public class PlantRepository : IWritePlantRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Plant with {plantId} successfully deleted", id);
-            await ResetCacheValues();
-            string singlePlantKey = $"Plant-{id}";
-            await _cache.RemoveAsync(singlePlantKey);
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -81,9 +74,6 @@ public class PlantRepository : IWritePlantRepository
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
             await _context.SaveChangesAsync();
-            await ResetCacheValues();
-            string singlePlantKey = $"Plant-{plant.Id}";
-            await _cache.RemoveAsync(singlePlantKey);
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
             
             return new Result<bool>(true);
@@ -93,16 +83,5 @@ public class PlantRepository : IWritePlantRepository
             _logger.LogError(e.Message);
             return new Result<bool>(e);
         }
-    }
-
-    private async Task ResetCacheValues()
-    {
-        await Task.WhenAll(
-            _cache.RemoveAsync("Plants"), 
-            _cache.RemoveAsync("Modules"), 
-            _cache.RemoveAsync("Places")
-            );
-        
-        _logger.LogInformation("Redis cache has been updated");
     }
 }

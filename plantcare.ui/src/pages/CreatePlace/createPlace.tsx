@@ -12,7 +12,6 @@ import Details from '../components/placeWizardSteps/Details/details';
 
 export const CreatePlace = () => {
   const [createPlace] = useCreatePlaceMutation();
-  const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlaceSchema)
@@ -23,7 +22,6 @@ export const CreatePlace = () => {
       name: methods.getValues('name')
     };
     await createPlace(request);
-    refetch();
   };
 
   const steps: IWizardStep[] = [

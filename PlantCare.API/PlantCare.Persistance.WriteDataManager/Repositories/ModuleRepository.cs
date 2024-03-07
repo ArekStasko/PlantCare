@@ -31,8 +31,6 @@ public class ModuleRepository : IWriteModuleRepository
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Module with {Id} Id was successfully created", id);
-            await _cache.RemoveAsync("Modules");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<Guid>(id);
         }
         catch (Exception e)
@@ -58,9 +56,6 @@ public class ModuleRepository : IWriteModuleRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Successfully deleted module with {Id} id", id);
-
-            await _cache.RemoveAsync("Modules");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
@@ -85,8 +80,6 @@ public class ModuleRepository : IWriteModuleRepository
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Module with {Id} successfully updated", module.Id);
-            await _cache.RemoveAsync($"Modules");
-            _logger.LogInformation("Redis cache has been updated");
             return new Result<bool>(true);
         }
         catch (Exception e)
