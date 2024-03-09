@@ -46,9 +46,8 @@ export const UpdatePlant = () => {
       type: +methods.getValues('plantType'),
       placeId: methods.getValues('plantPlace')
     };
-    await updatePlant(request);
-    refetchPlant();
-    refetchPlaces();
+    const result = await updatePlant(request);
+    return result;
   };
 
   const steps: IWizardStep[] = [

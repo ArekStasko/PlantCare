@@ -4,7 +4,8 @@ const card = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  p: 1
 };
 
 const contentWrapper = {

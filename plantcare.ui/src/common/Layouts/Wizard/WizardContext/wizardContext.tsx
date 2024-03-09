@@ -17,7 +17,6 @@ import RoutingConstants from '../../../../app/routing/routingConstants';
 import CustomBackdrop from '../../../compontents/customBackdrop/backdrop';
 
 export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) => {
-  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const goToStep = (step: number) => {
@@ -44,9 +43,13 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
     return;
   };
   const isLastStep = (): boolean => currentStep === steps.length - 1;
-  const submitDecorator = async () => {
-    await onSubmit();
-    navigate(RoutingConstants.root);
+  const submitDecorator = async (): Promise<boolean> => {
+    const result = await onSubmit();
+    if ('data' in result) {
+      return result.data;
+    } else {
+      return false;
+    }
   };
 
   return (

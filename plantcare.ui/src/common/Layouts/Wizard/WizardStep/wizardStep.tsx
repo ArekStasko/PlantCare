@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router';
 import routingConstants from '../../../../app/routing/routingConstants';
 import CancelDialog from '../../../compontents/CancelDialog/cancelDialog';
 import { useFormContext } from 'react-hook-form';
+import CustomAlert from '../../../compontents/customAlert/customAlert';
+import RoutingConstants from '../../../../app/routing/routingConstants';
 
 export const WizardStep = ({
   children,
@@ -16,7 +18,10 @@ export const WizardStep = ({
   nextStep,
   previousStep
 }: wizardStepProps) => {
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const navigate = useNavigate();
+  const [openCancelDialog, setOpenCancelDialog] = React.useState(false);
+  const [isAlertActive, setIsAlertActive] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
 
   const {
     formState: { errors, isValid },
@@ -25,9 +30,23 @@ export const WizardStep = ({
   const isFormCorrect = () =>
     !validators.some((validator) => errors[validator] || watch(validator) === undefined);
 
+  const submitFlow = async () => {
+    const result = await onSubmit();
+    setIsSuccess(result);
+    setIsAlertActive(!isAlertActive);
+  };
+
   return (
     <Card sx={styles.card}>
-      <CancelDialog setOpenDialog={setOpenDialog} openDialog={openDialog} />
+      <CancelDialog setOpenDialog={setOpenCancelDialog} openDialog={openCancelDialog} />
+      {isAlertActive && (
+        <CustomAlert
+          message={
+            isSuccess ? 'Operation was successfully processed' : 'Sorry, something went wrong.'
+          }
+          type={isSuccess ? 'success' : 'error'}
+        />
+      )}
       <CardContent sx={styles.contentWrapper}>{children}</CardContent>
       <CardActions sx={styles.buttonWrapper}>
         <Button
@@ -43,7 +62,7 @@ export const WizardStep = ({
             sx={styles.btn}
             variant="outlined"
             size="medium"
-            onClick={() => setOpenDialog(!openDialog)}>
+            onClick={() => setOpenCancelDialog(!openCancelDialog)}>
             Cancel
           </Button>
           {isLastStep() ? (
@@ -51,9 +70,11 @@ export const WizardStep = ({
               disabled={!isFormCorrect()}
               sx={styles.btn}
               variant="contained"
-              onClick={async () => await onSubmit()}
+              onClick={async () =>
+                isAlertActive ? navigate(RoutingConstants.root) : await submitFlow()
+              }
               size="medium">
-              Submit
+              {isAlertActive ? 'Go to Dashboard' : 'Submit'}
             </Button>
           ) : (
             <Button

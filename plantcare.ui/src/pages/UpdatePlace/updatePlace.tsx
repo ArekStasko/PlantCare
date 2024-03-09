@@ -28,8 +28,8 @@ export const UpdatePlace = () => {
       id: +methods.getValues('id'),
       name: methods.getValues('name')
     };
-    await updatePlace(request);
-    refetch();
+    const result = await updatePlace(request);
+    return result;
   };
 
   useEffect(() => {

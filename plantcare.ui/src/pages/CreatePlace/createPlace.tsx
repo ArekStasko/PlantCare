@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceRequest';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import React from 'react';
+import React, { useState } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
 import Summary from '../components/placeWizardSteps/Summary/summary';
 import Details from '../components/placeWizardSteps/Details/details';
@@ -21,7 +21,7 @@ export const CreatePlace = () => {
     const request: CreatePlaceRequest = {
       name: methods.getValues('name')
     };
-    await createPlace(request);
+    return await createPlace(request);
   };
 
   const steps: IWizardStep[] = [

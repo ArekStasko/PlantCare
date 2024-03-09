@@ -28,8 +28,8 @@ export const CreatePlant = () => {
       placeId: methods.getValues('plantPlace'),
       moduleId: methods.getValues('plantModule')
     };
-    await createPlant(request);
-    refetch();
+    const result = await createPlant(request);
+    return result;
   };
 
   const steps: IWizardStep[] = [
