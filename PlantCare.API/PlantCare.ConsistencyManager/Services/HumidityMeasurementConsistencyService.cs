@@ -14,7 +14,7 @@ public class HumidityMeasurementConsistencyService : IQueueConsumer<HumidityMeas
     private readonly IDistributedCache _cache;
     private readonly ILogger<HumidityMeasurementConsistencyService> _logger;
 
-    public HumidityMeasurementConsistencyService(IHumidityMeasurementsConsistencyContext context, IMapper mapper, ILogger<HumidityMeasurementConsistencyService> logger, IDistributedCache cache)
+    public HumidityMeasurementConsistencyService(IHumidityMeasurementsConsistencyContext context, IMapper mapper, IDistributedCache cache, ILogger<HumidityMeasurementConsistencyService> logger)
     {
         _context = context;
         _mapper = mapper;

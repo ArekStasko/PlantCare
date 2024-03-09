@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.Persistance.ReadDataManager.CacheRepositories;
 using PlantCare.Persistance.ReadDataManager.Interfaces;
 using PlantCare.Persistance.ReadDataManager.Repositories;
@@ -36,6 +37,11 @@ public static class Extensions
         services.AddScoped<IModuleReadContext, ReadDataContext>();
         services.AddScoped<IHumidityMeasurementReadContext, ReadDataContext>();
 
+        services.AddScoped<IHumidityMeasurementsConsistencyContext, ReadDataContext>();
+        services.AddScoped<IPlaceConsistencyContext, ReadDataContext>();
+        services.AddScoped<IPlantConsistencyContext, ReadDataContext>();
+        services.AddScoped<IModuleConsistencyContext, ReadDataContext>();
+        
         services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
         services.AddScoped<IReadPlaceRepository, PlaceRepository>();
