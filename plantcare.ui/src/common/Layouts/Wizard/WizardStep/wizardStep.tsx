@@ -8,6 +8,8 @@ import CancelDialog from '../../../compontents/CancelDialog/cancelDialog';
 import { useFormContext } from 'react-hook-form';
 import CustomAlert from '../../../compontents/customAlert/customAlert';
 import RoutingConstants from '../../../../app/routing/routingConstants';
+import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
+import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
 
 export const WizardStep = ({
   children,
@@ -19,6 +21,8 @@ export const WizardStep = ({
   previousStep
 }: wizardStepProps) => {
   const navigate = useNavigate();
+  const { refetch: refetchPlaces } = useGetPlacesQuery();
+  const { refetch: refetchPlants } = useGetPlantsQuery();
   const [openCancelDialog, setOpenCancelDialog] = React.useState(false);
   const [isAlertActive, setIsAlertActive] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
@@ -34,6 +38,12 @@ export const WizardStep = ({
     const result = await onSubmit();
     setIsSuccess(result);
     setIsAlertActive(!isAlertActive);
+  };
+
+  const goToDashboard = () => {
+    refetchPlaces();
+    refetchPlants();
+    navigate(RoutingConstants.root);
   };
 
   return (
@@ -70,9 +80,7 @@ export const WizardStep = ({
               disabled={!isFormCorrect()}
               sx={styles.btn}
               variant="contained"
-              onClick={async () =>
-                isAlertActive ? navigate(RoutingConstants.root) : await submitFlow()
-              }
+              onClick={async () => (isAlertActive ? goToDashboard() : await submitFlow())}
               size="medium">
               {isAlertActive ? 'Go to Dashboard' : 'Submit'}
             </Button>
