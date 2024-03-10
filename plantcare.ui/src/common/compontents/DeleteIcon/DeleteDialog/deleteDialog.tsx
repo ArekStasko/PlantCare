@@ -11,37 +11,63 @@ import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
 import { useDeletePlantMutation } from '../../../slices/deletePlant/deletePlant';
 import { useDeletePlaceMutation } from '../../../slices/deletePlace/deletePlace';
 import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
+import { useNavigate } from 'react-router';
+import routingConstants from '../../../../app/routing/routingConstants';
 
 interface DeleteDialogProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   openDialog: boolean;
   resourceId: number;
   resourceType: string;
+  redirectToPortfolio?: boolean;
+  callIsError?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const DeleteDialog = ({
   setOpenDialog,
   openDialog,
   resourceId,
-  resourceType
+  resourceType,
+  redirectToPortfolio,
+  callIsError
 }: DeleteDialogProps) => {
+  const navigate = useNavigate();
   const [deletePlant] = useDeletePlantMutation();
   const [deletePlace] = useDeletePlaceMutation();
   const { refetch: refetchPlaces } = useGetPlacesQuery();
   const { refetch: refetchPlants } = useGetPlantsQuery();
 
-  const confirmDelete = async () => {
+  const callDelete = async (): Promise<boolean> => {
+    let result;
     if (resourceType === 'plant') {
-      await deletePlant(resourceId);
+      result = await deletePlant(resourceId);
+
       refetchPlants();
     }
 
     if (resourceType === 'place') {
-      await deletePlace(resourceId);
+      result = await deletePlace(resourceId);
       refetchPlaces();
     }
 
+    if (!result) return false;
+
+    if ('data' in result) {
+      return result.data;
+    } else {
+      return false;
+    }
+  };
+
+  const confirmDelete = async () => {
+    const result = await callDelete();
+
     setOpenDialog(!openDialog);
+    if (result! && redirectToPortfolio && callIsError) {
+      callIsError(true);
+      return;
+    }
+    if (redirectToPortfolio) navigate(routingConstants.root);
   };
 
   return (

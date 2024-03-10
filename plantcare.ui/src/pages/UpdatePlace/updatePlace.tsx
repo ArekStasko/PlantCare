@@ -11,13 +11,13 @@ import { UpdatePlaceRequest } from '../../common/slices/updatePlace/updatePlaceR
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import Summary from '../components/placeWizardSteps/Summary/summary';
 import Details from '../components/placeWizardSteps/Details/details';
+import ActionSelect from '../components/placeWizardSteps/ActionSelect/actionSelect';
 
 export const UpdatePlace = () => {
   const { id } = useParams();
 
   const [updatePlace] = useUpdatePlaceMutation();
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
-  const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.updatePlaceSchema)
@@ -42,6 +42,12 @@ export const UpdatePlace = () => {
   }, [placesLoading]);
 
   const steps: IWizardStep[] = [
+    {
+      title: 'Select Action',
+      component: <ActionSelect />,
+      validators: ['flow'],
+      order: 0
+    },
     {
       title: 'Place Details',
       component: <Details />,
