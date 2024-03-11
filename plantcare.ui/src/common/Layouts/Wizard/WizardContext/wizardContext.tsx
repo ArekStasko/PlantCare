@@ -1,20 +1,9 @@
 import React from 'react';
 import { wizardContextProps } from '../interfaces';
 import styles from './wizardContext.styles';
-import {
-  Backdrop,
-  Box,
-  CircularProgress,
-  Container,
-  Step,
-  StepLabel,
-  Stepper
-} from '@mui/material';
+import { Box, Container, Step, StepLabel, Stepper } from '@mui/material';
 import WizardStep from '../WizardStep/wizardStep';
 import { FormProvider } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import RoutingConstants from '../../../../app/routing/routingConstants';
-import CustomBackdrop from '../../../compontents/customBackdrop/backdrop';
 
 export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) => {
   const [currentStep, setCurrentStep] = React.useState(0);

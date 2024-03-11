@@ -23,7 +23,7 @@ const createPlaceSchema = yup.object().shape({
 const updatePlaceSchema = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
-  flow: yup.string().required().notOneOf(['delete'])
+  flow: yup.string().required()
 });
 
 export default {
