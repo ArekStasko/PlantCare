@@ -55,19 +55,27 @@ export const UpdatePlant = () => {
       title: 'Plant Details',
       component: <Details plantData={plant!} />,
       validators: ['name', 'description', 'plantType'],
-      order: 0
+      order: 0,
+      nextStep: 1,
+      isStepVisible: true,
+      isFinal: false
     },
     {
       title: 'Place Select',
       component: <PlaceSelect plantData={plant!} />,
       validators: ['plantPlace'],
-      order: 1
+      order: 1,
+      nextStep: 2,
+      isStepVisible: true,
+      isFinal: false
     },
     {
-      title: 'Plant Update Summary',
+      title: 'Plant Update UpdateSummary',
       component: <Summary />,
       validators: [],
-      order: 2
+      order: 2,
+      isStepVisible: true,
+      isFinal: true
     }
   ];
 

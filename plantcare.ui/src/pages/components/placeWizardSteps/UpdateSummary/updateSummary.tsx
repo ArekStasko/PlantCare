@@ -1,9 +1,9 @@
 import { Typography, Box } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import styles from './summary.styles';
+import styles from './updateSummary.styles';
 import React from 'react';
 
-export const Summary = () => {
+export const UpdateSummary = () => {
   const { getValues } = useFormContext();
 
   return (
@@ -21,4 +21,4 @@ export const Summary = () => {
   );
 };
 
-export default Summary;
+export default UpdateSummary;

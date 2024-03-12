@@ -17,8 +17,9 @@ export const WizardStep = ({
   validators,
   onSubmit,
   isLastStep,
-  nextStep,
-  previousStep
+  goToStep,
+  previousStep,
+  nextStep
 }: wizardStepProps) => {
   const navigate = useNavigate();
   const { refetch: refetchPlaces } = useGetPlacesQuery();
@@ -89,7 +90,7 @@ export const WizardStep = ({
               disabled={!isFormCorrect()}
               sx={styles.btn}
               variant="contained"
-              onClick={() => nextStep()}
+              onClick={() => goToStep(nextStep!)}
               size="medium">
               Proceed
             </Button>

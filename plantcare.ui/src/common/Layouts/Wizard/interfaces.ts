@@ -10,8 +10,8 @@ export interface wizardStepProps {
   isLastStep(): boolean;
   onSubmit(): Promise<boolean>;
   goToStep(step: number): void;
-  nextStep(): void;
   previousStep(): void;
+  nextStep?: number;
 }
 
 export interface IWizardStep {
@@ -19,6 +19,9 @@ export interface IWizardStep {
   component: ReactElement;
   validators: string[];
   order: number;
+  isFinal: boolean;
+  isStepVisible: boolean;
+  nextStep?: number;
 }
 
 export interface wizardContextProps {

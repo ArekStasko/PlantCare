@@ -7,7 +7,7 @@ import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceR
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import React, { useState } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
-import Summary from '../components/placeWizardSteps/Summary/summary';
+import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
 
 export const CreatePlace = () => {
@@ -29,13 +29,18 @@ export const CreatePlace = () => {
       title: 'Place Details',
       component: <Details />,
       validators: ['name'],
-      order: 0
+      order: 0,
+      nextStep: 1,
+      isStepVisible: true,
+      isFinal: false
     },
     {
-      title: 'Place Summary',
-      component: <Summary />,
+      title: 'Place UpdateSummary',
+      component: <UpdateSummary />,
       validators: [],
-      order: 1
+      order: 1,
+      isStepVisible: true,
+      isFinal: true
     }
   ];
 

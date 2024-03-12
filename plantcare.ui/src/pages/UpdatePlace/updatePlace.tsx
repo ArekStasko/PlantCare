@@ -9,27 +9,58 @@ import { useUpdatePlaceMutation } from '../../common/slices/updatePlace/updatePl
 import { useParams } from 'react-router';
 import { UpdatePlaceRequest } from '../../common/slices/updatePlace/updatePlaceRequest';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
-import Summary from '../components/placeWizardSteps/Summary/summary';
+import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
 import ActionSelect from '../components/placeWizardSteps/ActionSelect/actionSelect';
+import DeleteSummary from '../components/placeWizardSteps/DeleteSummary/deleteSummary';
+import { useDeletePlaceMutation } from '../../common/slices/deletePlace/deletePlace';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export const UpdatePlace = () => {
   const { id } = useParams();
 
   const [updatePlace] = useUpdatePlaceMutation();
+  const [deletePlace] = useDeletePlaceMutation();
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.updatePlaceSchema)
   });
 
-  const onUpdate = async () => {
-    const request: UpdatePlaceRequest = {
-      id: +methods.getValues('id'),
-      name: methods.getValues('name')
-    };
-    const result = await updatePlace(request);
+  const onSubmit = async (): Promise<
+    { data: boolean } | { error: FetchBaseQueryError | SerializedError }
+  > => {
+    const flow = methods.getValues('flow');
+
+    let result = undefined;
+    console.log(flow);
+    if (flow === 'delete') {
+      const id = +methods.getValues('id');
+      result = await deletePlace(id);
+    }
+
+    if (flow === 'update') {
+      const request: UpdatePlaceRequest = {
+        id: +methods.getValues('id'),
+        name: methods.getValues('name')
+      };
+      result = await updatePlace(request);
+    }
+
+    if (!result) return { data: false };
     return result;
+  };
+
+  const getNextStepByFlow = () => {
+    const flow = methods.getValues('flow');
+    if (flow === 'delete') return 1;
+    return 2;
+  };
+
+  const getIsStepVisible = (stepFlow: string) => {
+    const flow = methods.getValues('flow');
+    return stepFlow === flow;
   };
 
   useEffect(() => {
@@ -46,19 +77,35 @@ export const UpdatePlace = () => {
       title: 'Select Action',
       component: <ActionSelect />,
       validators: ['flow'],
-      order: 0
+      order: 0,
+      nextStep: getNextStepByFlow(),
+      isStepVisible: true,
+      isFinal: false
+    },
+    {
+      title: 'Delete Place Summary',
+      component: <DeleteSummary />,
+      validators: [],
+      order: 1,
+      isStepVisible: getIsStepVisible('delete'),
+      isFinal: true
     },
     {
       title: 'Place Details',
       component: <Details />,
       validators: ['name'],
-      order: 0
+      order: 2,
+      nextStep: 3,
+      isStepVisible: getIsStepVisible('update'),
+      isFinal: false
     },
     {
-      title: 'Place Summary',
-      component: <Summary />,
+      title: 'Update Place Summary',
+      component: <UpdateSummary />,
       validators: [],
-      order: 1
+      order: 3,
+      isStepVisible: getIsStepVisible('update'),
+      isFinal: true
     }
   ];
 
@@ -68,7 +115,7 @@ export const UpdatePlace = () => {
     </>
   ) : (
     <>
-      <WizardContext onSubmit={onUpdate} steps={steps} methods={methods} />;
+      <WizardContext onSubmit={onSubmit} steps={steps} methods={methods} />;
     </>
   );
 };

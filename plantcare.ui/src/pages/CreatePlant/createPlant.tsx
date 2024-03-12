@@ -37,25 +37,36 @@ export const CreatePlant = () => {
       title: 'Plant Details',
       component: <Details />,
       validators: ['name', 'description', 'plantType'],
-      order: 0
+      order: 0,
+      nextStep: 1,
+      isStepVisible: true,
+      isFinal: false
     },
     {
       title: 'Place Select',
       component: <PlaceSelect />,
       validators: ['plantPlace'],
-      order: 1
+      order: 1,
+      nextStep: 2,
+      isStepVisible: true,
+      isFinal: false
     },
     {
       title: 'Module Select',
       component: <ModuleSelect />,
       validators: ['plantModule'],
-      order: 2
+      order: 2,
+      nextStep: 3,
+      isStepVisible: true,
+      isFinal: false
     },
     {
-      title: 'Plant Summary',
+      title: 'Plant UpdateSummary',
       component: <Summary />,
       validators: [],
-      order: 3
+      order: 3,
+      isStepVisible: true,
+      isFinal: true
     }
   ];
 

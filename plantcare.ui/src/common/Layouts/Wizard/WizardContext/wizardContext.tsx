@@ -16,14 +16,6 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
     return;
   };
 
-  const nextStep = () => {
-    if (currentStep + 1 <= steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-      return;
-    }
-    return;
-  };
-
   const previousStep = () => {
     if (currentStep - 1 >= 0) {
       setCurrentStep(currentStep - 1);
@@ -31,7 +23,7 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
     }
     return;
   };
-  const isLastStep = (): boolean => currentStep === steps.length - 1;
+  const isLastStep = (): boolean => steps[currentStep].isFinal;
   const submitDecorator = async (): Promise<boolean> => {
     const result = await onSubmit();
     if ('data' in result) {
@@ -46,11 +38,14 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
       <Container sx={styles.container}>
         <Box sx={styles.contentWrapper}>
           <Stepper activeStep={currentStep} sx={styles.stepper}>
-            {steps.map((step) => (
-              <Step key={step.order}>
-                <StepLabel>{step.title}</StepLabel>
-              </Step>
-            ))}
+            {steps.map(
+              (step) =>
+                step.isStepVisible && (
+                  <Step key={step.order}>
+                    <StepLabel>{step.title}</StepLabel>
+                  </Step>
+                )
+            )}
           </Stepper>
           <FormProvider {...methods}>
             <WizardStep
@@ -60,7 +55,7 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
               onSubmit={submitDecorator}
               goToStep={goToStep}
               previousStep={previousStep}
-              nextStep={nextStep}>
+              nextStep={steps[currentStep].nextStep}>
               {steps[currentStep].component}
             </WizardStep>
           </FormProvider>

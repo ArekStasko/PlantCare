@@ -34,28 +34,15 @@ export const DeleteDialog = ({
   const navigate = useNavigate();
   const [deletePlant] = useDeletePlantMutation();
   const [deletePlace] = useDeletePlaceMutation();
-  const { refetch: refetchPlaces } = useGetPlacesQuery();
-  const { refetch: refetchPlants } = useGetPlantsQuery();
 
-  const callDelete = async (): Promise<boolean> => {
+  const callDelete = async () => {
     let result;
     if (resourceType === 'plant') {
       result = await deletePlant(resourceId);
-
-      refetchPlants();
     }
 
     if (resourceType === 'place') {
       result = await deletePlace(resourceId);
-      refetchPlaces();
-    }
-
-    if (!result) return false;
-
-    if ('data' in result) {
-      return result.data;
-    } else {
-      return false;
     }
   };
 
