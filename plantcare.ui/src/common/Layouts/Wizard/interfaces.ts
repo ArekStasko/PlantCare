@@ -5,22 +5,22 @@ import { SerializedError } from '@reduxjs/toolkit';
 
 export interface wizardStepProps {
   children: ReactElement;
-  currentStep: number;
+  currentStepId: number;
   validators: string[];
   isLastStep(): boolean;
   onSubmit(): Promise<boolean>;
-  goToStep(step: number): void;
+  goToStep(): void;
   previousStep(): void;
-  nextStep?: number;
 }
 
 export interface IWizardStep {
+  id: number;
   title: string;
   component: ReactElement;
   validators: string[];
-  order: number;
   isFinal: boolean;
   isStepVisible: boolean;
+  previousStep?: number;
   nextStep?: number;
 }
 

@@ -34,7 +34,6 @@ export const UpdatePlace = () => {
     const flow = methods.getValues('flow');
 
     let result = undefined;
-    console.log(flow);
     if (flow === 'delete') {
       const id = +methods.getValues('id');
       result = await deletePlace(id);
@@ -77,7 +76,7 @@ export const UpdatePlace = () => {
       title: 'Select Action',
       component: <ActionSelect />,
       validators: ['flow'],
-      order: 0,
+      id: 0,
       nextStep: getNextStepByFlow(),
       isStepVisible: true,
       isFinal: false
@@ -86,7 +85,8 @@ export const UpdatePlace = () => {
       title: 'Delete Place Summary',
       component: <DeleteSummary />,
       validators: [],
-      order: 1,
+      id: 1,
+      previousStep: 0,
       isStepVisible: getIsStepVisible('delete'),
       isFinal: true
     },
@@ -94,8 +94,9 @@ export const UpdatePlace = () => {
       title: 'Place Details',
       component: <Details />,
       validators: ['name'],
-      order: 2,
+      id: 2,
       nextStep: 3,
+      previousStep: 0,
       isStepVisible: getIsStepVisible('update'),
       isFinal: false
     },
@@ -103,7 +104,8 @@ export const UpdatePlace = () => {
       title: 'Update Place Summary',
       component: <UpdateSummary />,
       validators: [],
-      order: 3,
+      id: 3,
+      previousStep: 2,
       isStepVisible: getIsStepVisible('update'),
       isFinal: true
     }

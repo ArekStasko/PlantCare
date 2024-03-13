@@ -55,7 +55,7 @@ export const UpdatePlant = () => {
       title: 'Plant Details',
       component: <Details plantData={plant!} />,
       validators: ['name', 'description', 'plantType'],
-      order: 0,
+      id: 0,
       nextStep: 1,
       isStepVisible: true,
       isFinal: false
@@ -64,16 +64,18 @@ export const UpdatePlant = () => {
       title: 'Place Select',
       component: <PlaceSelect plantData={plant!} />,
       validators: ['plantPlace'],
-      order: 1,
+      id: 1,
       nextStep: 2,
+      previousStep: 0,
       isStepVisible: true,
       isFinal: false
     },
     {
-      title: 'Plant Update UpdateSummary',
+      title: 'Plant Update Summary',
       component: <Summary />,
       validators: [],
-      order: 2,
+      id: 2,
+      previousStep: 2,
       isStepVisible: true,
       isFinal: true
     }

@@ -29,7 +29,7 @@ export const CreatePlace = () => {
       title: 'Place Details',
       component: <Details />,
       validators: ['name'],
-      order: 0,
+      id: 0,
       nextStep: 1,
       isStepVisible: true,
       isFinal: false
@@ -38,8 +38,9 @@ export const CreatePlace = () => {
       title: 'Place UpdateSummary',
       component: <UpdateSummary />,
       validators: [],
-      order: 1,
+      id: 1,
       isStepVisible: true,
+      previousStep: 0,
       isFinal: true
     }
   ];

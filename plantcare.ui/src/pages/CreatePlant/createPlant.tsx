@@ -37,7 +37,7 @@ export const CreatePlant = () => {
       title: 'Plant Details',
       component: <Details />,
       validators: ['name', 'description', 'plantType'],
-      order: 0,
+      id: 0,
       nextStep: 1,
       isStepVisible: true,
       isFinal: false
@@ -46,8 +46,9 @@ export const CreatePlant = () => {
       title: 'Place Select',
       component: <PlaceSelect />,
       validators: ['plantPlace'],
-      order: 1,
+      id: 1,
       nextStep: 2,
+      previousStep: 0,
       isStepVisible: true,
       isFinal: false
     },
@@ -55,8 +56,9 @@ export const CreatePlant = () => {
       title: 'Module Select',
       component: <ModuleSelect />,
       validators: ['plantModule'],
-      order: 2,
+      id: 2,
       nextStep: 3,
+      previousStep: 1,
       isStepVisible: true,
       isFinal: false
     },
@@ -64,7 +66,8 @@ export const CreatePlant = () => {
       title: 'Plant UpdateSummary',
       component: <Summary />,
       validators: [],
-      order: 3,
+      id: 3,
+      previousStep: 2,
       isStepVisible: true,
       isFinal: true
     }

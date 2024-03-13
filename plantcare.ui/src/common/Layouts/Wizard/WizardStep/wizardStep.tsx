@@ -13,13 +13,12 @@ import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
 
 export const WizardStep = ({
   children,
-  currentStep,
+  currentStepId,
   validators,
   onSubmit,
   isLastStep,
   goToStep,
-  previousStep,
-  nextStep
+  previousStep
 }: wizardStepProps) => {
   const navigate = useNavigate();
   const { refetch: refetchPlaces } = useGetPlacesQuery();
@@ -61,7 +60,7 @@ export const WizardStep = ({
       <CardContent sx={styles.contentWrapper}>{children}</CardContent>
       <CardActions sx={styles.buttonWrapper}>
         <Button
-          disabled={currentStep === 0}
+          disabled={currentStepId === 0}
           sx={styles.btn}
           variant="contained"
           onClick={() => previousStep()}
@@ -90,7 +89,7 @@ export const WizardStep = ({
               disabled={!isFormCorrect()}
               sx={styles.btn}
               variant="contained"
-              onClick={() => goToStep(nextStep!)}
+              onClick={() => goToStep()}
               size="medium">
               Proceed
             </Button>

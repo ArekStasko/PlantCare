@@ -4,26 +4,30 @@ import styles from './wizardContext.styles';
 import { Box, Container, Step, StepLabel, Stepper } from '@mui/material';
 import WizardStep from '../WizardStep/wizardStep';
 import { FormProvider } from 'react-hook-form';
+import { number } from 'yup';
 
 export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) => {
-  const [currentStep, setCurrentStep] = React.useState(0);
+  const [currentStepId, setCurrentStepId] = React.useState(0);
 
-  const goToStep = (step: number) => {
-    if (step <= steps.length - 1 && step >= 0) {
-      setCurrentStep(step);
-      return;
-    }
-    return;
+  const getCurrentStep = () => {
+    return steps.find((s) => s.id === currentStepId);
+  };
+
+  const goToNextStep = () => {
+    const step = steps.find((s) => s.id === getCurrentStep()!.nextStep);
+    if (!step) return;
+    setCurrentStepId(step.id);
   };
 
   const previousStep = () => {
-    if (currentStep - 1 >= 0) {
-      setCurrentStep(currentStep - 1);
-      return;
+    const currentStep = getCurrentStep()!;
+    if (currentStep.previousStep !== undefined) {
+      const previousStep = steps.find((s) => s.id === currentStep.previousStep);
+      if (!previousStep) return;
+      setCurrentStepId(previousStep.id);
     }
-    return;
   };
-  const isLastStep = (): boolean => steps[currentStep].isFinal;
+  const isLastStep = (): boolean => getCurrentStep()!.isFinal;
   const submitDecorator = async (): Promise<boolean> => {
     const result = await onSubmit();
     if ('data' in result) {
@@ -37,11 +41,11 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
     <>
       <Container sx={styles.container}>
         <Box sx={styles.contentWrapper}>
-          <Stepper activeStep={currentStep} sx={styles.stepper}>
+          <Stepper activeStep={currentStepId} sx={styles.stepper}>
             {steps.map(
               (step) =>
                 step.isStepVisible && (
-                  <Step key={step.order}>
+                  <Step key={step.id}>
                     <StepLabel>{step.title}</StepLabel>
                   </Step>
                 )
@@ -49,14 +53,13 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
           </Stepper>
           <FormProvider {...methods}>
             <WizardStep
-              currentStep={currentStep}
-              validators={steps[currentStep].validators}
+              currentStepId={currentStepId}
+              validators={getCurrentStep()!.validators}
               isLastStep={isLastStep}
               onSubmit={submitDecorator}
-              goToStep={goToStep}
-              previousStep={previousStep}
-              nextStep={steps[currentStep].nextStep}>
-              {steps[currentStep].component}
+              goToStep={goToNextStep}
+              previousStep={previousStep}>
+              {getCurrentStep()!.component}
             </WizardStep>
           </FormProvider>
         </Box>
