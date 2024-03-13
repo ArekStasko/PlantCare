@@ -16,10 +16,6 @@ import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { useNavigate } from 'react-router';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import DeleteDialog from '../../../common/compontents/DeleteIcon/DeleteDialog/deleteDialog';
-import { useGetPlacesQuery } from '../../../common/slices/getPlaces/getPlaces';
-import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
 import { Plant } from '../../../common/models/Plant';
 
 interface PlaceAccordionProps {
@@ -56,12 +52,6 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             <Box sx={styles.placesAccordionSummary}>
               <Typography variant="h6">{place.name}</Typography>
               <Box>
-                <DeleteIcon
-                  key={place.id}
-                  resourceType="place"
-                  resourceId={place.id}
-                  resourceName={place.name}
-                />
                 <Tooltip title={`Update ${place.name}`} arrow>
                   <IconButton
                     onClick={() => navigate(`${RoutingConstants.updatePlace}/${place.id}`)}

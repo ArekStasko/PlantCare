@@ -11,7 +11,7 @@ import { UpdatePlaceRequest } from '../../common/slices/updatePlace/updatePlaceR
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
-import ActionSelect from '../components/placeWizardSteps/ActionSelect/actionSelect';
+import ActionSelect from '../components/ActionSelect/actionSelect';
 import DeleteSummary from '../components/placeWizardSteps/DeleteSummary/deleteSummary';
 import { useDeletePlaceMutation } from '../../common/slices/deletePlace/deletePlace';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
