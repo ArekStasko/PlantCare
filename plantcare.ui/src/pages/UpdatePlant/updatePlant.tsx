@@ -3,7 +3,6 @@ import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardConte
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import { useUpdatePlantMutation } from '../../common/slices/updatePlant/updatePlant';
 import { UpdatePlantRequest } from '../../common/slices/updatePlant/updatePlantRequest';
 import { useParams } from 'react-router';
@@ -17,7 +16,7 @@ import { useDeletePlantMutation } from '../../common/slices/deletePlant/deletePl
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import ActionSelect from '../components/ActionSelect/actionSelect';
-import DeleteSummary from '../components/placeWizardSteps/DeleteSummary/deleteSummary';
+import DeleteSummary from '../components/plantWizardSteps/DeleteSummary/deleteSummary';
 
 export const UpdatePlant = () => {
   const { id } = useParams();
@@ -46,7 +45,6 @@ export const UpdatePlant = () => {
     { data: boolean } | { error: FetchBaseQueryError | SerializedError }
   > => {
     const flow = methods.getValues('flow');
-
     let result = undefined;
     if (flow === 'delete') {
       const id = +methods.getValues('id');
