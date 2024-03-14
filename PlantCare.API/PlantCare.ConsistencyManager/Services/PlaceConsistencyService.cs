@@ -53,7 +53,15 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
             case ActionType.Update:
             {
                 var place = _mapper.Map<PlantCare.Domain.Models.Place.Place>(message.PlaceData);
-                _context.Places.Update(place);
+                var placeToEdit = await _context.Places.SingleOrDefaultAsync(plc => plc.Id == place.Id);
+
+                if (placeToEdit == null)
+                {
+                    _logger.LogError("There is no place to update with {placeId} Id", place.Id);
+                    return;
+                }
+
+                placeToEdit.Name = place.Name;
                 await _context.SaveChangesAsync();
                 await ResetCachePlaces();
                 return;

@@ -56,7 +56,17 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
             case ActionType.Update:
             {
                 var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
-                _context.Plants.Update(plant);
+                var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
+            
+                if (plantToUpdate == null)
+                {
+                    _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
+                    return;
+                }
+
+                plantToUpdate.Name = plant.Name;
+                plantToUpdate.Description = plant.Description;
+                plantToUpdate.Type = plant.Type;
                 await _context.SaveChangesAsync();
                 string singlePlantKey = $"Plant-{plant.Id}";
                 await ResetPlantCache();
