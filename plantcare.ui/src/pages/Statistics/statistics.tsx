@@ -1,4 +1,4 @@
-import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
+import { AlertColor, Box, Card, CircularProgress, Paper, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/slices/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -8,13 +8,20 @@ import CustomAlert from '../../common/compontents/customAlert/customAlert';
 import styles from './statistics.styles';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
+import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
+import Vegetable from '../../app/images/Vegetable.png';
+import Decorative from '../../app/images/Decorative.png';
+import Fruit from '../../app/images/Fruit.png';
+import { PlantType } from '../../common/models/plantTypes';
 
 export const Statistics = () => {
   let { moduleId } = useParams();
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
+
+  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
 
   const {
     data: humidityMeasurements,
@@ -25,6 +32,8 @@ export const Statistics = () => {
     fromDate: startOfDay,
     toDate: endOfDay
   });
+
+  const plant = plants && plants.find((p) => p.moduleId === moduleId);
 
   const refetchMeasurementsWithNewDate = (value: Dayjs) => {
     const correctDate = value.toDate();
@@ -44,15 +53,39 @@ export const Statistics = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box sx={styles.statisticsContainer}>
-        <Card variant="outlined" sx={styles.plantDetailsWrapper}></Card>
-        {humidityMeasurementsLoading ? (
+        <Card variant="outlined" sx={styles.plantDetailsWrapper}>
+          {plant && (
+            <>
+              <Typography variant="h4">{plant.name} Details</Typography>
+              <Paper>
+                <Typography>{PlantType[+plant.type]}</Typography>
+                <Box
+                  component="img"
+                  sx={{
+                    height: 30,
+                    width: 30,
+                    maxHeight: { xs: 30, md: 30 },
+                    maxWidth: { xs: 30, md: 30 },
+                    borderRadius: 2
+                  }}
+                  alt="Plant_Type"
+                  src={plant.type === 0 ? Vegetable : plant.type === 1 ? Fruit : Decorative}
+                />
+              </Paper>
+              <Typography>Name: {plant.name}</Typography>
+              <Typography>Name: {plant.description}</Typography>
+              <Typography>Module Id: {plant.moduleId}</Typography>
+            </>
+          )}
+        </Card>
+        {humidityMeasurementsLoading && plantsLoading ? (
           <>
             <CircularProgress />
           </>
         ) : (
           <Card variant="outlined" sx={styles.statisticsWrapper}>
             <Box sx={styles.datePickerWrapper}>
-              <Typography>Humidity Moisture Statistics</Typography>
+              <Typography variant="h5">Humidity Moisture Statistics</Typography>
               <DatePicker
                 label="Measurements Day"
                 onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}

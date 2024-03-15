@@ -28,11 +28,10 @@ export const WizardStep = ({
   const [isSuccess, setIsSuccess] = React.useState(false);
 
   const {
-    formState: { errors, isValid },
-    watch
+    formState: { errors, isValid }
   } = useFormContext();
   const isFormCorrect = () =>
-    !validators.some((validator) => errors[validator] || watch(validator) === undefined);
+    !validators.some((validator) => errors[validator] || validator === undefined);
 
   const submitFlow = async () => {
     const result = await onSubmit();
