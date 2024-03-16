@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
 import StatisticsService from '../../../common/services/StatisticsService';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HumidityMeasurement } from '../../../common/models/HumidityMeasurement';
 
 interface MeasurementsChartProps {
@@ -11,7 +11,7 @@ interface MeasurementsChartProps {
 export const MeasurementsChart = (props: MeasurementsChartProps) => {
   const getSmallestRecord = (): number => {
     const recordsArray = props.humidityMeasurements.map((a) => a.humidity);
-    return recordsArray.reduce((a, b) => Math.min(a, b));
+    return recordsArray.reduce((a, b) => Math.min(a, b)) + 1;
   };
 
   return (

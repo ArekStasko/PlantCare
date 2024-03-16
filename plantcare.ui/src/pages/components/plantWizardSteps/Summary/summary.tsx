@@ -24,7 +24,9 @@ export const Summary = () => {
           <Box sx={styles.titleWrapper}>{renderTitles()}</Box>
           <Box sx={styles.dataWrapper}>
             <Typography>{getValues('name')}</Typography>
-            <Typography>{ShrinkText(getValues('description'))}</Typography>
+            <Typography sx={{ textAlign: 'end' }}>
+              {ShrinkText(getValues('description'))}
+            </Typography>
             <Typography>{PlantType[getValues('plantType')]}</Typography>
             <Typography>{getPlaceName()}</Typography>
             <Typography>{getValues('plantModule')}</Typography>

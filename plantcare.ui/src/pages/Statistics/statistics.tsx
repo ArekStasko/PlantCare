@@ -1,4 +1,4 @@
-import { AlertColor, Box, Card, CircularProgress, Paper, Typography } from '@mui/material';
+import { AlertColor, Box, Card, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/slices/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -14,6 +14,7 @@ import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
 import Vegetable from '../../app/images/Vegetable.png';
 import Decorative from '../../app/images/Decorative.png';
 import Fruit from '../../app/images/Fruit.png';
+import MemoryIcon from '@mui/icons-material/Memory';
 import { PlantType } from '../../common/models/plantTypes';
 
 export const Statistics = () => {
@@ -56,25 +57,49 @@ export const Statistics = () => {
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
           {plant && (
             <>
-              <Typography variant="h4">{plant.name} Details</Typography>
-              <Paper>
-                <Typography>{PlantType[+plant.type]}</Typography>
-                <Box
-                  component="img"
-                  sx={{
-                    height: 30,
-                    width: 30,
-                    maxHeight: { xs: 30, md: 30 },
-                    maxWidth: { xs: 30, md: 30 },
-                    borderRadius: 2
-                  }}
-                  alt="Plant_Type"
-                  src={plant.type === 0 ? Vegetable : plant.type === 1 ? Fruit : Decorative}
-                />
-              </Paper>
-              <Typography>Name: {plant.name}</Typography>
-              <Typography>Name: {plant.description}</Typography>
-              <Typography>Module Id: {plant.moduleId}</Typography>
+              <Box sx={styles.plantTitleWrapper}>
+                <Typography variant="h4">{plant.name} Details</Typography>
+                <Paper sx={styles.typeCard}>
+                  <Typography variant="h6">{PlantType[+plant.type]}</Typography>
+                  <Box
+                    component="img"
+                    sx={{
+                      height: 35,
+                      width: 35,
+                      maxHeight: { xs: 35, md: 35 },
+                      maxWidth: { xs: 35, md: 35 },
+                      borderRadius: 2
+                    }}
+                    alt="Plant_Type"
+                    src={plant.type === 0 ? Vegetable : plant.type === 1 ? Fruit : Decorative}
+                  />
+                </Paper>
+              </Box>
+              <Box sx={styles.plantDescriptionWrapper}>
+                <Paper sx={styles.titleCard}>
+                  <Typography sx={{ ml: 5 }} variant="h5">
+                    {plant.name}
+                  </Typography>
+                </Paper>
+                <Paper sx={styles.descriptionCard}>
+                  <Typography>{plant.description}</Typography>
+                </Paper>
+              </Box>
+              <Box sx={styles.moduleIdWrapper}>
+                <Tooltip placement="top-end" title="Module ID" arrow>
+                  <Paper sx={styles.moduleIdCard}>
+                    <MemoryIcon
+                      sx={{
+                        height: 35,
+                        width: 35,
+                        maxHeight: { xs: 35, md: 35 },
+                        maxWidth: { xs: 35, md: 35 }
+                      }}
+                    />
+                    <Typography variant="h6">{plant.moduleId}</Typography>
+                  </Paper>
+                </Tooltip>
+              </Box>
             </>
           )}
         </Card>
@@ -102,9 +127,11 @@ export const Statistics = () => {
                   />
                 </>
               ) : (
-                <>
-                  <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
-                </>
+                humidityMeasurements && (
+                  <>
+                    <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
+                  </>
+                )
               )}
             </Box>
           </Card>
