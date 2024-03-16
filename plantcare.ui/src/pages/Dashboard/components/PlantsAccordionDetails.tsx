@@ -8,13 +8,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import Fruit from '../../../app/images/Fruit.png';
 import Vegetable from '../../../app/images/Vegetable.png';
 import { ShrinkText } from '../../../common/services/TextService';
-import { Place } from '../../../common/models/Place';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import DeleteIcon from '../../../common/compontents/DeleteIcon/deleteIcon';
+import { Plant } from '../../../common/models/Plant';
 
 interface PlantsAccordionDetailsProps {
-  place: Place;
+  plants: Plant[];
 }
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
@@ -33,7 +32,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
 
   return (
     <>
-      {props.place.plants!.map((plant) => (
+      {props.plants!.map((plant) => (
         <AccordionDetails key={plant.id} sx={styles.plantsAccordionDetailsWrapper}>
           <Box sx={styles.plantsAccordionDetailsInfo}>
             <Typography sx={{ mr: 5 }} variant="overline">
@@ -44,12 +43,6 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
             </Typography>
           </Box>
           <Box sx={styles.plantsAccordionDetailsButtons}>
-            <DeleteIcon
-              key={plant.id}
-              resourceType="plant"
-              resourceId={plant.id}
-              resourceName={plant.name}
-            />
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
                 onClick={() => navigate(`${RoutingConstants.updatePlant}/${plant.id}`)}

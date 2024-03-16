@@ -4,7 +4,7 @@ import { Place } from '../../models/Place';
 export const getPlacesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlaces: build.query<Place[], void>({
-      query: () => '/places/GetAll'
+      query: () => '/places/get'
     })
   }),
   overrideExisting: false

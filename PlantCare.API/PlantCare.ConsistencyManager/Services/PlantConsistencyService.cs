@@ -1,22 +1,25 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.MessageBroker.Consumer;
 using PlantCare.MessageBroker.Messages;
-using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.ConsistencyManager.Services;
 
 public class PlantConsistencyService : IQueueConsumer<Plant>
 {
-    private readonly IPlantReadContext _context;
+    private readonly IPlantConsistencyContext _context;
     private readonly IMapper _mapper;
+    private readonly IDistributedCache _cache;
     private readonly ILogger<PlantConsistencyService> _logger;
 
-    public PlantConsistencyService(IPlantReadContext context, IMapper mapper, ILogger<PlantConsistencyService> logger)
+    public PlantConsistencyService(IPlantConsistencyContext context, IMapper mapper, IDistributedCache cache, ILogger<PlantConsistencyService> logger)
     {
         _context = context;
         _mapper = mapper;
+        _cache = cache;
         _logger = logger;
     }
 
@@ -29,6 +32,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
                 await _context.Plants.AddAsync(plant);
                 await _context.SaveChangesAsync();
+                await ResetPlantCache();
                 return;
             }
             case ActionType.Delete:
@@ -44,13 +48,29 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
 
                 _context.Plants.Remove(plantToDelete);
                 await _context.SaveChangesAsync();
+                await ResetPlantCache();
+                string singlePlantKey = $"Plant-{plantId}";
+                await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
             case ActionType.Update:
             {
                 var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
-                _context.Plants.Update(plant);
+                var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == plant.Id);
+            
+                if (plantToUpdate == null)
+                {
+                    _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
+                    return;
+                }
+
+                plantToUpdate.Name = plant.Name;
+                plantToUpdate.Description = plant.Description;
+                plantToUpdate.Type = plant.Type;
                 await _context.SaveChangesAsync();
+                string singlePlantKey = $"Plant-{plant.Id}";
+                await ResetPlantCache();
+                await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
             default:
@@ -60,5 +80,16 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 return;
             }
         }
+    }
+    
+    private async Task ResetPlantCache()
+    {
+        await Task.WhenAll(
+            _cache.RemoveAsync("Plants"), 
+            _cache.RemoveAsync("Modules"), 
+            _cache.RemoveAsync("Places")
+        );
+        
+        _logger.LogInformation("Plant cache has been updated");
     }
 }

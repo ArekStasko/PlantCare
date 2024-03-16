@@ -4,22 +4,27 @@ import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import styles from './dashboard.styles';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import PlacesAccordion from './components/PlacesAccordion';
+import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
+import NoDataDialog from '../../common/compontents/NoDataAlert/noDataDialog';
 
 const Dashboard = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
+  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
 
-  return placesLoading ? (
-    <CustomBackdrop isLoading={placesLoading} />
+  return placesLoading || plantsLoading ? (
+    <CustomBackdrop isLoading={placesLoading || plantsLoading} />
   ) : (
-    <Box sx={styles.dashboardWrapper}>
-      {places ? (
-        <PlacesAccordion data={places!} />
+    <>
+      {places && places.length !== 0 ? (
+        <Box sx={styles.dashboardWrapper}>
+          <PlacesAccordion places={places!} plants={plants!} />
+        </Box>
       ) : (
-        <Box>
-          <Typography>you dont have any data</Typography>
+        <Box sx={styles.alertWrapper}>
+          <NoDataDialog />
         </Box>
       )}
-    </Box>
+    </>
   );
 };
 

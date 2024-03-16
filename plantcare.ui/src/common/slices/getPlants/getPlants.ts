@@ -4,7 +4,7 @@ import { Plant } from '../../models/Plant';
 export const getPlantsApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlants: build.query<Plant[], void>({
-      query: () => '/plants/GetAll'
+      query: () => '/plants/get'
     })
   }),
   overrideExisting: false

@@ -5,14 +5,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceRequest';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import React from 'react';
+import React, { useState } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
-import Summary from '../components/placeWizardSteps/Summary/summary';
+import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
 
 export const CreatePlace = () => {
   const [createPlace] = useCreatePlaceMutation();
-  const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlaceSchema)
@@ -22,8 +21,7 @@ export const CreatePlace = () => {
     const request: CreatePlaceRequest = {
       name: methods.getValues('name')
     };
-    await createPlace(request);
-    refetch();
+    return await createPlace(request);
   };
 
   const steps: IWizardStep[] = [
@@ -31,13 +29,19 @@ export const CreatePlace = () => {
       title: 'Place Details',
       component: <Details />,
       validators: ['name'],
-      order: 0
+      id: 0,
+      nextStep: 1,
+      isStepVisible: true,
+      isFinal: false
     },
     {
-      title: 'Place Summary',
-      component: <Summary />,
+      title: 'Place UpdateSummary',
+      component: <UpdateSummary />,
       validators: [],
-      order: 1
+      id: 1,
+      isStepVisible: true,
+      previousStep: 0,
+      isFinal: true
     }
   ];
 

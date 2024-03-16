@@ -3,7 +3,6 @@ import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardConte
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import { useUpdatePlantMutation } from '../../common/slices/updatePlant/updatePlant';
 import { UpdatePlantRequest } from '../../common/slices/updatePlant/updatePlantRequest';
 import { useParams } from 'react-router';
@@ -13,18 +12,59 @@ import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
+import { useDeletePlantMutation } from '../../common/slices/deletePlant/deletePlant';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
+import ActionSelect from '../components/ActionSelect/actionSelect';
+import DeleteSummary from '../components/plantWizardSteps/DeleteSummary/deleteSummary';
 
 export const UpdatePlant = () => {
   const { id } = useParams();
 
   const [updatePlant] = useUpdatePlantMutation();
-  const { data: plant, isLoading: plantLoading, refetch: refetchPlant } = useGetPlantQuery(id!);
-  const { refetch: refetchPlaces } = useGetPlacesQuery();
+  const [deletePlant] = useDeletePlantMutation();
+  const { data: plant, isLoading: plantLoading } = useGetPlantQuery(id!);
 
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.updatePlantSchema)
   });
+
+  const getNextStepByFlow = () => {
+    const flow = methods.getValues('flow');
+    if (flow === 'delete') return 1;
+    return 2;
+  };
+
+  const getIsStepVisible = (stepFlow: string) => {
+    const flow = methods.getValues('flow');
+    return stepFlow === flow;
+  };
+
+  const onSubmit = async (): Promise<
+    { data: boolean } | { error: FetchBaseQueryError | SerializedError }
+  > => {
+    const flow = methods.getValues('flow');
+    let result = undefined;
+    if (flow === 'delete') {
+      const id = +methods.getValues('id');
+      result = await deletePlant(id);
+    }
+
+    if (flow === 'update') {
+      const request: UpdatePlantRequest = {
+        id: +methods.getValues('id'),
+        name: methods.getValues('name'),
+        description: methods.getValues('description'),
+        type: +methods.getValues('plantType'),
+        placeId: methods.getValues('plantPlace')
+      };
+      result = await updatePlant(request);
+    }
+
+    if (!result) return { data: false };
+    return result;
+  };
 
   useEffect(() => {
     if (!plantLoading) {
@@ -38,37 +78,53 @@ export const UpdatePlant = () => {
     }
   }, [plantLoading]);
 
-  const onUpdate = async () => {
-    const request: UpdatePlantRequest = {
-      id: +methods.getValues('id'),
-      name: methods.getValues('name'),
-      description: methods.getValues('description'),
-      type: +methods.getValues('plantType'),
-      placeId: methods.getValues('plantPlace')
-    };
-    await updatePlant(request);
-    refetchPlant();
-    refetchPlaces();
-  };
-
   const steps: IWizardStep[] = [
+    {
+      title: 'Select Action',
+      component: <ActionSelect />,
+      validators: ['flow'],
+      id: 0,
+      nextStep: getNextStepByFlow(),
+      isStepVisible: true,
+      isFinal: false
+    },
+    {
+      title: 'Delete Plant Summary',
+      component: <DeleteSummary />,
+      validators: [],
+      previousStep: 0,
+      id: 1,
+      isStepVisible: getIsStepVisible('delete'),
+      isFinal: true
+    },
     {
       title: 'Plant Details',
       component: <Details plantData={plant!} />,
       validators: ['name', 'description', 'plantType'],
-      order: 0
+      previousStep: 0,
+      id: 2,
+      nextStep: 3,
+      isStepVisible: getIsStepVisible('update'),
+      isFinal: false
     },
     {
       title: 'Place Select',
       component: <PlaceSelect plantData={plant!} />,
       validators: ['plantPlace'],
-      order: 1
+      previousStep: 2,
+      id: 3,
+      nextStep: 4,
+      isStepVisible: getIsStepVisible('update'),
+      isFinal: false
     },
     {
       title: 'Plant Update Summary',
       component: <Summary />,
       validators: [],
-      order: 2
+      previousStep: 3,
+      id: 4,
+      isStepVisible: getIsStepVisible('update'),
+      isFinal: true
     }
   ];
 
@@ -78,7 +134,7 @@ export const UpdatePlant = () => {
     </>
   ) : (
     <>
-      <WizardContext onSubmit={onUpdate} steps={steps} methods={methods} />
+      <WizardContext onSubmit={onSubmit} steps={steps} methods={methods} />
     </>
   );
 };

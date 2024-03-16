@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -7,7 +8,7 @@ using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
-public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext
+public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext, IModuleConsistencyContext, IPlantConsistencyContext, IPlaceConsistencyContext, IHumidityMeasurementsConsistencyContext
 {
     public ReadDataContext(){}
 

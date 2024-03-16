@@ -3,7 +3,7 @@ import { Module } from '../../models/Module';
 export const getModulesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     GetModules: build.query<Module[], void>({
-      query: () => '/modules/GetAll'
+      query: () => '/modules/get'
     })
   }),
   overrideExisting: false

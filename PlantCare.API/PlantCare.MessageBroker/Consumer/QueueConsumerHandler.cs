@@ -80,7 +80,6 @@ public class QueueConsumerHandler<TMessageConsumer, TQueueMessage> : IQueueConsu
             producingChannel.TxSelect();
 
             var consumerInstance = consumerScope.ServiceProvider.GetRequiredService<TMessageConsumer>();
-
             await consumerInstance.ConsumeAsync(message);
 
             if (producingChannel.IsClosed || consumingChannel.IsClosed)
