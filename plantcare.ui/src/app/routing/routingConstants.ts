@@ -3,7 +3,9 @@ interface Dictionary<T> {
 }
 
 const RoutingPaths = {
-  auth: '/plantcare/:id/:token',
+  site: 'http://localhost:3001/auth',
+  idp: 'http://localhost:3000/idp',
+  auth: '/auth/:id?/:token?',
   root: '/dashboard',
   createPlant: '/create-plant',
   updatePlant: '/update-plant',
