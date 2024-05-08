@@ -8,9 +8,11 @@ import CreatePlant from '../../pages/CreatePlant/createPlant';
 import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
+import AuthPage from '../../pages/authPage/authPage';
 
 export const MainRouting = () => (
   <Routes>
+    <Route path={RoutingConstants.auth} element={<AuthPage />} />
     <Route
       path={RoutingConstants.root}
       element={
