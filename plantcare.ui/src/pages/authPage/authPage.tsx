@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { SaveUserData, UserData } from '../../common/services/CookieService';
 import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
+import useBackgroundService from '../../common/services/sessionService';
 
 export const AuthPage = () => {
   const navigate = useNavigate();
