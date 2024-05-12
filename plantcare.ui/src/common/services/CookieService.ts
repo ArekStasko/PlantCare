@@ -10,6 +10,11 @@ export const SaveUserData = (userData: UserData) => {
   Cookies.set('token', userData.token);
 };
 
+export const DeleteUserData = () => {
+  Cookies.remove('id');
+  Cookies.remove('token');
+};
+
 export const GetUserData = (): UserData | undefined => {
   const id = Cookies.get('id');
   const token = Cookies.get('token');
