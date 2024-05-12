@@ -14,25 +14,23 @@ type BaseLayoutProps = {
 export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState<string | undefined>(undefined);
-  const { data: isTokenValid } = useCheckTokenQuery(token!, { skip: !token });
+  const { data: isTokenValid, refetch } = useCheckTokenQuery(token!, { skip: !token });
 
   useEffect(() => {
     console.log('pre interval');
     const userData = GetUserData();
     if (!userData) navigate(RoutingConstants.auth);
+    setToken(userData?.token);
     const interval = setInterval(() => {
-      console.log('interval hit !');
-      setToken(userData?.token);
+      console.log('interval');
+      refetch();
+      if (!isTokenValid && isTokenValid !== undefined) {
+        DeleteUserData();
+        navigate(RoutingConstants.auth);
+      }
     }, 10000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    if (isTokenValid) return;
-    console.log('token invalid !');
-    DeleteUserData();
-    navigate(RoutingConstants.auth);
-  }, [isTokenValid]);
 
   return (
     <Box sx={styles.container}>
