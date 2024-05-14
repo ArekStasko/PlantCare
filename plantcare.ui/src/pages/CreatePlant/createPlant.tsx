@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../common/services/Validators';
 import { CreatePlantRequest } from '../../common/slices/createPlant/createPlantRequest';
 import { useCreatePlantMutation } from '../../common/slices/createPlant/createPlant';
-import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
@@ -14,7 +13,6 @@ import ModuleSelect from '../components/plantWizardSteps/ModuleSelect/moduleSele
 
 export const CreatePlant = () => {
   const [createPlant] = useCreatePlantMutation();
-  const { refetch } = useGetPlacesQuery();
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantSchema)
