@@ -17,7 +17,6 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   const { data: isTokenValid, refetch } = useCheckTokenQuery(token!, { skip: !token });
 
   useEffect(() => {
-    console.log('pre interval');
     const userData = GetUserData();
     if (!userData) navigate(RoutingConstants.auth);
     setToken(userData?.token);
@@ -28,7 +27,8 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
         DeleteUserData();
         navigate(RoutingConstants.auth);
       }
-    }, 10000);
+    }, 30000);
+
     return () => clearInterval(interval);
   }, []);
 
