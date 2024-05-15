@@ -29,9 +29,6 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
         navigate(RoutingConstants.auth);
       }
     }, 30000);
-    if (userData?.token) {
-      refreshToken(userData?.token);
-    }
     return () => clearInterval(interval);
   }, []);
 
