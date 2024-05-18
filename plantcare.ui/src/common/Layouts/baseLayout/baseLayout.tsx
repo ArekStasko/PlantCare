@@ -6,7 +6,6 @@ import { useCheckTokenQuery } from '../../slices/checkTokenExpiration/checkToken
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import { DeleteUserData, GetUserData } from '../../services/CookieService';
-import { useRefreshTokenMutation } from '../../slices/refreshToken/refreshToken';
 
 type BaseLayoutProps = {
   children: ReactElement;
@@ -16,19 +15,17 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   const navigate = useNavigate();
   const [token, setToken] = useState<string | undefined>(undefined);
   const { data: isTokenValid, refetch } = useCheckTokenQuery(token!, { skip: !token });
-  const [refreshToken] = useRefreshTokenMutation();
 
   useEffect(() => {
     const userData = GetUserData();
-    if (!userData) navigate(RoutingConstants.auth);
+    if (!userData) navigate(RoutingConstants.authBasic);
     setToken(userData?.token);
     const interval = setInterval(() => {
       refetch();
       if (!isTokenValid && isTokenValid !== undefined) {
         DeleteUserData();
-        navigate(RoutingConstants.auth);
+        navigate(RoutingConstants.authBasic);
       }
-      refreshToken(userData!.token);
     }, 30000);
     return () => clearInterval(interval);
   }, []);
