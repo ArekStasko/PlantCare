@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useRefreshTokenMutation } from '../slices/refreshToken/refreshToken';
 import RoutingConstants from '../../app/routing/routingConstants';
-import { GetUserData, UserData } from './CookieService';
+import { GetUserData, SaveUserData, UserData } from './CookieService';
 
 const usePageTracking = () => {
   const location = useLocation();
@@ -10,17 +10,18 @@ const usePageTracking = () => {
   const [refreshToken, { isLoading }] = useRefreshTokenMutation();
 
   useEffect(() => {
+    console.log('Page Tracking');
     if (location.pathname == RoutingConstants.authBasic || isLoading) return;
     const userData = GetUserData();
+    console.log(userData);
     if (!userData) {
       navigate(RoutingConstants.authBasic);
     }
-    refresh(userData!);
+    const runRefreshToken = async () => {
+      const data = await refreshToken(userData!.token);
+    };
+    runRefreshToken().catch();
   }, [location]);
-
-  const refresh = async (userData: UserData) => {
-    await refreshToken(userData!.token).unwrap();
-  };
 };
 
 export default usePageTracking;

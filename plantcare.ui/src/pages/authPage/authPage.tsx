@@ -18,6 +18,7 @@ export const AuthPage = () => {
       id,
       token
     } as UserData;
+    console.log(userData);
     SaveUserData(userData);
     navigate(routingConstants.root);
   }, [isTokenValid]);
