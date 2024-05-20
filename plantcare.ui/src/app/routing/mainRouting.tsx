@@ -9,10 +9,8 @@ import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
-import usePageTracking from '../../common/services/PageTracking';
 
 export const MainRouting = () => {
-  usePageTracking();
   return (
     <Routes>
       <Route path={RoutingConstants.auth} element={<AuthPage />} />

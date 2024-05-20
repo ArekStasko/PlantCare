@@ -10,10 +10,9 @@ const usePageTracking = () => {
   const [refreshToken, { isLoading }] = useRefreshTokenMutation();
 
   useEffect(() => {
-    console.log('Page Tracking');
+    console.log(location);
     if (location.pathname == RoutingConstants.authBasic || isLoading) return;
     const userData = GetUserData();
-    console.log(userData);
     if (!userData) {
       navigate(RoutingConstants.authBasic);
     }

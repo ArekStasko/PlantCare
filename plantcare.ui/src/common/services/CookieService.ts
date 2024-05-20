@@ -6,8 +6,6 @@ export type UserData = {
 };
 
 export const SaveUserData = (userData: UserData) => {
-  console.log(userData);
-  console.log('SAVING DATA');
   Cookies.set('id', userData.id);
   Cookies.set('token', userData.token);
 };

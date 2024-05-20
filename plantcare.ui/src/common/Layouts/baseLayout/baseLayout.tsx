@@ -1,11 +1,12 @@
 import React, { FunctionComponent, ReactElement, useEffect, useState } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Navbar from '../../compontents/navbar/navbar';
 import styles from './baseLayout.styles';
 import { useCheckTokenQuery } from '../../slices/checkTokenExpiration/checkTokenExpiration';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import { DeleteUserData, GetUserData } from '../../services/CookieService';
+import usePageTracking from '../../services/PageTracking';
 
 type BaseLayoutProps = {
   children: ReactElement;
@@ -15,6 +16,7 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   const navigate = useNavigate();
   const [token, setToken] = useState<string | undefined>(undefined);
   const { data: isTokenValid, refetch } = useCheckTokenQuery(token!, { skip: !token });
+  usePageTracking();
 
   useEffect(() => {
     const userData = GetUserData();
