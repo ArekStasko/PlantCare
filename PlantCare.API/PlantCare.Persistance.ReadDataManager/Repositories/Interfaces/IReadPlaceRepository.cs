@@ -5,5 +5,5 @@ namespace PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 public interface IReadPlaceRepository
 {
-    ValueTask<Result<IReadOnlyCollection<IPlace>>> Get();
+    ValueTask<Result<IReadOnlyCollection<IPlace>>> Get(int userId);
 }

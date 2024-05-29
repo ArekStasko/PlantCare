@@ -19,30 +19,30 @@ public class ModuleCacheRepository : IReadModuleRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get(int userId)
     {
-        string modulesKey = "Modules";
+        string modulesKey = $"Modules-{userId}";
         IReadOnlyCollection<IModule> data = await _cache.GetRecordAsync<List<Module>>(modulesKey);
 
         if (data == null || data.Count == 0)
         {
             _logger.LogInformation("Saving Modules to cache");
-            var modules = await _readRepository.Get();
+            var modules = await _readRepository.Get(userId);
             return await modules.ProcessCacheResult(_cache, modulesKey);
         }
 
         return new Result<IReadOnlyCollection<IModule>>(data!);
     }
 
-    public async ValueTask<Result<IModule>> Get(Guid id)
+    public async ValueTask<Result<IModule>> Get(int userId, Guid id)
     {
-        string singleModuleKey = $"Module-{id}";
+        string singleModuleKey = $"Module-{id}-{userId}";
         IModule data = await _cache.GetRecordAsync<Module>(singleModuleKey);
 
         if (data == null)
         {
             _logger.LogInformation("Saving module to cache");
-            var module = await _readRepository.Get(id);
+            var module = await _readRepository.Get(userId, id);
             return await module.ProcessCacheResult(_cache, singleModuleKey);
         }
 

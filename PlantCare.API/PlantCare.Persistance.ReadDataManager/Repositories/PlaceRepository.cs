@@ -18,11 +18,11 @@ public class PlaceRepository : IReadPlaceRepository
         _logger = logger;
     }
     
-    public virtual async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get(int userId)
     {
         try
         {
-            var places = await _context.Places.ToListAsync<IPlace>();
+            var places = await _context.Places.Where(p => p.UserId == userId).ToListAsync<IPlace>();
             _logger.LogInformation("Successfull get opreation");
             return new Result<IReadOnlyCollection<IPlace>>(places);
         }

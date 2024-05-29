@@ -17,11 +17,11 @@ public class ModuleRepository : IReadModuleRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get(int userId)
     {
         try
         {
-            var modules = await _context.Modules.ToListAsync<IModule>();
+            var modules = await _context.Modules.Where(m => m.UserId == userId).ToListAsync<IModule>();
             _logger.LogInformation("Successfully loaded modules");
             return new Result<IReadOnlyCollection<IModule>>(modules);
         }
@@ -32,11 +32,11 @@ public class ModuleRepository : IReadModuleRepository
         }
     }
 
-    public async ValueTask<Result<IModule>> Get(Guid id)
+    public async ValueTask<Result<IModule>> Get(int userId, Guid id)
     {
         try
         {
-            var module = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id);
+            var module = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
             if (module == null)
             {
