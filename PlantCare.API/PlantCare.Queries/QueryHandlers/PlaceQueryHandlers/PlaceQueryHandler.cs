@@ -27,7 +27,7 @@ public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnl
         {
             _logger.LogInformation("GetPlacesHandler handles request");
 
-            var place = await _repository.Get();
+            var place = await _repository.Get(query.UserId);
             return place.Match(succ =>
             {
                 _logger.LogInformation("GetPlacesHandler successfully processed the request");
