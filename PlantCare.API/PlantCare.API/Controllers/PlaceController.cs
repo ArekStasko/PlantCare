@@ -36,7 +36,7 @@ public class PlaceController : ControllerBase
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id)
+    public async ValueTask<IActionResult> Delete([FromQuery] int id, [FromQuery] int userId)
     {
         _logger.LogInformation("Delete place controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeletePlaceCommand>(id);
