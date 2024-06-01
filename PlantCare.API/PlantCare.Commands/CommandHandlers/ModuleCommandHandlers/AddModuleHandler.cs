@@ -31,7 +31,7 @@ public class AddModuleHandler : IRequestHandler<AddModuleCommand, Result<Guid>>
         {
             _logger.LogInformation("AddModuleHandler start processing");
             Guid newId = Guid.NewGuid();
-            var result = await _repository.Add(newId);
+            var result = await _repository.Add(request.UserId, newId);
             return result.Match(succ =>
             {
                 var moduleToPublish = new PlantCare.Domain.Models.Module.Module() { Id = succ }; 

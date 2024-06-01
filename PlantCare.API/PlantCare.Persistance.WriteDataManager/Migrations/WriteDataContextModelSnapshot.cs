@@ -57,6 +57,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Modules");
@@ -73,6 +76,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -102,6 +108,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

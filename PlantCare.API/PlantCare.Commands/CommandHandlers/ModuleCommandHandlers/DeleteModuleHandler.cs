@@ -29,7 +29,7 @@ public class DeleteModuleHandler : IRequestHandler<DeleteModuleCommand, Result<b
     {
         try
         {
-            var result = await _repository.Delete(request.Id);
+            var result = await _repository.Delete(request.UserId, request.Id);
             return result.Match(succ =>
             {
                 if (succ)

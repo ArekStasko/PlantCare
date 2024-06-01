@@ -17,11 +17,14 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlaceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlaceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlaceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/AddModuleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/AddModuleHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/DeleteModuleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/DeleteModuleHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlaceCommandHandlers/DeletePlaceHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlaceCommandHandlers/DeletePlaceHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/AddModuleCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/AddModuleCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/DeleteModuleCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/DeleteModuleCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Place/DeletePlaceCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Place/DeletePlaceCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/ReadDataContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/ReadDataContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/WriteDataContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/WriteDataContextModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +333,8 @@
       <workItem from="1712410331245" duration="598000" />
       <workItem from="1712493662483" duration="1265000" />
       <workItem from="1716995835179" duration="1779000" />
-      <workItem from="1717147936760" duration="1507000" />
+      <workItem from="1717147936760" duration="2159000" />
+      <workItem from="1717165033541" duration="3382000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
