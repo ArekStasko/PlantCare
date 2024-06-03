@@ -3,5 +3,6 @@ import { Plant } from './Plant';
 
 export class Module {
   id!: string;
+  userId!: number;
   plant?: Plant;
 }
