@@ -16,6 +16,8 @@ import DeleteSummary from '../components/placeWizardSteps/DeleteSummary/deleteSu
 import { useDeletePlaceMutation } from '../../common/slices/deletePlace/deletePlace';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
+import { GetUserData } from '../../common/services/CookieService';
+import { DeletePlaceData } from '../../common/slices/deletePlace/deletePlaceData';
 
 export const UpdatePlace = () => {
   const { id } = useParams();
@@ -32,17 +34,23 @@ export const UpdatePlace = () => {
     { data: boolean } | { error: FetchBaseQueryError | SerializedError }
   > => {
     const flow = methods.getValues('flow');
+    const userData = GetUserData();
 
     let result = undefined;
     if (flow === 'delete') {
       const id = +methods.getValues('id');
-      result = await deletePlace(id);
+      const request: DeletePlaceData = {
+        placeId: id,
+        userId: +userData!.id
+      };
+      result = await deletePlace(request);
     }
 
     if (flow === 'update') {
       const request: UpdatePlaceRequest = {
         id: +methods.getValues('id'),
-        name: methods.getValues('name')
+        name: methods.getValues('name'),
+        userId: +userData!.id
       };
       result = await updatePlace(request);
     }

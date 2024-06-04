@@ -1,14 +1,14 @@
 import { useCreatePlaceMutation } from '../../common/slices/createPlace/createPlace';
-import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
 import validators from '../../common/services/Validators';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceRequest';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
-import React, { useState } from 'react';
+import React from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
 import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
+import { GetUserData } from '../../common/services/CookieService';
 
 export const CreatePlace = () => {
   const [createPlace] = useCreatePlaceMutation();
@@ -18,8 +18,10 @@ export const CreatePlace = () => {
   });
 
   const onCreate = async () => {
+    const userData = GetUserData();
     const request: CreatePlaceRequest = {
-      name: methods.getValues('name')
+      name: methods.getValues('name'),
+      userId: +userData!.id
     };
     return await createPlace(request);
   };
