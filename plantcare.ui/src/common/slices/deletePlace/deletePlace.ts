@@ -5,7 +5,7 @@ export const deletePlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     DeletePlace: build.mutation<boolean, DeletePlaceData>({
       query: ({ placeId, userId }: DeletePlaceData) => ({
-        url: `/places/Delete?id=${placeId}?userId=${userId}`,
+        url: `/places/Delete?id=${placeId}&userId=${userId}`,
         method: 'DELETE'
       })
     })

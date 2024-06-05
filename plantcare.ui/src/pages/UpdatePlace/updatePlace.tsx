@@ -24,7 +24,7 @@ export const UpdatePlace = () => {
 
   const [updatePlace] = useUpdatePlaceMutation();
   const [deletePlace] = useDeletePlaceMutation();
-  const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
+  const { data: places, isLoading: placesLoading } = useGetPlacesQuery(GetUserData()!.id);
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.updatePlaceSchema)

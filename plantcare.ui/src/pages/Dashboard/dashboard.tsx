@@ -6,9 +6,10 @@ import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import PlacesAccordion from './components/PlacesAccordion';
 import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
 import NoDataDialog from '../../common/compontents/NoDataAlert/noDataDialog';
+import { GetUserData } from '../../common/services/CookieService';
 
 const Dashboard = () => {
-  const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
+  const { data: places, isLoading: placesLoading } = useGetPlacesQuery(GetUserData()!.id);
   const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
 
   return placesLoading || plantsLoading ? (
