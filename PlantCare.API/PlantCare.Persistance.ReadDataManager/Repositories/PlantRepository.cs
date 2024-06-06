@@ -17,11 +17,11 @@ public class PlantRepository : IReadPlantRepository
         _logger = logger;
     }
 
-    public virtual async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get()
+    public virtual async ValueTask<Result<IReadOnlyCollection<IPlant>>> Get(int userId)
     {
         try
         {
-            var plants = await _context.Plants.ToListAsync<IPlant>();
+            var plants = await _context.Plants.Where(p => p.UserId == userId).ToListAsync<IPlant>();
             _logger.LogInformation("Successfull get opreation");
             return new Result<IReadOnlyCollection<IPlant>>(plants);
         }
@@ -32,11 +32,11 @@ public class PlantRepository : IReadPlantRepository
         }
     }
 
-    public virtual async ValueTask<Result<IPlant>> Get(int id)
+    public virtual async ValueTask<Result<IPlant>> Get(int id, int userId)
     {
         try
         {
-            var plant = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == id);
+            var plant = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == id && plt.UserId == userId);
 
             if (plant == null)
             {
