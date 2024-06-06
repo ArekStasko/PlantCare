@@ -10,7 +10,7 @@ import { GetUserData } from '../../common/services/CookieService';
 
 const Dashboard = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery(GetUserData()!.id);
-  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
+  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery(GetUserData()!.id);
 
   return placesLoading || plantsLoading ? (
     <CustomBackdrop isLoading={placesLoading || plantsLoading} />

@@ -17,13 +17,17 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import ActionSelect from '../components/ActionSelect/actionSelect';
 import DeleteSummary from '../components/plantWizardSteps/DeleteSummary/deleteSummary';
+import { GetUserData } from '../../common/services/CookieService';
 
 export const UpdatePlant = () => {
   const { id } = useParams();
 
   const [updatePlant] = useUpdatePlantMutation();
   const [deletePlant] = useDeletePlantMutation();
-  const { data: plant, isLoading: plantLoading } = useGetPlantQuery(id!);
+  const { data: plant, isLoading: plantLoading } = useGetPlantQuery({
+    plantId: id!,
+    userId: +GetUserData()!.id
+  });
 
   const methods = useForm({
     mode: 'onChange',
@@ -45,15 +49,17 @@ export const UpdatePlant = () => {
     { data: boolean } | { error: FetchBaseQueryError | SerializedError }
   > => {
     const flow = methods.getValues('flow');
+    const userData = GetUserData();
     let result = undefined;
     if (flow === 'delete') {
       const id = +methods.getValues('id');
-      result = await deletePlant(id);
+      result = await deletePlant({ plantId: id, userId: +userData!.id });
     }
 
     if (flow === 'update') {
       const request: UpdatePlantRequest = {
         id: +methods.getValues('id'),
+        userId: +userData!.id,
         name: methods.getValues('name'),
         description: methods.getValues('description'),
         type: +methods.getValues('plantType'),
