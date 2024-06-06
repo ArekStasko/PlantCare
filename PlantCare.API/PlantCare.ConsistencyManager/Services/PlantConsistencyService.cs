@@ -32,7 +32,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 var plant = _mapper.Map<PlantCare.Domain.Models.Plant.Plant>(message.PlantData);
                 await _context.Plants.AddAsync(plant);
                 await _context.SaveChangesAsync();
-                await ResetPlantCache();
+                await ResetPlantCache(plant.UserId);
                 return;
             }
             case ActionType.Delete:
@@ -48,8 +48,8 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
 
                 _context.Plants.Remove(plantToDelete);
                 await _context.SaveChangesAsync();
-                await ResetPlantCache();
-                string singlePlantKey = $"Plant-{plantId}";
+                await ResetPlantCache(plantToDelete.UserId);
+                string singlePlantKey = $"Plant-{plantId}-{plantToDelete.UserId}";
                 await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
@@ -68,8 +68,8 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 plantToUpdate.Description = plant.Description;
                 plantToUpdate.Type = plant.Type;
                 await _context.SaveChangesAsync();
-                string singlePlantKey = $"Plant-{plant.Id}";
-                await ResetPlantCache();
+                string singlePlantKey = $"Plant-{plant.Id}-{plant.UserId}";
+                await ResetPlantCache(plant.UserId);
                 await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
@@ -82,12 +82,12 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
         }
     }
     
-    private async Task ResetPlantCache()
+    private async Task ResetPlantCache(int userId)
     {
         await Task.WhenAll(
-            _cache.RemoveAsync("Plants"), 
-            _cache.RemoveAsync("Modules"), 
-            _cache.RemoveAsync("Places")
+            _cache.RemoveAsync($"Plants-{userId}"), 
+            _cache.RemoveAsync($"Modules-{userId}"), 
+            _cache.RemoveAsync($"Places-{userId}")
         );
         
         _logger.LogInformation("Plant cache has been updated");

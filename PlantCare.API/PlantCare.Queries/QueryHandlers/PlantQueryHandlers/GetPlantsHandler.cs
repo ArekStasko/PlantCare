@@ -27,7 +27,7 @@ public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnly
         {
             _logger.LogInformation("GetPlantsHandler handles request");
 
-            var plant = await _repository.Get();
+            var plant = await _repository.Get(query.UserId);
             return plant.Match(succ =>
             {
                 _logger.LogInformation("GetPlantsHandler successfully processed the request");

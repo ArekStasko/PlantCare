@@ -35,7 +35,7 @@ public class DeletePlaceHandler : IRequestHandler<DeletePlaceCommand, Result<boo
             {
                 if (succ)
                 {
-                    var placeToPublish = new Domain.Models.Place.Place() { Id = command.Id };
+                    var placeToPublish = new Domain.Models.Place.Place() { Id = command.Id, UserId = command.UserId};
                     var placeMessage = new Place()
                     {
                         Action = ActionType.Delete,

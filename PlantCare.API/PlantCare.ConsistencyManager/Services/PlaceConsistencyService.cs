@@ -31,7 +31,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
                 var place = _mapper.Map<PlantCare.Domain.Models.Place.Place>(message.PlaceData);
                 await _context.Places.AddAsync(place);
                 await _context.SaveChangesAsync();
-                await ResetCachePlaces();
+                await ResetCachePlaces(place.UserId);
                 return;
             }
             case ActionType.Delete:
@@ -47,7 +47,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
                         
                 _context.Places.Remove(placeToDelete);
                 await _context.SaveChangesAsync();
-                await ResetCachePlaces();
+                await ResetCachePlaces(placeToDelete.UserId);
                 return;
             }
             case ActionType.Update:
@@ -63,7 +63,7 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
 
                 placeToEdit.Name = place.Name;
                 await _context.SaveChangesAsync();
-                await ResetCachePlaces();
+                await ResetCachePlaces(place.UserId);
                 return;
             }
             default:
@@ -74,9 +74,9 @@ public class PlaceConsistencyService : IQueueConsumer<Place>
         }
     }
 
-    private async Task ResetCachePlaces()
+    private async Task ResetCachePlaces(int userId)
     {
-        await _cache.RemoveAsync("Places");
+        await _cache.RemoveAsync($"Places-{userId}");
         _logger.LogInformation("Places cache has been updated");
     }
 }

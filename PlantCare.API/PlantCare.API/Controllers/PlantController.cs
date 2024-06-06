@@ -36,10 +36,11 @@ public class PlantController : ControllerBase
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id)
+    public async ValueTask<IActionResult> Delete([FromQuery] int id, [FromQuery] int userId)
     {
         _logger.LogInformation("Delete plant controller method start processing");
         var deletePlantCommand = _mapper.Map<DeletePlantCommand>(id);
+        deletePlantCommand.UserId = userId;
         var result = await _mediator.Send(deletePlantCommand);
         _logger.LogInformation("Delete plant controller method ends processing");
         return result.ToOk();
@@ -59,10 +60,11 @@ public class PlantController : ControllerBase
     [HttpGet(Name = "[controller]/getById")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetById([FromQuery] int id)
+    public async ValueTask<IActionResult> GetById([FromQuery] int id, [FromQuery] int userId)
     {
      
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
+        getPlantQuery.UserId = userId;
         _logger.LogInformation("Get plant controller method start processing");
         var result = await _mediator.
             Send(getPlantQuery);
@@ -73,10 +75,14 @@ public class PlantController : ControllerBase
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> Get([FromQuery] int userId)
     {
         _logger.LogInformation("GetAll plant controller method start processing");
-        var result = await _mediator.Send(new GetPlantsQuery());
+        var getPlantsQuery = new GetPlantsQuery()
+        {
+            UserId = userId
+        };
+        var result = await _mediator.Send(getPlantsQuery);
         _logger.LogInformation("GetAll plant controller method ends processing");
         return result.ToOk();
     }
