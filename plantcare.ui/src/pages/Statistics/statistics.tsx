@@ -118,7 +118,7 @@ export const Statistics = () => {
               />
             </Box>
             <Box sx={styles.statisticsChartWrapper}>
-              {humidityMeasurements!.length == 0 ? (
+              {humidityMeasurements && humidityMeasurements.length == 0 ? (
                 <>
                   <CustomAlert
                     type={'warning' as AlertColor}
