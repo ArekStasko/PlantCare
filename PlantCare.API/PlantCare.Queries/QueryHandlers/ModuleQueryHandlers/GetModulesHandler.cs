@@ -26,7 +26,7 @@ public class GetModulesHandler : IRequestHandler<GetModulesQuery, Result<IReadOn
         try
         {
             _logger.LogInformation("GetModulesHandler start processing");
-            var result = await _repository.Get();
+            var result = await _repository.Get(request.UserId);
             return result.Match(succ =>
             {
                 _logger.LogInformation("Successfully processed GetModulesHandler query handler");

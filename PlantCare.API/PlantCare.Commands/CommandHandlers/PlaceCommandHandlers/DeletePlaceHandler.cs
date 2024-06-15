@@ -30,12 +30,12 @@ public class DeletePlaceHandler : IRequestHandler<DeletePlaceCommand, Result<boo
         try
         {
             _logger.LogInformation("DeletePlaceHandler handles request");
-            var result = await _placeRepository.Delete(command.Id);
+            var result = await _placeRepository.Delete(command.UserId, command.Id);
             return result.Match(succ =>
             {
                 if (succ)
                 {
-                    var placeToPublish = new Domain.Models.Place.Place() { Id = command.Id };
+                    var placeToPublish = new Domain.Models.Place.Place() { Id = command.Id, UserId = command.UserId};
                     var placeMessage = new Place()
                     {
                         Action = ActionType.Delete,

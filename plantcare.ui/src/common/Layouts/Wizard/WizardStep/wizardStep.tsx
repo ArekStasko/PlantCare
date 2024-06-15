@@ -10,6 +10,7 @@ import CustomAlert from '../../../compontents/customAlert/customAlert';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
 import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
+import { GetUserData } from '../../../services/CookieService';
 
 export const WizardStep = ({
   children,
@@ -21,8 +22,8 @@ export const WizardStep = ({
   previousStep
 }: wizardStepProps) => {
   const navigate = useNavigate();
-  const { refetch: refetchPlaces } = useGetPlacesQuery();
-  const { refetch: refetchPlants } = useGetPlantsQuery();
+  const { refetch: refetchPlaces } = useGetPlacesQuery(GetUserData()!.id);
+  const { refetch: refetchPlants } = useGetPlantsQuery(GetUserData()!.id);
   const [openCancelDialog, setOpenCancelDialog] = React.useState(false);
   const [isAlertActive, setIsAlertActive] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);

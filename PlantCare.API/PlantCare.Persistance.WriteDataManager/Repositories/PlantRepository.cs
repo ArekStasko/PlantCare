@@ -33,11 +33,11 @@ public class PlantRepository : IWritePlantRepository
         }
     }
 
-    public virtual async ValueTask<Result<bool>> Delete(int id)
+    public virtual async ValueTask<Result<bool>> Delete(int id, int userId)
     {
         try
         {
-            var plantToDelete = await _context.Plants.SingleOrDefaultAsync(plant => plant.Id == id);
+            var plantToDelete = await _context.Plants.SingleOrDefaultAsync(plant => plant.Id == id && plant.UserId == userId);
 
             if (plantToDelete == null)
             {

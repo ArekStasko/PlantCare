@@ -7,19 +7,20 @@ import {
   Select,
   Typography
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
 import { useGetModulesQuery } from '../../../../common/slices/getModules/getModules';
 import { Plant } from '../../../../common/models/Plant';
 import CustomAlert from '../../../../common/compontents/customAlert/customAlert';
+import { GetUserData } from '../../../../common/services/CookieService';
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;
 }
 
 export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
-  const { data: modules, isLoading: modulesLoading } = useGetModulesQuery();
+  const { data: modules, isLoading: modulesLoading } = useGetModulesQuery(GetUserData()?.id!);
 
   const { control } = useFormContext();
 

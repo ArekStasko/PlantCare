@@ -31,7 +31,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         var module = _mapper.Map<PlantCare.Domain.Models.Module.Module>(message.ModuleData);
                         await _context.Modules.AddAsync(module);
                         await _context.SaveChangesAsync();
-                        await ResetCacheModule();
+                        await ResetCacheModule(module.UserId);
                         return;
                     }
                     case ActionType.Delete:
@@ -47,7 +47,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         
                         _context.Modules.Remove(moduleToDelete);
                         await _context.SaveChangesAsync();
-                        await ResetCacheModule();
+                        await ResetCacheModule(moduleToDelete.UserId);
                         return;
                     }
                     case ActionType.Update:
@@ -55,7 +55,7 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                         var module = _mapper.Map<PlantCare.Domain.Models.Module.Module>(message.ModuleData);
                         _context.Modules.Update(module);
                         await _context.SaveChangesAsync();
-                        await ResetCacheModule();
+                        await ResetCacheModule(module.UserId);
                         return;
                     }
                     default:
@@ -66,9 +66,9 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                 }
     }
 
-    private async Task ResetCacheModule()
+    private async Task ResetCacheModule(int userId)
     {
-        await _cache.RemoveAsync("Modules");
+        await _cache.RemoveAsync($"Modules-{userId}");
         _logger.LogInformation("Redis cache has been updated");
     }
 }

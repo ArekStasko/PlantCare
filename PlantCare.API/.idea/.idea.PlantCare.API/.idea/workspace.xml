@@ -51,14 +51,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cf91eb35ab781c324ad4fa382dce85631ec37cf3813529f7c92208d866c851/TaskContinuation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.ConsistencyManager/Services/HumidityMeasurementConsistencyService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.Persistance.ReadDataManager/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.Persistance.WriteDataManager/WriteDataContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/areks/sources/repos/PlantCare/PlantCare.API/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -321,7 +318,19 @@
       <workItem from="1708974319465" duration="2942000" />
       <workItem from="1709492910984" duration="13412000" />
       <workItem from="1709983481600" duration="6321000" />
-      <workItem from="1710452471686" duration="3325000" />
+      <workItem from="1710452471686" duration="3923000" />
+      <workItem from="1710680547678" duration="773000" />
+      <workItem from="1710685770666" duration="4460000" />
+      <workItem from="1712261600161" duration="1136000" />
+      <workItem from="1712410331245" duration="598000" />
+      <workItem from="1712493662483" duration="1265000" />
+      <workItem from="1716995835179" duration="1779000" />
+      <workItem from="1717147936760" duration="2159000" />
+      <workItem from="1717165033541" duration="3382000" />
+      <workItem from="1717433851185" duration="3907000" />
+      <workItem from="1717513142484" duration="1799000" />
+      <workItem from="1717695883958" duration="3804000" />
+      <workItem from="1717996879970" duration="1035000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -535,13 +544,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs</url>
-          <line>76</line>
+          <line>78</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" initialLine="76" containingFunctionPresentation="Method 'GetAll'">
             <startOffsets>
-              <option value="3264" />
+              <option value="3417" />
             </startOffsets>
             <endOffsets>
-              <option value="3265" />
+              <option value="3418" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="36" />
@@ -551,10 +560,10 @@
           <line>20</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.Persistance.ReadDataManager\Repositories\PlantRepository.cs" initialLine="20" containingFunctionPresentation="Method 'Get'">
             <startOffsets>
-              <option value="720" />
+              <option value="730" />
             </startOffsets>
             <endOffsets>
-              <option value="721" />
+              <option value="731" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="37" />

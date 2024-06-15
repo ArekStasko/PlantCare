@@ -4,13 +4,14 @@ import { Controller, useFormContext } from 'react-hook-form';
 import styles from './placeSelect.styles';
 import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import { Plant } from '../../../../common/models/Plant';
+import { GetUserData } from '../../../../common/services/CookieService';
 
 interface PlaceSelectProps {
   plantData?: Plant | undefined;
 }
 
 export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
-  const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
+  const { data: places, isLoading: placesLoading } = useGetPlacesQuery(GetUserData()!.id);
 
   const { control } = useFormContext();
 

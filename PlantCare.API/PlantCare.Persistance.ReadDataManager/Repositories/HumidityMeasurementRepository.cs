@@ -12,13 +12,11 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
 {
     private readonly IHumidityMeasurementReadContext _context;
     private readonly ILogger<HumidityMeasurementRepository> _logger;
-    private readonly IDistributedCache _cache;
 
-    public HumidityMeasurementRepository(IHumidityMeasurementReadContext context, ILogger<HumidityMeasurementRepository> logger, IDistributedCache cache)
+    public HumidityMeasurementRepository(IHumidityMeasurementReadContext context, ILogger<HumidityMeasurementRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _cache = cache;
     }
 
     public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)

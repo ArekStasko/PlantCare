@@ -16,13 +16,14 @@ import Decorative from '../../app/images/Decorative.png';
 import Fruit from '../../app/images/Fruit.png';
 import MemoryIcon from '@mui/icons-material/Memory';
 import { PlantType } from '../../common/models/plantTypes';
+import { GetUserData } from '../../common/services/CookieService';
 
 export const Statistics = () => {
   let { moduleId } = useParams();
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
-  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
+  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery(GetUserData()!.id);
 
   const {
     data: humidityMeasurements,
@@ -117,7 +118,7 @@ export const Statistics = () => {
               />
             </Box>
             <Box sx={styles.statisticsChartWrapper}>
-              {humidityMeasurements!.length == 0 ? (
+              {humidityMeasurements && humidityMeasurements.length == 0 ? (
                 <>
                   <CustomAlert
                     type={'warning' as AlertColor}

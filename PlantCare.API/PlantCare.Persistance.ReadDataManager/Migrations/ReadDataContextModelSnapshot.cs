@@ -53,6 +53,9 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Modules");
@@ -66,6 +69,9 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -92,6 +98,9 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

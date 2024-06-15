@@ -36,10 +36,11 @@ public class PlaceController : ControllerBase
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id)
+    public async ValueTask<IActionResult> Delete([FromQuery] int id, [FromQuery] int userId)
     {
         _logger.LogInformation("Delete place controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeletePlaceCommand>(id);
+        deletePlaceCommand.UserId = userId;
         var result = await _mediator.Send(deletePlaceCommand);
         _logger.LogInformation("Delete place controller method ends processing");
         return result.ToOk();
@@ -59,10 +60,14 @@ public class PlaceController : ControllerBase
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> Get([FromQuery] int userId)
     {
         _logger.LogInformation("GetAll places controller method start processing");
-        var result = await _mediator.Send(new GetPlacesQuery());
+        var getPlacesQuery = new GetPlacesQuery()
+        {
+            UserId = userId
+        };
+        var result = await _mediator.Send(getPlacesQuery);
         _logger.LogInformation("GetAll places controller method ends processing");
         return result.ToOk();
     }

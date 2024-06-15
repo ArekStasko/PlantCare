@@ -18,15 +18,15 @@ public class PlaceCacheRepository : IReadPlaceRepository
         _cache = cache;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get()
+    public async ValueTask<Result<IReadOnlyCollection<IPlace>>> Get(int userId)
     {
-        string placesKey = "Places";
+        string placesKey = $"Places-{userId}";
         IReadOnlyCollection<IPlace> data = await _cache.GetRecordAsync<List<Place>>(placesKey);
-
+        
         if (data == null || data.Count == 0)
         {
             _logger.LogInformation("Saving place to cache");
-            var places = await _repository.Get();
+            var places = await _repository.Get(userId);
             return await places.ProcessCacheResult(_cache, placesKey);
         }
 

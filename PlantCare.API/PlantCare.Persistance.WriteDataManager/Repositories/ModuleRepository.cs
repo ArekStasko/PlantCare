@@ -20,13 +20,14 @@ public class ModuleRepository : IWriteModuleRepository
         _cache = cache;
     }
     
-    public async ValueTask<Result<Guid>> Add(Guid id)
+    public async ValueTask<Result<Guid>> Add(int userId, Guid id)
     {
         try
         {
             var module = new Module()
             {
-                Id = id
+                Id = id,
+                UserId = userId
             };
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
@@ -40,11 +41,11 @@ public class ModuleRepository : IWriteModuleRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(Guid id)
+    public async ValueTask<Result<bool>> Delete(int userId, Guid id)
     {
         try
         {
-            var moduleToDelete = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id);
+            var moduleToDelete = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
             if (moduleToDelete == null)
             {
@@ -69,7 +70,7 @@ public class ModuleRepository : IWriteModuleRepository
     {
         try
         {
-            var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == module.Id);
+            var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == module.Id && m.UserId == module.UserId);
 
             if (moduleToUpdate == null)
             {

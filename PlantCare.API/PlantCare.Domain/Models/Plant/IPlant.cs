@@ -1,8 +1,9 @@
 using PlantCare.Domain.Enums;
+using PlantCare.Domain.Models.UserAssignable;
 
 namespace PlantCare.Domain.Models.Plant;
 
-public interface IPlant
+public interface IPlant : IUserAssignable
 {
     int Id { get; set; }
     int PlaceId { get; set; }

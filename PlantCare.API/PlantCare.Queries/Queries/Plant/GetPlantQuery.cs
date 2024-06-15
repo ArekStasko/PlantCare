@@ -8,4 +8,5 @@ namespace PlantCare.Queries.Queries.Plant;
 public record GetPlantQuery : IRequest<Result<GetPlantResponse>>
 {
     public int Id { get; set; }
+    public int UserId { get; set; }
 }

@@ -35,11 +35,11 @@ public class PlaceRepository : IWritePlaceRepository
         }
     }
 
-    public virtual async ValueTask<Result<bool>> Delete(int id)
+    public virtual async ValueTask<Result<bool>> Delete(int userId, int id)
     {
         try
         {
-            var placeToDelete = await _context.Places.SingleOrDefaultAsync(place => place.Id == id);
+            var placeToDelete = await _context.Places.SingleOrDefaultAsync(place => place.Id == id && place.UserId == userId);
 
             if (placeToDelete == null)
             {
@@ -64,7 +64,7 @@ public class PlaceRepository : IWritePlaceRepository
     {
         try
         {
-            var placeToEdit = await _context.Places.SingleOrDefaultAsync(plc => plc.Id == place.Id);
+            var placeToEdit = await _context.Places.SingleOrDefaultAsync(plc => plc.Id == place.Id && plc.UserId == place.UserId);
 
             if (placeToEdit == null)
             {

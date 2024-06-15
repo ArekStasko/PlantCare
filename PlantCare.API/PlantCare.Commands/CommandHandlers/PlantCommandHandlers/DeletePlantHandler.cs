@@ -30,12 +30,12 @@ public class DeletePlantHandler : IRequestHandler<DeletePlantCommand, Result<boo
         try
         {
             _logger.LogInformation("DeletePlantHandler handles request");
-            var result = await _plantRepository.Delete(command.Id);
+            var result = await _plantRepository.Delete(command.Id, command.UserId);
             return result.Match(succ =>
             {
                 if (succ)
                 {
-                    var plantDto = new Domain.Models.Plant.Plant() { Id = command.Id };
+                    var plantDto = new Domain.Models.Plant.Plant() { Id = command.Id, UserId = command.UserId};
                     var plantMessage = new Plant()
                     {
                         Action = ActionType.Delete,

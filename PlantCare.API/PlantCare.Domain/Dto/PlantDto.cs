@@ -5,6 +5,7 @@ namespace PlantCare.Domain.Dto;
 public class PlantDto
 {
     public int Id { get; set; }
+    public int UserId { get; set; }
     public int PlaceId { get; set; }
     public Guid ModuleId { get; set; }
     public string Name { get; set; } = "Name";
