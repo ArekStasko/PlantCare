@@ -6,7 +6,7 @@ export const refreshTokenApi = idpApi.injectEndpoints({
       query: (token) => ({
         url: `/token/refreshToken?token=${token}`,
         method: 'POST',
-        body: null
+        body: {}
       })
     })
   }),

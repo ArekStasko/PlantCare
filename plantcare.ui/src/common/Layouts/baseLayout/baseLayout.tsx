@@ -29,9 +29,6 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   }, []);
 
   useEffect(() => {
-    console.log('CHECK TOKEN USE EFFECT');
-    console.log(isTokenValid);
-    console.log('---');
     if (!isTokenValid && isTokenValid !== undefined) {
       DeleteUserData();
       navigate(RoutingConstants.authBasic);

@@ -10,15 +10,17 @@ const usePageTracking = () => {
   const [refreshToken, { isLoading }] = useRefreshTokenMutation();
 
   useEffect(() => {
+    console.log('TRACKING');
+    console.log(location);
+    console.log('---');
     if (location.pathname == RoutingConstants.authBasic || isLoading) return;
+    console.log('lets go');
     const userData = GetUserData();
-    if (!userData) {
+    if (!userData || !userData.token) {
       navigate(RoutingConstants.authBasic);
     }
-    const runRefreshToken = async () => {
-      const data = await refreshToken(userData!.token);
-    };
-    runRefreshToken().then().catch();
+    const runRefreshToken = async () => await refreshToken(userData!.token).unwrap();
+    runRefreshToken().catch(console.error);
   }, [location]);
 };
 
