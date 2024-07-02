@@ -15,22 +15,25 @@ type BaseLayoutProps = {
 export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState<string | undefined>(undefined);
-  const { data: isTokenValid, refetch } = useCheckTokenQuery(token!, { skip: !token });
+  const { data: isTokenValid, isFetching, refetch } = useCheckTokenQuery(token!, { skip: !token });
   usePageTracking();
 
   useEffect(() => {
     const userData = GetUserData();
-    if (!userData) navigate(RoutingConstants.authBasic);
+    if (!userData || !userData?.id || !userData?.token) navigate(RoutingConstants.authBasic);
     setToken(userData?.token);
     const interval = setInterval(() => {
       refetch();
-      if (!isTokenValid && isTokenValid !== undefined) {
-        DeleteUserData();
-        navigate(RoutingConstants.authBasic);
-      }
     }, 30000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (!isTokenValid && isTokenValid !== undefined) {
+      DeleteUserData();
+      navigate(RoutingConstants.authBasic);
+    }
+  }, [isFetching]);
 
   return (
     <Box sx={styles.container}>

@@ -1,12 +1,4 @@
 services:
-    mssql-server:
-        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
-        container_name: mssql-server
-        environment:
-            ACCEPT_EULA: "Y"
-            SA_PASSWORD: "Password.1234"
-        ports:
-            - "1433:1433"
     seq:
         image: datalust/seq:latest
         container_name: seq
@@ -15,8 +7,8 @@ services:
         environment:
             ACCEPT_EULA: "Y"
         restart: unless-stopped
-        depends_on:
-            - mssql-server
+        networks:
+            - base-network
     redis-cache:
         container_name: redis-cache
         image: redis:latest
@@ -24,12 +16,16 @@ services:
         ports:
             - '6379:6379'
         command: redis-server --bind redis-cache --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes --loglevel warning
+        networks:
+            - base-network
     rabbitmq:
         image: rabbitmq:3-management
         container_name: rabbitmq
         ports:
             - "15672:15672"
             - "5672:5672"
+        networks:
+            - base-network
     plantcare-api:
         build: ./PlantCare.API
         container_name: plantcare-api
@@ -54,4 +50,9 @@ services:
             - redis-cache
         ports:
             - "8080:8080"
+        networks:
+            - base-network
 
+networks:
+    base-network:
+        external: true
