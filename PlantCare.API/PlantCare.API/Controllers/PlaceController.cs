@@ -9,7 +9,7 @@ namespace PlantCare.API.Controllers;
 
 [Route("api/v1/places/[action]")]
 [ApiController]
-public class PlaceController : ControllerBase
+public class PlaceController : ControllerAuth
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
