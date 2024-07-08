@@ -1,4 +1,5 @@
 using System.Net;
+using IdentityProviderSystem.Client;
 using PlantCare.Commands;
 using PlantCare.ConsistencyManager;
 using PlantCare.ConsistencyManager.Services;
@@ -26,6 +27,8 @@ builder.Services.AddCors(options =>
 builder.WebHost.UseKestrel();
 
 // Add services to the container.
+
+builder.Services.AddIdpHttpClient();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
