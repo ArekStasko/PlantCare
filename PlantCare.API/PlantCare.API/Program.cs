@@ -28,8 +28,6 @@ builder.WebHost.UseKestrel();
 
 // Add services to the container.
 
-builder.Services.AddIdpHttpClient();
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = redisConnectionString;
@@ -38,6 +36,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 builder.Services.AddMessageBroker();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddIdpHttpClient();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -17,6 +17,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API/Middleware/Authentication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Middleware/Authentication.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Program.cs" afterDir="false" />
@@ -343,7 +348,7 @@
       <workItem from="1719071307283" duration="2156000" />
       <workItem from="1720356149778" duration="49000" />
       <workItem from="1720374019677" duration="2000" />
-      <workItem from="1720465247419" duration="1876000" />
+      <workItem from="1720465247419" duration="4169000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -560,10 +565,10 @@
           <line>78</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" initialLine="76" containingFunctionPresentation="Method 'GetAll'">
             <startOffsets>
-              <option value="3417" />
+              <option value="3487" />
             </startOffsets>
             <endOffsets>
-              <option value="3418" />
+              <option value="3488" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="36" />

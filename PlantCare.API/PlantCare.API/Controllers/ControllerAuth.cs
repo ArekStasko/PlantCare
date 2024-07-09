@@ -4,6 +4,17 @@ namespace PlantCare.API.Controllers;
 
 public class ControllerAuth : ControllerBase
 {
-    //FOR NOW IT IS MOCK
-    protected int UserId { get; } = 1;
+    protected int UserId { get; private set; }
+    
+    public ControllerAuth(IHttpContextAccessor httpContextAccessor)
+    {
+        if (httpContextAccessor.HttpContext.Items.TryGetValue("UserId", out var userId))
+        {
+            UserId = (int)userId;
+        }
+        else
+        {
+            throw new UnauthorizedAccessException();
+        }
+    }
 }
