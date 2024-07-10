@@ -25,9 +25,13 @@ public class ModuleController : ControllerAuth
     [HttpPost(Name = "[controller]/add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Add(AddModuleCommand command)
+    public async ValueTask<IActionResult> Add()
     {
         _logger.LogInformation("Create module controller method start processing");
+        var command = new AddModuleCommand()
+        {
+            UserId = UserId
+        };
         var result = await _mediator.Send(command);
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();
@@ -36,11 +40,11 @@ public class ModuleController : ControllerAuth
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] Guid id, [FromQuery] int userId)
+    public async ValueTask<IActionResult> Delete([FromQuery] Guid id)
     {
         _logger.LogInformation("Delete module controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeleteModuleCommand>(id);
-        deletePlaceCommand.UserId = userId;
+        deletePlaceCommand.UserId = UserId;
         var result = await _mediator.Send(deletePlaceCommand);
         _logger.LogInformation("Delete module controller method ends processing");
         return result.ToOk();
@@ -60,12 +64,12 @@ public class ModuleController : ControllerAuth
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int userId)
+    public async ValueTask<IActionResult> Get()
     {
         _logger.LogInformation("GetAll modules controller method start processing");
         var getModulesQuery = new GetModulesQuery()
         {
-            UserId = userId
+            UserId = UserId
         };
         var result = await _mediator.Send(getModulesQuery);
         _logger.LogInformation("GetAll modules controller method ends processing");

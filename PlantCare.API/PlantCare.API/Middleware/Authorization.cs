@@ -2,15 +2,17 @@ using IdentityProviderSystem.Client.Services;
 
 namespace PlantCare.API.Middleware;
 
-public class Authentication
+public class Authorization
 {
     private readonly RequestDelegate _next;
     private readonly ITokenService _tokenService;
+    private ILogger<Authorization> _logger;
 
-    public Authentication(RequestDelegate next, ITokenService tokenService)
+    public Authorization(RequestDelegate next, ITokenService tokenService, ILogger<Authorization> logger)
     {
         _next = next;
         _tokenService = tokenService;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -19,6 +21,7 @@ public class Authentication
         if (string.IsNullOrEmpty(authorizationHeader))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            _logger.LogWarning("There is no authorizationHeader in the request");
             return;
         }
         var token = authorizationHeader.Substring("Bearer ".Length).Trim();
@@ -26,8 +29,10 @@ public class Authentication
         if (!tokenValidationResult.IsTokenValid)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            _logger.LogWarning("User is no authorized");
             return;
         }
+        
         context.Items["UserId"] = tokenValidationResult.UserId;
         await _next(context);
     }

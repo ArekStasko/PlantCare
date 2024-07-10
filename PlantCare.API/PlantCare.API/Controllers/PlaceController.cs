@@ -28,6 +28,7 @@ public class PlaceController : ControllerAuth
     public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
     {
         _logger.LogInformation("Create place controller method start processing");
+        command.UserId = UserId;
         var result = await _mediator.Send(command);
         _logger.LogInformation("Create place controller method ends processing");
         return result.ToOk();
@@ -36,11 +37,11 @@ public class PlaceController : ControllerAuth
     [HttpDelete(Name = "[controller]/delete")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Delete([FromQuery] int id, [FromQuery] int userId)
+    public async ValueTask<IActionResult> Delete([FromQuery] int id)
     {
         _logger.LogInformation("Delete place controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeletePlaceCommand>(id);
-        deletePlaceCommand.UserId = userId;
+        deletePlaceCommand.UserId = UserId;
         var result = await _mediator.Send(deletePlaceCommand);
         _logger.LogInformation("Delete place controller method ends processing");
         return result.ToOk();
@@ -52,6 +53,7 @@ public class PlaceController : ControllerAuth
     public async ValueTask<IActionResult> Update(UpdatePlaceCommand command)
     {
         _logger.LogInformation("Edit place controller method start processing");
+        command.UserId = UserId;
         var result = await _mediator.Send(command);
         _logger.LogInformation("Edit place controller method ends processing");
         return result.ToOk();
@@ -60,12 +62,12 @@ public class PlaceController : ControllerAuth
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int userId)
+    public async ValueTask<IActionResult> Get()
     {
         _logger.LogInformation("GetAll places controller method start processing");
         var getPlacesQuery = new GetPlacesQuery()
         {
-            UserId = userId
+            UserId = UserId
         };
         var result = await _mediator.Send(getPlacesQuery);
         _logger.LogInformation("GetAll places controller method ends processing");
