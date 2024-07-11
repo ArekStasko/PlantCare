@@ -5,10 +5,9 @@ import { useFormContext } from 'react-hook-form';
 import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
 import { ShrinkText } from '../../../../common/services/TextService';
 import { PlantType } from '../../../../common/models/plantTypes';
-import { GetUserData } from '../../../../common/services/CookieService';
 
 export const Summary = () => {
-  const { data: places, isLoading: placesLoading } = useGetPlacesQuery(GetUserData()!.id);
+  const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
   const { getValues } = useFormContext();
   const titlesToDisplay = ['Name', 'Description', 'Type of Plant', 'Place', 'Module'];
 

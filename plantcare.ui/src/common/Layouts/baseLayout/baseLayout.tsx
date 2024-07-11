@@ -5,7 +5,7 @@ import styles from './baseLayout.styles';
 import { useCheckTokenQuery } from '../../slices/checkTokenExpiration/checkTokenExpiration';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import { DeleteUserData, GetUserData } from '../../services/CookieService';
+import { DeleteToken, GetToken } from '../../services/CookieService';
 import usePageTracking from '../../services/PageTracking';
 
 type BaseLayoutProps = {
@@ -19,9 +19,9 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   usePageTracking();
 
   useEffect(() => {
-    const userData = GetUserData();
-    if (!userData || !userData?.id || !userData?.token) navigate(RoutingConstants.authBasic);
-    setToken(userData?.token);
+    const token = GetToken();
+    if (!token) navigate(RoutingConstants.authBasic);
+    setToken(token);
     const interval = setInterval(() => {
       refetch();
     }, 30000);
@@ -30,7 +30,7 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
 
   useEffect(() => {
     if (!isTokenValid && isTokenValid !== undefined) {
-      DeleteUserData();
+      DeleteToken();
       navigate(RoutingConstants.authBasic);
     }
   }, [isFetching]);
