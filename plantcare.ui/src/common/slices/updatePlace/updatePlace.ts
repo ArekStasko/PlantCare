@@ -1,5 +1,6 @@
 import emptyApi from '../../../app/api/emptyApi';
 import { UpdatePlaceRequest } from './updatePlaceRequest';
+import { GetToken } from '../../services/CookieService';
 
 export const updatePlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,7 +8,8 @@ export const updatePlaceApi = emptyApi.injectEndpoints({
       query: ({ ...data }) => ({
         url: '/places/Update',
         method: 'POST',
-        body: data
+        body: data,
+        headers: { Authorization: GetToken() }
       })
     })
   }),

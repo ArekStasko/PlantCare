@@ -8,7 +8,6 @@ import React from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
 import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
-import { GetUserData } from '../../common/services/CookieService';
 
 export const CreatePlace = () => {
   const [createPlace] = useCreatePlaceMutation();
@@ -18,10 +17,8 @@ export const CreatePlace = () => {
   });
 
   const onCreate = async () => {
-    const userData = GetUserData();
     const request: CreatePlaceRequest = {
-      name: methods.getValues('name'),
-      userId: +userData!.id
+      name: methods.getValues('name')
     };
     return await createPlace(request);
   };

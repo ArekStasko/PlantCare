@@ -10,13 +10,13 @@ namespace PlantCare.API.Controllers;
 [Route("api/v1/humidity-measurements/[action]")]
 [ApiController]
 
-public class HumidityMeasurementsController : ControllerBase
+public class HumidityMeasurementsController : ControllerAuth
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public HumidityMeasurementsController(IMediator mediator, IMapper mapper, ILogger<PlaceController> logger)
+    public HumidityMeasurementsController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor)
     {
         _mediator = mediator;
         _mapper = mapper;

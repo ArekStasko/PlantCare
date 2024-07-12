@@ -1,4 +1,6 @@
 using System.Net;
+using IdentityProviderSystem.Client;
+using PlantCare.API.Middleware;
 using PlantCare.Commands;
 using PlantCare.ConsistencyManager;
 using PlantCare.ConsistencyManager.Services;
@@ -8,8 +10,10 @@ using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
 using Serilog;
+using Authorization = PlantCare.API.Middleware.Authorization;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
+const string IdpLocalUrl = "http://192.168.1.42:8081";
 var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
 var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 
@@ -35,6 +39,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 builder.Services.AddMessageBroker();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddIdpHttpClient(IdpLocalUrl);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -71,7 +77,9 @@ app.UseCors(x => x
     .AllowAnyHeader());
 
 app.MigrateReadDatabase();  
-app.MigrateWriteDatabase();  
+app.MigrateWriteDatabase();
+
+app.UseMiddleware<Authorization>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

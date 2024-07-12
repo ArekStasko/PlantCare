@@ -1,26 +1,15 @@
 import Cookies from 'js-cookie';
 
-export type UserData = {
-  id: string;
-  token: string;
+export const SaveToken = (token: string) => {
+  Cookies.set('token', token);
 };
 
-export const SaveUserData = (userData: UserData) => {
-  Cookies.set('id', userData.id);
-  Cookies.set('token', userData.token);
-};
-
-export const DeleteUserData = () => {
-  Cookies.remove('id');
+export const DeleteToken = () => {
   Cookies.remove('token');
 };
 
-export const GetUserData = (): UserData | undefined => {
-  const id = Cookies.get('id');
+export const GetToken = (): string | undefined => {
   const token = Cookies.get('token');
-  if (!id || !token) return undefined;
-  return {
-    id,
-    token
-  } as UserData;
+  if (!token) return undefined;
+  return token;
 };
