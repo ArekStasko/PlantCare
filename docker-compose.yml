@@ -27,10 +27,10 @@ services:
         networks:
             - base-network
     plantcare-api:
-        image: 192.168.1.40:5000/plantcare:v3.0.3
+        build: ./PlantCare.API
         container_name: plantcare-api
         environment:
-            DatabaseServer: "mssql-server"
+            DatabaseServer: "192.168.1.40"
             DatabasePort: "1433"
             DatabaseUser: "sa"
             DatabasePassword: "Password.1234"
