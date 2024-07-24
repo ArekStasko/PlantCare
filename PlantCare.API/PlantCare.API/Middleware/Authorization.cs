@@ -25,11 +25,11 @@ public class Authorization
             return;
         }
         var tokenValidationResult = await _tokenService.ValidateToken(token);
-        _logger.LogWarning($"TOKEN : {token}");
-        _logger.LogWarning($"TOKEN VALIDATION RESULT: {tokenValidationResult.UserId} - {tokenValidationResult.IsTokenValid}");
         if (!tokenValidationResult.IsTokenValid)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            _logger.LogWarning($"TOKEN : {token}");
+            _logger.LogWarning($"TOKEN VALIDATION RESULT: {tokenValidationResult.UserId} - {tokenValidationResult.IsTokenValid}");
             _logger.LogWarning("User is no authorized");
             return;
         }
