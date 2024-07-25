@@ -17,18 +17,19 @@ public class Authorization
 
     public async Task InvokeAsync(HttpContext context)
     {
-        var authorizationHeader = context.Request.Headers["Authorization"].ToString();
-        if (string.IsNullOrEmpty(authorizationHeader))
+        var token = context.Request.Headers["Authorization"].ToString();
+        if (string.IsNullOrEmpty(token))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             _logger.LogWarning("There is no authorizationHeader in the request");
             return;
         }
-        var token = authorizationHeader.Substring("Bearer ".Length).Trim();
         var tokenValidationResult = await _tokenService.ValidateToken(token);
         if (!tokenValidationResult.IsTokenValid)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            _logger.LogWarning($"TOKEN : {token}");
+            _logger.LogWarning($"TOKEN VALIDATION RESULT: {tokenValidationResult.UserId} - {tokenValidationResult.IsTokenValid}");
             _logger.LogWarning("User is no authorized");
             return;
         }

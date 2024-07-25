@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router';
-import { SaveUserData, UserData } from '../../common/services/CookieService';
+import { SaveToken } from '../../common/services/CookieService';
 import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
 import { useCheckTokenQuery } from '../../common/slices/checkTokenExpiration/checkTokenExpiration';
@@ -14,11 +14,7 @@ export const AuthPage = () => {
   useEffect(() => {
     if (!id || !token) return;
     if (!isTokenValid) return;
-    const userData = {
-      id,
-      token
-    } as UserData;
-    SaveUserData(userData);
+    SaveToken(token);
     navigate(routingConstants.root);
   }, [isTokenValid]);
 
