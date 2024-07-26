@@ -27,10 +27,12 @@ export const WizardStep = ({
   const [isSuccess, setIsSuccess] = React.useState(false);
 
   const {
-    formState: { errors, isValid }
+    formState: { errors },
+    watch
   } = useFormContext();
+
   const isFormCorrect = () =>
-    !validators.some((validator) => errors[validator] || validator === undefined);
+    validators.some((validator) => errors[validator] || watch(validator) === undefined)
 
   const submitFlow = async () => {
     const result = await onSubmit();
@@ -75,7 +77,7 @@ export const WizardStep = ({
           </Button>
           {isLastStep() ? (
             <Button
-              disabled={!isFormCorrect()}
+              disabled={isFormCorrect()}
               sx={styles.btn}
               variant="contained"
               onClick={async () => (isAlertActive ? goToDashboard() : await submitFlow())}
@@ -84,7 +86,7 @@ export const WizardStep = ({
             </Button>
           ) : (
             <Button
-              disabled={!isFormCorrect()}
+              disabled={isFormCorrect()}
               sx={styles.btn}
               variant="contained"
               onClick={() => goToStep()}

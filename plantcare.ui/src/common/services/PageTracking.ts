@@ -11,7 +11,6 @@ const usePageTracking = () => {
 
   useEffect(() => {
     if (location.pathname == RoutingConstants.authBasic || isLoading) return;
-    console.log('lets go');
     const token = GetToken();
     if (!token) {
       navigate(RoutingConstants.authBasic);
