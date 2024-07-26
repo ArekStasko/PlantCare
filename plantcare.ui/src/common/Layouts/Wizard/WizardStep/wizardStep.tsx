@@ -7,8 +7,8 @@ import CancelDialog from '../../../compontents/CancelDialog/cancelDialog';
 import { useFormContext } from 'react-hook-form';
 import CustomAlert from '../../../compontents/customAlert/customAlert';
 import RoutingConstants from '../../../../app/routing/routingConstants';
-import { useGetPlacesQuery } from '../../../slices/getPlaces/getPlaces';
-import { useGetPlantsQuery } from '../../../slices/getPlants/getPlants';
+import { useGetPlacesQuery } from '../../../RTK/getPlaces/getPlaces';
+import { useGetPlantsQuery } from '../../../RTK/getPlants/getPlants';
 
 export const WizardStep = ({
   children,

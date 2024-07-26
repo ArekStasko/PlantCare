@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { SaveToken } from '../../common/services/CookieService';
 import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
-import { useCheckTokenQuery } from '../../common/slices/checkTokenExpiration/checkTokenExpiration';
+import { useCheckTokenQuery } from '../../common/RTK/checkTokenExpiration/checkTokenExpiration';
 
 export const AuthPage = () => {
   const navigate = useNavigate();

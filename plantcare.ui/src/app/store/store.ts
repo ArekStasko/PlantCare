@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import emptyApi from '../api/emptyApi';
-import routeReducer from '../../common/slices/routeSlice/routeSlice';
+import routeReducer from '../../common/RTK/routeSlice/routeSlice';
 import idpApi from '../api/idpApi';
 
 const store = configureStore({

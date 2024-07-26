@@ -1,6 +1,5 @@
 import emptyApi from '../../../app/api/emptyApi';
 import { CreatePlaceRequest } from './createPlaceRequest';
-import { GetToken } from '../../services/CookieService';
 
 export const createPlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -9,7 +8,6 @@ export const createPlaceApi = emptyApi.injectEndpoints({
         url: '/places/Create',
         method: 'POST',
         body: data,
-        headers: { Authorization: GetToken() }
       })
     })
   }),

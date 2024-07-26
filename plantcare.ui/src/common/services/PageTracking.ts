@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useRefreshTokenMutation } from '../slices/refreshToken/refreshToken';
+import { useRefreshTokenMutation } from '../RTK/refreshToken/refreshToken';
 import RoutingConstants from '../../app/routing/routingConstants';
 import { GetToken } from './CookieService';
 

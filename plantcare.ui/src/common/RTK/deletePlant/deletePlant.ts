@@ -1,6 +1,5 @@
 import emptyApi from '../../../app/api/emptyApi';
 import { DeletePlantData } from './deletePlantData';
-import { GetToken } from '../../services/CookieService';
 
 export const deletePlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -8,7 +7,6 @@ export const deletePlantApi = emptyApi.injectEndpoints({
       query: ({ plantId }: DeletePlantData) => ({
         url: `/plants/Delete?id=${plantId}`,
         method: 'DELETE',
-        headers: { Authorization: GetToken() }
       })
     })
   }),

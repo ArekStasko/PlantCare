@@ -1,6 +1,5 @@
 import emptyApi from '../../../app/api/emptyApi';
 import { UpdatePlantRequest } from './updatePlantRequest';
-import { GetToken } from '../../services/CookieService';
 
 export const updatePlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -9,7 +8,6 @@ export const updatePlantApi = emptyApi.injectEndpoints({
         url: '/plants/Update',
         method: 'POST',
         body: data,
-        headers: { Authorization: GetToken() }
       })
     })
   }),
