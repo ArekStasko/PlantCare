@@ -6,7 +6,7 @@ import { GetToken } from "../../common/services/CookieService";
 const emptyApi = createApi({
   reducerPath: 'emptyApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://192.168.33.10:8080/api/v1',
+    baseUrl: 'http://192.168.1.40:8080/api/v1',
     prepareHeaders: (headers) => {
       headers.set('Authorization', GetToken()!);
       return headers;

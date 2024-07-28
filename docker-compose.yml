@@ -30,7 +30,7 @@ services:
         build: ./PlantCare.API
         container_name: plantcare-api
         environment:
-            DatabaseServer: "192.168.33.10"
+            DatabaseServer: "192.168.1.40"
             DatabasePort: "1433"
             DatabaseUser: "sa"
             DatabasePassword: "Password.1234"
