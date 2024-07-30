@@ -1,7 +1,7 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { CreatePlaceRequest } from './createPlaceRequest';
 
-export const createPlaceApi = emptyApi.injectEndpoints({
+export const createPlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     CreatePlace: build.mutation<boolean, CreatePlaceRequest>({
       query: ({ ...data }) => ({

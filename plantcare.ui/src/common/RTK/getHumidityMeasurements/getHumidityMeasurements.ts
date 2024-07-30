@@ -1,4 +1,4 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { HumidityMeasurement } from '../../models/HumidityMeasurement';
 
 export class GetHumidityMeasurementsApiParameters {
@@ -13,7 +13,7 @@ const getCorrectHumidityMeasurementsURL = (parameters: GetHumidityMeasurementsAp
   return `/humidity-measurements/Get?id=${parameters.moduleId}&fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`;
 };
 
-export const getHumidityMeasurementsApi = emptyApi.injectEndpoints({
+export const getHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetHumidityMeasurements: build.query<
       HumidityMeasurement[],

@@ -1,7 +1,7 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { Plant } from '../../models/Plant';
 
-export const getPlantsApi = emptyApi.injectEndpoints({
+export const getPlantsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlants: build.query<Plant[], void>({
       query: () => ({

@@ -1,7 +1,7 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { DeletePlaceData } from './deletePlaceData';
 
-export const deletePlaceApi = emptyApi.injectEndpoints({
+export const deletePlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     DeletePlace: build.mutation<boolean, DeletePlaceData>({
       query: ({ placeId }: DeletePlaceData) => ({
