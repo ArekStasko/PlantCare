@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Box, Button} from '@mui/material';
 import { useNavigate, useParams } from 'react-router';
-import { SaveToken } from '../../common/services/CookieService';
 import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
 import { useCheckTokenQuery } from '../../common/RTK/checkTokenExpiration/checkTokenExpiration';
