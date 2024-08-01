@@ -1,8 +1,8 @@
-import { useCreatePlaceMutation } from '../../common/slices/createPlace/createPlace';
+import { useCreatePlaceMutation } from '../../common/RTK/createPlace/createPlace';
 import validators from '../../common/services/Validators';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { CreatePlaceRequest } from '../../common/slices/createPlace/createPlaceRequest';
+import { CreatePlaceRequest } from '../../common/RTK/createPlace/createPlaceRequest';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import React from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';

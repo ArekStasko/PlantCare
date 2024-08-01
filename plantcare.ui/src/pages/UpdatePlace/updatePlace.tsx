@@ -1,22 +1,22 @@
-import { useGetPlacesQuery } from '../../common/slices/getPlaces/getPlaces';
+import { useGetPlacesQuery } from '../../common/RTK/getPlaces/getPlaces';
 import validators from '../../common/services/Validators';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import React, { useEffect } from 'react';
 import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardContext';
-import { useUpdatePlaceMutation } from '../../common/slices/updatePlace/updatePlace';
+import { useUpdatePlaceMutation } from '../../common/RTK/updatePlace/updatePlace';
 import { useParams } from 'react-router';
-import { UpdatePlaceRequest } from '../../common/slices/updatePlace/updatePlaceRequest';
+import { UpdatePlaceRequest } from '../../common/RTK/updatePlace/updatePlaceRequest';
 import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
 import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
 import ActionSelect from '../components/ActionSelect/actionSelect';
 import DeleteSummary from '../components/placeWizardSteps/DeleteSummary/deleteSummary';
-import { useDeletePlaceMutation } from '../../common/slices/deletePlace/deletePlace';
+import { useDeletePlaceMutation } from '../../common/RTK/deletePlace/deletePlace';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
-import { DeletePlaceData } from '../../common/slices/deletePlace/deletePlaceData';
+import { DeletePlaceData } from '../../common/RTK/deletePlace/deletePlaceData';
 
 export const UpdatePlace = () => {
   const { id } = useParams();

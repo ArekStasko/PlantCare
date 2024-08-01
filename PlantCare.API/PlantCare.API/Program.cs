@@ -13,7 +13,7 @@ using Serilog;
 using Authorization = PlantCare.API.Middleware.Authorization;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
-const string IdpLocalUrl = "http://192.168.1.40:8081";
+string IdpLocalUrl = Environment.GetEnvironmentVariable("IdpUrl");
 var redisConnectionString = $"{Environment.GetEnvironmentVariable("RedisConnectionString")},password={Environment.GetEnvironmentVariable("RedisPassword")}";
 var redisInstance = Environment.GetEnvironmentVariable("RedisInstance");
 

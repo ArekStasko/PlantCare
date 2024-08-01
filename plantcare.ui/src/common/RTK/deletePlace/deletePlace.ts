@@ -1,14 +1,12 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { DeletePlaceData } from './deletePlaceData';
-import { GetToken } from '../../services/CookieService';
 
-export const deletePlaceApi = emptyApi.injectEndpoints({
+export const deletePlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     DeletePlace: build.mutation<boolean, DeletePlaceData>({
       query: ({ placeId }: DeletePlaceData) => ({
         url: `/places/Delete?id=${placeId}`,
         method: 'DELETE',
-        headers: { Authorization: GetToken() }
       })
     })
   }),

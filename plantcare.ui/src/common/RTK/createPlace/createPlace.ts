@@ -1,15 +1,13 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { CreatePlaceRequest } from './createPlaceRequest';
-import { GetToken } from '../../services/CookieService';
 
-export const createPlaceApi = emptyApi.injectEndpoints({
+export const createPlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     CreatePlace: build.mutation<boolean, CreatePlaceRequest>({
       query: ({ ...data }) => ({
         url: '/places/Create',
         method: 'POST',
         body: data,
-        headers: { Authorization: GetToken() }
       })
     })
   }),

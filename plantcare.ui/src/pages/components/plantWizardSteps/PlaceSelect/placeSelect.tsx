@@ -2,7 +2,7 @@ import { Box, CircularProgress, InputLabel, MenuItem, Select } from '@mui/materi
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './placeSelect.styles';
-import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
+import { useGetPlacesQuery } from '../../../../common/RTK/getPlaces/getPlaces';
 import { Plant } from '../../../../common/models/Plant';
 
 interface PlaceSelectProps {

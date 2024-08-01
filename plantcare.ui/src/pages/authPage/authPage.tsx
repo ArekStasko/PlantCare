@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Box, Button} from '@mui/material';
 import { useNavigate, useParams } from 'react-router';
-import { SaveToken } from '../../common/services/CookieService';
 import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
-import { useCheckTokenQuery } from '../../common/slices/checkTokenExpiration/checkTokenExpiration';
+import { useCheckTokenQuery } from '../../common/RTK/checkTokenExpiration/checkTokenExpiration';
+import { useDispatch } from "react-redux";
+import { login } from "../../common/slices/authSlice";
+import RoutingConstants from "../../app/routing/routingConstants";
 
 export const AuthPage = () => {
   const navigate = useNavigate();
   const { id, token } = useParams();
   const { data: isTokenValid, isLoading } = useCheckTokenQuery(token!, { skip: !token });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id || !token) return;
     if (!isTokenValid) return;
-    SaveToken(token);
-    navigate(routingConstants.root);
+    dispatch(login({token: token}))
+    navigate(RoutingConstants.root)
   }, [isTokenValid]);
 
   const authorize = () => {

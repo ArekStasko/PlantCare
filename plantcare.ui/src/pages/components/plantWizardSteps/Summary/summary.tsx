@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import styles from './summary.styles';
 import { useFormContext } from 'react-hook-form';
-import { useGetPlacesQuery } from '../../../../common/slices/getPlaces/getPlaces';
+import { useGetPlacesQuery } from '../../../../common/RTK/getPlaces/getPlaces';
 import { ShrinkText } from '../../../../common/services/TextService';
 import { PlantType } from '../../../../common/models/plantTypes';
 

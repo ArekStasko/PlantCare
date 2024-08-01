@@ -1,13 +1,11 @@
-import emptyApi from '../../../app/api/emptyApi';
+import plantcareApi from '../../../app/api/plantcareApi';
 import { Plant } from '../../models/Plant';
-import { GetToken } from '../../services/CookieService';
 
-export const getPlantsApi = emptyApi.injectEndpoints({
+export const getPlantsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlants: build.query<Plant[], void>({
       query: () => ({
         url: `/plants/get`,
-        headers: { Authorization: GetToken() }
       })
     })
   }),

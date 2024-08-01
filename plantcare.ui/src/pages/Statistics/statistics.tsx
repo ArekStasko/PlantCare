@@ -1,6 +1,6 @@
 import { AlertColor, Box, Card, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { useGetHumidityMeasurementsQuery } from '../../common/slices/getHumidityMeasurements/getHumidityMeasurements';
+import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
 import MeasurementsChart from './components/measurementsChart';
@@ -10,7 +10,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
-import { useGetPlantsQuery } from '../../common/slices/getPlants/getPlants';
+import { useGetPlantsQuery } from '../../common/RTK/getPlants/getPlants';
 import Vegetable from '../../app/images/Vegetable.png';
 import Decorative from '../../app/images/Decorative.png';
 import Fruit from '../../app/images/Fruit.png';
