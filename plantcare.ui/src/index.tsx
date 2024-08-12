@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './app/store/store';
+import plantcareApi from '../src/app/api/plantcareApi'
+import RoutingConstants from "./app/routing/routingConstants";
+import IdpClient from 'identity-provider-client'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic}>
       <App />
-    </Provider>
+    </IdpClient>
   </React.StrictMode>
 );
 
