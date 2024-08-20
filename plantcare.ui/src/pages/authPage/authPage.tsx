@@ -5,11 +5,17 @@ import routingConstants from '../../app/routing/routingConstants';
 import styles from './authPage.styles';
 import { useDispatch } from "react-redux";
 import RoutingConstants from "../../app/routing/routingConstants";
+import { SaveToken } from "../../common/services/CookieService";
 
 export const AuthPage = () => {
   const navigate = useNavigate();
   const { id, token } = useParams();
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(!token) return;
+    SaveToken(token);
+    navigate(RoutingConstants.root);
+  }, [token]);
 
   const authorize = () => {
     const site = btoa(routingConstants.site);

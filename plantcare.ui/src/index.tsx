@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import plantcareApi from '../src/app/api/plantcareApi'
 import RoutingConstants from "./app/routing/routingConstants";
 import IdpClient from 'identity-provider-client'
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic}>
-      <App />
-    </IdpClient>
+    <BrowserRouter>
+      <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic}>
+        <App />
+      </IdpClient>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
