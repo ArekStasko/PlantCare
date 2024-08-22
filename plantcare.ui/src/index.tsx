@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic}>
+      <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic} dashboardRoute={RoutingConstants.root}>
         <App />
       </IdpClient>
     </BrowserRouter>
