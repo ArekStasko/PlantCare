@@ -15,3 +15,7 @@ my backend ( here you can read more about it -> [PlantCare Module](https://githu
 
 # PlantCare Projects Dependency Diagram
 -- new diagram in development
+
+# IDP Client Package
+
+# IDP Client API package
