@@ -1,6 +1,5 @@
-using System.Net;
 using IdentityProviderSystem.Client;
-using PlantCare.API.Middleware;
+using IdentityProviderSystem.Client.Middleware;
 using PlantCare.Commands;
 using PlantCare.ConsistencyManager;
 using PlantCare.ConsistencyManager.Services;
@@ -10,7 +9,6 @@ using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
 using Serilog;
-using Authorization = PlantCare.API.Middleware.Authorization;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
 string IdpLocalUrl = Environment.GetEnvironmentVariable("IdpUrl");
