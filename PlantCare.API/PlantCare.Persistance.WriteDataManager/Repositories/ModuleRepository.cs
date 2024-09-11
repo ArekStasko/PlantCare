@@ -12,12 +12,10 @@ public class ModuleRepository : IWriteModuleRepository
 {
     private readonly IModuleWriteContext _context;
     private readonly ILogger<ModuleRepository> _logger;
-    private readonly IDistributedCache _cache;
-    public ModuleRepository(IModuleWriteContext context, ILogger<ModuleRepository> logger, IDistributedCache cache)
+    public ModuleRepository(IModuleWriteContext context, ILogger<ModuleRepository> logger)
     {
         _context = context;
         _logger = logger;
-        _cache = cache;
     }
     
     public async ValueTask<Result<Guid>> Add(int userId, Guid id)
