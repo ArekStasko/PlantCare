@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.MessageBroker", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.ConsistencyManager", "PlantCare.ConsistencyManager\PlantCare.ConsistencyManager.csproj", "{438DAD78-D993-4B4F-9450-0E6765B1E907}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Tests", "PlantCare.Tests\PlantCare.Tests.csproj", "{ACFFF060-BA52-41AD-BA67-5CF90A37E2BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Tests", "PlantCare.Tests\PlantCare.Tests.csproj", "{2349485D-33C0-41E3-BD35-66F3F24AD221}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,9 +56,9 @@ Global
 		{438DAD78-D993-4B4F-9450-0E6765B1E907}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438DAD78-D993-4B4F-9450-0E6765B1E907}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438DAD78-D993-4B4F-9450-0E6765B1E907}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACFFF060-BA52-41AD-BA67-5CF90A37E2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACFFF060-BA52-41AD-BA67-5CF90A37E2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACFFF060-BA52-41AD-BA67-5CF90A37E2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACFFF060-BA52-41AD-BA67-5CF90A37E2BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
