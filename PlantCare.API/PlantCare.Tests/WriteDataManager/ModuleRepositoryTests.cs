@@ -40,4 +40,13 @@ public class ModuleRepositoryTests
             return false;
         });
     }
+
+    public async void DeleteModuleTest()
+    {
+        var userId = 1;
+        var moduleId = Guid.NewGuid();
+        Mock<DbSet<Module>> moduleDb = Services.moduleDb;
+        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext;
+        moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
+    }
 }

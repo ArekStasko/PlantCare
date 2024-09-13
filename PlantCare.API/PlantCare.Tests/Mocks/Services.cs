@@ -11,7 +11,18 @@ namespace PlantCare.Tests.Mocks;
 public static class Services
 {
     public static Mock<DbSet<HumidityMeasurement>> humidityMeasurementsDb { get; } = new();
-    public static Mock<DbSet<Module>> moduleDb { get; } = new();
+    public static Mock<DbSet<Module>> moduleDb { get; } = new ();
     public static Mock<IHumidityMeasurementWriteContext> HumidityMeasurementWriteContext { get; } = new();
     public static Mock<IModuleWriteContext> ModuleWriteContext { get; } = new();
+
+    public static DbSet<Module> GenerateModule()
+    {
+        var module = new Module()
+        {
+            Id = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209"),
+            UserId = 1
+        };
+        DbSet<Module> record = null;
+        record.Add(module);
+    }
 }
