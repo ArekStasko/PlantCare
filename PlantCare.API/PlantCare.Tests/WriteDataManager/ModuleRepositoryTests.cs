@@ -44,7 +44,7 @@ public class ModuleRepositoryTests
     public async void DeleteModuleTest()
     {
         var userId = 1;
-        var moduleId = Guid.NewGuid();
+        var moduleId = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209");
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
         Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext;
         moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
