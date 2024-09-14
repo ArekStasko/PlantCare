@@ -44,8 +44,9 @@ public static class Services
             Name = ""
         }
     }.AsQueryable().BuildMockDbSet();
-    public static Mock<IHumidityMeasurementWriteContext> HumidityMeasurementWriteContext { get; } = new();
-    public static Mock<IModuleWriteContext> ModuleWriteContext { get; } = new();
-    public static Mock<IPlantWriteContext> PlantWriteContext { get; } = new();
-    public static Mock<IPlaceWriteContext> PlaceWriteContext { get; } = new();
+    public static Mock<IHumidityMeasurementWriteContext> HumidityMeasurementWriteContext() => new();
+    public static Mock<IModuleWriteContext> ModuleWriteContext() => new();
+
+    public static Mock<IPlantWriteContext> PlantWriteContext() => new ();
+    public static Mock<IPlaceWriteContext> PlaceWriteContext() => new();
 }

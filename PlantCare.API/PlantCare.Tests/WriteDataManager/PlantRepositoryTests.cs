@@ -24,7 +24,7 @@ public class PlantRepositoryTests
             Type = PlantType.Decorative
         };
         Mock<DbSet<Plant>> plantDb = Services.PlantDb;
-        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext;
+        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext();
         
         plantWriteContext.Setup(x => x.Plants).Returns(plantDb.Object);
         plantWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
@@ -52,7 +52,7 @@ public class PlantRepositoryTests
         int plantId = 1;
         int userId = 1;
         Mock<DbSet<Plant>> plantDb = Services.PlantDb;
-        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext;
+        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext();
         
         plantWriteContext.Setup(x => x.Plants).Returns(plantDb.Object);
         plantWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
@@ -87,7 +87,7 @@ public class PlantRepositoryTests
             Type = PlantType.Decorative
         };
         Mock<DbSet<Plant>> plantDb = Services.PlantDb;
-        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext;
+        Mock<IPlantWriteContext> plantWriteContext = Services.PlantWriteContext();
         
         plantWriteContext.Setup(x => x.Plants).Returns(plantDb.Object);
         plantWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));

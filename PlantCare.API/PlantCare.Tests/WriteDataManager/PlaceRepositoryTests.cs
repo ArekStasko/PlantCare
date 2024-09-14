@@ -21,7 +21,7 @@ public class PlaceRepositoryTests
             Name = ""
         };
         Mock<DbSet<Place>> plantDb = Services.PlaceDb;
-        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext;
+        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext();
         
         placeWriteContext.Setup(x => x.Places).Returns(plantDb.Object);
         placeWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
@@ -50,7 +50,7 @@ public class PlaceRepositoryTests
         int userId = 1;
         
         Mock<DbSet<Place>> plantDb = Services.PlaceDb;
-        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext;
+        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext();
         
         placeWriteContext.Setup(x => x.Places).Returns(plantDb.Object);
         placeWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
@@ -82,7 +82,7 @@ public class PlaceRepositoryTests
             Name = "Test"
         };
         Mock<DbSet<Place>> plantDb = Services.PlaceDb;
-        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext;
+        Mock<IPlaceWriteContext> placeWriteContext = Services.PlaceWriteContext();
         
         placeWriteContext.Setup(x => x.Places).Returns(plantDb.Object);
         placeWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));

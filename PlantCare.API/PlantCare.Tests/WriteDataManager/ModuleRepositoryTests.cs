@@ -17,7 +17,7 @@ public class ModuleRepositoryTests
         var userId = 1;
         var moduleId = Guid.NewGuid();
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
-        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext;
+        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
         
         moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
         moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
@@ -45,7 +45,7 @@ public class ModuleRepositoryTests
         var userId = 1;
         var moduleId = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209");
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
-        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext;
+        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
         moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
         moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
         moduleDb.Setup(x => x.Remove(It.IsAny<Module>()));
@@ -77,7 +77,7 @@ public class ModuleRepositoryTests
             Id = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209")
         };
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
-        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext;
+        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
         
         moduleDb.Setup(x => x.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()));
         moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
