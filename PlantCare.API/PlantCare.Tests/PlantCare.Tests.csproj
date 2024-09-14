@@ -25,10 +25,10 @@
     <ItemGroup>
       <Folder Include="Commands\" />
       <Folder Include="Queries\" />
-      <Folder Include="ReadDataManager\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
     </ItemGroup>
 
