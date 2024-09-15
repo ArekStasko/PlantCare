@@ -21,7 +21,7 @@ public class HumidityMeasurementRepositoryTests
             ModuleId = Guid.NewGuid()
         };
         Mock<DbSet<HumidityMeasurement>> humidityMeasurementsDb = Services.humidityMeasurementsDb;
-        Mock<IHumidityMeasurementWriteContext> humidityMeasurementWriteContext = Services.HumidityMeasurementWriteContext;
+        Mock<IHumidityMeasurementWriteContext> humidityMeasurementWriteContext = Services.HumidityMeasurementWriteContext();
         humidityMeasurementsDb.Setup(x => x.AddAsync(humidityMeasurement, It.IsAny<CancellationToken>()));
         humidityMeasurementWriteContext.Setup(x => x.HumidityMeasurements).Returns(humidityMeasurementsDb.Object);
         humidityMeasurementWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
