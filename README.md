@@ -25,3 +25,6 @@ what is more it gives me ready to use page with login/register form so i dont ha
 # IDP Client API package
 Idp CLient API package is responsible for authentication in my Plantcare.API project and it gives me authentication middleware that checks if token sent from
 plantcare.ui with request is valid.
+
+# Unit Testy
+In progress 
