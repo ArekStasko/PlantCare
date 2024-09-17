@@ -83,4 +83,69 @@ public class PlantCommandHandlerTests
         }, err => true
         );
     }
+    
+    [Fact]
+    public async void DeletePlantTest_ReturnsSuccess()
+    {
+        var command = new DeletePlantCommand()
+        {
+            UserId = 1,
+            Id = 1
+        };
+        
+        var plantWriteRepository = Services.PlantWriteRepository();
+        var plantQueueProducer = Services.PlantQueueProducer();
+        var mapper = Services.CommandsMapper;
+        var logger = new Mock<ILogger<DeletePlantHandler>>().Object;
+
+        plantWriteRepository.Setup(x => x.Delete(It.IsAny<int>(), It.IsAny<int>())).Returns(new ValueTask<Result<bool>>(true));
+        plantQueueProducer.Setup(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()));
+        
+        var handler = new DeletePlantHandler(plantWriteRepository.Object, mapper, plantQueueProducer.Object, logger);
+        var result = await handler.Handle(command, new CancellationToken());
+        
+        plantWriteRepository.Verify(x => x.Delete(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+        plantQueueProducer.Verify(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()), Times.Once);
+        
+        result.Match(succ =>
+        {
+            Assert.True(succ);
+            return true;
+        }, err =>
+        {
+            Assert.Fail();
+            return false;
+        });
+    }
+    
+    [Fact]
+    public async void DeletePlantTest_ReturnsError()
+    {
+        var command = new DeletePlantCommand()
+        {
+            UserId = 1,
+            Id = 1
+        };
+        
+        var plantWriteRepository = Services.PlantWriteRepository();
+        var plantQueueProducer = Services.PlantQueueProducer();
+        var mapper = Services.CommandsMapper;
+        var logger = new Mock<ILogger<DeletePlantHandler>>().Object;
+
+        plantWriteRepository.Setup(x => x.Delete(It.IsAny<int>(), It.IsAny<int>())).Throws(new Exception());
+        plantQueueProducer.Setup(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()));
+        
+        var handler = new DeletePlantHandler(plantWriteRepository.Object, mapper, plantQueueProducer.Object, logger);
+        var result = await handler.Handle(command, new CancellationToken());
+        
+        plantWriteRepository.Verify(x => x.Delete(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+        plantQueueProducer.Verify(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()), Times.Never);
+        
+        result.Match(succ =>
+            {
+                Assert.False(succ);
+                return false;
+            }, err => true
+        );
+    }
 }
