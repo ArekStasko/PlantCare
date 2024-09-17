@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.0" />
+        <PackageReference Include="MediatR" Version="12.4.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
         <PackageReference Include="MockQueryable.Moq" Version="7.0.3" />
         <PackageReference Include="Moq" Version="4.20.72" />
@@ -23,13 +24,19 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\" />
       <Folder Include="Queries\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="AutoMapper">
+        <HintPath>..\..\..\..\..\.nuget\packages\automapper\12.0.1\lib\netstandard2.1\AutoMapper.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

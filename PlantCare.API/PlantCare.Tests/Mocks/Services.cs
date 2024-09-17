@@ -1,14 +1,18 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using PlantCare.Persistance.WriteDataManager.Interfaces;
 using MockQueryable.Moq;
+using PlantCare.Commands.MapperProfile;
 using PlantCare.Domain.Enums;
 using PlantCare.Domain.Models.Place;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.ReadDataManager.Interfaces;
-using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
+using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using HumidityMeasurement = PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement;
 using Module = PlantCare.Domain.Models.Module.Module;
 using Plant = PlantCare.Domain.Models.Plant.Plant;
+using MessagePlant = PlantCare.MessageBroker.Messages.Plant;
 
 namespace PlantCare.Tests.Mocks;
 
@@ -65,4 +69,7 @@ public static class Services
     public static Mock<IModuleReadContext> ModuleReadContext() => new();
     public static Mock<IPlaceReadContext> PlaceReadContext() => new();
     public static Mock<IPlantReadContext> PlantReadContext() => new();
+    public static Mock<IWritePlantRepository> PlantWriteRepository() => new();
+    public static Mock<IQueueProducer<MessagePlant>> PlantQueueProducer() => new();
+    public static IMapper CommandsMapper => new Mapper(new MapperConfiguration(x => x.AddProfile(new CommandsMapperProfile())));
 }
