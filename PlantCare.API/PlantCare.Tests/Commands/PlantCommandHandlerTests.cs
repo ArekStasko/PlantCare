@@ -148,4 +148,78 @@ public class PlantCommandHandlerTests
             }, err => true
         );
     }
+    
+    [Fact]
+    public async void UpdatePlantTest_ReturnsSuccess()
+    {
+        var command = new UpdatePlantCommand()
+        {
+            Id = 1,
+            Description = "",
+            ModuleId = Guid.NewGuid(),
+            Name = "",
+            PlaceId = 1,
+            Type = PlantType.Decorative,
+            UserId = 1
+        };
+        
+        var plantWriteRepository = Services.PlantWriteRepository();
+        var plantQueueProducer = Services.PlantQueueProducer();
+        var mapper = Services.CommandsMapper;
+        var logger = new Mock<ILogger<UpdatePlantHandler>>().Object;
+
+        plantWriteRepository.Setup(x => x.Update(It.IsAny<Plant>())).Returns(new ValueTask<Result<bool>>(true));
+        plantQueueProducer.Setup(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()));
+        
+        var handler = new UpdatePlantHandler(plantWriteRepository.Object, mapper, plantQueueProducer.Object, logger);
+        var result = await handler.Handle(command, new CancellationToken());
+        
+        plantWriteRepository.Verify(x => x.Update(It.IsAny<Plant>()), Times.Once);
+        plantQueueProducer.Verify(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()), Times.Once);
+        
+        result.Match(succ =>
+        {
+            Assert.True(succ);
+            return true;
+        }, err =>
+        {
+            Assert.Fail();
+            return false;
+        });
+    }
+    
+    [Fact]
+    public async void UpdatePlantTest_ReturnsError()
+    {
+        var command = new UpdatePlantCommand()
+        {
+            Id = 1,
+            Description = "",
+            ModuleId = Guid.NewGuid(),
+            Name = "",
+            PlaceId = 1,
+            Type = PlantType.Decorative,
+            UserId = 1
+        };
+        
+        var plantWriteRepository = Services.PlantWriteRepository();
+        var plantQueueProducer = Services.PlantQueueProducer();
+        var mapper = Services.CommandsMapper;
+        var logger = new Mock<ILogger<UpdatePlantHandler>>().Object;
+
+        plantWriteRepository.Setup(x => x.Update(It.IsAny<Plant>())).Throws(new Exception());
+        plantQueueProducer.Setup(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()));
+        
+        var handler = new UpdatePlantHandler(plantWriteRepository.Object, mapper, plantQueueProducer.Object, logger);
+        var result = await handler.Handle(command, new CancellationToken());
+        
+        plantWriteRepository.Verify(x => x.Update(It.IsAny<Plant>()), Times.Once);
+        plantQueueProducer.Verify(x => x.PublishMessage(It.IsAny<MessageBroker.Messages.Plant>()), Times.Never);
+        
+        result.Match(succ =>
+        {
+            Assert.False(succ);
+            return true;
+        }, err => false);
+    }
 }
