@@ -6,6 +6,8 @@ on:
 
 jobs:
   build:
+    env: # Set the secret as an input
+      NUGET_PSD: ${{ secrets.NUGET_PSD }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
