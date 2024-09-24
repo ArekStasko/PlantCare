@@ -5,11 +5,23 @@ on:
   pull_request:
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - name: Build Docker Compose
-        run: docker-compose build
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0'
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: PlantCare.API
+      - name: Build
+        run: dotnet build --no-restore
+        working-directory: PlantCare.API
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Unit Tests
+        run: dotnet test PlantCare.API/PlantCare.Tests/PlantCare.Tests.csproj --no-build
