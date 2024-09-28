@@ -71,5 +71,11 @@ public static class Services
     public static Mock<IPlantReadContext> PlantReadContext() => new();
     public static Mock<IWritePlantRepository> PlantWriteRepository() => new();
     public static Mock<IQueueProducer<MessagePlant>> PlantQueueProducer() => new();
+    public static Mock<IWriteHumidityMeasurementRepository> HumidityMeasurementRepository() => new();
+    public static Mock<IQueueProducer<MessageBroker.Messages.HumidityMeasurement>> HumidityQueueProducer() => new();
+    public static Mock<IWritePlaceRepository> PlaceWriteRepository() => new();
+    public static Mock<IQueueProducer<MessageBroker.Messages.Place>> PlaceQueueProducer() => new();
+    public static Mock<IWriteModuleRepository> ModuleWriteRepository() => new();
+    public static Mock<IQueueProducer<MessageBroker.Messages.Module>> ModuleQueueProducer() => new();
     public static IMapper CommandsMapper => new Mapper(new MapperConfiguration(x => x.AddProfile(new CommandsMapperProfile())));
 }
