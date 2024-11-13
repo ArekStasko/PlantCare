@@ -9,6 +9,7 @@ import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
+import AddModule from "../../pages/AddModule/addModule";
 
 export const MainRouting = () => {
   return (
@@ -59,6 +60,14 @@ export const MainRouting = () => {
         element={
           <BaseLayout>
             <UpdatePlace />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path={RoutingConstants.createPlant}
+        element={
+          <BaseLayout>
+            <AddModule />
           </BaseLayout>
         }
       />
