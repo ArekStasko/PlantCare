@@ -27,9 +27,13 @@ const updatePlaceSchema = yup.object().shape({
   flow: yup.string().required()
 });
 
+const addModuleSchema = yup.object().shape({
+});
+
 export default {
   createPlantSchema,
   createPlaceSchema,
   updatePlantSchema,
-  updatePlaceSchema
+  updatePlaceSchema,
+  addModuleSchema
 };
