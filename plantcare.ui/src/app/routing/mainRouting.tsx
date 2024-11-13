@@ -64,7 +64,7 @@ export const MainRouting = () => {
         }
       />
       <Route
-        path={RoutingConstants.createPlant}
+        path={RoutingConstants.addModule}
         element={
           <BaseLayout>
             <AddModule />
