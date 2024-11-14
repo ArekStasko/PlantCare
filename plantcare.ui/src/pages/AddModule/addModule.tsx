@@ -5,6 +5,7 @@ import validators from "../../common/services/Validators";
 import { IWizardStep } from "../../common/Layouts/Wizard/interfaces";
 import React from "react";
 import AddModuleSummary from "./steps/Summary/addModuleSummary";
+import DeviceSelection from "./steps/DeviceSelection/deviceSelection";
 
 export const AddModule = () => {
   const methods = useForm({
@@ -20,12 +21,21 @@ export const AddModule = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Module Summary',
-      component: <AddModuleSummary />,
+      component: <DeviceSelection />,
       validators: [],
       id: 0,
       nextStep: 1,
       isStepVisible: true,
       isFinal: false
+    },
+    {
+      title: 'Module Summary',
+      component: <AddModuleSummary />,
+      validators: [],
+      id: 1,
+      previousStep: 0,
+      isStepVisible: true,
+      isFinal: true
     }
   ];
 
