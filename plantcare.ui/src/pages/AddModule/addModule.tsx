@@ -6,8 +6,14 @@ import { IWizardStep } from "../../common/Layouts/Wizard/interfaces";
 import React from "react";
 import AddModuleSummary from "./steps/Summary/addModuleSummary";
 import DeviceSelection from "./steps/DeviceSelection/deviceSelection";
+import { BLEDevice } from "../../common/models/BLEDevice";
+
+export class DeviceContext {
+  device?: BLEDevice;
+}
 
 export const AddModule = () => {
+  const context = new DeviceContext()
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.addModuleSchema)
@@ -21,7 +27,7 @@ export const AddModule = () => {
   const steps: IWizardStep[] = [
     {
       title: 'Module Summary',
-      component: <DeviceSelection />,
+      component: <DeviceSelection deviceContext={context} />,
       validators: [],
       id: 0,
       nextStep: 1,
