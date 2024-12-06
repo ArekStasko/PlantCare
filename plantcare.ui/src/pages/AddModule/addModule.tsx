@@ -10,6 +10,7 @@ import { BLEDevice } from "../../common/models/BLEDevice";
 
 export class DeviceContext {
   device?: BLEDevice;
+  characteristic?: BluetoothRemoteGATTCharacteristic;
 }
 
 export const AddModule = () => {

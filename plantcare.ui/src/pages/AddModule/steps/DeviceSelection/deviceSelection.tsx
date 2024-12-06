@@ -13,6 +13,7 @@ export interface DeviceSelectionProps {
 
 export const DeviceSelection = ({deviceContext}: DeviceSelectionProps) => {
   const [device, setDevice] = useState<BLEDevice | undefined>(deviceContext.device);
+  const [characteristic, setcharacteristic] = useState<BluetoothRemoteGATTCharacteristic | undefined>(deviceContext.characteristic);
   const [alert, setAlert] = useState<string | undefined>();
   const [selectingDevice, setSelectingDevice] = useState<boolean>(false);
 
@@ -20,19 +21,26 @@ export const DeviceSelection = ({deviceContext}: DeviceSelectionProps) => {
     setSelectingDevice(true);
     if ('bluetooth' in navigator) {
       try {
-        const selectedDevice = await navigator.bluetooth.requestDevice({
-          acceptAllDevices: true
+        let device;
+        let characteristic;
+
+        const serviceUuid = '00000180-0000-1000-8000-00805f9b34fb';
+        const characteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
+
+        device = await navigator.bluetooth.requestDevice({
+          acceptAllDevices: true,
+          optionalServices: [serviceUuid]
         });
 
-        const bleDevice = {
-          id: selectedDevice.id,
-          name: selectedDevice.name,
-          gatt: selectedDevice.gatt
-        }
-        deviceContext.device = bleDevice;
-        setDevice(bleDevice);
+        const server = await device.gatt?.connect();
+        const service = await server?.getPrimaryService(serviceUuid);
+        characteristic = await service?.getCharacteristic(characteristicUuid);
+        setDevice(device);
+        setcharacteristic(characteristic)
+        deviceContext.device = device;
+        deviceContext.characteristic = characteristic;
       } catch (error) {
-        setAlert("We are unable to connect to selected device")
+        setAlert("We are unable to connect to the device, make sure the bluetooth is on")
       }
     } else {
       setAlert("Bluetooth is not available");
