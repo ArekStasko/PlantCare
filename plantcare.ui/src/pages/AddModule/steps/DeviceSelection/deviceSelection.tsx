@@ -5,15 +5,10 @@ import styles from './deviceSelection.styles';
 import React, { useState } from "react";
 import CustomAlert from "../../../../common/compontents/customAlert/customAlert";
 import { BLEDevice } from "../../../../common/models/BLEDevice";
-import { DeviceContext } from "../../addModule";
+import { ModuleStepProps } from "../../addModule";
 
-export interface DeviceSelectionProps {
-  deviceContext: DeviceContext;
-}
-
-export const DeviceSelection = ({deviceContext}: DeviceSelectionProps) => {
-  const [device, setDevice] = useState<BLEDevice | undefined>(deviceContext.device);
-  const [characteristic, setcharacteristic] = useState<BluetoothRemoteGATTCharacteristic | undefined>(deviceContext.characteristic);
+export const DeviceSelection = ({context, updateContext}: ModuleStepProps) => {
+  const [device, setDevice] = useState<BLEDevice | undefined>(context.device);
   const [alert, setAlert] = useState<string | undefined>();
   const [selectingDevice, setSelectingDevice] = useState<boolean>(false);
 
@@ -36,9 +31,10 @@ export const DeviceSelection = ({deviceContext}: DeviceSelectionProps) => {
         const service = await server?.getPrimaryService(serviceUuid);
         characteristic = await service?.getCharacteristic(characteristicUuid);
         setDevice(device);
-        setcharacteristic(characteristic)
-        deviceContext.device = device;
-        deviceContext.characteristic = characteristic;
+        updateContext({
+          device,
+          characteristic
+        })
       } catch (error) {
         setAlert("We are unable to connect to the device, make sure the bluetooth is on")
       }
