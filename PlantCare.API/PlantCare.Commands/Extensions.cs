@@ -10,7 +10,6 @@ public static class Extensions
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssemblies(
                 typeof(CommandHandlers.PlantCommandHandlers.CreatePlantHandler).GetTypeInfo().Assembly,
-                typeof(CommandHandlers.ModuleCommandHandlers.AddModuleHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.PlaceCommandHandlers.CreatePlaceHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.HumidityMeasurementCommandHandlers.AddHumidityMeasurementHandler).GetTypeInfo().Assembly
                 ));
