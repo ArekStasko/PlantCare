@@ -20,6 +20,17 @@ public class ModuleController : ControllerAuth
         _mapper = mapper;
         _logger = logger;
     }
+    
+    [HttpPost(Name = "[controller]/create")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Create(CreatePlantCommand command)
+    {
+        _logger.LogInformation("Create plant controller method start processing");
+        var result = await _mediator.Send(command);
+        _logger.LogInformation("Create plant controller method ends processing");
+        return result.ToOk();
+    }
 
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
