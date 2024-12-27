@@ -3,6 +3,7 @@ using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories;
@@ -30,7 +31,7 @@ public class CreateModuleHandler : IRequestHandler<CreateModuleCommand, Result<b
         var result = await _repository.Add(request.UserId, request.Id);
         return result.Match(succ =>
         {
-
+            
         }, err =>
         {
             _logger.LogError("CreateModuleHandler error: {err}", err);

@@ -17,7 +17,7 @@ public class PlantCommandHandlerTests
         var command = new CreatePlantCommand()
         {
             Description = "",
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             Name = "",
             PlaceId = 1,
             Type = PlantType.Decorative,
@@ -55,7 +55,7 @@ public class PlantCommandHandlerTests
         var command = new CreatePlantCommand()
         {
             Description = "",
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             Name = "",
             PlaceId = 1,
             Type = PlantType.Decorative,
@@ -156,7 +156,7 @@ public class PlantCommandHandlerTests
         {
             Id = 1,
             Description = "",
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             Name = "",
             PlaceId = 1,
             Type = PlantType.Decorative,
@@ -195,7 +195,7 @@ public class PlantCommandHandlerTests
         {
             Id = 1,
             Description = "",
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             Name = "",
             PlaceId = 1,
             Type = PlantType.Decorative,

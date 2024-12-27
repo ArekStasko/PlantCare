@@ -25,14 +25,14 @@ public static class Services
             Humidity = 53,
             Id = 1,
             MeasurementDate = DateTime.Now,
-            ModuleId = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209"),
+            ModuleId = 1,
         }
     }.AsQueryable().BuildMockDbSet();
     public static Mock<DbSet<Module>> moduleDb { get; } = new List<Module>()
     {
         new()
         {
-            Id = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209"),
+            Id = 1,
             UserId = 1
         }
     }.AsQueryable().BuildMockDbSet();

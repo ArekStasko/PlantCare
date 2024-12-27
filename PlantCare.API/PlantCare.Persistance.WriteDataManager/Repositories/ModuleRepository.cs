@@ -18,7 +18,7 @@ public class ModuleRepository : IWriteModuleRepository
         _logger = logger;
     }
     
-    public async ValueTask<Result<Guid>> Add(int userId, Guid id)
+    public async ValueTask<Result<Guid>> Add(int userId, int id)
     {
         try
         {
