@@ -5,7 +5,7 @@ using PlantCare.Domain.Models.Plant;
 
 public interface IModule : IUserAssignable
 {
-    Guid Id { get; set; }
+    int Id { get; set; }
     ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
     Plant? Plant { get; set; }
 }

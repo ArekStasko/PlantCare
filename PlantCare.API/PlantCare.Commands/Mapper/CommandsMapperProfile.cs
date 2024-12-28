@@ -40,13 +40,6 @@ public class CommandsMapperProfile : Profile
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
-        // MODULE MAPPINGS
-        CreateMap<UpdateModuleCommand, Module>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
-
-        CreateMap<Guid, DeleteModuleCommand>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
-    
         // HUMIDITY MEASUREMENTS MAPPINGS
         CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))

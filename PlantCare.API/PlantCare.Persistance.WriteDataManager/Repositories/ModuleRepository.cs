@@ -18,7 +18,7 @@ public class ModuleRepository : IWriteModuleRepository
         _logger = logger;
     }
     
-    public async ValueTask<Result<Guid>> Add(int userId, int id)
+    public async ValueTask<Result<int>> Add(int userId, int id)
     {
         try
         {
@@ -30,16 +30,16 @@ public class ModuleRepository : IWriteModuleRepository
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
             _logger.LogInformation("Module with {Id} Id was successfully created", id);
-            return new Result<Guid>(id);
+            return new Result<int>(id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<Guid>(e);
+            return new Result<int>(e);
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(int userId, Guid id)
+    public async ValueTask<Result<bool>> Delete(int userId, int id)
     {
         try
         {

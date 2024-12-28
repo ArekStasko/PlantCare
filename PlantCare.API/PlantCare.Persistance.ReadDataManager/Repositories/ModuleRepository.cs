@@ -32,7 +32,7 @@ public class ModuleRepository : IReadModuleRepository
         }
     }
 
-    public async ValueTask<Result<IModule>> Get(int userId, Guid id)
+    public async ValueTask<Result<IModule>> Get(int userId, int id)
     {
         try
         {

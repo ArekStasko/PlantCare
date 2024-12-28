@@ -7,5 +7,5 @@ public interface IReadModuleRepository
 {
     ValueTask<Result<IReadOnlyCollection<IModule>>> Get(int userId);
 
-    ValueTask<Result<IModule>> Get(int userId, Guid id);
+    ValueTask<Result<IModule>> Get(int userId, int id);
 }

@@ -19,7 +19,7 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
     {
         try
         {
