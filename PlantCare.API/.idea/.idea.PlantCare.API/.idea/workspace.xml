@@ -17,17 +17,16 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Dto/ModuleDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Dto/ModuleDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Module/IModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Module/IModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/HumidityMeasurementCacheRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/HumidityMeasurementCacheRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/ModuleCacheRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/ModuleCacheRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/HumidityMeasurementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/HumidityMeasurementRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadHumidityMeasurementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadHumidityMeasurementRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/ModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/ModuleRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/CreateModuleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/CreateModuleHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/IHttpPostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/IHttpPostCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/CreateModuleCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/CreateModuleCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Queries/HumidityMeasurements/GetHumidityMeasurementQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/HumidityMeasurements/GetHumidityMeasurementQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/Commands/HumidityMeasurementCommandHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/Commands/HumidityMeasurementCommandHandlerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/ReadDataManager/HumidityMeasurementRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/ReadDataManager/HumidityMeasurementRepositoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/HumidityMeasurementRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/HumidityMeasurementRepositoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/ModuleRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/ModuleRepositoryTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,7 +361,8 @@
       <workItem from="1735051779478" duration="2718000" />
       <workItem from="1735123326288" duration="6564000" />
       <workItem from="1735225711013" duration="2077000" />
-      <workItem from="1735290547280" duration="10040000" />
+      <workItem from="1735290547280" duration="10755000" />
+      <workItem from="1735483806140" duration="2853000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -600,45 +600,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
-          <line>52</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'CancelQueueConsumer'">
-            <startOffsets>
-              <option value="2090" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2091" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
-          <line>31</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'RegisterQueueConsumer'">
-            <startOffsets>
-              <option value="1292" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1293" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Producer/QueueProducer.cs</url>
-          <line>21</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Producer\QueueProducer.cs" containingFunctionPresentation="Method 'PublishMessage'">
-            <startOffsets>
-              <option value="718" />
-            </startOffsets>
-            <endOffsets>
-              <option value="719" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>

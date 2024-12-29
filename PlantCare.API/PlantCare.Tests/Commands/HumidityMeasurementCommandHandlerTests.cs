@@ -14,7 +14,7 @@ public class HumidityMeasurementCommandHandlerTests
     {
         var command = new AddHumidityMeasurementCommand()
         {
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             Humidity = 91,
             MeasurementDate = DateTime.Now
         };

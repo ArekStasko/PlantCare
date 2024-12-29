@@ -18,19 +18,18 @@ public class ModuleRepository : IWriteModuleRepository
         _logger = logger;
     }
     
-    public async ValueTask<Result<int>> Add(int userId, int id)
+    public async ValueTask<Result<int>> Add(int userId)
     {
         try
         {
             var module = new Module()
             {
-                Id = id,
                 UserId = userId
             };
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
-            _logger.LogInformation("Module with {Id} Id was successfully created", id);
-            return new Result<int>(id);
+            _logger.LogInformation("Module with {Id} Id was successfully created", module.Id);
+            return new Result<int>(module.Id);
         }
         catch (Exception e)
         {
