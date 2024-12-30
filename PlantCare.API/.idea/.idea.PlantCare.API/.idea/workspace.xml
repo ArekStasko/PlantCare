@@ -17,21 +17,30 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/CreateModuleHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/CreateModuleHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/IHttpPostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/IHttpPostCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/CreateModuleCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/CreateModuleCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/ModuleRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/Commands/HumidityMeasurementCommandHandlerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/Commands/HumidityMeasurementCommandHandlerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/ReadDataManager/HumidityMeasurementRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/ReadDataManager/HumidityMeasurementRepositoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/HumidityMeasurementRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/HumidityMeasurementRepositoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/ModuleRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/ModuleRepositoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240226211822_Init Context.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240226211822_Init Context.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240601151144_Add user Id type.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/20240601151144_Add user Id type.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Migrations/ReadDataContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240225173645_WriteDB migration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240225173645_WriteDB migration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240601151211_Add user Id type.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/20240601151211_Add user Id type.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Migrations/WriteDataContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/Mocks/Services.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/Mocks/Services.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/PlantRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Tests/WriteDataManager/PlantRepositoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -76,7 +85,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.PlantCare.API: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.PlantCare.API: http.executor&quot;: &quot;Run&quot;,
     &quot;ATTACH_DIALOG_SELECTED_CONTAINER&quot;: &quot;plantcare-api&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -362,7 +371,8 @@
       <workItem from="1735123326288" duration="6564000" />
       <workItem from="1735225711013" duration="2077000" />
       <workItem from="1735290547280" duration="10755000" />
-      <workItem from="1735483806140" duration="2853000" />
+      <workItem from="1735483806140" duration="6356000" />
+      <workItem from="1735580061956" duration="3053000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

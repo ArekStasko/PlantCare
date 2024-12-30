@@ -25,9 +25,13 @@ public class ModuleController : ControllerAuth
     [HttpPost(Name = "[controller]/create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(CreateModuleCommand command)
+    public async ValueTask<IActionResult> Create()
     {
         _logger.LogInformation("Create module controller method start processing");
+        var command = new CreateModuleCommand
+        {
+            UserId = UserId
+        };
         var result = await _mediator.Send(command);
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();

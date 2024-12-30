@@ -44,7 +44,7 @@ public static class Services
             Id = 1,
             UserId = 1,
             Description = "",
-            ModuleId = Guid.NewGuid(),
+            ModuleId = 1,
             PlaceId = 1, 
             Type = PlantType.Decorative
         }
