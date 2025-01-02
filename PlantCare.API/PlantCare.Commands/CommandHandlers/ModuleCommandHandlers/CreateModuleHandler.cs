@@ -5,7 +5,6 @@ using PlantCare.Commands.Commands.Module;
 using PlantCare.Domain.Dto;
 using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
-using PlantCare.Persistance.WriteDataManager.Repositories;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Commands.CommandHandlers.ModuleCommandHandlers;
