@@ -36,7 +36,7 @@ public class ModuleController : ControllerAuth
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();
     }
-
+    
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
