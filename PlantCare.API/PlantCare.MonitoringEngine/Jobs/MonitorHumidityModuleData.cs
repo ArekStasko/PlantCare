@@ -1,4 +1,5 @@
 using Coravel.Invocable;
+using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Domain.Models.HumidityMeasurement;
@@ -33,12 +34,7 @@ public class MonitorHumidityModuleData(
             List<Task<IHumidityMeasurement>> getMeasurementsTasks = new List<Task<IHumidityMeasurement>>();
             foreach (var module in modules) getMeasurementsTasks.Add(GetHumidity(module));
             var measurements = await Task.WhenAll(getMeasurementsTasks);
-            
-            List<ValueTask<Result<int>>> addMeasurementTasks = new List<ValueTask<Result<int>>>();
-            foreach (var measurement in measurements)
-            {
-                 addMeasurementTasks.Add(humidityWriteRepository.Add(measurement));
-            }
+            foreach (var measurement in measurements) await humidityWriteRepository.Add(measurement);
         }
         catch (Exception e)
         {
