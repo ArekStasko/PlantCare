@@ -30,17 +30,36 @@ public class MonitorHumidityModuleData(
             });
             
             if (!modules.Any()) return;
-
-            List<Task<IHumidityMeasurement>> getMeasurementsTasks = new List<Task<IHumidityMeasurement>>();
-            foreach (var module in modules) getMeasurementsTasks.Add(GetHumidity(module));
-            var measurements = await Task.WhenAll(getMeasurementsTasks);
-            foreach (var measurement in measurements) await humidityWriteRepository.Add(measurement);
+            var measurements = await GetHumidity(modules);
+            var addMeasurementsResult = await AddMeasurements(measurements);
+            if (!addMeasurementsResult) logger.LogError($"Failed to add humidity measurements");
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private async Task<IHumidityMeasurement[]> GetHumidity(IReadOnlyCollection<IModule> modules)
+    {
+        List<Task<IHumidityMeasurement>> getMeasurementsTasks = new List<Task<IHumidityMeasurement>>();
+        foreach (var module in modules) getMeasurementsTasks.Add(GetHumidity(module));
+        return await Task.WhenAll(getMeasurementsTasks);
+    }
+
+    private async Task<bool> AddMeasurements(IHumidityMeasurement[] measurements)
+    {
+        bool result = false;
+        List<Task<Result<int>>> addMeasurementTasks = new List<Task<Result<int>>>();
+        foreach (var measurement in measurements) addMeasurementTasks.Add(humidityWriteRepository.Add(measurement));
+        var addMeasurementsResult = await Task.WhenAll(addMeasurementTasks);
+        foreach (var addMeasurement in addMeasurementsResult)
+        {
+          result = addMeasurement.Match(succ => true, err => false);
+          if (!result) break;
+        }
+        return result;
     }
 
     private async Task<IHumidityMeasurement> GetHumidity(IModule module)
