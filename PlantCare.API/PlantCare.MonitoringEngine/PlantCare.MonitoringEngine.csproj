@@ -8,9 +8,11 @@
 
     <ItemGroup>
       <PackageReference Include="Coravel" Version="6.0.1" />
+      <PackageReference Include="LanguageExt.Core" Version="5.0.0-beta-45" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
     </ItemGroup>
 
