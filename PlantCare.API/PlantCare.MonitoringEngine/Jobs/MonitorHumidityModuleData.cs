@@ -20,6 +20,7 @@ public class MonitorHumidityModuleData(
     {
         try
         {
+            logger.LogInformation("Check humidity measurements");
             var result = await moduleReadRepository.Get();
             var modules = result.Match<IReadOnlyCollection<IModule>>(succ =>
                 succ.Where(s => s.IsMonitoring).ToList()
@@ -28,15 +29,19 @@ public class MonitorHumidityModuleData(
                 logger.LogError(error.Message);
                 throw error;
             });
-            
-            if (!modules.Any()) return;
+
+            if (!modules.Any())
+            {
+                logger.LogInformation("There are no modules to check");
+                return;
+            };
             var measurements = await GetHumidity(modules);
             var addMeasurementsResult = await AddMeasurements(measurements);
             if (!addMeasurementsResult) logger.LogError($"Failed to add humidity measurements");
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError(e.Message);
             throw;
         }
     }
@@ -67,6 +72,12 @@ public class MonitorHumidityModuleData(
         string uri = $"UriToModule";
         HttpResponseMessage response = await httpClient.GetAsync(uri);
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsStringAsync();
+        var humidity = await response.Content.ReadAsStringAsync();
+        return new HumidityMeasurement()
+        {
+            ModuleId = module.Id,
+            MeasurementDate = DateTime.UtcNow,
+            Humidity = Int32.Parse(humidity),
+        };
     }
 }
