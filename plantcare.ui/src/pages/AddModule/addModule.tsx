@@ -67,7 +67,7 @@ export const AddModule = () => {
     {
       title: 'WIFI Configuration',
       component: <WifiForm context={context}  updateContext={setContext} />,
-      validators: ['wifiName', 'wifiPassword', 'connected'],
+      validators: ['wifiName', 'wifiPassword'],
       id: 1,
       nextStep: 2,
       previousStep: 0,
