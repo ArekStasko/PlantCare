@@ -1,4 +1,4 @@
-import { AlertColor, Box, Card, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
+import { AlertColor, Box, Card, CircularProgress, Paper, Switch, Tooltip, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -86,6 +86,14 @@ export const Statistics = () => {
                 <Paper sx={styles.descriptionCard}>
                   <Typography>{plant.description}</Typography>
                 </Paper>
+              </Box>
+              <Box sx={styles.moduleIdWrapper}>
+                <Tooltip placement="top-end" title="Module Status" arrow>
+                  <Paper sx={styles.moduleIdCard}>
+                    <Typography variant="h6">Module Status</Typography>
+                    <Switch  />
+                  </Paper>
+                </Tooltip>
               </Box>
               <Box sx={styles.moduleIdWrapper}>
                 <Tooltip placement="top-end" title="Module ID" arrow>
