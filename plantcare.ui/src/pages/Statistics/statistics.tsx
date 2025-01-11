@@ -1,5 +1,5 @@
 import { AlertColor, Box, Card, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from "react";
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
@@ -34,7 +34,9 @@ export const Statistics = () => {
     toDate: endOfDay
   });
 
-  const plant = plants && plants.find((p) => p.moduleId === moduleId);
+  const plant = useMemo(() => plants?.find((p) =>
+    p.moduleId?.toString() === moduleId
+  ), [plants])
 
   const refetchMeasurementsWithNewDate = (value: Dayjs) => {
     const correctDate = value.toDate();
