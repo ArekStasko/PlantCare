@@ -27,6 +27,7 @@ public class CreateModuleHandler(
                 {
                     Id = succ,
                     UserId = request.UserId,
+                    IsMonitoring = false,
                 };
                 var moduleMessage = new Module
                 {

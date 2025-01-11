@@ -2,6 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Plant;
 using GetModulesQuery = PlantCare.Queries.Queries.Module.GetModulesQuery;
 
@@ -18,6 +19,23 @@ public class ModuleController : ControllerAuth
     {
         _mediator = mediator;
         _logger = logger;
+    }
+
+    [HttpPost(Name = "[controller]/setStatus")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> SetModuleStatus(StatusDto status)
+    {
+        _logger.LogInformation("Set Module Status controller method start processing");
+        var setModuleStatusCommand = new SetModuleStatusCommand()
+        {
+            UserId = UserId,
+            ModuleId = status.ModuleId,
+            Status = status.Status
+        };
+        var result = await _mediator.Send(setModuleStatusCommand);
+        _logger.LogInformation("Set Module Status controller method ends processing");
+        return result.ToOk();
     }
     
     [HttpPost(Name = "[controller]/create")]
