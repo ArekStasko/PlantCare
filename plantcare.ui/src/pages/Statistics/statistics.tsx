@@ -16,6 +16,9 @@ import Decorative from '../../app/images/Decorative.png';
 import Fruit from '../../app/images/Fruit.png';
 import MemoryIcon from '@mui/icons-material/Memory';
 import { PlantType } from '../../common/models/plantTypes';
+import { useSetModuleStatusMutation } from "../../common/RTK/setModuleStatus/setModuleStatus";
+import { useGetModulesQuery } from "../../common/RTK/getModules/getModules";
+import { SetModuleStatusRequest } from "../../common/RTK/setModuleStatus/setModuleStatusRequest";
 
 export const Statistics = () => {
   let { moduleId } = useParams();
@@ -23,6 +26,8 @@ export const Statistics = () => {
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
   const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
+  const {data: modules, isLoading: modulesLoading } = useGetModulesQuery();
+  const [setModuleStatus] = useSetModuleStatusMutation();
 
   const {
     data: humidityMeasurements,
@@ -34,9 +39,8 @@ export const Statistics = () => {
     toDate: endOfDay
   });
 
-  const plant = useMemo(() => plants?.find((p) =>
-    p.moduleId?.toString() === moduleId
-  ), [plants])
+  const plant = useMemo(() => plants?.find((p) => p.moduleId?.toString() === moduleId), [plants])
+  const module = useMemo(() => modules?.find((m) => m.id?.toString() === moduleId), [modules])
 
   const refetchMeasurementsWithNewDate = (value: Dayjs) => {
     const correctDate = value.toDate();
@@ -52,6 +56,16 @@ export const Statistics = () => {
 
     refetchMeasurements();
   };
+
+  const handleModuleStatusChange = async () => {
+    console.log("Lets go")
+    if(!module) return;
+    const moduleStatusRequest = {
+      moduleId: +module.id,
+      status: !module.isMonitoring
+    } as SetModuleStatusRequest;
+    await setModuleStatus(moduleStatusRequest)
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -91,7 +105,7 @@ export const Statistics = () => {
                 <Tooltip placement="top-end" title="Module Status" arrow>
                   <Paper sx={styles.moduleIdCard}>
                     <Typography variant="h6">Module Status</Typography>
-                    <Switch  />
+                    <Switch checked={module?.isMonitoring} onChange={handleModuleStatusChange} />
                   </Paper>
                 </Tooltip>
               </Box>
@@ -113,7 +127,7 @@ export const Statistics = () => {
             </>
           )}
         </Card>
-        {humidityMeasurementsLoading && plantsLoading ? (
+        {humidityMeasurementsLoading && plantsLoading && modulesLoading ? (
           <>
             <CircularProgress />
           </>
