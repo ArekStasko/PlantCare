@@ -16,7 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
