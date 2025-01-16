@@ -19,6 +19,7 @@ import { PlantType } from '../../common/models/plantTypes';
 import { useSetModuleStatusMutation } from "../../common/RTK/setModuleStatus/setModuleStatus";
 import { useGetModulesQuery } from "../../common/RTK/getModules/getModules";
 import { SetModuleStatusRequest } from "../../common/RTK/setModuleStatus/setModuleStatusRequest";
+import { PlantDetails } from "../Dashboard/components/PlantDetails";
 
 export const Statistics = () => {
   let { moduleId } = useParams();
@@ -27,7 +28,7 @@ export const Statistics = () => {
 
   const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
   const {data: modules, isLoading: modulesLoading } = useGetModulesQuery();
-  const [setModuleStatus] = useSetModuleStatusMutation();
+  const [setModuleStatus, {isLoading: setModuleLoading}] = useSetModuleStatusMutation();
 
   const {
     data: humidityMeasurements,
@@ -58,7 +59,6 @@ export const Statistics = () => {
   };
 
   const handleModuleStatusChange = async () => {
-    console.log("Lets go")
     if(!module) return;
     const moduleStatusRequest = {
       moduleId: +module.id,
@@ -71,60 +71,14 @@ export const Statistics = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box sx={styles.statisticsContainer}>
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
-          {plant && (
-            <>
-              <Box sx={styles.plantTitleWrapper}>
-                <Typography variant="h4">{plant.name} Details</Typography>
-                <Paper sx={styles.typeCard}>
-                  <Typography variant="h6">{PlantType[+plant.type]}</Typography>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 35,
-                      width: 35,
-                      maxHeight: { xs: 35, md: 35 },
-                      maxWidth: { xs: 35, md: 35 },
-                      borderRadius: 2
-                    }}
-                    alt="Plant_Type"
-                    src={plant.type === 0 ? Vegetable : plant.type === 1 ? Fruit : Decorative}
-                  />
-                </Paper>
-              </Box>
-              <Box sx={styles.plantDescriptionWrapper}>
-                <Paper sx={styles.titleCard}>
-                  <Typography sx={{ ml: 5 }} variant="h5">
-                    {plant.name}
-                  </Typography>
-                </Paper>
-                <Paper sx={styles.descriptionCard}>
-                  <Typography>{plant.description}</Typography>
-                </Paper>
-              </Box>
-              <Box sx={styles.moduleIdWrapper}>
-                <Tooltip placement="top-end" title="Module Status" arrow>
-                  <Paper sx={styles.moduleIdCard}>
-                    <Typography variant="h6">Module Status</Typography>
-                    <Switch checked={module?.isMonitoring} onChange={handleModuleStatusChange} />
-                  </Paper>
-                </Tooltip>
-              </Box>
-              <Box sx={styles.moduleIdWrapper}>
-                <Tooltip placement="top-end" title="Module ID" arrow>
-                  <Paper sx={styles.moduleIdCard}>
-                    <MemoryIcon
-                      sx={{
-                        height: 35,
-                        width: 35,
-                        maxHeight: { xs: 35, md: 35 },
-                        maxWidth: { xs: 35, md: 35 }
-                      }}
-                    />
-                    <Typography variant="h6">{plant.moduleId}</Typography>
-                  </Paper>
-                </Tooltip>
-              </Box>
-            </>
+          {setModuleLoading ? (
+            <CircularProgress />
+          ) : (
+            <PlantDetails
+              plant={plant}
+              module={module}
+              onModuleStatusChanged={() => handleModuleStatusChange()}
+            />
           )}
         </Card>
         {humidityMeasurementsLoading && plantsLoading && modulesLoading ? (
