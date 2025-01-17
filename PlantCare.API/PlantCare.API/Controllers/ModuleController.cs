@@ -21,19 +21,14 @@ public class ModuleController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/setStatus")]
+    [HttpPost(Name = "[controller]/status")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> SetModuleStatus(StatusDto status)
+    public async ValueTask<IActionResult> Status(SetModuleStatusCommand command)
     {
         _logger.LogInformation("Set Module Status controller method start processing");
-        var setModuleStatusCommand = new SetModuleStatusCommand()
-        {
-            UserId = UserId,
-            ModuleId = status.ModuleId,
-            Status = status.Status
-        };
-        var result = await _mediator.Send(setModuleStatusCommand);
+        command.UserId = UserId;
+        var result = await _mediator.Send(command);
         _logger.LogInformation("Set Module Status controller method ends processing");
         return result.ToOk();
     }

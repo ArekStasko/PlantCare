@@ -20,13 +20,20 @@ public class SetModuleStatusHandler(
     {
         try
         {
-            var result = await repository.UpdateStatus(request.UserId, request.ModuleId, request.Status);
+            if (request.UserId == null)
+            {
+                logger.LogError("UserId cannot be null");
+                return new Result<bool>(false);
+            }
+            
+            int userId = (int)request.UserId;
+            var result = await repository.UpdateStatus(userId, request.ModuleId, request.Status);
             return result.Match(succ =>
             {
                 var moduleDto = new ModuleDto()
                 {
                     Id = request.ModuleId,
-                    UserId = request.UserId,
+                    UserId = userId,
                     IsMonitoring = request.Status
                 };
                 var moduleMessage = new Module()
