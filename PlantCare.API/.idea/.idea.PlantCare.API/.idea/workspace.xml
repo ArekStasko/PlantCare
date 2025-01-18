@@ -17,10 +17,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/SetModuleStatusHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/ModuleCommandHandlers/SetModuleStatusHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/SetModuleStatusCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Module/SetModuleStatusCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Dto/StatusDto.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -368,7 +364,8 @@
       <workItem from="1735981587662" duration="6275000" />
       <workItem from="1736034245182" duration="4273000" />
       <workItem from="1736159279909" duration="3351000" />
-      <workItem from="1737035934702" duration="5047000" />
+      <workItem from="1737035934702" duration="6647000" />
+      <workItem from="1737194122712" duration="1071000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

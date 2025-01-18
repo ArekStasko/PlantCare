@@ -1,4 +1,4 @@
-import { Box, Paper, Switch, Tooltip, Typography } from "@mui/material";
+import { Box, CircularProgress, Paper, Switch, Tooltip, Typography } from "@mui/material";
 import styles from "../../Statistics/statistics.styles";
 import { PlantType } from "../../../common/models/plantTypes";
 import Vegetable from "../../../app/images/Vegetable.png";
@@ -9,11 +9,12 @@ import React from "react";
 
 export type PlantDetailsProps = {
   plant: any
-  module: any
+  moduleStatus: boolean
+  isModuleLoading: boolean
   onModuleStatusChanged: () => void
 }
 
-export const PlantDetails = ({plant, module, onModuleStatusChanged}: PlantDetailsProps) => {
+export const PlantDetails = ({plant, moduleStatus, isModuleLoading, onModuleStatusChanged}: PlantDetailsProps) => {
 
   return plant && (
     <>
@@ -45,29 +46,37 @@ export const PlantDetails = ({plant, module, onModuleStatusChanged}: PlantDetail
           <Typography>{plant.description}</Typography>
         </Paper>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
-        <Tooltip placement="top-end" title="Module Status" arrow>
-          <Paper sx={styles.moduleIdCard}>
-            <Typography variant="h6">Module Status</Typography>
-            <Switch checked={module?.isMonitoring} onChange={onModuleStatusChanged} />
-          </Paper>
-        </Tooltip>
-      </Box>
-      <Box sx={styles.moduleIdWrapper}>
-        <Tooltip placement="top-end" title="Module ID" arrow>
-          <Paper sx={styles.moduleIdCard}>
-            <MemoryIcon
-              sx={{
-                height: 35,
-                width: 35,
-                maxHeight: { xs: 35, md: 35 },
-                maxWidth: { xs: 35, md: 35 }
-              }}
-            />
-            <Typography variant="h6">{plant.moduleId}</Typography>
-          </Paper>
-        </Tooltip>
-      </Box>
+      {
+        isModuleLoading ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <Box sx={styles.moduleIdWrapper}>
+              <Tooltip placement="top-end" title="Module Status" arrow>
+                <Paper sx={styles.moduleIdCard}>
+                  <Typography variant="h6">Module Status</Typography>
+                  <Switch checked={moduleStatus} onChange={onModuleStatusChanged} />
+                </Paper>
+              </Tooltip>
+            </Box>
+            <Box sx={styles.moduleIdWrapper}>
+              <Tooltip placement="top-end" title="Module ID" arrow>
+                <Paper sx={styles.moduleIdCard}>
+                  <MemoryIcon
+                    sx={{
+                      height: 35,
+                      width: 35,
+                      maxHeight: { xs: 35, md: 35 },
+                      maxWidth: { xs: 35, md: 35 }
+                    }}
+                  />
+                  <Typography variant="h6">{plant.moduleId}</Typography>
+                </Paper>
+              </Tooltip>
+            </Box>
+          </>
+        )
+      }
     </>
   )
 }

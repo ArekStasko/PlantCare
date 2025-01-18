@@ -5,7 +5,7 @@ export const setModuleStatusApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     SetModuleStatus: build.mutation<boolean, SetModuleStatusRequest>({
       query: ({ ...data }) => ({
-        url: '/modules/setStatus',
+        url: '/modules/status',
         method: 'POST',
         body: data,
       })
