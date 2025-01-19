@@ -15,10 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -365,7 +362,7 @@
       <workItem from="1736034245182" duration="4273000" />
       <workItem from="1736159279909" duration="3351000" />
       <workItem from="1737035934702" duration="6647000" />
-      <workItem from="1737194122712" duration="1071000" />
+      <workItem from="1737194122712" duration="2277000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

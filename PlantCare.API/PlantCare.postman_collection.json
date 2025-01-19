@@ -221,7 +221,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Salon\",\r\n}",
+							"raw": "{\r\n  \"name\": \"Salon\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -441,7 +441,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ModuleId\": 1,\n    \"Status\": false\n}",
+							"raw": "{\n    \"moduleid\": 1,\n    \"status\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -449,12 +449,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseURL}}modules/setStatus",
+							"raw": "{{BaseURL}}modules/status",
 							"host": [
 								"{{BaseURL}}modules"
 							],
 							"path": [
-								"setStatus"
+								"status"
 							]
 						}
 					},
