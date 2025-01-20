@@ -23,7 +23,6 @@ export const Statistics = () => {
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
-  const { data: plants, isLoading: plantsLoading } = useGetPlantsQuery();
   const {data: modules, isLoading: modulesLoading, refetch: refetchModules } = useGetModulesQuery();
   const [setModuleStatus] = useSetModuleStatusMutation();
 
@@ -37,7 +36,7 @@ export const Statistics = () => {
     toDate: endOfDay
   });
 
-  const plant = useMemo(() => plants?.find((p) => p.moduleId?.toString() === moduleId), [plants])
+  const plant = useMemo(() => modules?.find((m) => m.id?.toString() === moduleId).plant, [modules])
   const module = useMemo((): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId), [modules])
 
   const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module])
@@ -77,7 +76,7 @@ export const Statistics = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box sx={styles.statisticsContainer}>
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
-          {plantsLoading ? (
+          {modulesLoading ? (
             <CircularProgress />
           ) : (
             <PlantDetails
