@@ -36,7 +36,7 @@ export const Statistics = () => {
     toDate: endOfDay
   });
 
-  const plant = useMemo(() => modules?.find((m) => m.id?.toString() === moduleId).plant, [modules])
+  const plant = useMemo(() => modules?.find((m) => m.id?.toString() === moduleId)?.plant, [modules])
   const module = useMemo((): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId), [modules])
 
   const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module])

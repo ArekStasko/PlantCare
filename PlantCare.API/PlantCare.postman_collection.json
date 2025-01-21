@@ -537,6 +537,28 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Plantcare Module",
+			"item": [
+				{
+					"name": "Get Humidity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ModuleURL}}9/humidity",
+							"host": [
+								"{{ModuleURL}}9"
+							],
+							"path": [
+								"humidity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
