@@ -15,7 +15,7 @@ public class MonitorHumidityModuleData(
     ILogger<MonitorHumidityModuleData> logger
     ) : IInvocable
 {
-    
+    private string ModuleUrl = Environment.GetEnvironmentVariable("ModuleUrl"); 
     public async Task Invoke()
     {
         try
@@ -69,10 +69,15 @@ public class MonitorHumidityModuleData(
 
     private async Task<IHumidityMeasurement> GetHumidity(IModule module)
     {
-        string uri = $"UriToModule";
-        HttpResponseMessage response = await httpClient.GetAsync(uri);
-        response.EnsureSuccessStatusCode();
+        if (ModuleUrl == null)
+            throw new NullReferenceException("HumidityRoute is null");
+
+        using HttpClient httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri(ModuleUrl);
+        using HttpResponseMessage response = await httpClient.GetAsync("/humidity/?id=" + module.Id);
         var humidity = await response.Content.ReadAsStringAsync();
+        response.EnsureSuccessStatusCode();
+                
         return new HumidityMeasurement()
         {
             ModuleId = module.Id,
