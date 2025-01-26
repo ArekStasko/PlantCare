@@ -96,7 +96,7 @@ app.UseCors(AllowSpecifiOrigin);
 
 app.Services.UseScheduler(scheduler =>
 {
-    scheduler.Schedule<MonitorHumidityModuleData>().EveryFiveMinutes();
+    scheduler.Schedule<MonitorHumidityModuleData>().EveryMinute();
 });
 
 app.UseAuthorization();

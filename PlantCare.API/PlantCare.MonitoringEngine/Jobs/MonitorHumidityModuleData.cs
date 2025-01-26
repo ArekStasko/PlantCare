@@ -74,7 +74,7 @@ public class MonitorHumidityModuleData(
 
         using HttpClient httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri(ModuleUrl);
-        using HttpResponseMessage response = await httpClient.GetAsync("/humidity/?id=" + module.Id);
+        using HttpResponseMessage response = await httpClient.GetAsync("/humidity?id=" + module.Id);
         var humidity = await response.Content.ReadAsStringAsync();
         response.EnsureSuccessStatusCode();
                 
