@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
+using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.MonitoringEngine.Jobs;
@@ -12,6 +13,7 @@ public class MonitorHumidityModuleData(
     HttpClient httpClient,
     IReadModuleRepository moduleReadRepository,
     IWriteHumidityMeasurementRepository humidityWriteRepository,
+    QueueProducer<HumidityMeasurement> _producer,
     ILogger<MonitorHumidityModuleData> logger
     ) : IInvocable
 {
@@ -76,6 +78,7 @@ public class MonitorHumidityModuleData(
         httpClient.BaseAddress = new Uri(ModuleUrl);
         using HttpResponseMessage response = await httpClient.GetAsync("/humidity?id=" + module.Id);
         var humidity = await response.Content.ReadAsStringAsync();
+        logger.LogInformation("humidity: {humidity}", humidity);
         response.EnsureSuccessStatusCode();
                 
         return new HumidityMeasurement()

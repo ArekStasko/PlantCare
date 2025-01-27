@@ -16,6 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.MonitoringEngine/PlantCare.MonitoringEngine.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.MonitoringEngine/PlantCare.MonitoringEngine.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -367,6 +370,8 @@
       <workItem from="1737194122712" duration="2277000" />
       <workItem from="1737490946488" duration="1467000" />
       <workItem from="1737554551979" duration="9232000" />
+      <workItem from="1737913147277" duration="1611000" />
+      <workItem from="1737989120288" duration="1472000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
