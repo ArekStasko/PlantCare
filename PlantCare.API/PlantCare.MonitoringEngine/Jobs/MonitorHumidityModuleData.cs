@@ -1,20 +1,25 @@
+using AutoMapper;
 using Coravel.Invocable;
 using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
+using PlantCare.Domain.Dto;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
+using HumidityMeasurement = PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement;
+using HumidityMeasurementMessage = PlantCare.MessageBroker.Messages.HumidityMeasurement;
 
 namespace PlantCare.MonitoringEngine.Jobs;
 
 public class MonitorHumidityModuleData(
-    HttpClient httpClient,
     IReadModuleRepository moduleReadRepository,
     IWriteHumidityMeasurementRepository humidityWriteRepository,
-    QueueProducer<HumidityMeasurement> _producer,
-    ILogger<MonitorHumidityModuleData> logger
+    QueueProducer<HumidityMeasurementMessage> producer,
+    ILogger<MonitorHumidityModuleData> logger,
+    IMapper mapper
     ) : IInvocable
 {
     private string ModuleUrl = Environment.GetEnvironmentVariable("ModuleUrl"); 
@@ -63,7 +68,20 @@ public class MonitorHumidityModuleData(
         var addMeasurementsResult = await Task.WhenAll(addMeasurementTasks);
         foreach (var addMeasurement in addMeasurementsResult)
         {
-          result = addMeasurement.Match(succ => true, err => false);
+          result = addMeasurement.Match(succ =>
+          {
+              var humidityMeasurementDto = mapper.Map<HumidityMeasurementDto>(measurements.FirstOrDefault(m => m.Id == succ));
+              humidityMeasurementDto.Id = succ;
+              var humidityMeasurementMessage = new HumidityMeasurementMessage()
+              {
+                  Action = ActionType.Add,
+                  HumidityMeasurementData = humidityMeasurementDto
+              };
+              producer.PublishMessage(humidityMeasurementMessage);
+                    
+              logger.LogInformation("Successfully added humidity measurement");
+              return true;
+          }, err => false);
           if (!result) break;
         }
         return result;
