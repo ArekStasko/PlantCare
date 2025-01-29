@@ -1,23 +1,19 @@
 using AutoMapper;
 using Coravel.Invocable;
 using LanguageExt.Common;
+using MediatR;
 using Microsoft.Extensions.Logging;
-using PlantCare.Domain.Dto;
+using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
-using PlantCare.MessageBroker.Messages;
-using PlantCare.MessageBroker.Producer;
-using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using HumidityMeasurement = PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement;
-using HumidityMeasurementMessage = PlantCare.MessageBroker.Messages.HumidityMeasurement;
 
 namespace PlantCare.MonitoringEngine.Jobs;
 
 public class MonitorHumidityModuleData(
+    IMediator mediator,
     IReadModuleRepository moduleReadRepository,
-    IWriteHumidityMeasurementRepository humidityWriteRepository,
-    QueueProducer<HumidityMeasurementMessage> producer,
     ILogger<MonitorHumidityModuleData> logger,
     IMapper mapper
     ) : IInvocable
@@ -43,7 +39,8 @@ public class MonitorHumidityModuleData(
                 return;
             };
             var measurements = await GetHumidity(modules);
-            var addMeasurementsResult = await AddMeasurements(measurements);
+            var addHumidityCommands = mapper.Map<IReadOnlyCollection<AddHumidityMeasurementCommand>>(measurements);
+            var addMeasurementsResult = await AddMeasurements(addHumidityCommands);
             if (!addMeasurementsResult) logger.LogError($"Failed to add humidity measurements");
         }
         catch (Exception e)
@@ -60,31 +57,13 @@ public class MonitorHumidityModuleData(
         return await Task.WhenAll(getMeasurementsTasks);
     }
 
-    private async Task<bool> AddMeasurements(IHumidityMeasurement[] measurements)
+    private async Task<bool> AddMeasurements(IReadOnlyCollection<AddHumidityMeasurementCommand> measurements)
     {
         bool result = false;
-        List<Task<Result<int>>> addMeasurementTasks = new List<Task<Result<int>>>();
-        foreach (var measurement in measurements) addMeasurementTasks.Add(humidityWriteRepository.Add(measurement));
+        List<Task<Result<bool>>> addMeasurementTasks = new List<Task<Result<bool>>>();
+        foreach (var measurement in measurements) addMeasurementTasks.Add(mediator.Send(measurement));
         var addMeasurementsResult = await Task.WhenAll(addMeasurementTasks);
-        foreach (var addMeasurement in addMeasurementsResult)
-        {
-          result = addMeasurement.Match(succ =>
-          {
-              var humidityMeasurementDto = mapper.Map<HumidityMeasurementDto>(measurements.FirstOrDefault(m => m.Id == succ));
-              humidityMeasurementDto.Id = succ;
-              var humidityMeasurementMessage = new HumidityMeasurementMessage()
-              {
-                  Action = ActionType.Add,
-                  HumidityMeasurementData = humidityMeasurementDto
-              };
-              producer.PublishMessage(humidityMeasurementMessage);
-                    
-              logger.LogInformation("Successfully added humidity measurement");
-              return true;
-          }, err => false);
-          if (!result) break;
-        }
-        return result;
+        return addMeasurementsResult.All(r => r.Match(succ => succ, err => throw err));
     }
 
     private async Task<IHumidityMeasurement> GetHumidity(IModule module)
