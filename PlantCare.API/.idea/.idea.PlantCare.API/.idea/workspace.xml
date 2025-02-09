@@ -16,8 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,7 +370,7 @@
       <workItem from="1737913147277" duration="1611000" />
       <workItem from="1737989120288" duration="11950000" />
       <workItem from="1738253033215" duration="2372000" />
-      <workItem from="1738343872291" duration="534000" />
+      <workItem from="1738343872291" duration="640000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
