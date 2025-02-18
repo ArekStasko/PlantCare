@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Coravel" Version="6.0.1" />
         <PackageReference Include="IdpClient" Version="1.0.5" />
         <PackageReference Include="LanguageExt.Core" Version="4.4.8" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
@@ -27,6 +28,7 @@
       <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.ConsistencyManager\PlantCare.ConsistencyManager.csproj" />
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
+      <ProjectReference Include="..\PlantCare.MonitoringEngine\PlantCare.MonitoringEngine.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.ReadDataManager\PlantCare.Persistance.ReadDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Persistance.WriteDataManager\PlantCare.Persistance.WriteDataManager.csproj" />
       <ProjectReference Include="..\PlantCare.Queries\PlantCare.Queries.csproj" />

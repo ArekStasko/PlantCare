@@ -4,8 +4,9 @@ namespace PlantCare.Domain.Dto;
 
 public class ModuleDto
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public int UserId { get; set; }
+    public bool IsMonitoring { get; set; }
 
     public virtual ICollection<HumidityMeasurement> HumidityMeasurements { get; set; }
 }

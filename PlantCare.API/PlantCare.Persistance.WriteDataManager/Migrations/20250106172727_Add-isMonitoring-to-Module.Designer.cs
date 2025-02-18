@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PlantCare.Persistance.ReadDataManager;
+using PlantCare.Persistance.WriteDataManager;
 
 #nullable disable
 
-namespace PlantCare.Persistance.ReadDataManager.Migrations
+namespace PlantCare.Persistance.WriteDataManager.Migrations
 {
-    [DbContext(typeof(ReadDataContext))]
-    [Migration("20240226211822_Init Context")]
-    partial class InitContext
+    [DbContext(typeof(WriteDataContext))]
+    [Migration("20250106172727_Add-isMonitoring-to-Module")]
+    partial class AddisMonitoringtoModule
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,10 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Humidity")
                         .HasColumnType("int");
@@ -36,8 +39,8 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<DateTime>("MeasurementDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("PlantId")
                         .HasColumnType("int");
@@ -53,8 +56,17 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsMonitoring")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -64,11 +76,17 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Place.Place", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -78,14 +96,17 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -95,6 +116,9 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

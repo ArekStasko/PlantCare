@@ -5,5 +5,5 @@ namespace PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 public interface IWriteHumidityMeasurementRepository
 {
-    ValueTask<Result<int>> Add(IHumidityMeasurement humidityMeasurement);
+    Task<Result<int>> Add(IHumidityMeasurement humidityMeasurement);
 }

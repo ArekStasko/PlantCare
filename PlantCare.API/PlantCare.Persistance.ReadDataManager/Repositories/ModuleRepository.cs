@@ -16,6 +16,21 @@ public class ModuleRepository : IReadModuleRepository
         _context = context;
         _logger = logger;
     }
+    
+    public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get()
+    {
+        try
+        {
+            var modules = await _context.Modules.ToListAsync<IModule>();
+            _logger.LogInformation("Successfully loaded all modules");
+            return new Result<IReadOnlyCollection<IModule>>(modules);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<IReadOnlyCollection<IModule>>(e);
+        }
+    }
 
     public async ValueTask<Result<IReadOnlyCollection<IModule>>> Get(int userId)
     {
@@ -32,10 +47,10 @@ public class ModuleRepository : IReadModuleRepository
         }
     }
 
-    public async ValueTask<Result<IModule>> Get(int userId, Guid id)
+    public async ValueTask<Result<IModule>> Get(int userId, int id)
     {
         try
-        {
+        { 
             var module = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
             if (module == null)

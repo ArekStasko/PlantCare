@@ -5,5 +5,5 @@ namespace PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 
 public interface IReadHumidityMeasurementRepository
 {
-    ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id);
+    ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id);
 }

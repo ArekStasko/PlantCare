@@ -33,8 +33,8 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<DateTime>("MeasurementDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("PlantId")
                         .HasColumnType("int");
@@ -50,8 +50,11 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsMonitoring")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -87,8 +90,8 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

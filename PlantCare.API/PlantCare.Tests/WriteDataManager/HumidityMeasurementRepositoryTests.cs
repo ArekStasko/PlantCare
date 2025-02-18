@@ -18,7 +18,7 @@ public class HumidityMeasurementRepositoryTests
             Humidity = 31,
             MeasurementDate = DateTime.Now,
             Id = 1,
-            ModuleId = Guid.NewGuid()
+            ModuleId = 1
         };
         Mock<DbSet<HumidityMeasurement>> humidityMeasurementsDb = Services.humidityMeasurementsDb;
         Mock<IHumidityMeasurementWriteContext> humidityMeasurementWriteContext = Services.HumidityMeasurementWriteContext();

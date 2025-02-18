@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PlantCare.Persistance.ReadDataManager.Migrations
 {
     /// <inheritdoc />
-    public partial class InitContext : Migration
+    public partial class ChangeModuleType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                 name: "Modules",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,6 +28,7 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -39,8 +41,9 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     PlaceId = table.Column<int>(type: "int", nullable: false),
-                    ModuleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModuleId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false)
@@ -67,7 +70,7 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    ModuleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModuleId = table.Column<int>(type: "int", nullable: false),
                     Humidity = table.Column<int>(type: "int", nullable: false),
                     MeasurementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PlantId = table.Column<int>(type: "int", nullable: true)

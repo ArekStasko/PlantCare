@@ -86,7 +86,7 @@ const descriptionCard = {
 
 const moduleIdWrapper = {
   width: '100%',
-  height: '20%',
+  height: '10%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-around'

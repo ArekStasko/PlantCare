@@ -20,7 +20,7 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
     }
 
 
-    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(Guid id)
+    public async ValueTask<Result<IReadOnlyCollection<IHumidityMeasurement>>> Get(int id)
     {
         string humidityMeasurementsKey = $"HumidityMeasurements-{id}";
         IReadOnlyCollection<IHumidityMeasurement> data = await _cache.GetRecordAsync<List<HumidityMeasurement>>(humidityMeasurementsKey);

@@ -10,5 +10,5 @@ public record UpdatePlantCommand : IHttpPostCommand
     public string Description { get; set; } = "Description";
     public int PlaceId { get; set; }
     public PlantType Type { get; set; }
-    public Guid? ModuleId { get; set; }
+    public int? ModuleId { get; set; }
 }
