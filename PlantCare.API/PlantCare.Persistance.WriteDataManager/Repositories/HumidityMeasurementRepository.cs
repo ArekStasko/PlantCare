@@ -18,7 +18,7 @@ public class HumidityMeasurementRepository : IWriteHumidityMeasurementRepository
         _logger = logger;
     }
 
-    public async ValueTask<Result<int>> Add(IHumidityMeasurement humidityMeasurement)
+    public async Task<Result<int>> Add(IHumidityMeasurement humidityMeasurement)
     {
         try
         {

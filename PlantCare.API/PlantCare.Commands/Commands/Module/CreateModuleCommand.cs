@@ -1,6 +1,6 @@
 namespace PlantCare.Commands.Commands.Module;
 
-public record AddModuleCommand : IHttpPostCommandGuid
+public record CreateModuleCommand : IHttpPostCommandId
 {
     public int UserId { get; set; }
 }

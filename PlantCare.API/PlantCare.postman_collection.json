@@ -221,7 +221,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Salon\",\r\n}",
+							"raw": "{\r\n  \"name\": \"Salon\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,15 +320,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{BaseURL}}modules/add",
 							"host": [
@@ -436,6 +427,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Set Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moduleid\": 1,\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}modules/status",
+							"host": [
+								"{{BaseURL}}modules"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -508,6 +531,28 @@
 									"value": "2024-04-23 19:46:23.4832095",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plantcare Module",
+			"item": [
+				{
+					"name": "Get Humidity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ModuleURL}}9/humidity",
+							"host": [
+								"{{ModuleURL}}9"
+							],
+							"path": [
+								"humidity"
 							]
 						}
 					},

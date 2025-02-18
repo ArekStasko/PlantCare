@@ -15,7 +15,6 @@ public class ModuleRepositoryTests
     public async void AddModuleTest()
     {
         var userId = 1;
-        var moduleId = Guid.NewGuid();
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
         Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
         
@@ -23,14 +22,14 @@ public class ModuleRepositoryTests
         moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
 
         var moduleRepo = new ModuleRepository(moduleWriteContext.Object, new Mock<ILogger<ModuleRepository>>().Object);
-        var result = await moduleRepo.Add(userId, moduleId);
+        var result = await moduleRepo.Add(userId);
         
         moduleDb.Verify(x => x.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()), Times.Once());
         moduleWriteContext.Verify(x => x.Modules, Times.Once());
         moduleWriteContext.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
         result.Match(succ =>
         {
-            Assert.Equal(moduleId, succ);
+            Assert.Equal(1, succ);
             return true;
         }, err =>
         {
@@ -43,7 +42,7 @@ public class ModuleRepositoryTests
     public async void DeleteModuleTest()
     {
         var userId = 1;
-        var moduleId = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209");
+        var moduleId = 1;
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
         Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
         moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
@@ -74,7 +73,7 @@ public class ModuleRepositoryTests
         var moduleToUpdate = new Module()
         {
             UserId = 1,
-            Id = new Guid("6ac2713b-ecb3-41fe-b8db-e72ca5621209")
+            Id = 1
         };
         Mock<DbSet<Module>> moduleDb = Services.moduleDb;
         Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();

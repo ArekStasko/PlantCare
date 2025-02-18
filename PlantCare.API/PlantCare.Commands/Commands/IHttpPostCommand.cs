@@ -7,6 +7,6 @@ public interface IHttpPostCommand : IRequest<Result<bool>>
 {
 }
 
-public interface IHttpPostCommandGuid : IRequest<Result<Guid>>
+public interface IHttpPostCommandId : IRequest<Result<int>>
 {
 }

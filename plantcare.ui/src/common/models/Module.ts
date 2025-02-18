@@ -5,4 +5,5 @@ export class Module {
   id!: string;
   userId!: number;
   plant?: Plant;
+  isMonitoring?: boolean;
 }

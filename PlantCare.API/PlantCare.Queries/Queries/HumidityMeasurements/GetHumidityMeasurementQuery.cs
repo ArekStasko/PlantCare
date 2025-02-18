@@ -6,7 +6,7 @@ namespace PlantCare.Queries.Queries.HumidityMeasurements;
 
 public record GetHumidityMeasurementQuery : IRequest<Result<List<GetHumidityMeasurementsResponse>>>
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public DateTime FromDate { get; set; }
 

@@ -18,28 +18,27 @@ public class ModuleRepository : IWriteModuleRepository
         _logger = logger;
     }
     
-    public async ValueTask<Result<Guid>> Add(int userId, Guid id)
+    public async ValueTask<Result<int>> Add(int userId)
     {
         try
         {
             var module = new Module()
             {
-                Id = id,
                 UserId = userId
             };
             await _context.Modules.AddAsync(module);
             await _context.SaveChangesAsync();
-            _logger.LogInformation("Module with {Id} Id was successfully created", id);
-            return new Result<Guid>(id);
+            _logger.LogInformation("Module with {Id} Id was successfully created", module.Id);
+            return new Result<int>(module.Id);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<Guid>(e);
+            return new Result<int>(e);
         }
     }
 
-    public async ValueTask<Result<bool>> Delete(int userId, Guid id)
+    public async ValueTask<Result<bool>> Delete(int userId, int id)
     {
         try
         {
@@ -64,27 +63,27 @@ public class ModuleRepository : IWriteModuleRepository
         }
     }
 
-    public async ValueTask<Result<bool>> Update(IModule module)
+    public async ValueTask<Result<IModule>> UpdateStatus(int userId, int moduleId, bool status)
     {
         try
         {
-            var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == module.Id && m.UserId == module.UserId);
+            var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == moduleId && m.UserId == userId);
 
             if (moduleToUpdate == null)
             {
-                _logger.LogError("There is no Module to update with {Id}", module.Id);
-                return new Result<bool>(new ArgumentNullException());
+                _logger.LogError("There is no Module to update with {Id}", moduleId);
+                return new Result<IModule>(new ArgumentNullException());
             }
-            
+            moduleToUpdate.IsMonitoring = status;
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation("Module with {Id} successfully updated", module.Id);
-            return new Result<bool>(true);
+            _logger.LogInformation("Module with {Id} successfully updated", moduleId);
+            return new Result<IModule>(moduleToUpdate);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<bool>(e);
+            return new Result<IModule>(e);
         }
     }
 }

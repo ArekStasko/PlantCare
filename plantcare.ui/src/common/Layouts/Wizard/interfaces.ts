@@ -28,4 +28,5 @@ export interface wizardContextProps {
   onSubmit(): Promise<{ data: boolean } | { error: FetchBaseQueryError | SerializedError }>;
   steps: IWizardStep[];
   methods: UseFormReturn<any, undefined>;
+  isLoading?: boolean;
 }

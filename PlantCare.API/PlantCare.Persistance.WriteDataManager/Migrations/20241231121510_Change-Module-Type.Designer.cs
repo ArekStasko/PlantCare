@@ -12,8 +12,8 @@ using PlantCare.Persistance.WriteDataManager;
 namespace PlantCare.Persistance.WriteDataManager.Migrations
 {
     [DbContext(typeof(WriteDataContext))]
-    [Migration("20240601151211_Add user Id type")]
-    partial class AdduserIdtype
+    [Migration("20241231121510_Change-Module-Type")]
+    partial class ChangeModuleType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,8 +39,8 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.Property<DateTime>("MeasurementDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("PlantId")
                         .HasColumnType("int");
@@ -56,9 +56,11 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -100,8 +102,8 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

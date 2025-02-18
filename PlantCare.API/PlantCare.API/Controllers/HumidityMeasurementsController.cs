@@ -37,7 +37,7 @@ public class HumidityMeasurementsController : ControllerAuth
     [HttpGet(Name = "[controller]/get")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] Guid id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
+    public async ValueTask<IActionResult> Get([FromQuery] int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {
         _logger.LogInformation("Get humidity measurements controller method start processing");
         var getHumidityMeasurementsQuery = new GetHumidityMeasurementQuery()

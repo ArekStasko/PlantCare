@@ -1,12 +1,12 @@
 import React from 'react';
 import { wizardContextProps } from '../interfaces';
 import styles from './wizardContext.styles';
-import { Box, Container, Step, StepLabel, Stepper } from '@mui/material';
+import { Box, CircularProgress, Container, Step, StepLabel, Stepper } from "@mui/material";
 import WizardStep from '../WizardStep/wizardStep';
 import { FormProvider } from 'react-hook-form';
 import { number } from 'yup';
 
-export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) => {
+export const WizardContext = ({ onSubmit, steps, methods, isLoading }: wizardContextProps) => {
   const [currentStepId, setCurrentStepId] = React.useState(0);
 
   const getCurrentStep = () => {
@@ -52,15 +52,19 @@ export const WizardContext = ({ onSubmit, steps, methods }: wizardContextProps) 
             )}
           </Stepper>
           <FormProvider {...methods}>
-            <WizardStep
-              currentStepId={currentStepId}
-              validators={getCurrentStep()!.validators}
-              isLastStep={isLastStep}
-              onSubmit={submitDecorator}
-              goToStep={goToNextStep}
-              previousStep={previousStep}>
-              {getCurrentStep()!.component}
-            </WizardStep>
+            {isLoading ? (
+              <CircularProgress />
+            ) : (
+              <WizardStep
+                currentStepId={currentStepId}
+                validators={getCurrentStep()!.validators}
+                isLastStep={isLastStep}
+                onSubmit={submitDecorator}
+                goToStep={goToNextStep}
+                previousStep={previousStep}>
+                {getCurrentStep()!.component}
+              </WizardStep>
+            )}
           </FormProvider>
         </Box>
       </Container>
