@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { WizardController, WizardProps } from "./interfaces";
 
@@ -9,17 +9,22 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const wizardController: WizardController<T> = {
+    context: context,
+    onLoading: (isLoading: boolean) => setLoading(isLoading),
     updateContext: (context: T) => setContext(context),
     clearContext: () => setContext(initialContext),
     goToNextStep: () => setCurrentStep((prev) => prev++),
-    goToPreviousStep: () => console.log((prev) => prev--),
-    goToStep: (step: number) => console.log(step)
+    goToPreviousStep: () => setCurrentStep((prev) => prev--),
+    goToStep: (step: number) => setCurrentStep(step)
   }
 
   const step = useMemo(() => steps.find(step => step.order === currentStep).step, [currentStep])
 
   return (
     <Box>
+      <Backdrop open={loading}>
+        <CircularProgress color="secondary" size={20} />
+      </Backdrop>
       {
         step ? (
           <step wizardController={wizardController} />

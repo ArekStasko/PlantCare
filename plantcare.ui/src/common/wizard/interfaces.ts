@@ -11,6 +11,8 @@ export interface WizardStep<T> {
 }
 
 export interface WizardController<T> {
+  context: T,
+  onLoading: (isLoading: boolean) => void,
   updateContext: (context: T) => void;
   clearContext: () => void;
   goToNextStep: () => void;
