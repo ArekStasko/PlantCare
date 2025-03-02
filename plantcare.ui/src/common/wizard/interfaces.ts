@@ -7,6 +7,7 @@ export interface WizardStepProps<T> {
 export interface WizardStep<T> {
   order: number;
   title: string;
+  isFinal: boolean;
   step: React.ComponentType<WizardStepProps<T>>;
 }
 
