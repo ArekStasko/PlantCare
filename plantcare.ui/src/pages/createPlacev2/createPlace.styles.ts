@@ -3,5 +3,5 @@ const container = {
 }
 
 export default {
-  container,
+  container
 }

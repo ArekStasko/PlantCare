@@ -18,7 +18,7 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
     goToStep: (step: number) => setCurrentStep(step)
   }
 
-  const step = useMemo(() => steps.find(step => step.order === currentStep).step, [currentStep])
+  const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
 
   return (
     <Box>
@@ -26,8 +26,10 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
         <CircularProgress color="secondary" size={20} />
       </Backdrop>
       {
-        step ? (
-          <step wizardController={wizardController} />
+        Step ? (
+          <Box>
+            {Step}
+          </Box>
         ) : (
           <Typography>Something went wrong</Typography>
         )

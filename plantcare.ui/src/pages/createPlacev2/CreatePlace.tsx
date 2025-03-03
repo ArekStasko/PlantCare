@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Wizard from "../../common/wizard/Wizard";
 import { CreatePlaceContext } from "./interfaces";
-import { WizardStep } from "../../common/wizard/interfaces";
+import { WizardController, WizardStep, WizardStepProps } from "../../common/wizard/interfaces";
 import Details from "./steps/Details";
 import Summary from "./steps/Summary";
 
@@ -14,13 +14,13 @@ const CreatePlace = () => {
       order: 0,
       isFinal: false,
       title: "Details",
-      component: <Details />,
+      getStep: (wizardController: WizardController<CreatePlaceContext>) => <Details wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>,
     {
       order: 1,
       isFinal: true,
       title: "Summary",
-      component: <Summary />,
+      getStep: (wizardController: WizardController<CreatePlaceContext>) => <Summary wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>
   ]
 

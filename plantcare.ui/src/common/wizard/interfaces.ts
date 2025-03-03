@@ -8,7 +8,7 @@ export interface WizardStep<T> {
   order: number;
   title: string;
   isFinal: boolean;
-  step: React.ComponentType<WizardStepProps<T>>;
+  getStep: (wizardController: WizardController<T>) => JSX.Element;
 }
 
 export interface WizardController<T> {
