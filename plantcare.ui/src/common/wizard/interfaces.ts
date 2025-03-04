@@ -1,4 +1,3 @@
-import React from "react";
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;

@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import Wizard from "../../common/wizard/Wizard";
 import { CreatePlaceContext } from "./interfaces";
 import { WizardController, WizardStep, WizardStepProps } from "../../common/wizard/interfaces";
