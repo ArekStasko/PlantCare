@@ -1,7 +1,10 @@
-import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Paper, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { WizardController, WizardProps } from "./interfaces";
-
+import { WizardProgress } from "./components/wizardProgress/WizardProgress";
+import styles from './wizard.styles'
+import { WizardProgressStep } from "./components/wizardProgress/interfaces";
+import { WizardNavigation } from "./components/wizardNavigation/WizardNavigation";
 
 const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -19,21 +22,31 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
   }
 
   const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
+  const stepsToDisplayInProgress = useMemo(() => {
+    return steps.map(s => ({
+      order: s.order,
+      title: s.title,
+    } as WizardProgressStep))
+  }, [steps])
 
   return (
-    <Box>
+    <Box sx={styles.wizard}>
+      <Box sx={styles.wizardContent}>
+      <WizardProgress steps={stepsToDisplayInProgress} currentStep={currentStep} />
       <Backdrop open={loading}>
         <CircularProgress color="secondary" size={20} />
       </Backdrop>
       {
         Step ? (
-          <Box>
+          <Paper sx={styles.stepStyles} elevation={3}>
             {Step}
-          </Box>
+          </Paper>
         ) : (
           <Typography>Something went wrong</Typography>
         )
       }
+      <WizardNavigation />
+      </Box>
     </Box>
   )
 }

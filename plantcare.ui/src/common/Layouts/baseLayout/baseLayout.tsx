@@ -12,7 +12,7 @@ export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => 
   return (
     <Box sx={styles.container}>
       <Navbar />
-      <Box>{children}</Box>
+      <Box sx={styles.wrapper}>{children}</Box>
     </Box>
   );
 };

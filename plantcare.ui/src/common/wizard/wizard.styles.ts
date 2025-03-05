@@ -1,7 +1,26 @@
-const container = {
+const wizard = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
+const wizardContent = {
+  width: '50%',
+  height: '70%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-around',
+}
+
+const stepStyles = {
+  height: '70%',
 }
 
 export default {
-  container,
+  wizard,
+  wizardContent,
+  stepStyles,
 }
