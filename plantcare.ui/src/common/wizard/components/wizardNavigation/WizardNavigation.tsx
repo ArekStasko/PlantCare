@@ -1,14 +1,20 @@
 import { Box, Button, Paper } from "@mui/material";
 import styles from './WizardNavigation.styles'
 
-export const WizardNavigation = () => {
+export interface WizardNavigationProps {
+  onBack: () => void
+  onCancel: () => void
+  onNext: () => void
+}
+
+export const WizardNavigation = ({onBack, onCancel, onNext}: WizardNavigationProps) => {
 
   return(
     <Paper sx={styles.wizardNavigation}>
-      <Button>Back</Button>
+      <Button onClick={() => onBack()}>Back</Button>
       <Box>
-        <Button>Cancel</Button>
-        <Button>Next</Button>
+        <Button onClick={() => onCancel()}>Cancel</Button>
+        <Button onClick={() => onNext()}>Next</Button>
       </Box>
     </Paper>
   )
