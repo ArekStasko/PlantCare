@@ -16,12 +16,14 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
     onLoading: (isLoading: boolean) => setLoading(isLoading),
     updateContext: (context: T) => setContext(context),
     clearContext: () => setContext(initialContext),
-    goToNextStep: () => setCurrentStep((prev) => prev++),
-    goToPreviousStep: () => setCurrentStep((prev) => prev--),
+    goToNextStep: () => setCurrentStep((prev) => prev + 1),
+    goToPreviousStep: () => setCurrentStep((prev) => prev - 1),
     goToStep: (step: number) => setCurrentStep(step)
   }
 
   const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
+  const isFinalStep = useMemo(() => steps?.find(step => step.order === currentStep)?.isFinal ?? false, [currentStep])
+
   const stepsToDisplayInProgress = useMemo(() => {
     return steps.map(s => ({
       order: s.order,
@@ -30,15 +32,19 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
   }, [steps])
 
   const onNext = () => {
-
+    if(isFinalStep) {
+      onSubmit(context);
+      return;
+    }
+    wizardController.goToNextStep();
   }
 
   const onBack = () => {
-
+    if(currentStep !== 0) wizardController.goToPreviousStep();
   }
 
   const onCancel = () => {
-
+    console.log("Cancel !")
   }
 
   return (
@@ -57,7 +63,7 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
           <Typography>Something went wrong</Typography>
         )
       }
-      <WizardNavigation onCancel={onCancel} onBack={onBack} onNext={onNext} />
+      <WizardNavigation isFirstStep={currentStep === 0} isFinalStep={isFinalStep} onCancel={onCancel} onBack={onBack} onNext={onNext} />
       </Box>
     </Box>
   )

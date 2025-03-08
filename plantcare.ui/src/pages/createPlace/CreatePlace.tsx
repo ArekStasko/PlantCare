@@ -8,6 +8,7 @@ import Summary from "./steps/Summary";
 const CreatePlace = () => {
   const initialContext: CreatePlaceContext = {};
 
+
   const steps = [
     {
       order: 0,
