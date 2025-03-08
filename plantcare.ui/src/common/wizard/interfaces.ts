@@ -22,5 +22,7 @@ export interface WizardController<T> {
 
 export interface WizardProps<T> {
   initialContext: T;
+  cancelUri: string;
   steps: WizardStep<T>[];
+  onSubmit: (context: T) => void;
 }

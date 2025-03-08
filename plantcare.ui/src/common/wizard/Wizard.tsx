@@ -6,7 +6,7 @@ import styles from './wizard.styles'
 import { WizardProgressStep } from "./components/wizardProgress/interfaces";
 import { WizardNavigation } from "./components/wizardNavigation/WizardNavigation";
 
-const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
+const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
@@ -29,6 +29,18 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
     } as WizardProgressStep))
   }, [steps])
 
+  const onNext = () => {
+
+  }
+
+  const onBack = () => {
+
+  }
+
+  const onCancel = () => {
+
+  }
+
   return (
     <Box sx={styles.wizard}>
       <Box sx={styles.wizardContent}>
@@ -45,7 +57,7 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
           <Typography>Something went wrong</Typography>
         )
       }
-      <WizardNavigation />
+      <WizardNavigation onCancel={onCancel} onBack={onBack} onNext={onNext} />
       </Box>
     </Box>
   )

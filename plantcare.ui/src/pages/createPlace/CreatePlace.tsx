@@ -23,8 +23,12 @@ const CreatePlace = () => {
     } as WizardStep<CreatePlaceContext>
   ]
 
+  const onSubmit = (context: CreatePlaceContext) => {
+    console.log(context)
+  }
+
   return (
-    <Wizard<CreatePlaceContext> initialContext={initialContext} steps={steps} />
+    <Wizard<CreatePlaceContext> cancelUri="" initialContext={initialContext} steps={steps} onSubmit={onSubmit} />
   )
 }
 
