@@ -5,9 +5,11 @@ import { WizardProgress } from "./components/wizardProgress/WizardProgress";
 import styles from './wizard.styles'
 import { WizardProgressStep } from "./components/wizardProgress/interfaces";
 import { WizardNavigation } from "./components/wizardNavigation/WizardNavigation";
+import CancelDialog from "../compontents/CancelDialog/cancelDialog";
 
-const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>) => {
+const Wizard = <T,>({sx, initialContext, steps, onSubmit}: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [openCancelDialog, setOpenCancelDialog] = useState(false)
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,7 +24,7 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
   }
 
   const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
-  const isFinalStep = useMemo(() => steps?.find(step => step.order === currentStep)?.isFinal ?? false, [currentStep])
+  const currentStepObject = useMemo(() => steps?.find(step => step.order === currentStep), [currentStep])
 
   const stepsToDisplayInProgress = useMemo(() => {
     return steps.map(s => ({
@@ -32,7 +34,7 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
   }, [steps])
 
   const onNext = () => {
-    if(isFinalStep) {
+    if(currentStepObject?.isFinal) {
       onSubmit(context);
       return;
     }
@@ -43,9 +45,7 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
     if(currentStep !== 0) wizardController.goToPreviousStep();
   }
 
-  const onCancel = () => {
-    console.log("Cancel !")
-  }
+  const onCancel = () => setOpenCancelDialog(true)
 
   return (
     <Box sx={styles.wizard}>
@@ -57,14 +57,20 @@ const Wizard = <T,>({initialContext, steps, onSubmit, cancelUri}: WizardProps<T>
       {
         Step ? (
           <Paper sx={styles.stepStyles} elevation={3}>
-            {Step}
+            <Typography variant="h5">
+              {currentStepObject?.title}
+            </Typography>
+            <Box sx={{...sx, ...styles.stepWrapper}}>
+              {Step}
+            </Box>
           </Paper>
         ) : (
           <Typography>Something went wrong</Typography>
         )
       }
-      <WizardNavigation isFirstStep={currentStep === 0} isFinalStep={isFinalStep} onCancel={onCancel} onBack={onBack} onNext={onNext} />
+      <WizardNavigation isFirstStep={currentStep === 0} isFinalStep={currentStepObject?.isFinal ?? false} onCancel={onCancel} onBack={onBack} onNext={onNext} />
       </Box>
+      <CancelDialog openDialog={openCancelDialog} setOpenDialog={setOpenCancelDialog} />
     </Box>
   )
 }

@@ -29,7 +29,7 @@ const CreatePlace = () => {
   }
 
   return (
-    <Wizard<CreatePlaceContext> cancelUri="" initialContext={initialContext} steps={steps} onSubmit={onSubmit} />
+    <Wizard<CreatePlaceContext> initialContext={initialContext} steps={steps} onSubmit={onSubmit} />
   )
 }
 

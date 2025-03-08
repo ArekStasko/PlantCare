@@ -12,11 +12,11 @@ export interface WizardNavigationProps {
 export const WizardNavigation = ({isFinalStep, isFirstStep, onBack, onCancel, onNext}: WizardNavigationProps) => {
 
   return(
-    <Paper sx={styles.wizardNavigation}>
-      <Button disabled={isFirstStep} onClick={() => onBack()}>Back</Button>
+    <Paper elevation={3} sx={styles.wizardNavigation}>
+      <Button disabled={isFirstStep} variant='contained' onClick={() => onBack()}>Back</Button>
       <Box>
-        <Button onClick={() => onCancel()}>Cancel</Button>
-        <Button onClick={() => onNext()}>
+        <Button variant='outlined' color='warning' onClick={() => onCancel()}>Cancel</Button>
+        <Button variant='contained' sx={styles.nextButton} onClick={() => onNext()}>
           {
             isFinalStep ? "Submit" : "Next"
           }

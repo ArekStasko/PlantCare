@@ -17,10 +17,18 @@ const wizardContent = {
 
 const stepStyles = {
   height: '70%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-around',
+}
+
+const stepWrapper = {
+  height: '70%'
 }
 
 export default {
   wizard,
   wizardContent,
   stepStyles,
+  stepWrapper,
 }

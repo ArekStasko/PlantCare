@@ -1,3 +1,4 @@
+import { SxProps } from "@mui/material";
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
@@ -21,8 +22,8 @@ export interface WizardController<T> {
 }
 
 export interface WizardProps<T> {
+  sx?: SxProps;
   initialContext: T;
-  cancelUri: string;
   steps: WizardStep<T>[];
   onSubmit: (context: T) => void;
 }

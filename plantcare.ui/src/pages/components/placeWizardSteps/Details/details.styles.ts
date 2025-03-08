@@ -3,12 +3,13 @@ const placeDetailsWrapper = {
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'space-evenly'
 };
 
 const placeName = {
-  width: '50%'
+  width: '60%',
+  mt: '30px',
 };
 
 export default {
