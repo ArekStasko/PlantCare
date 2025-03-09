@@ -1,6 +1,6 @@
 import Wizard from "../../common/wizard/Wizard";
 import { CreatePlaceContext } from "./interfaces";
-import { WizardController, WizardStep, WizardStepProps } from "../../common/wizard/interfaces";
+import { WizardController, WizardStep } from "../../common/wizard/interfaces";
 import Details from "./steps/Details";
 import Summary from "./steps/Summary";
 
@@ -8,12 +8,11 @@ import Summary from "./steps/Summary";
 const CreatePlace = () => {
   const initialContext: CreatePlaceContext = {};
 
-
   const steps = [
     {
       order: 0,
       isFinal: false,
-      title: "Details",
+      title: ,
       getStep: (wizardController: WizardController<CreatePlaceContext>) => <Details wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>,
     {

@@ -4,7 +4,8 @@ const placeDetailsWrapper = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  justifyContent: 'space-evenly'
+  p: '10px',
+  pl: '20px',
 };
 
 const placeName = {
@@ -12,7 +13,12 @@ const placeName = {
   mt: '30px',
 };
 
+const detailsContainer = {
+  width: '100%',
+}
+
 export default {
+  detailsContainer,
   placeDetailsWrapper,
   placeName
 };

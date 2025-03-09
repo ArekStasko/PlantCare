@@ -1,7 +1,14 @@
 import { SxProps } from "@mui/material";
+import wizardStep from "../Layouts/Wizard/WizardStep/wizardStep";
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
+}
+
+export interface WizardStepData {
+  order: number;
+  title: string;
+  isFinal: boolean;
 }
 
 export interface WizardStep<T> {
@@ -19,10 +26,10 @@ export interface WizardController<T> {
   goToNextStep: () => void;
   goToPreviousStep: () => void;
   goToStep: (step: number) => void;
+  onCancel: () => void;
 }
 
 export interface WizardProps<T> {
-  sx?: SxProps;
   initialContext: T;
   steps: WizardStep<T>[];
   onSubmit: (context: T) => void;
