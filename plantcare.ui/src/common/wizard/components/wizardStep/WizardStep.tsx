@@ -7,13 +7,11 @@ import { WizardController } from "../../interfaces";
 export interface wizardStepFuncProps<T> {
   children: React.ReactNode;
   wizardController: WizardController<T>;
-  isValid: boolean;
-  isFinal: boolean;
   title: string;
   sx?: SxProps;
 }
 
-export const WizardStep = <T,>({children, wizardController, isValid, isFinal, sx}: wizardStepFuncProps<T>) => {
+export const WizardStep = <T,>({children, wizardController, sx}: wizardStepFuncProps<T>) => {
 
   const onNext = () => {
     wizardController.goToNextStep();
@@ -35,8 +33,6 @@ export const WizardStep = <T,>({children, wizardController, isValid, isFinal, sx
           </Paper>
       <WizardNavigation
         isValid={isValid}
-        isFirstStep={currentStepObject?.order === 0}
-        isFinalStep={isFinal}
         onCancel={onCancel}
         onBack={onBack}
         onNext={onNext}
