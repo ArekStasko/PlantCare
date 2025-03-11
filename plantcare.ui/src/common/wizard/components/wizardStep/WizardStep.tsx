@@ -1,42 +1,27 @@
-import { Box, Paper, SxProps, Typography } from "@mui/material";
-import React, { useMemo } from "react";
-import styles from "../../wizard.styles";
-import { WizardNavigation } from "../wizardNavigation/WizardNavigation";
-import { WizardController } from "../../interfaces";
+import { Box, Button, Paper, Typography } from "@mui/material";
+import React from "react";
+import styles from "./wizardStep.styles";
+import { wizardStepProviderProps } from "../../interfaces";
 
-export interface wizardStepFuncProps<T> {
-  children: React.ReactNode;
-  wizardController: WizardController<T>;
-  title: string;
-  sx?: SxProps;
-}
-
-export const WizardStep = <T,>({children, wizardController, sx}: wizardStepFuncProps<T>) => {
-
-  const onNext = () => {
-    wizardController.goToNextStep();
-  }
-
-  const onBack = () => {
-    wizardController.goToPreviousStep();
-  }
-
-  const onCancel = () => wizardController.onCancel();
+export const WizardStep = <T,>({children, isValid, nextButton, cancelButton, backButton, title, sx}: wizardStepProviderProps<T>) => {
 
   return (
     <Box sx={{...sx, ...styles.stepWrapper}}>
           <Paper sx={styles.stepStyles} elevation={3}>
             <Typography variant="h5">
-              {currentStepObject?.title}
+              {title}
             </Typography>
             {children}
           </Paper>
-      <WizardNavigation
-        isValid={isValid}
-        onCancel={onCancel}
-        onBack={onBack}
-        onNext={onNext}
-      />
+      <Paper elevation={3} sx={styles.wizardNavigation}>
+        <Button disabled={backButton.isDisabled} variant='contained' onClick={() => backButton.onClick()}>{backButton.title}</Button>
+        <Box>
+          <Button disabled={cancelButton.isDisabled} variant='outlined' color='warning' onClick={() => cancelButton.onClick()}>{cancelButton.title}</Button>
+          <Button disabled={nextButton..isDisabled} variant='contained' sx={styles.nextButton} onClick={() => nextButton.onClick()}>
+              {nextButton.title}
+          </Button>
+        </Box>
+      </Paper>
     </Box>
   )
 }

@@ -1,8 +1,25 @@
 import { SxProps } from "@mui/material";
 import wizardStep from "../Layouts/Wizard/WizardStep/wizardStep";
+import React from "react";
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
+}
+
+export interface buttonAction {
+  onClick: () => void;
+  title: string;
+  isDisabled: boolean;
+}
+
+export interface wizardStepProviderProps<T> {
+  children: React.ReactNode;
+  isValid: boolean
+  nextButton: buttonAction;
+  cancelButton: buttonAction;
+  backButton: buttonAction;
+  title: string;
+  sx?: SxProps;
 }
 
 export interface WizardStepData {
