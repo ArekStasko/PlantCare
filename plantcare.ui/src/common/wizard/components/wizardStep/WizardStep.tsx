@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./wizardStep.styles";
 import { wizardStepProviderProps } from "../../interfaces";
 
-export const WizardStep = <T,>({children, isValid, nextButton, cancelButton, backButton, title, sx}: wizardStepProviderProps<T>) => {
+export const WizardStep = <T,>({children, nextButton, cancelButton, backButton, title, sx}: wizardStepProviderProps<T>) => {
 
   return (
     <Box sx={{...sx, ...styles.stepWrapper}}>

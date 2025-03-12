@@ -11,14 +11,10 @@ const CreatePlace = () => {
   const steps = [
     {
       order: 0,
-      isFinal: false,
-      title: ,
       getStep: (wizardController: WizardController<CreatePlaceContext>) => <Details wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>,
     {
       order: 1,
-      isFinal: true,
-      title: "Summary",
       getStep: (wizardController: WizardController<CreatePlaceContext>) => <Summary wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>
   ]

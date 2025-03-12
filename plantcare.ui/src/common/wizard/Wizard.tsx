@@ -1,13 +1,12 @@
-import { Backdrop, Box, CircularProgress, Paper, Typography } from "@mui/material";
-import React, { useContext, useMemo, useState } from "react";
-import { WizardController, WizardProps, WizardStep, WizardStepData } from "./interfaces";
+import { Backdrop, Box, CircularProgress } from "@mui/material";
+import React, { useMemo, useState } from "react";
+import { WizardController, WizardProps } from "./interfaces";
 import { WizardProgress } from "./components/wizardProgress/WizardProgress";
 import styles from './wizard.styles'
 import { WizardProgressStep } from "./components/wizardProgress/interfaces";
-import { WizardNavigation } from "./components/wizardNavigation/WizardNavigation";
 import CancelDialog from "../compontents/CancelDialog/cancelDialog";
 
-const Wizard = <T,>({initialContext, steps, onSubmit}: WizardProps<T>) => {
+const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [openCancelDialog, setOpenCancelDialog] = useState(false)
   const [context, setContext] = useState<T>(initialContext);
@@ -29,7 +28,6 @@ const Wizard = <T,>({initialContext, steps, onSubmit}: WizardProps<T>) => {
   const stepsToDisplayInProgress = useMemo(() => {
     return steps.map(s => ({
       order: s.order,
-      title: s.title,
     } as WizardProgressStep))
   }, [steps])
 
