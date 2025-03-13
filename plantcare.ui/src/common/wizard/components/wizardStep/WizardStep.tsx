@@ -6,9 +6,9 @@ import { wizardStepProviderProps } from "../../interfaces";
 export const WizardStep = <T,>({children, nextButton, cancelButton, backButton, title, sx}: wizardStepProviderProps<T>) => {
 
   return (
-    <Box sx={{...sx, ...styles.stepWrapper}}>
+    <Box sx={{...sx, ...styles.stepWrapper, flexDirection: 'column'}}>
           <Paper sx={styles.stepStyles} elevation={3}>
-            <Typography variant="h5">
+            <Typography sx={styles.stepTitle} variant="h5">
               {title}
             </Typography>
             {children}
@@ -17,7 +17,7 @@ export const WizardStep = <T,>({children, nextButton, cancelButton, backButton, 
         <Button disabled={backButton.isDisabled} variant='contained' onClick={() => backButton.onClick()}>{backButton.title}</Button>
         <Box>
           <Button disabled={cancelButton.isDisabled} variant='outlined' color='warning' onClick={() => cancelButton.onClick()}>{cancelButton.title}</Button>
-          <Button disabled={nextButton..isDisabled} variant='contained' sx={styles.nextButton} onClick={() => nextButton.onClick()}>
+          <Button disabled={nextButton.isDisabled} variant='contained' sx={styles.nextButton} onClick={() => nextButton.onClick()}>
               {nextButton.title}
           </Button>
         </Box>

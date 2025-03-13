@@ -28,6 +28,7 @@ export interface WizardStepData {
 
 export interface WizardStep<T> {
   order: number;
+  title: string;
   getStep: (wizardController: WizardController<T>) => JSX.Element;
 }
 
@@ -45,5 +46,4 @@ export interface WizardController<T> {
 export interface WizardProps<T> {
   initialContext: T;
   steps: WizardStep<T>[];
-  onSubmit: (context: T) => void;
 }

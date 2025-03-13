@@ -11,20 +11,18 @@ const CreatePlace = () => {
   const steps = [
     {
       order: 0,
+      title: "Details",
       getStep: (wizardController: WizardController<CreatePlaceContext>) => <Details wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>,
     {
       order: 1,
+      title: "Summary",
       getStep: (wizardController: WizardController<CreatePlaceContext>) => <Summary wizardController={wizardController} />
     } as WizardStep<CreatePlaceContext>
   ]
 
-  const onSubmit = (context: CreatePlaceContext) => {
-    console.log(context)
-  }
-
   return (
-    <Wizard<CreatePlaceContext> initialContext={initialContext} steps={steps} onSubmit={onSubmit} />
+    <Wizard<CreatePlaceContext> initialContext={initialContext} steps={steps} />
   )
 }
 

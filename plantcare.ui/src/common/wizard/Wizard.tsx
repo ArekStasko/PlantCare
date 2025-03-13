@@ -12,8 +12,6 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
-
   const wizardController: WizardController<T> = {
     context: context,
     onLoading: (isLoading: boolean) => setLoading(isLoading),
@@ -25,8 +23,11 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
     onCancel: () => setOpenCancelDialog(true),
   }
 
+  const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
+
   const stepsToDisplayInProgress = useMemo(() => {
     return steps.map(s => ({
+      title: s.title,
       order: s.order,
     } as WizardProgressStep))
   }, [steps])

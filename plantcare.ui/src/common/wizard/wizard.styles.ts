@@ -12,7 +12,6 @@ const wizardContent = {
   height: '70%',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-around',
 }
 
 const stepWrapper = {

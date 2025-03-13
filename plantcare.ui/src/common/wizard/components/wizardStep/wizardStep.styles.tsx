@@ -1,5 +1,8 @@
+
 const stepWrapper = {
-  height: '70%'
+  height: '70%',
+  display: 'flex',
+  justifyContent: 'space-evenly',
 }
 
 const wizardNavigation = {
@@ -20,6 +23,11 @@ const stepStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
+  p: '15px'
+}
+
+const stepTitle = {
+  mb: '10px',
 }
 
 
@@ -27,5 +35,6 @@ export default {
   stepStyles,
   stepWrapper,
   wizardNavigation,
-  nextButton
+  nextButton,
+  stepTitle
 }
