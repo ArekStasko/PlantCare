@@ -10,8 +10,7 @@ const wizardNavigation = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  pr: '10px',
-  pl: '10px',
+  p: '10px'
 }
 
 const nextButton = {
@@ -29,7 +28,6 @@ const stepStyles = {
 const stepTitle = {
   mb: '10px',
 }
-
 
 export default {
   stepStyles,
