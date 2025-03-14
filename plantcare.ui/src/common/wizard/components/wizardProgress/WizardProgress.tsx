@@ -1,4 +1,4 @@
-import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
+import { Box } from "@mui/material";
 import styles from './wizardProgress.styles'
 import { WizardProgressProps } from "./interfaces";
 import { ProgressTile } from "./progressTile";
