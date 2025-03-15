@@ -1,14 +1,14 @@
-import { Backdrop, Box, CircularProgress } from "@mui/material";
-import React, { useMemo, useState } from "react";
-import { WizardController, WizardProps } from "./interfaces";
-import { WizardProgress } from "./components/wizardProgress/WizardProgress";
-import styles from './wizard.styles'
-import { WizardProgressStep } from "./components/wizardProgress/interfaces";
-import CancelDialog from "../compontents/CancelDialog/cancelDialog";
+import { Backdrop, Box, CircularProgress } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+import { WizardController, WizardProps } from './interfaces';
+import { WizardProgress } from './components/wizardProgress/WizardProgress';
+import styles from './wizard.styles';
+import { WizardProgressStep } from './components/wizardProgress/interfaces';
+import CancelDialog from '../compontents/CancelDialog/cancelDialog';
 
-const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
+const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [openCancelDialog, setOpenCancelDialog] = useState(false)
+  const [openCancelDialog, setOpenCancelDialog] = useState(false);
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -20,33 +20,36 @@ const Wizard = <T,>({initialContext, steps}: WizardProps<T>) => {
     goToNextStep: () => setCurrentStep((prev) => prev + 1),
     goToPreviousStep: () => setCurrentStep((prev) => prev - 1),
     goToStep: (step: number) => setCurrentStep(step),
-    onCancel: () => setOpenCancelDialog(true),
-  }
+    onCancel: () => setOpenCancelDialog(true)
+  };
 
-  const Step = useMemo(() => steps.find(step => step.order === currentStep)?.getStep(wizardController), [currentStep])
+  const Step = useMemo(
+    () => steps.find((step) => step.order === currentStep)?.getStep(wizardController),
+    [currentStep]
+  );
 
   const stepsToDisplayInProgress = useMemo(() => {
-    return steps.map(s => ({
-      title: s.title,
-      order: s.order,
-    } as WizardProgressStep))
-  }, [steps])
+    return steps.map(
+      (s) =>
+        ({
+          title: s.title,
+          order: s.order
+        }) as WizardProgressStep
+    );
+  }, [steps]);
 
   return (
     <Box sx={styles.wizard}>
       <Box sx={styles.wizardContent}>
-      <WizardProgress
-        steps={stepsToDisplayInProgress}
-        currentStep={currentStep}
-      />
-      <Backdrop open={loading}>
-        <CircularProgress color="secondary" size={20} />
-      </Backdrop>
+        <WizardProgress steps={stepsToDisplayInProgress} currentStep={currentStep} />
+        <Backdrop open={loading}>
+          <CircularProgress color="secondary" size={20} />
+        </Backdrop>
         {Step}
       </Box>
       <CancelDialog openDialog={openCancelDialog} setOpenDialog={setOpenCancelDialog} />
     </Box>
-  )
-}
+  );
+};
 
 export default Wizard;

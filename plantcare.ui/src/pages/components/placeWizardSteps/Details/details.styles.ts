@@ -5,17 +5,17 @@ const placeDetailsWrapper = {
   flexDirection: 'column',
   alignItems: 'flex-start',
   p: '10px',
-  pl: '20px',
+  pl: '20px'
 };
 
 const placeName = {
   width: '60%',
-  mt: '30px',
+  mt: '30px'
 };
 
 const detailsContainer = {
-  width: '100%',
-}
+  width: '100%'
+};
 
 export default {
   detailsContainer,

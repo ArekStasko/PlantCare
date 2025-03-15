@@ -13,14 +13,14 @@ const RoutingPaths = {
   plantStatistics: '/statistics',
   createPlace: '/create-place',
   updatePlace: '/update-place',
-  addModule: '/add-module',
+  addModule: '/add-module'
 };
 
 export const ActionsTranslation: Dictionary<string> = {
   '/dashboard': 'Dashboard',
   '/create-plant': 'Create Plant',
   '/create-place': 'Create Place',
-  '/add-module': 'Add Module',
+  '/add-module': 'Add Module'
 };
 
 export const ActionsToPerform = [

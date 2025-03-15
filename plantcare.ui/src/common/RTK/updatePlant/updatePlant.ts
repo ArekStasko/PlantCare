@@ -7,7 +7,7 @@ export const updatePlantApi = plantcareApi.injectEndpoints({
       query: ({ ...data }) => ({
         url: '/plants/Update',
         method: 'POST',
-        body: data,
+        body: data
       })
     })
   }),

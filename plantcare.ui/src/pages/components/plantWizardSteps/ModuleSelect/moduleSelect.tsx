@@ -47,7 +47,8 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
                     defaultValue={plantData?.placeId ?? ''}
                     id="plantModule"
                     error={!!errors.plantPlace}
-                    labelId="SelectPlantPlace">
+                    labelId="SelectPlantPlace"
+                  >
                     {modules!
                       .filter((m) => m.plant == null)
                       .map((m) => (

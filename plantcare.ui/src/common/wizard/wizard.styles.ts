@@ -4,22 +4,22 @@ const wizard = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center',
-}
+  alignItems: 'center'
+};
 
 const wizardContent = {
   width: '50%',
   height: '70%',
   display: 'flex',
-  flexDirection: 'column',
-}
+  flexDirection: 'column'
+};
 
 const stepWrapper = {
   height: '70%'
-}
+};
 
 export default {
   wizard,
   wizardContent,
-  stepWrapper,
-}
+  stepWrapper
+};

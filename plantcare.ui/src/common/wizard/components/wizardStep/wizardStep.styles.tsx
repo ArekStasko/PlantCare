@@ -1,9 +1,8 @@
-
 const stepWrapper = {
   height: '70%',
   display: 'flex',
-  justifyContent: 'space-evenly',
-}
+  justifyContent: 'space-evenly'
+};
 
 const wizardNavigation = {
   height: '10%',
@@ -11,11 +10,11 @@ const wizardNavigation = {
   alignItems: 'center',
   justifyContent: 'space-between',
   p: '10px'
-}
+};
 
 const nextButton = {
-  ml: '10px',
-}
+  ml: '10px'
+};
 
 const stepStyles = {
   height: '70%',
@@ -23,11 +22,11 @@ const stepStyles = {
   flexDirection: 'column',
   justifyContent: 'space-around',
   p: '15px'
-}
+};
 
 const stepTitle = {
-  mb: '10px',
-}
+  mb: '10px'
+};
 
 export default {
   stepStyles,
@@ -35,4 +34,4 @@ export default {
   wizardNavigation,
   nextButton,
   stepTitle
-}
+};

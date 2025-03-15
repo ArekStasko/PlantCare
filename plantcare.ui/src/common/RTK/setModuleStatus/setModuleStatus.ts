@@ -1,5 +1,5 @@
-import { SetModuleStatusRequest } from "./setModuleStatusRequest";
-import plantcareApi from "../../../app/api/plantcareApi";
+import { SetModuleStatusRequest } from './setModuleStatusRequest';
+import plantcareApi from '../../../app/api/plantcareApi';
 
 export const setModuleStatusApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,7 +7,7 @@ export const setModuleStatusApi = plantcareApi.injectEndpoints({
       query: ({ ...data }) => ({
         url: '/modules/status',
         method: 'POST',
-        body: data,
+        body: data
       })
     })
   }),

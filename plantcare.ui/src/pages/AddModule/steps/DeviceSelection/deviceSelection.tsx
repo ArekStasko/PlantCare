@@ -1,13 +1,13 @@
-import { Typography, Box, Button, CircularProgress } from "@mui/material";
+import { Typography, Box, Button, CircularProgress } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import styles from './deviceSelection.styles';
-import React, { useState } from "react";
-import CustomAlert from "../../../../common/compontents/customAlert/customAlert";
-import { BLEDevice } from "../../../../common/models/BLEDevice";
-import { ModuleStepProps } from "../../addModule";
+import React, { useState } from 'react';
+import CustomAlert from '../../../../common/compontents/customAlert/customAlert';
+import { BLEDevice } from '../../../../common/models/BLEDevice';
+import { ModuleStepProps } from '../../addModule';
 
-export const DeviceSelection = ({context, updateContext}: ModuleStepProps) => {
+export const DeviceSelection = ({ context, updateContext }: ModuleStepProps) => {
   const [device, setDevice] = useState<BLEDevice | undefined>(context.device);
   const [alert, setAlert] = useState<string | undefined>();
   const [selectingDevice, setSelectingDevice] = useState<boolean>(false);
@@ -34,49 +34,40 @@ export const DeviceSelection = ({context, updateContext}: ModuleStepProps) => {
         updateContext({
           device,
           characteristic
-        })
+        });
       } catch (error) {
-        setAlert("We are unable to connect to the device, make sure the bluetooth is on")
+        setAlert('We are unable to connect to the device, make sure the bluetooth is on');
       }
     } else {
-      setAlert("Bluetooth is not available");
+      setAlert('Bluetooth is not available');
     }
     setSelectingDevice(false);
   };
 
-
   return (
     <Box sx={styles.deviceSelectionWrapper}>
-      {
-        selectingDevice ? (
-          <CircularProgress />
-          ) : (
-          <>
-            {alert !== undefined && device === undefined && (
-              <CustomAlert message={alert} type={"error"} />
-            )}
-            <Box>
-              <Typography variant="h6">Select plantcare module from device list</Typography>
-              <Typography variant="subtitle1">Make sure that bluetooth is turned on</Typography>
-            </Box>
-            <Button onClick={selectDevice}>
-              Select device
-            </Button>
-            {device && (
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography>
-                      Paired Device:
-                    </Typography>
-                    <Typography component="div">
-                      {device.name}
-                    </Typography>
-                  </CardContent>
-                </Card>
-            )}
-          </>
-        )
-      }
+      {selectingDevice ? (
+        <CircularProgress />
+      ) : (
+        <>
+          {alert !== undefined && device === undefined && (
+            <CustomAlert message={alert} type={'error'} />
+          )}
+          <Box>
+            <Typography variant="h6">Select plantcare module from device list</Typography>
+            <Typography variant="subtitle1">Make sure that bluetooth is turned on</Typography>
+          </Box>
+          <Button onClick={selectDevice}>Select device</Button>
+          {device && (
+            <Card sx={{ minWidth: 275 }}>
+              <CardContent>
+                <Typography>Paired Device:</Typography>
+                <Typography component="div">{device.name}</Typography>
+              </CardContent>
+            </Card>
+          )}
+        </>
+      )}
     </Box>
   );
 };

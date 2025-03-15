@@ -1,6 +1,6 @@
 export interface WizardProgressStep {
-  order: number,
-  title: string,
+  order: number;
+  title: string;
 }
 
 export interface ProgressTileProps {
@@ -10,6 +10,6 @@ export interface ProgressTileProps {
 }
 
 export interface WizardProgressProps {
-  steps: WizardProgressStep[],
-  currentStep: number,
+  steps: WizardProgressStep[];
+  currentStep: number;
 }

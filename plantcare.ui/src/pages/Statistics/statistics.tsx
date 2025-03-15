@@ -1,5 +1,14 @@
-import { AlertColor, Box, Card, CircularProgress, Paper, Switch, Tooltip, Typography } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
+import {
+  AlertColor,
+  Box,
+  Card,
+  CircularProgress,
+  Paper,
+  Switch,
+  Tooltip,
+  Typography
+} from '@mui/material';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
@@ -11,11 +20,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
 import { useGetPlantsQuery } from '../../common/RTK/getPlants/getPlants';
-import { useSetModuleStatusMutation } from "../../common/RTK/setModuleStatus/setModuleStatus";
-import { useGetModulesQuery } from "../../common/RTK/getModules/getModules";
-import { SetModuleStatusRequest } from "../../common/RTK/setModuleStatus/setModuleStatusRequest";
-import { PlantDetails } from "../Dashboard/components/PlantDetails";
-import { Module } from "../../common/models/Module";
+import { useSetModuleStatusMutation } from '../../common/RTK/setModuleStatus/setModuleStatus';
+import { useGetModulesQuery } from '../../common/RTK/getModules/getModules';
+import { SetModuleStatusRequest } from '../../common/RTK/setModuleStatus/setModuleStatusRequest';
+import { PlantDetails } from '../Dashboard/components/PlantDetails';
+import { Module } from '../../common/models/Module';
 
 export const Statistics = () => {
   let { moduleId } = useParams();
@@ -23,7 +32,11 @@ export const Statistics = () => {
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
-  const {data: modules, isLoading: modulesLoading, refetch: refetchModules } = useGetModulesQuery();
+  const {
+    data: modules,
+    isLoading: modulesLoading,
+    refetch: refetchModules
+  } = useGetModulesQuery();
   const [setModuleStatus] = useSetModuleStatusMutation();
 
   const {
@@ -36,10 +49,16 @@ export const Statistics = () => {
     toDate: endOfDay
   });
 
-  const plant = useMemo(() => modules?.find((m) => m.id?.toString() === moduleId)?.plant, [modules])
-  const module = useMemo((): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId), [modules])
+  const plant = useMemo(
+    () => modules?.find((m) => m.id?.toString() === moduleId)?.plant,
+    [modules]
+  );
+  const module = useMemo(
+    (): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId),
+    [modules]
+  );
 
-  const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module])
+  const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module]);
 
   const refetchMeasurementsWithNewDate = (value: Dayjs) => {
     const correctDate = value.toDate();
@@ -57,20 +76,20 @@ export const Statistics = () => {
   };
 
   const handleModuleStatusChange = async () => {
-    setIsLoading(true)
-    if(!module) return;
+    setIsLoading(true);
+    if (!module) return;
     const moduleStatusRequest = {
       moduleId: +module.id,
       status: !moduleStatus
     } as SetModuleStatusRequest;
-    const result = await setModuleStatus(moduleStatusRequest)
-    if('data' in result && result.data) {
+    const result = await setModuleStatus(moduleStatusRequest);
+    if ('data' in result && result.data) {
       setTimeout(() => {
         refetchModules();
-        setIsLoading(false)
+        setIsLoading(false);
       }, 1000);
     }
-  }
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

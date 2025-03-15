@@ -32,7 +32,7 @@ export const WizardStep = ({
   } = useFormContext();
 
   const isFormCorrect = () =>
-    validators.some((validator) => errors[validator] || watch(validator) === undefined)
+    validators.some((validator) => errors[validator] || watch(validator) === undefined);
 
   const submitFlow = async () => {
     const result = await onSubmit();
@@ -64,7 +64,8 @@ export const WizardStep = ({
           sx={styles.btn}
           variant="contained"
           onClick={() => previousStep()}
-          size="medium">
+          size="medium"
+        >
           Back
         </Button>
         <Box>
@@ -72,7 +73,8 @@ export const WizardStep = ({
             sx={styles.btn}
             variant="outlined"
             size="medium"
-            onClick={() => setOpenCancelDialog(!openCancelDialog)}>
+            onClick={() => setOpenCancelDialog(!openCancelDialog)}
+          >
             Cancel
           </Button>
           {isLastStep() ? (
@@ -81,7 +83,8 @@ export const WizardStep = ({
               sx={styles.btn}
               variant="contained"
               onClick={async () => (isAlertActive ? goToDashboard() : await submitFlow())}
-              size="medium">
+              size="medium"
+            >
               {isAlertActive ? 'Go to Dashboard' : 'Submit'}
             </Button>
           ) : (
@@ -90,7 +93,8 @@ export const WizardStep = ({
               sx={styles.btn}
               variant="contained"
               onClick={() => goToStep()}
-              size="medium">
+              size="medium"
+            >
               Proceed
             </Button>
           )}

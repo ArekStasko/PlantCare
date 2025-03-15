@@ -44,11 +44,13 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             else setCurrentAccordion(place.id);
           }}
           key={place.id}
-          disableGutters>
+          disableGutters
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
-            id="panel1a-header">
+            id="panel1a-header"
+          >
             <Box sx={styles.placesAccordionSummary}>
               <Typography variant="h6">{place.name}</Typography>
               <Box>
@@ -57,7 +59,8 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
                     onClick={() => navigate(`${RoutingConstants.updatePlace}/${place.id}`)}
                     size="large"
                     sx={{ mr: 5 }}
-                    color="primary">
+                    color="primary"
+                  >
                     <BorderColorIcon />
                   </IconButton>
                 </Tooltip>

@@ -1,5 +1,5 @@
-import { SxProps } from "@mui/material";
-import React from "react";
+import { SxProps } from '@mui/material';
+import React from 'react';
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
@@ -33,8 +33,8 @@ export interface WizardStep<T> {
 }
 
 export interface WizardController<T> {
-  context: T,
-  onLoading: (isLoading: boolean) => void,
+  context: T;
+  onLoading: (isLoading: boolean) => void;
   updateContext: (context: T) => void;
   clearContext: () => void;
   goToNextStep: () => void;

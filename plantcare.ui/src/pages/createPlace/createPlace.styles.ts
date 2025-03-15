@@ -1,9 +1,5 @@
-
-
-const summaryContainer = {
-
-}
+const summaryContainer = {};
 
 export default {
   summaryContainer
-}
+};

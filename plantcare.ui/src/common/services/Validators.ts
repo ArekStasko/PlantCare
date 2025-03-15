@@ -30,7 +30,7 @@ const updatePlaceSchema = yup.object().shape({
 const addModuleSchema = yup.object().shape({
   wifiName: yup.string().required(),
   wifiPassword: yup.string().required(),
-  connected: yup.boolean().required(),
+  connected: yup.boolean().required()
 });
 
 export default {

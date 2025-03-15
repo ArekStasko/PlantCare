@@ -3,18 +3,18 @@ const container = {
   display: 'flex',
   flexDirection: 'column',
   marginTop: '20px'
-}
+};
 
 const textfield = {
-  marginTop: '20px',
-}
+  marginTop: '20px'
+};
 
 const connectBtn = {
-  marginTop: '20px',
-}
+  marginTop: '20px'
+};
 
 export default {
   container,
   textfield,
   connectBtn
-}
+};

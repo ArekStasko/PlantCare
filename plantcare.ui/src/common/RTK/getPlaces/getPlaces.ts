@@ -5,7 +5,7 @@ export const getPlacesApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlaces: build.query<Place[], void>({
       query: () => ({
-        url : '/places/get'
+        url: '/places/get'
       })
     })
   }),

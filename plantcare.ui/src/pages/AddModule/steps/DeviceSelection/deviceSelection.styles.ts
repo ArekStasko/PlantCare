@@ -8,5 +8,5 @@ const deviceSelectionWrapper = {
 };
 
 export default {
-  deviceSelectionWrapper,
+  deviceSelectionWrapper
 };

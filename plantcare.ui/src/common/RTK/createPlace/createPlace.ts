@@ -7,7 +7,7 @@ export const createPlaceApi = plantcareApi.injectEndpoints({
       query: ({ ...data }) => ({
         url: '/places/Create',
         method: 'POST',
-        body: data,
+        body: data
       })
     })
   }),

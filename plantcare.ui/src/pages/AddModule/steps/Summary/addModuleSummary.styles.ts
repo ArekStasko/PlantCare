@@ -8,5 +8,5 @@ const addModuleSummaryWrapper = {
 };
 
 export default {
-  addModuleSummaryWrapper,
+  addModuleSummaryWrapper
 };

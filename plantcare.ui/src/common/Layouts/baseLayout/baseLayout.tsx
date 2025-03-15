@@ -8,7 +8,6 @@ type BaseLayoutProps = {
 };
 
 export const BaseLayout: FunctionComponent<BaseLayoutProps> = ({ children }) => {
-
   return (
     <Box sx={styles.container}>
       <Navbar />

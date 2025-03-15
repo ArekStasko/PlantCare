@@ -48,7 +48,8 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
                 onClick={() => navigate(`${RoutingConstants.updatePlant}/${plant.id}`)}
                 size="large"
                 sx={{ mr: 5 }}
-                color="primary">
+                color="primary"
+              >
                 <EditIcon />
               </IconButton>
             </Tooltip>
@@ -57,7 +58,8 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
                 onClick={() => navigate(`${RoutingConstants.plantStatistics}/${plant.moduleId}`)}
                 size="large"
                 sx={{ mr: 5 }}
-                color="primary">
+                color="primary"
+              >
                 <InsertChartIcon />
               </IconButton>
             </Tooltip>

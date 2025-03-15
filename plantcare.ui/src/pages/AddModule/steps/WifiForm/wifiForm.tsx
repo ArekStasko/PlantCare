@@ -1,17 +1,17 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from '@mui/material';
 import styles from './wifiForm.styles';
-import { ModuleStepProps } from "../../addModule";
-import { useFormContext } from "react-hook-form";
-import React from "react";
+import { ModuleStepProps } from '../../addModule';
+import { useFormContext } from 'react-hook-form';
+import React from 'react';
 
-const WifiForm = ({context}: ModuleStepProps) => {
+const WifiForm = ({ context }: ModuleStepProps) => {
   const {
     register,
     watch,
     formState: { errors }
   } = useFormContext();
 
-  return(
+  return (
     <Box sx={styles.container}>
       <Typography variant="h6">Provide your WiFi network information</Typography>
       <TextField
@@ -19,7 +19,7 @@ const WifiForm = ({context}: ModuleStepProps) => {
         label="Full Name"
         id="wifiName"
         error={!!errors.wifiName}
-        helperText={errors.wifiName && "WiFi name is required"}
+        helperText={errors.wifiName && 'WiFi name is required'}
         variant="filled"
         disabled={watch('connected')}
         {...register('wifiName')}
@@ -30,13 +30,13 @@ const WifiForm = ({context}: ModuleStepProps) => {
         id="wifiPassword"
         type="password"
         error={!!errors.wifiPassword}
-        helperText={errors.wifiPassword && "WiFi password is required"}
+        helperText={errors.wifiPassword && 'WiFi password is required'}
         variant="filled"
         disabled={watch('connected')}
         {...register('wifiPassword')}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default WifiForm
+export default WifiForm;

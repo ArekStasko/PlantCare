@@ -1,7 +1,7 @@
 import React from 'react';
 import { wizardContextProps } from '../interfaces';
 import styles from './wizardContext.styles';
-import { Box, CircularProgress, Container, Step, StepLabel, Stepper } from "@mui/material";
+import { Box, CircularProgress, Container, Step, StepLabel, Stepper } from '@mui/material';
 import WizardStep from '../WizardStep/wizardStep';
 import { FormProvider } from 'react-hook-form';
 import { number } from 'yup';
@@ -61,7 +61,8 @@ export const WizardContext = ({ onSubmit, steps, methods, isLoading }: wizardCon
                 isLastStep={isLastStep}
                 onSubmit={submitDecorator}
                 goToStep={goToNextStep}
-                previousStep={previousStep}>
+                previousStep={previousStep}
+              >
                 {getCurrentStep()!.component}
               </WizardStep>
             )}

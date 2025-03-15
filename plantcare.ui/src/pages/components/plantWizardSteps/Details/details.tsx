@@ -48,7 +48,8 @@ export const Details = ({ plantData }: PlantDetailsProps) => {
                 value={value}
                 id="plantType"
                 error={!!errors.plantType}
-                labelId="SelectType">
+                labelId="SelectType"
+              >
                 <MenuItem value={PlantType.Vegetable}>
                   <Box sx={styles.option}>
                     <Typography>Vegetable</Typography>
