@@ -29,7 +29,7 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
       backButton={backButton}
       title="Details"
     >
-      <Typography>Create Place Summary</Typography>
+      <Typography>{wizardController.context.name}</Typography>
     </WizardStep>
   );
 };
