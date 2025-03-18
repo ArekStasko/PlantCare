@@ -1,7 +1,7 @@
 import Wizard from '../../common/wizard/Wizard';
 import { CreatePlaceContext } from './interfaces';
 import { WizardController, WizardStep } from '../../common/wizard/interfaces';
-import Details from './steps/Details';
+import Details from './steps/details/Details';
 import Summary from './steps/Summary';
 
 const CreatePlace = () => {
