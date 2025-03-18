@@ -8,8 +8,9 @@ const wizard = {
 };
 
 const wizardContent = {
-  width: '50%',
-  height: '70%',
+  width: '70%',
+  height: '90%',
+  maxWidth: '600px',
   display: 'flex',
   flexDirection: 'column'
 };

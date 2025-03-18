@@ -1,6 +1,6 @@
 const wrapper = {
   width: '100%',
-  position: 'absolute'
+  height: '10%'
 };
 export default {
   wrapper

@@ -13,7 +13,7 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
   } as buttonAction;
 
   const cancelButton = {
-    onClick: () => wizardController.goToNextStep(),
+    onClick: () => wizardController.onCancel(),
     isDisabled: false,
     title: 'Cancel'
   } as buttonAction;
