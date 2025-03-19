@@ -2,10 +2,24 @@ import { Typography } from '@mui/material';
 import { buttonAction, WizardStepProps } from '../../../common/wizard/interfaces';
 import { CreatePlaceContext } from '../interfaces';
 import { WizardStep } from '../../../common/wizard/components/wizardStep/WizardStep';
+import { useCreatePlaceMutation } from "../../../common/RTK/createPlace/createPlace";
+import { CreatePlaceRequest } from "../../../common/RTK/createPlace/createPlaceRequest";
+import { useEffect } from "react";
 
 const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
+  const [createPlant, {isLoading}] = useCreatePlaceMutation()
+
+  useEffect(() => {
+    wizardController.onLoading(isLoading);
+  }, [isLoading])
+
   const nextButton = {
-    onClick: () => wizardController.goToNextStep(),
+    onClick: async () => {
+      const request = {
+        name: wizardController.context.name
+      } as CreatePlaceRequest;
+      await createPlant(request)
+    },
     isDisabled: false,
     title: 'Submit'
   } as buttonAction;
