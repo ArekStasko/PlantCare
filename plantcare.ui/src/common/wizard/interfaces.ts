@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
