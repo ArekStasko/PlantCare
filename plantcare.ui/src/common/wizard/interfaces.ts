@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import React from 'react';
+import React, { ReactElement } from "react";
 
 export interface WizardStepProps<T> {
   wizardController: WizardController<T>;
@@ -17,6 +17,7 @@ export interface wizardStepProviderProps<T> {
   cancelButton: buttonAction;
   backButton: buttonAction;
   title: string;
+  popup?: JSX.Element;
   sx?: SxProps;
 }
 
