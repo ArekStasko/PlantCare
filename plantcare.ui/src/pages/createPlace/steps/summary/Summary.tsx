@@ -1,13 +1,14 @@
-import { Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../common/wizard/interfaces';
-import { CreatePlaceContext } from '../interfaces';
-import { WizardStep } from '../../../common/wizard/components/wizardStep/WizardStep';
-import { useCreatePlaceMutation } from '../../../common/RTK/createPlace/createPlace';
-import { CreatePlaceRequest } from '../../../common/RTK/createPlace/createPlaceRequest';
+import { Box, Typography } from "@mui/material";
+import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
+import { CreatePlaceContext } from '../../interfaces';
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
+import { useCreatePlaceMutation } from '../../../../common/RTK/createPlace/createPlace';
+import { CreatePlaceRequest } from '../../../../common/RTK/createPlace/createPlaceRequest';
 import { useEffect } from 'react';
-import Popup, { PopupStatus } from '../../../common/compontents/popup/Popup';
+import Popup, { PopupStatus } from '../../../../common/compontents/popup/Popup';
 import { useNavigate } from 'react-router';
-import RoutingConstants from '../../../app/routing/routingConstants';
+import RoutingConstants from '../../../../app/routing/routingConstants';
+import styles from'./summary.styles'
 
 const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
   const navigate = useNavigate();
@@ -61,7 +62,10 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
         />
       }
     >
-      <Typography>{wizardController.context.name}</Typography>
+      <Box styles={styles.summaryWrapper}>
+        <Typography>Name</Typography>
+        <Typography>{wizardController.context.name}</Typography>
+      </Box>
     </WizardStep>
   );
 };
