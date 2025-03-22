@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
 import { CreatePlaceContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import Popup, { PopupStatus } from '../../../../common/compontents/popup/Popup';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
-import styles from'./summary.styles'
+import styles from './summary.styles';
 
 const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
   const navigate = useNavigate();
