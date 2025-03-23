@@ -1,4 +1,4 @@
-import { Box, Card, Divider, Typography } from "@mui/material";
+import { Box, Card, Divider, Typography } from '@mui/material';
 import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
 import { CreatePlaceContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
@@ -65,10 +65,12 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
       <Card elevation={5} sx={styles.summaryList}>
         <Box sx={styles.summaryListElement}>
           <Box sx={styles.summaryListText}>
-            <Typography variant="button" sx={styles.summaryListTitle}>Name</Typography>
+            <Typography variant="button" sx={styles.summaryListTitle}>
+              Name
+            </Typography>
             <Typography>{wizardController.context.name}</Typography>
           </Box>
-          <Divider sx={{width: '80%'}} />
+          <Divider sx={{ width: '80%' }} />
         </Box>
       </Card>
     </WizardStep>
