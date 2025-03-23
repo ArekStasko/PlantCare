@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Card, Divider, Typography } from "@mui/material";
 import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
 import { CreatePlaceContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { useCreatePlaceMutation } from '../../../../common/RTK/createPlace/createPlace';
 import { CreatePlaceRequest } from '../../../../common/RTK/createPlace/createPlaceRequest';
 import { useEffect } from 'react';
-import Popup, { PopupStatus } from '../../../../common/compontents/popup/Popup';
+import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import styles from './summary.styles';
@@ -62,10 +62,15 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
         />
       }
     >
-      <Box styles={styles.summaryWrapper}>
-        <Typography>Name</Typography>
-        <Typography>{wizardController.context.name}</Typography>
-      </Box>
+      <Card elevation={5} sx={styles.summaryList}>
+        <Box sx={styles.summaryListElement}>
+          <Box sx={styles.summaryListText}>
+            <Typography variant="button" sx={styles.summaryListTitle}>Name</Typography>
+            <Typography>{wizardController.context.name}</Typography>
+          </Box>
+          <Divider sx={{width: '80%'}} />
+        </Box>
+      </Card>
     </WizardStep>
   );
 };

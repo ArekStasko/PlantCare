@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import styles from './deviceSelection.styles';
 import React, { useState } from 'react';
-import CustomAlert from '../../../../common/compontents/customAlert/customAlert';
+import CustomAlert from '../../../../common/components/customAlert/customAlert';
 import { BLEDevice } from '../../../../common/models/BLEDevice';
 import { ModuleStepProps } from '../../addModule';
 

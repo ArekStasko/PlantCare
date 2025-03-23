@@ -13,7 +13,7 @@ import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMea
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
 import MeasurementsChart from './components/measurementsChart';
-import CustomAlert from '../../common/compontents/customAlert/customAlert';
+import CustomAlert from '../../common/components/customAlert/customAlert';
 import styles from './statistics.styles';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

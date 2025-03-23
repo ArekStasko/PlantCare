@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import Navbar from '../../compontents/navbar/navbar';
+import Navbar from '../../components/navbar/navbar';
 import styles from './baseLayout.styles';
 
 type BaseLayoutProps = {

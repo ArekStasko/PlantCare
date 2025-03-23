@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useGetPlacesQuery } from '../../common/RTK/getPlaces/getPlaces';
 import styles from './dashboard.styles';
-import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
+import CustomBackdrop from '../../common/components/customBackdrop/backdrop';
 import PlacesAccordion from './components/PlacesAccordion';
 import { useGetPlantsQuery } from '../../common/RTK/getPlants/getPlants';
-import NoDataDialog from '../../common/compontents/NoDataAlert/noDataDialog';
+import NoDataDialog from '../../common/components/NoDataAlert/noDataDialog';
 
 const Dashboard = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();

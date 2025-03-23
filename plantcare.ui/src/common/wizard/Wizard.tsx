@@ -4,7 +4,7 @@ import { WizardController, WizardProps } from './interfaces';
 import { WizardProgress } from './components/wizardProgress/WizardProgress';
 import styles from './wizard.styles';
 import { WizardProgressStep } from './components/wizardProgress/interfaces';
-import CancelDialog from '../compontents/CancelDialog/cancelDialog';
+import CancelDialog from '../components/CancelDialog/cancelDialog';
 
 const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);

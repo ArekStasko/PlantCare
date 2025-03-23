@@ -8,7 +8,7 @@ import WizardContext from '../../common/Layouts/Wizard/WizardContext/wizardConte
 import { useUpdatePlaceMutation } from '../../common/RTK/updatePlace/updatePlace';
 import { useParams } from 'react-router';
 import { UpdatePlaceRequest } from '../../common/RTK/updatePlace/updatePlaceRequest';
-import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
+import CustomBackdrop from '../../common/components/customBackdrop/backdrop';
 import UpdateSummary from '../components/placeWizardSteps/UpdateSummary/updateSummary';
 import Details from '../components/placeWizardSteps/Details/details';
 import ActionSelect from '../components/ActionSelect/actionSelect';

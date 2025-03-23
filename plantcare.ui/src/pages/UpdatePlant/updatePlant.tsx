@@ -8,7 +8,7 @@ import { UpdatePlantRequest } from '../../common/RTK/updatePlant/updatePlantRequ
 import { useParams } from 'react-router';
 import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 import validators from '../../common/services/Validators';
-import CustomBackdrop from '../../common/compontents/customBackdrop/backdrop';
+import CustomBackdrop from '../../common/components/customBackdrop/backdrop';
 import Summary from '../components/plantWizardSteps/Summary/summary';
 import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
