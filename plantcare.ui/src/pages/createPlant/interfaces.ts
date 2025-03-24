@@ -1,4 +1,1 @@
-
-export interface CreatePlantContext{
-
-}
+export interface CreatePlantContext {}

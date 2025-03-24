@@ -1,10 +1,10 @@
-import { CreatePlantContext } from "./interfaces";
-import Wizard from "../../common/wizard/Wizard";
-import { WizardController, WizardStep } from "../../common/wizard/interfaces";
-import Details from "./steps/details/Details";
-import Place from "./steps/place/Place";
-import Module from "./steps/module/Module";
-import Summary from "./steps/summary/Summary";
+import { CreatePlantContext } from './interfaces';
+import Wizard from '../../common/wizard/Wizard';
+import { WizardController, WizardStep } from '../../common/wizard/interfaces';
+import Details from './steps/details/Details';
+import Place from './steps/place/Place';
+import Module from './steps/module/Module';
+import Summary from './steps/summary/Summary';
 
 const CreatePlantWizard = () => {
   const initialContext: CreatePlantContext = {};
@@ -37,10 +37,10 @@ const CreatePlantWizard = () => {
       getStep: (wizardController: WizardController<CreatePlantContext>) => (
         <Summary wizardController={wizardController} />
       )
-    } as WizardStep<CreatePlantContext>,
-  ]
+    } as WizardStep<CreatePlantContext>
+  ];
 
-  return <Wizard<CreatePlantContext> initialContext={initialContext} steps={steps}/>
-}
+  return <Wizard<CreatePlantContext> initialContext={initialContext} steps={steps} />;
+};
 
-export default CreatePlantWizard
+export default CreatePlantWizard;

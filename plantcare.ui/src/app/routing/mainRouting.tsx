@@ -9,7 +9,7 @@ import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
 import AddModule from '../../pages/AddModule/addModule';
-import CreatePlantWizard from "../../pages/createPlant/CreatePlantWizard";
+import CreatePlantWizard from '../../pages/createPlant/CreatePlantWizard';
 
 export const MainRouting = () => {
   return (

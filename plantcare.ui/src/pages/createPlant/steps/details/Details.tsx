@@ -1,10 +1,9 @@
-import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
-import { Typography } from "@mui/material";
-import { buttonAction, WizardStepProps } from "../../../../common/wizard/interfaces";
-import {CreatePlantContext} from "../../interfaces";
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
+import { Typography } from '@mui/material';
+import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
+import { CreatePlantContext } from '../../interfaces';
 
 const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
-
   const nextButton = {
     onClick: () => {
       wizardController.goToNextStep();
@@ -26,10 +25,15 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
   } as buttonAction;
 
   return (
-    <WizardStep nextButton={nextButton} cancelButton={cancelButton} backButton={backButton} title={"Details"}>
+    <WizardStep
+      nextButton={nextButton}
+      cancelButton={cancelButton}
+      backButton={backButton}
+      title={'Details'}
+    >
       <Typography>Plant Details</Typography>
     </WizardStep>
-  )
-}
+  );
+};
 
-export default Details
+export default Details;
