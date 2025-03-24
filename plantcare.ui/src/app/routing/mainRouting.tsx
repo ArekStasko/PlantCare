@@ -3,13 +3,13 @@ import RoutingConstants from './routingConstants';
 import React from 'react';
 import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/Dashboard/dashboard';
-import CreatePlace from '../../pages/createPlace/CreatePlace';
-import CreatePlant from '../../pages/CreatePlant/createPlant';
+import CreatePlaceWizard from '../../pages/createPlace/CreatePlaceWizard';
 import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
 import AddModule from '../../pages/AddModule/addModule';
+import CreatePlantWizard from "../../pages/createPlant/CreatePlantWizard";
 
 export const MainRouting = () => {
   return (
@@ -27,7 +27,7 @@ export const MainRouting = () => {
         path={RoutingConstants.createPlant}
         element={
           <BaseLayout>
-            <CreatePlant />
+            <CreatePlantWizard />
           </BaseLayout>
         }
       />
@@ -51,7 +51,7 @@ export const MainRouting = () => {
         path={RoutingConstants.createPlace}
         element={
           <BaseLayout>
-            <CreatePlace />
+            <CreatePlaceWizard />
           </BaseLayout>
         }
       />

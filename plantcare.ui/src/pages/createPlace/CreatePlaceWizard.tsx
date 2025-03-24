@@ -4,7 +4,7 @@ import { WizardController, WizardStep } from '../../common/wizard/interfaces';
 import Details from './steps/details/Details';
 import Summary from './steps/summary/Summary';
 
-const CreatePlace = () => {
+const CreatePlaceWizard = () => {
   const initialContext: CreatePlaceContext = {};
 
   const steps = [
@@ -27,4 +27,4 @@ const CreatePlace = () => {
   return <Wizard<CreatePlaceContext> initialContext={initialContext} steps={steps} />;
 };
 
-export default CreatePlace;
+export default CreatePlaceWizard;
