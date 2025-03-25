@@ -10,7 +10,8 @@ const progress = {
   width: '100%',
   display: 'flex',
   alignItems: 'flex-end',
-  justifyContent: 'space-around'
+  justifyContent: 'space-around',
+  gap: '10px'
 };
 
 const progressTile = {
