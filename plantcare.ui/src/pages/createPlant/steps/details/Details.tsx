@@ -1,19 +1,18 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Box, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
 import { CreatePlantContext } from '../../interfaces';
-import { Controller, useForm } from "react-hook-form";
-import { PlantType } from "../../../../common/models/plantTypes";
-import Vegetable from "../../../../app/images/Vegetable.png";
-import Fruit from "../../../../app/images/Fruit.png";
-import Decorative from "../../../../app/images/Decorative.png";
-import React from "react";
-import styles from './details.styles'
-import { yupResolver } from "@hookform/resolvers/yup";
-import validators from "../../../../common/services/Validators";
+import { Controller, useForm } from 'react-hook-form';
+import { PlantType } from '../../../../common/models/plantTypes';
+import Vegetable from '../../../../app/images/Vegetable.png';
+import Fruit from '../../../../app/images/Fruit.png';
+import Decorative from '../../../../app/images/Decorative.png';
+import React from 'react';
+import styles from './details.styles';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validators from '../../../../common/services/Validators';
 
 const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
-
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantSchema),
