@@ -10,7 +10,6 @@ import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 import validators from '../../common/services/Validators';
 import CustomBackdrop from '../../common/components/customBackdrop/backdrop';
 import Summary from '../components/plantWizardSteps/Summary/summary';
-import Details from '../components/plantWizardSteps/Details/details';
 import PlaceSelect from '../components/plantWizardSteps/PlaceSelect/placeSelect';
 import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
@@ -98,16 +97,6 @@ export const UpdatePlant = () => {
       id: 1,
       isStepVisible: getIsStepVisible('delete'),
       isFinal: true
-    },
-    {
-      title: 'Plant Details',
-      component: <Details plantData={plant!} />,
-      validators: ['name', 'description', 'plantType'],
-      previousStep: 0,
-      id: 2,
-      nextStep: 3,
-      isStepVisible: getIsStepVisible('update'),
-      isFinal: false
     },
     {
       title: 'Place Select',
