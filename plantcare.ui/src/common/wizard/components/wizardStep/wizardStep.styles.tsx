@@ -1,5 +1,5 @@
 const stepWrapper = {
-  height: '70%',
+  flexGrow: 1,
   display: 'flex',
   justifyContent: 'space-evenly'
 };

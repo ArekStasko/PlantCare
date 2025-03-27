@@ -58,7 +58,6 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
       backButton={backButton}
       title={'Details'}
     >
-      <Box sx={styles.plantDetailsWrapper}>
         <Box sx={styles.nameNtypeWrapper}>
           <Box sx={styles.inputWrapper}>
             <InputLabel id="SelectPlace">Provide your Plant name</InputLabel>
@@ -155,7 +154,6 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
             {...register('description')}
           />
         </Box>
-      </Box>
     </WizardStep>
   );
 };
