@@ -58,102 +58,102 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
       backButton={backButton}
       title={'Details'}
     >
-        <Box sx={styles.nameNtypeWrapper}>
-          <Box sx={styles.inputWrapper}>
-            <InputLabel id="SelectPlace">Provide your Plant name</InputLabel>
-            <TextField
-              sx={styles.nameInput}
-              label="Name"
-              id="name"
-              error={!!errors.name}
-              helperText={errors?.name?.message?.toString()}
-              variant="filled"
-              {...register('name')}
-            />
-          </Box>
-          <Box sx={styles.inputWrapper}>
-            <InputLabel id="SelectType">Select Type</InputLabel>
-            <Controller
-              control={control}
-              name="plantType"
-              render={({ field: { onChange, value }, formState: { errors } }) => (
-                <Select
-                  sx={styles.typeSelect}
-                  onChange={onChange}
-                  value={value}
-                  id="plantType"
-                  error={!!errors.plantType}
-                  labelId="SelectType"
-                >
-                  <MenuItem value={PlantType.Vegetable}>
-                    <Box sx={styles.option}>
-                      <Typography>Vegetable</Typography>
-                      <Box
-                        component="img"
-                        sx={{
-                          height: 30,
-                          width: 30,
-                          maxHeight: { xs: 30, md: 30 },
-                          maxWidth: { xs: 30, md: 30 },
-                          borderRadius: 2
-                        }}
-                        alt="Plant_Type"
-                        src={Vegetable}
-                      />
-                    </Box>
-                  </MenuItem>
-                  <MenuItem value={PlantType.Fruit}>
-                    <Box sx={styles.option}>
-                      <Typography>Fruit</Typography>
-                      <Box
-                        component="img"
-                        sx={{
-                          height: 30,
-                          width: 30,
-                          maxHeight: { xs: 30, md: 30 },
-                          maxWidth: { xs: 30, md: 30 },
-                          borderRadius: 2
-                        }}
-                        alt="Plant_Type"
-                        src={Fruit}
-                      />
-                    </Box>
-                  </MenuItem>
-                  <MenuItem value={PlantType.Decorative}>
-                    <Box sx={styles.option}>
-                      <Typography>Decorative</Typography>
-                      <Box
-                        component="img"
-                        sx={{
-                          height: 30,
-                          width: 30,
-                          maxHeight: { xs: 30, md: 30 },
-                          maxWidth: { xs: 30, md: 30 },
-                          borderRadius: 2
-                        }}
-                        alt="Plant_Type"
-                        src={Decorative}
-                      />
-                    </Box>
-                  </MenuItem>
-                </Select>
-              )}
-            />
-          </Box>
-        </Box>
-        <Box sx={styles.descriptionWrapper}>
-          <InputLabel id="descriptionLabel">Describe your plant</InputLabel>
+      <Box sx={styles.nameNtypeWrapper}>
+        <Box sx={styles.inputWrapper}>
+          <InputLabel id="SelectPlace">Provide your Plant name</InputLabel>
           <TextField
-            sx={styles.descriptionInput}
-            error={!!errors.description}
-            helperText={errors?.description?.message?.toString()}
-            label="Description"
-            id="description"
-            multiline
-            rows={8}
-            {...register('description')}
+            sx={styles.nameInput}
+            label="Name"
+            id="name"
+            error={!!errors.name}
+            helperText={errors?.name?.message?.toString()}
+            variant="filled"
+            {...register('name')}
           />
         </Box>
+        <Box sx={styles.inputWrapper}>
+          <InputLabel id="SelectType">Select Type</InputLabel>
+          <Controller
+            control={control}
+            name="plantType"
+            render={({ field: { onChange, value }, formState: { errors } }) => (
+              <Select
+                sx={styles.typeSelect}
+                onChange={onChange}
+                value={value}
+                id="plantType"
+                error={!!errors.plantType}
+                labelId="SelectType"
+              >
+                <MenuItem value={PlantType.Vegetable}>
+                  <Box sx={styles.option}>
+                    <Typography>Vegetable</Typography>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 30,
+                        width: 30,
+                        maxHeight: { xs: 30, md: 30 },
+                        maxWidth: { xs: 30, md: 30 },
+                        borderRadius: 2
+                      }}
+                      alt="Plant_Type"
+                      src={Vegetable}
+                    />
+                  </Box>
+                </MenuItem>
+                <MenuItem value={PlantType.Fruit}>
+                  <Box sx={styles.option}>
+                    <Typography>Fruit</Typography>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 30,
+                        width: 30,
+                        maxHeight: { xs: 30, md: 30 },
+                        maxWidth: { xs: 30, md: 30 },
+                        borderRadius: 2
+                      }}
+                      alt="Plant_Type"
+                      src={Fruit}
+                    />
+                  </Box>
+                </MenuItem>
+                <MenuItem value={PlantType.Decorative}>
+                  <Box sx={styles.option}>
+                    <Typography>Decorative</Typography>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 30,
+                        width: 30,
+                        maxHeight: { xs: 30, md: 30 },
+                        maxWidth: { xs: 30, md: 30 },
+                        borderRadius: 2
+                      }}
+                      alt="Plant_Type"
+                      src={Decorative}
+                    />
+                  </Box>
+                </MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
+      </Box>
+      <Box sx={styles.descriptionWrapper}>
+        <InputLabel id="descriptionLabel">Describe your plant</InputLabel>
+        <TextField
+          sx={styles.descriptionInput}
+          error={!!errors.description}
+          helperText={errors?.description?.message?.toString()}
+          label="Description"
+          id="description"
+          multiline
+          rows={8}
+          {...register('description')}
+        />
+      </Box>
     </WizardStep>
   );
 };
