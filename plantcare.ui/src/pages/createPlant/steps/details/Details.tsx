@@ -35,7 +35,7 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     onClick: () => {
       wizardController.goToNextStep();
     },
-    isDisabled: false,
+    isDisabled: !methods.formState.isValid,
     title: 'Next'
   } as buttonAction;
 
