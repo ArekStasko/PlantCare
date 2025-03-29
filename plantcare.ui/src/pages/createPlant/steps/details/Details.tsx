@@ -19,7 +19,7 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     defaultValues: {
       name: wizardController.context.name ?? '',
       description: wizardController.context.description ?? '',
-      plantType: wizardController.context.type ?? '',
+      plantType: wizardController.context.type ?? ''
     }
   });
 
@@ -36,8 +36,8 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
         name: getValues('name'),
         description: getValues('description'),
         type: getValues('plantType')
-      })
-      wizardController.goToNextStep()
+      });
+      wizardController.goToNextStep();
     },
     isDisabled: !isValid,
     title: 'Next'
