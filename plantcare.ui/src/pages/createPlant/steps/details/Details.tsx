@@ -15,27 +15,31 @@ import validators from '../../../../common/services/Validators';
 const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
   const methods = useForm({
     mode: 'onChange',
-    resolver: yupResolver(validators.createPlantSchema),
+    resolver: yupResolver(validators.createPlantDetailsSchema),
     defaultValues: {
       name: wizardController.context.name ?? '',
       description: wizardController.context.description ?? '',
       plantType: wizardController.context.type ?? '',
-      plantPlace: wizardController.context.place ?? '',
-      plantModule: wizardController.context.module ?? ''
     }
   });
 
   const {
     register,
+    getValues,
     formState: { errors, isValid },
     control
   } = methods;
 
   const nextButton = {
     onClick: () => {
-      wizardController.goToNextStep();
+      wizardController.updateContext({
+        name: getValues('name'),
+        description: getValues('description'),
+        type: getValues('plantType')
+      })
+      wizardController.goToNextStep()
     },
-    isDisabled: !methods.formState.isValid,
+    isDisabled: !isValid,
     title: 'Next'
   } as buttonAction;
 
