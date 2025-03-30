@@ -151,7 +151,6 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
           sx={styles.descriptionInput}
           error={!!errors.description}
           helperText={errors?.description?.message?.toString()}
-          label="Description"
           id="description"
           multiline
           rows={8}

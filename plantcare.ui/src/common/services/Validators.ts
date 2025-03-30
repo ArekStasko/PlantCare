@@ -14,6 +14,10 @@ const createPlantDetailsSchema = yup.object().shape({
   plantType: yup.string().required()
 });
 
+const selectPlaceSchema = yup.object().shape({
+  place: yup.string().required()
+});
+
 const updatePlantSchema = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
@@ -45,5 +49,6 @@ export default {
   updatePlantSchema,
   updatePlaceSchema,
   createPlantDetailsSchema,
-  addModuleSchema
+  addModuleSchema,
+  selectPlaceSchema
 };
