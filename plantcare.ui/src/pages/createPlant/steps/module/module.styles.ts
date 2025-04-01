@@ -1,10 +1,11 @@
 const moduleSelectWrapper = {
   width: '80%',
-  height: '100%',
+  height: '70%',
   display: 'flex',
+  pl: '20px',
   flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center'
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start'
 };
 
 const typeSelect = {
