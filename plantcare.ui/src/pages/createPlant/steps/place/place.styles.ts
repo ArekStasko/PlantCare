@@ -1,5 +1,7 @@
 const placeSelectWrapper = {
   width: '80%',
+  height: '70%',
+  pl: '20px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',

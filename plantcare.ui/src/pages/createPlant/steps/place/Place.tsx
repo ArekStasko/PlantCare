@@ -21,12 +21,17 @@ const Place = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
   });
 
   const {
-    formState: { errors, isValid },
+    getValues,
+    formState: { isValid },
     control
   } = methods;
 
   const nextButton = {
     onClick: () => {
+      wizardController.updateContext({
+        ...wizardController.context,
+        place: getValues('place')
+      });
       wizardController.goToNextStep();
     },
     isDisabled: !isValid,
