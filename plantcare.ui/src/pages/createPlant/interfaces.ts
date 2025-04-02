@@ -5,5 +5,6 @@ export interface CreatePlantContext {
   description?: string;
   type?: string;
   place?: string;
+  placeName?: string;
   module?: string;
 }

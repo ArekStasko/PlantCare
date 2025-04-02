@@ -28,9 +28,12 @@ const Place = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
 
   const nextButton = {
     onClick: () => {
+      const placeId = getValues('place');
+      const placeName = places?.find((p) => p.id === +placeId)?.name;
       wizardController.updateContext({
         ...wizardController.context,
-        place: getValues('place')
+        place: getValues('place'),
+        placeName
       });
       wizardController.goToNextStep();
     },
