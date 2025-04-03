@@ -12,7 +12,7 @@ import React from 'react';
 const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
   const nextButton = {
     onClick: () => {
-      console.log('Submit !');
+      
     },
     isDisabled: false,
     title: 'Submit'
