@@ -8,11 +8,21 @@ import Decorative from '../../../../app/images/Decorative.png';
 import Vegetable from '../../../../app/images/Vegetable.png';
 import Fruit from '../../../../app/images/Vegetable.png';
 import React from 'react';
+import { useCreatePlantMutation } from '../../../../common/RTK/createPlant/createPlant';
 
 const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
+  const [createPlant, { isLoading }] = useCreatePlantMutation();
+
   const nextButton = {
-    onClick: () => {
-      
+    onClick: async () => {
+      const request = {
+        name: wizardController.context.name,
+        description: wizardController.context.description,
+        type: wizardController.context.type,
+        placeId: wizardController.context.place,
+        moduleId: wizardController.context.module
+      };
+      await createPlant(request);
     },
     isDisabled: false,
     title: 'Submit'
