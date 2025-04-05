@@ -35,35 +35,29 @@ const Module = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     control
   } = methods;
 
-  const nextButton = {
-    onClick: () => {
-      wizardController.updateContext({
-        ...wizardController.context,
-        module: getValues('module')
-      });
-      wizardController.goToNextStep();
-    },
-    isDisabled: !isValid,
-    title: 'Next'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.onCancel(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: false,
-    title: 'Back'
-  } as buttonAction;
-
   return (
     <WizardStep
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: () => {
+          wizardController.updateContext({
+            ...wizardController.context,
+            module: getValues('module')
+          });
+          wizardController.goToNextStep();
+        },
+        isDisabled: !isValid,
+        title: 'Next'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.onCancel(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: false,
+        title: 'Back'
+      }}
       title={'Module'}
     >
       <Box sx={styles.moduleSelectWrapper}>

@@ -18,34 +18,30 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
     wizardController.onLoading(isLoading);
   }, [isLoading]);
 
-  const nextButton = {
-    onClick: async () => {
-      const request = {
-        name: wizardController.context.name
-      } as CreatePlaceRequest;
-      await createPlant(request);
-    },
-    isDisabled: isLoading,
-    title: 'Submit'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.goToNextStep(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: false,
-    title: 'Back'
-  } as buttonAction;
+  const onSubmit = async () => {
+    const request = {
+      name: wizardController.context.name
+    } as CreatePlaceRequest;
+    await createPlant(request);
+  };
 
   return (
     <WizardStep
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: onSubmit,
+        isDisabled: isLoading,
+        title: 'Submit'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.goToNextStep(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: false,
+        title: 'Back'
+      }}
       title="Details"
       popup={
         <Popup

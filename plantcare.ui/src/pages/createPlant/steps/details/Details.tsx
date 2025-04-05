@@ -30,36 +30,30 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     control
   } = methods;
 
-  const nextButton = {
-    onClick: () => {
-      wizardController.updateContext({
-        name: getValues('name'),
-        description: getValues('description'),
-        type: getValues('plantType') as PlantType
-      });
-      wizardController.goToNextStep();
-    },
-    isDisabled: !isValid,
-    title: 'Next'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.onCancel(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: true,
-    title: 'Back'
-  } as buttonAction;
-
   return (
     <WizardStep
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: () => {
+          wizardController.updateContext({
+            name: getValues('name'),
+            description: getValues('description'),
+            type: getValues('plantType') as PlantType
+          });
+          wizardController.goToNextStep();
+        },
+        isDisabled: !isValid,
+        title: 'Next'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.onCancel(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: true,
+        title: 'Back'
+      }}
       title={'Details'}
     >
       <Box sx={styles.nameNtypeWrapper}>

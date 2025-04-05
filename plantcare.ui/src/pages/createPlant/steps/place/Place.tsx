@@ -26,38 +26,34 @@ const Place = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     control
   } = methods;
 
-  const nextButton = {
-    onClick: () => {
-      const placeId = getValues('place');
-      const placeName = places?.find((p) => p.id === +placeId)?.name;
-      wizardController.updateContext({
-        ...wizardController.context,
-        place: getValues('place'),
-        placeName
-      });
-      wizardController.goToNextStep();
-    },
-    isDisabled: !isValid,
-    title: 'Next'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.onCancel(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: false,
-    title: 'Back'
-  } as buttonAction;
+  const onNext = () => {
+    const placeId = getValues('place');
+    const placeName = places?.find((p) => p.id === +placeId)?.name;
+    wizardController.updateContext({
+      ...wizardController.context,
+      place: getValues('place'),
+      placeName
+    });
+    wizardController.goToNextStep();
+  };
 
   return (
     <WizardStep
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: onNext,
+        isDisabled: !isValid,
+        title: 'Next'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.onCancel(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: false,
+        title: 'Back'
+      }}
       title={'Place'}
     >
       <Box sx={styles.placeSelectWrapper}>

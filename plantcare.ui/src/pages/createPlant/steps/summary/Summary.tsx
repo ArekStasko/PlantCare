@@ -23,32 +23,16 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
     wizardController.onLoading(isLoading);
   }, [isLoading]);
 
-  const nextButton = {
-    onClick: async () => {
-      const request = {
-        name: name,
-        description: description,
-        type: type as PlantType,
-        placeId: place,
-        moduleId: module
-      } as CreatePlantRequest;
-      await createPlant(request);
-    },
-    isDisabled: isLoading,
-    title: 'Submit'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.onCancel(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: false,
-    title: 'Back'
-  } as buttonAction;
+  const onSubmit = async () => {
+    const request = {
+      name: name,
+      description: description,
+      type: type as PlantType,
+      placeId: place,
+      moduleId: module
+    } as CreatePlantRequest;
+    await createPlant(request);
+  };
 
   const plantTypeToImage = (type?: PlantType) => {
     switch (type) {
@@ -65,9 +49,21 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
 
   return (
     <WizardStep
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: onSubmit,
+        isDisabled: isLoading,
+        title: 'Submit'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.onCancel(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: false,
+        title: 'Back'
+      }}
       title={'Summary'}
       popup={
         <Popup

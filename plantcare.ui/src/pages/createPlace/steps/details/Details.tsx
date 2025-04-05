@@ -23,35 +23,29 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
     formState: { errors, isValid }
   } = methods;
 
-  const nextButton = {
-    onClick: () => {
-      wizardController.updateContext({
-        ...wizardController.context,
-        name: getValues('name')
-      });
-      wizardController.goToNextStep();
-    },
-    isDisabled: !isValid,
-    title: 'Next'
-  } as buttonAction;
-
-  const cancelButton = {
-    onClick: () => wizardController.onCancel(),
-    isDisabled: false,
-    title: 'Cancel'
-  } as buttonAction;
-
-  const backButton = {
-    onClick: () => wizardController.goToPreviousStep(),
-    isDisabled: true,
-    title: 'Back'
-  } as buttonAction;
-
   return (
     <WizardStep<CreatePlaceContext>
-      nextButton={nextButton}
-      cancelButton={cancelButton}
-      backButton={backButton}
+      nextButton={{
+        onClick: () => {
+          wizardController.updateContext({
+            ...wizardController.context,
+            name: getValues('name')
+          });
+          wizardController.goToNextStep();
+        },
+        isDisabled: !isValid,
+        title: 'Next'
+      }}
+      cancelButton={{
+        onClick: () => wizardController.onCancel(),
+        isDisabled: false,
+        title: 'Cancel'
+      }}
+      backButton={{
+        onClick: () => wizardController.goToPreviousStep(),
+        isDisabled: true,
+        title: 'Back'
+      }}
       title="Details"
       sx={styles.detailsContainer}
     >
