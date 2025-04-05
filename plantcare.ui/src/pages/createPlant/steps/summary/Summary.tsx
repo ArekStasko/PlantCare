@@ -6,25 +6,35 @@ import styles from './summary.styles';
 import { PlantType } from '../../../../common/models/plantTypes';
 import Decorative from '../../../../app/images/Decorative.png';
 import Vegetable from '../../../../app/images/Vegetable.png';
-import Fruit from '../../../../app/images/Vegetable.png';
-import React from 'react';
+import Fruit from '../../../../app/images/Fruit.png';
+import React, { useEffect } from 'react';
 import { useCreatePlantMutation } from '../../../../common/RTK/createPlant/createPlant';
+import { CreatePlantRequest } from '../../../../common/RTK/createPlant/createPlantRequest';
+import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
+import RoutingConstants from '../../../../app/routing/routingConstants';
+import { useNavigate } from 'react-router';
 
 const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
-  const [createPlant, { isLoading }] = useCreatePlantMutation();
+  const [createPlant, { data, isLoading }] = useCreatePlantMutation();
+  const navigate = useNavigate();
+  const { name, description, type, place, module } = wizardController.context;
+
+  useEffect(() => {
+    wizardController.onLoading(isLoading);
+  }, [isLoading]);
 
   const nextButton = {
     onClick: async () => {
       const request = {
-        name: wizardController.context.name,
-        description: wizardController.context.description,
-        type: wizardController.context.type,
-        placeId: wizardController.context.place,
-        moduleId: wizardController.context.module
-      };
+        name: name,
+        description: description,
+        type: type as PlantType,
+        placeId: place,
+        moduleId: module
+      } as CreatePlantRequest;
       await createPlant(request);
     },
-    isDisabled: false,
+    isDisabled: isLoading,
     title: 'Submit'
   } as buttonAction;
 
@@ -59,6 +69,20 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
       cancelButton={cancelButton}
       backButton={backButton}
       title={'Summary'}
+      popup={
+        <Popup
+          titleText={'Success'}
+          contentText={
+            data
+              ? 'The new Plant has been added successfully.'
+              : 'An error occurred while adding a new Plant, please try again later.'
+          }
+          openPopup={data ?? false}
+          confirmText={'Go to Dashboard'}
+          confirmAction={() => navigate(RoutingConstants.root)}
+          status={data ? PopupStatus.success : PopupStatus.failure}
+        />
+      }
     >
       <Card elevation={5} sx={styles.summaryList}>
         <Box sx={styles.summaryListElement}>

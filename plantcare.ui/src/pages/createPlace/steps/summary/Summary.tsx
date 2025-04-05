@@ -25,7 +25,7 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
       } as CreatePlaceRequest;
       await createPlant(request);
     },
-    isDisabled: false,
+    isDisabled: isLoading,
     title: 'Submit'
   } as buttonAction;
 

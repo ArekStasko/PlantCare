@@ -11,7 +11,7 @@ const createPlantSchema = yup.object().shape({
 const createPlantDetailsSchema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
-  plantType: yup.string().required()
+  plantType: yup.number().required()
 });
 
 const selectPlaceSchema = yup.object().shape({
