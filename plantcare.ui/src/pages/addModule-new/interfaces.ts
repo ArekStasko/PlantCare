@@ -1,4 +1,1 @@
-
-export interface AddModuleContext {
-
-}
+export interface AddModuleContext {}

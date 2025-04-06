@@ -1,10 +1,8 @@
-import { WizardStepProps } from "../../../../common/wizard/interfaces";
-import { AddModuleContext } from "../../interfaces";
-import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { AddModuleContext } from '../../interfaces';
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 
-
-const DeviceSelection = ({wizardController}: WizardStepProps<AddModuleContext>) => {
-
+const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   return (
     <WizardStep
       nextButton={{
@@ -26,7 +24,7 @@ const DeviceSelection = ({wizardController}: WizardStepProps<AddModuleContext>) 
     >
       Select Device
     </WizardStep>
-  )
-}
+  );
+};
 
 export default DeviceSelection;
