@@ -1,5 +1,5 @@
 import { Box, TextField, Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { CreatePlaceContext } from '../../interfaces';
 import styles from './details.styles';
 import React from 'react';
