@@ -5,9 +5,7 @@ import validators from '../../common/services/Validators';
 import { IWizardStep } from '../../common/Layouts/Wizard/interfaces';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import AddModuleSummary from './steps/Summary/addModuleSummary';
-import DeviceSelection from './steps/DeviceSelection/deviceSelection';
 import { BLEDevice } from '../../common/models/BLEDevice';
-import WifiForm from './steps/WifiForm/wifiForm';
 import {
   CreateModuleRequest,
   useCreateModuleMutation
@@ -58,25 +56,6 @@ export const AddModule = () => {
   };
 
   const steps: IWizardStep[] = [
-    {
-      title: 'Module Summary',
-      component: <DeviceSelection context={context} updateContext={setContext} />,
-      validators: [],
-      id: 0,
-      nextStep: 1,
-      isStepVisible: true,
-      isFinal: false
-    },
-    {
-      title: 'WIFI Configuration',
-      component: <WifiForm context={context} updateContext={setContext} />,
-      validators: ['wifiName', 'wifiPassword'],
-      id: 1,
-      nextStep: 2,
-      previousStep: 0,
-      isStepVisible: true,
-      isFinal: false
-    },
     {
       title: 'Module Summary',
       component: <AddModuleSummary />,

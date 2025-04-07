@@ -8,8 +8,8 @@ import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
-import AddModule from '../../pages/AddModule/addModule';
 import CreatePlantWizard from '../../pages/createPlant/CreatePlantWizard';
+import AddModuleWizard from '../../pages/addModule-new/AddModuleWizard';
 
 export const MainRouting = () => {
   return (
@@ -67,7 +67,7 @@ export const MainRouting = () => {
         path={RoutingConstants.addModule}
         element={
           <BaseLayout>
-            <AddModule />
+            <AddModuleWizard />
           </BaseLayout>
         }
       />
