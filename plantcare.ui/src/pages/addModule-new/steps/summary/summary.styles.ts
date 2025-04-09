@@ -2,7 +2,6 @@ const summaryList = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-around',
   pt: 1,
   pb: 1,
   width: '100%',
@@ -16,14 +15,14 @@ const summaryListElement = {
   justifyContent: 'flex-start',
   pt: 1,
   width: '100%',
-  height: '90%'
+  height: '20%'
 };
 
 const summaryListText = {
   display: 'flex',
   alignItems: 'flex-start',
-  justifyContent: 'space-around',
-  width: '100%'
+  justifyContent: 'space-between',
+  width: '75%'
 };
 
 const summaryListTitle = {
@@ -31,9 +30,20 @@ const summaryListTitle = {
   fontWeight: 'bold'
 };
 
+const summaryListPassword = (showPassword: boolean) => ({
+  width: '40%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  fontWeight: 'bold',
+  WebkitTextSecurity: showPassword ? 'none' : 'disc',
+  textSecurity: showPassword ? 'none' : 'disc',
+})
+
 export default {
   summaryList,
   summaryListElement,
   summaryListText,
-  summaryListTitle
+  summaryListTitle,
+  summaryListPassword
 };
