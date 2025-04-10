@@ -44,12 +44,12 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
             <Typography variant="button" sx={styles.summaryListTitle}>
               Wifi Password
             </Typography>
-            <Typography
+            <Button
             sx={styles.summaryListPassword(showPassword)}
             >
               {showPassword ? <VisibilityOffIcon onClick={() => setShowPassword(false)} sx={{cursor: 'pointer'}} /> : <VisibilityIcon onClick={() => setShowPassword(true)} sx={{cursor: 'pointer'}} />}
               {wizardController.context.wifiPassword}
-            </Typography>
+            </Button>
           </Box>
           <Divider sx={{ width: '80%' }} />
         </Box>
