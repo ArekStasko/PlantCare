@@ -48,7 +48,7 @@ const addModuleSchema = yup.object().shape({
 });
 
 const addModuleNameSchema = yup.object().shape({
-  moduleName: yup.string().required(),
+  moduleName: yup.string().required()
 });
 
 export default {

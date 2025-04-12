@@ -39,7 +39,7 @@ const summaryListPassword = (showPassword: boolean) => ({
   WebkitTextSecurity: showPassword ? 'none' : 'disc',
   textSecurity: showPassword ? 'none' : 'disc',
   m: 1
-})
+});
 
 export default {
   summaryList,

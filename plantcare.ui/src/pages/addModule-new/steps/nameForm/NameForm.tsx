@@ -1,21 +1,19 @@
-import { WizardStepProps } from "../../../../common/wizard/interfaces";
-import { AddModuleContext } from "../../interfaces";
-import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
-import { Box, TextField, Typography } from "@mui/material";
-import styles from './nameForm.styles'
-import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import validators from "../../../../common/services/Validators";
-
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { AddModuleContext } from '../../interfaces';
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
+import { Box, TextField, Typography } from '@mui/material';
+import styles from './nameForm.styles';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validators from '../../../../common/services/Validators';
 
 const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
-
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.addModuleNameSchema),
     defaultValues: {
-      moduleName: wizardController.context.moduleName ?? '',
+      moduleName: wizardController.context.moduleName ?? ''
     }
   });
 
@@ -25,7 +23,7 @@ const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     formState: { errors }
   } = methods;
 
-  return(
+  return (
     <WizardStep
       nextButton={{
         title: 'Next',
@@ -34,8 +32,9 @@ const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
           wizardController.updateContext({
             ...wizardController.context,
             moduleName: getValues('moduleName')
-          })
-      }}}
+          });
+        }
+      }}
       cancelButton={{
         title: 'Cancel',
         isDisabled: false,
@@ -62,7 +61,7 @@ const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
         />
       </Box>
     </WizardStep>
-  )
-}
+  );
+};
 
-export default NameForm
+export default NameForm;

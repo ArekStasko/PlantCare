@@ -4,7 +4,7 @@ import { WizardController, WizardStep } from '../../common/wizard/interfaces';
 import DeviceSelection from './steps/deviceSelection/DeviceSelection';
 import WifiForm from './steps/wifiForm/WifiForm';
 import Summary from './steps/summary/Summary';
-import NameForm from "./steps/nameForm/NameForm";
+import NameForm from './steps/nameForm/NameForm';
 
 const AddModuleWizard = () => {
   const initialContext = {} as AddModuleContext;

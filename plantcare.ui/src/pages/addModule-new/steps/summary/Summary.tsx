@@ -1,11 +1,11 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddModuleContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import styles from "./summary.styles";
-import { Box, Button, Card, Divider, Typography } from "@mui/material";
+import styles from './summary.styles';
+import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useState } from "react";
+import { useState } from 'react';
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,9 +46,16 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
             </Typography>
             <Button
               onClick={() => setShowPassword(!showPassword)}
-            sx={styles.summaryListPassword(showPassword)}
+              sx={styles.summaryListPassword(showPassword)}
             >
-              {showPassword ? <VisibilityOffIcon onClick={() => setShowPassword(false)} sx={{cursor: 'pointer'}} /> : <VisibilityIcon onClick={() => setShowPassword(true)} sx={{cursor: 'pointer'}} />}
+              {showPassword ? (
+                <VisibilityOffIcon
+                  onClick={() => setShowPassword(false)}
+                  sx={{ cursor: 'pointer' }}
+                />
+              ) : (
+                <VisibilityIcon onClick={() => setShowPassword(true)} sx={{ cursor: 'pointer' }} />
+              )}
               {wizardController.context.wifiPassword}
             </Button>
           </Box>
