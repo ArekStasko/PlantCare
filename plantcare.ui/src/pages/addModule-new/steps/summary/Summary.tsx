@@ -45,6 +45,7 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
               Wifi Password
             </Typography>
             <Button
+              onClick={() => setShowPassword(!showPassword)}
             sx={styles.summaryListPassword(showPassword)}
             >
               {showPassword ? <VisibilityOffIcon onClick={() => setShowPassword(false)} sx={{cursor: 'pointer'}} /> : <VisibilityIcon onClick={() => setShowPassword(true)} sx={{cursor: 'pointer'}} />}

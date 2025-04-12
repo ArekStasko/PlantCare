@@ -5,4 +5,5 @@ export interface AddModuleContext {
   characteristic?: BluetoothRemoteGATTCharacteristic;
   wifiName?: string;
   wifiPassword?: string;
+  moduleName?: string;
 }

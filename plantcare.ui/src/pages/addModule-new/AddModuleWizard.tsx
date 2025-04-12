@@ -4,6 +4,7 @@ import { WizardController, WizardStep } from '../../common/wizard/interfaces';
 import DeviceSelection from './steps/deviceSelection/DeviceSelection';
 import WifiForm from './steps/wifiForm/WifiForm';
 import Summary from './steps/summary/Summary';
+import NameForm from "./steps/nameForm/NameForm";
 
 const AddModuleWizard = () => {
   const initialContext = {} as AddModuleContext;
@@ -25,6 +26,13 @@ const AddModuleWizard = () => {
     } as WizardStep<AddModuleContext>,
     {
       order: 2,
+      title: 'Name',
+      getStep: (wizardController: WizardController<AddModuleContext>) => (
+        <NameForm wizardController={wizardController} />
+      )
+    } as WizardStep<AddModuleContext>,
+    {
+      order: 3,
       title: 'Summary',
       getStep: (wizardController: WizardController<AddModuleContext>) => (
         <Summary wizardController={wizardController} />

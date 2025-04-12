@@ -47,6 +47,10 @@ const addModuleSchema = yup.object().shape({
   connected: yup.boolean().required()
 });
 
+const addModuleNameSchema = yup.object().shape({
+  moduleName: yup.string().required(),
+});
+
 export default {
   createPlantSchema,
   createPlaceSchema,
@@ -55,5 +59,6 @@ export default {
   createPlantDetailsSchema,
   addModuleSchema,
   selectPlaceSchema,
-  selectModuleSchema
+  selectModuleSchema,
+  addModuleNameSchema
 };

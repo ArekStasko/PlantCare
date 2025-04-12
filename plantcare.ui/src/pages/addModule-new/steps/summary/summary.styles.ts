@@ -20,7 +20,7 @@ const summaryListElement = {
 
 const summaryListText = {
   display: 'flex',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   justifyContent: 'space-between',
   width: '75%'
 };
@@ -38,6 +38,7 @@ const summaryListPassword = (showPassword: boolean) => ({
   fontWeight: 'bold',
   WebkitTextSecurity: showPassword ? 'none' : 'disc',
   textSecurity: showPassword ? 'none' : 'disc',
+  m: 1
 })
 
 export default {
