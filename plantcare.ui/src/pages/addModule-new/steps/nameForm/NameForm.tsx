@@ -7,6 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
+import { GetName } from 'namee'
 
 const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const methods = useForm({
@@ -16,7 +17,8 @@ const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       moduleName: wizardController.context.moduleName ?? ''
     }
   });
-
+  const defaultName = GetName();
+  console.log(defaultName);
   const {
     register,
     getValues,

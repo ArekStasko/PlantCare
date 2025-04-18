@@ -25,6 +25,7 @@
     "identity-provider-client": "^0.1.6",
     "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
+    "namee": "^1.0.0",
     "react": "^18.2.0",
     "react-charts": "^3.0.0-beta.57",
     "react-dom": "^18.2.0",
