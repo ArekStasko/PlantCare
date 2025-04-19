@@ -7,6 +7,7 @@ public interface IModule : IUserAssignable
 {
     int Id { get; set; }
     bool IsMonitoring { get; set; }
+    public string Name { get; set; }
     ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
     Plant? Plant { get; set; }
 }
