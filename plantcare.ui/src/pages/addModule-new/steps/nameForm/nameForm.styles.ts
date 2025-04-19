@@ -10,15 +10,31 @@ const nameForm = {
 
 const textfield = {
   width: '60%',
-  mt: '30px'
 };
 
 const container = {
   width: '100%'
 };
 
+const textFieldWrapper = {
+  mt: '30px',
+  width: '70%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+}
+
+const iconButton = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  ml: '10px',
+}
+
 export default {
   nameForm,
   textfield,
-  container
+  container,
+  textFieldWrapper,
+  iconButton
 };
