@@ -38,6 +38,7 @@ const NameForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
             ...wizardController.context,
             moduleName: getValues('moduleName')
           });
+          wizardController.goToNextStep()
         }
       }}
       cancelButton={{

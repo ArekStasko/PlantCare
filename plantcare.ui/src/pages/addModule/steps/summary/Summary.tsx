@@ -5,15 +5,47 @@ import styles from './summary.styles';
 import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import { CreateModuleRequest, useCreateModuleMutation } from "../../../../common/RTK/createModule/createModule";
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [createModule, { isLoading: loading }] = useCreateModuleMutation();
+
+  useEffect(() => {
+    wizardController.onLoading(loading);
+  }, [loading]);
+
+  const onSubmit = async () => {
+    try {
+      const request = {
+        name: wizardController.context.moduleName,
+      } as CreateModuleRequest
+      const result = await createModule(request);
+      if ('data' in result) {
+        const id = result.data;
+        const crc = wizardController.context.characteristic;
+        if (crc) {
+          const name = wizardController.context.wifiName;
+          const psw = wizardController.context.wifiPassword;
+          const encoder = new TextEncoder();
+          const data = encoder.encode(`${name}|${psw}|${id}`);
+          await crc.writeValue(data);
+        }
+        const device = wizardController.context.device;
+        device?.gatt?.disconnect();
+        return { data: true };
+      }
+      return { data: false };
+    } catch (error) {
+      return { data: false };
+    }
+  }
 
   return (
     <WizardStep
       nextButton={{
-        onClick: () => console.log('Submit'),
+        onClick: () => onSubmit(),
         isDisabled: false,
         title: 'Submit'
       }}
@@ -58,6 +90,15 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
               )}
               {wizardController.context.wifiPassword}
             </Button>
+          </Box>
+          <Divider sx={{ width: '80%' }} />
+        </Box>
+        <Box sx={styles.summaryListElement}>
+          <Box sx={styles.summaryListText}>
+            <Typography variant="button" sx={styles.summaryListTitle}>
+              Module name
+            </Typography>
+            <Typography>{wizardController.context.moduleName}</Typography>
           </Box>
           <Divider sx={{ width: '80%' }} />
         </Box>
