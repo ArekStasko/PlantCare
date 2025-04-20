@@ -1,7 +1,7 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddModuleContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { BLEDevice } from '../../../../common/models/BLEDevice';
 import styles from './deviceSelection.styles';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
@@ -46,11 +46,17 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     setSelectingDevice(false);
   };
 
+  const disableNextBtn = useMemo(() => {
+    const savedDevice = wizardController.context.device;
+    const savedCharacteristic = wizardController.context.characteristic;
+    return !savedDevice && !savedCharacteristic;
+  }, [device]);
+
   return (
     <WizardStep
       nextButton={{
         onClick: () => wizardController.goToNextStep(),
-        isDisabled: false,
+        isDisabled: disableNextBtn,
         title: 'Next'
       }}
       cancelButton={{

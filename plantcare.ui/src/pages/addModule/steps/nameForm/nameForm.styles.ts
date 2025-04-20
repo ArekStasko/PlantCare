@@ -10,6 +10,7 @@ const nameForm = {
 
 const textfield = {
   width: '60%',
+  p: 0
 };
 
 const container = {
@@ -21,15 +22,15 @@ const textFieldWrapper = {
   width: '70%',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-start',
-}
+  justifyContent: 'flex-start'
+};
 
 const iconButton = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  ml: '10px',
-}
+  ml: '10px'
+};
 
 export default {
   nameForm,

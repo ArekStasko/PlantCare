@@ -5,8 +5,11 @@ import styles from './summary.styles';
 import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useEffect, useState } from "react";
-import { CreateModuleRequest, useCreateModuleMutation } from "../../../../common/RTK/createModule/createModule";
+import { useEffect, useState } from 'react';
+import {
+  CreateModuleRequest,
+  useCreateModuleMutation
+} from '../../../../common/RTK/createModule/createModule';
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +22,8 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const onSubmit = async () => {
     try {
       const request = {
-        name: wizardController.context.moduleName,
-      } as CreateModuleRequest
+        name: wizardController.context.moduleName
+      } as CreateModuleRequest;
       const result = await createModule(request);
       if ('data' in result) {
         const id = result.data;
@@ -40,7 +43,7 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     } catch (error) {
       return { data: false };
     }
-  }
+  };
 
   return (
     <WizardStep

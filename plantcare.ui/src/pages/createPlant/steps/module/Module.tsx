@@ -94,7 +94,9 @@ const Module = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
                       {modules!
                         .filter((m) => m.plant == null)
                         .map((m) => (
-                          <MenuItem value={m.id}>{m.id}</MenuItem>
+                          <MenuItem value={m.id}>
+                            {m.name} - {m.id}
+                          </MenuItem>
                         ))}
                     </Select>
                   )}

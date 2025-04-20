@@ -13,16 +13,15 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     mode: 'onChange',
     resolver: yupResolver(validators.addModuleSchema),
     defaultValues: {
-      wifiName: wizardController.context.wifiName,
-      wifiPassword: wizardController.context.wifiPassword
+      wifiName: wizardController.context.wifiName ?? '',
+      wifiPassword: wizardController.context.wifiPassword ?? ''
     }
   });
 
   const {
     register,
-    watch,
     getValues,
-    formState: { errors }
+    formState: { errors, isValid }
   } = methods;
 
   const onNext = () => {
@@ -38,7 +37,7 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     <WizardStep
       nextButton={{
         onClick: onNext,
-        isDisabled: false,
+        isDisabled: !isValid,
         title: 'Next'
       }}
       cancelButton={{
@@ -64,7 +63,6 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
           error={!!errors.wifiName}
           helperText={errors.wifiName && 'WiFi name is required'}
           variant="filled"
-          disabled={watch('connected')}
           {...register('wifiName')}
         />
         <TextField
@@ -75,7 +73,6 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
           error={!!errors.wifiPassword}
           helperText={errors.wifiPassword && 'WiFi password is required'}
           variant="filled"
-          disabled={watch('connected')}
           {...register('wifiPassword')}
         />
       </Box>
