@@ -11,6 +11,7 @@ import { ShrinkText } from '../../../common/services/TextService';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import { Plant } from '../../../common/models/Plant';
+import UpdatePlantMenu from "../../updatePlant-new/updatePlantMenu/UpdatePlantMenu";
 
 interface PlantsAccordionDetailsProps {
   plants: Plant[];
@@ -18,6 +19,7 @@ interface PlantsAccordionDetailsProps {
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
   const navigate = useNavigate();
+  const [openUpdatePlantMenu, setOpenUpdatePlantMenu] = React.useState(false);
 
   const getImage = (plantType: PlantType) => {
     switch (plantType) {
@@ -42,10 +44,11 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
               {ShrinkText(plant.description)}
             </Typography>
           </Box>
+          <UpdatePlantMenu setOpenDialog={setOpenUpdatePlantMenu} openDialog={openUpdatePlantMenu} />
           <Box sx={styles.plantsAccordionDetailsButtons}>
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
-                onClick={() => navigate(`${RoutingConstants.updatePlant}/${plant.id}`)}
+                onClick={() => setOpenUpdatePlantMenu(true)}
                 size="large"
                 sx={{ mr: 5 }}
                 color="primary"
