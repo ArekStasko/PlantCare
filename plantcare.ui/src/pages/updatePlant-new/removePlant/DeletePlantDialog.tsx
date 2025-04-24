@@ -9,22 +9,14 @@ import {
   Radio,
   RadioGroup
 } from '@mui/material';
-import React, { useEffect, useMemo } from 'react';
+import React from 'react';
 import { UpdatePlantActionType } from '../interfaces';
 import { useNavigate } from 'react-router';
 
-interface UpdatePlantMenuProps {
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  openDialog: boolean;
-}
-
-const UpdatePlantMenu = ({ setOpenDialog, openDialog }: UpdatePlantMenuProps) => {
-  const [action, setAction] = React.useState<UpdatePlantActionType | undefined>(undefined);
+const DeletePlantDialog = () => {
   const navigate = useNavigate();
 
-  useEffect(() => setAction(undefined), [openDialog]);
-
-  const onNext = () => {
+  const onSubmit = () => {
     console.log(action);
   };
 
@@ -52,7 +44,7 @@ const UpdatePlantMenu = ({ setOpenDialog, openDialog }: UpdatePlantMenuProps) =>
         <Button variant="outlined" onClick={() => setOpenDialog(!openDialog)}>
           Back
         </Button>
-        <Button variant="contained" disabled={!action} onClick={() => onNext()}>
+        <Button variant="contained" onClick={() => onNext()}>
           Next
         </Button>
       </DialogActions>
@@ -60,4 +52,4 @@ const UpdatePlantMenu = ({ setOpenDialog, openDialog }: UpdatePlantMenuProps) =>
   );
 };
 
-export default UpdatePlantMenu;
+export default DeletePlantDialog;

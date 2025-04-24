@@ -11,7 +11,7 @@ import { ShrinkText } from '../../../common/services/TextService';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import { Plant } from '../../../common/models/Plant';
-import UpdatePlantMenu from "../../updatePlant-new/updatePlantMenu/UpdatePlantMenu";
+import UpdatePlantMenu from '../../updatePlant-new/updatePlantMenu/UpdatePlantMenu';
 
 interface PlantsAccordionDetailsProps {
   plants: Plant[];
@@ -44,7 +44,10 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
               {ShrinkText(plant.description)}
             </Typography>
           </Box>
-          <UpdatePlantMenu setOpenDialog={setOpenUpdatePlantMenu} openDialog={openUpdatePlantMenu} />
+          <UpdatePlantMenu
+            setOpenDialog={setOpenUpdatePlantMenu}
+            openDialog={openUpdatePlantMenu}
+          />
           <Box sx={styles.plantsAccordionDetailsButtons}>
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
