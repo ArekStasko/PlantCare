@@ -1,5 +1,8 @@
 import React from 'react';
-import { Dialog } from '@mui/material';
+import DialogWizard from "../../common/dialogWizard/DialogWizard";
+import { DialogWizardController, DialogWizardStep } from "../../common/dialogWizard/interfaces";
+import { UpdatePlantContext } from "./interfaces";
+import UpdatePlantMenu from "./updatePlantMenu/UpdatePlantMenu";
 
 interface UpdatePlantProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,8 +10,26 @@ interface UpdatePlantProps {
 }
 
 const UpdatePlant = ({ setOpenDialog, openDialog }: UpdatePlantProps) => {
+  const initialContext = {} as UpdatePlantContext
 
-  return <Dialog open={openDialog} onClose={() => setOpenDialog(false)}></Dialog>;
+  const steps = [
+    {
+      order: 0,
+      title: 'Menu',
+      getStep: (wizardController: DialogWizardController<UpdatePlantContext>) => (
+        <UpdatePlantMenu dialogWizardController={wizardController} />
+      )
+    } as DialogWizardStep<UpdatePlantContext>,
+  ];
+
+  return (
+    <DialogWizard<UpdatePlantContext>
+      initialContext={initialContext}
+      steps={steps}
+      open={openDialog}
+      onClose={(close: boolean) => setOpenDialog(close)}
+    />
+  )
 };
 
 export default UpdatePlant;

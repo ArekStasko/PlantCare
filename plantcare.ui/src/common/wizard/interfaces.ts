@@ -21,12 +21,6 @@ export interface wizardStepProviderProps<T> {
   sx?: SxProps;
 }
 
-export interface WizardStepData {
-  order: number;
-  title: string;
-  isFinal: boolean;
-}
-
 export interface WizardStep<T> {
   order: number;
   title: string;
