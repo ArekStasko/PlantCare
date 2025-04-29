@@ -44,7 +44,11 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
               {ShrinkText(plant.description)}
             </Typography>
           </Box>
-          <UpdatePlant plant={plant} setOpenDialog={setOpenUpdatePlantMenu} openDialog={openUpdatePlantMenu} />
+          <UpdatePlant
+            plant={plant}
+            setOpenDialog={setOpenUpdatePlantMenu}
+            openDialog={openUpdatePlantMenu}
+          />
           <Box sx={styles.plantsAccordionDetailsButtons}>
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton

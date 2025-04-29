@@ -1,18 +1,20 @@
 import { DialogContentText, FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { UpdatePlantActionType } from '../interfaces';
 
-export interface UpdatePlantProps{
-  action?: UpdatePlantActionType,
+export interface UpdatePlantProps {
+  action?: UpdatePlantActionType;
   onActionChange: (action: UpdatePlantActionType) => void;
 }
 
 export const UpdatePlantMenu = ({ action, onActionChange }: UpdatePlantProps) => {
-  const [selectedAction, setSelectedAction] = React.useState<UpdatePlantActionType | undefined>(action);
+  const [selectedAction, setSelectedAction] = React.useState<UpdatePlantActionType | undefined>(
+    action
+  );
 
   useEffect(() => {
-    if(!selectedAction) return;
-    onActionChange(selectedAction)
+    if (!selectedAction) return;
+    onActionChange(selectedAction);
   }, [selectedAction]);
 
   return (
@@ -35,4 +37,3 @@ export const UpdatePlantMenu = ({ action, onActionChange }: UpdatePlantProps) =>
     </>
   );
 };
-

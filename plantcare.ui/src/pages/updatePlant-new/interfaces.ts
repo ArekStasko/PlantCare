@@ -1,4 +1,4 @@
-import { Plant } from "../../common/models/Plant";
+import { Plant } from '../../common/models/Plant';
 
 export enum UpdatePlantActionType {
   UPDATE = 'UPDATE',
@@ -7,5 +7,5 @@ export enum UpdatePlantActionType {
 
 export interface UpdatePlantContext {
   action?: UpdatePlantActionType;
-  plant: Plant
+  plant: Plant;
 }

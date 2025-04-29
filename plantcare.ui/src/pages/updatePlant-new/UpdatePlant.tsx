@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { UpdatePlantActionType, UpdatePlantContext } from "./interfaces";
+import React, { useState } from 'react';
+import { UpdatePlantActionType, UpdatePlantContext } from './interfaces';
 import {
   Alert,
   Backdrop,
@@ -9,13 +9,13 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle
-} from "@mui/material";
-import { UpdatePlantMenu } from "./updatePlantMenu/UpdatePlantMenu";
-import { Plant } from "../../common/models/Plant";
-import { useDeletePlantMutation } from "../../common/RTK/deletePlant/deletePlant";
-import { PopupStatus } from "../../common/components/popup/Popup";
-import { useDispatch } from "react-redux";
-import plantcareApi from "../../app/api/plantcareApi";
+} from '@mui/material';
+import { UpdatePlantMenu } from './updatePlantMenu/UpdatePlantMenu';
+import { Plant } from '../../common/models/Plant';
+import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
+import { PopupStatus } from '../../common/components/popup/Popup';
+import { useDispatch } from 'react-redux';
+import plantcareApi from '../../app/api/plantcareApi';
 
 interface UpdatePlantProps {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,29 +25,30 @@ interface UpdatePlantProps {
 
 const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => {
   const dispatch = useDispatch();
-  const [deletePlant, {data, isLoading, isError}] = useDeletePlantMutation();
+  const [deletePlant, { data, isLoading, isError }] = useDeletePlantMutation();
   const [context, setContext] = useState<UpdatePlantContext>({
     action: undefined,
     plant: plant
-  } as UpdatePlantContext)
+  } as UpdatePlantContext);
 
-  const onActionChange = (action: UpdatePlantActionType) => setContext(prev => ({ ...prev, action }));
+  const onActionChange = (action: UpdatePlantActionType) =>
+    setContext((prev) => ({ ...prev, action }));
 
   const onCancel = () => {
-    setContext(prev => ({ ...prev, action: undefined }));
-    setOpenDialog(false)
-  }
+    setContext((prev) => ({ ...prev, action: undefined }));
+    setOpenDialog(false);
+  };
 
   const onSubmit = async () => {
-    if(data !== undefined || isError) {
-      dispatch(plantcareApi.util.resetApiState())
+    if (data !== undefined || isError) {
+      dispatch(plantcareApi.util.resetApiState());
       onCancel();
       return;
     }
-    if(context.action === UpdatePlantActionType.DELETE) {
-      await deletePlant({plantId: plant.id!});
+    if (context.action === UpdatePlantActionType.DELETE) {
+      await deletePlant({ plantId: plant.id! });
     }
-  }
+  };
 
   return (
     <Dialog open={openDialog} onClose={() => onCancel()}>
@@ -58,34 +59,26 @@ const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => 
       <DialogContent>
         <UpdatePlantMenu action={context.action} onActionChange={onActionChange} />
       </DialogContent>
-      {
-        data && (
-          <Alert variant="outlined" severity='success'>
-            Successfully deleted plant.
-          </Alert>
-        )
-      }
-      {
-        isError && (
-          <Alert variant="outlined" severity='error'>
-           Something went wrong, please try again later.
-          </Alert>
-        )
-      }
+      {data && (
+        <Alert variant="outlined" severity="success">
+          Successfully deleted plant.
+        </Alert>
+      )}
+      {isError && (
+        <Alert variant="outlined" severity="error">
+          Something went wrong, please try again later.
+        </Alert>
+      )}
       <DialogActions>
-        <Button
-          variant="outlined"
-          disabled={false}
-          onClick={() => onCancel()}
-        >
+        <Button variant="outlined" disabled={false} onClick={() => onCancel()}>
           Cancel
         </Button>
         <Button
           variant="contained"
-          disabled={!context.action || isLoading }
+          disabled={!context.action || isLoading}
           onClick={() => onSubmit()}
         >
-          {(data !== undefined || isError) ? 'Close' : 'Submit'}
+          {data !== undefined || isError ? 'Close' : 'Submit'}
         </Button>
       </DialogActions>
     </Dialog>
