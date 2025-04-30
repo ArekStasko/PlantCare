@@ -22,7 +22,8 @@ const plantcareApiBaseQuery = async (
 const plantcareApi = createApi({
   reducerPath: 'emptyApi',
   baseQuery: plantcareApiBaseQuery,
-  endpoints: (build) => ({})
+  endpoints: (build) => ({}),
+  tagTypes: ['Plants', 'Modules', 'Places']
 });
 
 export default plantcareApi;

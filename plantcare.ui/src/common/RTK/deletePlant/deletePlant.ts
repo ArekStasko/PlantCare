@@ -7,7 +7,8 @@ export const deletePlantApi = plantcareApi.injectEndpoints({
       query: ({ plantId }: DeletePlantData) => ({
         url: `/plants/Delete?id=${plantId}`,
         method: 'DELETE'
-      })
+      }),
+      invalidatesTags: ['Plants']
     })
   }),
   overrideExisting: false

@@ -8,7 +8,8 @@ export const updatePlantApi = plantcareApi.injectEndpoints({
         url: '/plants/Update',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ['Plants']
     })
   }),
   overrideExisting: false

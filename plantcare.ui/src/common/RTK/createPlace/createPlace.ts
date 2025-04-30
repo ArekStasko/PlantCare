@@ -8,7 +8,8 @@ export const createPlaceApi = plantcareApi.injectEndpoints({
         url: '/places/Create',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ['Places']
     })
   }),
   overrideExisting: false

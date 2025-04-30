@@ -24,7 +24,6 @@ interface UpdatePlantProps {
 }
 
 const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => {
-  const dispatch = useDispatch();
   const [deletePlant, { data, isLoading, isError }] = useDeletePlantMutation();
   const [context, setContext] = useState<UpdatePlantContext>({
     action: undefined,
@@ -41,7 +40,6 @@ const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => 
 
   const onSubmit = async () => {
     if (data !== undefined || isError) {
-      dispatch(plantcareApi.util.resetApiState());
       onCancel();
       return;
     }

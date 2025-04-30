@@ -11,7 +11,8 @@ export const createModuleApi = plantcareApi.injectEndpoints({
         url: '/modules/create',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ['Modules']
     })
   }),
   overrideExisting: false

@@ -8,7 +8,8 @@ export const setModuleStatusApi = plantcareApi.injectEndpoints({
         url: '/modules/status',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ['Modules']
     })
   }),
   overrideExisting: false
