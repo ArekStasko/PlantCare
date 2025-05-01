@@ -1,7 +1,7 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, CircularProgress, InputLabel, MenuItem, Select, Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlantContext } from '../../interfaces';
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { PlantContext } from '../../interfaces';
 import { useGetPlacesQuery } from '../../../../common/RTK/getPlaces/getPlaces';
 import { Controller, useForm } from 'react-hook-form';
 import React from 'react';
@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 import styles from './place.styles';
 
-const Place = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
+const Place = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
 
   const methods = useForm({

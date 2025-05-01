@@ -1,6 +1,12 @@
 import { PlantType } from '../../common/models/plantTypes';
 
-export interface CreatePlantContext {
+export enum PlantFlowType {
+  UPDATE = 'UPDATE',
+  CREATE = 'CREATE'
+}
+
+export interface PlantContext {
+  flowType: PlantFlowType;
   name?: string;
   description?: string;
   type?: PlantType;

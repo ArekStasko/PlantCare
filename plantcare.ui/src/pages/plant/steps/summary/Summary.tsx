@@ -1,7 +1,7 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlantContext } from '../../interfaces';
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { PlantContext } from '../../interfaces';
 import styles from './summary.styles';
 import { PlantType } from '../../../../common/models/plantTypes';
 import Decorative from '../../../../app/images/Decorative.png';
@@ -14,7 +14,7 @@ import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useNavigate } from 'react-router';
 
-const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
+const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const [createPlant, { data, isLoading }] = useCreatePlantMutation();
   const navigate = useNavigate();
   const { name, description, type, place, module } = wizardController.context;
@@ -70,8 +70,8 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
           titleText={'Success'}
           contentText={
             data
-              ? 'The new Plant has been added successfully.'
-              : 'An error occurred while adding a new Plant, please try again later.'
+              ? 'The new plant has been added successfully.'
+              : 'An error occurred while adding a new plant, please try again later.'
           }
           openPopup={data ?? false}
           confirmText={'Go to Dashboard'}

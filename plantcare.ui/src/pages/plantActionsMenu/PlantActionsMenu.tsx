@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { ActionType, ActionsMenuContext } from './interfaces';
+import { ActionsMenuContext, ActionType } from './interfaces';
 import {
-  Alert,
   Backdrop,
   Button,
   CircularProgress,
@@ -14,6 +13,10 @@ import { ActionsMenu } from './actionsMenu/ActionsMenu';
 import { Plant } from '../../common/models/Plant';
 import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
 import useInvalidateCache from '../../common/hooks/useInvalidateCache';
+import CustomAlert from '../../common/components/customAlert/customAlert';
+import { useNavigate } from 'react-router';
+import RoutingConstants from '../../app/routing/routingConstants';
+import { PlantContext, PlantFlowType } from '../plant/interfaces';
 
 interface PlantActionsMenu {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +26,7 @@ interface PlantActionsMenu {
 
 const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu) => {
   const { invalidateCache } = useInvalidateCache();
+  const navigate = useNavigate();
   const [deletePlant, { data, isLoading, isError }] = useDeletePlantMutation();
   const [context, setContext] = useState<ActionsMenuContext>({
     action: undefined,
@@ -42,9 +46,23 @@ const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu
       onCancel();
       return;
     }
+
     if (context.action === ActionType.DELETE) {
       await deletePlant({ plantId: plant.id! });
+      return;
     }
+
+    const plantContext = {
+      flowType: PlantFlowType.UPDATE,
+      name: plant.name,
+      description: plant.description,
+      plantId: plant.id,
+      place: plant.placeId.toString(),
+      moduleId: plant.moduleId,
+      type: plant.type
+    } as PlantContext;
+
+    navigate(RoutingConstants.plant, { state: plantContext });
   };
 
   return (
@@ -56,15 +74,9 @@ const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu
       <DialogContent>
         <ActionsMenu action={context.action} onActionChange={onActionChange} />
       </DialogContent>
-      {data && (
-        <Alert variant="outlined" severity="success">
-          Successfully deleted plant.
-        </Alert>
-      )}
+      {data && <CustomAlert message="Successfully deleted plant." type="success" />}
       {isError && (
-        <Alert variant="outlined" severity="error">
-          Something went wrong, please try again later.
-        </Alert>
+        <CustomAlert message="Something went wrong, please try again later." type="error" />
       )}
       <DialogActions>
         <Button variant="outlined" disabled={false} onClick={() => onCancel()}>

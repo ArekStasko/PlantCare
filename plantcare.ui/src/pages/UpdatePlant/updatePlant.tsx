@@ -90,7 +90,7 @@ export const UpdatePlant = () => {
       isFinal: false
     },
     {
-      title: 'Delete Plant Summary',
+      title: 'Delete plant Summary',
       component: <DeleteSummary />,
       validators: [],
       previousStep: 0,
@@ -109,7 +109,7 @@ export const UpdatePlant = () => {
       isFinal: false
     },
     {
-      title: 'Plant Update Summary',
+      title: 'plant Update Summary',
       component: <Summary />,
       validators: [],
       previousStep: 3,

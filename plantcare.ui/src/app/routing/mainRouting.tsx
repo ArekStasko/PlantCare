@@ -8,7 +8,7 @@ import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
-import CreatePlantWizard from '../../pages/createPlant/CreatePlantWizard';
+import PlantWizard from '../../pages/plant/PlantWizard';
 import AddModuleWizard from '../../pages/addModule/AddModuleWizard';
 
 export const MainRouting = () => {
@@ -24,10 +24,10 @@ export const MainRouting = () => {
         }
       />
       <Route
-        path={RoutingConstants.createPlant}
+        path={RoutingConstants.plant}
         element={
           <BaseLayout>
-            <CreatePlantWizard />
+            <PlantWizard />
           </BaseLayout>
         }
       />

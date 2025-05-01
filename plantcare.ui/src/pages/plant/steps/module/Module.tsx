@@ -1,15 +1,7 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import {
-  AlertColor,
-  Box,
-  CircularProgress,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography
-} from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlantContext } from '../../interfaces';
+import { AlertColor, Box, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { PlantContext } from '../../interfaces';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 import { Controller, useForm } from 'react-hook-form';
 import React from 'react';
@@ -18,7 +10,7 @@ import styles from './module.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 
-const Module = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
+const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: modules, isLoading: modulesLoading } = useGetModulesQuery();
 
   const methods = useForm({
@@ -70,7 +62,7 @@ const Module = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
                 <CustomAlert
                   type={'error' as AlertColor}
                   message={
-                    "You don't have any module without Plant assinged to it. To create new Plant,\n" +
+                    "You don't have any module without plant assinged to it. To create new plant,\n" +
                     '                  please add new module.'
                   }
                 />

@@ -1,7 +1,7 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlantContext } from '../../interfaces';
+import { PlantContext } from '../../interfaces';
 import { Controller, useForm } from 'react-hook-form';
 import { PlantType } from '../../../../common/models/plantTypes';
 import Vegetable from '../../../../app/images/Vegetable.png';
@@ -12,7 +12,7 @@ import styles from './details.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 
-const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
+const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantDetailsSchema),
@@ -35,6 +35,7 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlantContext>) => {
       nextButton={{
         onClick: () => {
           wizardController.updateContext({
+            ...wizardController.context,
             name: getValues('name'),
             description: getValues('description'),
             type: getValues('plantType') as PlantType
