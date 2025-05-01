@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UpdatePlantActionType, UpdatePlantContext } from './interfaces';
+import { ActionType, ActionsMenuContext } from './interfaces';
 import {
   Alert,
   Backdrop,
@@ -10,28 +10,26 @@ import {
   DialogContent,
   DialogTitle
 } from '@mui/material';
-import { UpdatePlantMenu } from './updatePlantMenu/UpdatePlantMenu';
+import { ActionsMenu } from './actionsMenu/ActionsMenu';
 import { Plant } from '../../common/models/Plant';
 import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
-import { PopupStatus } from '../../common/components/popup/Popup';
-import { useDispatch } from 'react-redux';
-import plantcareApi from '../../app/api/plantcareApi';
+import useInvalidateCache from '../../common/hooks/useInvalidateCache';
 
-interface UpdatePlantProps {
+interface PlantActionsMenu {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   openDialog: boolean;
   plant: Plant;
 }
 
-const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => {
+const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu) => {
+  const { invalidateCache } = useInvalidateCache();
   const [deletePlant, { data, isLoading, isError }] = useDeletePlantMutation();
-  const [context, setContext] = useState<UpdatePlantContext>({
+  const [context, setContext] = useState<ActionsMenuContext>({
     action: undefined,
     plant: plant
-  } as UpdatePlantContext);
+  } as ActionsMenuContext);
 
-  const onActionChange = (action: UpdatePlantActionType) =>
-    setContext((prev) => ({ ...prev, action }));
+  const onActionChange = (action: ActionType) => setContext((prev) => ({ ...prev, action }));
 
   const onCancel = () => {
     setContext((prev) => ({ ...prev, action: undefined }));
@@ -40,10 +38,11 @@ const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => 
 
   const onSubmit = async () => {
     if (data !== undefined || isError) {
+      invalidateCache();
       onCancel();
       return;
     }
-    if (context.action === UpdatePlantActionType.DELETE) {
+    if (context.action === ActionType.DELETE) {
       await deletePlant({ plantId: plant.id! });
     }
   };
@@ -55,7 +54,7 @@ const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => 
       </Backdrop>
       <DialogTitle>Update plant</DialogTitle>
       <DialogContent>
-        <UpdatePlantMenu action={context.action} onActionChange={onActionChange} />
+        <ActionsMenu action={context.action} onActionChange={onActionChange} />
       </DialogContent>
       {data && (
         <Alert variant="outlined" severity="success">
@@ -83,4 +82,4 @@ const UpdatePlant = ({ setOpenDialog, openDialog, plant }: UpdatePlantProps) => 
   );
 };
 
-export default UpdatePlant;
+export default PlantActionsMenu;

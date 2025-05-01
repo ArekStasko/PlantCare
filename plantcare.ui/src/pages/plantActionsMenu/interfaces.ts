@@ -1,11 +1,11 @@
 import { Plant } from '../../common/models/Plant';
 
-export enum UpdatePlantActionType {
+export enum ActionType {
   UPDATE = 'UPDATE',
   DELETE = 'DELETE'
 }
 
-export interface UpdatePlantContext {
-  action?: UpdatePlantActionType;
+export interface ActionsMenuContext {
+  action?: ActionType;
   plant: Plant;
 }
