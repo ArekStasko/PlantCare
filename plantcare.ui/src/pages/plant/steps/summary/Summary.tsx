@@ -1,7 +1,7 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
-import { PlantContext } from '../../interfaces';
+import { PlantContext, PlantFlowType } from '../../interfaces';
 import styles from './summary.styles';
 import { PlantType } from '../../../../common/models/plantTypes';
 import Decorative from '../../../../app/images/Decorative.png';
@@ -13,17 +13,26 @@ import { CreatePlantRequest } from '../../../../common/RTK/createPlant/createPla
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useNavigate } from 'react-router';
+import { useUpdatePlantMutation } from '../../../../common/RTK/updatePlant/updatePlant';
+import { UpdatePlantRequest } from '../../../../common/RTK/updatePlant/updatePlantRequest';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const [createPlant, { data, isLoading }] = useCreatePlantMutation();
+  const [updatePlant, { data: updatePlantResult, isLoading: updatePlantLoading }] =
+    useUpdatePlantMutation();
   const navigate = useNavigate();
   const { name, description, type, place, module } = wizardController.context;
 
   useEffect(() => {
-    wizardController.onLoading(isLoading);
-  }, [isLoading]);
+    wizardController.onLoading((isLoading, updatePlantLoading));
+  }, [isLoading, updatePlantLoading]);
 
   const onSubmit = async () => {
+    if (wizardController.context.flowType === PlantFlowType.UPDATE) {
+      const request: UpdatePlantRequest = {};
+      await updatePlant(request);
+    }
+
     const request = {
       name: name,
       description: description,
@@ -69,14 +78,14 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
         <Popup
           titleText={'Success'}
           contentText={
-            data
+            data || updatePlantResult
               ? 'The new plant has been added successfully.'
               : 'An error occurred while adding a new plant, please try again later.'
           }
-          openPopup={data ?? false}
+          openPopup={(data || updatePlantResult) ?? false}
           confirmText={'Go to Dashboard'}
           confirmAction={() => navigate(RoutingConstants.root)}
-          status={data ? PopupStatus.success : PopupStatus.failure}
+          status={data || updatePlantResult ? PopupStatus.success : PopupStatus.failure}
         />
       }
     >
