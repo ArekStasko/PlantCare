@@ -5,7 +5,6 @@ import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/Dashboard/dashboard';
 import CreatePlaceWizard from '../../pages/createPlace/CreatePlaceWizard';
 import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
-import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
 import PlantWizard from '../../pages/plant/PlantWizard';
@@ -28,14 +27,6 @@ export const MainRouting = () => {
         element={
           <BaseLayout>
             <PlantWizard />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path={`${RoutingConstants.updatePlant}/:id`}
-        element={
-          <BaseLayout>
-            <UpdatePlant />
           </BaseLayout>
         }
       />
