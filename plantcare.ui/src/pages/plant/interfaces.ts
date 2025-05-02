@@ -13,4 +13,5 @@ export interface PlantContext {
   place?: string;
   placeName?: string;
   module?: string;
+  plantId?: number;
 }

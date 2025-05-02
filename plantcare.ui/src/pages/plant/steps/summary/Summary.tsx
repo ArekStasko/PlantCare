@@ -21,16 +21,24 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const [updatePlant, { data: updatePlantResult, isLoading: updatePlantLoading }] =
     useUpdatePlantMutation();
   const navigate = useNavigate();
-  const { name, description, type, place, module } = wizardController.context;
+  const { name, description, type, place, module, plantId } = wizardController.context;
 
   useEffect(() => {
-    wizardController.onLoading((isLoading, updatePlantLoading));
+    wizardController.onLoading(isLoading || updatePlantLoading);
   }, [isLoading, updatePlantLoading]);
 
   const onSubmit = async () => {
     if (wizardController.context.flowType === PlantFlowType.UPDATE) {
-      const request: UpdatePlantRequest = {};
+      const request = {
+        name: name,
+        description: description,
+        type: type as PlantType,
+        placeId: place,
+        moduleId: module,
+        id: plantId
+      } as UpdatePlantRequest;
       await updatePlant(request);
+      return;
     }
 
     const request = {
