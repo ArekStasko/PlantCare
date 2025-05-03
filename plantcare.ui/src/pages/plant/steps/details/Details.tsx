@@ -1,18 +1,20 @@
-import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Box, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { PlantContext } from '../../interfaces';
-import { Controller, useForm } from 'react-hook-form';
-import { PlantType } from '../../../../common/models/plantTypes';
-import Vegetable from '../../../../app/images/Vegetable.png';
-import Fruit from '../../../../app/images/Fruit.png';
-import Decorative from '../../../../app/images/Decorative.png';
-import React from 'react';
-import styles from './details.styles';
-import { yupResolver } from '@hookform/resolvers/yup';
-import validators from '../../../../common/services/Validators';
+import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
+import { Box, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { WizardStepProps } from "../../../../common/wizard/interfaces";
+import { PlantContext, PlantFlowType } from "../../interfaces";
+import { Controller, useForm } from "react-hook-form";
+import { PlantType } from "../../../../common/models/plantTypes";
+import Vegetable from "../../../../app/images/Vegetable.png";
+import Fruit from "../../../../app/images/Fruit.png";
+import Decorative from "../../../../app/images/Decorative.png";
+import React, { useState } from "react";
+import styles from "./details.styles";
+import { yupResolver } from "@hookform/resolvers/yup";
+import validators from "../../../../common/services/Validators";
+import Popup from "../../../../common/components/popup/Popup";
 
 const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
+  const [openPopup, setOpenPopup] = useState(false);
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlantDetailsSchema),
@@ -30,18 +32,37 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
     control
   } = methods;
 
+  const checkIfValuesAreTheSame = (): boolean => {
+    const newName = getValues('name');
+    const newDescription = getValues('description');
+    const newType = getValues('plantType') as PlantType;
+
+    const {type, name, description} = wizardController.context
+    return type === newType && newDescription === description && newName === name;
+  }
+
+  const onNext = () => {
+
+    if(wizardController.context.flowType === PlantFlowType.UPDATE){
+      const areValuesTheSame = checkIfValuesAreTheSame();
+      if(areValuesTheSame){
+        return;
+      }
+    }
+
+    wizardController.updateContext({
+      ...wizardController.context,
+      name: getValues('name'),
+      description: getValues('description'),
+      type: getValues('plantType') as PlantType
+    });
+    wizardController.goToNextStep();
+  }
+
   return (
     <WizardStep
       nextButton={{
-        onClick: () => {
-          wizardController.updateContext({
-            ...wizardController.context,
-            name: getValues('name'),
-            description: getValues('description'),
-            type: getValues('plantType') as PlantType
-          });
-          wizardController.goToNextStep();
-        },
+        onClick: () => onNext(),
         isDisabled: !isValid,
         title: 'Next'
       }}
@@ -57,6 +78,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
       }}
       title={'Details'}
     >
+      <Popup openPopup={openPopup} confirmAction={() => openPopup(false)}>
       <Box sx={styles.nameNtypeWrapper}>
         <Box sx={styles.inputWrapper}>
           <InputLabel id="SelectPlace">Provide your Plant name</InputLabel>
