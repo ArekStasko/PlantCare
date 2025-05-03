@@ -7,7 +7,7 @@ import { PlantType } from '../../../../common/models/plantTypes';
 import Decorative from '../../../../app/images/Decorative.png';
 import Vegetable from '../../../../app/images/Vegetable.png';
 import Fruit from '../../../../app/images/Fruit.png';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreatePlantMutation } from '../../../../common/RTK/createPlant/createPlant';
 import { CreatePlantRequest } from '../../../../common/RTK/createPlant/createPlantRequest';
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
@@ -15,8 +15,15 @@ import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useNavigate } from 'react-router';
 import { useUpdatePlantMutation } from '../../../../common/RTK/updatePlant/updatePlant';
 import { UpdatePlantRequest } from '../../../../common/RTK/updatePlant/updatePlantRequest';
+import { useGetPlantQuery } from '../../../../common/RTK/getPlant/getPlant';
+import { GetPlantData } from '../../../../common/RTK/getPlant/getPlantData';
+import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
+  const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery({
+    plantId: wizardController.context.plantId
+  } as GetPlantData);
+  const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);
   const [createPlant, { data, isLoading }] = useCreatePlantMutation();
   const [updatePlant, { data: updatePlantResult, isLoading: updatePlantLoading }] =
     useUpdatePlantMutation();
@@ -24,8 +31,20 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { name, description, type, place, module, plantId } = wizardController.context;
 
   useEffect(() => {
-    wizardController.onLoading(isLoading || updatePlantLoading);
-  }, [isLoading, updatePlantLoading]);
+    wizardController.onLoading(isLoading || updatePlantLoading || isGetPlantLoading);
+  }, [isLoading, updatePlantLoading, isGetPlantLoading]);
+
+  useEffect(() => {
+    if (!plant) return;
+    const { name, place, type, description, module } = wizardController.context;
+    const check =
+      name === plant.name &&
+      place === plant.placeId.toString() &&
+      type === plant.type &&
+      description === plant.description &&
+      module === plant.moduleId;
+    setIsDataNoChanged(check);
+  }, [plant, wizardController.context]);
 
   const onSubmit = async () => {
     if (wizardController.context.flowType === PlantFlowType.UPDATE) {
@@ -68,7 +87,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
     <WizardStep
       nextButton={{
         onClick: onSubmit,
-        isDisabled: isLoading,
+        isDisabled: isLoading || updatePlantLoading || isGetPlantLoading || isDataNoChanged,
         title: 'Submit'
       }}
       cancelButton={{
@@ -97,6 +116,12 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
         />
       }
     >
+      {isDataNoChanged && (
+        <CustomAlert
+          type="warning"
+          message="There is no changes in plant data that you have provided"
+        />
+      )}
       <Card elevation={5} sx={styles.summaryList}>
         <Box sx={styles.summaryListElement}>
           <Box sx={styles.summaryListText}>
