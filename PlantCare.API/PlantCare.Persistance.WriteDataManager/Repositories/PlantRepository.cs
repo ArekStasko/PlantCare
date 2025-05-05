@@ -73,6 +73,7 @@ public class PlantRepository : IWritePlantRepository
             plantToUpdate.Name = plant.Name;
             plantToUpdate.Description = plant.Description;
             plantToUpdate.Type = plant.Type;
+            plantToUpdate.ModuleId = plant.ModuleId;
             await _context.SaveChangesAsync();
             _logger.LogInformation("Plant with {plantId} successfully updated", plant.Id);
             
