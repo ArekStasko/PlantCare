@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActionsMenuContext, ActionType } from './interfaces';
+import { ActionsMenuContext } from './interfaces';
 import {
   Backdrop,
   Button,
@@ -17,6 +17,7 @@ import CustomAlert from '../../common/components/customAlert/customAlert';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../app/routing/routingConstants';
 import { PlantContext, PlantFlowType } from '../plant/interfaces';
+import { ActionType } from '../../common/interfaces';
 
 interface PlantActionsMenu {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;

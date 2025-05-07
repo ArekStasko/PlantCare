@@ -1,6 +1,6 @@
 import { DialogContentText, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import React, { useEffect } from 'react';
-import { ActionType } from '../interfaces';
+import { ActionType } from '../../../common/interfaces';
 
 export interface UpdatePlantProps {
   action?: ActionType;

@@ -30,6 +30,16 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
     control
   } = methods;
 
+  const onNext = () => {
+    wizardController.updateContext({
+      ...wizardController.context,
+      name: getValues('name'),
+      description: getValues('description'),
+      type: getValues('plantType') as PlantType
+    });
+    wizardController.goToNextStep();
+  };
+
   return (
     <WizardStep
       nextButton={{

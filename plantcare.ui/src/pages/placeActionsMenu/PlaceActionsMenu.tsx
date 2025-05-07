@@ -37,7 +37,7 @@ const PlaceActionsMenu = ({ setOpenDialog, openDialog, place }: PlaceActionsMenu
   const onActionChange = (action: ActionType) => setContext((prev) => ({ ...prev, action }));
 
   const onCancel = () => {
-    setContext((prev) => ({ ...prev, action: undefined }));
+    setContext((prev) => ({ ...prev, action: undefined }) as ActionsMenuContext);
     setOpenDialog(false);
   };
 

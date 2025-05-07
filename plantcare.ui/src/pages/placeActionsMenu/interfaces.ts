@@ -3,5 +3,5 @@ import { ActionType } from '../../common/interfaces';
 
 export interface ActionsMenuContext {
   action?: ActionType;
-  plant: Place;
+  place: Place;
 }

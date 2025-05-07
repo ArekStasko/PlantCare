@@ -20,9 +20,10 @@ import { GetPlantData } from '../../../../common/RTK/getPlant/getPlantData';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
-  const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery({
-    plantId: wizardController.context.plantId
-  } as GetPlantData);
+  const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(
+    { plantId: wizardController.context.plantId?.toString() } as GetPlantData,
+    { skip: !wizardController.context.plantId }
+  );
   const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);
   const [createPlant, { data, isLoading }] = useCreatePlantMutation();
   const [updatePlant, { data: updatePlantResult, isLoading: updatePlantLoading }] =
