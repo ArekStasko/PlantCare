@@ -1,10 +1,20 @@
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { AlertColor, Box, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  AlertColor,
+  Box,
+  Card,
+  CardContent,
+  CircularProgress,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography
+} from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
-import { PlantContext } from '../../interfaces';
+import { PlantContext, PlantFlowType } from '../../interfaces';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 import { Controller, useForm } from 'react-hook-form';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useGetModulesQuery } from '../../../../common/RTK/getModules/getModules';
 import styles from './module.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +36,13 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
     formState: { isValid },
     control
   } = methods;
+
+  const CurrentModule = useMemo(() => {
+    if (wizardController.context.flowType === PlantFlowType.CREATE || !modules) return undefined;
+    const module = modules.find((m) => m.id === wizardController.context.module);
+    if (!module) return undefined;
+    return `${module.name} - ${module.id}`;
+  }, [modules]);
 
   return (
     <WizardStep
@@ -69,6 +86,16 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
               </>
             ) : (
               <>
+                {CurrentModule && (
+                  <Card>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5">
+                        Currently selected Module:
+                      </Typography>
+                      <Typography variant="body1">{CurrentModule}</Typography>
+                    </CardContent>
+                  </Card>
+                )}
                 <InputLabel id="SelectPlantModule">
                   Choose a module that will monitor your plant moisture
                 </InputLabel>

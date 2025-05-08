@@ -59,7 +59,7 @@ const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu
       description: plant.description,
       plantId: plant.id,
       place: plant.placeId.toString(),
-      moduleId: plant.moduleId,
+      module: plant.moduleId,
       type: plant.type
     } as PlantContext;
 
