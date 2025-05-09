@@ -178,7 +178,9 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
             <Typography variant="button" sx={styles.summaryListTitle}>
               Module
             </Typography>
-            <Typography>{wizardController.context.module}</Typography>
+            <Typography>
+              {wizardController.context.moduleName} - {wizardController.context.module}
+            </Typography>
           </Box>
           <Divider sx={styles.divider} />
         </Box>
