@@ -1,6 +1,6 @@
 import { Box, TextField, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlaceContext } from '../../interfaces';
+import { PlaceContext } from '../../interfaces';
 import styles from './details.styles';
 import React from 'react';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 
-const Details = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
+const Details = ({ wizardController }: WizardStepProps<PlaceContext>) => {
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.createPlaceSchema),
@@ -24,7 +24,7 @@ const Details = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
   } = methods;
 
   return (
-    <WizardStep<CreatePlaceContext>
+    <WizardStep<PlaceContext>
       nextButton={{
         onClick: () => {
           wizardController.updateContext({

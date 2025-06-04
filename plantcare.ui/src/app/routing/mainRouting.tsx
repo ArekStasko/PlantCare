@@ -3,7 +3,7 @@ import RoutingConstants from './routingConstants';
 import React from 'react';
 import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/Dashboard/dashboard';
-import CreatePlaceWizard from '../../pages/createPlace/CreatePlaceWizard';
+import CreatePlaceWizard from '../../pages/place/PlaceWizard';
 import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';

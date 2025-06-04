@@ -19,7 +19,7 @@ interface PlantsAccordionDetailsProps {
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
   const navigate = useNavigate();
-  const [openUpdatePlantMenu, setOpenUpdatePlantMenu] = React.useState(false);
+  const [openPlantId, setOpenPlantId] = React.useState<number>();
 
   const getImage = (plantType: PlantType) => {
     switch (plantType) {
@@ -46,13 +46,13 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
           </Box>
           <PlantActionsMenu
             plant={plant}
-            setOpenDialog={setOpenUpdatePlantMenu}
-            openDialog={openUpdatePlantMenu}
+            closeDialog={() => setOpenPlantId(undefined)}
+            openDialog={openPlantId === plant.id}
           />
           <Box sx={styles.plantsAccordionDetailsButtons}>
             <Tooltip title={`Update ${plant.name}`} arrow>
               <IconButton
-                onClick={() => setOpenUpdatePlantMenu(true)}
+                onClick={() => setOpenPlantId(plant.id)}
                 size="large"
                 sx={{ mr: 5 }}
                 color="primary"

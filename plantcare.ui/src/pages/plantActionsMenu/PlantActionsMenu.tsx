@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogTitle
 } from '@mui/material';
-import { ActionsMenu } from './actionsMenu/ActionsMenu';
 import { Plant } from '../../common/models/Plant';
 import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
 import useInvalidateCache from '../../common/hooks/useInvalidateCache';
@@ -18,14 +17,15 @@ import { useNavigate } from 'react-router';
 import RoutingConstants from '../../app/routing/routingConstants';
 import { PlantContext, PlantFlowType } from '../plant/interfaces';
 import { ActionType } from '../../common/interfaces';
+import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
 
 interface PlantActionsMenu {
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  closeDialog: () => void;
   openDialog: boolean;
   plant: Plant;
 }
 
-const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu) => {
+const PlantActionsMenu = ({ closeDialog, openDialog, plant }: PlantActionsMenu) => {
   const { invalidateCache } = useInvalidateCache();
   const navigate = useNavigate();
   const [deletePlant, { data, isLoading, isError }] = useDeletePlantMutation();
@@ -38,7 +38,7 @@ const PlantActionsMenu = ({ setOpenDialog, openDialog, plant }: PlantActionsMenu
 
   const onCancel = () => {
     setContext((prev) => ({ ...prev, action: undefined }));
-    setOpenDialog(false);
+    closeDialog();
   };
 
   const onSubmit = async () => {

@@ -1,6 +1,6 @@
 import { Box, Card, Divider, Typography } from '@mui/material';
-import { buttonAction, WizardStepProps } from '../../../../common/wizard/interfaces';
-import { CreatePlaceContext } from '../../interfaces';
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { PlaceContext, PlaceFlowType } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { useCreatePlaceMutation } from '../../../../common/RTK/createPlace/createPlace';
 import { CreatePlaceRequest } from '../../../../common/RTK/createPlace/createPlaceRequest';
@@ -9,27 +9,41 @@ import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import styles from './summary.styles';
+import { useUpdatePlaceMutation } from '../../../../common/RTK/updatePlace/updatePlace';
+import { UpdatePlaceRequest } from '../../../../common/RTK/updatePlace/updatePlaceRequest';
 
-const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
+const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
   const navigate = useNavigate();
-  const [createPlant, { data, isLoading }] = useCreatePlaceMutation();
+  const [createPlace, { data: createPlaceResult, isLoading: createPlaceLoading }] =
+    useCreatePlaceMutation();
+  const [updatePlace, { data: updatePlaceResult, isLoading: updatePlaceLoading }] =
+    useUpdatePlaceMutation();
 
   useEffect(() => {
-    wizardController.onLoading(isLoading);
-  }, [isLoading]);
+    wizardController.onLoading(createPlaceLoading || updatePlaceLoading);
+  }, [createPlaceLoading, updatePlaceLoading]);
 
   const onSubmit = async () => {
+    if (wizardController.context.flowType === PlaceFlowType.UPDATE) {
+      const request = {
+        id: wizardController.context.id,
+        name: wizardController.context.name
+      } as UpdatePlaceRequest;
+      await updatePlace(request);
+      return;
+    }
+
     const request = {
       name: wizardController.context.name
     } as CreatePlaceRequest;
-    await createPlant(request);
+    await createPlace(request);
   };
 
   return (
     <WizardStep
       nextButton={{
         onClick: onSubmit,
-        isDisabled: isLoading,
+        isDisabled: createPlaceLoading || updatePlaceLoading,
         title: 'Submit'
       }}
       cancelButton={{
@@ -47,14 +61,16 @@ const Summary = ({ wizardController }: WizardStepProps<CreatePlaceContext>) => {
         <Popup
           titleText={'Success'}
           contentText={
-            data
+            createPlaceResult || updatePlaceResult
               ? 'The new Place has been added successfully.'
               : 'An error occurred while adding a new Place, please try again later.'
           }
-          openPopup={data ?? false}
+          openPopup={(createPlaceResult || updatePlaceResult) ?? false}
           confirmText={'Go to Dashboard'}
           confirmAction={() => navigate(RoutingConstants.root)}
-          status={data ? PopupStatus.success : PopupStatus.failure}
+          status={
+            createPlaceResult || updatePlaceResult ? PopupStatus.success : PopupStatus.failure
+          }
         />
       }
     >

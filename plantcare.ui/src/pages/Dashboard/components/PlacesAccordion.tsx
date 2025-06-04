@@ -13,11 +13,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
 import PlantsAccordionDetails from './PlantsAccordionDetails';
 import styles from '../dashboard.styles';
-import RoutingConstants from '../../../app/routing/routingConstants';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { useNavigate } from 'react-router';
 import { Plant } from '../../../common/models/Plant';
-import PlaceActionsMenu from "../../placeActionsMenu/PlaceActionsMenu";
+import PlaceActionsMenu from '../../placeActionsMenu/PlaceActionsMenu';
 
 interface PlaceAccordionProps {
   places: Place[];
@@ -26,8 +24,7 @@ interface PlaceAccordionProps {
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
   const [currentAccordion, setCurrentAccordion] = React.useState<number>();
-  const [openPlaceActionsMenu, setOpenPlaceActionMenu] = React.useState(false);
-  const navigate = useNavigate();
+  const [openPlaceId, setOpenPlaceId] = React.useState<number>();
 
   const filterPlantsByPlaceId = (placeId: number) => {
     return props.plants.filter((p) => p.placeId === placeId);
@@ -48,7 +45,6 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
           key={place.id}
           disableGutters
         >
-          <PlaceActionsMenu openDialog={openPlaceActionsMenu} setOpenDialog={(open: boolean) => setOpenPlaceActionMenu(open)} place={place}/>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -59,7 +55,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
               <Box>
                 <Tooltip title={`Update ${place.name}`} arrow>
                   <IconButton
-                    onClick={() => setOpenPlaceActionMenu(true)}
+                    onClick={() => setOpenPlaceId(place.id)}
                     size="large"
                     sx={{ mr: 5 }}
                     color="primary"
@@ -69,6 +65,11 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
                 </Tooltip>
               </Box>
             </Box>
+            <PlaceActionsMenu
+              openDialog={openPlaceId === place.id}
+              closeDialog={() => setOpenPlaceId(undefined)}
+              place={place}
+            />
           </AccordionSummary>
           {props.plants && filterPlantsByPlaceId(place.id).length !== 0 ? (
             <PlantsAccordionDetails plants={filterPlantsByPlaceId(place.id)!} />

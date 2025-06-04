@@ -14,17 +14,18 @@ import { useNavigate } from 'react-router';
 import { ActionsMenuContext } from './interfaces';
 import { ActionType } from '../../common/interfaces';
 import CustomAlert from '../../common/components/customAlert/customAlert';
-import { ActionsMenu } from './actionsMenu/ActionsMenu';
 import RoutingConstants from '../../app/routing/routingConstants';
 import { useDeletePlaceMutation } from '../../common/RTK/deletePlace/deletePlace';
+import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
+import { PlaceContext, PlaceFlowType } from '../place/interfaces';
 
 interface PlaceActionsMenuProps {
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  closeDialog: () => void;
   openDialog: boolean;
   place: Place;
 }
 
-const PlaceActionsMenu = ({ setOpenDialog, openDialog, place }: PlaceActionsMenuProps) => {
+const PlaceActionsMenu = ({ closeDialog, openDialog, place }: PlaceActionsMenuProps) => {
   const [deletePlace, { data, isLoading, isError }] = useDeletePlaceMutation();
   const { invalidateCache } = useInvalidateCache();
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const PlaceActionsMenu = ({ setOpenDialog, openDialog, place }: PlaceActionsMenu
 
   const onCancel = () => {
     setContext((prev) => ({ ...prev, action: undefined }) as ActionsMenuContext);
-    setOpenDialog(false);
+    closeDialog();
   };
 
   const onSubmit = async () => {
@@ -53,13 +54,17 @@ const PlaceActionsMenu = ({ setOpenDialog, openDialog, place }: PlaceActionsMenu
       return;
     }
 
-    const placeContext = {};
+    const placeContext = {
+      flowType: PlaceFlowType.UPDATE,
+      id: place.id,
+      name: place.name
+    } as PlaceContext;
 
-    navigate(RoutingConstants.plant, { state: placeContext });
+    navigate(RoutingConstants.createPlace, { state: placeContext });
   };
 
   return (
-    <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+    <Dialog open={openDialog} onClose={() => onCancel()}>
       <Backdrop open={isLoading}>
         <CircularProgress color="secondary" size={20} />
       </Backdrop>
