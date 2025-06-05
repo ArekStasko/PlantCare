@@ -8,7 +8,7 @@ const wrapper = {
   height: '90%',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'center'
 };
 
 export default {

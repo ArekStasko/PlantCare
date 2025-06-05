@@ -55,8 +55,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
               <Box>
                 <Tooltip title={`Update ${place.name}`} arrow>
                   <IconButton
-                    onClick={() => setOpenPlaceId(place.id)
-                    }
+                    onClick={() => setOpenPlaceId(place.id)}
                     size="large"
                     sx={{ mr: 5 }}
                     color="primary"

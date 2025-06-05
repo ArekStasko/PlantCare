@@ -17,12 +17,10 @@ const Dashboard = () => {
     <Box sx={styles.dashboardContainer}>
       {places && places.length !== 0 ? (
         <>
-        <Box sx={styles.dashboardWrapper}>
-          <PlacesAccordion places={places!} plants={plants!} />
-        </Box>
-          <Typography>
-            PAGINATION
-          </Typography>
+          <Box sx={styles.dashboardWrapper}>
+            <PlacesAccordion places={places!} plants={plants!} />
+          </Box>
+          <Typography>PAGINATION</Typography>
         </>
       ) : (
         <Box sx={styles.alertWrapper}>

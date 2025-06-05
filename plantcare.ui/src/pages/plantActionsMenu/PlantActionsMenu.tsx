@@ -76,11 +76,17 @@ const PlantActionsMenu = ({ closeDialog, openDialog, plant }: PlantActionsMenu) 
       <DialogContent>
         <ActionsMenu action={context.action} onActionChange={onActionChange} />
       </DialogContent>
-      <DialogContent sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      {data && <CustomAlert message="Successfully deleted plant." type="success" sx={{width: '70%'}} />}
-      {isError && (
-        <CustomAlert message="Something went wrong, please try again later." type="error" sx={{width: '70%'}} />
-      )}
+      <DialogContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {data && (
+          <CustomAlert message="Successfully deleted plant." type="success" sx={{ width: '70%' }} />
+        )}
+        {isError && (
+          <CustomAlert
+            message="Something went wrong, please try again later."
+            type="error"
+            sx={{ width: '70%' }}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" disabled={false} onClick={() => onCancel()}>

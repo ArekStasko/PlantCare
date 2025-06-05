@@ -1,10 +1,10 @@
-import { Alert, AlertColor, SxProps, Typography } from "@mui/material";
+import { Alert, AlertColor, SxProps, Typography } from '@mui/material';
 import React from 'react';
 
 interface customAlertProps {
   message: string;
   type: AlertColor;
-  sx?: SxProps
+  sx?: SxProps;
 }
 
 export const CustomAlert = (props: customAlertProps) => {

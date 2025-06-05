@@ -7,7 +7,7 @@ const dashboardContainer = {
   border: '1px solid blue',
   p: 4,
   backgroundColor: 'rgba(0, 0, 0, 0.5)'
-}
+};
 
 const dashboardWrapper = {
   display: 'flex',
@@ -24,7 +24,7 @@ const alertWrapper = {
 };
 
 const placesAccordionWrapper = {
-  width: '80%',
+  width: '80%'
 };
 
 const placesAccordionSummary = {
