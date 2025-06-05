@@ -5,7 +5,10 @@ const container = {
 
 const wrapper = {
   width: '100%',
-  height: '90%'
+  height: '90%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 
 export default {

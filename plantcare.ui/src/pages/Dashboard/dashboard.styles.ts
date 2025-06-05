@@ -1,6 +1,15 @@
+const dashboardContainer = {
+  width: '80%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  border: '1px solid blue',
+  p: 4,
+  backgroundColor: 'rgba(0, 0, 0, 0.5)'
+}
+
 const dashboardWrapper = {
-  width: '100%',
-  height: '100%',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
@@ -16,8 +25,6 @@ const alertWrapper = {
 
 const placesAccordionWrapper = {
   width: '80%',
-  height: '100%',
-  mt: 5
 };
 
 const placesAccordionSummary = {
@@ -49,6 +56,7 @@ const plantsAccordionDetailsButtons = {
 };
 
 export default {
+  dashboardContainer,
   dashboardWrapper,
   alertWrapper,
   placesAccordionWrapper,
