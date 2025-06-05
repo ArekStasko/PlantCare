@@ -7,7 +7,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle
-} from '@mui/material';
+} from "@mui/material";
 import { Place } from '../../common/models/Place';
 import useInvalidateCache from '../../common/hooks/useInvalidateCache';
 import { useNavigate } from 'react-router';
@@ -72,10 +72,12 @@ const PlaceActionsMenu = ({ closeDialog, openDialog, place }: PlaceActionsMenuPr
       <DialogContent>
         <ActionsMenu action={context.action} onActionChange={onActionChange} />
       </DialogContent>
-      {data && <CustomAlert message="Successfully deleted place." type="success" />}
-      {isError && (
-        <CustomAlert message="Something went wrong, please try again later." type="error" />
-      )}
+      <DialogContent sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        {data && <CustomAlert message="Successfully deleted place." type="success" sx={{width: '70%'}} />}
+        {isError && (
+          <CustomAlert sx={{width: '70%'}} message="Something went wrong, please try again later." type="error" />
+        )}
+      </DialogContent>
       <DialogActions>
         <Button variant="outlined" disabled={false} onClick={() => onCancel()}>
           Cancel

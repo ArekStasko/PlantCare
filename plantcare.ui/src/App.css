@@ -3,4 +3,8 @@
   width: 100vw;
   height: 100vh;
   background-color: #4c4e52;
+  background-image: url('../public/background.png');
+  backgroundPosition: 'center';
+  backgroundSize: 'cover';
+  backgroundRepeat: 'no-repeat';
 }
