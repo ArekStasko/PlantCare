@@ -1,15 +1,23 @@
 const dashboardContainer = {
   width: '80%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  border: '1px solid blue',
+  height: '80%',
+  border: '1px solid #203b78',
+  borderRadius: 4,
   p: 4,
-  backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  backgroundColor: 'rgba(0, 0, 0, 0.4)'
 };
 
 const dashboardWrapper = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems: 'center'
+};
+
+const accordionWrapper = {
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
@@ -58,6 +66,7 @@ const plantsAccordionDetailsButtons = {
 export default {
   dashboardContainer,
   dashboardWrapper,
+  accordionWrapper,
   alertWrapper,
   placesAccordionWrapper,
   placesAccordionSummary,
