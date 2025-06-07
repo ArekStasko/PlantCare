@@ -12,7 +12,6 @@ const RoutingPaths = {
   updatePlant: '/update-plant',
   plantStatistics: '/statistics',
   createPlace: '/create-place',
-  updatePlace: '/update-place',
   addModule: '/add-module'
 };
 

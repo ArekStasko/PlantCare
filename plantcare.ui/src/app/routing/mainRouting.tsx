@@ -4,7 +4,6 @@ import React from 'react';
 import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/Dashboard/dashboard';
 import CreatePlaceWizard from '../../pages/place/PlaceWizard';
-import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
 import Statistics from '../../pages/Statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
 import PlantWizard from '../../pages/plant/PlantWizard';
@@ -43,14 +42,6 @@ export const MainRouting = () => {
         element={
           <BaseLayout>
             <CreatePlaceWizard />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path={`${RoutingConstants.updatePlace}/:id`}
-        element={
-          <BaseLayout>
-            <UpdatePlace />
           </BaseLayout>
         }
       />
