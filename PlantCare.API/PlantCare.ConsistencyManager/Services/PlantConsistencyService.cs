@@ -67,6 +67,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 plantToUpdate.Name = plant.Name;
                 plantToUpdate.Description = plant.Description;
                 plantToUpdate.Type = plant.Type;
+                plantToUpdate.ModuleId = plant.ModuleId;
                 await _context.SaveChangesAsync();
                 string singlePlantKey = $"Plant-{plant.Id}-{plant.UserId}";
                 await ResetPlantCache(plant.UserId);

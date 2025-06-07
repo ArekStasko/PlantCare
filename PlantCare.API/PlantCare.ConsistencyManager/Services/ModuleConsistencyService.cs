@@ -52,10 +52,17 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                     }
                     case ActionType.Update:
                     {
-                        var module = _mapper.Map<PlantCare.Domain.Models.Module.Module>(message.ModuleData);
-                        _context.Modules.Update(module);
+                        var moduleData = message.ModuleData;
+                        var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == moduleData.Id && m.UserId == moduleData.UserId);
+                        
+                        if (moduleToUpdate == null)
+                        {
+                            _logger.LogError("There is no Module to update with {Id}", moduleData.Id);
+                            return;
+                        }
+                        moduleToUpdate.IsMonitoring = moduleData.IsMonitoring;
                         await _context.SaveChangesAsync();
-                        await ResetCacheModule(module.UserId);
+                        await ResetCacheModule(moduleToUpdate.UserId);
                         return;
                     }
                     default:
