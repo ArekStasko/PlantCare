@@ -12,7 +12,9 @@ const statisticsWrapper = {
   display: 'flex',
   justifyContent: 'space-around',
   flexDirection: 'column',
-  alignItems: 'start'
+  alignItems: 'start',
+  border: '1px solid #203b78',
+  backgroundColor: 'rgba(0, 0, 0, 0.7)'
 };
 
 const datePickerWrapper = {
@@ -37,7 +39,9 @@ const plantDetailsWrapper = {
   display: 'flex',
   justifyContent: 'space-between',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
+  border: '1px solid #203b78',
+  backgroundColor: 'rgba(0, 0, 0, 0.7)'
 };
 
 const plantTitleWrapper = {
@@ -100,6 +104,14 @@ const moduleIdCard = {
   justifyContent: 'space-around'
 };
 
+const loader = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
 export default {
   statisticsWrapper,
   statisticsContainer,
@@ -112,5 +124,6 @@ export default {
   typeCard,
   titleCard,
   descriptionCard,
-  moduleIdCard
+  moduleIdCard,
+  loader
 };

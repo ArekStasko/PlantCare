@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Box, Pagination, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+import { Box, Pagination} from '@mui/material';
 import { useGetPlacesQuery } from '../../common/RTK/getPlaces/getPlaces';
 import styles from './dashboard.styles';
 import CustomBackdrop from '../../common/components/customBackdrop/backdrop';
 import PlacesAccordion from './components/PlacesAccordion';
 import { useGetPlantsQuery } from '../../common/RTK/getPlants/getPlants';
 import NoDataDialog from '../../common/components/NoDataAlert/noDataDialog';
-import { Place } from '../../common/models/Place';
 
 const Dashboard = () => {
   const [page, setPage] = useState<number>(1);

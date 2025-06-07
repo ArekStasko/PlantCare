@@ -3,12 +3,9 @@ import {
   Box,
   Card,
   CircularProgress,
-  Paper,
-  Switch,
-  Tooltip,
   Typography
 } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
@@ -19,11 +16,10 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
-import { useGetPlantsQuery } from '../../common/RTK/getPlants/getPlants';
 import { useSetModuleStatusMutation } from '../../common/RTK/setModuleStatus/setModuleStatus';
 import { useGetModulesQuery } from '../../common/RTK/getModules/getModules';
 import { SetModuleStatusRequest } from '../../common/RTK/setModuleStatus/setModuleStatusRequest';
-import { PlantDetails } from '../Dashboard/components/PlantDetails';
+import { PlantDetails } from '../dashboard/components/PlantDetails';
 import { Module } from '../../common/models/Module';
 
 export const Statistics = () => {
@@ -96,7 +92,9 @@ export const Statistics = () => {
       <Box sx={styles.statisticsContainer}>
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
           {modulesLoading ? (
-            <CircularProgress />
+              <Box sx={styles.loader}>
+                <CircularProgress />
+              </Box>
           ) : (
             <PlantDetails
               plant={plant}
@@ -106,12 +104,14 @@ export const Statistics = () => {
             />
           )}
         </Card>
-        {humidityMeasurementsLoading ? (
-          <>
-            <CircularProgress />
-          </>
-        ) : (
           <Card variant="outlined" sx={styles.statisticsWrapper}>
+            {
+              humidityMeasurementsLoading ? (
+                <Box sx={styles.loader}>
+                  <CircularProgress />
+                </Box>
+              ) : (
+            <>
             <Box sx={styles.datePickerWrapper}>
               <Typography variant="h5">Humidity Moisture Statistics</Typography>
               <DatePicker
@@ -137,8 +137,9 @@ export const Statistics = () => {
                 )
               )}
             </Box>
+            </>
+              )}
           </Card>
-        )}
       </Box>
     </LocalizationProvider>
   );

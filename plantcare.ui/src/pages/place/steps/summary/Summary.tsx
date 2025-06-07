@@ -66,7 +66,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
               : 'An error occurred while adding a new Place, please try again later.'
           }
           openPopup={(createPlaceResult || updatePlaceResult) ?? false}
-          confirmText={'Go to Dashboard'}
+          confirmText={'Go to dashboard'}
           confirmAction={() => navigate(RoutingConstants.root)}
           status={
             createPlaceResult || updatePlaceResult ? PopupStatus.success : PopupStatus.failure

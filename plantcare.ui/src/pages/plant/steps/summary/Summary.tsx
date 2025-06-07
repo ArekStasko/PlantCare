@@ -111,7 +111,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
               : 'An error occurred while adding a new plant, please try again later.'
           }
           openPopup={(data || updatePlantResult) ?? false}
-          confirmText={'Go to Dashboard'}
+          confirmText={'Go to dashboard'}
           confirmAction={() => navigate(RoutingConstants.root)}
           status={data || updatePlantResult ? PopupStatus.success : PopupStatus.failure}
         />
