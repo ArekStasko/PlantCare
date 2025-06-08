@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import RoutingConstants from './routingConstants';
 import React from 'react';
-import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
+import BaseLayout from '../../common/layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/dashboard/dashboard';
 import CreatePlaceWizard from '../../pages/place/PlaceWizard';
 import Statistics from '../../pages/statistics/statistics';
