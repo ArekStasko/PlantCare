@@ -7,8 +7,9 @@ export const updatePlaceApi = plantcareApi.injectEndpoints({
       query: ({ ...data }) => ({
         url: '/places/Update',
         method: 'POST',
-        body: data,
-      })
+        body: data
+      }),
+      invalidatesTags: ['Places']
     })
   }),
   overrideExisting: false

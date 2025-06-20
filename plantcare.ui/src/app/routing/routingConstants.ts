@@ -8,24 +8,23 @@ const RoutingPaths = {
   authBasic: '/auth',
   auth: '/auth/:id?/:token?',
   root: '/dashboard',
-  createPlant: '/create-plant',
+  plant: '/create-plant',
   updatePlant: '/update-plant',
   plantStatistics: '/statistics',
   createPlace: '/create-place',
-  updatePlace: '/update-place',
-  addModule: '/add-module',
+  addModule: '/add-module'
 };
 
 export const ActionsTranslation: Dictionary<string> = {
   '/dashboard': 'Dashboard',
-  '/create-plant': 'Create Plant',
+  '/create-plant': 'Create plant',
   '/create-place': 'Create Place',
-  '/add-module': 'Add Module',
+  '/add-module': 'Add Module'
 };
 
 export const ActionsToPerform = [
   RoutingPaths.root,
-  RoutingPaths.createPlant,
+  RoutingPaths.plant,
   RoutingPaths.createPlace,
   RoutingPaths.addModule
 ];

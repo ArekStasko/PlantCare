@@ -8,6 +8,20 @@ const createPlantSchema = yup.object().shape({
   plantModule: yup.string().required()
 });
 
+const createPlantDetailsSchema = yup.object().shape({
+  name: yup.string().required(),
+  description: yup.string().required(),
+  plantType: yup.number().required()
+});
+
+const selectPlaceSchema = yup.object().shape({
+  place: yup.string().required()
+});
+
+const selectModuleSchema = yup.object().shape({
+  module: yup.string().required()
+});
+
 const updatePlantSchema = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
@@ -29,8 +43,11 @@ const updatePlaceSchema = yup.object().shape({
 
 const addModuleSchema = yup.object().shape({
   wifiName: yup.string().required(),
-  wifiPassword: yup.string().required(),
-  connected: yup.boolean().required(),
+  wifiPassword: yup.string().required()
+});
+
+const addModuleNameSchema = yup.object().shape({
+  moduleName: yup.string().required()
 });
 
 export default {
@@ -38,5 +55,9 @@ export default {
   createPlaceSchema,
   updatePlantSchema,
   updatePlaceSchema,
-  addModuleSchema
+  createPlantDetailsSchema,
+  addModuleSchema,
+  selectPlaceSchema,
+  selectModuleSchema,
+  addModuleNameSchema
 };

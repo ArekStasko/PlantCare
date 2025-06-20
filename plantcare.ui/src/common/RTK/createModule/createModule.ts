@@ -1,14 +1,18 @@
-import plantcareApi from "../../../app/api/plantcareApi";
+import plantcareApi from '../../../app/api/plantcareApi';
 
-export class CreateModuleRequest {}
+export interface CreateModuleRequest {
+  name: string;
+}
 
 export const createModuleApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     CreateModule: build.mutation<number, CreateModuleRequest>({
-      query: () => ({
+      query: ({ ...data }) => ({
         url: '/modules/create',
         method: 'POST',
-      })
+        body: data
+      }),
+      invalidatesTags: ['Modules']
     })
   }),
   overrideExisting: false

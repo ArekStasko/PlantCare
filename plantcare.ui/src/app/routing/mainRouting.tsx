@@ -1,15 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import RoutingConstants from './routingConstants';
 import React from 'react';
-import BaseLayout from '../../common/Layouts/baseLayout/baseLayout';
-import Dashboard from '../../pages/Dashboard/dashboard';
-import CreatePlace from '../../pages/CreatePlace/createPlace';
-import CreatePlant from '../../pages/CreatePlant/createPlant';
-import UpdatePlace from '../../pages/UpdatePlace/updatePlace';
-import UpdatePlant from '../../pages/UpdatePlant/updatePlant';
-import Statistics from '../../pages/Statistics/statistics';
+import BaseLayout from '../../common/layouts/baseLayout/baseLayout';
+import Dashboard from '../../pages/dashboard/dashboard';
+import CreatePlaceWizard from '../../pages/place/PlaceWizard';
+import Statistics from '../../pages/statistics/statistics';
 import AuthPage from '../../pages/authPage/authPage';
-import AddModule from "../../pages/AddModule/addModule";
+import PlantWizard from '../../pages/plant/PlantWizard';
+import AddModuleWizard from '../../pages/addModule/AddModuleWizard';
 
 export const MainRouting = () => {
   return (
@@ -24,18 +22,10 @@ export const MainRouting = () => {
         }
       />
       <Route
-        path={RoutingConstants.createPlant}
+        path={RoutingConstants.plant}
         element={
           <BaseLayout>
-            <CreatePlant />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path={`${RoutingConstants.updatePlant}/:id`}
-        element={
-          <BaseLayout>
-            <UpdatePlant />
+            <PlantWizard />
           </BaseLayout>
         }
       />
@@ -51,15 +41,7 @@ export const MainRouting = () => {
         path={RoutingConstants.createPlace}
         element={
           <BaseLayout>
-            <CreatePlace />
-          </BaseLayout>
-        }
-      />
-      <Route
-        path={`${RoutingConstants.updatePlace}/:id`}
-        element={
-          <BaseLayout>
-            <UpdatePlace />
+            <CreatePlaceWizard />
           </BaseLayout>
         }
       />
@@ -67,7 +49,7 @@ export const MainRouting = () => {
         path={RoutingConstants.addModule}
         element={
           <BaseLayout>
-            <AddModule />
+            <AddModuleWizard />
           </BaseLayout>
         }
       />

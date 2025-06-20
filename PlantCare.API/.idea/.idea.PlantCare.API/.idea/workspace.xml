@@ -15,9 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +74,7 @@
     &quot;ToolWindowNuGet.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/refactor__module__functionality&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/refactor__plantcare__ui&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/IdentityProviderSystem/IdentityProviderSystem.API/IdentityProviderSystem.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -371,6 +369,12 @@
       <workItem from="1737989120288" duration="11950000" />
       <workItem from="1738253033215" duration="2372000" />
       <workItem from="1738343872291" duration="640000" />
+      <workItem from="1741634351121" duration="606000" />
+      <workItem from="1745088068057" duration="2071000" />
+      <workItem from="1746266973138" duration="3527000" />
+      <workItem from="1746288774460" duration="2860000" />
+      <workItem from="1746476432699" duration="2614000" />
+      <workItem from="1749304273616" duration="2664000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

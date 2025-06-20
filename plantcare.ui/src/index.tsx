@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import plantcareApi from '../src/app/api/plantcareApi'
-import RoutingConstants from "./app/routing/routingConstants";
-import IdpClient from 'identity-provider-client'
-import { BrowserRouter } from "react-router-dom";
+import plantcareApi from '../src/app/api/plantcareApi';
+import RoutingConstants from './app/routing/routingConstants';
+import IdpClient from 'identity-provider-client';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <IdpClient clientApi={plantcareApi} authBaseRoute={RoutingConstants.authBasic} dashboardRoute={RoutingConstants.root}>
+      <IdpClient
+        clientApi={plantcareApi}
+        authBaseRoute={RoutingConstants.authBasic}
+        dashboardRoute={RoutingConstants.root}
+      >
         <App />
       </IdpClient>
     </BrowserRouter>

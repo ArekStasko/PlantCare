@@ -9,7 +9,7 @@ import { PlantType } from '../../../../common/models/plantTypes';
 export const Summary = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();
   const { getValues } = useFormContext();
-  const titlesToDisplay = ['Name', 'Description', 'Type of Plant', 'Place', 'Module'];
+  const titlesToDisplay = ['Name', 'Description', 'Type of plant', 'Place', 'Module'];
 
   const renderTitles = () => titlesToDisplay.map((t) => <Typography key={t}>{t}</Typography>);
   const getPlaceName = () => places!.find((place) => place.id === +getValues('plantPlace'))!.name;

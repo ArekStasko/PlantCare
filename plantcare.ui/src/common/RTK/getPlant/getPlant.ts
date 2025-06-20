@@ -6,8 +6,9 @@ export const getPlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetPlant: build.query<Plant, GetPlantData>({
       query: ({ plantId }: GetPlantData) => ({
-        url: `/plants/getById?id=${plantId}`,
-      })
+        url: `/plants/getById?id=${plantId}`
+      }),
+      providesTags: ['Plants']
     })
   }),
   overrideExisting: false
