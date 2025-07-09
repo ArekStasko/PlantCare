@@ -39,7 +39,7 @@ sudo docker-compose up -d
 database-services=$(sudo docker-compose ps --services)
 echo Waiting for healthy Database services
 for service in ${database-services[@]}; do
-    status=$(docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
+    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
     if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
         echo "$service is ready (status: $status)"
         break
@@ -48,7 +48,7 @@ for service in ${database-services[@]}; do
     fi
 done
 echo Database services are healthy
-cd..
+cd ..
 
 echo Starting script
 echo Entering Identity Provider directory: $idp_dir
@@ -57,7 +57,7 @@ sudo docker-compose up -d
 idp-services=$(sudo docker-compose ps --services)
 echo Waiting for healthy Identity Provider services
 for service in ${idp-services[@]}; do
-    status=$(docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
+    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
     if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
         echo "$service is ready (status: $status)"
         break
@@ -75,7 +75,7 @@ sudo docker-compose up -d
 plantcare-services=$(sudo docker-compose ps --services)
 echo Waiting for healthy PlantCare services
 for service in ${plantcare-services[@]}; do
-    status=$(docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
+    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
     if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
         echo "$service is ready (status: $status)"
         break
