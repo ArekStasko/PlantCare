@@ -72,3 +72,19 @@ echo -e "\e[32mPlantCare containers are ready to use\e[0m"
 echo -e Plantcare API logger is available under: "\e[33mhttp://192.168.1.40:5341/\e[0m"
 echo -e Identity Provider logger is available under: "\e[33mhttp://192.168.1.40:5342/\e[0m"
 
+read -p "Do you want to run UI applications? (Y/N): " runUi
+if [[ "$runUi" == "Y" ]]; then
+    pkill -f "serve -s"
+    read -p "Provide Plantcare UI directory name: " PlantcareUI
+    cd $PlantcareUI
+    nohup serve -s build -l 3001 > react.log 2>&1 &
+    cd ..
+    read -p "Provide Identity Provider UI directory name: " IdpUI
+    cd $IdpUI
+    nohup serve -s build -l 3000 > react.log 2>&1 &
+    cd ..
+
+    echo -e "\e[32mPlantCare UI applications are ready to use\e[0m"
+    echo -e Plantcare APP is available under: "\e[33mhttp://192.168.1.40:3001/\e[0m"
+    echo -e Identity Provider APP is available under: "\e[33mhttp://192.168.1.40:3000/\e[0m"
+fi
