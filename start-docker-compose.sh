@@ -23,67 +23,52 @@ database_dir=$1
 idp_dir=$2
 plantcare_dir=$3
 
-echo Welcome to Plantcare starter
-echo Directories in current location:
-
+echo -e "\e[32mWelcome to Plantcare starter\e[0m"
+echo -e "\e[33mDirectories in current location:\e[0m"
 for element in ${elements[@]}; do
     if [ -d $element ]; then
-        echo $element
+        echo -e "\e[33m$element\e[0m"
     fi
 done
 
-echo Starting script
+echo
+echo ---
 echo Entering Database directory: $database_dir
 cd $database_dir
 sudo docker-compose up -d
-database-services=$(sudo docker-compose ps --services)
-echo Waiting for healthy Database services
-for service in ${database-services[@]}; do
-    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
-    if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
-        echo "$service is ready (status: $status)"
-        break
-    else
-        sleep 1
-    fi
-done
-echo Database services are healthy
 cd ..
+echo ---
 
-echo Starting script
+echo
+echo ---
 echo Entering Identity Provider directory: $idp_dir
 cd $idp_dir
+echo -e "\e[33mRemoving IdP containers\e[0m"
+sudo docker container stop identityprovidersystem-logger
+sudo docker container rm identityprovidersystem-logger
+sudo docker container stop identityprovidersystem-api
+sudo docker container rm identityprovidersystem-api
+echo Starting new IdP containers
 sudo docker-compose up -d
-idp-services=$(sudo docker-compose ps --services)
-echo Waiting for healthy Identity Provider services
-for service in ${idp-services[@]}; do
-    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
-    if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
-        echo "$service is ready (status: $status)"
-        break
-    else
-        sleep 1
-    fi
-done
-echo Identity Provider services are healthy
 cd ..
+echo ---
 
-echo Starting script
+echo
+echo ---
 echo Entering Plantcare API directory: $plantcare_dir
 cd $plantcare_dir
+echo -e "\e[33mRemoving Plantcare API containers\e[0m"
+sudo docker-compose down
+echo Starting new Plantcare API containers
 sudo docker-compose up -d
-plantcare-services=$(sudo docker-compose ps --services)
-echo Waiting for healthy PlantCare services
-for service in ${plantcare-services[@]}; do
-    status=$(sudo docker inspect --format='{{.State.Health.Status}}' "$container_id" 2>/dev/null || echo "no-healthcheck")
-    if [ "$status" == "healthy" ] || [ "$status" == "no-healthcheck" ]; then
-        echo "$service is ready (status: $status)"
-        break
-    else
-        sleep 1
-    fi
-done
-echo PlantCare services are healthy
+echo -e "\e[33mWaiting for Plantcare API ...\e[0m"
+sleep 15
+sudo docker-compose restart plantcare-api
 cd ..
+echo ---
 
-echo PlantCare containers are ready to use
+echo
+echo -e "\e[32mPlantCare containers are ready to use\e[0m"
+echo -e Plantcare API logger is available under: "\e[33mhttp://192.168.1.40:5341/\e[0m"
+echo -e Identity Provider logger is available under: "\e[33mhttp://192.168.1.40:5342/\e[0m"
+
