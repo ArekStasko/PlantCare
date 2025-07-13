@@ -25,7 +25,7 @@ public class HumidityMeasurementCommandHandlerTests
         var logger = new Mock<ILogger<AddHumidityMeasurementHandler>>().Object;
 
         humidityMeasurementWriteRepository.Setup(x => x.Add(It.IsAny<IHumidityMeasurement>()))
-            .Returns(new ValueTask<Result<int>>(1));
+            .Returns(new Task<Result<int>>(() => new Result<int>(1)));
         humidityMeasurementQueueProducer.Setup(x => x.PublishMessage(It.IsAny<HumidityMeasurement>()));
 
         var handler = new AddHumidityMeasurementHandler(humidityMeasurementWriteRepository.Object, mapper, humidityMeasurementQueueProducer.Object, logger);
