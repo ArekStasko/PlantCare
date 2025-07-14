@@ -7,6 +7,7 @@ using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Tests.Mocks;
 using HumidityMeasurement = PlantCare.MessageBroker.Messages.HumidityMeasurement;
 
+namespace PlantCare.Tests.Commands;
 public class HumidityMeasurementCommandHandlerTests
 {
     [Fact]

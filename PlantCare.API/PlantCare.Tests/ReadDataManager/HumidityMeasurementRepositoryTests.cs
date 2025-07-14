@@ -10,7 +10,6 @@ public class HumidityMeasurementRepositoryTests
     [Fact]
     public async void GetHumidityMeasurementsTest()
     {
-        var moduleId = new Guid("1");
         var humidityMeasurementsDb = Services.humidityMeasurementsDb;
         var humidityMeasurementReadContext = Services.HumidityMeasurementReadContext();
         humidityMeasurementReadContext.Setup(x => x.HumidityMeasurements).Returns(humidityMeasurementsDb.Object);

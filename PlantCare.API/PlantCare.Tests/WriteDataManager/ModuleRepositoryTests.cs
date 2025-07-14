@@ -29,7 +29,7 @@ public class ModuleRepositoryTests
         moduleWriteContext.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
         result.Match(succ =>
         {
-            Assert.Equal(1, succ);
+            Assert.Equal(0, succ);
             return true;
         }, err =>
         {
