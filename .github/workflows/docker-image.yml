@@ -6,24 +6,45 @@ on:
 
 jobs:
   build:
-    env: # Set the secret as an input
-      NUGET_PSD: ${{ secrets.NUGET_PSD }}
     runs-on: ubuntu-latest
+    env:
+      NUGET_PSD: ${{ secrets.NUGET_PSD }}
+
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.0'
+
+      - name: Configure GitHub NuGet source
+        run: |
+          dotnet nuget remove source github || true
+          dotnet nuget add source \
+            --username ArekStasko \
+            --password "$NUGET_PSD" \
+            --store-password-in-clear-text \
+            --name github \
+            https://nuget.pkg.github.com/ArekStasko/index.json
+
       - name: Restore dependencies
         run: dotnet restore
         working-directory: PlantCare.API
+
       - name: Build
         run: dotnet build --no-restore
         working-directory: PlantCare.API
+
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0'
+
       - name: Run Unit Tests
         run: dotnet test PlantCare.API/PlantCare.Tests/PlantCare.Tests.csproj
