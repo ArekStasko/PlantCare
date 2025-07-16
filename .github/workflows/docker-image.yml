@@ -23,7 +23,7 @@ jobs:
           dotnet nuget remove source github || true
           dotnet nuget add source \
             --username ArekStasko \
-            --password "$NUGET_PSD" \
+            --password "$PAT_RESOURCE" \
             --store-password-in-clear-text \
             --name github \
             https://nuget.pkg.github.com/ArekStasko/index.json
