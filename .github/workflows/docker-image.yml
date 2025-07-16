@@ -15,6 +15,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.0'
+      - name: Remove existing GitHub source (if any)
+        run: dotnet nuget remove source github || true
       - name: Add NuGet source
         run: dotnet nuget add source --username ArekStasko --password "${{ secrets.NUGET_PSD }}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ArekStasko/download/idpclient/index.json"
         working-directory: PlantCare.API
