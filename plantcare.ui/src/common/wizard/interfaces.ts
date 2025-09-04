@@ -18,6 +18,7 @@ export interface wizardStepProviderProps<T> {
   backButton: buttonAction;
   title: string;
   popup?: JSX.Element;
+  errorAlert?: JSX.Element;
   sx?: SxProps;
 }
 

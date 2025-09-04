@@ -109,8 +109,8 @@ const loader = {
   height: '100%',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
-}
+  alignItems: 'center'
+};
 
 export default {
   statisticsWrapper,

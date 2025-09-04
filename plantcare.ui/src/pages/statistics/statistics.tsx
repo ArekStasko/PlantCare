@@ -1,10 +1,4 @@
-import {
-  AlertColor,
-  Box,
-  Card,
-  CircularProgress,
-  Typography
-} from '@mui/material';
+import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -92,9 +86,9 @@ export const Statistics = () => {
       <Box sx={styles.statisticsContainer}>
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
           {modulesLoading ? (
-              <Box sx={styles.loader}>
-                <CircularProgress />
-              </Box>
+            <Box sx={styles.loader}>
+              <CircularProgress />
+            </Box>
           ) : (
             <PlantDetails
               plant={plant}
@@ -104,42 +98,41 @@ export const Statistics = () => {
             />
           )}
         </Card>
-          <Card variant="outlined" sx={styles.statisticsWrapper}>
-            {
-              humidityMeasurementsLoading ? (
-                <Box sx={styles.loader}>
-                  <CircularProgress />
-                </Box>
-              ) : (
+        <Card variant="outlined" sx={styles.statisticsWrapper}>
+          {humidityMeasurementsLoading ? (
+            <Box sx={styles.loader}>
+              <CircularProgress />
+            </Box>
+          ) : (
             <>
-            <Box sx={styles.datePickerWrapper}>
-              <Typography variant="h5">Humidity Moisture Statistics</Typography>
-              <DatePicker
-                label="Measurements Day"
-                onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}
-              />
-            </Box>
-            <Box sx={styles.statisticsChartWrapper}>
-              {humidityMeasurements && humidityMeasurements.length == 0 ? (
-                <>
-                  <CustomAlert
-                    type={'warning' as AlertColor}
-                    message={
-                      "You don't have any registered humidity measurements for this period of time"
-                    }
-                  />
-                </>
-              ) : (
-                humidityMeasurements && (
+              <Box sx={styles.datePickerWrapper}>
+                <Typography variant="h5">Humidity Moisture Statistics</Typography>
+                <DatePicker
+                  label="Measurements Day"
+                  onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}
+                />
+              </Box>
+              <Box sx={styles.statisticsChartWrapper}>
+                {humidityMeasurements && humidityMeasurements.length == 0 ? (
                   <>
-                    <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
+                    <CustomAlert
+                      type={'warning' as AlertColor}
+                      message={
+                        "You don't have any registered humidity measurements for this period of time"
+                      }
+                    />
                   </>
-                )
-              )}
-            </Box>
+                ) : (
+                  humidityMeasurements && (
+                    <>
+                      <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
+                    </>
+                  )
+                )}
+              </Box>
             </>
-              )}
-          </Card>
+          )}
+        </Card>
       </Box>
     </LocalizationProvider>
   );
