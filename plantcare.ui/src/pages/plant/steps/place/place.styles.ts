@@ -13,7 +13,12 @@ const typeSelect = {
   width: '70%'
 };
 
+const noPlaceAlert = {
+  width: '100%'
+};
+
 export default {
   placeSelectWrapper,
-  typeSelect
+  typeSelect,
+  noPlaceAlert
 };

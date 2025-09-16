@@ -16,13 +16,13 @@ const nextButton = {
   ml: '10px'
 };
 
-const stepStyles = {
+const stepStyles = (isError: boolean) => ({
   height: '70%',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-around',
+  justifyContent: isError ? 'start' : 'space-around',
   p: '15px'
-};
+});
 
 const stepTitle = {
   mb: '10px'

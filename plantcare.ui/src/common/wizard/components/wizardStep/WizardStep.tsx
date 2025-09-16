@@ -10,16 +10,17 @@ export const WizardStep = <T,>({
   backButton,
   title,
   popup,
+  errorAlert,
   sx
 }: wizardStepProviderProps<T>) => {
   return (
     <Box sx={{ ...sx, ...styles.stepWrapper, flexDirection: 'column' }}>
       {popup}
-      <Paper sx={styles.stepStyles} elevation={3}>
+      <Paper sx={styles.stepStyles(!!errorAlert)} elevation={3}>
         <Typography sx={styles.stepTitle} variant="h5">
           {title}
         </Typography>
-        {children}
+        {errorAlert ? <>{errorAlert}</> : <>{children}</>}
       </Paper>
       <Paper elevation={3} sx={styles.wizardNavigation}>
         <Button

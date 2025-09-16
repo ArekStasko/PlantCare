@@ -2,8 +2,10 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Place;
+using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Queries.Place;
+using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.API.Controllers;
 
@@ -60,7 +62,7 @@ public class PlaceController : ControllerAuth
     }
 
     [HttpGet(Name = "[controller]/get")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetPlacesResponse>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {

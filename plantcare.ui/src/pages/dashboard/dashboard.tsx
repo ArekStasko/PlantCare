@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Pagination} from '@mui/material';
+import { Box, Pagination } from '@mui/material';
 import { useGetPlacesQuery } from '../../common/RTK/getPlaces/getPlaces';
 import styles from './dashboard.styles';
 import CustomBackdrop from '../../common/components/customBackdrop/backdrop';

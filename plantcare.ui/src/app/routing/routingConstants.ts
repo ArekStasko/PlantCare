@@ -3,7 +3,7 @@ interface Dictionary<T> {
 }
 
 const RoutingPaths = {
-  site: 'http://192.168.1.40:3001/auth',
+  site: 'http://192.168.1.42:3000/auth',
   idp: 'http://192.168.1.40:3000/idp',
   authBasic: '/auth',
   auth: '/auth/:id?/:token?',
@@ -17,7 +17,7 @@ const RoutingPaths = {
 
 export const ActionsTranslation: Dictionary<string> = {
   '/dashboard': 'Dashboard',
-  '/create-plant': 'Create plant',
+  '/create-plant': 'Create Plant',
   '/create-place': 'Create Place',
   '/add-module': 'Add Module'
 };
