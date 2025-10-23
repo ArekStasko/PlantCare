@@ -22,7 +22,7 @@
     "@types/react-dom": "^18.2.7",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
-    "identity-provider-client": "^0.1.7",
+    "identity-provider-client": "^0.3.5",
     "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
     "namee": "^1.0.0",
