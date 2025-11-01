@@ -3,7 +3,6 @@ import { ExpirationBannerInterface } from "identity-provider-client";
 import {CountdownTimer} from "./CountdownTimer";
 
 const ExpirationBanner: React.FC<ExpirationBannerInterface> = ({open, onClose, onRefresh, onLogout}) => {
-
   return(
     <Dialog
       open={open}
