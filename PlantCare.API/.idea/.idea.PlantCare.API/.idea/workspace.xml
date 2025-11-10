@@ -17,7 +17,60 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/.bin/loose-envify" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/js-tokens/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/js-tokens/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/js-tokens/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/js-tokens/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/js-tokens/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/cli.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/loose-envify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/loose-envify/replace.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.d.cts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/dist/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/namee/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-bluetooth/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-bluetooth/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-bluetooth/build/Bluetooth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-bluetooth/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-dev-runtime.development.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-dev-runtime.production.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-dev-runtime.profiling.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-runtime.development.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-runtime.production.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react-jsx-runtime.profiling.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react.development.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react.production.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react.shared-subset.development.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/cjs/react.shared-subset.production.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/jsx-dev-runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/jsx-runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/react.shared-subset.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/umd/react.development.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/umd/react.production.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react/umd/react.profiling.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
     </list>
@@ -46,6 +99,9 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/10/093ff873/IdentityProviderSystemExtentions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/b4/a9816381/TokenService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/ce/3844ac76/Authorization.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -80,7 +136,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
     &quot;fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/logout-popup&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/IdentityProviderSystem/IdentityProviderSystem.API/IdentityProviderSystem.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -385,6 +441,14 @@
       <workItem from="1752520611256" duration="597000" />
       <workItem from="1757622293387" duration="99000" />
       <workItem from="1759775231414" duration="705000" />
+      <workItem from="1762017551134" duration="475000" />
+      <workItem from="1762098601267" duration="121000" />
+      <workItem from="1762099210631" duration="896000" />
+      <workItem from="1762105551822" duration="41000" />
+      <workItem from="1762708399775" duration="1932000" />
+      <workItem from="1762798983640" duration="108000" />
+      <workItem from="1762799672133" duration="36000" />
+      <workItem from="1762799748857" duration="824000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
