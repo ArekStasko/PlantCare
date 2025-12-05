@@ -18,7 +18,6 @@ public class MonitorHumidityModuleData(
     IMapper mapper
     ) : IInvocable
 {
-    private string ModuleUrl = Environment.GetEnvironmentVariable("ModuleUrl"); 
     public async Task Invoke()
     {
         try
@@ -68,11 +67,11 @@ public class MonitorHumidityModuleData(
 
     private async Task<IHumidityMeasurement> GetHumidity(IModule module)
     {
-        if (ModuleUrl == null)
+        if (module.Address == null)
             throw new NullReferenceException("HumidityRoute is null");
 
         using HttpClient httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(ModuleUrl);
+        httpClient.BaseAddress = new Uri($"http://{module.Address}");
         using HttpResponseMessage response = await httpClient.GetAsync("/humidity?id=" + module.Id);
         var humidity = await response.Content.ReadAsStringAsync();
         logger.LogInformation("humidity: {humidity}", humidity);
