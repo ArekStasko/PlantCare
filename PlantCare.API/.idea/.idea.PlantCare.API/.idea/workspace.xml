@@ -16,8 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/nuget.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/.bin/loose-envify" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/.package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/LICENSE" beforeDir="false" />
@@ -451,6 +449,7 @@
       <workItem from="1762799748857" duration="2879000" />
       <workItem from="1764956210876" duration="1866000" />
       <workItem from="1765029273045" duration="601000" />
+      <workItem from="1765302944454" duration="679000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
