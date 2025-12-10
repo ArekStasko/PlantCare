@@ -19,10 +19,12 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     if ('bluetooth' in navigator) {
       try {
         let device;
-        let characteristic;
+        let writeService;
+        let readService;
 
         const serviceUuid = '00000180-0000-1000-8000-00805f9b34fb';
-        const characteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
+        const writeServiceCharacteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
+        const readServiceCharacteristicUuid = '0000fef4-0000-1000-8000-00805f9b34fb';
 
         device = await navigator.bluetooth.requestDevice({
           acceptAllDevices: true,
@@ -31,11 +33,14 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const server = await device.gatt?.connect();
         const service = await server?.getPrimaryService(serviceUuid);
-        characteristic = await service?.getCharacteristic(characteristicUuid);
+        writeService = await service?.getCharacteristic(writeServiceCharacteristicUuid);
+        readService = await service?.getCharacteristic(readServiceCharacteristicUuid);
+
         setDevice(device);
         wizardController.updateContext({
           device,
-          characteristic
+          writeService,
+          readService
         });
       } catch (error) {
         setAlert('We are unable to connect to the device, make sure the bluetooth is on');
@@ -48,8 +53,10 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
   const disableNextBtn = useMemo(() => {
     const savedDevice = wizardController.context.device;
-    const savedCharacteristic = wizardController.context.characteristic;
-    return !savedDevice && !savedCharacteristic;
+    const savedWriteServiceCharacteristic = wizardController.context.writeService;
+    const savedReadServiceCharacteristic = wizardController.context.readService;
+
+    return !savedDevice && !savedWriteServiceCharacteristic && !savedReadServiceCharacteristic;
   }, [device]);
 
   return (

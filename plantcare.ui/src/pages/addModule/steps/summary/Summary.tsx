@@ -27,7 +27,8 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       const result = await createModule(request);
       if ('data' in result) {
         const id = result.data;
-        const crc = wizardController.context.characteristic;
+        // TO REFACTOR
+        const crc = wizardController.context.writeService;
         if (crc) {
           const name = wizardController.context.wifiName;
           const psw = wizardController.context.wifiPassword;
