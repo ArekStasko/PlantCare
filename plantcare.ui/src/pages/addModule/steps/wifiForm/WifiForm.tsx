@@ -7,6 +7,7 @@ import validators from '../../../../common/services/Validators';
 import styles from './wifiForm.styles';
 import { Box, TextField, Typography } from '@mui/material';
 import React from 'react';
+import { CreateModuleRequest } from "../../../../common/RTK/createModule/createModule";
 
 const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const methods = useForm({
@@ -24,13 +25,32 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     formState: { errors, isValid }
   } = methods;
 
+  const sendData = (wifiName: string, wifiPassword: string): boolean => {
+    try {
+        const crc = wizardController.context.writeService;
+        if (crc) {
+          const name = wizardController.context.wifiName;
+          const psw = wizardController.context.wifiPassword;
+          const encoder = new TextEncoder();
+          const data = encoder.encode(`${name}|${psw}`);
+          await crc.writeValue(data);
+          const device = wizardController.context.device;
+          device?.gatt?.disconnect();
+          return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  }
+
   const onNext = () => {
-    wizardController.updateContext({
-      ...wizardController.context,
-      wifiName: getValues('wifiName'),
-      wifiPassword: getValues('wifiPassword')
-    });
-    wizardController.goToNextStep();
+    const wifiName = getValues('wifiName');
+    const wifiPassword = getValues('wifiPassword');
+    const result = sendData(wifiName, wifiPassword);
+    if(result){
+      wizardController.goToNextStep();
+    }
   };
 
   return (
