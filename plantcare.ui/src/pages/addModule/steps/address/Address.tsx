@@ -9,12 +9,15 @@ import styles from "../deviceSelection/deviceSelection.styles";
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [device, setDevice] = useState<BLEDevice | undefined>(wizardController.context.device);
 
+  const onSubmit = () => {
+    
+  }
 
   return (
     <WizardStep
       nextButton={{
         onClick: () => wizardController.goToNextStep(),
-        isDisabled: disableNextBtn,
+        isDisabled: false,
         title: 'Next'
       }}
       cancelButton={{

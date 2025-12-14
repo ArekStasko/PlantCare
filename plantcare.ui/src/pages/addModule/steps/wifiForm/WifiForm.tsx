@@ -29,8 +29,8 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     try {
         const crc = wizardController.context.writeService;
         if (crc) {
-          const name = wizardController.context.wifiName;
-          const psw = wizardController.context.wifiPassword;
+          const name = wifiName;
+          const psw = wifiPassword;
           const encoder = new TextEncoder();
           const data = encoder.encode(`${name}|${psw}`);
           await crc.writeValue(data);
