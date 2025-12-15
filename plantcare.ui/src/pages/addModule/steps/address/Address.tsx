@@ -9,8 +9,19 @@ import styles from "../deviceSelection/deviceSelection.styles";
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [device, setDevice] = useState<BLEDevice | undefined>(wizardController.context.device);
 
-  const onSubmit = () => {
-    
+  const onSubmit = async () => {
+    try {
+      const crc = wizardController.context.readService;
+      if (crc) {
+        const data = await crc.readValue();
+        const device = wizardController.context.device;
+        device?.gatt?.disconnect();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
   }
 
   return (
