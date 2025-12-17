@@ -7,7 +7,6 @@ import validators from '../../../../common/services/Validators';
 import styles from './wifiForm.styles';
 import { Box, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { CreateModuleRequest } from "../../../../common/RTK/createModule/createModule";
 
 const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const methods = useForm({
