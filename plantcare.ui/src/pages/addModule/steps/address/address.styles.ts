@@ -1,8 +1,5 @@
-
-const addressWrapper = {
-
-}
+const addressWrapper = {};
 
 export default {
   addressWrapper
-}
+};

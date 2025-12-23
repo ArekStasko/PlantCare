@@ -1,19 +1,19 @@
-import { WizardStepProps } from "../../../../common/wizard/interfaces";
-import { AddModuleContext } from "../../interfaces";
-import React, { useState } from "react";
-import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
-import { Box, Typography } from "@mui/material";
-import styles from "./address.styles";
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { AddModuleContext } from '../../interfaces';
+import React, { useState } from 'react';
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
+import { Box, Typography } from '@mui/material';
+import styles from './address.styles';
 
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
-  const [address, setAddress] = useState<string | undefined>()
-  const [receiveAddressSucc, setReceiveAddressSucc] = useState<boolean>(false)
-  const [fetchingAddress, setFetchingAddress] = useState<boolean>(false)
+  const [address, setAddress] = useState<string | undefined>();
+  const [receiveAddressSucc, setReceiveAddressSucc] = useState<boolean>(false);
+  const [fetchingAddress, setFetchingAddress] = useState<boolean>(false);
 
   const receiveDataFromModule = async () => {
     setFetchingAddress(true);
     try {
-      const crc = wizardController.context.readService;
+      const crc = wizardController.context.moduleAddressService;
       if (crc) {
         const data = await crc.readValue();
         const textDecoder = new TextDecoder();
@@ -29,10 +29,10 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       setFetchingAddress(false);
       return false;
     }
-  }
+  };
 
   const onNext = async () => {
-    if(!address) {
+    if (!address) {
       const result = await receiveDataFromModule();
       setReceiveAddressSucc(result);
       return;
@@ -40,16 +40,16 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
 
     wizardController.updateContext({
       address: address
-    })
+    });
     wizardController.goToNextStep();
-  }
+  };
 
   return (
     <WizardStep
       nextButton={{
         onClick: async () => await onNext(),
         isDisabled: fetchingAddress || (receiveAddressSucc! && !address),
-        title: address ? "Next" : "Get Address",
+        title: address ? 'Next' : 'Get Address'
       }}
       cancelButton={{
         onClick: () => wizardController.onCancel(),
@@ -64,9 +64,7 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       title={'Device'}
     >
       <Box sx={styles.addressWrapper}>
-        <Typography>
-          Address Configuration
-        </Typography>
+        <Typography>Address Configuration</Typography>
       </Box>
     </WizardStep>
   );

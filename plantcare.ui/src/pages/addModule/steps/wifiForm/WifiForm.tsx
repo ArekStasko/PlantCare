@@ -26,28 +26,28 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
 
   const sendData = async (wifiName: string, wifiPassword: string): Promise<boolean> => {
     try {
-        const crc = wizardController.context.writeService;
-        if (crc) {
-          const name = wifiName;
-          const psw = wifiPassword;
-          const encoder = new TextEncoder();
-          const data = encoder.encode(`${name}|${psw}`);
-          await crc.writeValue(data);
-          const device = wizardController.context.device;
-          device?.gatt?.disconnect();
-          return true;
+      const crc = wizardController.context.wifiDataService;
+      if (crc) {
+        const name = wifiName;
+        const psw = wifiPassword;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(`${name}|${psw}`);
+        await crc.writeValue(data);
+        const device = wizardController.context.device;
+        device?.gatt?.disconnect();
+        return true;
       }
       return false;
     } catch (error) {
       return false;
     }
-  }
+  };
 
   const onNext = async () => {
     const wifiName = getValues('wifiName');
     const wifiPassword = getValues('wifiPassword');
     const result = await sendData(wifiName, wifiPassword);
-    if(result){
+    if (result) {
       wizardController.goToNextStep();
     }
   };

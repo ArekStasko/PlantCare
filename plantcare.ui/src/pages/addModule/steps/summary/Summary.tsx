@@ -27,7 +27,7 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       const result = await createModule(request);
       if ('data' in result) {
         const id = result.data;
-        const crc = wizardController.context.writeService;
+        const crc = wizardController.context.moduleIdService;
         if (crc) {
           const encoder = new TextEncoder();
           const data = encoder.encode(`${id}`);

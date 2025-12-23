@@ -2,8 +2,9 @@ import { BLEDevice } from '../../common/models/BLEDevice';
 
 export interface AddModuleContext {
   device?: BLEDevice;
-  writeService?: BluetoothRemoteGATTCharacteristic;
-  readService?: BluetoothRemoteGATTCharacteristic;
+  moduleIdService?: BluetoothRemoteGATTCharacteristic;
+  wifiDataService?: BluetoothRemoteGATTCharacteristic;
+  moduleAddressService?: BluetoothRemoteGATTCharacteristic;
   wifiName?: string;
   wifiPassword?: string;
   address?: string;

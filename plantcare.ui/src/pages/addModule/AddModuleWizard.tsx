@@ -5,7 +5,7 @@ import DeviceSelection from './steps/deviceSelection/DeviceSelection';
 import WifiForm from './steps/wifiForm/WifiForm';
 import Summary from './steps/summary/Summary';
 import NameForm from './steps/nameForm/NameForm';
-import Address from "./steps/address/Address";
+import Address from './steps/address/Address';
 
 const AddModuleWizard = () => {
   const initialContext = {} as AddModuleContext;

@@ -19,12 +19,14 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     if ('bluetooth' in navigator) {
       try {
         let device;
-        let writeService;
-        let readService;
+        let moduleIdService;
+        let wifiDataService;
+        let moduleAddressService;
 
         const serviceUuid = '00000180-0000-1000-8000-00805f9b34fb';
-        const writeServiceCharacteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
-        const readServiceCharacteristicUuid = '0000fef4-0000-1000-8000-00805f9b34fb';
+        const saveWifiDataServiceCharacteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
+        const saveModuleIpServiceCharacteristictsUuid = '';
+        const getModuleAddressServiceCharacteristicUuid = '0000fef4-0000-1000-8000-00805f9b34fb';
 
         device = await navigator.bluetooth.requestDevice({
           acceptAllDevices: true,
@@ -33,14 +35,20 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const server = await device.gatt?.connect();
         const service = await server?.getPrimaryService(serviceUuid);
-        writeService = await service?.getCharacteristic(writeServiceCharacteristicUuid);
-        readService = await service?.getCharacteristic(readServiceCharacteristicUuid);
+        moduleIdService = await service?.getCharacteristic(saveWifiDataServiceCharacteristicUuid);
+        wifiDataService = await service?.getCharacteristic(
+          getModuleAddressServiceCharacteristicUuid
+        );
+        moduleAddressService = await service?.getCharacteristic(
+          saveModuleIpServiceCharacteristictsUuid
+        );
 
         setDevice(device);
         wizardController.updateContext({
           device,
-          writeService,
-          readService
+          moduleIdService,
+          wifiDataService,
+          moduleAddressService
         });
       } catch (error) {
         setAlert('We are unable to connect to the device, make sure the bluetooth is on');
@@ -53,10 +61,16 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
   const disableNextBtn = useMemo(() => {
     const savedDevice = wizardController.context.device;
-    const savedWriteServiceCharacteristic = wizardController.context.writeService;
-    const savedReadServiceCharacteristic = wizardController.context.readService;
+    const savedWifiDataServiceCharacteristic = wizardController.context.wifiDataService;
+    const savedModuleIpServiceCharacteristic = wizardController.context.moduleIdService;
+    const savedModuleAddressServiceCharacteristic = wizardController.context.moduleAddressService;
 
-    return !savedDevice && !savedWriteServiceCharacteristic && !savedReadServiceCharacteristic;
+    return (
+      !savedDevice ||
+      !savedWifiDataServiceCharacteristic ||
+      !savedModuleIpServiceCharacteristic ||
+      !savedModuleAddressServiceCharacteristic
+    );
   }, [device]);
 
   return (
