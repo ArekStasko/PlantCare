@@ -3,7 +3,7 @@ import { AddModuleContext } from "../../interfaces";
 import React, { useState } from "react";
 import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
 import { Box, Typography } from "@mui/material";
-import styles from "../deviceSelection/deviceSelection.styles";
+import styles from "./address.styles";
 
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [address, setAddress] = useState<string | undefined>()
@@ -63,7 +63,7 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       }}
       title={'Device'}
     >
-      <Box sx={styles.deviceSelectionWrapper}>
+      <Box sx={styles.addressWrapper}>
         <Typography>
           Address Configuration
         </Typography>

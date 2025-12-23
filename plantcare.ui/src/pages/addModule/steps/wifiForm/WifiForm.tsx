@@ -24,7 +24,7 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     formState: { errors, isValid }
   } = methods;
 
-  const sendData = (wifiName: string, wifiPassword: string): boolean => {
+  const sendData = async (wifiName: string, wifiPassword: string): Promise<boolean> => {
     try {
         const crc = wizardController.context.writeService;
         if (crc) {
@@ -43,10 +43,10 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     }
   }
 
-  const onNext = () => {
+  const onNext = async () => {
     const wifiName = getValues('wifiName');
     const wifiPassword = getValues('wifiPassword');
-    const result = sendData(wifiName, wifiPassword);
+    const result = await sendData(wifiName, wifiPassword);
     if(result){
       wizardController.goToNextStep();
     }
