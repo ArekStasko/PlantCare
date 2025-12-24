@@ -16,16 +16,16 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       const crc = wizardController.context.moduleAddressService;
       if (crc) {
         const data = await crc.readValue();
+        console.log(data)
         const textDecoder = new TextDecoder();
         setAddress(textDecoder.decode(data));
-        const device = wizardController.context.device;
-        device?.gatt?.disconnect();
         setFetchingAddress(false);
         return true;
       }
       setFetchingAddress(false);
       return false;
     } catch (error) {
+      console.error(error);
       setFetchingAddress(false);
       return false;
     }
@@ -65,6 +65,11 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     >
       <Box sx={styles.addressWrapper}>
         <Typography>Address Configuration</Typography>
+      </Box>
+      <Box>
+        {address && (
+          <Typography>{address}</Typography>
+        )}
       </Box>
     </WizardStep>
   );

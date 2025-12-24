@@ -25,7 +25,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const serviceUuid = '00000180-0000-1000-8000-00805f9b34fb';
         const saveWifiDataServiceCharacteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
-        const saveModuleIpServiceCharacteristictsUuid = '';
+        const saveModuleIpServiceCharacteristicUuid = '0000beef-0000-1000-8000-00805f9b34fb';
         const getModuleAddressServiceCharacteristicUuid = '0000fef4-0000-1000-8000-00805f9b34fb';
 
         device = await navigator.bluetooth.requestDevice({
@@ -40,17 +40,19 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
           getModuleAddressServiceCharacteristicUuid
         );
         moduleAddressService = await service?.getCharacteristic(
-          saveModuleIpServiceCharacteristictsUuid
+          saveModuleIpServiceCharacteristicUuid
         );
 
-        setDevice(device);
         wizardController.updateContext({
-          device,
-          moduleIdService,
-          wifiDataService,
-          moduleAddressService
+          device: device,
+          moduleIdService: moduleIdService,
+          wifiDataService: wifiDataService,
+          moduleAddressService: moduleAddressService,
+          ...wizardController.context
         });
+        setDevice(device);
       } catch (error) {
+        console.error(error)
         setAlert('We are unable to connect to the device, make sure the bluetooth is on');
       }
     } else {
@@ -77,7 +79,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     <WizardStep
       nextButton={{
         onClick: () => wizardController.goToNextStep(),
-        isDisabled: disableNextBtn,
+        isDisabled: false,
         title: 'Next'
       }}
       cancelButton={{
@@ -104,7 +106,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
               <Typography variant="h6">Select plantcare module from device list</Typography>
               <Typography variant="subtitle1">Make sure that bluetooth is turned on</Typography>
             </Box>
-            <Button onClick={selectDevice}>Select device</Button>
+            <Button onClick={async () => await selectDevice()}>Select device</Button>
             {device && (
               <Card sx={{ minWidth: 275 }}>
                 <CardContent>
