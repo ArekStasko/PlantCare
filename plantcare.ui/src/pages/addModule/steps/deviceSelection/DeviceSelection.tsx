@@ -79,7 +79,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     <WizardStep
       nextButton={{
         onClick: () => wizardController.goToNextStep(),
-        isDisabled: false,
+        isDisabled: disableNextBtn,
         title: 'Next'
       }}
       cancelButton={{
