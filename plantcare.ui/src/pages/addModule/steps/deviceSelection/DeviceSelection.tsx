@@ -44,11 +44,11 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
         );
 
         wizardController.updateContext({
+          ...wizardController.context,
           device: device,
           moduleIdService: moduleIdService,
           wifiDataService: wifiDataService,
-          moduleAddressService: moduleAddressService,
-          ...wizardController.context
+          moduleAddressService: moduleAddressService
         });
         setDevice(device);
       } catch (error) {
@@ -73,7 +73,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
       !savedModuleIpServiceCharacteristic ||
       !savedModuleAddressServiceCharacteristic
     );
-  }, [device]);
+  }, [wizardController.context]);
 
   return (
     <WizardStep
