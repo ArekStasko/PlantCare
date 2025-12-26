@@ -16,7 +16,6 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       const crc = wizardController.context.moduleAddressService;
       if (crc) {
         const data = await crc.readValue();
-        console.log(data)
         const textDecoder = new TextDecoder();
         setAddress(textDecoder.decode(data));
         setFetchingAddress(false);

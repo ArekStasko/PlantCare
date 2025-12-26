@@ -35,12 +35,12 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const server = await device.gatt?.connect();
         const service = await server?.getPrimaryService(serviceUuid);
-        moduleIdService = await service?.getCharacteristic(saveWifiDataServiceCharacteristicUuid);
+        moduleIdService = await service?.getCharacteristic(saveModuleIpServiceCharacteristicUuid);
         wifiDataService = await service?.getCharacteristic(
-          getModuleAddressServiceCharacteristicUuid
+          saveWifiDataServiceCharacteristicUuid
         );
         moduleAddressService = await service?.getCharacteristic(
-          saveModuleIpServiceCharacteristicUuid
+          getModuleAddressServiceCharacteristicUuid
         );
 
         wizardController.updateContext({
