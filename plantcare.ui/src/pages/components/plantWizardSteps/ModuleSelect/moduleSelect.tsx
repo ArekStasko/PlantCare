@@ -4,7 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
 import { useGetModulesQuery } from '../../../../common/RTK/getModules/getModules';
 import { Plant } from '../../../../common/models/Plant';
-import CustomAlert from '../../../../common/compontents/customAlert/customAlert';
+import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;
@@ -26,7 +26,7 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
               <CustomAlert
                 type={'error' as AlertColor}
                 message={
-                  "You don't have any module without Plant assinged to it. To create new Plant,\n" +
+                  "You don't have any module without plant assinged to it. To create new plant,\n" +
                   '                  please add new module.'
                 }
               />
@@ -47,7 +47,8 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
                     defaultValue={plantData?.placeId ?? ''}
                     id="plantModule"
                     error={!!errors.plantPlace}
-                    labelId="SelectPlantPlace">
+                    labelId="SelectPlantPlace"
+                  >
                     {modules!
                       .filter((m) => m.plant == null)
                       .map((m) => (

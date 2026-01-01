@@ -6,8 +6,9 @@ export const deletePlaceApi = plantcareApi.injectEndpoints({
     DeletePlace: build.mutation<boolean, DeletePlaceData>({
       query: ({ placeId }: DeletePlaceData) => ({
         url: `/places/Delete?id=${placeId}`,
-        method: 'DELETE',
-      })
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Places']
     })
   }),
   overrideExisting: false

@@ -10,7 +10,7 @@ internal static class CacheExtensionMethods
     {
         var options = new DistributedCacheEntryOptions();
 
-        options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30);
+        options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(20);
 
         var jsonData = JsonSerializer.Serialize(data);
         await cache.SetStringAsync(recordId, jsonData, options);

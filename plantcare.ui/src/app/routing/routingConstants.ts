@@ -3,29 +3,28 @@ interface Dictionary<T> {
 }
 
 const RoutingPaths = {
-  site: 'http://localhost:3001/auth',
-  idp: 'http://localhost:3000/idp',
+  site: 'http://192.168.1.42:3001/auth',
+  idp: 'http://192.168.1.42:3000/idp',
   authBasic: '/auth',
   auth: '/auth/:id?/:token?',
   root: '/dashboard',
-  createPlant: '/create-plant',
+  plant: '/create-plant',
   updatePlant: '/update-plant',
   plantStatistics: '/statistics',
   createPlace: '/create-place',
-  updatePlace: '/update-place',
-  addModule: '/add-module',
+  addModule: '/add-module'
 };
 
 export const ActionsTranslation: Dictionary<string> = {
   '/dashboard': 'Dashboard',
   '/create-plant': 'Create Plant',
   '/create-place': 'Create Place',
-  '/add-module': 'Add Module',
+  '/add-module': 'Add Module'
 };
 
 export const ActionsToPerform = [
   RoutingPaths.root,
-  RoutingPaths.createPlant,
+  RoutingPaths.plant,
   RoutingPaths.createPlace,
   RoutingPaths.addModule
 ];

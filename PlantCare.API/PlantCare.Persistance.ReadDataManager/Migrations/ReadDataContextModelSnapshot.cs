@@ -56,6 +56,10 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<bool>("IsMonitoring")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 

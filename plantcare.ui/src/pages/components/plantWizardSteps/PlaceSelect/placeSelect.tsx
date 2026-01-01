@@ -31,7 +31,8 @@ export const PlaceSelect = ({ plantData }: PlaceSelectProps) => {
               defaultValue={plantData?.placeId ?? ''}
               id="plantPlace"
               error={!!errors.plantPlace}
-              labelId="SelectPlantPlace">
+              labelId="SelectPlantPlace"
+            >
               {places!.map((p) => (
                 <MenuItem value={p.id}>{p.name}</MenuItem>
               ))}

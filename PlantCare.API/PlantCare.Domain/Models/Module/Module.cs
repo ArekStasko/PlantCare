@@ -7,6 +7,7 @@ public class Module : IModule
     
     public int UserId { get; set; }
     public bool IsMonitoring { get; set; }
+    public string Name { get; set; }
     public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
 
     public virtual Plant? Plant { get; set; }

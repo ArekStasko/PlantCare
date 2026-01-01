@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Queries.Plant;
+using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.API.Controllers;
 
@@ -60,7 +61,7 @@ public class PlantController : ControllerAuth
     }
 
     [HttpGet(Name = "[controller]/getById")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IPlant))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetPlantResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetById([FromQuery] int id)
     {
@@ -75,7 +76,7 @@ public class PlantController : ControllerAuth
     }
     
     [HttpGet(Name = "[controller]/get")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetPlantResponse>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {

@@ -1,4 +1,4 @@
-import { PlantType } from "../../models/plantTypes";
+import { PlantType } from '../../models/plantTypes';
 
 export class SetModuleStatusRequest {
   moduleId!: number;

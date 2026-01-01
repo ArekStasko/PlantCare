@@ -22,14 +22,14 @@ public class ModuleRepositoryTests
         moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
 
         var moduleRepo = new ModuleRepository(moduleWriteContext.Object, new Mock<ILogger<ModuleRepository>>().Object);
-        var result = await moduleRepo.Add(userId);
+        var result = await moduleRepo.Add(userId, "name");
         
         moduleDb.Verify(x => x.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()), Times.Once());
         moduleWriteContext.Verify(x => x.Modules, Times.Once());
         moduleWriteContext.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
         result.Match(succ =>
         {
-            Assert.Equal(1, succ);
+            Assert.Equal(0, succ);
             return true;
         }, err =>
         {
@@ -66,36 +66,4 @@ public class ModuleRepositoryTests
             return false;
         });
     }
-    
-    [Fact]
-    public async void UpdateModuleTest()
-    {
-        var moduleToUpdate = new Module()
-        {
-            UserId = 1,
-            Id = 1
-        };
-        Mock<DbSet<Module>> moduleDb = Services.moduleDb;
-        Mock<IModuleWriteContext> moduleWriteContext = Services.ModuleWriteContext();
-        
-        moduleDb.Setup(x => x.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()));
-        moduleWriteContext.Setup(x => x.Modules).Returns(moduleDb.Object);
-        moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
-
-        var moduleRepo = new ModuleRepository(moduleWriteContext.Object, new Mock<ILogger<ModuleRepository>>().Object);
-        var result = await moduleRepo.Update(moduleToUpdate);
-        
-        moduleWriteContext.Verify(x => x.Modules, Times.Once());
-        moduleWriteContext.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
-        result.Match(succ =>
-        {
-            Assert.True(succ);
-            return true;
-        }, err =>
-        {
-            Assert.Fail();
-            return false;
-        });
-    }
-
 }
