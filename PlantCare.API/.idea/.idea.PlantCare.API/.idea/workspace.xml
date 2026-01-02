@@ -16,10 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/.bin/loose-envify" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/.package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../node_modules/@types/web-bluetooth/LICENSE" beforeDir="false" />
@@ -102,6 +98,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/10/093ff873/IdentityProviderSystemExtentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/b4/a9816381/TokenService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/ce/3844ac76/Authorization.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b9d9cfad58334a41aa52254662f697d72c00/6e/d6e71108/TokenService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b9d9cfad58334a41aa52254662f697d72c00/d5/37bc91b3/IdentityProviderSystemExtentions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -136,7 +134,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
     &quot;fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/logout-popup&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/module-address&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/IdentityProviderSystem/IdentityProviderSystem.API/IdentityProviderSystem.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -448,7 +446,10 @@
       <workItem from="1762708399775" duration="1932000" />
       <workItem from="1762798983640" duration="108000" />
       <workItem from="1762799672133" duration="36000" />
-      <workItem from="1762799748857" duration="824000" />
+      <workItem from="1762799748857" duration="2879000" />
+      <workItem from="1764956210876" duration="1866000" />
+      <workItem from="1765029273045" duration="601000" />
+      <workItem from="1765302944454" duration="679000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

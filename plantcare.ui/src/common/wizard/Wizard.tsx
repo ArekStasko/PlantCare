@@ -15,7 +15,7 @@ const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
   const wizardController: WizardController<T> = {
     context: context,
     onLoading: (isLoading: boolean) => setLoading(isLoading),
-    updateContext: (context: T) => setContext(context),
+    updateContext: (context: T) => setContext((prev) => ({...prev, ...context})),
     clearContext: () => setContext(initialContext),
     goToNextStep: () => setCurrentStep((prev) => prev + 1),
     goToPreviousStep: () => setCurrentStep((prev) => prev - 1),
@@ -25,7 +25,7 @@ const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
 
   const Step = useMemo(
     () => steps.find((step) => step.order === currentStep)?.getStep(wizardController),
-    [currentStep]
+    [currentStep, wizardController]
   );
 
   const stepsToDisplayInProgress = useMemo(() => {

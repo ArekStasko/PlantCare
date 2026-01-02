@@ -18,13 +18,14 @@ public class ModuleRepository : IWriteModuleRepository
         _logger = logger;
     }
     
-    public async ValueTask<Result<int>> Add(int userId, string name)
+    public async ValueTask<Result<int>> Add(int userId, string name, string address)
     {
         try
         {
             var module = new Module()
             {
                 Name = name,
+                Address = address,
                 UserId = userId
             };
             await _context.Modules.AddAsync(module);

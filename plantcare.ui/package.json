@@ -22,7 +22,7 @@
     "@types/react-dom": "^18.2.7",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
-    "identity-provider-client": "^0.6.3",
+    "identity-provider-client": "^0.6.4",
     "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
     "namee": "^1.0.0",
@@ -67,6 +67,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/js-cookie": "^3.0.6",
+    "@types/web-bluetooth": "^0.0.21",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
