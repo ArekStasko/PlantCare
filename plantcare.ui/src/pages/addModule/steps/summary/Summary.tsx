@@ -26,11 +26,13 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       } as CreateModuleRequest;
       const result = await createModule(request);
       if ('data' in result) {
-        const id = result.data;
-        const crc = wizardController.context.moduleIdService;
+        const crc = wizardController.context.wifiDataService;
         if (crc) {
+          const name = wizardController.context.wifiName;
+          const psw = wizardController.context.wifiPassword;
+          const address = wizardController.context.address;
           const encoder = new TextEncoder();
-          const data = encoder.encode(`${id}`);
+          const data = encoder.encode(`${name}|${psw}|${result.data}|${address}`);
           await crc.writeValue(data);
         }
         const device = wizardController.context.device;

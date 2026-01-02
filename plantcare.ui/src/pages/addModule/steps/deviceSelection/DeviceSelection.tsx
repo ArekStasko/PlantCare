@@ -19,14 +19,10 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     if ('bluetooth' in navigator) {
       try {
         let device;
-        let moduleIdService;
         let wifiDataService;
-        let moduleAddressService;
 
         const serviceUuid = '00000180-0000-1000-8000-00805f9b34fb';
         const saveWifiDataServiceCharacteristicUuid = '0000dead-0000-1000-8000-00805f9b34fb';
-        const saveModuleIpServiceCharacteristicUuid = '0000beef-0000-1000-8000-00805f9b34fb';
-        const getModuleAddressServiceCharacteristicUuid = '0000fef4-0000-1000-8000-00805f9b34fb';
 
         device = await navigator.bluetooth.requestDevice({
           acceptAllDevices: true,
@@ -35,20 +31,14 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const server = await device.gatt?.connect();
         const service = await server?.getPrimaryService(serviceUuid);
-        moduleIdService = await service?.getCharacteristic(saveModuleIpServiceCharacteristicUuid);
         wifiDataService = await service?.getCharacteristic(
           saveWifiDataServiceCharacteristicUuid
-        );
-        moduleAddressService = await service?.getCharacteristic(
-          getModuleAddressServiceCharacteristicUuid
         );
 
         wizardController.updateContext({
           ...wizardController.context,
           device: device,
-          moduleIdService: moduleIdService,
           wifiDataService: wifiDataService,
-          moduleAddressService: moduleAddressService
         });
         setDevice(device);
       } catch (error) {
@@ -64,14 +54,10 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
   const disableNextBtn = useMemo(() => {
     const savedDevice = wizardController.context.device;
     const savedWifiDataServiceCharacteristic = wizardController.context.wifiDataService;
-    const savedModuleIpServiceCharacteristic = wizardController.context.moduleIdService;
-    const savedModuleAddressServiceCharacteristic = wizardController.context.moduleAddressService;
 
     return (
       !savedDevice ||
-      !savedWifiDataServiceCharacteristic ||
-      !savedModuleIpServiceCharacteristic ||
-      !savedModuleAddressServiceCharacteristic
+      !savedWifiDataServiceCharacteristic
     );
   }, [wizardController.context]);
 

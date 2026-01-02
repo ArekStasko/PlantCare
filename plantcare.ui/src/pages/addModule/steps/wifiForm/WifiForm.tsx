@@ -1,7 +1,7 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddModuleContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { useForm, useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 import styles from './wifiForm.styles';
@@ -24,32 +24,13 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     formState: { errors, isValid }
   } = methods;
 
-  const sendData = async (wifiName: string, wifiPassword: string): Promise<boolean> => {
-    try {
-      const crc = wizardController.context.wifiDataService;
-      if (crc) {
-        const name = wifiName;
-        const psw = wifiPassword;
-        const encoder = new TextEncoder();
-        const data = encoder.encode(`${name}|${psw}`);
-        await crc.writeValue(data);
-        const device = wizardController.context.device;
-        device?.gatt?.disconnect();
-        return true;
-      }
-      return false;
-    } catch (error) {
-      return false;
-    }
-  };
-
-  const onNext = async () => {
-    const wifiName = getValues('wifiName');
-    const wifiPassword = getValues('wifiPassword');
-    const result = await sendData(wifiName, wifiPassword);
-    if (result) {
-      wizardController.goToNextStep();
-    }
+  const onNext = () => {
+    wizardController.updateContext({
+      ...wizardController.context,
+      wifiName: getValues('wifiName'),
+      wifiPassword: getValues('wifiPassword')
+    });
+    wizardController.goToNextStep();
   };
 
   return (
@@ -77,7 +58,7 @@ const WifiForm = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
         </Typography>
         <TextField
           sx={styles.textfield}
-          label="Full Name"
+          label="SSID"
           id="wifiName"
           error={!!errors.wifiName}
           helperText={errors.wifiName && 'WiFi name is required'}
