@@ -9,8 +9,6 @@ using PlantCare.MessageBroker.Messages;
 using PlantCare.Persistance.ReadDataManager;
 using PlantCare.Persistance.WriteDataManager;
 using PlantCare.Queries;
-using PlantCare.MonitoringEngine;
-using PlantCare.MonitoringEngine.Jobs;
 using Serilog;
 
 const string AllowSpecifiOrigin = "AllowSpecificOrigin";
@@ -63,8 +61,6 @@ builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
 builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
 builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
 
-builder.Services.AddJobs();
-
 var logger = new LoggerConfiguration()
     .ReadFrom
     .Configuration(builder.Configuration)
@@ -93,11 +89,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(AllowSpecifiOrigin);
-
-app.Services.UseScheduler(scheduler =>
-{
-    scheduler.Schedule<MonitorHumidityModuleData>().EveryTenMinutes();
-});
 
 app.UseAuthorization();
 
