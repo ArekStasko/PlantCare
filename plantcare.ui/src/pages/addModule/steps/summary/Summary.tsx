@@ -35,8 +35,6 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
           const data = encoder.encode(`${name}|${psw}|${result.data}|${address}`);
           await crc.writeValue(data);
         }
-        const device = wizardController.context.device;
-        device?.gatt?.disconnect();
         return { data: true };
       }
       return { data: false };
