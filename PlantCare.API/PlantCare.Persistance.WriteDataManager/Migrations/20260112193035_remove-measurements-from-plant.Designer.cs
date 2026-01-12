@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PlantCare.Persistance.ReadDataManager;
+using PlantCare.Persistance.WriteDataManager;
 
 #nullable disable
 
-namespace PlantCare.Persistance.ReadDataManager.Migrations
+namespace PlantCare.Persistance.WriteDataManager.Migrations
 {
-    [DbContext(typeof(ReadDataContext))]
-    partial class ReadDataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(WriteDataContext))]
+    [Migration("20260112193035_remove-measurements-from-plant")]
+    partial class removemeasurementsfromplant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +28,10 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Humidity")
                         .HasColumnType("int");
@@ -38,13 +44,18 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ModuleId");
+
                     b.ToTable("HumidityMeasurements");
                 });
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -68,7 +79,10 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Place.Place", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -85,7 +99,10 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -117,6 +134,15 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.ToTable("Plants");
                 });
 
+            modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
+                {
+                    b.HasOne("PlantCare.Domain.Models.Module.Module", null)
+                        .WithMany("HumidityMeasurements")
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
                 {
                     b.HasOne("PlantCare.Domain.Models.Module.Module", null)
@@ -134,6 +160,8 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
+                    b.Navigation("HumidityMeasurements");
+
                     b.Navigation("Plant");
                 });
 

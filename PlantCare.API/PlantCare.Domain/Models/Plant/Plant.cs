@@ -11,5 +11,4 @@ public class Plant : IPlant
     public string Name { get; set; } = "Name";
     public string Description { get; set; } = "Description";
     public PlantType Type { get; set; }
-    public virtual ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
 }
