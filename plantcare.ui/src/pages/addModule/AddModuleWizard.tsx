@@ -20,13 +20,27 @@ const AddModuleWizard = () => {
     } as WizardStep<AddModuleContext>,
     {
       order: 1,
+      title: 'Wifi',
+      getStep: (wizardController: WizardController<AddModuleContext>) => (
+        <WifiForm wizardController={wizardController} />
+      )
+    } as WizardStep<AddModuleContext>,
+    {
+      order: 2,
       title: 'Address',
       getStep: (wizardController: WizardController<AddModuleContext>) => (
         <Address wizardController={wizardController} />
       )
     } as WizardStep<AddModuleContext>,
     {
-      order: 2,
+      order: 3,
+      title: 'Name',
+      getStep: (wizardController: WizardController<AddModuleContext>) => (
+        <NameForm wizardController={wizardController} />
+      )
+    } as WizardStep<AddModuleContext>,
+    {
+      order: 4,
       title: 'Summary',
       getStep: (wizardController: WizardController<AddModuleContext>) => (
         <Summary wizardController={wizardController} />

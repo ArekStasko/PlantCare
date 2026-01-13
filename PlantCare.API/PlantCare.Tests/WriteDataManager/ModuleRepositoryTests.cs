@@ -22,7 +22,7 @@ public class ModuleRepositoryTests
         moduleWriteContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()));
 
         var moduleRepo = new ModuleRepository(moduleWriteContext.Object, new Mock<ILogger<ModuleRepository>>().Object);
-        var result = await moduleRepo.Add(userId, "name");
+        var result = await moduleRepo.Add(userId, "name", "address");
         
         moduleDb.Verify(x => x.AddAsync(It.IsAny<Module>(), It.IsAny<CancellationToken>()), Times.Once());
         moduleWriteContext.Verify(x => x.Modules, Times.Once());

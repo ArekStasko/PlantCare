@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantCare.Persistance.ReadDataManager;
 
@@ -11,9 +12,11 @@ using PlantCare.Persistance.ReadDataManager;
 namespace PlantCare.Persistance.ReadDataManager.Migrations
 {
     [DbContext(typeof(ReadDataContext))]
-    partial class ReadDataContextModelSnapshot : ModelSnapshot
+    [Migration("20260112193414_remove-wrong-relations")]
+    partial class removewrongrelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

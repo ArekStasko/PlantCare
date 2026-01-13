@@ -1,44 +1,31 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddModuleContext } from '../../interfaces';
-import React, { useState } from 'react';
+import React from 'react';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Box, Typography } from '@mui/material';
+import { Box, TextField, Typography } from "@mui/material";
 import styles from './address.styles';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import validators from "../../../../common/services/Validators";
 
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
-  const [address, setAddress] = useState<string | undefined>();
-  const [receiveAddressSucc, setReceiveAddressSucc] = useState<boolean>(false);
-  const [fetchingAddress, setFetchingAddress] = useState<boolean>(false);
-
-  const receiveDataFromModule = async () => {
-    setFetchingAddress(true);
-    try {
-      const crc = wizardController.context.moduleAddressService;
-      if (crc) {
-        const data = await crc.readValue();
-        const textDecoder = new TextDecoder();
-        setAddress(textDecoder.decode(data));
-        setFetchingAddress(false);
-        return true;
-      }
-      setFetchingAddress(false);
-      return false;
-    } catch (error) {
-      console.error(error);
-      setFetchingAddress(false);
-      return false;
+  const methods = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(validators.addModuleAddressSchema),
+    defaultValues: {
+      address: wizardController.context.address ?? '',
     }
-  };
+  });
+
+  const {
+    register,
+    getValues,
+    formState: { errors, isValid }
+  } = methods;
 
   const onNext = async () => {
-    if (!address) {
-      const result = await receiveDataFromModule();
-      setReceiveAddressSucc(result);
-      return;
-    }
-
     wizardController.updateContext({
-      address: address
+      address: getValues('address')
     });
     wizardController.goToNextStep();
   };
@@ -47,8 +34,8 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     <WizardStep
       nextButton={{
         onClick: async () => await onNext(),
-        isDisabled: fetchingAddress || (receiveAddressSucc! && !address),
-        title: address ? 'Next' : 'Get Address'
+        isDisabled: !isValid,
+        title: 'Next'
       }}
       cancelButton={{
         onClick: () => wizardController.onCancel(),
@@ -62,13 +49,19 @@ const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
       }}
       title={'Device'}
     >
-      <Box sx={styles.addressWrapper}>
-        <Typography>Address Configuration</Typography>
-      </Box>
-      <Box>
-        {address && (
-          <Typography>{address}</Typography>
-        )}
+      <Box sx={styles.container}>
+        <Typography sx={styles.subtitle} variant="h6">
+          Provide server IP address to which you want to connect your module
+        </Typography>
+        <TextField
+          sx={styles.textfield}
+          label="IP Address"
+          id="address"
+          error={!!errors.address}
+          helperText={errors.address && 'Address is required'}
+          variant="filled"
+          {...register('address')}
+        />
       </Box>
     </WizardStep>
   );
