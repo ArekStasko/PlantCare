@@ -46,11 +46,7 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
-        modelBuilder.Entity<Module>()
-            .HasMany(e => e.HumidityMeasurements)
-            .WithOne()
-            .HasForeignKey(e => e.ModuleId)
-            .IsRequired();
+        modelBuilder.Entity<Module>();
 
         modelBuilder.Entity<Module>()
             .HasOne(e => e.Plant)

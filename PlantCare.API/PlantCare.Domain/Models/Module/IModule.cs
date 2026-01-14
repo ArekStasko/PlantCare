@@ -9,6 +9,5 @@ public interface IModule : IUserAssignable
     bool IsMonitoring { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
-    ICollection<HumidityMeasurement.HumidityMeasurement> HumidityMeasurements { get; set; }
     Plant? Plant { get; set; }
 }

@@ -39,14 +39,7 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.Property<int>("ModuleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ModuleId");
-
-                    b.HasIndex("PlantId");
 
                     b.ToTable("HumidityMeasurements");
                 });
@@ -136,19 +129,6 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.ToTable("Plants");
                 });
 
-            modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
-                {
-                    b.HasOne("PlantCare.Domain.Models.Module.Module", null)
-                        .WithMany("HumidityMeasurements")
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PlantCare.Domain.Models.Plant.Plant", null)
-                        .WithMany("HumidityMeasurements")
-                        .HasForeignKey("PlantId");
-                });
-
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
                 {
                     b.HasOne("PlantCare.Domain.Models.Module.Module", null)
@@ -166,19 +146,12 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
-                    b.Navigation("HumidityMeasurements");
-
                     b.Navigation("Plant");
                 });
 
             modelBuilder.Entity("PlantCare.Domain.Models.Place.Place", b =>
                 {
                     b.Navigation("Plants");
-                });
-
-            modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
-                {
-                    b.Navigation("HumidityMeasurements");
                 });
 #pragma warning restore 612, 618
         }
