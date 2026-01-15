@@ -8,7 +8,7 @@ using GetModulesQuery = PlantCare.Queries.Queries.Module.GetModulesQuery;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/v1/modules/[action]")]
+[Route("api/modules")]
 [ApiController]
 public class ModuleController : ControllerAuth
 {
@@ -21,7 +21,7 @@ public class ModuleController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/status")]
+    [HttpPost(Name = "/status")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Status(SetModuleStatusCommand command)
@@ -33,7 +33,7 @@ public class ModuleController : ControllerAuth
         return result.ToOk();
     }
     
-    [HttpPost(Name = "[controller]/create")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreateModuleCommand command)
@@ -45,7 +45,7 @@ public class ModuleController : ControllerAuth
         return result.ToOk();
     }
     
-    [HttpGet(Name = "[controller]/get")]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IPlant>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
