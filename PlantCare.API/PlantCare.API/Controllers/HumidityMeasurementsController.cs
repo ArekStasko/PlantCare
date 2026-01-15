@@ -7,7 +7,7 @@ using PlantCare.Queries.Queries.HumidityMeasurements;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/v1/humidity-measurements/[action]")]
+[Route("api/humidity-measurements")]
 [ApiController]
 
 public class HumidityMeasurementsController : ControllerAuth
@@ -23,7 +23,7 @@ public class HumidityMeasurementsController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/add")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Add(AddHumidityMeasurementCommand command)
@@ -34,7 +34,7 @@ public class HumidityMeasurementsController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/get")]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromQuery] int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
