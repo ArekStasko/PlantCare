@@ -15,7 +15,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +94,7 @@
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.49723756",
     "fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor": "Debug",
-    "git-widget-placeholder": "feature/bluetooth-issues",
+    "git-widget-placeholder": "feature/adjust-code-to-rest",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/arekstasko/sources/repos/IdentityProviderSystem/IdentityProviderSystem.API/IdentityProviderSystem.sln",
     "node.js.detected.package.eslint": "true",
@@ -409,6 +411,7 @@
       <workItem from="1765029273045" duration="601000" />
       <workItem from="1765302944454" duration="679000" />
       <workItem from="1768066750920" duration="326000" />
+      <workItem from="1768651900094" duration="620000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -624,55 +627,118 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs</url>
           <line>81</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" containingFunctionPresentation="Method 'Get'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" containingFunctionPresentation="Method 'Get'">
+            <startOffsets>
+              <option value="3385" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3386" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/PlantRepository.cs</url>
           <line>20</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.Persistance.ReadDataManager\Repositories\PlantRepository.cs" containingFunctionPresentation="Method 'Get'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.Persistance.ReadDataManager\Repositories\PlantRepository.cs" containingFunctionPresentation="Method 'Get'">
+            <startOffsets>
+              <option value="730" />
+            </startOffsets>
+            <endOffsets>
+              <option value="731" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
           <line>22</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" containingFunctionPresentation="Method 'StartAsync'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" containingFunctionPresentation="Method 'StartAsync'">
+            <startOffsets>
+              <option value="999" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1000" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerRegistratorService.cs</url>
           <line>32</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" containingFunctionPresentation="Method 'StopAsync'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerRegistratorService.cs" containingFunctionPresentation="Method 'StopAsync'">
+            <startOffsets>
+              <option value="1339" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1340" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs</url>
           <line>25</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.ConsistencyManager\Services\PlaceConsistencyService.cs" containingFunctionPresentation="Method 'ConsumeAsync'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.ConsistencyManager\Services\PlaceConsistencyService.cs" containingFunctionPresentation="Method 'ConsumeAsync'">
+            <startOffsets>
+              <option value="925" />
+            </startOffsets>
+            <endOffsets>
+              <option value="926" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs</url>
           <line>18</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.ConsistencyManager\Services\PlaceConsistencyService.cs" containingFunctionPresentation="Constructor 'PlaceConsistencyService'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.ConsistencyManager\Services\PlaceConsistencyService.cs" containingFunctionPresentation="Constructor 'PlaceConsistencyService'">
+            <startOffsets>
+              <option value="759" />
+            </startOffsets>
+            <endOffsets>
+              <option value="760" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
           <line>65</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'HandleMessage'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'HandleMessage'">
+            <startOffsets>
+              <option value="2467" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2468" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
           <line>106</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'RejectMessage'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'RejectMessage'">
+            <startOffsets>
+              <option value="3877" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3878" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.MessageBroker/Consumer/QueueConsumerHandler.cs</url>
           <line>125</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'DeserializeMessage'" />
+          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.MessageBroker\Consumer\QueueConsumerHandler.cs" containingFunctionPresentation="Method 'DeserializeMessage'">
+            <startOffsets>
+              <option value="4324" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4325" />
+            </endOffsets>
+          </properties>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
