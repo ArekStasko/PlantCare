@@ -60,6 +60,7 @@ builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, 
 builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
 builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
 builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
+builder.Services.AddOpenApiDocument();
 
 var logger = new LoggerConfiguration()
     .ReadFrom
@@ -68,6 +69,7 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+
 
 var app = builder.Build();
 app.UseCors(x => x

@@ -1,0 +1,22 @@
+{
+  "runtime": "Net80",
+  "documentGenerator": {
+    "fromController": true,
+    "assemblyPaths": ["bin/Debug/net8.0/PlantCare.API.dll"]
+  },
+  "codeGenerators": {
+    "openApiToTypeScriptClient": {
+      "className": "ApiClient",
+      "moduleName": "",
+      "namespace": "Api",
+      "template": "Fetch",
+      "httpClass": "HttpClient",
+      "promiseType": "Promise",
+      "typeStyle": "Interface",
+      "generateClientInterfaces": true,
+      "generateDtoTypes": true,
+      "generateOptionalParameters": true,
+      "output": "../api/contracts/apiClient.ts"
+    }
+  }
+}
