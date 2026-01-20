@@ -5,9 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-    <Target Name="GenerateApiClient" AfterTargets="Build">
-        <Exec Command="dotnet nswag run $(ProjectDir)nswag.json" />
-    </Target>
     <ItemGroup>
         <PackageReference Include="Coravel" Version="6.0.1" />
         <PackageReference Include="IdpClient" Version="2.1.6" />
@@ -18,21 +15,17 @@
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-        <PackageReference Include="NSwag.AspNetCore" Version="14.6.3" />
-        <PackageReference Include="NSwag.Core" Version="14.6.3" />
-        <PackageReference Include="NSwag.MSBuild" Version="14.6.3">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="Serilog" Version="3.1.2-dev-02097" />
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
         <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.1-dev-10370" />
         <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1-dev-00561" />
         <PackageReference Include="Serilog.Sinks.Seq" Version="6.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.1.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.API.Client\PlantCare.API.Client.csproj" />
       <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.ConsistencyManager\PlantCare.ConsistencyManager.csproj" />
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
@@ -41,4 +34,8 @@
       <ProjectReference Include="..\PlantCare.Queries\PlantCare.Queries.csproj" />
     </ItemGroup>
 
+    <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+        <Exec Command="dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
+    </Target>
+    
 </Project>

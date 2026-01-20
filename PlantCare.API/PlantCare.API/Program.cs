@@ -1,6 +1,7 @@
 using Coravel;
 using IdentityProviderSystem.Client;
 using IdentityProviderSystem.Client.Middleware;
+using PlantCare.API.Client;
 using PlantCare.Commands;
 using PlantCare.ConsistencyManager;
 using PlantCare.ConsistencyManager.Services;
@@ -60,7 +61,7 @@ builder.Services.AddQueueMessageConsumer<HumidityMeasurementConsistencyService, 
 builder.Services.AddQueueMessageConsumer<ModuleConsistencyService, Module>();
 builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
 builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
-builder.Services.AddOpenApiDocument();
+builder.Services.ConfigureClient();
 
 var logger = new LoggerConfiguration()
     .ReadFrom
