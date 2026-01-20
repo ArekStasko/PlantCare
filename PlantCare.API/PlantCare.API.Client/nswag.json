@@ -2,13 +2,15 @@
   "runtime": "Net80",
   "documentGenerator": {
     "fromController": true,
-    "assemblyPaths": ["bin/Debug/net8.0/PlantCare.API.dll"]
+    "assemblyPaths": [
+      "../PlantCare.API/bin/Debug/net8.0/PlantCare.API.dll"
+    ],
+    "controllerNames": [],
+    "referencePaths": []
   },
   "codeGenerators": {
     "openApiToTypeScriptClient": {
-      "className": "ApiClient",
-      "moduleName": "",
-      "namespace": "Api",
+      "className": "{controller}Client",
       "template": "Fetch",
       "httpClass": "HttpClient",
       "promiseType": "Promise",
@@ -16,7 +18,7 @@
       "generateClientInterfaces": true,
       "generateDtoTypes": true,
       "generateOptionalParameters": true,
-      "output": "../api/contracts/apiClient.ts"
+      "output": "./contracts/apiClient.ts"
     }
   }
 }
