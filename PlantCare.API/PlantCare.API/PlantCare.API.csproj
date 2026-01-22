@@ -21,7 +21,6 @@
         <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1-dev-00561" />
         <PackageReference Include="Serilog.Sinks.Seq" Version="6.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.1.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -35,7 +34,7 @@
     </ItemGroup>
 
     <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-        <Exec Command="dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
+        <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ./swagger.json $(TargetDir)$(AssemblyName).dll v1" />
     </Target>
     
 </Project>

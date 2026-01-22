@@ -5,8 +5,8 @@
     "assemblyPaths": [
       "../PlantCare.API/bin/Debug/net8.0/PlantCare.API.dll"
     ],
-    "controllerNames": [],
-    "referencePaths": []
+    "controllerNames": ["HumidityMeasurementsController", "ModuleController", "PlaceController", "PlantController"],
+    "referencePaths": ["../PlantCare.API/bin/Debug/net8.0"]
   },
   "codeGenerators": {
     "openApiToTypeScriptClient": {
