@@ -9,7 +9,7 @@ using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/v1/places/[action]")]
+[Route("api/places")]
 [ApiController]
 public class PlaceController : ControllerAuth
 {
@@ -24,7 +24,7 @@ public class PlaceController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/create")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
@@ -36,7 +36,7 @@ public class PlaceController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "[controller]/delete")]
+    [HttpDelete]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
@@ -49,7 +49,7 @@ public class PlaceController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/update")]
+    [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdatePlaceCommand command)
@@ -61,7 +61,7 @@ public class PlaceController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/get")]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetPlacesResponse>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()

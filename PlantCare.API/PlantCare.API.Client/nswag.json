@@ -1,0 +1,21 @@
+{
+  "runtime": "Net80",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "./swagger.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToTypeScriptClient": {
+      "className": "{controller}Client",
+      "template": "Fetch",
+      "httpClass": "HttpClient",
+      "promiseType": "Promise",
+      "typeStyle": "Interface",
+      "generateClientInterfaces": true,
+      "generateDtoTypes": true,
+      "generateOptionalParameters": true,
+      "output": "./contracts/ApiClient.ts"
+    }
+  }
+}
