@@ -21,7 +21,8 @@ public class ModuleController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "/status")]
+    [HttpPost]
+    [Route("/status")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Status(SetModuleStatusCommand command)

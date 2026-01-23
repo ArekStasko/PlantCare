@@ -17,9 +17,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/PlantCare.API.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/PlantCare.API.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/nswag.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/nswag.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +47,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7133741a393d4711a1811a63e93c0e4f2e00/2a/6536f501/ITokenService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7133741a393d4711a1811a63e93c0e4f2e00/d0/3b8367b2/TokenService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7133741a393d4711a1811a63e93c0e4f2e00/f7/e1b9718e/Authorization.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9d4222221a8b463d84022c8257b0d1be267c18/fb/186ce62f/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/10/093ff873/IdentityProviderSystemExtentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/b4/a9816381/TokenService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8c89fbaaf1b4ed087e851ba39a551652c00/ce/3844ac76/Authorization.cs" root0="FORCE_HIGHLIGHTING" />
@@ -60,19 +58,23 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d7d0841d391145a6b5ff6d2d21cf86472e00/c4/c91f2071/Authorization.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8332750b81a49e6a63588c5c8ea41052e00/26/3c4cadb3/Authorization.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a382c6eb2b402eed6e6719bb247a6b58e6c462a5c36ca70996a4bff09c1147/AuthorizationAppBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Client/nswag.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.API/Controllers/ControllerAuth.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Commands.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Extentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.Persistance.ReadDataManager/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.Persistance.WriteDataManager/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -418,6 +420,8 @@
       <workItem from="1768770623168" duration="376000" />
       <workItem from="1768844876407" duration="1697000" />
       <workItem from="1768933713318" duration="3297000" />
+      <workItem from="1769103451673" duration="1742000" />
+      <workItem from="1769187053423" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
