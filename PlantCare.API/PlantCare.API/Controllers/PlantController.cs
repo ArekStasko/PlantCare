@@ -8,7 +8,7 @@ using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/v1/plants/[action]")]
+[Route("api/plants")]
 [ApiController]
 public class PlantController : ControllerAuth
 {
@@ -23,7 +23,7 @@ public class PlantController : ControllerAuth
         _logger = logger;
     }
 
-    [HttpPost(Name = "[controller]/create")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlantCommand command)
@@ -35,7 +35,7 @@ public class PlantController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpDelete(Name = "[controller]/delete")]
+    [HttpDelete]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
@@ -48,7 +48,7 @@ public class PlantController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpPost(Name = "[controller]/update")]
+    [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdatePlantCommand command)
@@ -60,10 +60,10 @@ public class PlantController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet(Name = "[controller]/getById")]
+    [HttpGet("/{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetPlantResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetById([FromQuery] int id)
+    public async ValueTask<IActionResult> GetById(int id)
     {
      
         var getPlantQuery = _mapper.Map<GetPlantQuery>(id);
@@ -75,7 +75,7 @@ public class PlantController : ControllerAuth
         return result.ToOk();
     }
     
-    [HttpGet(Name = "[controller]/get")]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetPlantResponse>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()

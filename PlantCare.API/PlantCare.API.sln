@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.ConsistencyManage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.Tests", "PlantCare.Tests\PlantCare.Tests.csproj", "{2349485D-33C0-41E3-BD35-66F3F24AD221}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantCare.API.Client", "PlantCare.API.Client\PlantCare.API.Client.csproj", "{BAFDEF3A-CF4B-4BA2-B007-FEAD8AD6E867}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2349485D-33C0-41E3-BD35-66F3F24AD221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFDEF3A-CF4B-4BA2-B007-FEAD8AD6E867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFDEF3A-CF4B-4BA2-B007-FEAD8AD6E867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFDEF3A-CF4B-4BA2-B007-FEAD8AD6E867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFDEF3A-CF4B-4BA2-B007-FEAD8AD6E867}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

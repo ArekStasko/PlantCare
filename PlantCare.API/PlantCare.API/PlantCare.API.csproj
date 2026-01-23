@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="Coravel" Version="6.0.1" />
         <PackageReference Include="IdpClient" Version="2.1.6" />
@@ -21,10 +20,11 @@
         <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.1-dev-10370" />
         <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1-dev-00561" />
         <PackageReference Include="Serilog.Sinks.Seq" Version="6.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PlantCare.API.Client\PlantCare.API.Client.csproj" />
       <ProjectReference Include="..\PlantCare.Commands\PlantCare.Commands.csproj" />
       <ProjectReference Include="..\PlantCare.ConsistencyManager\PlantCare.ConsistencyManager.csproj" />
       <ProjectReference Include="..\PlantCare.MessageBroker\PlantCare.MessageBroker.csproj" />
@@ -33,4 +33,8 @@
       <ProjectReference Include="..\PlantCare.Queries\PlantCare.Queries.csproj" />
     </ItemGroup>
 
+    <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+        <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
+    </Target>
+    
 </Project>
