@@ -23,5 +23,7 @@
       </Content>
     </ItemGroup>
 
-
+    <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+        <Exec Command="dotnet nswag run nswag.json" />
+    </Target>
 </Project>

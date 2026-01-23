@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-        <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ./swagger.json $(TargetDir)$(AssemblyName).dll v1" />
+        <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
     </Target>
     
 </Project>
