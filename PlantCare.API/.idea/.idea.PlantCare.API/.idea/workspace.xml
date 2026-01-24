@@ -17,9 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/PlantCare.API.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/PlantCare.API.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/nswag.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/nswag.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/PlantCare.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/contracts/ApiClient.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,7 @@
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.49723756",
     "fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor": "Debug",
-    "git-widget-placeholder": "feature/adjust-code-to-rest",
+    "git-widget-placeholder": "feature/api-client-pipeline",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/arekstasko/sources/repos/IdentityProviderSystem/IdentityProviderSystem.API/IdentityProviderSystem.sln",
     "node.js.detected.package.eslint": "true",
@@ -425,7 +423,7 @@
       <workItem from="1768844876407" duration="1697000" />
       <workItem from="1768933713318" duration="3297000" />
       <workItem from="1769103451673" duration="1742000" />
-      <workItem from="1769187053423" duration="1559000" />
+      <workItem from="1769187053423" duration="2180000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

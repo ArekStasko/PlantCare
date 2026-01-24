@@ -15,7 +15,7 @@
       "generateClientInterfaces": true,
       "generateDtoTypes": true,
       "generateOptionalParameters": true,
-      "output": "./contracts/ApiClient.ts"
+      "output": "./api-client/ApiClient.ts"
     }
   }
 }
