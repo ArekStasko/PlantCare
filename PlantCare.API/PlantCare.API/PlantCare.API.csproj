@@ -44,7 +44,7 @@
             AfterTargets="Build"
             Inputs="@(SwaggerInputs)"
             Outputs="../PlantCare.API.Client/swagger.json"
-            Condition="$(Configuration)=='Debug'"
+            Condition="$(Configuration)=='Debug' AND '$(CI)' != 'true'"
     >
         <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
     </Target>
