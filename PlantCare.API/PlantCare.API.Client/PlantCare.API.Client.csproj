@@ -25,7 +25,7 @@
 
     <Target Name="NSwag"
             AfterTargets="Build"
-            Condition="'$(Configuration)' == 'Debug'">
+            Condition="'$(Configuration)' == 'Debug' AND '$(CI)' != 'true'">
         <Exec Command="dotnet nswag run nswag.json" />
     </Target>
 </Project>
