@@ -62,20 +62,33 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
+      - name: Check if contract changed
+        id: contract_diff
+        run: |
+        if git diff --quiet -- PlantCare.API/PlantCare.API.Client/api-client/apiClient.ts; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "No Contracts changes"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Contracts changed"
+        fi
 
       - name: Install Dependencies
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm ci || npm install
 
-      - name: Build Api Client
+      - name: Build api-client
+        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm run build
 
-      - name: Update Version
+      - name: Bump version
+        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm version patch --no-git-tag-version
 
-      - name: Publish to registry
+      - name: Publish package
+        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm publish
         env:
