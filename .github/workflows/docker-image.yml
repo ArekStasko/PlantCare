@@ -71,6 +71,11 @@ jobs:
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm run build
 
+      - name: Update Version
+        if: steps.swagger_diff.outputs.changed == 'true'
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: npm version patch --no-git-tag-version
+
       - name: Publish to registry
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm publish
