@@ -1,0 +1,23 @@
+{
+  "name": "@arekstasko/plantcare-api-client",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "arekstasko",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/core": "^1.15.10",
+    "tsup": "^8.2.4",
+    "typescript": "^5.9.3"
+  }
+}

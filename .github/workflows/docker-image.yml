@@ -48,3 +48,48 @@ jobs:
 
       - name: Run Unit Tests
         run: dotnet test PlantCare.API/PlantCare.Tests/PlantCare.Tests.csproj
+
+  publish_packages:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - name: Check if contract changed
+        id: contract_diff
+        run: |
+          if git diff --quiet -- PlantCare.API/PlantCare.API.Client/api-client/apiClient.ts; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No Contracts changes"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Contracts changed"
+          fi
+
+      - name: Install Dependencies
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: npm ci || npm install
+
+      - name: Build api-client
+        if: steps.contract_diff.outputs.changed == 'true'
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: npm run build
+
+      - name: Bump version
+        if: steps.contract_diff.outputs.changed == 'true'
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: npm version patch --no-git-tag-version
+
+      - name: Publish package
+        if: steps.contract_diff.outputs.changed == 'true'
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
