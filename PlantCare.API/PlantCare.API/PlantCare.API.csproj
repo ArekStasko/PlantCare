@@ -33,7 +33,19 @@
       <ProjectReference Include="..\PlantCare.Queries\PlantCare.Queries.csproj" />
     </ItemGroup>
 
-    <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+    <ItemGroup>
+        <SwaggerInputs Include="Controllers/**/*.cs" />
+        <SwaggerInputs Include="../PlantCare.Commands/**/*.cs" />
+        <SwaggerInputs Include="../PlantCare.Queries/**/*.cs" />
+    </ItemGroup>
+
+    <Target 
+            Name="CreateSwaggerJson" 
+            AfterTargets="Build"
+            Inputs="@(SwaggerInputs)"
+            Outputs="../PlantCare.API.Client/swagger.json"
+            Condition="$(Configuration)=='Debug'"
+    >
         <Exec Command="ASPNETCORE_ENVIRONMENT=Swagger dotnet tool run swagger tofile --output ../PlantCare.API.Client/swagger.json $(TargetDir)$(AssemblyName).dll v1" />
     </Target>
     
