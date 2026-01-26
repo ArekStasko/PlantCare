@@ -1,5 +1,7 @@
 import plantcareApi from '../../../app/api/plantcareApi';
 
+import * as api from '@arekstasko/plantcare-api-client'
+
 export interface CreateModuleRequest {
   name: string;
 }

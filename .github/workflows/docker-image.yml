@@ -65,7 +65,9 @@ jobs:
       - name: Check if contract changed
         id: contract_diff
         run: |
-          if git diff --quiet -- PlantCare.API/PlantCare.API.Client/api-client/apiClient.ts; then
+          if git diff --quiet -- \
+              PlantCare.API/PlantCare.API.Client/api-client/apiClient.ts \
+              PlantCare.API/PlantCare.API.Client/api-client/dist; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "No Contracts changes"
           else
