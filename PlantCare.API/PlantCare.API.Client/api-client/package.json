@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup index.ts --format esm,cjs --dts"
   },
   "publishConfig": {
     "access": "public"
