@@ -68,17 +68,14 @@ jobs:
         run: npm ci || npm install
 
       - name: Build api-client
-        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm run build
 
       - name: Bump version
-        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm version patch --no-git-tag-version
 
       - name: Publish package
-        if: steps.contract_diff.outputs.changed == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm publish
         env:
