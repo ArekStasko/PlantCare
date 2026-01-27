@@ -62,18 +62,6 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - name: Check if contract changed
-        id: contract_diff
-        run: |
-          if git diff --quiet -- \
-              PlantCare.API/PlantCare.API.Client/api-client/apiClient.ts \
-              PlantCare.API/PlantCare.API.Client/api-client/dist; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No Contracts changes"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Contracts changed"
-          fi
 
       - name: Install Dependencies
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
