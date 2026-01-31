@@ -78,18 +78,22 @@ jobs:
 
           if [ "$LOCAL_VERSION" = "$PUBLISHED_VERSION" ]; then
             echo "Version not changed. Skipping publish."
+            echo "publish=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
       - name: Install Dependencies
+        if: steps.version_check.outputs.publish == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm ci || npm install
 
       - name: Build api-client
+        if: steps.version_check.outputs.publish == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm run build
 
       - name: Publish package
+        if: steps.version_check.outputs.publish == 'true'
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm publish
         env:
