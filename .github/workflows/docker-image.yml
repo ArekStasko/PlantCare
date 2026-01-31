@@ -66,6 +66,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Verify Version
+        id: version_check
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: |
           PACKAGE_NAME=$(node -p "require('./package.json').name")
