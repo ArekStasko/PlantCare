@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NUGET_PSD: ${{ secrets.NUGET_PSD }}
+      CLIENT_API_VERSION: ${{ variables.CLIENT_API_VERSION }}
 
     steps:
       - uses: actions/checkout@v2
@@ -74,7 +75,7 @@ jobs:
       - name: Bump version
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: |
-          npm version patch --no-git-tag-version
+          npm version "$CLIENT_API_VERSION"
 
       - name: Publish package
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
