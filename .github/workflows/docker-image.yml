@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NUGET_PSD: ${{ secrets.NUGET_PSD }}
-      CLIENT_API_VERSION: ${{ variables.CLIENT_API_VERSION }}
 
     steps:
       - uses: actions/checkout@v2
@@ -54,6 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      CLIENT_API_VERSION: ${{ vars.CLIENT_API_VERSION }}
 
     steps:
       - uses: actions/checkout@v2
