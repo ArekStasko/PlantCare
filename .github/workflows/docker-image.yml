@@ -53,7 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      CLIENT_API_VERSION: ${{ vars.CLIENT_API_VERSION }}
 
     steps:
       - uses: actions/checkout@v2
@@ -64,6 +63,22 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
 
+      - name: Verify Version
+        working-directory: PlantCare.API/PlantCare.API.Client/api-client
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+
+          PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME" version || echo "none")
+
+          echo "Local version: $LOCAL_VERSION"
+          echo "Published version: $PUBLISHED_VERSION"
+
+          if [ "$LOCAL_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "Version not changed. Skipping publish."
+            exit 0
+          fi
+
       - name: Install Dependencies
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm ci || npm install
@@ -71,11 +86,6 @@ jobs:
       - name: Build api-client
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
         run: npm run build
-
-      - name: Bump version
-        working-directory: PlantCare.API/PlantCare.API.Client/api-client
-        run: |
-          npm version "$CLIENT_API_VERSION"
 
       - name: Publish package
         working-directory: PlantCare.API/PlantCare.API.Client/api-client
