@@ -9,7 +9,7 @@ const plantcareApiBaseQuery = async (
   extraOptions: {}
 ) => {
   const rawBaseQuery = fetchBaseQuery({
-    baseUrl: 'http://192.168.1.40:8080/api/v1',
+    baseUrl: 'http://192.168.1.40:8080/api',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as ClientRootState).auth.accessToken;
       if (token) {

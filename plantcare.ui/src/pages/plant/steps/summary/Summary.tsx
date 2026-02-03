@@ -1,4 +1,4 @@
-import { CreatePlantCommand, UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
+import { CreatePlantCommand, UpdatePlantCommand, PlantType as ApiPlantType } from "@arekstasko/plantcare-api-client";
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
@@ -19,7 +19,7 @@ import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(
-    wizardController.context.plantId?.toString(),
+    wizardController.context.plantId!,
     { skip: !wizardController.context.plantId }
   );
   const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);
@@ -48,12 +48,12 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const onSubmit = async () => {
     if (wizardController.context.flowType === PlantFlowType.UPDATE) {
       const request = {
+        id: plantId,
         name: name,
         description: description,
-        type: type as PlantType,
         placeId: place,
+        type: convertPlantTypeToApiClient(type),
         moduleId: module,
-        id: plantId
       } as UpdatePlantCommand;
       await updatePlant(request);
       return;
@@ -62,12 +62,26 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
     const request = {
       name: name,
       description: description,
-      type: type as PlantType,
+      type: convertPlantTypeToApiClient(type),
       placeId: place,
       moduleId: module
     } as CreatePlantCommand;
     await createPlant(request);
   };
+
+  // TODO: Correct client api contract for plant type to remove this method
+  const convertPlantTypeToApiClient = (type?: PlantType) => {
+    switch (type) {
+      case PlantType.Decorative:
+        return ApiPlantType._0;
+      case PlantType.Vegetable:
+        return ApiPlantType._1;
+      case PlantType.Fruit:
+        return ApiPlantType._2;
+      default:
+        return '';
+    }
+  }
 
   const plantTypeToImage = (type?: PlantType) => {
     switch (type) {
