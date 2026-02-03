@@ -3,14 +3,13 @@ import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { PlaceContext, PlaceFlowType } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { useCreatePlaceMutation } from '../../../../common/RTK/createPlace/createPlace';
-import { CreatePlaceRequest } from '../../../../common/RTK/createPlace/createPlaceRequest';
 import { useEffect } from 'react';
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import styles from './summary.styles';
 import { useUpdatePlaceMutation } from '../../../../common/RTK/updatePlace/updatePlace';
-import { UpdatePlaceRequest } from '../../../../common/RTK/updatePlace/updatePlaceRequest';
+import { UpdatePlaceCommand, CreatePlaceCommand } from "@arekstasko/plantcare-api-client";
 
 const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
   const navigate = useNavigate();
@@ -28,14 +27,14 @@ const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
       const request = {
         id: wizardController.context.id,
         name: wizardController.context.name
-      } as UpdatePlaceRequest;
+      } as UpdatePlaceCommand;
       await updatePlace(request);
       return;
     }
 
     const request = {
       name: wizardController.context.name
-    } as CreatePlaceRequest;
+    } as CreatePlaceCommand;
     await createPlace(request);
   };
 

@@ -1,12 +1,12 @@
+import { UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
-import { UpdatePlantRequest } from './updatePlantRequest';
 
 export const updatePlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    UpdatePlant: build.mutation<boolean, UpdatePlantRequest>({
+    UpdatePlant: build.mutation<boolean, UpdatePlantCommand>({
       query: ({ ...data }) => ({
-        url: '/plants/Update',
-        method: 'POST',
+        url: '/plants',
+        method: 'PUT',
         body: data
       }),
       invalidatesTags: ['Plants', 'Modules']

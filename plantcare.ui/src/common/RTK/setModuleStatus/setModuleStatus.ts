@@ -1,9 +1,9 @@
-import { SetModuleStatusRequest } from './setModuleStatusRequest';
+import { SetModuleStatusCommand } from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
 
 export const setModuleStatusApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    SetModuleStatus: build.mutation<boolean, SetModuleStatusRequest>({
+    SetModuleStatus: build.mutation<boolean, SetModuleStatusCommand>({
       query: ({ ...data }) => ({
         url: '/modules/status',
         method: 'POST',

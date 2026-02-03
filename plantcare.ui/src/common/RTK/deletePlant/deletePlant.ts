@@ -1,11 +1,10 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { DeletePlantData } from './deletePlantData';
 
 export const deletePlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    DeletePlant: build.mutation<boolean, DeletePlantData>({
-      query: ({ plantId }: DeletePlantData) => ({
-        url: `/plants/Delete?id=${plantId}`,
+    DeletePlant: build.mutation<boolean, number>({
+      query: (plantId: number) => ({
+        url: `/plants?id=${plantId}`,
         method: 'DELETE'
       }),
       invalidatesTags: ['Plants']

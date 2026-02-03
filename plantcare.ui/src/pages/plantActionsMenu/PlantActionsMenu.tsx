@@ -49,7 +49,7 @@ const PlantActionsMenu = ({ closeDialog, openDialog, plant }: PlantActionsMenu) 
     }
 
     if (context.action === ActionType.DELETE) {
-      await deletePlant({ plantId: plant.id! });
+      await deletePlant(plant.id!);
       return;
     }
 
