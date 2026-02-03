@@ -50,7 +50,7 @@ const PlaceActionsMenu = ({ closeDialog, openDialog, place }: PlaceActionsMenuPr
     }
 
     if (context.action === ActionType.DELETE) {
-      await deletePlace({ placeId: place.id! });
+      await deletePlace(place.id!);
       return;
     }
 

@@ -1,11 +1,10 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { DeletePlaceData } from './deletePlaceData';
 
 export const deletePlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    DeletePlace: build.mutation<boolean, DeletePlaceData>({
-      query: ({ placeId }: DeletePlaceData) => ({
-        url: `/places/Delete?id=${placeId}`,
+    DeletePlace: build.mutation<boolean, number>({
+      query: (placeId: number) => ({
+        url: `/places?id=${placeId}`,
         method: 'DELETE'
       }),
       invalidatesTags: ['Places']
