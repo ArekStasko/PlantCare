@@ -1,3 +1,4 @@
+import { CreatePlantCommand, UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
@@ -9,19 +10,16 @@ import Vegetable from '../../../../app/images/Vegetable.png';
 import Fruit from '../../../../app/images/Fruit.png';
 import React, { useEffect, useState } from 'react';
 import { useCreatePlantMutation } from '../../../../common/RTK/createPlant/createPlant';
-import { CreatePlantRequest } from '../../../../common/RTK/createPlant/createPlantRequest';
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useNavigate } from 'react-router';
 import { useUpdatePlantMutation } from '../../../../common/RTK/updatePlant/updatePlant';
-import { UpdatePlantRequest } from '../../../../common/RTK/updatePlant/updatePlantRequest';
 import { useGetPlantQuery } from '../../../../common/RTK/getPlant/getPlant';
-import { GetPlantData } from '../../../../common/RTK/getPlant/getPlantData';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(
-    { plantId: wizardController.context.plantId?.toString() } as GetPlantData,
+    wizardController.context.plantId?.toString(),
     { skip: !wizardController.context.plantId }
   );
   const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);
@@ -56,7 +54,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
         placeId: place,
         moduleId: module,
         id: plantId
-      } as UpdatePlantRequest;
+      } as UpdatePlantCommand;
       await updatePlant(request);
       return;
     }
@@ -67,7 +65,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
       type: type as PlantType,
       placeId: place,
       moduleId: module
-    } as CreatePlantRequest;
+    } as CreatePlantCommand;
     await createPlant(request);
   };
 

@@ -7,9 +7,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useEffect, useState } from 'react';
 import {
-  CreateModuleRequest,
   useCreateModuleMutation
 } from '../../../../common/RTK/createModule/createModule';
+import { CreateModuleCommand } from "@arekstasko/plantcare-api-client";
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
     try {
       const request = {
         name: wizardController.context.moduleName
-      } as CreateModuleRequest;
+      } as CreateModuleCommand;
       const result = await createModule(request);
       if ('data' in result) {
         const crc = wizardController.context.wifiDataService;

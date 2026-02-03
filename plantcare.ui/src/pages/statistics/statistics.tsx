@@ -12,9 +12,9 @@ import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
 import { useSetModuleStatusMutation } from '../../common/RTK/setModuleStatus/setModuleStatus';
 import { useGetModulesQuery } from '../../common/RTK/getModules/getModules';
-import { SetModuleStatusRequest } from '../../common/RTK/setModuleStatus/setModuleStatusRequest';
 import { PlantDetails } from '../dashboard/components/PlantDetails';
 import { Module } from '../../common/models/Module';
+import { SetModuleStatusCommand } from "@arekstasko/plantcare-api-client";
 
 export const Statistics = () => {
   let { moduleId } = useParams();
@@ -71,7 +71,7 @@ export const Statistics = () => {
     const moduleStatusRequest = {
       moduleId: +module.id,
       status: !moduleStatus
-    } as SetModuleStatusRequest;
+    } as SetModuleStatusCommand;
     const result = await setModuleStatus(moduleStatusRequest);
     if ('data' in result && result.data) {
       setTimeout(() => {
