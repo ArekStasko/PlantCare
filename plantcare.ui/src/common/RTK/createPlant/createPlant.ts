@@ -1,11 +1,11 @@
+import { CreatePlantCommand } from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
-import { CreatePlantRequest } from './createPlantRequest';
 
 export const createPlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    CreatePlant: build.mutation<boolean, CreatePlantRequest>({
+    CreatePlant: build.mutation<boolean, CreatePlantCommand>({
       query: ({ ...data }) => ({
-        url: '/plants/Create',
+        url: '/plants',
         method: 'POST',
         body: data
       }),

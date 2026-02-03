@@ -1,11 +1,11 @@
+import CreatePlaceCommand from '@arekstasko/plantcare-api-client'
 import plantcareApi from '../../../app/api/plantcareApi';
-import { CreatePlaceRequest } from './createPlaceRequest';
 
 export const createPlaceApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    CreatePlace: build.mutation<boolean, CreatePlaceRequest>({
+    CreatePlace: build.mutation<boolean, CreatePlaceCommand>({
       query: ({ ...data }) => ({
-        url: '/places/Create',
+        url: '/places',
         method: 'POST',
         body: data
       }),
