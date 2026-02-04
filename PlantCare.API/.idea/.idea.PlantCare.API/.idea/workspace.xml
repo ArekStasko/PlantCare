@@ -17,22 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createModule/createModule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createModule/createModule.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlace/createPlace.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlace/createPlace.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlace/createPlaceRequest.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlant/createPlant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlant/createPlant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/createPlant/createPlantRequest.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlace/deletePlace.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlace/deletePlace.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlace/deletePlaceData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlant/deletePlant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlant/deletePlant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/deletePlant/deletePlantData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getHumidityMeasurements/getHumidityMeasurements.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getHumidityMeasurements/getHumidityMeasurements.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getModules/getModules.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getModules/getModules.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlaces/getPlaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlaces/getPlaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlant/getPlant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlant/getPlant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlant/getPlantData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlants/getPlants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getPlants/getPlants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/setModuleStatus/setModuleStatusRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,7 +431,8 @@
       <workItem from="1769270131021" duration="4660000" />
       <workItem from="1769354975806" duration="2976000" />
       <workItem from="1769459575888" duration="663000" />
-      <workItem from="1770136601911" duration="712000" />
+      <workItem from="1770136601911" duration="2058000" />
+      <workItem from="1770224488247" duration="1526000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -658,19 +644,6 @@
           <line>39</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" containingFunctionPresentation="Method 'Get'" />
           <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs</url>
-          <line>81</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\PlantController.cs" containingFunctionPresentation="Method 'Get'">
-            <startOffsets>
-              <option value="3385" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3386" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/PlantRepository.cs</url>
