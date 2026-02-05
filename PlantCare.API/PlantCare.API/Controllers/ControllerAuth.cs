@@ -11,10 +11,9 @@ public class ControllerAuth : ControllerBase
         string secretToken = Environment.GetEnvironmentVariable("secretToken");
 
         var authHeader = httpContextAccessor.HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-        if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
+        if (!string.IsNullOrEmpty(authHeader))
         {
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-            if(token == secretToken)
+            if(authHeader == secretToken)
             {
                 return;
             }
@@ -26,6 +25,6 @@ public class ControllerAuth : ControllerBase
             return;
         }
         
-        throw new UnauthorizedAccessException();
+        throw new UnauthorizedAccessException("User is not authorized on controller base ");
     }
 }
