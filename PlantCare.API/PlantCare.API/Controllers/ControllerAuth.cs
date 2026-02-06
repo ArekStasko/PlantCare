@@ -6,7 +6,7 @@ public class ControllerAuth : ControllerBase
 {
     protected int UserId { get; private set; }
     
-    public ControllerAuth(IHttpContextAccessor httpContextAccessor)
+    public ControllerAuth(IHttpContextAccessor httpContextAccessor, ILogger<ControllerAuth> logger)
     {
         string secretToken = Environment.GetEnvironmentVariable("secretToken");
 
@@ -15,6 +15,7 @@ public class ControllerAuth : ControllerBase
         {
             if(authHeader == secretToken)
             {
+                logger.LogInformation($"Flow authorized by secret token");
                 return;
             }
         }
