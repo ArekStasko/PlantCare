@@ -1,8 +1,6 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Module;
-using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Plant;
 using GetModulesQuery = PlantCare.Queries.Queries.Module.GetModulesQuery;
 
@@ -15,7 +13,7 @@ public class ModuleController : ControllerAuth
     private readonly IMediator _mediator;
     private readonly ILogger<PlaceController> _logger;
 
-    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor)
+    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
         _logger = logger;

@@ -16,8 +16,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +77,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.API.Client/api-client/package-lock.json" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerAuth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ControllerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementsController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
@@ -439,6 +442,8 @@
       <workItem from="1770136601911" duration="2058000" />
       <workItem from="1770224488247" duration="1816000" />
       <workItem from="1770309591072" duration="5770000" />
+      <workItem from="1770396351622" duration="941000" />
+      <workItem from="1770475213883" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
@@ -644,12 +649,6 @@
           <line>23</line>
           <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API.DataAccess\Repositories\HumidityMeasurementRepository\HumidityMeasurementRepository.cs" containingFunctionPresentation="Method 'Add'" />
           <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PlantCare.API/Controllers/HumidityMeasurementController.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\Users\areks\sources\repos\PlantCare\PlantCare.API\PlantCare.API\Controllers\HumidityMeasurementController.cs" containingFunctionPresentation="Method 'Get'" />
-          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/PlantRepository.cs</url>

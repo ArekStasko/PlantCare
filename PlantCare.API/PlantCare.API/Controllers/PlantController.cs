@@ -16,7 +16,7 @@ public class PlantController : ControllerAuth
     private readonly IMapper _mapper;
     private readonly ILogger<PlantController> _logger;
 
-    public PlantController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlantController> logger) : base(httpContextAccessor)
+    public PlantController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlantController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
         _mapper = mapper;
