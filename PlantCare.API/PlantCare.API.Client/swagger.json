@@ -8,7 +8,7 @@
     "/api/humidity-measurements": {
       "post": {
         "tags": [
-          "HumidityMeasurements"
+          "HumidityMeasurement"
         ],
         "requestBody": {
           "content": {
@@ -74,7 +74,7 @@
       },
       "get": {
         "tags": [
-          "HumidityMeasurements"
+          "HumidityMeasurement"
         ],
         "parameters": [
           {
@@ -128,74 +128,6 @@
                   "items": {
                     "$ref": "#/components/schemas/IHumidityMeasurement"
                   }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/status": {
-      "post": {
-        "tags": [
-          "Module"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetModuleStatusCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetModuleStatusCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetModuleStatusCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
                 }
               }
             }
@@ -2311,24 +2243,6 @@
         ],
         "type": "integer",
         "format": "int32"
-      },
-      "SetModuleStatusCommand": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "moduleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
       },
       "StructLayoutAttribute": {
         "type": "object",

@@ -20,19 +20,6 @@ public class ModuleController : ControllerAuth
     }
 
     [HttpPost]
-    [Route("/status")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Status(SetModuleStatusCommand command)
-    {
-        _logger.LogInformation("Set Module Status controller method start processing");
-        command.UserId = UserId;
-        var result = await _mediator.Send(command);
-        _logger.LogInformation("Set Module Status controller method ends processing");
-        return result.ToOk();
-    }
-    
-    [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreateModuleCommand command)

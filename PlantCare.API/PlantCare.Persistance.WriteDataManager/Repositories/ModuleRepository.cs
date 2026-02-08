@@ -25,7 +25,6 @@ public class ModuleRepository : IWriteModuleRepository
             var module = new Module()
             {
                 Name = name,
-                Address = address,
                 UserId = userId
             };
             await _context.Modules.AddAsync(module);
@@ -37,55 +36,6 @@ public class ModuleRepository : IWriteModuleRepository
         {
             _logger.LogError(e.Message);
             return new Result<int>(e);
-        }
-    }
-
-    public async ValueTask<Result<bool>> Delete(int userId, int id)
-    {
-        try
-        {
-            var moduleToDelete = await _context.Modules.SingleOrDefaultAsync(m => m.Id == id && m.UserId == userId);
-
-            if (moduleToDelete == null)
-            {
-                _logger.LogError("There is no module to delete with {Id}", id);
-                return new Result<bool>(new NullReferenceException());
-            }
-
-            _context.Modules.Remove(moduleToDelete);
-            await _context.SaveChangesAsync();
-
-            _logger.LogInformation("Successfully deleted module with {Id} id", id);
-            return new Result<bool>(true);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e.Message);
-            return new Result<bool>(e);
-        }
-    }
-
-    public async ValueTask<Result<IModule>> UpdateStatus(int userId, int moduleId, bool status)
-    {
-        try
-        {
-            var moduleToUpdate = await _context.Modules.SingleOrDefaultAsync(m => m.Id == moduleId && m.UserId == userId);
-
-            if (moduleToUpdate == null)
-            {
-                _logger.LogError("There is no Module to update with {Id}", moduleId);
-                return new Result<IModule>(new ArgumentNullException());
-            }
-            moduleToUpdate.IsMonitoring = status;
-            await _context.SaveChangesAsync();
-
-            _logger.LogInformation("Module with {Id} successfully updated", moduleId);
-            return new Result<IModule>(moduleToUpdate);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e.Message);
-            return new Result<IModule>(e);
         }
     }
 }
