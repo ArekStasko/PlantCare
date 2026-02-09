@@ -9,16 +9,12 @@ import React from 'react';
 
 export type PlantDetailsProps = {
   plant: any;
-  moduleStatus: boolean;
   isModuleLoading: boolean;
-  onModuleStatusChanged: () => void;
 };
 
 export const PlantDetails = ({
   plant,
-  moduleStatus,
   isModuleLoading,
-  onModuleStatusChanged
 }: PlantDetailsProps) => {
   return (
     plant && (
@@ -59,7 +55,6 @@ export const PlantDetails = ({
               <Tooltip placement="top-end" title="Module Status" arrow>
                 <Paper sx={styles.moduleIdCard}>
                   <Typography variant="h6">Module Status</Typography>
-                  <Switch checked={moduleStatus} onChange={onModuleStatusChanged} />
                 </Paper>
               </Tooltip>
             </Box>
