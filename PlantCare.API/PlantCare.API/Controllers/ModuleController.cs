@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Module;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Plant;
 using GetModulesQuery = PlantCare.Queries.Queries.Module.GetModulesQuery;
 
@@ -22,10 +23,14 @@ public class ModuleController : ControllerAuth
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(CreateModuleCommand command)
+    public async ValueTask<IActionResult> Create(CreateModuleRequest request)
     {
         _logger.LogInformation("Create module controller method start processing");
-        command.UserId = UserId;
+        CreateModuleCommand command = new CreateModuleCommand()
+        {
+            Name = request.Name,
+            UserId = UserId
+        };
         var result = await _mediator.Send(command);
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();

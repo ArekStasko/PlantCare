@@ -164,17 +164,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateModuleCommand"
+                "$ref": "#/components/schemas/CreateModuleRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateModuleCommand"
+                "$ref": "#/components/schemas/CreateModuleRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateModuleCommand"
+                "$ref": "#/components/schemas/CreateModuleRequest"
               }
             }
           }
@@ -1097,18 +1097,10 @@
         },
         "additionalProperties": false
       },
-      "CreateModuleCommand": {
+      "CreateModuleRequest": {
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "address": {
             "type": "string",
             "nullable": true
           }

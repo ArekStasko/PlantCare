@@ -20,16 +20,14 @@ public class CreateModuleHandler(
     {
         try
         {
-            var result = await repository.Add(request.UserId, request.Name, request.Address);
+            var result = await repository.Add(request.UserId, request.Name);
             return result.Match(succ =>
             {
                 var moduleDto = new ModuleDto()
                 {
                     Id = succ,
                     Name = request.Name,
-                    Address = request.Address,
                     UserId = request.UserId,
-                    IsMonitoring = false,
                 };
                 var moduleMessage = new Module
                 {
