@@ -27,7 +27,7 @@ export interface IClient {
      * @param body (optional) 
      * @return OK
      */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean>;
+    modules(body?: CreateModuleRequest | undefined): Promise<boolean>;
 
     /**
      * @return OK
@@ -204,7 +204,7 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean> {
+    modules(body?: CreateModuleRequest | undefined): Promise<boolean> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -771,10 +771,8 @@ export interface ConstructorInfo {
     memberType?: MemberTypes;
 }
 
-export interface CreateModuleCommand {
+export interface CreateModuleRequest {
     name?: string | undefined;
-    userId?: number;
-    address?: string | undefined;
 }
 
 export interface CreatePlaceCommand {
