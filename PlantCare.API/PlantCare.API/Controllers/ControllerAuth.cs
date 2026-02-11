@@ -13,7 +13,8 @@ public class ControllerAuth : ControllerBase
         var authHeader = httpContextAccessor.HttpContext.Request.Headers["Authorization"].FirstOrDefault();
         if (!string.IsNullOrEmpty(authHeader))
         {
-            if(authHeader == secretToken)
+            var headerParts = authHeader.Split(' ');
+            if(headerParts.Length == 2 && headerParts[1] == secretToken)
             {
                 logger.LogInformation($"Flow authorized by secret token");
                 return;
