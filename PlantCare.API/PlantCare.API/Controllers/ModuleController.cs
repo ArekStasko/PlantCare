@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Module;
@@ -15,32 +14,23 @@ public class ModuleController : ControllerAuth
     private readonly IMediator _mediator;
     private readonly ILogger<PlaceController> _logger;
 
-    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor)
+    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
         _logger = logger;
     }
 
     [HttpPost]
-    [Route("/status")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Status(SetModuleStatusCommand command)
-    {
-        _logger.LogInformation("Set Module Status controller method start processing");
-        command.UserId = UserId;
-        var result = await _mediator.Send(command);
-        _logger.LogInformation("Set Module Status controller method ends processing");
-        return result.ToOk();
-    }
-    
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Create(CreateModuleCommand command)
+    public async ValueTask<IActionResult> Create(CreateModuleRequest request)
     {
         _logger.LogInformation("Create module controller method start processing");
-        command.UserId = UserId;
+        CreateModuleCommand command = new CreateModuleCommand()
+        {
+            Name = request.Name,
+            UserId = UserId
+        };
         var result = await _mediator.Send(command);
         _logger.LogInformation("Create module controller method ends processing");
         return result.ToOk();

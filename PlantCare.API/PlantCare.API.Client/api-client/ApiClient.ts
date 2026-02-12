@@ -27,13 +27,7 @@ export interface IClient {
      * @param body (optional) 
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean>;
+    modules(body?: CreateModuleRequest | undefined): Promise<boolean>;
 
     /**
      * @return OK
@@ -210,54 +204,7 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean> {
-        let url_ = this.baseUrl + "/status";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_: RequestInit = {
-            body: content_,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        };
-
-        return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processStatus(_response);
-        });
-    }
-
-    protected processStatus(response: Response): Promise<boolean> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
-        } else if (status === 500) {
-            return response.text().then((_responseText) => {
-            let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
-            return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<boolean>(null as any);
-    }
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean> {
+    modules(body?: CreateModuleRequest | undefined): Promise<boolean> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -824,10 +771,8 @@ export interface ConstructorInfo {
     memberType?: MemberTypes;
 }
 
-export interface CreateModuleCommand {
+export interface CreateModuleRequest {
     name?: string | undefined;
-    userId?: number;
-    address?: string | undefined;
 }
 
 export interface CreatePlaceCommand {
@@ -1240,12 +1185,6 @@ export enum SecurityRuleSet {
     _0 = 0,
     _1 = 1,
     _2 = 2,
-}
-
-export interface SetModuleStatusCommand {
-    userId?: number | undefined;
-    moduleId?: number;
-    status?: boolean;
 }
 
 export interface StructLayoutAttribute {

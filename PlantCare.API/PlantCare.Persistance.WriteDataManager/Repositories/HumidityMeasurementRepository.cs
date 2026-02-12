@@ -1,4 +1,5 @@
 using LanguageExt.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;

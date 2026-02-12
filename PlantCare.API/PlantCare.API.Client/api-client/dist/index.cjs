@@ -342,61 +342,6 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @param body (optional) 
    * @return OK
-   */ key: "status",
-            value: function status(body) {
-                var _this = this;
-                var url_ = this.baseUrl + "/status";
-                url_ = url_.replace(/[?&]$/, "");
-                var content_ = JSON.stringify(body);
-                var options_ = {
-                    body: content_,
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    }
-                };
-                return this.http.fetch(url_, options_).then(function(_response) {
-                    return _this.processStatus(_response);
-                });
-            }
-        },
-        {
-            key: "processStatus",
-            value: function processStatus(response) {
-                var _this = this;
-                var status = response.status;
-                var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
-                }
-                ;
-                if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
-                } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
-                } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
-                }
-                return Promise.resolve(null);
-            }
-        },
-        {
-            /**
-   * @param body (optional) 
-   * @return OK
    */ key: "modules",
             value: function modules(body) {
                 var _this = this;

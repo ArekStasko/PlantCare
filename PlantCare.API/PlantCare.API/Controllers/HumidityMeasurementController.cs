@@ -9,14 +9,13 @@ namespace PlantCare.API.Controllers;
 
 [Route("api/humidity-measurements")]
 [ApiController]
-
-public class HumidityMeasurementsController : ControllerAuth
+public class HumidityMeasurementController : ControllerAuth
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public HumidityMeasurementsController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor)
+    public HumidityMeasurementController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
         _mapper = mapper;
@@ -28,9 +27,7 @@ public class HumidityMeasurementsController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Add(AddHumidityMeasurementCommand command)
     {
-        _logger.LogInformation("Create humidity measurement controller method start processing");
         var result = await _mediator.Send(command);
-        _logger.LogInformation("Create humidity measurement method ends processing");
         return result.ToOk();
     }
 
@@ -39,7 +36,6 @@ public class HumidityMeasurementsController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromQuery] int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {
-        _logger.LogInformation("Get humidity measurements controller method start processing");
         var getHumidityMeasurementsQuery = new GetHumidityMeasurementQuery()
         {
             Id = id,
@@ -47,7 +43,6 @@ public class HumidityMeasurementsController : ControllerAuth
             ToDate = toDate,
         };
         var result = await _mediator.Send(getHumidityMeasurementsQuery);
-        _logger.LogInformation("Get humidity measurements controller method ends processing");
         return result.ToOk();
     }
 }

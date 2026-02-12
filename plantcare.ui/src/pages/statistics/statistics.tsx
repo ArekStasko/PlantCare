@@ -10,11 +10,8 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
-import { useSetModuleStatusMutation } from '../../common/RTK/setModuleStatus/setModuleStatus';
 import { useGetModulesQuery } from '../../common/RTK/getModules/getModules';
 import { PlantDetails } from '../dashboard/components/PlantDetails';
-import { Module } from '../../common/models/Module';
-import { SetModuleStatusCommand } from "@arekstasko/plantcare-api-client";
 
 export const Statistics = () => {
   let { moduleId } = useParams();
@@ -25,9 +22,7 @@ export const Statistics = () => {
   const {
     data: modules,
     isLoading: modulesLoading,
-    refetch: refetchModules
   } = useGetModulesQuery();
-  const [setModuleStatus] = useSetModuleStatusMutation();
 
   const {
     data: humidityMeasurements,
@@ -43,12 +38,6 @@ export const Statistics = () => {
     () => modules?.find((m) => m.id?.toString() === moduleId)?.plant,
     [modules]
   );
-  const module = useMemo(
-    (): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId),
-    [modules]
-  );
-
-  const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module]);
 
   const refetchMeasurementsWithNewDate = (value: Dayjs) => {
     const correctDate = value.toDate();
@@ -65,21 +54,6 @@ export const Statistics = () => {
     refetchMeasurements();
   };
 
-  const handleModuleStatusChange = async () => {
-    setIsLoading(true);
-    if (!module) return;
-    const moduleStatusRequest = {
-      moduleId: +module.id,
-      status: !moduleStatus
-    } as SetModuleStatusCommand;
-    const result = await setModuleStatus(moduleStatusRequest);
-    if ('data' in result && result.data) {
-      setTimeout(() => {
-        refetchModules();
-        setIsLoading(false);
-      }, 1000);
-    }
-  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -92,9 +66,7 @@ export const Statistics = () => {
           ) : (
             <PlantDetails
               plant={plant}
-              moduleStatus={moduleStatus}
               isModuleLoading={isLoading || modulesLoading}
-              onModuleStatusChanged={() => handleModuleStatusChange()}
             />
           )}
         </Card>
