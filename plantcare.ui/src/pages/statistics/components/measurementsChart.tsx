@@ -1,5 +1,5 @@
 import StatisticsService from '../../../common/services/StatisticsService';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { HumidityMeasurement } from '../../../common/models/HumidityMeasurement';
 import { BarChart } from '@mui/x-charts';
 
@@ -8,6 +8,7 @@ interface MeasurementsChartProps {
 }
 
 export const MeasurementsChart = (props: MeasurementsChartProps) => {
+
   return (
     <BarChart
       xAxis={[
@@ -17,7 +18,10 @@ export const MeasurementsChart = (props: MeasurementsChartProps) => {
         }
       ]}
       series={[
-        { data: StatisticsService.getHumidityMeasurementValues(props.humidityMeasurements) }
+        {
+          data: StatisticsService.getHumidityMeasurementValues(props.humidityMeasurements),
+          valueFormatter: (v) => `Humidity: ${v}%`,
+        }
       ]}
     />
   );

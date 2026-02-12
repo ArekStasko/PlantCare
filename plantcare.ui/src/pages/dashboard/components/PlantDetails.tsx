@@ -50,14 +50,6 @@ export const PlantDetails = ({
         {isModuleLoading ? (
           <CircularProgress />
         ) : (
-          <>
-            <Box sx={styles.moduleIdWrapper}>
-              <Tooltip placement="top-end" title="Module Status" arrow>
-                <Paper sx={styles.moduleIdCard}>
-                  <Typography variant="h6">Module Status</Typography>
-                </Paper>
-              </Tooltip>
-            </Box>
             <Box sx={styles.moduleIdWrapper}>
               <Tooltip placement="top-end" title="Module ID" arrow>
                 <Paper sx={styles.moduleIdCard}>
@@ -73,7 +65,6 @@ export const PlantDetails = ({
                 </Paper>
               </Tooltip>
             </Box>
-          </>
         )}
       </>
     )
