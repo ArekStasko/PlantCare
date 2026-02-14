@@ -1,6 +1,53 @@
+using AutoMapper;
+using LanguageExt;
+using LanguageExt.Common;
+using MediatR;
+using Microsoft.Extensions.Logging;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
+using PlantCare.Queries.Queries.Module;
+using PlantCare.Queries.Responses.Module;
+
 namespace PlantCare.Queries.QueryHandlers.ModuleQueryHandlers;
 
-public class GetModuleByIdHandler
+public class GetModuleByIdHandler : IRequestHandler<GetModuleByIdQuery, Result<GetModuleResponse>>
 {
+    private readonly IReadModuleRepository _repository;
+    private readonly ILogger<GetModulesHandler> _logger;
+    private readonly IMapper _mapper;
+
+    public GetModuleByIdHandler(IReadModuleRepository repository, ILogger<GetModulesHandler> logger, IMapper mapper)
+    {
+        _repository = repository;
+        _logger = logger;
+        _mapper = mapper;
+    }
     
+    public async Task<Result<GetModuleResponse>> Handle(GetModuleByIdQuery request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var result = await _repository.Get(request.UserId);
+            return result.Match(succ =>
+            {
+                IReadOnlyCollection<GetModuleResponse> result = succ.Select(x => _mapper.Map<GetModuleResponse>(x))
+                    .ToList();
+
+                var module = result.FirstOrDefault(m => m.Id == request.ModuleId);
+
+                if (module is null)
+                {
+                    _logger.LogError($"Module with id: {request.ModuleId} not found");
+                    return new Result<GetModuleResponse>(new ResultIsNullException("Module not found"));
+                }
+                
+                return new Result<GetModuleResponse>(module);
+            }, err => 
+                new Result<GetModuleResponse>(err));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Exception has been thrown in GetModulesHandler: {exception}", e.Message);
+            return new Result<GetModuleResponse>(e);
+        }
+    }
 }
