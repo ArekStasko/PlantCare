@@ -19,7 +19,11 @@ interface IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+    /**
+     * @return OK
+     */
+    id(id: number): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -93,8 +97,13 @@ declare class Client implements IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
-    protected processModulesAll(response: Response): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+    protected processModulesAll(response: Response): Promise<GetModuleResponse[]>;
+    /**
+     * @return OK
+     */
+    id(id: number): Promise<GetModuleResponse>;
+    protected processId(response: Response): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -337,6 +346,12 @@ declare enum GenericParameterAttributes {
     _16 = 16,
     _28 = 28
 }
+interface GetModuleResponse {
+    id?: number;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
 interface GetPlacesResponse {
     id?: number;
     name?: string | undefined;
@@ -356,15 +371,6 @@ interface IHumidityMeasurement {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
-}
-interface IPlant {
-    userId?: number;
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
 }
 interface IntPtr {
 }
@@ -815,4 +821,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IPlant, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetModuleResponse, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };

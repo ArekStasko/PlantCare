@@ -32,7 +32,12 @@ export interface IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+
+    /**
+     * @return OK
+     */
+    id(id: number): Promise<GetModuleResponse>;
 
     /**
      * @param body (optional) 
@@ -250,7 +255,7 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]> {
+    modulesAll(): Promise<GetModuleResponse[]> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -266,13 +271,13 @@ export class Client implements IClient {
         });
     }
 
-    protected processModulesAll(response: Response): Promise<IPlant[]> {
+    protected processModulesAll(response: Response): Promise<GetModuleResponse[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as IPlant[];
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse[];
             return result200;
             });
         } else if (status === 500) {
@@ -286,7 +291,52 @@ export class Client implements IClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<IPlant[]>(null as any);
+        return Promise.resolve<GetModuleResponse[]>(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    id(id: number): Promise<GetModuleResponse> {
+        let url_ = this.baseUrl + "/id/{id}";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processId(_response);
+        });
+    }
+
+    protected processId(response: Response): Promise<GetModuleResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse;
+            return result200;
+            });
+        } else if (status === 500) {
+            return response.text().then((_responseText) => {
+            let result500: any = null;
+            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<GetModuleResponse>(null as any);
     }
 
     /**
@@ -905,6 +955,13 @@ export enum GenericParameterAttributes {
     _28 = 28,
 }
 
+export interface GetModuleResponse {
+    id?: number;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
+
 export interface GetPlacesResponse {
     id?: number;
     name?: string | undefined;
@@ -927,16 +984,6 @@ export interface IHumidityMeasurement {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
-}
-
-export interface IPlant {
-    userId?: number;
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
 }
 
 export interface IntPtr {

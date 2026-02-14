@@ -350,6 +350,59 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
+   * @return OK
+   */ key: "id",
+            value: function id(id) {
+                var _this = this;
+                var url_ = this.baseUrl + "/id/{id}";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                };
+                return this.http.fetch(url_, options_).then(function(_response) {
+                    return _this.processId(_response);
+                });
+            }
+        },
+        {
+            key: "processId",
+            value: function processId(response) {
+                var _this = this;
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && response.headers.forEach) {
+                    response.headers.forEach(function(v, k) {
+                        return _headers[k] = v;
+                    });
+                }
+                ;
+                if (status === 200) {
+                    return response.text().then(function(_responseText) {
+                        var result200 = null;
+                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
+                        return result200;
+                    });
+                } else if (status === 500) {
+                    return response.text().then(function(_responseText) {
+                        var result500 = null;
+                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
+                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
+                    });
+                } else if (status !== 200 && status !== 204) {
+                    return response.text().then(function(_responseText) {
+                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+                    });
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
    * @param body (optional) 
    * @return OK
    */ key: "placesPOST",
