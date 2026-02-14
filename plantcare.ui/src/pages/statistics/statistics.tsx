@@ -15,7 +15,6 @@ import { PlantDetails } from '../dashboard/components/PlantDetails';
 
 export const Statistics = () => {
   let { moduleId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
@@ -66,7 +65,7 @@ export const Statistics = () => {
           ) : (
             <PlantDetails
               plant={plant}
-              isModuleLoading={isLoading || modulesLoading}
+              isModuleLoading={modulesLoading}
             />
           )}
         </Card>
