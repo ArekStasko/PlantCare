@@ -15,19 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/ModuleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModulesQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModulesQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -455,7 +443,7 @@
       <workItem from="1770659777245" duration="3181000" />
       <workItem from="1770995333941" duration="653000" />
       <workItem from="1771081479014" duration="1008000" />
-      <workItem from="1771083315484" duration="849000" />
+      <workItem from="1771083315484" duration="1066000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
