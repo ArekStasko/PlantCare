@@ -1,20 +1,23 @@
-import { Box, CircularProgress, Paper, Switch, Tooltip, Typography } from '@mui/material';
-import styles from '../../statistics/statistics.styles';
+import { Box, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
+import styles from '../statistics.styles';
 import { PlantType } from '../../../common/models/plantTypes';
 import Vegetable from '../../../app/images/Vegetable.png';
 import Fruit from '../../../app/images/Fruit.png';
 import Decorative from '../../../app/images/Decorative.png';
 import MemoryIcon from '@mui/icons-material/Memory';
 import React from 'react';
+import { GetModuleResponse, GetPlantResponse } from "@arekstasko/plantcare-api-client";
 
 export type PlantDetailsProps = {
-  plant: any;
-  isModuleLoading: boolean;
+  plant: GetPlantResponse;
+  module: GetModuleResponse;
+  isLoading: boolean;
 };
 
-export const PlantDetails = ({
+export const Details = ({
   plant,
-  isModuleLoading,
+                          module,
+  isLoading,
 }: PlantDetailsProps) => {
   return (
     plant && (
@@ -47,7 +50,7 @@ export const PlantDetails = ({
             <Typography>{plant.description}</Typography>
           </Paper>
         </Box>
-        {isModuleLoading ? (
+        {isLoading ? (
           <CircularProgress />
         ) : (
             <Box sx={styles.moduleIdWrapper}>

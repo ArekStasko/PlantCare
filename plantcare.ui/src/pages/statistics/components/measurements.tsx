@@ -7,7 +7,7 @@ interface MeasurementsChartProps {
   humidityMeasurements: HumidityMeasurement[];
 }
 
-export const MeasurementsChart = (props: MeasurementsChartProps) => {
+export const Measurements = (props: MeasurementsChartProps) => {
 
   return (
     <BarChart
@@ -27,4 +27,4 @@ export const MeasurementsChart = (props: MeasurementsChartProps) => {
   );
 };
 
-export default MeasurementsChart;
+export default Measurements;
