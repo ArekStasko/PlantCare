@@ -1,4 +1,8 @@
-import { CreatePlantCommand, UpdatePlantCommand, PlantType as ApiPlantType } from "@arekstasko/plantcare-api-client";
+import {
+  CreatePlantCommand,
+  UpdatePlantCommand,
+  PlantType as ApiPlantType
+} from '@arekstasko/plantcare-api-client';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
@@ -53,7 +57,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
         description: description,
         placeId: place,
         type: convertPlantTypeToApiClient(type),
-        moduleId: module,
+        moduleId: module
       } as UpdatePlantCommand;
       await updatePlant(request);
       return;
@@ -81,7 +85,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
       default:
         return '';
     }
-  }
+  };
 
   const plantTypeToImage = (type?: PlantType) => {
     switch (type) {

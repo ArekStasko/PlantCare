@@ -1,4 +1,4 @@
-import { CreateModuleRequest } from "@arekstasko/plantcare-api-client";
+import { CreateModuleRequest } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 export const createModuleApi = plantcareApi.injectEndpoints({

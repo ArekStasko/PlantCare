@@ -1,5 +1,5 @@
 import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
@@ -11,28 +11,26 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
 import { Details } from './components/details';
-import { useGetModuleQuery } from "../../common/RTK/getModule/getModule";
-import { useGetPlantQuery } from "../../common/RTK/getPlant/getPlant";
+import { useGetModuleQuery } from '../../common/RTK/getModule/getModule';
+import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 
 export const Statistics = () => {
   let { moduleId, plantId } = useParams();
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
-  const {
-    data: plant,
-    isFetching: isPlantFetching
-  } = useGetPlantQuery(plantId!, {skip: !plantId});
+  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(plantId!, {
+    skip: !plantId
+  });
 
-  const {
-    data: module,
-    isFetching: isModuleFetching
-  } = useGetModuleQuery(moduleId!, {skip: !moduleId});
+  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(moduleId!, {
+    skip: !moduleId
+  });
 
   const {
     data: humidityMeasurements,
     isFetching: isHumidityMeasurementsFetching,
-    refetch: refetchHumidityMeasurements,
+    refetch: refetchHumidityMeasurements
   } = useGetHumidityMeasurementsQuery({
     moduleId: moduleId!,
     fromDate: startOfDay,
@@ -54,14 +52,12 @@ export const Statistics = () => {
     refetchHumidityMeasurements();
   };
 
-  if(!plantId || !moduleId) {
+  if (!plantId || !moduleId) {
     return (
       <Box>
-        <Typography>
-          Here will be common error page
-        </Typography>
+        <Typography>Here will be common error page</Typography>
       </Box>
-    )
+    );
   }
 
   return (

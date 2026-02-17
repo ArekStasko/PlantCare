@@ -31,18 +31,16 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
 
         const server = await device.gatt?.connect();
         const service = await server?.getPrimaryService(serviceUuid);
-        wifiDataService = await service?.getCharacteristic(
-          saveWifiDataServiceCharacteristicUuid
-        );
+        wifiDataService = await service?.getCharacteristic(saveWifiDataServiceCharacteristicUuid);
 
         wizardController.updateContext({
           ...wizardController.context,
           device: device,
-          wifiDataService: wifiDataService,
+          wifiDataService: wifiDataService
         });
         setDevice(device);
       } catch (error) {
-        console.error(error)
+        console.error(error);
         setAlert('We are unable to connect to the device, make sure the bluetooth is on');
       }
     } else {
@@ -55,10 +53,7 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddModuleContext>
     const savedDevice = wizardController.context.device;
     const savedWifiDataServiceCharacteristic = wizardController.context.wifiDataService;
 
-    return (
-      !savedDevice ||
-      !savedWifiDataServiceCharacteristic
-    );
+    return !savedDevice || !savedWifiDataServiceCharacteristic;
   }, [wizardController.context]);
 
   return (

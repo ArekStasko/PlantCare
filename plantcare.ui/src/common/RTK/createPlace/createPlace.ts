@@ -1,4 +1,4 @@
-import { CreatePlaceCommand } from '@arekstasko/plantcare-api-client'
+import { CreatePlaceCommand } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 export const createPlaceApi = plantcareApi.injectEndpoints({

@@ -8,7 +8,6 @@ interface MeasurementsChartProps {
 }
 
 export const Measurements = (props: MeasurementsChartProps) => {
-
   return (
     <BarChart
       xAxis={[
@@ -20,7 +19,7 @@ export const Measurements = (props: MeasurementsChartProps) => {
       series={[
         {
           data: StatisticsService.getHumidityMeasurementValues(props.humidityMeasurements),
-          valueFormatter: (v) => `Humidity: ${v}%`,
+          valueFormatter: (v) => `Humidity: ${v}%`
         }
       ]}
     />

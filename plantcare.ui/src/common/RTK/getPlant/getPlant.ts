@@ -1,5 +1,5 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { GetPlantResponse } from "@arekstasko/plantcare-api-client";
+import { GetPlantResponse } from '@arekstasko/plantcare-api-client';
 
 export const getPlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
