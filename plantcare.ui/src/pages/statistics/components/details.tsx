@@ -9,8 +9,8 @@ import React from 'react';
 import { GetModuleResponse, GetPlantResponse } from "@arekstasko/plantcare-api-client";
 
 export type PlantDetailsProps = {
-  plant: GetPlantResponse;
-  module: GetModuleResponse;
+  plant?: GetPlantResponse;
+  module?: GetModuleResponse;
   isLoading: boolean;
 };
 
@@ -20,12 +20,12 @@ export const Details = ({
   isLoading,
 }: PlantDetailsProps) => {
   return (
-    plant && (
+    (plant && module && !isLoading) ? (
       <>
         <Box sx={styles.plantTitleWrapper}>
           <Typography variant="h4">{plant.name} Details</Typography>
           <Paper sx={styles.typeCard}>
-            <Typography variant="h6">{PlantType[+plant.type]}</Typography>
+            <Typography variant="h6">{plant.type ? PlantType[+plant.type] : "Plant type not specified"}</Typography>
             <Box
               component="img"
               sx={{
@@ -50,9 +50,6 @@ export const Details = ({
             <Typography>{plant.description}</Typography>
           </Paper>
         </Box>
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
             <Box sx={styles.moduleIdWrapper}>
               <Tooltip placement="top-end" title="Module ID" arrow>
                 <Paper sx={styles.moduleIdCard}>
@@ -68,7 +65,10 @@ export const Details = ({
                 </Paper>
               </Tooltip>
             </Box>
-        )}
+      </>
+    ) : (
+      <>
+        <CircularProgress />
       </>
     )
   );

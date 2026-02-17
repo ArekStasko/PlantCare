@@ -1,5 +1,5 @@
 import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
@@ -95,7 +95,7 @@ export const Statistics = () => {
                 />
               </Box>
               <Box sx={styles.statisticsChartWrapper}>
-                {humidityMeasurements && humidityMeasurements.length == 0 ? (
+                {humidityMeasurements && humidityMeasurements.length === 0 ? (
                   <>
                     <CustomAlert
                       type={'warning' as AlertColor}
