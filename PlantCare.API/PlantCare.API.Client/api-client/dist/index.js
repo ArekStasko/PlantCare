@@ -246,8 +246,8 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @param body (optional) 
    * @return OK
-   */ key: "modules",
-            value: function modules(body) {
+   */ key: "modulesPOST",
+            value: function modulesPOST(body) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/modules";
                 url_ = url_.replace(/[?&]$/, "");
@@ -261,13 +261,13 @@ var Client = /*#__PURE__*/ function() {
                     }
                 };
                 return this.http.fetch(url_, options_).then(function(_response) {
-                    return _this.processModules(_response);
+                    return _this.processModulesPOST(_response);
                 });
             }
         },
         {
-            key: "processModules",
-            value: function processModules(response) {
+            key: "processModulesPOST",
+            value: function processModulesPOST(response) {
                 var _this = this;
                 var status = response.status;
                 var _headers = {};
@@ -351,10 +351,10 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "id",
-            value: function id(id) {
+   */ key: "modulesGET",
+            value: function modulesGET(id) {
                 var _this = this;
-                var url_ = this.baseUrl + "/id/{id}";
+                var url_ = this.baseUrl + "/api/modules/{id}";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
                 url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 url_ = url_.replace(/[?&]$/, "");
@@ -365,13 +365,13 @@ var Client = /*#__PURE__*/ function() {
                     }
                 };
                 return this.http.fetch(url_, options_).then(function(_response) {
-                    return _this.processId(_response);
+                    return _this.processModulesGET(_response);
                 });
             }
         },
         {
-            key: "processId",
-            value: function processId(response) {
+            key: "processModulesGET",
+            value: function processModulesGET(response) {
                 var _this = this;
                 var status = response.status;
                 var _headers = {};
@@ -834,10 +834,10 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "anonymous",
-            value: function anonymous(id) {
+   */ key: "plantsGET",
+            value: function plantsGET(id) {
                 var _this = this;
-                var url_ = this.baseUrl + "/{id}";
+                var url_ = this.baseUrl + "/api/plants/{id}";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
                 url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 url_ = url_.replace(/[?&]$/, "");
@@ -848,13 +848,13 @@ var Client = /*#__PURE__*/ function() {
                     }
                 };
                 return this.http.fetch(url_, options_).then(function(_response) {
-                    return _this.processAnonymous(_response);
+                    return _this.processPlantsGET(_response);
                 });
             }
         },
         {
-            key: "processAnonymous",
-            value: function processAnonymous(response) {
+            key: "processPlantsGET",
+            value: function processPlantsGET(response) {
                 var _this = this;
                 var status = response.status;
                 var _headers = {};

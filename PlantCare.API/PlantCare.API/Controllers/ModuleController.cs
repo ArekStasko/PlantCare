@@ -9,7 +9,7 @@ using GetModulesQuery = PlantCare.Queries.Queries.Module.GetModulesQuery;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/modules")]
+[Route("api/modules/")]
 [ApiController]
 public class ModuleController : ControllerAuth
 {
@@ -47,7 +47,7 @@ public class ModuleController : ControllerAuth
         return result.ToOk();
     }
     
-    [HttpGet("/id/{id:int}")]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetModuleResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetModuleById(int id)

@@ -27,7 +27,7 @@ export interface IClient {
      * @param body (optional) 
      * @return OK
      */
-    modules(body?: CreateModuleRequest | undefined): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
 
     /**
      * @return OK
@@ -37,7 +37,7 @@ export interface IClient {
     /**
      * @return OK
      */
-    id(id: number): Promise<GetModuleResponse>;
+    modulesGET(id: number): Promise<GetModuleResponse>;
 
     /**
      * @param body (optional) 
@@ -88,7 +88,7 @@ export interface IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
 }
 
 export class Client implements IClient {
@@ -209,7 +209,7 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    modules(body?: CreateModuleRequest | undefined): Promise<boolean> {
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -225,11 +225,11 @@ export class Client implements IClient {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processModules(_response);
+            return this.processModulesPOST(_response);
         });
     }
 
-    protected processModules(response: Response): Promise<boolean> {
+    protected processModulesPOST(response: Response): Promise<boolean> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -297,8 +297,8 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    id(id: number): Promise<GetModuleResponse> {
-        let url_ = this.baseUrl + "/id/{id}";
+    modulesGET(id: number): Promise<GetModuleResponse> {
+        let url_ = this.baseUrl + "/api/modules/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -312,11 +312,11 @@ export class Client implements IClient {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processId(_response);
+            return this.processModulesGET(_response);
         });
     }
 
-    protected processId(response: Response): Promise<GetModuleResponse> {
+    protected processModulesGET(response: Response): Promise<GetModuleResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -708,8 +708,8 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse> {
-        let url_ = this.baseUrl + "/{id}";
+    plantsGET(id: number): Promise<GetPlantResponse> {
+        let url_ = this.baseUrl + "/api/plants/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -723,11 +723,11 @@ export class Client implements IClient {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processAnonymous(_response);
+            return this.processPlantsGET(_response);
         });
     }
 
-    protected processAnonymous(response: Response): Promise<GetPlantResponse> {
+    protected processPlantsGET(response: Response): Promise<GetPlantResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {

@@ -279,7 +279,7 @@
         }
       }
     },
-    "/id/{id}": {
+    "/api/modules/{id}": {
       "get": {
         "tags": [
           "Module"
@@ -833,7 +833,7 @@
         }
       }
     },
-    "/{id}": {
+    "/api/plants/{id}": {
       "get": {
         "tags": [
           "Plant"

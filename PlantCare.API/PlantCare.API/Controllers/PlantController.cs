@@ -8,7 +8,7 @@ using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/plants")]
+[Route("api/plants/")]
 [ApiController]
 public class PlantController : ControllerAuth
 {
@@ -52,7 +52,7 @@ public class PlantController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet("/{id:int}")]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetPlantResponse))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetPlantById(int id)

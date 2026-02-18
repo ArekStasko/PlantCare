@@ -7,18 +7,16 @@ using PlantCare.Queries.Queries.HumidityMeasurements;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/humidity-measurements")]
+[Route("api/humidity-measurements/")]
 [ApiController]
 public class HumidityMeasurementController : ControllerAuth
 {
     private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public HumidityMeasurementController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
+    public HumidityMeasurementController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
-        _mapper = mapper;
         _logger = logger;
     }
 

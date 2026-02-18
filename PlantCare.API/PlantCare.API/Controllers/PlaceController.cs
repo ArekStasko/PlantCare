@@ -9,7 +9,7 @@ using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/places")]
+[Route("api/places/")]
 [ApiController]
 public class PlaceController : ControllerAuth
 {

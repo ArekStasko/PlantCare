@@ -15,7 +15,7 @@ interface IClient {
      * @param body (optional)
      * @return OK
      */
-    modules(body?: CreateModuleRequest | undefined): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
     /**
      * @return OK
      */
@@ -23,7 +23,7 @@ interface IClient {
     /**
      * @return OK
      */
-    id(id: number): Promise<GetModuleResponse>;
+    modulesGET(id: number): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -65,7 +65,7 @@ interface IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
 }
 declare class Client implements IClient {
     private http;
@@ -92,8 +92,8 @@ declare class Client implements IClient {
      * @param body (optional)
      * @return OK
      */
-    modules(body?: CreateModuleRequest | undefined): Promise<boolean>;
-    protected processModules(response: Response): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
+    protected processModulesPOST(response: Response): Promise<boolean>;
     /**
      * @return OK
      */
@@ -102,8 +102,8 @@ declare class Client implements IClient {
     /**
      * @return OK
      */
-    id(id: number): Promise<GetModuleResponse>;
-    protected processId(response: Response): Promise<GetModuleResponse>;
+    modulesGET(id: number): Promise<GetModuleResponse>;
+    protected processModulesGET(response: Response): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -153,8 +153,8 @@ declare class Client implements IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
-    protected processAnonymous(response: Response): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
+    protected processPlantsGET(response: Response): Promise<GetPlantResponse>;
 }
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
