@@ -5,7 +5,7 @@ export const getModuleApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetModule: build.query<GetModuleResponse, string>({
       query: (moduleId: string) => ({
-        url: `/id/${moduleId}`
+        url: `/modules/${moduleId}`
       }),
       providesTags: ['Modules']
     })

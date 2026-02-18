@@ -30,7 +30,7 @@ export const MainRouting = () => {
         }
       />
       <Route
-        path={`${RoutingConstants.plantStatistics}/:moduleId`}
+        path={`${RoutingConstants.plantStatistics}/:plantId/:moduleId`}
         element={
           <BaseLayout>
             <Statistics />
