@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
-import Measurements from './components/measurements';
+import Measurements from './components/Measurements';
 import CustomAlert from '../../common/components/customAlert/customAlert';
 import styles from './statistics.styles';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
-import { Details } from './components/details';
+import { Details } from './components/Details';
 import { useGetModuleQuery } from '../../common/RTK/getModule/getModule';
 import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 
