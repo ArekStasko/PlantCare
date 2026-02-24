@@ -2,18 +2,18 @@ import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddModuleContext } from '../../interfaces';
 import React from 'react';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from '@mui/material';
 import styles from './address.styles';
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import validators from "../../../../common/services/Validators";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validators from '../../../../common/services/Validators';
 
 const Address = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.addModuleAddressSchema),
     defaultValues: {
-      address: wizardController.context.address ?? '',
+      address: wizardController.context.address ?? ''
     }
   });
 

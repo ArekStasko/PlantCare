@@ -1,4 +1,8 @@
-import { CreatePlantCommand, UpdatePlantCommand, PlantType as ApiPlantType } from "@arekstasko/plantcare-api-client";
+import {
+  CreatePlantCommand,
+  UpdatePlantCommand,
+  PlantType as ApiPlantType
+} from '@arekstasko/plantcare-api-client';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
@@ -19,7 +23,7 @@ import CustomAlert from '../../../../common/components/customAlert/customAlert';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(
-    wizardController.context.plantId!,
+    wizardController.context.plantId?.toString()!,
     { skip: !wizardController.context.plantId }
   );
   const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);
@@ -31,14 +35,14 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
 
   useEffect(() => {
     wizardController.onLoading(isLoading || updatePlantLoading || isGetPlantLoading);
-  }, [isLoading, updatePlantLoading, isGetPlantLoading]);
+  }, [isLoading, wizardController, updatePlantLoading, isGetPlantLoading]);
 
   useEffect(() => {
     if (!plant) return;
     const { name, place, type, description, module } = wizardController.context;
     const check =
       name === plant.name &&
-      place === plant.placeId.toString() &&
+      place === plant.placeId?.toString() &&
       type === plant.type &&
       description === plant.description &&
       module === plant.moduleId;
@@ -53,7 +57,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
         description: description,
         placeId: place,
         type: convertPlantTypeToApiClient(type),
-        moduleId: module,
+        moduleId: module
       } as UpdatePlantCommand;
       await updatePlant(request);
       return;
@@ -81,7 +85,7 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
       default:
         return '';
     }
-  }
+  };
 
   const plantTypeToImage = (type?: PlantType) => {
     switch (type) {

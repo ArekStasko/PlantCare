@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import styles from './summary.styles';
 import { useUpdatePlaceMutation } from '../../../../common/RTK/updatePlace/updatePlace';
-import { UpdatePlaceCommand, CreatePlaceCommand } from "@arekstasko/plantcare-api-client";
+import { UpdatePlaceCommand, CreatePlaceCommand } from '@arekstasko/plantcare-api-client';
 
 const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
   const navigate = useNavigate();

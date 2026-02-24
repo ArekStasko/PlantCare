@@ -23,9 +23,8 @@ public class QueriesMapperProfile : Profile
         
         // MODULE MAPPINGS
 
-        CreateMap<Module, GetModulesResponse>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Plant, opt => opt.MapFrom(src => src.Plant));
+        CreateMap<Module, GetModuleResponse>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
         // PLACES MAPPINGS
 

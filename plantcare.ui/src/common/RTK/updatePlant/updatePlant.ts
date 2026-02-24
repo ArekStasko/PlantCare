@@ -1,4 +1,4 @@
-import { UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
+import { UpdatePlantCommand } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 export const updatePlantApi = plantcareApi.injectEndpoints({

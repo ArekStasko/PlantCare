@@ -15,7 +15,7 @@ const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
   const wizardController: WizardController<T> = {
     context: context,
     onLoading: (isLoading: boolean) => setLoading(isLoading),
-    updateContext: (context: T) => setContext((prev) => ({...prev, ...context})),
+    updateContext: (context: T) => setContext((prev) => ({ ...prev, ...context })),
     clearContext: () => setContext(initialContext),
     goToNextStep: () => setCurrentStep((prev) => prev + 1),
     goToPreviousStep: () => setCurrentStep((prev) => prev - 1),

@@ -1,10 +1,10 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { Plant } from '../../models/Plant';
+import { GetPlantResponse } from '@arekstasko/plantcare-api-client';
 
 export const getPlantApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    GetPlant: build.query<Plant, number>({
-      query: (plantId: number) => ({
+    GetPlant: build.query<GetPlantResponse, string>({
+      query: (plantId: string) => ({
         url: `/plants/${plantId}`
       }),
       providesTags: ['Plants']
