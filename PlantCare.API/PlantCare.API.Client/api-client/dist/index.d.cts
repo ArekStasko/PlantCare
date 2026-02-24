@@ -15,16 +15,15 @@ interface IClient {
      * @param body (optional)
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+    /**
+     * @return OK
+     */
+    modulesGET(id: number): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -66,7 +65,7 @@ interface IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
 }
 declare class Client implements IClient {
     private http;
@@ -93,19 +92,18 @@ declare class Client implements IClient {
      * @param body (optional)
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean>;
-    protected processStatus(response: Response): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean>;
-    protected processModules(response: Response): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
+    protected processModulesPOST(response: Response): Promise<boolean>;
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
-    protected processModulesAll(response: Response): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+    protected processModulesAll(response: Response): Promise<GetModuleResponse[]>;
+    /**
+     * @return OK
+     */
+    modulesGET(id: number): Promise<GetModuleResponse>;
+    protected processModulesGET(response: Response): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
@@ -155,8 +153,8 @@ declare class Client implements IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
-    protected processAnonymous(response: Response): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
+    protected processPlantsGET(response: Response): Promise<GetPlantResponse>;
 }
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
@@ -224,10 +222,8 @@ interface ConstructorInfo {
     readonly isSecurityTransparent?: boolean;
     memberType?: MemberTypes;
 }
-interface CreateModuleCommand {
+interface CreateModuleRequest {
     name?: string | undefined;
-    userId?: number;
-    address?: string | undefined;
 }
 interface CreatePlaceCommand {
     name?: string | undefined;
@@ -350,6 +346,12 @@ declare enum GenericParameterAttributes {
     _16 = 16,
     _28 = 28
 }
+interface GetModuleResponse {
+    id?: number;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
 interface GetPlacesResponse {
     id?: number;
     name?: string | undefined;
@@ -369,15 +371,6 @@ interface IHumidityMeasurement {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
-}
-interface IPlant {
-    userId?: number;
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
 }
 interface IntPtr {
 }
@@ -608,11 +601,6 @@ declare enum SecurityRuleSet {
     _1 = 1,
     _2 = 2
 }
-interface SetModuleStatusCommand {
-    userId?: number | undefined;
-    moduleId?: number;
-    status?: boolean;
-}
 interface StructLayoutAttribute {
     readonly typeId?: any | undefined;
     value?: LayoutKind;
@@ -833,4 +821,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, CallingConventions, Client, type ConstructorInfo, type CreateModuleCommand, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IPlant, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type SetModuleStatusCommand, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetModuleResponse, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };

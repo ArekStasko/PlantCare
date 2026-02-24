@@ -9,7 +9,7 @@ using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/places")]
+[Route("api/places/")]
 [ApiController]
 public class PlaceController : ControllerAuth
 {
@@ -17,7 +17,7 @@ public class PlaceController : ControllerAuth
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceController> _logger;
 
-    public PlaceController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor)
+    public PlaceController(IHttpContextAccessor httpContextAccessor, IMediator mediator, IMapper mapper, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
         _mapper = mapper;

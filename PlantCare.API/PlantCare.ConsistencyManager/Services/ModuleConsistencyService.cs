@@ -60,7 +60,6 @@ public class ModuleConsistencyService : IQueueConsumer<Module>
                             _logger.LogError("There is no Module to update with {Id}", moduleData.Id);
                             return;
                         }
-                        moduleToUpdate.IsMonitoring = moduleData.IsMonitoring;
                         await _context.SaveChangesAsync();
                         await ResetCacheModule(moduleToUpdate.UserId);
                         return;

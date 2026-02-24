@@ -27,18 +27,17 @@ export interface IClient {
      * @param body (optional) 
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean>;
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
 
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]>;
+    modulesAll(): Promise<GetModuleResponse[]>;
+
+    /**
+     * @return OK
+     */
+    modulesGET(id: number): Promise<GetModuleResponse>;
 
     /**
      * @param body (optional) 
@@ -89,7 +88,7 @@ export interface IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse>;
+    plantsGET(id: number): Promise<GetPlantResponse>;
 }
 
 export class Client implements IClient {
@@ -210,54 +209,7 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    status(body?: SetModuleStatusCommand | undefined): Promise<boolean> {
-        let url_ = this.baseUrl + "/status";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_: RequestInit = {
-            body: content_,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        };
-
-        return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processStatus(_response);
-        });
-    }
-
-    protected processStatus(response: Response): Promise<boolean> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
-        } else if (status === 500) {
-            return response.text().then((_responseText) => {
-            let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
-            return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<boolean>(null as any);
-    }
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    modules(body?: CreateModuleCommand | undefined): Promise<boolean> {
+    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -273,11 +225,11 @@ export class Client implements IClient {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processModules(_response);
+            return this.processModulesPOST(_response);
         });
     }
 
-    protected processModules(response: Response): Promise<boolean> {
+    protected processModulesPOST(response: Response): Promise<boolean> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -303,7 +255,7 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<IPlant[]> {
+    modulesAll(): Promise<GetModuleResponse[]> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -319,13 +271,13 @@ export class Client implements IClient {
         });
     }
 
-    protected processModulesAll(response: Response): Promise<IPlant[]> {
+    protected processModulesAll(response: Response): Promise<GetModuleResponse[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as IPlant[];
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse[];
             return result200;
             });
         } else if (status === 500) {
@@ -339,7 +291,52 @@ export class Client implements IClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<IPlant[]>(null as any);
+        return Promise.resolve<GetModuleResponse[]>(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    modulesGET(id: number): Promise<GetModuleResponse> {
+        let url_ = this.baseUrl + "/api/modules/{id}";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processModulesGET(_response);
+        });
+    }
+
+    protected processModulesGET(response: Response): Promise<GetModuleResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse;
+            return result200;
+            });
+        } else if (status === 500) {
+            return response.text().then((_responseText) => {
+            let result500: any = null;
+            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<GetModuleResponse>(null as any);
     }
 
     /**
@@ -711,8 +708,8 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    anonymous(id: number): Promise<GetPlantResponse> {
-        let url_ = this.baseUrl + "/{id}";
+    plantsGET(id: number): Promise<GetPlantResponse> {
+        let url_ = this.baseUrl + "/api/plants/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -726,11 +723,11 @@ export class Client implements IClient {
         };
 
         return this.http.fetch(url_, options_).then((_response: Response) => {
-            return this.processAnonymous(_response);
+            return this.processPlantsGET(_response);
         });
     }
 
-    protected processAnonymous(response: Response): Promise<GetPlantResponse> {
+    protected processPlantsGET(response: Response): Promise<GetPlantResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -824,10 +821,8 @@ export interface ConstructorInfo {
     memberType?: MemberTypes;
 }
 
-export interface CreateModuleCommand {
+export interface CreateModuleRequest {
     name?: string | undefined;
-    userId?: number;
-    address?: string | undefined;
 }
 
 export interface CreatePlaceCommand {
@@ -960,6 +955,13 @@ export enum GenericParameterAttributes {
     _28 = 28,
 }
 
+export interface GetModuleResponse {
+    id?: number;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
+
 export interface GetPlacesResponse {
     id?: number;
     name?: string | undefined;
@@ -982,16 +984,6 @@ export interface IHumidityMeasurement {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
-}
-
-export interface IPlant {
-    userId?: number;
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
 }
 
 export interface IntPtr {
@@ -1240,12 +1232,6 @@ export enum SecurityRuleSet {
     _0 = 0,
     _1 = 1,
     _2 = 2,
-}
-
-export interface SetModuleStatusCommand {
-    userId?: number | undefined;
-    moduleId?: number;
-    status?: boolean;
 }
 
 export interface StructLayoutAttribute {

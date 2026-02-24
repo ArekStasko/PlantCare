@@ -1,56 +1,43 @@
 import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
 import DateService from '../../common/services/DateService';
-import MeasurementsChart from './components/measurementsChart';
+import Measurements from './components/Measurements';
 import CustomAlert from '../../common/components/customAlert/customAlert';
 import styles from './statistics.styles';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import dateService from '../../common/services/DateService';
-import { useSetModuleStatusMutation } from '../../common/RTK/setModuleStatus/setModuleStatus';
-import { useGetModulesQuery } from '../../common/RTK/getModules/getModules';
-import { PlantDetails } from '../dashboard/components/PlantDetails';
-import { Module } from '../../common/models/Module';
-import { SetModuleStatusCommand } from "@arekstasko/plantcare-api-client";
+import { Details } from './components/Details';
+import { useGetModuleQuery } from '../../common/RTK/getModule/getModule';
+import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 
 export const Statistics = () => {
-  let { moduleId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  let { moduleId, plantId } = useParams();
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
   const [endOfDay, setEndOfDay] = useState(DateService.getEndOfCurrentDay());
 
-  const {
-    data: modules,
-    isLoading: modulesLoading,
-    refetch: refetchModules
-  } = useGetModulesQuery();
-  const [setModuleStatus] = useSetModuleStatusMutation();
+  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(plantId!, {
+    skip: !plantId
+  });
+
+  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(moduleId!, {
+    skip: !moduleId
+  });
 
   const {
     data: humidityMeasurements,
-    isLoading: humidityMeasurementsLoading,
-    refetch: refetchMeasurements
+    isFetching: isHumidityMeasurementsFetching,
+    refetch: refetchHumidityMeasurements
   } = useGetHumidityMeasurementsQuery({
     moduleId: moduleId!,
     fromDate: startOfDay,
     toDate: endOfDay
   });
 
-  const plant = useMemo(
-    () => modules?.find((m) => m.id?.toString() === moduleId)?.plant,
-    [modules]
-  );
-  const module = useMemo(
-    (): Module | undefined => modules?.find((m) => m.id?.toString() === moduleId),
-    [modules]
-  );
-
-  const moduleStatus = useMemo(() => module?.isMonitoring ?? false, [module]);
-
-  const refetchMeasurementsWithNewDate = (value: Dayjs) => {
+  const refetchMeasurementsOnDateChange = (value: Dayjs) => {
     const correctDate = value.toDate();
     const year = correctDate.getFullYear();
     const month = correctDate.getMonth() + 1;
@@ -62,44 +49,35 @@ export const Statistics = () => {
     setStartOfDay(fromDate);
     setEndOfDay(toDate);
 
-    refetchMeasurements();
+    refetchHumidityMeasurements();
   };
 
-  const handleModuleStatusChange = async () => {
-    setIsLoading(true);
-    if (!module) return;
-    const moduleStatusRequest = {
-      moduleId: +module.id,
-      status: !moduleStatus
-    } as SetModuleStatusCommand;
-    const result = await setModuleStatus(moduleStatusRequest);
-    if ('data' in result && result.data) {
-      setTimeout(() => {
-        refetchModules();
-        setIsLoading(false);
-      }, 1000);
-    }
-  };
+  if (!plantId || !moduleId) {
+    return (
+      <Box>
+        <Typography>Here will be common error page</Typography>
+      </Box>
+    );
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box sx={styles.statisticsContainer}>
         <Card variant="outlined" sx={styles.plantDetailsWrapper}>
-          {modulesLoading ? (
+          {isPlantFetching || isModuleFetching ? (
             <Box sx={styles.loader}>
               <CircularProgress />
             </Box>
           ) : (
-            <PlantDetails
+            <Details
               plant={plant}
-              moduleStatus={moduleStatus}
-              isModuleLoading={isLoading || modulesLoading}
-              onModuleStatusChanged={() => handleModuleStatusChange()}
+              module={module}
+              isLoading={isPlantFetching || isModuleFetching}
             />
           )}
         </Card>
         <Card variant="outlined" sx={styles.statisticsWrapper}>
-          {humidityMeasurementsLoading ? (
+          {isHumidityMeasurementsFetching ? (
             <Box sx={styles.loader}>
               <CircularProgress />
             </Box>
@@ -109,11 +87,11 @@ export const Statistics = () => {
                 <Typography variant="h5">Humidity Moisture Statistics</Typography>
                 <DatePicker
                   label="Measurements Day"
-                  onAccept={(value) => refetchMeasurementsWithNewDate(value as Dayjs)}
+                  onAccept={(value) => refetchMeasurementsOnDateChange(value as Dayjs)}
                 />
               </Box>
               <Box sx={styles.statisticsChartWrapper}>
-                {humidityMeasurements && humidityMeasurements.length == 0 ? (
+                {humidityMeasurements && humidityMeasurements.length === 0 ? (
                   <>
                     <CustomAlert
                       type={'warning' as AlertColor}
@@ -125,7 +103,7 @@ export const Statistics = () => {
                 ) : (
                   humidityMeasurements && (
                     <>
-                      <MeasurementsChart humidityMeasurements={humidityMeasurements!} />
+                      <Measurements humidityMeasurements={humidityMeasurements!} />
                     </>
                   )
                 )}

@@ -4,7 +4,7 @@ import React from 'react';
 import BaseLayout from '../../common/layouts/baseLayout/baseLayout';
 import Dashboard from '../../pages/dashboard/dashboard';
 import CreatePlaceWizard from '../../pages/place/PlaceWizard';
-import Statistics from '../../pages/statistics/statistics';
+import Statistics from '../../pages/statistics/Statistics';
 import AuthPage from '../../pages/authPage/authPage';
 import PlantWizard from '../../pages/plant/PlantWizard';
 import AddModuleWizard from '../../pages/addModule/AddModuleWizard';
@@ -30,7 +30,7 @@ export const MainRouting = () => {
         }
       />
       <Route
-        path={`${RoutingConstants.plantStatistics}/:moduleId`}
+        path={`${RoutingConstants.plantStatistics}/:plantId/:moduleId`}
         element={
           <BaseLayout>
             <Statistics />
