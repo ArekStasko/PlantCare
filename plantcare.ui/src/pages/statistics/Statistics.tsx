@@ -1,4 +1,4 @@
-import { AlertColor, Box, Card, CircularProgress, Typography } from '@mui/material';
+import { AlertColor, Box, Button, Card, CircularProgress, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import { useGetHumidityMeasurementsQuery } from '../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import { useParams } from 'react-router';
@@ -13,6 +13,7 @@ import dateService from '../../common/services/DateService';
 import { Details } from './components/Details';
 import { useGetModuleQuery } from '../../common/RTK/getModule/getModule';
 import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
+import SyncIcon from '@mui/icons-material/Sync';
 
 export const Statistics = () => {
   let { moduleId, plantId } = useParams();
@@ -77,39 +78,49 @@ export const Statistics = () => {
           )}
         </Card>
         <Card variant="outlined" sx={styles.statisticsWrapper}>
-          {isHumidityMeasurementsFetching ? (
-            <Box sx={styles.loader}>
-              <CircularProgress />
-            </Box>
-          ) : (
             <>
-              <Box sx={styles.datePickerWrapper}>
+              <Box sx={styles.measurementsBar}>
                 <Typography variant="h5">Humidity Moisture Statistics</Typography>
-                <DatePicker
-                  label="Measurements Day"
-                  onAccept={(value) => refetchMeasurementsOnDateChange(value as Dayjs)}
-                />
+                <Box sx={styles.measurementsBarActions}>
+                  <Button onClick={() => refetchHumidityMeasurements()}>
+                    <SyncIcon />
+                  </Button>
+                  <DatePicker
+                    label="Measurements Day"
+                    disabled={isHumidityMeasurementsFetching}
+                    disableFuture
+                    disableHighlightToday
+                    onAccept={(value) => refetchMeasurementsOnDateChange(value as Dayjs)}
+                  />
+                </Box>
               </Box>
-              <Box sx={styles.statisticsChartWrapper}>
-                {humidityMeasurements && humidityMeasurements.length === 0 ? (
-                  <>
-                    <CustomAlert
-                      type={'warning' as AlertColor}
-                      message={
-                        "You don't have any registered humidity measurements for this period of time"
-                      }
-                    />
-                  </>
+              {
+                isHumidityMeasurementsFetching ? (
+                  <Box sx={styles.loader}>
+                    <CircularProgress />
+                  </Box>
                 ) : (
-                  humidityMeasurements && (
-                    <>
-                      <Measurements humidityMeasurements={humidityMeasurements!} />
-                    </>
-                  )
-                )}
-              </Box>
+                  <Box sx={styles.statisticsChartWrapper}>
+                    {humidityMeasurements && humidityMeasurements.length === 0 ? (
+                      <>
+                        <CustomAlert
+                          type={'warning' as AlertColor}
+                          message={
+                            "You don't have any registered humidity measurements for this period of time"
+                          }
+                        />
+                      </>
+                    ) : (
+                      humidityMeasurements && (
+                        <>
+                          <Measurements humidityMeasurements={humidityMeasurements!} />
+                        </>
+                      )
+                    )}
+                  </Box>
+                )
+              }
             </>
-          )}
         </Card>
       </Box>
     </LocalizationProvider>

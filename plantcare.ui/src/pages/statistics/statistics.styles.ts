@@ -17,13 +17,21 @@ const statisticsWrapper = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)'
 };
 
-const datePickerWrapper = {
+const measurementsBar = {
   width: '100%',
   height: '20%',
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center'
 };
+
+const measurementsBarActions = {
+  width: '50%',
+  height: '20%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center'
+}
 
 const statisticsChartWrapper = {
   height: '80%',
@@ -116,7 +124,8 @@ export default {
   statisticsWrapper,
   statisticsContainer,
   plantDetailsWrapper,
-  datePickerWrapper,
+  measurementsBar,
+  measurementsBarActions,
   statisticsChartWrapper,
   plantTitleWrapper,
   plantDescriptionWrapper,
