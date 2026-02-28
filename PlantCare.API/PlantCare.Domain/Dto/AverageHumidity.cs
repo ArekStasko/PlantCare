@@ -2,6 +2,6 @@ namespace PlantCare.Domain.Dto;
 
 public record AverageHumidity()
 {
-    public DateTime Date { get; set; }
+    public string Date { get; set; } = string.Empty;
     public int Humidity { get; set; }
 };
