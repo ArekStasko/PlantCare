@@ -43,7 +43,7 @@ public class HumidityMeasurementController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet("{int:id}/average")]
+    [HttpGet("{id:int}/average")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<AverageHumidity>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetAverage(int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
