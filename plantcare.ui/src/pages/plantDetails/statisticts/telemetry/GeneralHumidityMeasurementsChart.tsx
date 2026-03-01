@@ -1,18 +1,16 @@
 import { BarChart } from '@mui/x-charts';
 import StatisticsService from '../../../../common/services/StatisticsService';
-import { AlertColor, Box, Button, CircularProgress, Typography } from "@mui/material";
-import styles from "../statistics.styles";
-import SyncIcon from "@mui/icons-material/Sync";
-import { DatePicker } from "@mui/x-date-pickers";
-import { Dayjs } from "dayjs";
-import CustomAlert from "../../../../common/components/customAlert/customAlert";
-import React, { useState } from "react";
-import {
-  useGetHumidityMeasurementsQuery
-} from "../../../../common/RTK/getHumidityMeasurements/getHumidityMeasurements";
-import dateService from "../../../../common/services/DateService";
-import DateService from "../../../../common/services/DateService";
-import { HumidityMeasurementsChartProps } from "./interfaces";
+import { AlertColor, Box, Button, CircularProgress, Typography } from '@mui/material';
+import styles from '../statistics.styles';
+import SyncIcon from '@mui/icons-material/Sync';
+import { DatePicker } from '@mui/x-date-pickers';
+import { Dayjs } from 'dayjs';
+import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import React, { useState } from 'react';
+import { useGetHumidityMeasurementsQuery } from '../../../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
+import dateService from '../../../../common/services/DateService';
+import DateService from '../../../../common/services/DateService';
+import { HumidityMeasurementsChartProps } from './interfaces';
 
 const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());

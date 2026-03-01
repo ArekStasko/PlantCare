@@ -1,12 +1,8 @@
-import { Box } from "@mui/material";
-import { HumidityMeasurementsChartProps } from "./interfaces";
+import { Box } from '@mui/material';
+import { HumidityMeasurementsChartProps } from './interfaces';
 
-
-const AverageHumidityMeasurementsChart = ({moduleId}: HumidityMeasurementsChartProps) => {
-
-  return (
-    <Box></Box>
-  )
-}
+const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
+  return <Box></Box>;
+};
 
 export default AverageHumidityMeasurementsChart;
