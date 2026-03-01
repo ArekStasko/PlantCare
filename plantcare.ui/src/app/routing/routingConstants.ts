@@ -10,7 +10,7 @@ const RoutingPaths = {
   root: '/dashboard',
   plant: '/create-plant',
   updatePlant: '/update-plant',
-  plantStatistics: '/plant/measurements',
+  plantDetails: '/plant/details',
   createPlace: '/create-place',
   addModule: '/add-module'
 };

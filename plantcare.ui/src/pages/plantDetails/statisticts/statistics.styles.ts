@@ -31,7 +31,7 @@ const measurementsBarActions = {
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center'
-}
+};
 
 const statisticsChartWrapper = {
   height: '80%',

@@ -1,5 +1,5 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { HumidityMeasurement } from '../../models/HumidityMeasurement';
+import { AverageHumidity } from '@arekstasko/plantcare-api-client';
 
 export class GetHumidityMeasurementsApiParameters {
   moduleId!: string;
@@ -7,7 +7,9 @@ export class GetHumidityMeasurementsApiParameters {
   toDate!: string | null;
 }
 
-const getCorrectAverageHumidityMeasurementsURL = (parameters: GetHumidityMeasurementsApiParameters) => {
+const getCorrectAverageHumidityMeasurementsURL = (
+  parameters: GetHumidityMeasurementsApiParameters
+) => {
   if (parameters.fromDate === null || parameters.toDate === null)
     return `/humidity-measurements/${parameters.moduleId}`;
   return `/humidity-measurements/${parameters.moduleId}?fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`;
@@ -15,10 +17,7 @@ const getCorrectAverageHumidityMeasurementsURL = (parameters: GetHumidityMeasure
 
 export const getAverageHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    GetHumidityMeasurements: build.query<
-      HumidityMeasurement[],
-      GetHumidityMeasurementsApiParameters
-    >({
+    GetHumidityMeasurements: build.query<AverageHumidity[], GetHumidityMeasurementsApiParameters>({
       query: (parameters: GetHumidityMeasurementsApiParameters) =>
         getCorrectAverageHumidityMeasurementsURL(parameters)
     })
