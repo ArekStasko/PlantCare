@@ -24,6 +24,14 @@ export interface IClient {
     humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
 
     /**
+     * @param id (optional) 
+     * @param fromDate (optional) 
+     * @param toDate (optional) 
+     * @return OK
+     */
+    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
+
+    /**
      * @param body (optional) 
      * @return OK
      */
@@ -203,6 +211,66 @@ export class Client implements IClient {
             });
         }
         return Promise.resolve<IHumidityMeasurement[]>(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @param fromDate (optional) 
+     * @param toDate (optional) 
+     * @return OK
+     */
+    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]> {
+        let url_ = this.baseUrl + "/api/humidity-measurements/{int}/average?";
+        if (int === undefined || int === null)
+            throw new globalThis.Error("The parameter 'int' must be defined.");
+        url_ = url_.replace("{int}", encodeURIComponent("" + int));
+        if (id === null)
+            throw new globalThis.Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        if (fromDate === null)
+            throw new globalThis.Error("The parameter 'fromDate' cannot be null.");
+        else if (fromDate !== undefined)
+            url_ += "fromDate=" + encodeURIComponent(fromDate ? "" + fromDate.toISOString() : "") + "&";
+        if (toDate === null)
+            throw new globalThis.Error("The parameter 'toDate' cannot be null.");
+        else if (toDate !== undefined)
+            url_ += "toDate=" + encodeURIComponent(toDate ? "" + toDate.toISOString() : "") + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processAverage(_response);
+        });
+    }
+
+    protected processAverage(response: Response): Promise<AverageHumidity[]> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as AverageHumidity[];
+            return result200;
+            });
+        } else if (status === 500) {
+            return response.text().then((_responseText) => {
+            let result500: any = null;
+            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<AverageHumidity[]>(null as any);
     }
 
     /**
@@ -776,6 +844,11 @@ export interface Assembly {
     readonly globalAssemblyCache?: boolean;
     readonly hostContext?: number;
     securityRuleSet?: SecurityRuleSet;
+}
+
+export interface AverageHumidity {
+    date?: string | undefined;
+    humidity?: number;
 }
 
 export enum CallingConventions {

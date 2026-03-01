@@ -155,7 +155,7 @@
         }
       }
     },
-    "/api/humidity-measurements/{int}/average": {
+    "/api/humidity-measurements/{id}/average": {
       "get": {
         "tags": [
           "HumidityMeasurement"
@@ -163,7 +163,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -183,14 +184,6 @@
             "schema": {
               "type": "string",
               "format": "date-time"
-            }
-          },
-          {
-            "name": "int",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
