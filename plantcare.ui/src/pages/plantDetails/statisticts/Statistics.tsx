@@ -1,4 +1,4 @@
-import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import styles from './statistics.styles';
 import React, { useState } from 'react';
 import { TelemetryType } from './telemetry/TelemetryType';

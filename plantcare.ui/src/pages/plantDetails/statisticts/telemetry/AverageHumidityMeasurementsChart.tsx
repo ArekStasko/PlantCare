@@ -1,8 +1,8 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { HumidityMeasurementsChartProps } from './interfaces';
-import styles from "../statistics.styles";
-import { DatePicker } from "@mui/x-date-pickers";
-import React from "react";
+import styles from '../statistics.styles';
+import { DatePicker } from '@mui/x-date-pickers';
+import React from 'react';
 
 const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
   return (
@@ -15,20 +15,20 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
             disabled={false}
             disableFuture
             disableHighlightToday
-            onAccept={(value) => console.log("from date accept")}
+            onAccept={(value) => console.log('from date accept')}
           />
           <DatePicker
             label="To Day"
             disabled={false}
             disableFuture
             disableHighlightToday
-            onAccept={(value) => console.log("to date accept")}
+            onAccept={(value) => console.log('to date accept')}
           />
         </Box>
       </Box>
-        <Box sx={styles.loader}>
-          <CircularProgress />
-        </Box>
+      <Box sx={styles.loader}>
+        <CircularProgress />
+      </Box>
     </>
   );
 };
