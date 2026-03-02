@@ -27,14 +27,14 @@ const measurementsBar = {
 
 const measurementsBarActions = {
   width: '50%',
-  height: '20%',
+  height: '10%',
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center'
 };
 
 const statisticsChartWrapper = {
-  height: '80%',
+  height: '100%',
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
