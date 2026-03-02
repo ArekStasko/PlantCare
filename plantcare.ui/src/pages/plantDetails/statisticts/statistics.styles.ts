@@ -120,6 +120,17 @@ const loader = {
   alignItems: 'center'
 };
 
+const telemetryTypeWrapper = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '90%',
+  m: 4
+}
+
+const telemetryTypeForm = {
+  width: '50%'
+}
+
 export default {
   statisticsWrapper,
   statisticsContainer,
@@ -134,5 +145,7 @@ export default {
   titleCard,
   descriptionCard,
   moduleIdCard,
-  loader
+  loader,
+  telemetryTypeWrapper,
+  telemetryTypeForm
 };

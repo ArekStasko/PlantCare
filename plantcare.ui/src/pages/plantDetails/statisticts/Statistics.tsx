@@ -1,4 +1,4 @@
-import { Card, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import styles from './statistics.styles';
 import React, { useState } from 'react';
 import { TelemetryType } from './telemetry/TelemetryType';
@@ -23,20 +23,23 @@ const Statistics = ({ moduleId }: StatisticsProps) => {
 
   return (
     <Card variant="outlined" sx={styles.statisticsWrapper}>
-      <FormControl fullWidth>
-        <InputLabel id="select-telemetry-type-label">Telemetry Type</InputLabel>
-        <Select
-          variant="outlined"
-          labelId="select-telemetry-type-label"
-          id="select-telemetry-type"
-          value={telemetryType}
-          label="Telemetry Type"
-          onChange={(e) => setTelemetryType(e.target.value as TelemetryType)}
-        >
-          <MenuItem value={TelemetryType.Average}>Average</MenuItem>
-          <MenuItem value={TelemetryType.General}>General</MenuItem>
-        </Select>
-      </FormControl>
+      <Box sx={styles.telemetryTypeWrapper}>
+        <Typography variant="h4">Telemetry</Typography>
+        <FormControl sx={styles.telemetryTypeForm}>
+          <InputLabel id="select-telemetry-type-label">Telemetry Type</InputLabel>
+          <Select
+            variant="standard"
+            labelId="select-telemetry-type-label"
+            id="select-telemetry-type"
+            value={telemetryType}
+            label="Telemetry Type"
+            onChange={(e) => setTelemetryType(e.target.value as TelemetryType)}
+          >
+            <MenuItem value={TelemetryType.Average}>Average</MenuItem>
+            <MenuItem value={TelemetryType.General}>General</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       {getTelemetryBasedOnType(telemetryType, moduleId)}
     </Card>
   );

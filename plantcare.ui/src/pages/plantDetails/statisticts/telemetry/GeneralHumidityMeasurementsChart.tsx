@@ -44,7 +44,7 @@ const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
   return (
     <>
       <Box sx={styles.measurementsBar}>
-        <Typography variant="h5">General Humidity Moisture Statistics</Typography>
+        <Typography variant="h6">General Humidity Moisture</Typography>
         <Box sx={styles.measurementsBarActions}>
           <Button onClick={() => refetchHumidityMeasurements()}>
             <SyncIcon />
