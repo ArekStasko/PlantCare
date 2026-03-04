@@ -2,8 +2,8 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { HumidityMeasurementsChartProps } from './interfaces';
 import styles from '../statistics.styles';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useState } from "react";
-import { Dayjs } from "dayjs";
+import React, { useEffect, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
 import dateService from "../../../../common/services/DateService";
 
 const enum DateType {
@@ -31,6 +31,17 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     setToDate(toDate);
   }
 
+  useEffect(() => {
+    const areDatesExists = fromDate && toDate;
+    if(!areDatesExists)
+      return;
+
+    const areDatesCorrect = fromDate <= toDate;
+    if(areDatesCorrect){
+      console.log("CALL")
+    }
+  }, [fromDate, toDate]);
+
   return (
     <>
       <Box sx={styles.measurementsBar}>
@@ -48,6 +59,7 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
             disabled={!fromDate}
             disableFuture
             disableHighlightToday
+            minDate={dayjs(fromDate)}
             onAccept={(value) => setDateValue(value as Dayjs, DateType.TO)}
           />
         </Box>
