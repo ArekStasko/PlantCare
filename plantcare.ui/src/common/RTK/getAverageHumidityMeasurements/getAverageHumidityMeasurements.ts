@@ -7,19 +7,12 @@ export class GetHumidityMeasurementsApiParameters {
   toDate!: string | null;
 }
 
-const getCorrectAverageHumidityMeasurementsURL = (
-  parameters: GetHumidityMeasurementsApiParameters
-) => {
-  if (parameters.fromDate === null || parameters.toDate === null)
-    return `/humidity-measurements/${parameters.moduleId}`;
-  return `/humidity-measurements/${parameters.moduleId}?fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`;
-};
-
 export const getAverageHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
     GetAverageHumidityMeasurements: build.query<AverageHumidity[], GetHumidityMeasurementsApiParameters>({
-      query: (parameters: GetHumidityMeasurementsApiParameters) =>
-        getCorrectAverageHumidityMeasurementsURL(parameters)
+      query: (parameters: GetHumidityMeasurementsApiParameters) => ({
+        url: `/humidity-measurements/${parameters.moduleId}/average?fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`
+      })
     })
   }),
   overrideExisting: false
