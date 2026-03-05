@@ -9,6 +9,8 @@ import CustomAlert from "../../../../common/components/customAlert/customAlert";
 import {
   useGetAverageHumidityMeasurementsQuery
 } from "../../../../common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements";
+import { BarChart } from "@mui/x-charts";
+import StatisticsService from "../../../../common/services/StatisticsService";
 
 const enum DateType {
   FROM,
@@ -71,6 +73,23 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
         </Box>
       </Box>
       <Box sx={styles.measurementsBody}>
+        {
+          averageMeasurements && averageMeasurements.length > 0 && (
+        <BarChart
+          xAxis={[
+            {
+              scaleType: 'band',
+              data: StatisticsService.getAverageHumidityMeasurementTime(averageMeasurements)
+            }
+          ]}
+          series={[
+            {
+              data: StatisticsService.getAverageHumidityMeasurementValues(averageMeasurements),
+              valueFormatter: (v) => `Average Humidity: ${v}%`
+            }
+          ]}
+        />
+          )}
         {
           isAverageMeasurementsFetching && (
             <Box sx={styles.loader}>
