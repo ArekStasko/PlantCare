@@ -1,10 +1,14 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Alert, Box, CircularProgress, Typography } from "@mui/material";
 import { HumidityMeasurementsChartProps } from './interfaces';
 import styles from '../statistics.styles';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import dateService from "../../../../common/services/DateService";
+import CustomAlert from "../../../../common/components/customAlert/customAlert";
+import {
+  useGetAverageHumidityMeasurementsQuery
+} from "../../../../common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements";
 
 const enum DateType {
   FROM,
@@ -14,6 +18,16 @@ const enum DateType {
 const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
   const [fromDate, setFromDate] = useState<string | null>(null);
   const [toDate, setToDate] = useState<string | null>(null);
+
+  const {
+    data: averageMeasurements,
+    isFetching: isAverageMeasurementsFetching,
+    isError: averageMeasurementsError
+  } = useGetAverageHumidityMeasurementsQuery({
+    moduleId: moduleId!,
+    fromDate: fromDate,
+    toDate: toDate
+  }, {skip: fromDate === null || toDate === null || Date.parse(fromDate!) > Date.parse(toDate!)});
 
   const setDateValue = (value: Dayjs, type: DateType) => {
     const correctDate = value.toDate();
@@ -30,17 +44,6 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     const toDate = dateService.getEndOfGivenDay(year, month, day);
     setToDate(toDate);
   }
-
-  useEffect(() => {
-    const areDatesExists = fromDate && toDate;
-    if(!areDatesExists)
-      return;
-
-    const areDatesCorrect = fromDate <= toDate;
-    if(areDatesCorrect){
-      console.log("CALL")
-    }
-  }, [fromDate, toDate]);
 
   return (
     <>
@@ -64,9 +67,20 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
           />
         </Box>
       </Box>
-      <Box sx={styles.loader}>
-        <CircularProgress />
-      </Box>
+      {
+        isAverageMeasurementsFetching ?? (
+          <Box sx={styles.loader}>
+            <CircularProgress />
+          </Box>
+        )
+      }
+      {
+        averageMeasurementsError ?? (
+          <Box sx={styles.loader}>
+            <CustomAlert type="error" message="Something went wrong. Please try again later." />
+          </Box>
+        )
+      }
     </>
   );
 };

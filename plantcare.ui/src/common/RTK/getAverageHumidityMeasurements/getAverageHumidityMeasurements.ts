@@ -17,7 +17,7 @@ const getCorrectAverageHumidityMeasurementsURL = (
 
 export const getAverageHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    GetHumidityMeasurements: build.query<AverageHumidity[], GetHumidityMeasurementsApiParameters>({
+    GetAverageHumidityMeasurements: build.query<AverageHumidity[], GetHumidityMeasurementsApiParameters>({
       query: (parameters: GetHumidityMeasurementsApiParameters) =>
         getCorrectAverageHumidityMeasurementsURL(parameters)
     })
@@ -25,4 +25,4 @@ export const getAverageHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   overrideExisting: false
 });
 
-export const { useGetHumidityMeasurementsQuery } = getAverageHumidityMeasurementsApi;
+export const { useGetAverageHumidityMeasurementsQuery } = getAverageHumidityMeasurementsApi;
