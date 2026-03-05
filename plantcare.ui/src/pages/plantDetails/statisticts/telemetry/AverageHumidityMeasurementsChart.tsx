@@ -45,6 +45,9 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     setToDate(toDate);
   }
 
+  const showInfoAlert = averageMeasurements === undefined && !averageMeasurementsError && !isAverageMeasurementsFetching;
+  const showWarningAlert = averageMeasurements !== undefined && averageMeasurements.length === 0 && !averageMeasurementsError && !isAverageMeasurementsFetching
+
   return (
     <>
       <Box sx={styles.measurementsBar}>
@@ -67,20 +70,36 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
           />
         </Box>
       </Box>
-      {
-        isAverageMeasurementsFetching ?? (
-          <Box sx={styles.loader}>
-            <CircularProgress />
-          </Box>
-        )
-      }
-      {
-        averageMeasurementsError ?? (
-          <Box sx={styles.loader}>
-            <CustomAlert type="error" message="Something went wrong. Please try again later." />
-          </Box>
-        )
-      }
+      <Box sx={styles.measurementsBody}>
+        {
+          isAverageMeasurementsFetching && (
+            <Box sx={styles.loader}>
+              <CircularProgress />
+            </Box>
+          )
+        }
+        {
+          averageMeasurementsError && (
+            <Box sx={styles.loader}>
+              <CustomAlert type="error" message="Something went wrong. Please try again later." />
+            </Box>
+          )
+        }
+        {
+          showInfoAlert && (
+            <Box sx={styles.loader}>
+              <CustomAlert type="info" message="Please select the date range to get average humidity measurements" />
+            </Box>
+          )
+        }
+        {
+          showWarningAlert && (
+            <Box sx={styles.loader}>
+              <CustomAlert type="warning" message="You don't have measurements for this period of time" />
+            </Box>
+          )
+        }
+      </Box>
     </>
   );
 };
