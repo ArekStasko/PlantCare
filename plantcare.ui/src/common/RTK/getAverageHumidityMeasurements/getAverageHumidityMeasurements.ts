@@ -9,7 +9,10 @@ export class GetHumidityMeasurementsApiParameters {
 
 export const getAverageHumidityMeasurementsApi = plantcareApi.injectEndpoints({
   endpoints: (build) => ({
-    GetAverageHumidityMeasurements: build.query<AverageHumidity[], GetHumidityMeasurementsApiParameters>({
+    GetAverageHumidityMeasurements: build.query<
+      AverageHumidity[],
+      GetHumidityMeasurementsApiParameters
+    >({
       query: (parameters: GetHumidityMeasurementsApiParameters) => ({
         url: `/humidity-measurements/${parameters.moduleId}/average?fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`
       })

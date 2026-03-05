@@ -1,7 +1,7 @@
 import { HumidityMeasurement } from '../models/HumidityMeasurement';
 import { HumidityData, HumidityStatistics } from '../models/HumidityStatistics';
 import DateService from './DateService';
-import { AverageHumidity } from "@arekstasko/plantcare-api-client";
+import { AverageHumidity } from '@arekstasko/plantcare-api-client';
 
 const getHumidityMeasurementTime = (data: HumidityMeasurement[]): string[] =>
   data.map((c) => {
@@ -20,12 +20,12 @@ const getHumidityMeasurementValues = (data: HumidityMeasurement[]): number[] =>
 
 const getAverageHumidityMeasurementTime = (data: AverageHumidity[]): string[] =>
   data.map((c) => {
-    if(c.date === undefined) return "Date unknown";
+    if (c.date === undefined) return 'Date unknown';
     return c.date;
   });
 
 const getAverageHumidityMeasurementValues = (data: AverageHumidity[]): number[] =>
-  data.map((c) => c.humidity ? c.humidity : 0);
+  data.map((c) => (c.humidity ? c.humidity : 0));
 
 export default {
   getHumidityMeasurementTime,

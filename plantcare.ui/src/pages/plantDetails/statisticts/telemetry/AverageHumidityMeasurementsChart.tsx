@@ -1,20 +1,18 @@
-import { Alert, Box, CircularProgress, Typography } from "@mui/material";
+import { Alert, Box, CircularProgress, Typography } from '@mui/material';
 import { HumidityMeasurementsChartProps } from './interfaces';
 import styles from '../statistics.styles';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useEffect, useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
-import dateService from "../../../../common/services/DateService";
-import CustomAlert from "../../../../common/components/customAlert/customAlert";
-import {
-  useGetAverageHumidityMeasurementsQuery
-} from "../../../../common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements";
-import { BarChart } from "@mui/x-charts";
-import StatisticsService from "../../../../common/services/StatisticsService";
+import React, { useEffect, useState } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
+import dateService from '../../../../common/services/DateService';
+import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import { useGetAverageHumidityMeasurementsQuery } from '../../../../common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements';
+import { BarChart } from '@mui/x-charts';
+import StatisticsService from '../../../../common/services/StatisticsService';
 
 const enum DateType {
   FROM,
-  TO,
+  TO
 }
 
 const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
@@ -25,11 +23,14 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     data: averageMeasurements,
     isFetching: isAverageMeasurementsFetching,
     isError: averageMeasurementsError
-  } = useGetAverageHumidityMeasurementsQuery({
-    moduleId: moduleId!,
-    fromDate: fromDate,
-    toDate: toDate
-  }, {skip: fromDate === null || toDate === null || Date.parse(fromDate!) > Date.parse(toDate!)});
+  } = useGetAverageHumidityMeasurementsQuery(
+    {
+      moduleId: moduleId!,
+      fromDate: fromDate,
+      toDate: toDate
+    },
+    { skip: fromDate === null || toDate === null || Date.parse(fromDate!) > Date.parse(toDate!) }
+  );
 
   const setDateValue = (value: Dayjs, type: DateType) => {
     const correctDate = value.toDate();
@@ -37,7 +38,7 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     const month = correctDate.getMonth() + 1;
     const day = correctDate.getDate();
 
-    if(type === DateType.FROM){
+    if (type === DateType.FROM) {
       const fromDate = dateService.getStartOfGivenDay(year, month, day);
       setFromDate(fromDate);
       return;
@@ -45,10 +46,17 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
 
     const toDate = dateService.getEndOfGivenDay(year, month, day);
     setToDate(toDate);
-  }
+  };
 
-  const showInfoAlert = averageMeasurements === undefined && !averageMeasurementsError && !isAverageMeasurementsFetching;
-  const showWarningAlert = averageMeasurements !== undefined && averageMeasurements.length === 0 && !averageMeasurementsError && !isAverageMeasurementsFetching
+  const showInfoAlert =
+    averageMeasurements === undefined &&
+    !averageMeasurementsError &&
+    !isAverageMeasurementsFetching;
+  const showWarningAlert =
+    averageMeasurements !== undefined &&
+    averageMeasurements.length === 0 &&
+    !averageMeasurementsError &&
+    !isAverageMeasurementsFetching;
 
   return (
     <>
@@ -73,51 +81,48 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
         </Box>
       </Box>
       <Box sx={styles.measurementsBody}>
-        {
-          averageMeasurements && averageMeasurements.length > 0 && (
-        <BarChart
-          xAxis={[
-            {
-              scaleType: 'band',
-              data: StatisticsService.getAverageHumidityMeasurementTime(averageMeasurements)
-            }
-          ]}
-          series={[
-            {
-              data: StatisticsService.getAverageHumidityMeasurementValues(averageMeasurements),
-              valueFormatter: (v) => `Average Humidity: ${v}%`
-            }
-          ]}
-        />
-          )}
-        {
-          isAverageMeasurementsFetching && (
-            <Box sx={styles.loader}>
-              <CircularProgress />
-            </Box>
-          )
-        }
-        {
-          averageMeasurementsError && (
-            <Box sx={styles.loader}>
-              <CustomAlert type="error" message="Something went wrong. Please try again later." />
-            </Box>
-          )
-        }
-        {
-          showInfoAlert && (
-            <Box sx={styles.loader}>
-              <CustomAlert type="info" message="Please select the date range to get average humidity measurements" />
-            </Box>
-          )
-        }
-        {
-          showWarningAlert && (
-            <Box sx={styles.loader}>
-              <CustomAlert type="warning" message="You don't have measurements for this period of time" />
-            </Box>
-          )
-        }
+        {averageMeasurements && averageMeasurements.length > 0 && (
+          <BarChart
+            xAxis={[
+              {
+                scaleType: 'band',
+                data: StatisticsService.getAverageHumidityMeasurementTime(averageMeasurements)
+              }
+            ]}
+            series={[
+              {
+                data: StatisticsService.getAverageHumidityMeasurementValues(averageMeasurements),
+                valueFormatter: (v) => `Average Humidity: ${v}%`
+              }
+            ]}
+          />
+        )}
+        {isAverageMeasurementsFetching && (
+          <Box sx={styles.loader}>
+            <CircularProgress />
+          </Box>
+        )}
+        {averageMeasurementsError && (
+          <Box sx={styles.loader}>
+            <CustomAlert type="error" message="Something went wrong. Please try again later." />
+          </Box>
+        )}
+        {showInfoAlert && (
+          <Box sx={styles.loader}>
+            <CustomAlert
+              type="info"
+              message="Please select the date range to get average humidity measurements"
+            />
+          </Box>
+        )}
+        {showWarningAlert && (
+          <Box sx={styles.loader}>
+            <CustomAlert
+              type="warning"
+              message="You don't have measurements for this period of time"
+            />
+          </Box>
+        )}
       </Box>
     </>
   );

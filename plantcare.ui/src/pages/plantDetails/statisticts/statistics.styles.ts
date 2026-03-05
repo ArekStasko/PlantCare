@@ -137,7 +137,7 @@ const measurementsBody = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center'
-}
+};
 
 export default {
   statisticsWrapper,
