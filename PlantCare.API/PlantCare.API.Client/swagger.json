@@ -71,7 +71,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/humidity-measurements/{id}": {
       "get": {
         "tags": [
           "HumidityMeasurement"
@@ -79,7 +81,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"

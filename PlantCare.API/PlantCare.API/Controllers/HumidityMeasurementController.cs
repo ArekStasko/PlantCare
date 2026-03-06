@@ -28,10 +28,10 @@ public class HumidityMeasurementController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
+    public async ValueTask<IActionResult> Get(int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {
         var getHumidityMeasurementsQuery = new GetHumidityMeasurementQuery()
         {

@@ -16,13 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/ApiClient.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -591,7 +585,7 @@
       <workItem from="1771953052710" duration="2057000" />
       <workItem from="1772133244369" duration="1320000" />
       <workItem from="1772218052913" duration="253000" />
-      <workItem from="1772293310680" duration="7375000" />
+      <workItem from="1772293310680" duration="8599000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

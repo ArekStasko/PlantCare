@@ -24,12 +24,11 @@ export interface IClient {
     humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
 
     /**
-     * @param id (optional) 
      * @param fromDate (optional) 
      * @param toDate (optional) 
      * @return OK
      */
-    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
+    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
 
     /**
      * @param body (optional) 
@@ -214,20 +213,15 @@ export class Client implements IClient {
     }
 
     /**
-     * @param id (optional) 
      * @param fromDate (optional) 
      * @param toDate (optional) 
      * @return OK
      */
-    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]> {
-        let url_ = this.baseUrl + "/api/humidity-measurements/{int}/average?";
-        if (int === undefined || int === null)
-            throw new globalThis.Error("The parameter 'int' must be defined.");
-        url_ = url_.replace("{int}", encodeURIComponent("" + int));
-        if (id === null)
-            throw new globalThis.Error("The parameter 'id' cannot be null.");
-        else if (id !== undefined)
-            url_ += "id=" + encodeURIComponent("" + id) + "&";
+    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]> {
+        let url_ = this.baseUrl + "/api/humidity-measurements/{id}/average?";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         if (fromDate === null)
             throw new globalThis.Error("The parameter 'fromDate' cannot be null.");
         else if (fromDate !== undefined)
