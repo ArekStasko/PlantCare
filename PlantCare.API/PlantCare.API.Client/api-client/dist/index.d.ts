@@ -12,12 +12,11 @@ interface IClient {
      */
     humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
     /**
-     * @param id (optional)
      * @param fromDate (optional)
      * @param toDate (optional)
      * @return OK
      */
-    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
+    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
     /**
      * @param body (optional)
      * @return OK
@@ -96,12 +95,11 @@ declare class Client implements IClient {
     humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
     protected processHumidityMeasurementsAll(response: Response): Promise<IHumidityMeasurement[]>;
     /**
-     * @param id (optional)
      * @param fromDate (optional)
      * @param toDate (optional)
      * @return OK
      */
-    average(int: string, id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
+    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
     protected processAverage(response: Response): Promise<AverageHumidity[]>;
     /**
      * @param body (optional)

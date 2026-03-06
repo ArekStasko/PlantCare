@@ -244,18 +244,15 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
-   * @param id (optional) 
    * @param fromDate (optional) 
    * @param toDate (optional) 
    * @return OK
    */ key: "average",
-            value: function average(int, id, fromDate, toDate) {
+            value: function average(id, fromDate, toDate) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/humidity-measurements/{int}/average?";
-                if (int === void 0 || int === null) throw new globalThis.Error("The parameter 'int' must be defined.");
-                url_ = url_.replace("{int}", encodeURIComponent("" + int));
-                if (id === null) throw new globalThis.Error("The parameter 'id' cannot be null.");
-                else if (id !== void 0) url_ += "id=" + encodeURIComponent("" + id) + "&";
+                var url_ = this.baseUrl + "/api/humidity-measurements/{id}/average?";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 if (fromDate === null) throw new globalThis.Error("The parameter 'fromDate' cannot be null.");
                 else if (fromDate !== void 0) url_ += "fromDate=" + encodeURIComponent(fromDate ? "" + fromDate.toISOString() : "") + "&";
                 if (toDate === null) throw new globalThis.Error("The parameter 'toDate' cannot be null.");
