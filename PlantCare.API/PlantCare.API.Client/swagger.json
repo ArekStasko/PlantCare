@@ -71,7 +71,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/humidity-measurements/{id}": {
       "get": {
         "tags": [
           "HumidityMeasurement"
@@ -79,7 +81,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -127,6 +130,91 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/IHumidityMeasurement"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exception"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exception"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exception"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/humidity-measurements/{id}/average": {
+      "get": {
+        "tags": [
+          "HumidityMeasurement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AverageHumidity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AverageHumidity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AverageHumidity"
                   }
                 }
               }
@@ -1010,6 +1098,20 @@
           },
           "securityRuleSet": {
             "$ref": "#/components/schemas/SecurityRuleSet"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AverageHumidity": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "humidity": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

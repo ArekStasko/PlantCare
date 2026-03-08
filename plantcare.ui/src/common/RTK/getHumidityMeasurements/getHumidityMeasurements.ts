@@ -9,8 +9,8 @@ export class GetHumidityMeasurementsApiParameters {
 
 const getCorrectHumidityMeasurementsURL = (parameters: GetHumidityMeasurementsApiParameters) => {
   if (parameters.fromDate === null || parameters.toDate === null)
-    return `/humidity-measurements?id=${parameters.moduleId}`;
-  return `/humidity-measurements?id=${parameters.moduleId}&fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`;
+    return `/humidity-measurements/${parameters.moduleId}`;
+  return `/humidity-measurements/${parameters.moduleId}?fromDate=${parameters.fromDate}&toDate=${parameters.toDate}`;
 };
 
 export const getHumidityMeasurementsApi = plantcareApi.injectEndpoints({

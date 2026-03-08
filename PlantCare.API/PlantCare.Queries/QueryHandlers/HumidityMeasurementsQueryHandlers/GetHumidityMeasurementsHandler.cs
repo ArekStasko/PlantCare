@@ -61,7 +61,6 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
 
     private IReadOnlyCollection<IHumidityMeasurement> getSelectedPeriodOfMeasurements(IReadOnlyCollection<IHumidityMeasurement> measurements, DateTime fromDate, DateTime toDate)
     {
-        _logger.LogInformation("Filtering humidity measurements ...");
         IReadOnlyCollection<IHumidityMeasurement> filteredMeasurements =
             measurements.Where(hm => hm.MeasurementDate >= fromDate && hm.MeasurementDate <= toDate).ToList();
 

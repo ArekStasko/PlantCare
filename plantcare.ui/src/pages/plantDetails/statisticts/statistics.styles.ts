@@ -27,14 +27,14 @@ const measurementsBar = {
 
 const measurementsBarActions = {
   width: '50%',
-  height: '20%',
+  height: '10%',
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center'
-}
+};
 
 const statisticsChartWrapper = {
-  height: '80%',
+  height: '100%',
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
@@ -120,6 +120,25 @@ const loader = {
   alignItems: 'center'
 };
 
+const telemetryTypeWrapper = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '90%',
+  m: 4
+};
+
+const telemetryTypeForm = {
+  width: '50%'
+};
+
+const measurementsBody = {
+  width: '100%',
+  height: '80%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 export default {
   statisticsWrapper,
   statisticsContainer,
@@ -134,5 +153,8 @@ export default {
   titleCard,
   descriptionCard,
   moduleIdCard,
-  loader
+  loader,
+  telemetryTypeWrapper,
+  telemetryTypeForm,
+  measurementsBody
 };
