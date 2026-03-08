@@ -17,7 +17,7 @@ const statisticsWrapper = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)'
 };
 
-const datePickerWrapper = {
+const measurementsBar = {
   width: '100%',
   height: '20%',
   display: 'flex',
@@ -25,8 +25,16 @@ const datePickerWrapper = {
   alignItems: 'center'
 };
 
+const measurementsBarActions = {
+  width: '50%',
+  height: '10%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center'
+};
+
 const statisticsChartWrapper = {
-  height: '80%',
+  height: '100%',
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
@@ -112,11 +120,31 @@ const loader = {
   alignItems: 'center'
 };
 
+const telemetryTypeWrapper = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '90%',
+  m: 4
+};
+
+const telemetryTypeForm = {
+  width: '50%'
+};
+
+const measurementsBody = {
+  width: '100%',
+  height: '80%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 export default {
   statisticsWrapper,
   statisticsContainer,
   plantDetailsWrapper,
-  datePickerWrapper,
+  measurementsBar,
+  measurementsBarActions,
   statisticsChartWrapper,
   plantTitleWrapper,
   plantDescriptionWrapper,
@@ -125,5 +153,8 @@ export default {
   titleCard,
   descriptionCard,
   moduleIdCard,
-  loader
+  loader,
+  telemetryTypeWrapper,
+  telemetryTypeForm,
+  measurementsBody
 };

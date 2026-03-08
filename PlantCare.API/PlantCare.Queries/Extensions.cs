@@ -14,6 +14,7 @@ public static class Extensions
                 typeof(QueryHandlers.ModuleQueryHandlers.GetModulesHandler).GetTypeInfo().Assembly,
                 typeof(QueryHandlers.PlantQueryHandlers.GetPlantsHandler).GetTypeInfo().Assembly,
                 typeof(QueryHandlers.HumidityMeasurementsQueryHandlers.GetHumidityMeasurementsHandler).GetTypeInfo().Assembly,
+                typeof(QueryHandlers.HumidityMeasurementsQueryHandlers.GetAverageHumidityMeasurementHandler).GetTypeInfo().Assembly,
                 typeof(QueryHandlers.ModuleQueryHandlers.GetModuleByIdHandler).GetTypeInfo().Assembly
             ));
     }

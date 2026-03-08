@@ -2,6 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.HumidityMeasurements;
+using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Queries.Queries.HumidityMeasurements;
 
@@ -12,12 +13,10 @@ namespace PlantCare.API.Controllers;
 public class HumidityMeasurementController : ControllerAuth
 {
     private readonly IMediator _mediator;
-    private readonly ILogger<PlaceController> _logger;
 
     public HumidityMeasurementController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
-        _logger = logger;
     }
 
     [HttpPost]
@@ -29,10 +28,10 @@ public class HumidityMeasurementController : ControllerAuth
         return result.ToOk();
     }
 
-    [HttpGet]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Get([FromQuery] int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
+    public async ValueTask<IActionResult> Get(int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {
         var getHumidityMeasurementsQuery = new GetHumidityMeasurementQuery()
         {
@@ -41,6 +40,21 @@ public class HumidityMeasurementController : ControllerAuth
             ToDate = toDate,
         };
         var result = await _mediator.Send(getHumidityMeasurementsQuery);
+        return result.ToOk();
+    }
+
+    [HttpGet("{id:int}/average")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<AverageHumidity>))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> GetAverage(int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
+    {
+        var getAverageMeasurementsQuery = new GetAverageHumidityMeasurementQuery()
+        {
+            FromDate = fromDate,
+            ToDate = toDate,
+            ModuleId = id
+        };
+        var result = await _mediator.Send(getAverageMeasurementsQuery);
         return result.ToOk();
     }
 }
