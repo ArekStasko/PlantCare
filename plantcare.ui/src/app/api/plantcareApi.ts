@@ -2,31 +2,33 @@
 //import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
 import { BaseQueryApi, createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ClientRootState } from 'identity-provider-client';
+import { Client } from "@arekstasko/plantcare-api-client";
 
-const plantcareApiBaseQuery = async (
-  args: string | FetchArgs,
+const client = new Client('http://192.168.1.40:8080/api');
+
+const plantCareApi = async (
+  args: { method: keyof Client; body?: any; params?: any },
   api: BaseQueryApi,
   extraOptions: {}
 ) => {
-  const rawBaseQuery = fetchBaseQuery({
-    baseUrl: 'http://192.168.1.40:8080/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as ClientRootState).auth.accessToken;
-      if (token) {
-        headers.set('Authorization', token);
-      }
-      return headers;
+  try {
+    const token = (api.getState() as ClientRootState).auth.accessToken;
+
+    if (token && client['http']) {
+      client['http'].fetch = (url, init = {}) => {
+        init.headers = {
+          ...init.headers,
+          Authorization: `Bearer ${token}`,
+        };
+        return fetch(url, init);
+      };
     }
-  });
-  const result = await rawBaseQuery(args, api, extraOptions);
-  return result;
+
+    const data = await (client[args.method] as any)(args.body, args.params);
+    return { data };
+  } catch (error: any) {
+    return { error: { status: error?.response?.status || 500, data: error.message } };
+  }
 };
 
-const plantcareApi = createApi({
-  reducerPath: 'emptyApi',
-  baseQuery: plantcareApiBaseQuery,
-  endpoints: (build) => ({}),
-  tagTypes: ['Plants', 'Modules', 'Places']
-});
-
-export default plantcareApi;
+export default plantCareApi;
