@@ -998,6 +998,10 @@
           "measurementDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -7,166 +7,95 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-export interface IClient {
+import axios, { AxiosError } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
 
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean>;
-
-    /**
-     * @param id (optional) 
-     * @param fromDate (optional) 
-     * @param toDate (optional) 
-     * @return OK
-     */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
-
-    /**
-     * @param fromDate (optional) 
-     * @param toDate (optional) 
-     * @return OK
-     */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
-
-    /**
-     * @return OK
-     */
-    modulesAll(): Promise<GetModuleResponse[]>;
-
-    /**
-     * @return OK
-     */
-    modulesGET(id: number): Promise<GetModuleResponse>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean>;
-
-    /**
-     * @param id (optional) 
-     * @return OK
-     */
-    placesDELETE(id?: number | undefined): Promise<boolean>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean>;
-
-    /**
-     * @return OK
-     */
-    placesAll(): Promise<GetPlacesResponse[]>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean>;
-
-    /**
-     * @param id (optional) 
-     * @return OK
-     */
-    plantsDELETE(id?: number | undefined): Promise<boolean>;
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean>;
-
-    /**
-     * @return OK
-     */
-    plantsAll(): Promise<GetPlantResponse[]>;
-
-    /**
-     * @return OK
-     */
-    plantsGET(id: number): Promise<GetPlantResponse>;
-}
-
-export class Client implements IClient {
-    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
-    private baseUrl: string;
+export class Client {
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
-        this.http = http ? http : window as any;
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance || axios.create();
+
         this.baseUrl = baseUrl ?? "";
+
     }
 
     /**
      * @param body (optional) 
      * @return OK
      */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean> {
+    humidityMeasurements(body: AddHumidityMeasurementCommand | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/humidity-measurements";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "POST",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processHumidityMeasurements(_response);
         });
     }
 
-    protected processHumidityMeasurements(response: Response): Promise<boolean> {
+    protected processHumidityMeasurements(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
 
     /**
-     * @param id (optional) 
      * @param fromDate (optional) 
      * @param toDate (optional) 
      * @return OK
      */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]> {
-        let url_ = this.baseUrl + "/api/humidity-measurements?";
-        if (id === null)
-            throw new globalThis.Error("The parameter 'id' cannot be null.");
-        else if (id !== undefined)
-            url_ += "id=" + encodeURIComponent("" + id) + "&";
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]> {
+        let url_ = this.baseUrl + "/api/humidity-measurements/{id}?";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         if (fromDate === null)
             throw new globalThis.Error("The parameter 'fromDate' cannot be null.");
         else if (fromDate !== undefined)
@@ -177,37 +106,53 @@ export class Client implements IClient {
             url_ += "toDate=" + encodeURIComponent(toDate ? "" + toDate.toISOString() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processHumidityMeasurementsAll(_response);
         });
     }
 
-    protected processHumidityMeasurementsAll(response: Response): Promise<IHumidityMeasurement[]> {
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as IHumidityMeasurement[];
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<IHumidityMeasurement[]>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<IHumidityMeasurement[]>(null as any);
     }
@@ -217,7 +162,7 @@ export class Client implements IClient {
      * @param toDate (optional) 
      * @return OK
      */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]> {
+    average(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<AverageHumidity[]> {
         let url_ = this.baseUrl + "/api/humidity-measurements/{id}/average?";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -232,37 +177,53 @@ export class Client implements IClient {
             url_ += "toDate=" + encodeURIComponent(toDate ? "" + toDate.toISOString() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processAverage(_response);
         });
     }
 
-    protected processAverage(response: Response): Promise<AverageHumidity[]> {
+    protected processAverage(response: AxiosResponse): Promise<AverageHumidity[]> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as AverageHumidity[];
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<AverageHumidity[]>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<AverageHumidity[]>(null as any);
     }
@@ -271,45 +232,61 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean> {
+    modulesPOST(body: CreateModuleRequest | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "POST",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processModulesPOST(_response);
         });
     }
 
-    protected processModulesPOST(response: Response): Promise<boolean> {
+    protected processModulesPOST(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -317,41 +294,57 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    modulesAll(): Promise<GetModuleResponse[]> {
+    modulesAll( cancelToken?: CancelToken): Promise<GetModuleResponse[]> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processModulesAll(_response);
         });
     }
 
-    protected processModulesAll(response: Response): Promise<GetModuleResponse[]> {
+    protected processModulesAll(response: AxiosResponse): Promise<GetModuleResponse[]> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse[];
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<GetModuleResponse[]>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<GetModuleResponse[]>(null as any);
     }
@@ -359,44 +352,60 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    modulesGET(id: number): Promise<GetModuleResponse> {
+    modulesGET(id: number, cancelToken?: CancelToken): Promise<GetModuleResponse> {
         let url_ = this.baseUrl + "/api/modules/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processModulesGET(_response);
         });
     }
 
-    protected processModulesGET(response: Response): Promise<GetModuleResponse> {
+    protected processModulesGET(response: AxiosResponse): Promise<GetModuleResponse> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetModuleResponse;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<GetModuleResponse>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<GetModuleResponse>(null as any);
     }
@@ -405,45 +414,61 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean> {
+    placesPOST(body: CreatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/places";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "POST",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlacesPOST(_response);
         });
     }
 
-    protected processPlacesPOST(response: Response): Promise<boolean> {
+    protected processPlacesPOST(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -452,7 +477,7 @@ export class Client implements IClient {
      * @param id (optional) 
      * @return OK
      */
-    placesDELETE(id?: number | undefined): Promise<boolean> {
+    placesDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/places?";
         if (id === null)
             throw new globalThis.Error("The parameter 'id' cannot be null.");
@@ -460,37 +485,53 @@ export class Client implements IClient {
             url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "DELETE",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlacesDELETE(_response);
         });
     }
 
-    protected processPlacesDELETE(response: Response): Promise<boolean> {
+    protected processPlacesDELETE(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -499,45 +540,61 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean> {
+    placesPUT(body: UpdatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/places";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "PUT",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlacesPUT(_response);
         });
     }
 
-    protected processPlacesPUT(response: Response): Promise<boolean> {
+    protected processPlacesPUT(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -545,41 +602,57 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    placesAll(): Promise<GetPlacesResponse[]> {
+    placesAll( cancelToken?: CancelToken): Promise<GetPlacesResponse[]> {
         let url_ = this.baseUrl + "/api/places";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlacesAll(_response);
         });
     }
 
-    protected processPlacesAll(response: Response): Promise<GetPlacesResponse[]> {
+    protected processPlacesAll(response: AxiosResponse): Promise<GetPlacesResponse[]> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetPlacesResponse[];
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<GetPlacesResponse[]>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<GetPlacesResponse[]>(null as any);
     }
@@ -588,45 +661,61 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean> {
+    plantsPOST(body: CreatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/plants";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "POST",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlantsPOST(_response);
         });
     }
 
-    protected processPlantsPOST(response: Response): Promise<boolean> {
+    protected processPlantsPOST(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -635,7 +724,7 @@ export class Client implements IClient {
      * @param id (optional) 
      * @return OK
      */
-    plantsDELETE(id?: number | undefined): Promise<boolean> {
+    plantsDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/plants?";
         if (id === null)
             throw new globalThis.Error("The parameter 'id' cannot be null.");
@@ -643,37 +732,53 @@ export class Client implements IClient {
             url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "DELETE",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlantsDELETE(_response);
         });
     }
 
-    protected processPlantsDELETE(response: Response): Promise<boolean> {
+    protected processPlantsDELETE(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -682,45 +787,61 @@ export class Client implements IClient {
      * @param body (optional) 
      * @return OK
      */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean> {
+    plantsPUT(body: UpdatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/plants";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_: RequestInit = {
-            body: content_,
+        let options_: AxiosRequestConfig = {
+            data: content_,
             method: "PUT",
+            url: url_,
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlantsPUT(_response);
         });
     }
 
-    protected processPlantsPUT(response: Response): Promise<boolean> {
+    protected processPlantsPUT(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as boolean;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<boolean>(null as any);
     }
@@ -728,41 +849,57 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    plantsAll(): Promise<GetPlantResponse[]> {
+    plantsAll( cancelToken?: CancelToken): Promise<GetPlantResponse[]> {
         let url_ = this.baseUrl + "/api/plants";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlantsAll(_response);
         });
     }
 
-    protected processPlantsAll(response: Response): Promise<GetPlantResponse[]> {
+    protected processPlantsAll(response: AxiosResponse): Promise<GetPlantResponse[]> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetPlantResponse[];
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<GetPlantResponse[]>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<GetPlantResponse[]>(null as any);
     }
@@ -770,44 +907,60 @@ export class Client implements IClient {
     /**
      * @return OK
      */
-    plantsGET(id: number): Promise<GetPlantResponse> {
+    plantsGET(id: number, cancelToken?: CancelToken): Promise<GetPlantResponse> {
         let url_ = this.baseUrl + "/api/plants/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_: RequestInit = {
+        let options_: AxiosRequestConfig = {
             method: "GET",
+            url: url_,
             headers: {
                 "Accept": "application/json"
-            }
+            },
+            cancelToken
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
             return this.processPlantsGET(_response);
         });
     }
 
-    protected processPlantsGET(response: Response): Promise<GetPlantResponse> {
+    protected processPlantsGET(response: AxiosResponse): Promise<GetPlantResponse> {
         const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
         if (status === 200) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GetPlantResponse;
-            return result200;
-            });
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<GetPlantResponse>(result200);
+
         } else if (status === 500) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             let result500: any = null;
-            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Exception;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
             return throwException("Internal Server Error", status, _responseText, _headers, result500);
-            });
+
         } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
+            const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
         }
         return Promise.resolve<GetPlantResponse>(null as any);
     }
@@ -1541,4 +1694,8 @@ function throwException(message: string, status: number, response: string, heade
         throw result;
     else
         throw new ApiException(message, status, response, headers, null);
+}
+
+function isAxiosError(obj: any): obj is AxiosError {
+    return obj && obj.isAxiosError === true;
 }
