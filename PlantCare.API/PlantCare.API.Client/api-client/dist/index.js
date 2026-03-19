@@ -118,12 +118,13 @@ function _is_native_reflect_construct() {
     })();
 }
 // ApiClient.ts
+import axios from "axios";
 var Client = /*#__PURE__*/ function() {
     "use strict";
-    function Client(baseUrl, http) {
+    function Client(baseUrl, instance) {
         _class_call_check(this, Client);
         this.jsonParseReviver = void 0;
-        this.http = http ? http : window;
+        this.instance = instance || axios.create();
         this.baseUrl = baseUrl !== null && baseUrl !== void 0 ? baseUrl : "";
     }
     _create_class(Client, [
@@ -132,20 +133,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "humidityMeasurements",
-            value: function humidityMeasurements(body) {
+            value: function humidityMeasurements(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/humidity-measurements";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "POST",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processHumidityMeasurements(_response);
                 });
             }
@@ -153,47 +162,45 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processHumidityMeasurements",
             value: function processHumidityMeasurements(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
         },
         {
             /**
-   * @param id (optional) 
    * @param fromDate (optional) 
    * @param toDate (optional) 
    * @return OK
    */ key: "humidityMeasurementsAll",
-            value: function humidityMeasurementsAll(id, fromDate, toDate) {
+            value: function humidityMeasurementsAll(id, fromDate, toDate, cancelToken) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/humidity-measurements?";
-                if (id === null) throw new globalThis.Error("The parameter 'id' cannot be null.");
-                else if (id !== void 0) url_ += "id=" + encodeURIComponent("" + id) + "&";
+                var url_ = this.baseUrl + "/api/humidity-measurements/{id}?";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 if (fromDate === null) throw new globalThis.Error("The parameter 'fromDate' cannot be null.");
                 else if (fromDate !== void 0) url_ += "fromDate=" + encodeURIComponent(fromDate ? "" + fromDate.toISOString() : "") + "&";
                 if (toDate === null) throw new globalThis.Error("The parameter 'toDate' cannot be null.");
@@ -201,11 +208,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processHumidityMeasurementsAll(_response);
                 });
             }
@@ -213,31 +228,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processHumidityMeasurementsAll",
             value: function processHumidityMeasurementsAll(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -248,7 +262,7 @@ var Client = /*#__PURE__*/ function() {
    * @param toDate (optional) 
    * @return OK
    */ key: "average",
-            value: function average(id, fromDate, toDate) {
+            value: function average(id, fromDate, toDate, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/humidity-measurements/{id}/average?";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -260,11 +274,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processAverage(_response);
                 });
             }
@@ -272,31 +294,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processAverage",
             value: function processAverage(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -306,20 +327,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "modulesPOST",
-            value: function modulesPOST(body) {
+            value: function modulesPOST(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/modules";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "POST",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processModulesPOST(_response);
                 });
             }
@@ -327,31 +356,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processModulesPOST",
             value: function processModulesPOST(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -360,17 +388,25 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @return OK
    */ key: "modulesAll",
-            value: function modulesAll() {
+            value: function modulesAll(cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/modules";
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processModulesAll(_response);
                 });
             }
@@ -378,31 +414,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processModulesAll",
             value: function processModulesAll(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -411,7 +446,7 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @return OK
    */ key: "modulesGET",
-            value: function modulesGET(id) {
+            value: function modulesGET(id, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/modules/{id}";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -419,11 +454,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processModulesGET(_response);
                 });
             }
@@ -431,31 +474,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processModulesGET",
             value: function processModulesGET(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -465,20 +507,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "placesPOST",
-            value: function placesPOST(body) {
+            value: function placesPOST(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/places";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "POST",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlacesPOST(_response);
                 });
             }
@@ -486,31 +536,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlacesPOST",
             value: function processPlacesPOST(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -520,7 +569,7 @@ var Client = /*#__PURE__*/ function() {
    * @param id (optional) 
    * @return OK
    */ key: "placesDELETE",
-            value: function placesDELETE(id) {
+            value: function placesDELETE(id, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/places?";
                 if (id === null) throw new globalThis.Error("The parameter 'id' cannot be null.");
@@ -528,11 +577,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "DELETE",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlacesDELETE(_response);
                 });
             }
@@ -540,31 +597,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlacesDELETE",
             value: function processPlacesDELETE(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -574,20 +630,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "placesPUT",
-            value: function placesPUT(body) {
+            value: function placesPUT(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/places";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "PUT",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlacesPUT(_response);
                 });
             }
@@ -595,31 +659,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlacesPUT",
             value: function processPlacesPUT(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -628,17 +691,25 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @return OK
    */ key: "placesAll",
-            value: function placesAll() {
+            value: function placesAll(cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/places";
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlacesAll(_response);
                 });
             }
@@ -646,31 +717,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlacesAll",
             value: function processPlacesAll(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -680,20 +750,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "plantsPOST",
-            value: function plantsPOST(body) {
+            value: function plantsPOST(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/plants";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "POST",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlantsPOST(_response);
                 });
             }
@@ -701,31 +779,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlantsPOST",
             value: function processPlantsPOST(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -735,7 +812,7 @@ var Client = /*#__PURE__*/ function() {
    * @param id (optional) 
    * @return OK
    */ key: "plantsDELETE",
-            value: function plantsDELETE(id) {
+            value: function plantsDELETE(id, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/plants?";
                 if (id === null) throw new globalThis.Error("The parameter 'id' cannot be null.");
@@ -743,11 +820,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "DELETE",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlantsDELETE(_response);
                 });
             }
@@ -755,31 +840,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlantsDELETE",
             value: function processPlantsDELETE(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -789,20 +873,28 @@ var Client = /*#__PURE__*/ function() {
    * @param body (optional) 
    * @return OK
    */ key: "plantsPUT",
-            value: function plantsPUT(body) {
+            value: function plantsPUT(body, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/plants";
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {
-                    body: content_,
+                    data: content_,
                     method: "PUT",
+                    url: url_,
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlantsPUT(_response);
                 });
             }
@@ -810,31 +902,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlantsPUT",
             value: function processPlantsPUT(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -843,17 +934,25 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @return OK
    */ key: "plantsAll",
-            value: function plantsAll() {
+            value: function plantsAll(cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/plants";
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlantsAll(_response);
                 });
             }
@@ -861,31 +960,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlantsAll",
             value: function processPlantsAll(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -894,7 +992,7 @@ var Client = /*#__PURE__*/ function() {
             /**
    * @return OK
    */ key: "plantsGET",
-            value: function plantsGET(id) {
+            value: function plantsGET(id, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/plants/{id}";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -902,11 +1000,19 @@ var Client = /*#__PURE__*/ function() {
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",
+                    url: url_,
                     headers: {
                         "Accept": "application/json"
-                    }
+                    },
+                    cancelToken: cancelToken
                 };
-                return this.http.fetch(url_, options_).then(function(_response) {
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
                     return _this.processPlantsGET(_response);
                 });
             }
@@ -914,31 +1020,30 @@ var Client = /*#__PURE__*/ function() {
         {
             key: "processPlantsGET",
             value: function processPlantsGET(response) {
-                var _this = this;
                 var status = response.status;
                 var _headers = {};
-                if (response.headers && response.headers.forEach) {
-                    response.headers.forEach(function(v, k) {
-                        return _headers[k] = v;
-                    });
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
                 }
-                ;
                 if (status === 200) {
-                    return response.text().then(function(_responseText) {
-                        var result200 = null;
-                        result200 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return result200;
-                    });
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
                 } else if (status === 500) {
-                    return response.text().then(function(_responseText) {
-                        var result500 = null;
-                        result500 = _responseText === "" ? null : JSON.parse(_responseText, _this.jsonParseReviver);
-                        return throwException("Internal Server Error", status, _responseText, _headers, result500);
-                    });
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
                 } else if (status !== 200 && status !== 204) {
-                    return response.text().then(function(_responseText) {
-                        return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-                    });
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
                 }
                 return Promise.resolve(null);
             }
@@ -1147,5 +1252,8 @@ var ApiException = /*#__PURE__*/ function(Error1) {
 function throwException(message, status, response, headers, result) {
     if (result !== null && result !== void 0) throw result;
     else throw new ApiException(message, status, response, headers, null);
+}
+function isAxiosError(obj) {
+    return obj && obj.isAxiosError === true;
 }
 export { ApiException, CallingConventions, Client, EventAttributes, FieldAttributes, GenericParameterAttributes, LayoutKind, MemberTypes, MethodAttributes, MethodImplAttributes, ParameterAttributes, PlantType, PropertyAttributes, SecurityRuleSet, TypeAttributes };

@@ -1,173 +1,97 @@
-interface IClient {
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
-    /**
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    modulesAll(): Promise<GetModuleResponse[]>;
-    /**
-     * @return OK
-     */
-    modulesGET(id: number): Promise<GetModuleResponse>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @return OK
-     */
-    placesDELETE(id?: number | undefined): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    placesAll(): Promise<GetPlacesResponse[]>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @return OK
-     */
-    plantsDELETE(id?: number | undefined): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    plantsAll(): Promise<GetPlantResponse[]>;
-    /**
-     * @return OK
-     */
-    plantsGET(id: number): Promise<GetPlantResponse>;
-}
-declare class Client implements IClient {
-    private http;
-    private baseUrl;
+import { AxiosInstance, CancelToken, AxiosResponse } from 'axios';
+
+declare class Client {
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined;
-    constructor(baseUrl?: string, http?: {
-        fetch(url: RequestInfo, init?: RequestInit): Promise<Response>;
-    });
+    constructor(baseUrl?: string, instance?: AxiosInstance);
     /**
      * @param body (optional)
      * @return OK
      */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean>;
-    protected processHumidityMeasurements(response: Response): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
-    protected processHumidityMeasurementsAll(response: Response): Promise<IHumidityMeasurement[]>;
+    humidityMeasurements(body: AddHumidityMeasurementCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processHumidityMeasurements(response: AxiosResponse): Promise<boolean>;
     /**
      * @param fromDate (optional)
      * @param toDate (optional)
      * @return OK
      */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
-    protected processAverage(response: Response): Promise<AverageHumidity[]>;
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]>;
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]>;
+    /**
+     * @param fromDate (optional)
+     * @param toDate (optional)
+     * @return OK
+     */
+    average(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<AverageHumidity[]>;
+    protected processAverage(response: AxiosResponse): Promise<AverageHumidity[]>;
     /**
      * @param body (optional)
      * @return OK
      */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
-    protected processModulesPOST(response: Response): Promise<boolean>;
+    modulesPOST(body: CreateModuleRequest | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processModulesPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    modulesAll(): Promise<GetModuleResponse[]>;
-    protected processModulesAll(response: Response): Promise<GetModuleResponse[]>;
+    modulesAll(cancelToken?: CancelToken): Promise<GetModuleResponse[]>;
+    protected processModulesAll(response: AxiosResponse): Promise<GetModuleResponse[]>;
     /**
      * @return OK
      */
-    modulesGET(id: number): Promise<GetModuleResponse>;
-    protected processModulesGET(response: Response): Promise<GetModuleResponse>;
+    modulesGET(id: number, cancelToken?: CancelToken): Promise<GetModuleResponse>;
+    protected processModulesGET(response: AxiosResponse): Promise<GetModuleResponse>;
     /**
      * @param body (optional)
      * @return OK
      */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean>;
-    protected processPlacesPOST(response: Response): Promise<boolean>;
+    placesPOST(body: CreatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @param id (optional)
      * @return OK
      */
-    placesDELETE(id?: number | undefined): Promise<boolean>;
-    protected processPlacesDELETE(response: Response): Promise<boolean>;
+    placesDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesDELETE(response: AxiosResponse): Promise<boolean>;
     /**
      * @param body (optional)
      * @return OK
      */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean>;
-    protected processPlacesPUT(response: Response): Promise<boolean>;
+    placesPUT(body: UpdatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesPUT(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    placesAll(): Promise<GetPlacesResponse[]>;
-    protected processPlacesAll(response: Response): Promise<GetPlacesResponse[]>;
+    placesAll(cancelToken?: CancelToken): Promise<GetPlacesResponse[]>;
+    protected processPlacesAll(response: AxiosResponse): Promise<GetPlacesResponse[]>;
     /**
      * @param body (optional)
      * @return OK
      */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean>;
-    protected processPlantsPOST(response: Response): Promise<boolean>;
+    plantsPOST(body: CreatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @param id (optional)
      * @return OK
      */
-    plantsDELETE(id?: number | undefined): Promise<boolean>;
-    protected processPlantsDELETE(response: Response): Promise<boolean>;
+    plantsDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsDELETE(response: AxiosResponse): Promise<boolean>;
     /**
      * @param body (optional)
      * @return OK
      */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean>;
-    protected processPlantsPUT(response: Response): Promise<boolean>;
+    plantsPUT(body: UpdatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsPUT(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    plantsAll(): Promise<GetPlantResponse[]>;
-    protected processPlantsAll(response: Response): Promise<GetPlantResponse[]>;
+    plantsAll(cancelToken?: CancelToken): Promise<GetPlantResponse[]>;
+    protected processPlantsAll(response: AxiosResponse): Promise<GetPlantResponse[]>;
     /**
      * @return OK
      */
-    plantsGET(id: number): Promise<GetPlantResponse>;
-    protected processPlantsGET(response: Response): Promise<GetPlantResponse>;
+    plantsGET(id: number, cancelToken?: CancelToken): Promise<GetPlantResponse>;
+    protected processPlantsGET(response: AxiosResponse): Promise<GetPlantResponse>;
 }
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
@@ -838,4 +762,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetModuleResponse, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetModuleResponse, type GetPlacesResponse, type GetPlantResponse, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
