@@ -1,12 +1,12 @@
 //IT IS IMPORTANT TO NOT IMPORT CREATE API AND FETCHBASEQUERY FROM BELOW PATH
 //import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
-import { Client } from "@arekstasko/plantcare-api-client";
-import axios from "axios";
-import { getToken } from "identity-provider-client";
+import { Client } from '@arekstasko/plantcare-api-client';
+import axios from 'axios';
+import { getToken } from 'identity-provider-client';
 
 export const axiosInstance = axios.create({
-    transformResponse: data => data,
-  });
+  transformResponse: (data) => data
+});
 
 axiosInstance.interceptors.request.use((config) => {
   const token = getToken();
@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use((config) => {
   if (token) {
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     };
   }
 
