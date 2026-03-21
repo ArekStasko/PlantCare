@@ -1,5 +1,3 @@
-//IT IS IMPORTANT TO NOT IMPORT CREATE API AND FETCHBASEQUERY FROM BELOW PATH
-//import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
 import { Client } from '@arekstasko/plantcare-api-client';
 import axios from 'axios';
 import { getToken } from 'identity-provider-client';

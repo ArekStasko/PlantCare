@@ -1,14 +1,23 @@
 import { UpdatePlaceCommand } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
+import emptyApi from "../emptyApi";
 
-export const updatePlaceApi = plantcareApi.injectEndpoints({
+const updatePlaceCall = (request: UpdatePlaceCommand) =>
+  plantcareApi
+    .placesPUT(request)
+    .then(result => ({
+      data: result,
+      error: null
+    }))
+    .catch(err => ({
+      data: null,
+      error: err
+    }))
+
+export const updatePlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     UpdatePlace: build.mutation<boolean, UpdatePlaceCommand>({
-      query: ({ ...data }) => ({
-        url: '/places',
-        method: 'PUT',
-        body: data
-      }),
+      query: updatePlaceCall,
       invalidatesTags: ['Places']
     })
   }),
