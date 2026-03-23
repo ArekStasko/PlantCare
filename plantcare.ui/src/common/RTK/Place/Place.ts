@@ -1,62 +1,60 @@
-import { CreatePlaceCommand, UpdatePlaceCommand } from "@arekstasko/plantcare-api-client";
-import plantcareApi from "../../../app/api/plantcareApi";
-import emptyApi from "../emptyApi";
-import { Place } from "../../models/Place";
+import { CreatePlaceCommand, UpdatePlaceCommand } from '@arekstasko/plantcare-api-client';
+import plantcareApi from '../../../app/api/plantcareApi';
+import emptyApi from '../emptyApi';
+import { Place } from '../../models/Place';
 
-
-const updatePlace = (request: UpdatePlaceCommand) =>
+const updatePlace = async (request: UpdatePlaceCommand) =>
   plantcareApi
     .placesPUT(request)
-    .then(result => ({
+    .then((result) => ({
       data: result,
       error: null
     }))
-    .catch(err => ({
+    .catch((err) => ({
       data: null,
       error: err
-    }))
+    }));
 
 const getPlaces = () =>
   plantcareApi
     .placesAll()
-    .then(result => ({
+    .then((result) => ({
       data: result,
       error: null
     }))
-    .catch(err => ({
+    .catch((err) => ({
       data: null,
       error: err
-    }))
+    }));
 
 const deletePlace = (id: number) =>
   plantcareApi
     .placesDELETE(id)
-    .then(result => ({
+    .then((result) => ({
       data: result,
       error: null
     }))
-    .catch(err => ({
+    .catch((err) => ({
       data: null,
       error: err
-    }))
+    }));
 
 const createPlace = (request: CreatePlaceCommand) =>
   plantcareApi
     .placesPOST(request)
-    .then(result => ({
+    .then((result) => ({
       data: result,
       error: null
     }))
-    .catch(err => ({
+    .catch((err) => ({
       data: null,
       error: err
-    }))
+    }));
 
-
-export const updatePlaceApi = emptyApi.injectEndpoints({
+export const PlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     UpdatePlace: build.mutation<boolean, UpdatePlaceCommand>({
-      query: updatePlace,
+      queryFn: updatePlace,
       invalidatesTags: ['Places']
     }),
     GetPlaces: build.query<Place[], void>({
@@ -80,4 +78,4 @@ export const {
   useGetPlacesQuery,
   useDeletePlaceMutation,
   useCreatePlaceMutation
-} = updatePlaceApi;
+} = PlaceApi;
