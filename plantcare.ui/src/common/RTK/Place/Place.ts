@@ -1,17 +1,14 @@
-import { CreatePlaceCommand, UpdatePlaceCommand } from '@arekstasko/plantcare-api-client';
+import { CreatePlaceCommand, GetPlacesResponse, UpdatePlaceCommand } from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
-import { Place } from '../../models/Place';
 
 const updatePlace = async (request: UpdatePlaceCommand) =>
   plantcareApi
     .placesPUT(request)
     .then((result) => ({
-      data: result,
-      error: null
+      data: result ?? false,
     }))
     .catch((err) => ({
-      data: null,
       error: err
     }));
 
@@ -19,11 +16,9 @@ const getPlaces = () =>
   plantcareApi
     .placesAll()
     .then((result) => ({
-      data: result,
-      error: null
+      data: result ?? ([] as GetPlacesResponse[]),
     }))
     .catch((err) => ({
-      data: null,
       error: err
     }));
 
@@ -31,11 +26,9 @@ const deletePlace = (id: number) =>
   plantcareApi
     .placesDELETE(id)
     .then((result) => ({
-      data: result,
-      error: null
+      data: result ?? false,
     }))
     .catch((err) => ({
-      data: null,
       error: err
     }));
 
@@ -43,11 +36,9 @@ const createPlace = (request: CreatePlaceCommand) =>
   plantcareApi
     .placesPOST(request)
     .then((result) => ({
-      data: result,
-      error: null
+      data: result ?? false,
     }))
     .catch((err) => ({
-      data: null,
       error: err
     }));
 
@@ -57,16 +48,16 @@ export const PlaceApi = emptyApi.injectEndpoints({
       queryFn: updatePlace,
       invalidatesTags: ['Places']
     }),
-    GetPlaces: build.query<Place[], void>({
-      query: getPlaces,
+    GetPlaces: build.query<GetPlacesResponse[], void>({
+      queryFn: getPlaces,
       providesTags: ['Places']
     }),
     DeletePlaces: build.mutation<boolean, number>({
-      query: deletePlace,
+      queryFn: deletePlace,
       invalidatesTags: ['Places']
     }),
     CreatePlace: build.mutation<boolean, CreatePlaceCommand>({
-      query: createPlace,
+      queryFn: createPlace,
       invalidatesTags: ['Places']
     })
   }),
