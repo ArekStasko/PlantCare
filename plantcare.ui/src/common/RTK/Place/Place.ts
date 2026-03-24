@@ -1,4 +1,8 @@
-import { CreatePlaceCommand, GetPlacesResponse, UpdatePlaceCommand } from "@arekstasko/plantcare-api-client";
+import {
+  CreatePlaceCommand,
+  GetPlacesResponse,
+  UpdatePlaceCommand
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
 
@@ -6,7 +10,7 @@ const updatePlace = async (request: UpdatePlaceCommand) =>
   plantcareApi
     .placesPUT(request)
     .then((result) => ({
-      data: result ?? false,
+      data: result ?? false
     }))
     .catch((err) => ({
       error: err
@@ -16,7 +20,7 @@ const getPlaces = () =>
   plantcareApi
     .placesAll()
     .then((result) => ({
-      data: result ?? ([] as GetPlacesResponse[]),
+      data: result ?? ([] as GetPlacesResponse[])
     }))
     .catch((err) => ({
       error: err
@@ -26,7 +30,7 @@ const deletePlace = (id: number) =>
   plantcareApi
     .placesDELETE(id)
     .then((result) => ({
-      data: result ?? false,
+      data: result ?? false
     }))
     .catch((err) => ({
       error: err
@@ -36,7 +40,7 @@ const createPlace = (request: CreatePlaceCommand) =>
   plantcareApi
     .placesPOST(request)
     .then((result) => ({
-      data: result ?? false,
+      data: result ?? false
     }))
     .catch((err) => ({
       error: err
