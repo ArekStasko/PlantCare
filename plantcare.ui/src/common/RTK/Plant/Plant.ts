@@ -1,5 +1,5 @@
 import emptyApi from '../emptyApi';
-import { CreatePlantCommand } from '@arekstasko/plantcare-api-client';
+import { CreatePlantCommand, GetPlantResponse } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 const createPlant = async (request: CreatePlantCommand) =>
@@ -22,6 +22,26 @@ const deletePlant = async (id: number) =>
       error: err
     }));
 
+const getPlant = async (id: number) =>
+  plantcareApi
+    .plantsGET(id)
+    .then((result) => ({
+      data: result ?? false
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
+const getPlants = async () =>
+  plantcareApi
+    .plantsAll()
+    .then((result) => ({
+      data: result ?? false
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     CreatePlant: build.mutation<boolean, CreatePlantCommand>({
@@ -31,9 +51,22 @@ export const PlantApi = emptyApi.injectEndpoints({
     DeletePlant: build.mutation<boolean, number>({
       queryFn: deletePlant,
       invalidatesTags: ['Plants']
+    }),
+    GetPlant: build.query<GetPlantResponse, number>({
+      queryFn: getPlant,
+      providesTags: ['Plants']
+    }),
+    GetPlants: build.query<GetPlantResponse[], void>({
+      queryFn: getPlants,
+      providesTags: ['Plants']
     })
   }),
   overrideExisting: false
 });
 
-export const { useCreatePlantMutation, useDeletePlantMutation } = PlantApi;
+export const {
+  useCreatePlantMutation,
+  useDeletePlantMutation,
+  useGetPlantQuery,
+  useGetPlantsQuery
+} = PlantApi;
