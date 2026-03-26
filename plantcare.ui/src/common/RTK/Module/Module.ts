@@ -1,28 +1,27 @@
 import plantcareApi from '../../../app/api/plantcareApi';
 import { Module } from '../../models/Module';
-import emptyApi from "../emptyApi";
-import { CreateModuleRequest, GetModuleResponse } from "@arekstasko/plantcare-api-client";
-
+import emptyApi from '../emptyApi';
+import { CreateModuleRequest, GetModuleResponse } from '@arekstasko/plantcare-api-client';
 
 const getModules = async () =>
-plantcareApi
-  .modulesAll()
-  .then((result) => ({
-    data: result,
-  }))
-  .catch((err) => ({
-    error: err
-  }))
+  plantcareApi
+    .modulesAll()
+    .then((result) => ({
+      data: result
+    }))
+    .catch((err) => ({
+      error: err
+    }));
 
 const getModule = async (id: number) =>
   plantcareApi
-  .modulesGET(id)
-  .then((result) => ({
-    data: result
-  }))
-  .catch((err) => ({
-    error: err
-  }))
+    .modulesGET(id)
+    .then((result) => ({
+      data: result
+    }))
+    .catch((err) => ({
+      error: err
+    }));
 
 const createModule = async (request: CreateModuleRequest) =>
   plantcareApi
@@ -32,7 +31,7 @@ const createModule = async (request: CreateModuleRequest) =>
     }))
     .catch((err) => ({
       error: err
-    }))
+    }));
 
 export const ModulesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({

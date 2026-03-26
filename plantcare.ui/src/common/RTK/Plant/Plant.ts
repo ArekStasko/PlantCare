@@ -1,7 +1,11 @@
 import emptyApi from '../emptyApi';
-import { CreatePlantCommand, GetPlantResponse, UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
+import {
+  CreatePlantCommand,
+  GetPlantResponse,
+  UpdatePlantCommand
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
-import { request } from "node:http";
+import { request } from 'node:http';
 
 const createPlant = async (request: CreatePlantCommand) =>
   plantcareApi
@@ -51,7 +55,7 @@ const updatePlant = async (request: UpdatePlantCommand) =>
     }))
     .catch((err) => ({
       error: err
-    }))
+    }));
 
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({

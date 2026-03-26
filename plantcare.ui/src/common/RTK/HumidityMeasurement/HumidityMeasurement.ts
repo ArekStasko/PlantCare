@@ -1,7 +1,7 @@
-import plantcareApi from "../../../app/api/plantcareApi";
-import { HumidityMeasurement } from "../../models/HumidityMeasurement";
-import emptyApi from "../emptyApi";
-import { AverageHumidity } from "@arekstasko/plantcare-api-client";
+import plantcareApi from '../../../app/api/plantcareApi';
+import { HumidityMeasurement } from '../../models/HumidityMeasurement';
+import emptyApi from '../emptyApi';
+import { AverageHumidity } from '@arekstasko/plantcare-api-client';
 
 export class GetHumidityMeasurementsApiParameters {
   moduleId!: number;
@@ -47,4 +47,5 @@ export const HumidityMeasurementsApi = emptyApi.injectEndpoints({
   overrideExisting: false
 });
 
-export const { useGetHumidityMeasurementsQuery, useGetAverageHumidityMeasurementsQuery } = HumidityMeasurementsApi;
+export const { useGetHumidityMeasurementsQuery, useGetAverageHumidityMeasurementsQuery } =
+  HumidityMeasurementsApi;
