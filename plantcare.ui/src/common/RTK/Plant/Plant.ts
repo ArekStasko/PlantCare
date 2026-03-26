@@ -1,6 +1,7 @@
 import emptyApi from '../emptyApi';
-import { CreatePlantCommand, GetPlantResponse } from '@arekstasko/plantcare-api-client';
+import { CreatePlantCommand, GetPlantResponse, UpdatePlantCommand } from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
+import { request } from "node:http";
 
 const createPlant = async (request: CreatePlantCommand) =>
   plantcareApi
@@ -42,6 +43,16 @@ const getPlants = async () =>
       error: err
     }));
 
+const updatePlant = async (request: UpdatePlantCommand) =>
+  plantcareApi
+    .plantsPUT(request)
+    .then((result) => ({
+      data: result ?? false
+    }))
+    .catch((err) => ({
+      error: err
+    }))
+
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     CreatePlant: build.mutation<boolean, CreatePlantCommand>({
@@ -59,6 +70,10 @@ export const PlantApi = emptyApi.injectEndpoints({
     GetPlants: build.query<GetPlantResponse[], void>({
       queryFn: getPlants,
       providesTags: ['Plants']
+    }),
+    UpdatePlant: build.mutation<boolean, UpdatePlantCommand>({
+      queryFn: updatePlant,
+      invalidatesTags: ['Plants', 'Modules']
     })
   }),
   overrideExisting: false
@@ -68,5 +83,6 @@ export const {
   useCreatePlantMutation,
   useDeletePlantMutation,
   useGetPlantQuery,
-  useGetPlantsQuery
+  useGetPlantsQuery,
+  useUpdatePlantQuery
 } = PlantApi;

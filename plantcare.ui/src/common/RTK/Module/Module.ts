@@ -52,4 +52,4 @@ export const ModulesApi = emptyApi.injectEndpoints({
   overrideExisting: false
 });
 
-export const { useGetModulesQuery, useGetModuleQuery } = ModulesApi;
+export const { useGetModulesQuery, useGetModuleQuery, useCreateModuleMutation } = ModulesApi;
