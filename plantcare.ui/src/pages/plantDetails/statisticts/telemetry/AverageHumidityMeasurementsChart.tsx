@@ -6,9 +6,9 @@ import React, { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import dateService from '../../../../common/services/DateService';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
-import { useGetAverageHumidityMeasurementsQuery } from '../../../../common/RTK/getAverageHumidityMeasurements/getAverageHumidityMeasurements';
 import { BarChart } from '@mui/x-charts';
 import StatisticsService from '../../../../common/services/StatisticsService';
+import { useGetAverageHumidityMeasurementsQuery } from '../../../../common/RTK/HumidityMeasurement/HumidityMeasurement';
 
 const enum DateType {
   FROM,

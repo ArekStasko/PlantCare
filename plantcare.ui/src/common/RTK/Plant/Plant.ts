@@ -88,5 +88,5 @@ export const {
   useDeletePlantMutation,
   useGetPlantQuery,
   useGetPlantsQuery,
-  useUpdatePlantQuery
+  useUpdatePlantMutation
 } = PlantApi;

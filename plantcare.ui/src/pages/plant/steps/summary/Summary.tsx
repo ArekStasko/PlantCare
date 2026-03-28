@@ -13,13 +13,15 @@ import Decorative from '../../../../app/images/Decorative.png';
 import Vegetable from '../../../../app/images/Vegetable.png';
 import Fruit from '../../../../app/images/Fruit.png';
 import React, { useEffect, useState } from 'react';
-import { useCreatePlantMutation } from '../../../../common/RTK/createPlant/createPlant';
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import { useNavigate } from 'react-router';
-import { useUpdatePlantMutation } from '../../../../common/RTK/updatePlant/updatePlant';
-import { useGetPlantQuery } from '../../../../common/RTK/getPlant/getPlant';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import {
+  useCreatePlantMutation,
+  useGetPlantQuery,
+  useUpdatePlantMutation
+} from '../../../../common/RTK/Plant/Plant';
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(

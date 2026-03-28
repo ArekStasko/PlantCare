@@ -5,10 +5,10 @@ import { PlantContext, PlantFlowType } from '../../interfaces';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 import { Controller, useForm } from 'react-hook-form';
 import React, { useMemo } from 'react';
-import { useGetModulesQuery } from '../../../../common/RTK/getModules/getModules';
 import styles from './module.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
+import { useGetModulesQuery } from '../../../../common/RTK/Module/Module';
 
 const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: modules, isLoading: modulesLoading } = useGetModulesQuery();
