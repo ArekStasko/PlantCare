@@ -15,9 +15,9 @@ import { ActionsMenuContext } from './interfaces';
 import { ActionType } from '../../common/interfaces';
 import CustomAlert from '../../common/components/customAlert/customAlert';
 import RoutingConstants from '../../app/routing/routingConstants';
-import { useDeletePlaceMutation } from '../../common/RTK/deletePlace/deletePlace';
 import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
 import { PlaceContext, PlaceFlowType } from '../place/interfaces';
+import { useDeletePlaceMutation } from '../../common/RTK/Place/Place';
 
 interface PlaceActionsMenuProps {
   closeDialog: () => void;
