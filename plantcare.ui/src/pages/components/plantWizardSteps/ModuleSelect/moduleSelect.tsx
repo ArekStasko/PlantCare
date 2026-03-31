@@ -2,9 +2,9 @@ import { AlertColor, Box, CircularProgress, InputLabel, MenuItem, Select } from 
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
-import { useGetModulesQuery } from '../../../../common/RTK/getModules/getModules';
 import { Plant } from '../../../../common/models/Plant';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import { useGetModulesQuery } from "../../../../common/RTK/Module/Module";
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;

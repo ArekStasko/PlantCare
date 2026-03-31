@@ -59,23 +59,23 @@ const updatePlant = async (request: UpdatePlantCommand) =>
 
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
-    CreatePlant: build.mutation<boolean, CreatePlantCommand>({
+    createPlant: build.mutation<boolean, CreatePlantCommand>({
       queryFn: createPlant,
       invalidatesTags: ['Plants']
     }),
-    DeletePlant: build.mutation<boolean, number>({
+    deletePlant: build.mutation<boolean, number>({
       queryFn: deletePlant,
       invalidatesTags: ['Plants']
     }),
-    GetPlant: build.query<GetPlantResponse, number>({
+    getPlant: build.query<GetPlantResponse, number>({
       queryFn: getPlant,
       providesTags: ['Plants']
     }),
-    GetPlants: build.query<GetPlantResponse[], void>({
+    getPlants: build.query<GetPlantResponse[], void>({
       queryFn: getPlants,
       providesTags: ['Plants']
     }),
-    UpdatePlant: build.mutation<boolean, UpdatePlantCommand>({
+    updatePlant: build.mutation<boolean, UpdatePlantCommand>({
       queryFn: updatePlant,
       invalidatesTags: ['Plants', 'Modules']
     })

@@ -48,19 +48,19 @@ const createPlace = (request: CreatePlaceCommand) =>
 
 export const PlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
-    UpdatePlace: build.mutation<boolean, UpdatePlaceCommand>({
+    updatePlace: build.mutation<boolean, UpdatePlaceCommand>({
       queryFn: updatePlace,
       invalidatesTags: ['Places']
     }),
-    GetPlaces: build.query<GetPlacesResponse[], void>({
+    getPlaces: build.query<GetPlacesResponse[], void>({
       queryFn: getPlaces,
       providesTags: ['Places']
     }),
-    DeletePlaces: build.mutation<boolean, number>({
+    deletePlace: build.mutation<boolean, number>({
       queryFn: deletePlace,
       invalidatesTags: ['Places']
     }),
-    CreatePlace: build.mutation<boolean, CreatePlaceCommand>({
+    createPlace: build.mutation<boolean, CreatePlaceCommand>({
       queryFn: createPlace,
       invalidatesTags: ['Places']
     })

@@ -1,5 +1,5 @@
 import { Client } from '@arekstasko/plantcare-api-client';
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from "axios";
 import { getToken } from 'identity-provider-client';
 
 export const axiosInstance = axios.create({
@@ -13,7 +13,7 @@ axiosInstance.interceptors.request.use((config) => {
     config.headers = {
       ...config.headers,
       Authorization: `Bearer ${token}`
-    };
+    } as AxiosRequestHeaders;
   }
 
   return config;

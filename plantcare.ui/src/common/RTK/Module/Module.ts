@@ -35,15 +35,15 @@ const createModule = async (request: CreateModuleRequest) =>
 
 export const ModulesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
-    GetModules: build.query<GetModuleResponse[], void>({
+    getModules: build.query<GetModuleResponse[], void>({
       queryFn: getModules,
       providesTags: ['Modules']
     }),
-    GetModule: build.query<GetModuleResponse, number>({
+    getModule: build.query<GetModuleResponse, number>({
       queryFn: getModule,
       providesTags: ['Modules']
     }),
-    CreateModule: build.mutation<boolean, CreateModuleRequest>({
+    createModule: build.mutation<boolean, CreateModuleRequest>({
       queryFn: createModule,
       invalidatesTags: ['Modules']
     })
