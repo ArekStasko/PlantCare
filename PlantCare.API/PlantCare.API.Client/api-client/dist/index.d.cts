@@ -97,6 +97,7 @@ interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
+    error?: string | undefined;
 }
 interface Assembly {
     readonly definedTypes?: TypeInfo[] | undefined;

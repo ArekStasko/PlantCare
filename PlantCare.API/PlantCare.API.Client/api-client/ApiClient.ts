@@ -970,6 +970,7 @@ export interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
+    error?: string | undefined;
 }
 
 export interface Assembly {
