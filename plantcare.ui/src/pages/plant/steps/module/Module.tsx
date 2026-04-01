@@ -68,7 +68,7 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
         ) : (
           <>
             {modules!.filter((m) => m.plant == null).length == 0 ? (
-              <>
+              <>s
                 <CustomAlert
                   type={'error' as AlertColor}
                   message={

@@ -1647,6 +1647,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "isAvailable": {
+            "type": "boolean"
+          },
           "requiredMoistureLevel": {
             "type": "integer",
             "format": "int32",

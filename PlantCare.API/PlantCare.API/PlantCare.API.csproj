@@ -37,6 +37,12 @@
         <SwaggerInputs Include="Controllers/**/*.cs" />
         <SwaggerInputs Include="../PlantCare.Commands/**/*.cs" />
         <SwaggerInputs Include="../PlantCare.Queries/**/*.cs" />
+        <SwaggerInputs Update="..\PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs">
+          <Link>PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs</Link>
+        </SwaggerInputs>
+        <SwaggerInputs Update="..\PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs">
+          <Link>PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs</Link>
+        </SwaggerInputs>
     </ItemGroup>
 
     <Target 
