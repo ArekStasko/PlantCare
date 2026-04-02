@@ -1,4 +1,3 @@
-import { Place } from '../../../common/models/Place';
 import {
   Accordion,
   AccordionDetails,
@@ -14,12 +13,12 @@ import React from 'react';
 import PlantsAccordionDetails from './PlantsAccordionDetails';
 import styles from '../dashboard.styles';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Plant } from '../../../common/models/Plant';
 import PlaceActionsMenu from '../../placeActionsMenu/PlaceActionsMenu';
+import { GetPlacesResponse, GetPlantResponse } from "@arekstasko/plantcare-api-client";
 
 interface PlaceAccordionProps {
-  places: Place[];
-  plants: Plant[];
+  places: GetPlacesResponse[];
+  plants: GetPlantResponse[];
 }
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {

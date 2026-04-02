@@ -30,9 +30,9 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const filteredModules = useMemo(() => {
     if (!modules) return undefined;
     if (wizardController.context.flowType === PlantFlowType.CREATE)
-      return modules.filter((m) => m.plant == null);
+      return modules.filter((m) => m.isAvailable);
     return modules.filter(
-      (m) => m.plant === null || m.id === wizardController.context.currentModule
+      (m) => m.isAvailable || m.id === wizardController.context.currentModule
     );
   }, [modules, wizardController.context.flowType]);
 
@@ -67,7 +67,7 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
           <CircularProgress />
         ) : (
           <>
-            {modules!.filter((m) => m.plant == null).length == 0 ? (
+            {modules!.filter((m) => m.isAvailable).length == 0 ? (
               <>s
                 <CustomAlert
                   type={'error' as AlertColor}

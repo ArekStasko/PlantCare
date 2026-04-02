@@ -21,7 +21,7 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
         <CircularProgress />
       ) : (
         <>
-          {modules!.filter((m) => m.plant == null).length == 0 ? (
+          {modules!.filter((m) => m.isAvailable).length == 0 ? (
             <>
               <CustomAlert
                 type={'error' as AlertColor}
@@ -50,7 +50,7 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
                     labelId="SelectPlantPlace"
                   >
                     {modules!
-                      .filter((m) => m.plant == null)
+                      .filter((m) => m.isAvailable)
                       .map((m) => (
                         <MenuItem value={m.id}>{m.id}</MenuItem>
                       ))}
