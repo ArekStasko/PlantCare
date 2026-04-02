@@ -1178,6 +1178,7 @@ export enum GenericParameterAttributes {
 
 export interface GetModuleResponse {
     id?: number;
+    isAvailable?: boolean;
     requiredMoistureLevel?: number | undefined;
     criticalMoistureLevel?: number | undefined;
     name?: string | undefined;
