@@ -2,7 +2,7 @@ using PlantCare.Domain.Enums;
 
 namespace PlantCare.Queries.Responses.Plants;
 
-public record GetPlantResponse
+public record Plant
 {
     public int Id { get; set; }
     public int PlaceId { get; set; }

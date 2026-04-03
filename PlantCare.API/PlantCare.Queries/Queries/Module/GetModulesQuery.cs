@@ -4,7 +4,7 @@ using PlantCare.Queries.Responses.Module;
 
 namespace PlantCare.Queries.Queries.Module;
 
-public record GetModulesQuery : IRequest<Result<IReadOnlyCollection<GetModuleResponse>>>
+public record GetModulesQuery : IRequest<Result<IReadOnlyCollection<Responses.Module.Module>>>
 {
     public int UserId { get; set; }
 }

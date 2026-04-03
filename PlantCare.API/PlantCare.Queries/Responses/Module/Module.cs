@@ -2,7 +2,7 @@ using PlantCare.Domain.Models.Plant;
 
 namespace PlantCare.Queries.Responses.Module;
 
-public record GetModuleResponse
+public record Module
 {
     public int Id { get; set; }
     public bool isAvailable { get; set; }

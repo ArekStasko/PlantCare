@@ -1,6 +1,6 @@
 namespace PlantCare.Queries.Responses.HumidityMeasurements;
 
-public record GetHumidityMeasurementsResponse
+public record HumidityMeasurement
 {
     public int Humidity { get; set; }
 

@@ -4,7 +4,7 @@ using PlantCare.Queries.Responses.HumidityMeasurements;
 
 namespace PlantCare.Queries.Queries.HumidityMeasurements;
 
-public record GetHumidityMeasurementQuery : IRequest<Result<List<GetHumidityMeasurementsResponse>>>
+public record GetHumidityMeasurementQuery : IRequest<Result<List<HumidityMeasurement>>>
 {
     public int Id { get; set; }
 

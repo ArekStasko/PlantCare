@@ -8,7 +8,7 @@ using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.Queries.QueryHandlers.PlaceQueryHandlers;
 
-public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnlyCollection<GetPlacesResponse>>>
+public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnlyCollection<Place>>>
 {
     private readonly IReadPlaceRepository _repository;
     private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnl
         _logger = logger;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetPlacesResponse>>> Handle(GetPlacesQuery query, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyCollection<Place>>> Handle(GetPlacesQuery query, CancellationToken cancellationToken)
     {
         try
         {
@@ -31,18 +31,18 @@ public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnl
             return place.Match(succ =>
             {
                 _logger.LogInformation("GetPlacesHandler successfully processed the request");
-                IReadOnlyCollection<GetPlacesResponse> places = succ.Select(place => _mapper.Map<GetPlacesResponse>(place)).ToList();
-                return new Result<IReadOnlyCollection<GetPlacesResponse>>(places);
+                IReadOnlyCollection<Place> places = succ.Select(place => _mapper.Map<Place>(place)).ToList();
+                return new Result<IReadOnlyCollection<Place>>(places);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetPlacesHandler request");
-                return new Result<IReadOnlyCollection<GetPlacesResponse>>(err);
+                return new Result<IReadOnlyCollection<Place>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetPlacesHandler: {exception}", e.Message);
-            return new Result<IReadOnlyCollection<GetPlacesResponse>>(e);
+            return new Result<IReadOnlyCollection<Place>>(e);
         }
     }
 }

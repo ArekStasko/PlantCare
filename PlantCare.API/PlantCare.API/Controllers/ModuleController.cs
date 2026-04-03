@@ -35,7 +35,7 @@ public class ModuleController : ControllerAuth
     }
     
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetModuleResponse>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Module>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {
@@ -48,7 +48,7 @@ public class ModuleController : ControllerAuth
     }
     
     [HttpGet("{id:int}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetModuleResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Module))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetModuleById(int id)
     {
