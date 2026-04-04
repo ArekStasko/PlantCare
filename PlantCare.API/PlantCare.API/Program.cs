@@ -35,7 +35,10 @@ builder.WebHost.UseKestrel();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.CustomSchemaIds(type => type.FullName);
+});
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddIdpHttpClient(idpLocalUrl);

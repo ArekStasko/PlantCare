@@ -294,7 +294,7 @@ export class Client {
     /**
      * @return OK
      */
-    modulesAll( cancelToken?: CancelToken): Promise<GetModuleResponse[]> {
+    modulesAll( cancelToken?: CancelToken): Promise<Module[]> {
         let url_ = this.baseUrl + "/api/modules";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -318,7 +318,7 @@ export class Client {
         });
     }
 
-    protected processModulesAll(response: AxiosResponse): Promise<GetModuleResponse[]> {
+    protected processModulesAll(response: AxiosResponse): Promise<Module[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -333,7 +333,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<GetModuleResponse[]>(result200);
+            return Promise.resolve<Module[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -346,13 +346,13 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<GetModuleResponse[]>(null as any);
+        return Promise.resolve<Module[]>(null as any);
     }
 
     /**
      * @return OK
      */
-    modulesGET(id: number, cancelToken?: CancelToken): Promise<GetModuleResponse> {
+    modulesGET(id: number, cancelToken?: CancelToken): Promise<Module> {
         let url_ = this.baseUrl + "/api/modules/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -379,7 +379,7 @@ export class Client {
         });
     }
 
-    protected processModulesGET(response: AxiosResponse): Promise<GetModuleResponse> {
+    protected processModulesGET(response: AxiosResponse): Promise<Module> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -394,7 +394,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<GetModuleResponse>(result200);
+            return Promise.resolve<Module>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -407,7 +407,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<GetModuleResponse>(null as any);
+        return Promise.resolve<Module>(null as any);
     }
 
     /**
@@ -602,7 +602,7 @@ export class Client {
     /**
      * @return OK
      */
-    placesAll( cancelToken?: CancelToken): Promise<GetPlacesResponse[]> {
+    placesAll( cancelToken?: CancelToken): Promise<Place[]> {
         let url_ = this.baseUrl + "/api/places";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -626,7 +626,7 @@ export class Client {
         });
     }
 
-    protected processPlacesAll(response: AxiosResponse): Promise<GetPlacesResponse[]> {
+    protected processPlacesAll(response: AxiosResponse): Promise<Place[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -641,7 +641,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<GetPlacesResponse[]>(result200);
+            return Promise.resolve<Place[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -654,7 +654,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<GetPlacesResponse[]>(null as any);
+        return Promise.resolve<Place[]>(null as any);
     }
 
     /**
@@ -849,7 +849,7 @@ export class Client {
     /**
      * @return OK
      */
-    plantsAll( cancelToken?: CancelToken): Promise<GetPlantResponse[]> {
+    plantsAll( cancelToken?: CancelToken): Promise<Plant[]> {
         let url_ = this.baseUrl + "/api/plants";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -873,7 +873,7 @@ export class Client {
         });
     }
 
-    protected processPlantsAll(response: AxiosResponse): Promise<GetPlantResponse[]> {
+    protected processPlantsAll(response: AxiosResponse): Promise<Plant[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -888,7 +888,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<GetPlantResponse[]>(result200);
+            return Promise.resolve<Plant[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -901,13 +901,13 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<GetPlantResponse[]>(null as any);
+        return Promise.resolve<Plant[]>(null as any);
     }
 
     /**
      * @return OK
      */
-    plantsGET(id: number, cancelToken?: CancelToken): Promise<GetPlantResponse> {
+    plantsGET(id: number, cancelToken?: CancelToken): Promise<Plant> {
         let url_ = this.baseUrl + "/api/plants/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -934,7 +934,7 @@ export class Client {
         });
     }
 
-    protected processPlantsGET(response: AxiosResponse): Promise<GetPlantResponse> {
+    protected processPlantsGET(response: AxiosResponse): Promise<Plant> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -949,7 +949,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<GetPlantResponse>(result200);
+            return Promise.resolve<Plant>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -962,7 +962,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<GetPlantResponse>(null as any);
+        return Promise.resolve<Plant>(null as any);
     }
 }
 
@@ -971,6 +971,98 @@ export interface AddHumidityMeasurementCommand {
     humidity?: number;
     measurementDate?: Date;
     error?: string | undefined;
+}
+
+export interface CreatePlaceCommand {
+    name?: string | undefined;
+    userId?: number | undefined;
+}
+
+export interface UpdatePlaceCommand {
+    id?: number;
+    userId?: number | undefined;
+    name?: string | undefined;
+}
+
+export interface CreatePlantCommand {
+    name?: string | undefined;
+    userId?: number;
+    description?: string | undefined;
+    placeId?: number;
+    type?: PlantType;
+    moduleId?: number | undefined;
+}
+
+export interface UpdatePlantCommand {
+    id?: number;
+    userId?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+    placeId?: number;
+    type?: PlantType;
+    moduleId?: number | undefined;
+}
+
+export interface AverageHumidity {
+    date?: string | undefined;
+    humidity?: number;
+}
+
+export interface CreateModuleRequest {
+    name?: string | undefined;
+}
+
+export enum PlantType {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+}
+
+export interface IHumidityMeasurement {
+    id?: number;
+    moduleId?: number;
+    humidity?: number;
+    measurementDate?: Date;
+}
+
+export interface Module {
+    id?: number;
+    isAvailable?: boolean;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
+
+export interface Place {
+    id?: number;
+    name?: string | undefined;
+}
+
+export interface Plant {
+    id?: number;
+    placeId?: number;
+    moduleId?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+    type?: PlantType;
+}
+
+export interface Exception {
+    targetSite?: MethodBase;
+    readonly message?: string | undefined;
+    readonly data?: { [key: string]: any; } | undefined;
+    innerException?: Exception;
+    helpLink?: string | undefined;
+    source?: string | undefined;
+    hResult?: number;
+    readonly stackTrace?: string | undefined;
+}
+
+export interface IntPtr {
+}
+
+export interface ModuleHandle {
+    readonly mdStreamVersion?: number;
 }
 
 export interface Assembly {
@@ -987,16 +1079,11 @@ export interface Assembly {
     readonly isFullyTrusted?: boolean;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly escapedCodeBase?: string | undefined;
-    manifestModule?: Module;
-    readonly modules?: Module[] | undefined;
+    manifestModule?: Module2;
+    readonly modules?: Module2[] | undefined;
     readonly globalAssemblyCache?: boolean;
     readonly hostContext?: number;
     securityRuleSet?: SecurityRuleSet;
-}
-
-export interface AverageHumidity {
-    date?: string | undefined;
-    humidity?: number;
 }
 
 export enum CallingConventions {
@@ -1011,7 +1098,7 @@ export interface ConstructorInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1040,24 +1127,6 @@ export interface ConstructorInfo {
     readonly isSecuritySafeCritical?: boolean;
     readonly isSecurityTransparent?: boolean;
     memberType?: MemberTypes;
-}
-
-export interface CreateModuleRequest {
-    name?: string | undefined;
-}
-
-export interface CreatePlaceCommand {
-    name?: string | undefined;
-    userId?: number | undefined;
-}
-
-export interface CreatePlantCommand {
-    name?: string | undefined;
-    userId?: number;
-    description?: string | undefined;
-    placeId?: number;
-    type?: PlantType;
-    moduleId?: number | undefined;
 }
 
 export interface CustomAttributeData {
@@ -1089,7 +1158,7 @@ export interface EventInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1101,17 +1170,6 @@ export interface EventInfo {
     raiseMethod?: MethodInfo;
     readonly isMulticast?: boolean;
     eventHandlerType?: Type;
-}
-
-export interface Exception {
-    targetSite?: MethodBase;
-    readonly message?: string | undefined;
-    readonly data?: { [key: string]: any; } | undefined;
-    innerException?: Exception;
-    helpLink?: string | undefined;
-    source?: string | undefined;
-    hResult?: number;
-    readonly stackTrace?: string | undefined;
 }
 
 export enum FieldAttributes {
@@ -1140,7 +1198,7 @@ export interface FieldInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1176,45 +1234,7 @@ export enum GenericParameterAttributes {
     _28 = 28,
 }
 
-export interface GetModuleResponse {
-    id?: number;
-    isAvailable?: boolean;
-    requiredMoistureLevel?: number | undefined;
-    criticalMoistureLevel?: number | undefined;
-    name?: string | undefined;
-}
-
-export interface GetPlacesResponse {
-    id?: number;
-    name?: string | undefined;
-}
-
-export interface GetPlantResponse {
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
-}
-
 export interface ICustomAttributeProvider {
-}
-
-export interface IHumidityMeasurement {
-    id?: number;
-    moduleId?: number;
-    humidity?: number;
-    measurementDate?: Date;
-}
-
-export interface IntPtr {
-}
-
-export enum LayoutKind {
-    _0 = 0,
-    _2 = 2,
-    _3 = 3,
 }
 
 export interface MemberInfo {
@@ -1222,7 +1242,7 @@ export interface MemberInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1270,7 +1290,7 @@ export interface MethodBase {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1321,7 +1341,7 @@ export interface MethodInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1355,7 +1375,7 @@ export interface MethodInfo {
     returnTypeCustomAttributes?: ICustomAttributeProvider;
 }
 
-export interface Module {
+export interface Module2 {
     assembly?: Assembly;
     readonly fullyQualifiedName?: string | undefined;
     readonly name?: string | undefined;
@@ -1365,10 +1385,6 @@ export interface Module {
     moduleHandle?: ModuleHandle;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly metadataToken?: number;
-}
-
-export interface ModuleHandle {
-    readonly mdStreamVersion?: number;
 }
 
 export enum ParameterAttributes {
@@ -1403,12 +1419,6 @@ export interface ParameterInfo {
     readonly metadataToken?: number;
 }
 
-export enum PlantType {
-    _0 = 0,
-    _1 = 1,
-    _2 = 2,
-}
-
 export enum PropertyAttributes {
     _0 = 0,
     _512 = 512,
@@ -1424,7 +1434,7 @@ export interface PropertyInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -1436,105 +1446,6 @@ export interface PropertyInfo {
     readonly canWrite?: boolean;
     getMethod?: MethodInfo;
     setMethod?: MethodInfo;
-}
-
-export interface RuntimeFieldHandle {
-    value?: IntPtr;
-}
-
-export interface RuntimeMethodHandle {
-    value?: IntPtr;
-}
-
-export interface RuntimeTypeHandle {
-    value?: IntPtr;
-}
-
-export enum SecurityRuleSet {
-    _0 = 0,
-    _1 = 1,
-    _2 = 2,
-}
-
-export interface StructLayoutAttribute {
-    readonly typeId?: any | undefined;
-    value?: LayoutKind;
-}
-
-export interface Type {
-    readonly name?: string | undefined;
-    readonly customAttributes?: CustomAttributeData[] | undefined;
-    readonly isCollectible?: boolean;
-    readonly metadataToken?: number;
-    readonly isInterface?: boolean;
-    memberType?: MemberTypes;
-    readonly namespace?: string | undefined;
-    readonly assemblyQualifiedName?: string | undefined;
-    readonly fullName?: string | undefined;
-    assembly?: Assembly;
-    module?: Module;
-    readonly isNested?: boolean;
-    declaringType?: Type;
-    declaringMethod?: MethodBase;
-    reflectedType?: Type;
-    underlyingSystemType?: Type;
-    readonly isTypeDefinition?: boolean;
-    readonly isArray?: boolean;
-    readonly isByRef?: boolean;
-    readonly isPointer?: boolean;
-    readonly isConstructedGenericType?: boolean;
-    readonly isGenericParameter?: boolean;
-    readonly isGenericTypeParameter?: boolean;
-    readonly isGenericMethodParameter?: boolean;
-    readonly isGenericType?: boolean;
-    readonly isGenericTypeDefinition?: boolean;
-    readonly isSZArray?: boolean;
-    readonly isVariableBoundArray?: boolean;
-    readonly isByRefLike?: boolean;
-    readonly isFunctionPointer?: boolean;
-    readonly isUnmanagedFunctionPointer?: boolean;
-    readonly hasElementType?: boolean;
-    readonly genericTypeArguments?: Type[] | undefined;
-    readonly genericParameterPosition?: number;
-    genericParameterAttributes?: GenericParameterAttributes;
-    attributes?: TypeAttributes;
-    readonly isAbstract?: boolean;
-    readonly isImport?: boolean;
-    readonly isSealed?: boolean;
-    readonly isSpecialName?: boolean;
-    readonly isClass?: boolean;
-    readonly isNestedAssembly?: boolean;
-    readonly isNestedFamANDAssem?: boolean;
-    readonly isNestedFamily?: boolean;
-    readonly isNestedFamORAssem?: boolean;
-    readonly isNestedPrivate?: boolean;
-    readonly isNestedPublic?: boolean;
-    readonly isNotPublic?: boolean;
-    readonly isPublic?: boolean;
-    readonly isAutoLayout?: boolean;
-    readonly isExplicitLayout?: boolean;
-    readonly isLayoutSequential?: boolean;
-    readonly isAnsiClass?: boolean;
-    readonly isAutoClass?: boolean;
-    readonly isUnicodeClass?: boolean;
-    readonly isCOMObject?: boolean;
-    readonly isContextful?: boolean;
-    readonly isEnum?: boolean;
-    readonly isMarshalByRef?: boolean;
-    readonly isPrimitive?: boolean;
-    readonly isValueType?: boolean;
-    readonly isSignatureType?: boolean;
-    readonly isSecurityCritical?: boolean;
-    readonly isSecuritySafeCritical?: boolean;
-    readonly isSecurityTransparent?: boolean;
-    structLayoutAttribute?: StructLayoutAttribute;
-    typeInitializer?: ConstructorInfo;
-    typeHandle?: RuntimeTypeHandle;
-    readonly guid?: string;
-    baseType?: Type;
-    readonly isSerializable?: boolean;
-    readonly containsGenericParameters?: boolean;
-    readonly isVisible?: boolean;
 }
 
 export enum TypeAttributes {
@@ -1577,7 +1488,7 @@ export interface TypeInfo {
     readonly assemblyQualifiedName?: string | undefined;
     readonly fullName?: string | undefined;
     assembly?: Assembly;
-    module?: Module;
+    module?: Module2;
     readonly isNested?: boolean;
     declaringType?: Type;
     declaringMethod?: MethodBase;
@@ -1651,20 +1562,109 @@ export interface TypeInfo {
     readonly implementedInterfaces?: Type[] | undefined;
 }
 
-export interface UpdatePlaceCommand {
-    id?: number;
-    userId?: number | undefined;
-    name?: string | undefined;
+export enum LayoutKind {
+    _0 = 0,
+    _2 = 2,
+    _3 = 3,
 }
 
-export interface UpdatePlantCommand {
-    id?: number;
-    userId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    placeId?: number;
-    type?: PlantType;
-    moduleId?: number | undefined;
+export interface StructLayoutAttribute {
+    readonly typeId?: any | undefined;
+    value?: LayoutKind;
+}
+
+export interface RuntimeFieldHandle {
+    value?: IntPtr;
+}
+
+export interface RuntimeMethodHandle {
+    value?: IntPtr;
+}
+
+export interface RuntimeTypeHandle {
+    value?: IntPtr;
+}
+
+export enum SecurityRuleSet {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+}
+
+export interface Type {
+    readonly name?: string | undefined;
+    readonly customAttributes?: CustomAttributeData[] | undefined;
+    readonly isCollectible?: boolean;
+    readonly metadataToken?: number;
+    readonly isInterface?: boolean;
+    memberType?: MemberTypes;
+    readonly namespace?: string | undefined;
+    readonly assemblyQualifiedName?: string | undefined;
+    readonly fullName?: string | undefined;
+    assembly?: Assembly;
+    module?: Module2;
+    readonly isNested?: boolean;
+    declaringType?: Type;
+    declaringMethod?: MethodBase;
+    reflectedType?: Type;
+    underlyingSystemType?: Type;
+    readonly isTypeDefinition?: boolean;
+    readonly isArray?: boolean;
+    readonly isByRef?: boolean;
+    readonly isPointer?: boolean;
+    readonly isConstructedGenericType?: boolean;
+    readonly isGenericParameter?: boolean;
+    readonly isGenericTypeParameter?: boolean;
+    readonly isGenericMethodParameter?: boolean;
+    readonly isGenericType?: boolean;
+    readonly isGenericTypeDefinition?: boolean;
+    readonly isSZArray?: boolean;
+    readonly isVariableBoundArray?: boolean;
+    readonly isByRefLike?: boolean;
+    readonly isFunctionPointer?: boolean;
+    readonly isUnmanagedFunctionPointer?: boolean;
+    readonly hasElementType?: boolean;
+    readonly genericTypeArguments?: Type[] | undefined;
+    readonly genericParameterPosition?: number;
+    genericParameterAttributes?: GenericParameterAttributes;
+    attributes?: TypeAttributes;
+    readonly isAbstract?: boolean;
+    readonly isImport?: boolean;
+    readonly isSealed?: boolean;
+    readonly isSpecialName?: boolean;
+    readonly isClass?: boolean;
+    readonly isNestedAssembly?: boolean;
+    readonly isNestedFamANDAssem?: boolean;
+    readonly isNestedFamily?: boolean;
+    readonly isNestedFamORAssem?: boolean;
+    readonly isNestedPrivate?: boolean;
+    readonly isNestedPublic?: boolean;
+    readonly isNotPublic?: boolean;
+    readonly isPublic?: boolean;
+    readonly isAutoLayout?: boolean;
+    readonly isExplicitLayout?: boolean;
+    readonly isLayoutSequential?: boolean;
+    readonly isAnsiClass?: boolean;
+    readonly isAutoClass?: boolean;
+    readonly isUnicodeClass?: boolean;
+    readonly isCOMObject?: boolean;
+    readonly isContextful?: boolean;
+    readonly isEnum?: boolean;
+    readonly isMarshalByRef?: boolean;
+    readonly isPrimitive?: boolean;
+    readonly isValueType?: boolean;
+    readonly isSignatureType?: boolean;
+    readonly isSecurityCritical?: boolean;
+    readonly isSecuritySafeCritical?: boolean;
+    readonly isSecurityTransparent?: boolean;
+    structLayoutAttribute?: StructLayoutAttribute;
+    typeInitializer?: ConstructorInfo;
+    typeHandle?: RuntimeTypeHandle;
+    readonly guid?: string;
+    baseType?: Type;
+    readonly isSerializable?: boolean;
+    readonly containsGenericParameters?: boolean;
+    readonly isVisible?: boolean;
 }
 
 export class ApiException extends Error {

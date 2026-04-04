@@ -1159,6 +1159,12 @@ var Client = /*#__PURE__*/ function() {
     ]);
     return Client;
 }();
+var PlantType = /* @__PURE__ */ function(PlantType2) {
+    PlantType2[PlantType2["_0"] = 0] = "_0";
+    PlantType2[PlantType2["_1"] = 1] = "_1";
+    PlantType2[PlantType2["_2"] = 2] = "_2";
+    return PlantType2;
+}(PlantType || {});
 var CallingConventions = /* @__PURE__ */ function(CallingConventions2) {
     CallingConventions2[CallingConventions2["_1"] = 1] = "_1";
     CallingConventions2[CallingConventions2["_2"] = 2] = "_2";
@@ -1206,12 +1212,6 @@ var GenericParameterAttributes = /* @__PURE__ */ function(GenericParameterAttrib
     GenericParameterAttributes2[GenericParameterAttributes2["_28"] = 28] = "_28";
     return GenericParameterAttributes2;
 }(GenericParameterAttributes || {});
-var LayoutKind = /* @__PURE__ */ function(LayoutKind2) {
-    LayoutKind2[LayoutKind2["_0"] = 0] = "_0";
-    LayoutKind2[LayoutKind2["_2"] = 2] = "_2";
-    LayoutKind2[LayoutKind2["_3"] = 3] = "_3";
-    return LayoutKind2;
-}(LayoutKind || {});
 var MemberTypes = /* @__PURE__ */ function(MemberTypes2) {
     MemberTypes2[MemberTypes2["_1"] = 1] = "_1";
     MemberTypes2[MemberTypes2["_2"] = 2] = "_2";
@@ -1280,12 +1280,6 @@ var ParameterAttributes = /* @__PURE__ */ function(ParameterAttributes2) {
     ParameterAttributes2[ParameterAttributes2["_61440"] = 61440] = "_61440";
     return ParameterAttributes2;
 }(ParameterAttributes || {});
-var PlantType = /* @__PURE__ */ function(PlantType2) {
-    PlantType2[PlantType2["_0"] = 0] = "_0";
-    PlantType2[PlantType2["_1"] = 1] = "_1";
-    PlantType2[PlantType2["_2"] = 2] = "_2";
-    return PlantType2;
-}(PlantType || {});
 var PropertyAttributes = /* @__PURE__ */ function(PropertyAttributes2) {
     PropertyAttributes2[PropertyAttributes2["_0"] = 0] = "_0";
     PropertyAttributes2[PropertyAttributes2["_512"] = 512] = "_512";
@@ -1297,12 +1291,6 @@ var PropertyAttributes = /* @__PURE__ */ function(PropertyAttributes2) {
     PropertyAttributes2[PropertyAttributes2["_62464"] = 62464] = "_62464";
     return PropertyAttributes2;
 }(PropertyAttributes || {});
-var SecurityRuleSet = /* @__PURE__ */ function(SecurityRuleSet2) {
-    SecurityRuleSet2[SecurityRuleSet2["_0"] = 0] = "_0";
-    SecurityRuleSet2[SecurityRuleSet2["_1"] = 1] = "_1";
-    SecurityRuleSet2[SecurityRuleSet2["_2"] = 2] = "_2";
-    return SecurityRuleSet2;
-}(SecurityRuleSet || {});
 var TypeAttributes = /* @__PURE__ */ function(TypeAttributes2) {
     TypeAttributes2[TypeAttributes2["_0"] = 0] = "_0";
     TypeAttributes2[TypeAttributes2["_1"] = 1] = "_1";
@@ -1332,6 +1320,18 @@ var TypeAttributes = /* @__PURE__ */ function(TypeAttributes2) {
     TypeAttributes2[TypeAttributes2["_12582912"] = 12582912] = "_12582912";
     return TypeAttributes2;
 }(TypeAttributes || {});
+var LayoutKind = /* @__PURE__ */ function(LayoutKind2) {
+    LayoutKind2[LayoutKind2["_0"] = 0] = "_0";
+    LayoutKind2[LayoutKind2["_2"] = 2] = "_2";
+    LayoutKind2[LayoutKind2["_3"] = 3] = "_3";
+    return LayoutKind2;
+}(LayoutKind || {});
+var SecurityRuleSet = /* @__PURE__ */ function(SecurityRuleSet2) {
+    SecurityRuleSet2[SecurityRuleSet2["_0"] = 0] = "_0";
+    SecurityRuleSet2[SecurityRuleSet2["_1"] = 1] = "_1";
+    SecurityRuleSet2[SecurityRuleSet2["_2"] = 2] = "_2";
+    return SecurityRuleSet2;
+}(SecurityRuleSet || {});
 var ApiException = /*#__PURE__*/ function(Error1) {
     _inherits(ApiException, Error1);
     function ApiException(message, status, response, headers, result) {
