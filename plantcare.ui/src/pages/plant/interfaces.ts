@@ -1,4 +1,4 @@
-import { PlantType } from '../../common/models/plantTypes';
+import { PlantType } from "@arekstasko/plantcare-api-client";
 
 export enum PlantFlowType {
   UPDATE = 'UPDATE',

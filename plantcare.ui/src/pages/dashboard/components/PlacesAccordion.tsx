@@ -14,18 +14,19 @@ import PlantsAccordionDetails from './PlantsAccordionDetails';
 import styles from '../dashboard.styles';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import PlaceActionsMenu from '../../placeActionsMenu/PlaceActionsMenu';
-import { GetPlacesResponse, GetPlantResponse } from "@arekstasko/plantcare-api-client";
+import { Place, Plant } from "@arekstasko/plantcare-api-client";
 
 interface PlaceAccordionProps {
-  places: GetPlacesResponse[];
-  plants: GetPlantResponse[];
+  places: Place[];
+  plants: Plant[];
 }
 
 export const PlacesAccordion = (props: PlaceAccordionProps) => {
   const [currentAccordion, setCurrentAccordion] = React.useState<number>();
   const [openPlaceId, setOpenPlaceId] = React.useState<number>();
 
-  const filterPlantsByPlaceId = (placeId: number) => {
+  const filterPlantsByPlaceId = (placeId?: number) => {
+    if(!placeId) return props.plants;
     return props.plants.filter((p) => p.placeId === placeId);
   };
 

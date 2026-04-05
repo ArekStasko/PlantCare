@@ -1,7 +1,6 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { Module } from '../../models/Module';
 import emptyApi from '../emptyApi';
-import { CreateModuleRequest, GetModuleResponse } from '@arekstasko/plantcare-api-client';
+import { CreateModuleRequest, Module } from "@arekstasko/plantcare-api-client";
 
 const getModules = async () =>
   plantcareApi
@@ -35,11 +34,11 @@ const createModule = async (request: CreateModuleRequest) =>
 
 export const ModulesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
-    getModules: build.query<GetModuleResponse[], void>({
+    getModules: build.query<Module[], void>({
       queryFn: getModules,
       providesTags: ['Modules']
     }),
-    getModule: build.query<GetModuleResponse, number>({
+    getModule: build.query<Module, number>({
       queryFn: getModule,
       providesTags: ['Modules']
     }),

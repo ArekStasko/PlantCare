@@ -32,7 +32,7 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
     if (wizardController.context.flowType === PlantFlowType.CREATE)
       return modules.filter((m) => m.isAvailable);
     return modules.filter(
-      (m) => m.isAvailable || m.id === wizardController.context.currentModule
+      (m) => m.isAvailable || m.id?.toString() === wizardController.context.currentModule
     );
   }, [modules, wizardController.context.flowType]);
 
@@ -43,7 +43,7 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
           wizardController.updateContext({
             ...wizardController.context,
             module: getValues('module'),
-            moduleName: modules?.find((m) => m.id === getValues('module'))?.name
+            moduleName: modules?.find((m) => m.id?.toString() === getValues('module'))?.name
           });
           wizardController.goToNextStep();
         },

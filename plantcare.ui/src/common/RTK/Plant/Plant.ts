@@ -1,11 +1,10 @@
 import emptyApi from '../emptyApi';
 import {
   CreatePlantCommand,
-  GetPlantResponse,
+  Plant,
   UpdatePlantCommand
-} from '@arekstasko/plantcare-api-client';
+} from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
-import { request } from 'node:http';
 
 const createPlant = async (request: CreatePlantCommand) =>
   plantcareApi
@@ -67,11 +66,11 @@ export const PlantApi = emptyApi.injectEndpoints({
       queryFn: deletePlant,
       invalidatesTags: ['Plants']
     }),
-    getPlant: build.query<GetPlantResponse, number>({
+    getPlant: build.query<Plant, number>({
       queryFn: getPlant,
       providesTags: ['Plants']
     }),
-    getPlants: build.query<GetPlantResponse[], void>({
+    getPlants: build.query<Plant[], void>({
       queryFn: getPlants,
       providesTags: ['Plants']
     }),

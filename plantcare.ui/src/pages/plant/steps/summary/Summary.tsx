@@ -25,7 +25,7 @@ import {
 
 const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: plant, isLoading: isGetPlantLoading } = useGetPlantQuery(
-    wizardController.context.plantId?.toString()!,
+    wizardController.context.plantId!,
     { skip: !wizardController.context.plantId }
   );
   const [isDataNoChanged, setIsDataNoChanged] = useState<boolean>(false);

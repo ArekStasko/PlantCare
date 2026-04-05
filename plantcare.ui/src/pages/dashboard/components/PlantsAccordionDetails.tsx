@@ -2,7 +2,6 @@ import { AccordionDetails, Box, IconButton, Tooltip, Typography } from '@mui/mat
 import React from 'react';
 import { useNavigate } from 'react-router';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
-import { PlantType } from '../../../common/models/plantTypes';
 import Decorative from '../../../app/images/Decorative.png';
 import EditIcon from '@mui/icons-material/Edit';
 import Fruit from '../../../app/images/Fruit.png';
@@ -10,8 +9,8 @@ import Vegetable from '../../../app/images/Vegetable.png';
 import { ShrinkText } from '../../../common/services/TextService';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
-import { Plant } from '../../../common/models/Plant';
 import PlantActionsMenu from '../../plantActionsMenu/PlantActionsMenu';
+import { Plant, PlantType } from "@arekstasko/plantcare-api-client";
 
 interface PlantsAccordionDetailsProps {
   plants: Plant[];
@@ -21,14 +20,16 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
   const navigate = useNavigate();
   const [openPlantId, setOpenPlantId] = React.useState<number>();
 
-  const getImage = (plantType: PlantType) => {
+  const getImage = (plantType?: PlantType) => {
     switch (plantType) {
-      case PlantType.Decorative:
+      case PlantType._0:
         return Decorative;
-      case PlantType.Fruit:
+      case PlantType._1:
         return Fruit;
-      case PlantType.Vegetable:
+      case PlantType._2:
         return Vegetable;
+      default:
+        return 'Not Specified'
     }
   };
 
@@ -72,7 +73,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
                 <InsertChartIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title={PlantType[plant.type]} arrow>
+            <Tooltip title={plant.type ? PlantType[plant.type] : 'Not Specified'} arrow>
               <Box
                 component="img"
                 sx={{

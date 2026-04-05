@@ -1,8 +1,7 @@
 import {
-  CreatePlaceCommand,
-  GetPlacesResponse,
+  CreatePlaceCommand, Place,
   UpdatePlaceCommand
-} from '@arekstasko/plantcare-api-client';
+} from "@arekstasko/plantcare-api-client";
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
 
@@ -20,7 +19,7 @@ const getPlaces = () =>
   plantcareApi
     .placesAll()
     .then((result) => ({
-      data: result ?? ([] as GetPlacesResponse[])
+      data: result ?? ([] as Place[])
     }))
     .catch((err) => ({
       error: err
@@ -52,7 +51,7 @@ export const PlaceApi = emptyApi.injectEndpoints({
       queryFn: updatePlace,
       invalidatesTags: ['Places']
     }),
-    getPlaces: build.query<GetPlacesResponse[], void>({
+    getPlaces: build.query<Place[], void>({
       queryFn: getPlaces,
       providesTags: ['Places']
     }),

@@ -3,7 +3,6 @@ import { Box, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/m
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { PlantContext } from '../../interfaces';
 import { Controller, useForm } from 'react-hook-form';
-import { PlantType } from '../../../../common/models/plantTypes';
 import Vegetable from '../../../../app/images/Vegetable.png';
 import Fruit from '../../../../app/images/Fruit.png';
 import Decorative from '../../../../app/images/Decorative.png';
@@ -11,6 +10,7 @@ import React from 'react';
 import styles from './details.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
+import { PlantType } from "@arekstasko/plantcare-api-client";
 
 const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const methods = useForm({
@@ -94,7 +94,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                 error={!!errors.plantType}
                 labelId="SelectType"
               >
-                <MenuItem value={PlantType.Vegetable}>
+                <MenuItem value={PlantType._0}>
                   <Box sx={styles.option}>
                     <Typography>Vegetable</Typography>
                     <Box
@@ -111,7 +111,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                     />
                   </Box>
                 </MenuItem>
-                <MenuItem value={PlantType.Fruit}>
+                <MenuItem value={PlantType._1}>
                   <Box sx={styles.option}>
                     <Typography>Fruit</Typography>
                     <Box
@@ -128,7 +128,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                     />
                   </Box>
                 </MenuItem>
-                <MenuItem value={PlantType.Decorative}>
+                <MenuItem value={PlantType._2}>
                   <Box sx={styles.option}>
                     <Typography>Decorative</Typography>
                     <Box
