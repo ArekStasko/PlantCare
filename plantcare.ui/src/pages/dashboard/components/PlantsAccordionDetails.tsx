@@ -10,7 +10,7 @@ import { ShrinkText } from '../../../common/services/TextService';
 import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import PlantActionsMenu from '../../plantActionsMenu/PlantActionsMenu';
-import { Plant, PlantType } from "@arekstasko/plantcare-api-client";
+import { Plant, PlantType } from '@arekstasko/plantcare-api-client';
 
 interface PlantsAccordionDetailsProps {
   plants: Plant[];
@@ -29,7 +29,7 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
       case PlantType._2:
         return Vegetable;
       default:
-        return 'Not Specified'
+        return 'Not Specified';
     }
   };
 

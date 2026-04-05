@@ -1,7 +1,4 @@
-import {
-  CreatePlaceCommand, Place,
-  UpdatePlaceCommand
-} from "@arekstasko/plantcare-api-client";
+import { CreatePlaceCommand, Place, UpdatePlaceCommand } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
 

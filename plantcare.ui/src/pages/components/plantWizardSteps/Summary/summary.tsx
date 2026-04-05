@@ -4,7 +4,7 @@ import styles from './summary.styles';
 import { useFormContext } from 'react-hook-form';
 import { ShrinkText } from '../../../../common/services/TextService';
 import { PlantType } from '../../../../common/models/plantTypes';
-import { useGetPlacesQuery } from "../../../../common/RTK/Place/Place";
+import { useGetPlacesQuery } from '../../../../common/RTK/Place/Place';
 
 export const Summary = () => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();

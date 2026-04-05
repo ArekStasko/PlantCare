@@ -4,7 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
 import { Plant } from '../../../../common/models/Plant';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
-import { useGetModulesQuery } from "../../../../common/RTK/Module/Module";
+import { useGetModulesQuery } from '../../../../common/RTK/Module/Module';
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;

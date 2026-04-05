@@ -1,9 +1,5 @@
 import emptyApi from '../emptyApi';
-import {
-  CreatePlantCommand,
-  Plant,
-  UpdatePlantCommand
-} from "@arekstasko/plantcare-api-client";
+import { CreatePlantCommand, Plant, UpdatePlantCommand } from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 const createPlant = async (request: CreatePlantCommand) =>

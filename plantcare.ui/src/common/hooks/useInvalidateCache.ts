@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import emptyApi from "../RTK/emptyApi";
+import emptyApi from '../RTK/emptyApi';
 
 const useInvalidateCache = () => {
   const dispatch = useDispatch();

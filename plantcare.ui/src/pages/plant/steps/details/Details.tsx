@@ -10,7 +10,7 @@ import React from 'react';
 import styles from './details.styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
-import { PlantType } from "@arekstasko/plantcare-api-client";
+import { PlantType } from '@arekstasko/plantcare-api-client';
 
 const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const methods = useForm({

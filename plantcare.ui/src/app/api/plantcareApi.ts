@@ -1,5 +1,5 @@
 import { Client } from '@arekstasko/plantcare-api-client';
-import axios, { AxiosRequestHeaders } from "axios";
+import axios, { AxiosRequestHeaders } from 'axios';
 import { getToken } from 'identity-provider-client';
 
 export const axiosInstance = axios.create({

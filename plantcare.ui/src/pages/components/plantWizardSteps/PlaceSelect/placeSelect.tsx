@@ -3,7 +3,7 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './placeSelect.styles';
 import { Plant } from '../../../../common/models/Plant';
-import { useGetPlacesQuery } from "../../../../common/RTK/Place/Place";
+import { useGetPlacesQuery } from '../../../../common/RTK/Place/Place';
 
 interface PlaceSelectProps {
   plantData?: Plant | undefined;

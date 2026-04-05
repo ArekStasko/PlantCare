@@ -1,6 +1,6 @@
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
-import { AverageHumidity, IHumidityMeasurement } from "@arekstasko/plantcare-api-client";
+import { AverageHumidity, IHumidityMeasurement } from '@arekstasko/plantcare-api-client';
 
 export class GetHumidityMeasurementsApiParameters {
   moduleId!: number;

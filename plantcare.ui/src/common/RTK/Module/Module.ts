@@ -1,6 +1,6 @@
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
-import { CreateModuleRequest, Module } from "@arekstasko/plantcare-api-client";
+import { CreateModuleRequest, Module } from '@arekstasko/plantcare-api-client';
 
 const getModules = async () =>
   plantcareApi

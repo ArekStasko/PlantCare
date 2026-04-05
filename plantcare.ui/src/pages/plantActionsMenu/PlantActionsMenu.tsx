@@ -17,7 +17,7 @@ import { PlantContext, PlantFlowType } from '../plant/interfaces';
 import { ActionType } from '../../common/interfaces';
 import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
 import { useDeletePlantMutation } from '../../common/RTK/Plant/Plant';
-import { Plant } from "@arekstasko/plantcare-api-client";
+import { Plant } from '@arekstasko/plantcare-api-client';
 
 interface PlantActionsMenu {
   closeDialog: () => void;

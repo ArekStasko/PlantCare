@@ -17,7 +17,7 @@ import RoutingConstants from '../../app/routing/routingConstants';
 import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
 import { PlaceContext, PlaceFlowType } from '../place/interfaces';
 import { useDeletePlaceMutation } from '../../common/RTK/Place/Place';
-import { Place } from "@arekstasko/plantcare-api-client";
+import { Place } from '@arekstasko/plantcare-api-client';
 
 interface PlaceActionsMenuProps {
   closeDialog: () => void;
