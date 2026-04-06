@@ -6,7 +6,7 @@ import Fruit from '../../../app/images/Fruit.png';
 import Decorative from '../../../app/images/Decorative.png';
 import MemoryIcon from '@mui/icons-material/Memory';
 import React from 'react';
-import { Module, Plant } from "@arekstasko/plantcare-api-client";
+import { Module, Plant } from '@arekstasko/plantcare-api-client';
 
 export type PlantDetailsProps = {
   plant?: Plant;
