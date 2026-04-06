@@ -12,11 +12,11 @@ import { useGetModuleQuery } from '../../common/RTK/Module/Module';
 export const PlantDetails = () => {
   let { moduleId, plantId } = useParams();
 
-  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(plantId!, {
+  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(+plantId!, {
     skip: !plantId
   });
 
-  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(moduleId!, {
+  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(+moduleId!, {
     skip: !moduleId
   });
 

@@ -25,9 +25,9 @@ const AverageHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     isError: averageMeasurementsError
   } = useGetAverageHumidityMeasurementsQuery(
     {
-      moduleId: moduleId!,
-      fromDate: fromDate,
-      toDate: toDate
+      moduleId: +moduleId!,
+      fromDate: new Date(fromDate!),
+      toDate: new Date(toDate!)
     },
     { skip: fromDate === null || toDate === null || Date.parse(fromDate!) > Date.parse(toDate!) }
   );

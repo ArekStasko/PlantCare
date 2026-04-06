@@ -21,9 +21,9 @@ const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     isFetching: isHumidityMeasurementsFetching,
     refetch: refetchHumidityMeasurements
   } = useGetHumidityMeasurementsQuery({
-    moduleId: moduleId!,
-    fromDate: startOfDay,
-    toDate: endOfDay
+    moduleId: +moduleId!,
+    fromDate: new Date(startOfDay),
+    toDate: new Date(endOfDay)
   });
 
   const refetchMeasurementsOnDateChange = (value: Dayjs) => {
