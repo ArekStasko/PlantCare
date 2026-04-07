@@ -8,7 +8,7 @@ using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.Queries.QueryHandlers.PlantQueryHandlers;
 
-public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<GetPlantResponse>>
+public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<Plant>>
 {
     private readonly IReadPlantRepository _repository;
     private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<GetPlantRes
         _logger = logger;
     }
 
-    public async Task<Result<GetPlantResponse>> Handle(GetPlantQuery query, CancellationToken cancellationToken)
+    public async Task<Result<Plant>> Handle(GetPlantQuery query, CancellationToken cancellationToken)
     {
         try
         {
@@ -30,18 +30,18 @@ public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<GetPlantRes
             return plant.Match(succ =>
             {
                 _logger.LogInformation("GetPlantHandler successfully processed the request");
-                var plant = _mapper.Map<GetPlantResponse>(succ);
-                return new Result<GetPlantResponse>(plant);
+                var plant = _mapper.Map<Plant>(succ);
+                return new Result<Plant>(plant);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetPlantHandler request");
-                return new Result<GetPlantResponse>(err);
+                return new Result<Plant>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetPlantHandler: {exception}", e.Message);
-            return new Result<GetPlantResponse>(e);
+            return new Result<Plant>(e);
         }
     }
 }

@@ -5,18 +5,18 @@ import styles from './statisticts/statistics.styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Details } from './details/Details';
-import { useGetModuleQuery } from '../../common/RTK/getModule/getModule';
-import { useGetPlantQuery } from '../../common/RTK/getPlant/getPlant';
 import Statistics from './statisticts/Statistics';
+import { useGetPlantQuery } from '../../common/RTK/Plant/Plant';
+import { useGetModuleQuery } from '../../common/RTK/Module/Module';
 
 export const PlantDetails = () => {
   let { moduleId, plantId } = useParams();
 
-  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(plantId!, {
+  const { data: plant, isFetching: isPlantFetching } = useGetPlantQuery(+plantId!, {
     skip: !plantId
   });
 
-  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(moduleId!, {
+  const { data: module, isFetching: isModuleFetching } = useGetModuleQuery(+moduleId!, {
     skip: !moduleId
   });
 

@@ -34,6 +34,12 @@ public class AddHumidityMeasurementHandler : IRequestHandler<AddHumidityMeasurem
             _logger.LogInformation("AddHumidityMeasurementCommandHandler start processing with data: {request}", request);
             IHumidityMeasurement humidityMeasurement = _mapper.Map<Domain.Models.HumidityMeasurement.HumidityMeasurement>(request);
             humidityMeasurement.MeasurementDate = DateTime.Now;
+
+            if (request.error != null || !String.IsNullOrWhiteSpace(request.error))
+            {
+                _logger.LogError("Module has sent an error from previous call: {error}", request.error);
+            }
+            
             var result = await _repository.Add(humidityMeasurement);
             return result.Match(succ =>
             {

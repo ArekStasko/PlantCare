@@ -6,8 +6,8 @@ import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useEffect, useState } from 'react';
-import { useCreateModuleMutation } from '../../../../common/RTK/createModule/createModule';
 import { CreateModuleRequest } from '@arekstasko/plantcare-api-client';
+import { useCreateModuleMutation } from '../../../../common/RTK/Module/Module';
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,178 +1,183 @@
-interface IClient {
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
-    /**
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    modulesAll(): Promise<GetModuleResponse[]>;
-    /**
-     * @return OK
-     */
-    modulesGET(id: number): Promise<GetModuleResponse>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @return OK
-     */
-    placesDELETE(id?: number | undefined): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    placesAll(): Promise<GetPlacesResponse[]>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @return OK
-     */
-    plantsDELETE(id?: number | undefined): Promise<boolean>;
-    /**
-     * @param body (optional)
-     * @return OK
-     */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean>;
-    /**
-     * @return OK
-     */
-    plantsAll(): Promise<GetPlantResponse[]>;
-    /**
-     * @return OK
-     */
-    plantsGET(id: number): Promise<GetPlantResponse>;
-}
-declare class Client implements IClient {
-    private http;
-    private baseUrl;
+import { AxiosInstance, CancelToken, AxiosResponse } from 'axios';
+
+declare class Client {
+    protected instance: AxiosInstance;
+    protected baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined;
-    constructor(baseUrl?: string, http?: {
-        fetch(url: RequestInfo, init?: RequestInit): Promise<Response>;
-    });
+    constructor(baseUrl?: string, instance?: AxiosInstance);
     /**
      * @param body (optional)
      * @return OK
      */
-    humidityMeasurements(body?: AddHumidityMeasurementCommand | undefined): Promise<boolean>;
-    protected processHumidityMeasurements(response: Response): Promise<boolean>;
-    /**
-     * @param id (optional)
-     * @param fromDate (optional)
-     * @param toDate (optional)
-     * @return OK
-     */
-    humidityMeasurementsAll(id?: number | undefined, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<IHumidityMeasurement[]>;
-    protected processHumidityMeasurementsAll(response: Response): Promise<IHumidityMeasurement[]>;
+    humidityMeasurements(body: AddHumidityMeasurementCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processHumidityMeasurements(response: AxiosResponse): Promise<boolean>;
     /**
      * @param fromDate (optional)
      * @param toDate (optional)
      * @return OK
      */
-    average(id: number, fromDate?: Date | undefined, toDate?: Date | undefined): Promise<AverageHumidity[]>;
-    protected processAverage(response: Response): Promise<AverageHumidity[]>;
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]>;
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]>;
+    /**
+     * @param fromDate (optional)
+     * @param toDate (optional)
+     * @return OK
+     */
+    average(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<AverageHumidity[]>;
+    protected processAverage(response: AxiosResponse): Promise<AverageHumidity[]>;
     /**
      * @param body (optional)
      * @return OK
      */
-    modulesPOST(body?: CreateModuleRequest | undefined): Promise<boolean>;
-    protected processModulesPOST(response: Response): Promise<boolean>;
+    modulesPOST(body: CreateModuleRequest | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processModulesPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    modulesAll(): Promise<GetModuleResponse[]>;
-    protected processModulesAll(response: Response): Promise<GetModuleResponse[]>;
+    modulesAll(cancelToken?: CancelToken): Promise<Module[]>;
+    protected processModulesAll(response: AxiosResponse): Promise<Module[]>;
     /**
      * @return OK
      */
-    modulesGET(id: number): Promise<GetModuleResponse>;
-    protected processModulesGET(response: Response): Promise<GetModuleResponse>;
+    modulesGET(id: number, cancelToken?: CancelToken): Promise<Module>;
+    protected processModulesGET(response: AxiosResponse): Promise<Module>;
     /**
      * @param body (optional)
      * @return OK
      */
-    placesPOST(body?: CreatePlaceCommand | undefined): Promise<boolean>;
-    protected processPlacesPOST(response: Response): Promise<boolean>;
+    placesPOST(body: CreatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @param id (optional)
      * @return OK
      */
-    placesDELETE(id?: number | undefined): Promise<boolean>;
-    protected processPlacesDELETE(response: Response): Promise<boolean>;
+    placesDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesDELETE(response: AxiosResponse): Promise<boolean>;
     /**
      * @param body (optional)
      * @return OK
      */
-    placesPUT(body?: UpdatePlaceCommand | undefined): Promise<boolean>;
-    protected processPlacesPUT(response: Response): Promise<boolean>;
+    placesPUT(body: UpdatePlaceCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlacesPUT(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    placesAll(): Promise<GetPlacesResponse[]>;
-    protected processPlacesAll(response: Response): Promise<GetPlacesResponse[]>;
+    placesAll(cancelToken?: CancelToken): Promise<Place[]>;
+    protected processPlacesAll(response: AxiosResponse): Promise<Place[]>;
     /**
      * @param body (optional)
      * @return OK
      */
-    plantsPOST(body?: CreatePlantCommand | undefined): Promise<boolean>;
-    protected processPlantsPOST(response: Response): Promise<boolean>;
+    plantsPOST(body: CreatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsPOST(response: AxiosResponse): Promise<boolean>;
     /**
      * @param id (optional)
      * @return OK
      */
-    plantsDELETE(id?: number | undefined): Promise<boolean>;
-    protected processPlantsDELETE(response: Response): Promise<boolean>;
+    plantsDELETE(id: number | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsDELETE(response: AxiosResponse): Promise<boolean>;
     /**
      * @param body (optional)
      * @return OK
      */
-    plantsPUT(body?: UpdatePlantCommand | undefined): Promise<boolean>;
-    protected processPlantsPUT(response: Response): Promise<boolean>;
+    plantsPUT(body: UpdatePlantCommand | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processPlantsPUT(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
-    plantsAll(): Promise<GetPlantResponse[]>;
-    protected processPlantsAll(response: Response): Promise<GetPlantResponse[]>;
+    plantsAll(cancelToken?: CancelToken): Promise<Plant[]>;
+    protected processPlantsAll(response: AxiosResponse): Promise<Plant[]>;
     /**
      * @return OK
      */
-    plantsGET(id: number): Promise<GetPlantResponse>;
-    protected processPlantsGET(response: Response): Promise<GetPlantResponse>;
+    plantsGET(id: number, cancelToken?: CancelToken): Promise<Plant>;
+    protected processPlantsGET(response: AxiosResponse): Promise<Plant>;
 }
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
     measurementDate?: Date;
+    error?: string | undefined;
+}
+interface CreatePlaceCommand {
+    name?: string | undefined;
+    userId?: number | undefined;
+}
+interface UpdatePlaceCommand {
+    id?: number;
+    userId?: number | undefined;
+    name?: string | undefined;
+}
+interface CreatePlantCommand {
+    name?: string | undefined;
+    userId?: number;
+    description?: string | undefined;
+    placeId?: number;
+    type?: PlantType;
+    moduleId?: number | undefined;
+}
+interface UpdatePlantCommand {
+    id?: number;
+    userId?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+    placeId?: number;
+    type?: PlantType;
+    moduleId?: number | undefined;
+}
+interface AverageHumidity {
+    date?: string | undefined;
+    humidity?: number;
+}
+interface CreateModuleRequest {
+    name?: string | undefined;
+}
+declare enum PlantType {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2
+}
+interface IHumidityMeasurement {
+    id?: number;
+    moduleId?: number;
+    humidity?: number;
+    measurementDate?: Date;
+}
+interface Module {
+    id?: number;
+    isAvailable?: boolean;
+    requiredMoistureLevel?: number | undefined;
+    criticalMoistureLevel?: number | undefined;
+    name?: string | undefined;
+}
+interface Place {
+    id?: number;
+    name?: string | undefined;
+}
+interface Plant {
+    id?: number;
+    placeId?: number;
+    moduleId?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+    type?: PlantType;
+}
+interface Exception {
+    targetSite?: MethodBase;
+    readonly message?: string | undefined;
+    readonly data?: {
+        [key: string]: any;
+    } | undefined;
+    innerException?: Exception;
+    helpLink?: string | undefined;
+    source?: string | undefined;
+    hResult?: number;
+    readonly stackTrace?: string | undefined;
+}
+interface IntPtr {
+}
+interface ModuleHandle {
+    readonly mdStreamVersion?: number;
 }
 interface Assembly {
     readonly definedTypes?: TypeInfo[] | undefined;
@@ -188,15 +193,11 @@ interface Assembly {
     readonly isFullyTrusted?: boolean;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly escapedCodeBase?: string | undefined;
-    manifestModule?: Module;
-    readonly modules?: Module[] | undefined;
+    manifestModule?: Module2;
+    readonly modules?: Module2[] | undefined;
     readonly globalAssemblyCache?: boolean;
     readonly hostContext?: number;
     securityRuleSet?: SecurityRuleSet;
-}
-interface AverageHumidity {
-    date?: string | undefined;
-    humidity?: number;
 }
 declare enum CallingConventions {
     _1 = 1,
@@ -209,7 +210,7 @@ interface ConstructorInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -239,21 +240,6 @@ interface ConstructorInfo {
     readonly isSecurityTransparent?: boolean;
     memberType?: MemberTypes;
 }
-interface CreateModuleRequest {
-    name?: string | undefined;
-}
-interface CreatePlaceCommand {
-    name?: string | undefined;
-    userId?: number | undefined;
-}
-interface CreatePlantCommand {
-    name?: string | undefined;
-    userId?: number;
-    description?: string | undefined;
-    placeId?: number;
-    type?: PlantType;
-    moduleId?: number | undefined;
-}
 interface CustomAttributeData {
     attributeType?: Type;
     constructor?: ConstructorInfo;
@@ -279,7 +265,7 @@ interface EventInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -291,18 +277,6 @@ interface EventInfo {
     raiseMethod?: MethodInfo;
     readonly isMulticast?: boolean;
     eventHandlerType?: Type;
-}
-interface Exception {
-    targetSite?: MethodBase;
-    readonly message?: string | undefined;
-    readonly data?: {
-        [key: string]: any;
-    } | undefined;
-    innerException?: Exception;
-    helpLink?: string | undefined;
-    source?: string | undefined;
-    hResult?: number;
-    readonly stackTrace?: string | undefined;
 }
 declare enum FieldAttributes {
     _0 = 0,
@@ -329,7 +303,7 @@ interface FieldInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -363,45 +337,14 @@ declare enum GenericParameterAttributes {
     _16 = 16,
     _28 = 28
 }
-interface GetModuleResponse {
-    id?: number;
-    requiredMoistureLevel?: number | undefined;
-    criticalMoistureLevel?: number | undefined;
-    name?: string | undefined;
-}
-interface GetPlacesResponse {
-    id?: number;
-    name?: string | undefined;
-}
-interface GetPlantResponse {
-    id?: number;
-    placeId?: number;
-    moduleId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    type?: PlantType;
-}
 interface ICustomAttributeProvider {
-}
-interface IHumidityMeasurement {
-    id?: number;
-    moduleId?: number;
-    humidity?: number;
-    measurementDate?: Date;
-}
-interface IntPtr {
-}
-declare enum LayoutKind {
-    _0 = 0,
-    _2 = 2,
-    _3 = 3
 }
 interface MemberInfo {
     memberType?: MemberTypes;
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -446,7 +389,7 @@ interface MethodBase {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -495,7 +438,7 @@ interface MethodInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -528,7 +471,7 @@ interface MethodInfo {
     returnType?: Type;
     returnTypeCustomAttributes?: ICustomAttributeProvider;
 }
-interface Module {
+interface Module2 {
     assembly?: Assembly;
     readonly fullyQualifiedName?: string | undefined;
     readonly name?: string | undefined;
@@ -538,9 +481,6 @@ interface Module {
     moduleHandle?: ModuleHandle;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly metadataToken?: number;
-}
-interface ModuleHandle {
-    readonly mdStreamVersion?: number;
 }
 declare enum ParameterAttributes {
     _0 = 0,
@@ -572,11 +512,6 @@ interface ParameterInfo {
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly metadataToken?: number;
 }
-declare enum PlantType {
-    _0 = 0,
-    _1 = 1,
-    _2 = 2
-}
 declare enum PropertyAttributes {
     _0 = 0,
     _512 = 512,
@@ -591,7 +526,7 @@ interface PropertyInfo {
     readonly name?: string | undefined;
     declaringType?: Type;
     reflectedType?: Type;
-    module?: Module;
+    module?: Module2;
     readonly customAttributes?: CustomAttributeData[] | undefined;
     readonly isCollectible?: boolean;
     readonly metadataToken?: number;
@@ -603,99 +538,6 @@ interface PropertyInfo {
     readonly canWrite?: boolean;
     getMethod?: MethodInfo;
     setMethod?: MethodInfo;
-}
-interface RuntimeFieldHandle {
-    value?: IntPtr;
-}
-interface RuntimeMethodHandle {
-    value?: IntPtr;
-}
-interface RuntimeTypeHandle {
-    value?: IntPtr;
-}
-declare enum SecurityRuleSet {
-    _0 = 0,
-    _1 = 1,
-    _2 = 2
-}
-interface StructLayoutAttribute {
-    readonly typeId?: any | undefined;
-    value?: LayoutKind;
-}
-interface Type {
-    readonly name?: string | undefined;
-    readonly customAttributes?: CustomAttributeData[] | undefined;
-    readonly isCollectible?: boolean;
-    readonly metadataToken?: number;
-    readonly isInterface?: boolean;
-    memberType?: MemberTypes;
-    readonly namespace?: string | undefined;
-    readonly assemblyQualifiedName?: string | undefined;
-    readonly fullName?: string | undefined;
-    assembly?: Assembly;
-    module?: Module;
-    readonly isNested?: boolean;
-    declaringType?: Type;
-    declaringMethod?: MethodBase;
-    reflectedType?: Type;
-    underlyingSystemType?: Type;
-    readonly isTypeDefinition?: boolean;
-    readonly isArray?: boolean;
-    readonly isByRef?: boolean;
-    readonly isPointer?: boolean;
-    readonly isConstructedGenericType?: boolean;
-    readonly isGenericParameter?: boolean;
-    readonly isGenericTypeParameter?: boolean;
-    readonly isGenericMethodParameter?: boolean;
-    readonly isGenericType?: boolean;
-    readonly isGenericTypeDefinition?: boolean;
-    readonly isSZArray?: boolean;
-    readonly isVariableBoundArray?: boolean;
-    readonly isByRefLike?: boolean;
-    readonly isFunctionPointer?: boolean;
-    readonly isUnmanagedFunctionPointer?: boolean;
-    readonly hasElementType?: boolean;
-    readonly genericTypeArguments?: Type[] | undefined;
-    readonly genericParameterPosition?: number;
-    genericParameterAttributes?: GenericParameterAttributes;
-    attributes?: TypeAttributes;
-    readonly isAbstract?: boolean;
-    readonly isImport?: boolean;
-    readonly isSealed?: boolean;
-    readonly isSpecialName?: boolean;
-    readonly isClass?: boolean;
-    readonly isNestedAssembly?: boolean;
-    readonly isNestedFamANDAssem?: boolean;
-    readonly isNestedFamily?: boolean;
-    readonly isNestedFamORAssem?: boolean;
-    readonly isNestedPrivate?: boolean;
-    readonly isNestedPublic?: boolean;
-    readonly isNotPublic?: boolean;
-    readonly isPublic?: boolean;
-    readonly isAutoLayout?: boolean;
-    readonly isExplicitLayout?: boolean;
-    readonly isLayoutSequential?: boolean;
-    readonly isAnsiClass?: boolean;
-    readonly isAutoClass?: boolean;
-    readonly isUnicodeClass?: boolean;
-    readonly isCOMObject?: boolean;
-    readonly isContextful?: boolean;
-    readonly isEnum?: boolean;
-    readonly isMarshalByRef?: boolean;
-    readonly isPrimitive?: boolean;
-    readonly isValueType?: boolean;
-    readonly isSignatureType?: boolean;
-    readonly isSecurityCritical?: boolean;
-    readonly isSecuritySafeCritical?: boolean;
-    readonly isSecurityTransparent?: boolean;
-    structLayoutAttribute?: StructLayoutAttribute;
-    typeInitializer?: ConstructorInfo;
-    typeHandle?: RuntimeTypeHandle;
-    readonly guid?: string;
-    baseType?: Type;
-    readonly isSerializable?: boolean;
-    readonly containsGenericParameters?: boolean;
-    readonly isVisible?: boolean;
 }
 declare enum TypeAttributes {
     _0 = 0,
@@ -736,7 +578,7 @@ interface TypeInfo {
     readonly assemblyQualifiedName?: string | undefined;
     readonly fullName?: string | undefined;
     assembly?: Assembly;
-    module?: Module;
+    module?: Module2;
     readonly isNested?: boolean;
     declaringType?: Type;
     declaringMethod?: MethodBase;
@@ -809,19 +651,103 @@ interface TypeInfo {
     readonly declaredProperties?: PropertyInfo[] | undefined;
     readonly implementedInterfaces?: Type[] | undefined;
 }
-interface UpdatePlaceCommand {
-    id?: number;
-    userId?: number | undefined;
-    name?: string | undefined;
+declare enum LayoutKind {
+    _0 = 0,
+    _2 = 2,
+    _3 = 3
 }
-interface UpdatePlantCommand {
-    id?: number;
-    userId?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    placeId?: number;
-    type?: PlantType;
-    moduleId?: number | undefined;
+interface StructLayoutAttribute {
+    readonly typeId?: any | undefined;
+    value?: LayoutKind;
+}
+interface RuntimeFieldHandle {
+    value?: IntPtr;
+}
+interface RuntimeMethodHandle {
+    value?: IntPtr;
+}
+interface RuntimeTypeHandle {
+    value?: IntPtr;
+}
+declare enum SecurityRuleSet {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2
+}
+interface Type {
+    readonly name?: string | undefined;
+    readonly customAttributes?: CustomAttributeData[] | undefined;
+    readonly isCollectible?: boolean;
+    readonly metadataToken?: number;
+    readonly isInterface?: boolean;
+    memberType?: MemberTypes;
+    readonly namespace?: string | undefined;
+    readonly assemblyQualifiedName?: string | undefined;
+    readonly fullName?: string | undefined;
+    assembly?: Assembly;
+    module?: Module2;
+    readonly isNested?: boolean;
+    declaringType?: Type;
+    declaringMethod?: MethodBase;
+    reflectedType?: Type;
+    underlyingSystemType?: Type;
+    readonly isTypeDefinition?: boolean;
+    readonly isArray?: boolean;
+    readonly isByRef?: boolean;
+    readonly isPointer?: boolean;
+    readonly isConstructedGenericType?: boolean;
+    readonly isGenericParameter?: boolean;
+    readonly isGenericTypeParameter?: boolean;
+    readonly isGenericMethodParameter?: boolean;
+    readonly isGenericType?: boolean;
+    readonly isGenericTypeDefinition?: boolean;
+    readonly isSZArray?: boolean;
+    readonly isVariableBoundArray?: boolean;
+    readonly isByRefLike?: boolean;
+    readonly isFunctionPointer?: boolean;
+    readonly isUnmanagedFunctionPointer?: boolean;
+    readonly hasElementType?: boolean;
+    readonly genericTypeArguments?: Type[] | undefined;
+    readonly genericParameterPosition?: number;
+    genericParameterAttributes?: GenericParameterAttributes;
+    attributes?: TypeAttributes;
+    readonly isAbstract?: boolean;
+    readonly isImport?: boolean;
+    readonly isSealed?: boolean;
+    readonly isSpecialName?: boolean;
+    readonly isClass?: boolean;
+    readonly isNestedAssembly?: boolean;
+    readonly isNestedFamANDAssem?: boolean;
+    readonly isNestedFamily?: boolean;
+    readonly isNestedFamORAssem?: boolean;
+    readonly isNestedPrivate?: boolean;
+    readonly isNestedPublic?: boolean;
+    readonly isNotPublic?: boolean;
+    readonly isPublic?: boolean;
+    readonly isAutoLayout?: boolean;
+    readonly isExplicitLayout?: boolean;
+    readonly isLayoutSequential?: boolean;
+    readonly isAnsiClass?: boolean;
+    readonly isAutoClass?: boolean;
+    readonly isUnicodeClass?: boolean;
+    readonly isCOMObject?: boolean;
+    readonly isContextful?: boolean;
+    readonly isEnum?: boolean;
+    readonly isMarshalByRef?: boolean;
+    readonly isPrimitive?: boolean;
+    readonly isValueType?: boolean;
+    readonly isSignatureType?: boolean;
+    readonly isSecurityCritical?: boolean;
+    readonly isSecuritySafeCritical?: boolean;
+    readonly isSecurityTransparent?: boolean;
+    structLayoutAttribute?: StructLayoutAttribute;
+    typeInitializer?: ConstructorInfo;
+    typeHandle?: RuntimeTypeHandle;
+    readonly guid?: string;
+    baseType?: Type;
+    readonly isSerializable?: boolean;
+    readonly containsGenericParameters?: boolean;
+    readonly isVisible?: boolean;
 }
 declare class ApiException extends Error {
     message: string;
@@ -838,4 +764,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type GetModuleResponse, type GetPlacesResponse, type GetPlantResponse, type IClient, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type ModuleHandle, ParameterAttributes, type ParameterInfo, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type Module2, type ModuleHandle, ParameterAttributes, type ParameterInfo, type Place, type Plant, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };

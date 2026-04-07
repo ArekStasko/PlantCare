@@ -9,8 +9,6 @@ import {
   DialogContent,
   DialogTitle
 } from '@mui/material';
-import { Plant } from '../../common/models/Plant';
-import { useDeletePlantMutation } from '../../common/RTK/deletePlant/deletePlant';
 import useInvalidateCache from '../../common/hooks/useInvalidateCache';
 import CustomAlert from '../../common/components/customAlert/customAlert';
 import { useNavigate } from 'react-router';
@@ -18,6 +16,8 @@ import RoutingConstants from '../../app/routing/routingConstants';
 import { PlantContext, PlantFlowType } from '../plant/interfaces';
 import { ActionType } from '../../common/interfaces';
 import { ActionsMenu } from '../../common/components/ActionsMenu/ActionsMenu';
+import { useDeletePlantMutation } from '../../common/RTK/Plant/Plant';
+import { Plant } from '@arekstasko/plantcare-api-client';
 
 interface PlantActionsMenu {
   closeDialog: () => void;
@@ -58,9 +58,9 @@ const PlantActionsMenu = ({ closeDialog, openDialog, plant }: PlantActionsMenu) 
       name: plant.name,
       description: plant.description,
       plantId: plant.id,
-      place: plant.placeId.toString(),
-      module: plant.moduleId,
-      currentModule: plant.moduleId,
+      place: plant.placeId?.toString(),
+      module: plant.moduleId?.toString(),
+      currentModule: plant.moduleId?.toString(),
       type: plant.type
     } as PlantContext;
 

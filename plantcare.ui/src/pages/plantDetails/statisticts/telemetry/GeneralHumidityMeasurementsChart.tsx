@@ -7,10 +7,10 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
 import React, { useState } from 'react';
-import { useGetHumidityMeasurementsQuery } from '../../../../common/RTK/getHumidityMeasurements/getHumidityMeasurements';
 import dateService from '../../../../common/services/DateService';
 import DateService from '../../../../common/services/DateService';
 import { HumidityMeasurementsChartProps } from './interfaces';
+import { useGetHumidityMeasurementsQuery } from '../../../../common/RTK/HumidityMeasurement/HumidityMeasurement';
 
 const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChartProps) => {
   const [startOfDay, setStartOfDay] = useState(DateService.getStartOfCurrentDay());
@@ -21,9 +21,9 @@ const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
     isFetching: isHumidityMeasurementsFetching,
     refetch: refetchHumidityMeasurements
   } = useGetHumidityMeasurementsQuery({
-    moduleId: moduleId!,
-    fromDate: startOfDay,
-    toDate: endOfDay
+    moduleId: +moduleId!,
+    fromDate: new Date(startOfDay),
+    toDate: new Date(endOfDay)
   });
 
   const refetchMeasurementsOnDateChange = (value: Dayjs) => {

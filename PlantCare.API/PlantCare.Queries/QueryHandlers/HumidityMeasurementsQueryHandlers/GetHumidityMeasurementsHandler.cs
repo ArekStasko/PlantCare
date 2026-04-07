@@ -5,10 +5,11 @@ using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.HumidityMeasurements;
 using PlantCare.Queries.Responses.HumidityMeasurements;
+using HumidityMeasurement = PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement;
 
 namespace PlantCare.Queries.QueryHandlers.HumidityMeasurementsQueryHandlers;
 
-public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasurementQuery, Result<List<GetHumidityMeasurementsResponse>>>
+public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasurementQuery, Result<List<HumidityMeasurement>>>
 {
     private readonly IReadHumidityMeasurementRepository _repository;
     private readonly ILogger<GetHumidityMeasurementsHandler> _logger;
@@ -19,7 +20,7 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
         _logger = logger;
     }
 
-    public async Task<Result<List<GetHumidityMeasurementsResponse>>> Handle(GetHumidityMeasurementQuery request, CancellationToken cancellationToken)
+    public async Task<Result<List<HumidityMeasurement>>> Handle(GetHumidityMeasurementQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -34,28 +35,28 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
                     succ = getSelectedPeriodOfMeasurements(succ, request.FromDate, request.ToDate);
                 }
 
-                var response = new List<GetHumidityMeasurementsResponse>();
+                var response = new List<HumidityMeasurement>();
 
                 foreach (var measurement in succ)
                 {
-                    response.Add(new GetHumidityMeasurementsResponse()
+                    response.Add(new HumidityMeasurement()
                     {
                         Humidity = measurement.Humidity,
                         Date = measurement.MeasurementDate
                     });
                 }
 
-                return new Result<List<GetHumidityMeasurementsResponse>>(response);
+                return new Result<List<HumidityMeasurement>>(response);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetHumidityMeasurementsHandler request");
-                return new Result<List<GetHumidityMeasurementsResponse>>(err);
+                return new Result<List<HumidityMeasurement>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetHumidityMeasurementsHandler: {exception}", e.Message);
-            return new Result<List<GetHumidityMeasurementsResponse>>(e);
+            return new Result<List<HumidityMeasurement>>(e);
         }
     }
 

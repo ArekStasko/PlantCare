@@ -8,13 +8,16 @@
   "codeGenerators": {
     "openApiToTypeScriptClient": {
       "className": "{controller}Client",
-      "template": "Fetch",
+      "template": "Axios",
       "httpClass": "HttpClient",
       "promiseType": "Promise",
       "typeStyle": "Interface",
-      "generateClientInterfaces": true,
+      "generateClientClasses": true,
+      "exportTypes": true,
+      "generateResponseClasses": true,
+      "generateClientInterfaces": false,
       "generateDtoTypes": true,
-      "generateOptionalParameters": true,
+      "generateOptionalParameters": false,
       "output": "./api-client/ApiClient.ts"
     }
   }

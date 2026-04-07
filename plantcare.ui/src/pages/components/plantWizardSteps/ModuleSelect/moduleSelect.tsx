@@ -2,9 +2,9 @@ import { AlertColor, Box, CircularProgress, InputLabel, MenuItem, Select } from 
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './moduleSelect.styles';
-import { useGetModulesQuery } from '../../../../common/RTK/getModules/getModules';
 import { Plant } from '../../../../common/models/Plant';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import { useGetModulesQuery } from '../../../../common/RTK/Module/Module';
 
 interface ModuleSelectProps {
   plantData?: Plant | undefined;
@@ -21,7 +21,7 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
         <CircularProgress />
       ) : (
         <>
-          {modules!.filter((m) => m.plant == null).length == 0 ? (
+          {modules!.filter((m) => m.isAvailable).length == 0 ? (
             <>
               <CustomAlert
                 type={'error' as AlertColor}
@@ -50,7 +50,7 @@ export const ModuleSelect = ({ plantData }: ModuleSelectProps) => {
                     labelId="SelectPlantPlace"
                   >
                     {modules!
-                      .filter((m) => m.plant == null)
+                      .filter((m) => m.isAvailable)
                       .map((m) => (
                         <MenuItem value={m.id}>{m.id}</MenuItem>
                       ))}

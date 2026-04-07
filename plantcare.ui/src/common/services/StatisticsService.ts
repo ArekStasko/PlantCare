@@ -1,13 +1,10 @@
-import { HumidityMeasurement } from '../models/HumidityMeasurement';
-import { HumidityData, HumidityStatistics } from '../models/HumidityStatistics';
-import DateService from './DateService';
-import { AverageHumidity } from '@arekstasko/plantcare-api-client';
+import { AverageHumidity, IHumidityMeasurement } from '@arekstasko/plantcare-api-client';
 
-const getHumidityMeasurementTime = (data: HumidityMeasurement[]): string[] =>
+const getHumidityMeasurementTime = (data: IHumidityMeasurement[]): string[] =>
   data.map((c) => {
-    const date = new Date(c.date);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    if (!c.measurementDate) return '';
+    const hours = c.measurementDate.getHours();
+    const minutes = c.measurementDate.getMinutes();
 
     const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
@@ -15,8 +12,8 @@ const getHumidityMeasurementTime = (data: HumidityMeasurement[]): string[] =>
     return `${formattedHours}:${formattedMinutes}`;
   });
 
-const getHumidityMeasurementValues = (data: HumidityMeasurement[]): number[] =>
-  data.map((c) => c.humidity);
+const getHumidityMeasurementValues = (data: IHumidityMeasurement[]): number[] =>
+  data.map((c) => (c.humidity ? c.humidity : 0));
 
 const getAverageHumidityMeasurementTime = (data: AverageHumidity[]): string[] =>
   data.map((c) => {
