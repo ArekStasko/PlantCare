@@ -8,17 +8,17 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   const token = getToken();
-
+  console.log("TOKEN:", token);
   if (token) {
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${token}`
+      Authorization: token
     } as AxiosRequestHeaders;
   }
 
   return config;
 });
 
-const plantCareApi = new Client('http://192.168.1.40:8080/api', axiosInstance);
+const plantCareApi = new Client('http://192.168.1.40:8080', axiosInstance);
 
 export default plantCareApi;
