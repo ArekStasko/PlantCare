@@ -6,6 +6,7 @@ using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Queries.Place;
 using PlantCare.Queries.Responses.Place;
+using Place = PlantCare.Queries.Responses.Place.Place;
 
 namespace PlantCare.API.Controllers;
 
@@ -62,7 +63,7 @@ public class PlaceController : ControllerAuth
     }
 
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<GetPlacesResponse>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Place>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {

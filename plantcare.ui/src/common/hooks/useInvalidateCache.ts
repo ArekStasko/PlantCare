@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import plantcareApi from '../../app/api/plantcareApi';
+import emptyApi from '../RTK/emptyApi';
 
 const useInvalidateCache = () => {
   const dispatch = useDispatch();
 
   const invalidateCache = () => {
-    dispatch(plantcareApi.util.resetApiState());
+    dispatch(emptyApi.util.resetApiState());
   };
 
   return {

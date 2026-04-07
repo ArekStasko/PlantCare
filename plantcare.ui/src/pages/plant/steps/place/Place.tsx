@@ -2,13 +2,13 @@ import { WizardStep } from '../../../../common/wizard/components/wizardStep/Wiza
 import { Box, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { PlantContext } from '../../interfaces';
-import { useGetPlacesQuery } from '../../../../common/RTK/getPlaces/getPlaces';
 import { Controller, useForm } from 'react-hook-form';
 import React, { useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../common/services/Validators';
 import styles from './place.styles';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
+import { useGetPlacesQuery } from '../../../../common/RTK/Place/Place';
 
 const Place = ({ wizardController }: WizardStepProps<PlantContext>) => {
   const { data: places, isLoading: placesLoading } = useGetPlacesQuery();

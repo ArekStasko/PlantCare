@@ -2,14 +2,13 @@ import { Box, Card, Divider, Typography } from '@mui/material';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { PlaceContext, PlaceFlowType } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { useCreatePlaceMutation } from '../../../../common/RTK/createPlace/createPlace';
 import { useEffect } from 'react';
 import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
 import { useNavigate } from 'react-router';
 import RoutingConstants from '../../../../app/routing/routingConstants';
 import styles from './summary.styles';
-import { useUpdatePlaceMutation } from '../../../../common/RTK/updatePlace/updatePlace';
 import { UpdatePlaceCommand, CreatePlaceCommand } from '@arekstasko/plantcare-api-client';
+import { useCreatePlaceMutation, useUpdatePlaceMutation } from '../../../../common/RTK/Place/Place';
 
 const Summary = ({ wizardController }: WizardStepProps<PlaceContext>) => {
   const navigate = useNavigate();

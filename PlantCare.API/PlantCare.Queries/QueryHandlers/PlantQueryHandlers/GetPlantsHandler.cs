@@ -8,7 +8,7 @@ using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.Queries.QueryHandlers.PlantQueryHandlers;
 
-public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnlyCollection<GetPlantResponse>>>
+public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnlyCollection<Plant>>>
 {
     private readonly IReadPlantRepository _repository;
     private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnly
         _logger = logger;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetPlantResponse>>> Handle(GetPlantsQuery query, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyCollection<Plant>>> Handle(GetPlantsQuery query, CancellationToken cancellationToken)
     {
         try
         {
@@ -31,18 +31,18 @@ public class GetPlantsHandler : IRequestHandler<GetPlantsQuery, Result<IReadOnly
             return plant.Match(succ =>
             {
                 _logger.LogInformation("GetPlantsHandler successfully processed the request");
-                IReadOnlyCollection<GetPlantResponse> plants = succ.Select(plant => _mapper.Map<GetPlantResponse>(plant)).ToList();
-                return new Result<IReadOnlyCollection<GetPlantResponse>>(plants);
+                IReadOnlyCollection<Plant> plants = succ.Select(plant => _mapper.Map<Plant>(plant)).ToList();
+                return new Result<IReadOnlyCollection<Plant>>(plants);
             }, err =>
             {
                 _logger.LogError("Something went wrong while processing GetPlantsHandler request");
-                return new Result<IReadOnlyCollection<GetPlantResponse>>(err);
+                return new Result<IReadOnlyCollection<Plant>>(err);
             });
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in GetPlantsHandler: {exception}", e.Message);
-            return new Result<IReadOnlyCollection<GetPlantResponse>>(e);
+            return new Result<IReadOnlyCollection<Plant>>(e);
         }
     }
 }

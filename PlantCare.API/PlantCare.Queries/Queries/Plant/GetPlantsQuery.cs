@@ -5,7 +5,7 @@ using PlantCare.Queries.Responses.Plants;
 
 namespace PlantCare.Queries.Queries.Plant;
 
-public record GetPlantsQuery : IRequest<Result<IReadOnlyCollection<GetPlantResponse>>>
+public record GetPlantsQuery : IRequest<Result<IReadOnlyCollection<Responses.Plants.Plant>>>
 {
     public int UserId { get; set; }
 }

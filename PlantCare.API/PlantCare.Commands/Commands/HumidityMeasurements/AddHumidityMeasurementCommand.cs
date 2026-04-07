@@ -7,4 +7,5 @@ public record AddHumidityMeasurementCommand : IHttpPostCommand
     public int Humidity { get; set; }
 
     public DateTime MeasurementDate { get; set; }
+    public string? error { get; set; }
 };
