@@ -74,7 +74,7 @@ const GeneralHumidityMeasurementsChart = ({ moduleId }: HumidityMeasurementsChar
               />
             </>
           ) : (
-            humidityMeasurements && (
+            humidityMeasurements && humidityMeasurements.length > 0 && (
               <BarChart
                 xAxis={[
                   {
