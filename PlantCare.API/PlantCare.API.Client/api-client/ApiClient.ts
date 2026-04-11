@@ -91,7 +91,7 @@ export class Client {
      * @param toDate (optional) 
      * @return OK
      */
-    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]> {
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<HumidityMeasurement[]> {
         let url_ = this.baseUrl + "/api/humidity-measurements/{id}?";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -126,7 +126,7 @@ export class Client {
         });
     }
 
-    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]> {
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<HumidityMeasurement[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -141,7 +141,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<IHumidityMeasurement[]>(result200);
+            return Promise.resolve<HumidityMeasurement[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -154,7 +154,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<IHumidityMeasurement[]>(null as any);
+        return Promise.resolve<HumidityMeasurement[]>(null as any);
     }
 
     /**
@@ -1018,11 +1018,9 @@ export enum PlantType {
     _2 = 2,
 }
 
-export interface IHumidityMeasurement {
-    id?: number;
-    moduleId?: number;
+export interface HumidityMeasurement {
     humidity?: number;
-    measurementDate?: Date;
+    date?: Date;
 }
 
 export interface Module {
