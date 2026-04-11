@@ -1,8 +1,8 @@
-import { Alert, Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { HumidityMeasurementsChartProps } from './interfaces';
 import styles from '../statistics.styles';
 import { DatePicker } from '@mui/x-date-pickers';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import dateService from '../../../../common/services/DateService';
 import CustomAlert from '../../../../common/components/customAlert/customAlert';
