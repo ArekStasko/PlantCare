@@ -113,7 +113,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PlantCare.Domain.Models.HumidityMeasurement.IHumidityMeasurement"
+                    "$ref": "#/components/schemas/PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement"
                   }
                 }
               },
@@ -121,7 +121,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PlantCare.Domain.Models.HumidityMeasurement.IHumidityMeasurement"
+                    "$ref": "#/components/schemas/PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement"
                   }
                 }
               },
@@ -129,7 +129,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PlantCare.Domain.Models.HumidityMeasurement.IHumidityMeasurement"
+                    "$ref": "#/components/schemas/PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement"
                   }
                 }
               }
@@ -995,6 +995,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "batteryLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
           "measurementDate": {
             "type": "string",
             "format": "date-time"
@@ -1137,22 +1141,18 @@
         "type": "integer",
         "format": "int32"
       },
-      "PlantCare.Domain.Models.HumidityMeasurement.IHumidityMeasurement": {
+      "PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "moduleId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "humidity": {
             "type": "integer",
             "format": "int32"
           },
-          "measurementDate": {
+          "batteryLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
             "type": "string",
             "format": "date-time"
           }

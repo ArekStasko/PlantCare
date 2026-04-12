@@ -969,6 +969,7 @@ export class Client {
 export interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
+    batteryLevel?: number;
     measurementDate?: Date;
     error?: string | undefined;
 }
@@ -1020,6 +1021,7 @@ export enum PlantType {
 
 export interface HumidityMeasurement {
     humidity?: number;
+    batteryLevel?: number;
     date?: Date;
 }
 

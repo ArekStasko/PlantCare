@@ -44,7 +44,8 @@ public class CommandsMapperProfile : Profile
         CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.Humidity, opt => opt.MapFrom(src => src.Humidity))
-            .ForMember(dest => dest.MeasurementDate, opt => opt.MapFrom(src => src.MeasurementDate));
+            .ForMember(dest => dest.MeasurementDate, opt => opt.MapFrom(src => src.MeasurementDate))
+            .ForMember(dest => dest.BatteryLevel, opt => opt.MapFrom(src => src.BatteryLevel));
 
         CreateMap<HumidityMeasurement, AddHumidityMeasurementCommand>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))

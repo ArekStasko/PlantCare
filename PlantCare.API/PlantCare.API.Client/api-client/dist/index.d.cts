@@ -96,6 +96,7 @@ declare class Client {
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
+    batteryLevel?: number;
     measurementDate?: Date;
     error?: string | undefined;
 }
@@ -139,6 +140,7 @@ declare enum PlantType {
 }
 interface HumidityMeasurement {
     humidity?: number;
+    batteryLevel?: number;
     date?: Date;
 }
 interface Module {
