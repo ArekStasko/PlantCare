@@ -5,6 +5,7 @@ import Vegetable from '../../../app/images/Vegetable.png';
 import Fruit from '../../../app/images/Fruit.png';
 import Decorative from '../../../app/images/Decorative.png';
 import MemoryIcon from '@mui/icons-material/Memory';
+import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 import React from 'react';
 import { Module, Plant } from '@arekstasko/plantcare-api-client';
 
@@ -59,6 +60,21 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
               }}
             />
             <Typography variant="h6">{plant.moduleId}</Typography>
+          </Paper>
+        </Tooltip>
+      </Box>
+      <Box sx={styles.moduleIdWrapper}>
+        <Tooltip placement="top-end" title="Module ID" arrow>
+          <Paper sx={styles.moduleIdCard}>
+            <BatteryChargingFullIcon
+              sx={{
+                height: 35,
+                width: 35,
+                maxHeight: { xs: 35, md: 35 },
+                maxWidth: { xs: 35, md: 35 }
+              }}
+            />
+            <Typography variant="h6">Battery value</Typography>
           </Paper>
         </Tooltip>
       </Box>
