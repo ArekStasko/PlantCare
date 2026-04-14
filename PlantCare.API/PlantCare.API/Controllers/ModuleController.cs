@@ -47,17 +47,31 @@ public class ModuleController : ControllerAuth
         return result.ToOk();
     }
     
+    [HttpGet("{id:int}/battery-level")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> GetBatteryLevel([FromQuery] int id)
+    {
+        var getModuleBatteryLevelQuery = new GetModuleBatteryLevelQuery()
+        {
+            UserId = UserId,
+            ModuleId = id
+        };
+        var result = await _mediator.Send(getModuleBatteryLevelQuery);
+        return result.ToOk();
+    }
+    
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Module))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> GetModuleById(int id)
     {
-        var getModulesQuery = new GetModuleByIdQuery()
+        var getModuleByIdQuery = new GetModuleByIdQuery()
         {
             UserId = UserId,
             ModuleId = id
         };
-        var result = await _mediator.Send(getModulesQuery);
+        var result = await _mediator.Send(getModuleByIdQuery);
         return result.ToOk();
     }
 }
