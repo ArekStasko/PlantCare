@@ -43,6 +43,9 @@
         <SwaggerInputs Update="..\PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs">
           <Link>PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleAvailabilityHandler.cs</Link>
         </SwaggerInputs>
+        <SwaggerInputs Update="..\PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleBatteryLevelHandler.cs">
+          <Link>PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleBatteryLevelHandler.cs</Link>
+        </SwaggerInputs>
     </ItemGroup>
 
     <Target 
