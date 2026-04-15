@@ -50,7 +50,7 @@ public class ModuleController : ControllerAuth
     [HttpGet("{id:int}/battery-level")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetBatteryLevel([FromQuery] int id)
+    public async ValueTask<IActionResult> GetBatteryLevel([FromRoute] int id)
     {
         var getModuleBatteryLevelQuery = new GetModuleBatteryLevelQuery()
         {
@@ -64,7 +64,7 @@ public class ModuleController : ControllerAuth
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Module))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> GetModuleById(int id)
+    public async ValueTask<IActionResult> GetModuleById([FromRoute] int id)
     {
         var getModuleByIdQuery = new GetModuleByIdQuery()
         {
