@@ -37,10 +37,9 @@ declare class Client {
     modulesAll(cancelToken?: CancelToken): Promise<Module[]>;
     protected processModulesAll(response: AxiosResponse): Promise<Module[]>;
     /**
-     * @param idQuery (optional)
      * @return OK
      */
-    batteryLevel(idQuery: number | undefined, idPath: string, cancelToken?: CancelToken): Promise<number>;
+    batteryLevel(id: number, cancelToken?: CancelToken): Promise<number>;
     protected processBatteryLevel(response: AxiosResponse): Promise<number>;
     /**
      * @return OK

@@ -444,16 +444,13 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
-   * @param idQuery (optional) 
    * @return OK
    */ key: "batteryLevel",
-            value: function batteryLevel(idQuery, idPath, cancelToken) {
+            value: function batteryLevel(id, cancelToken) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/modules/{id}/battery-level?";
-                if (idPath === void 0 || idPath === null) throw new globalThis.Error("The parameter 'idPath' must be defined.");
-                url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
-                if (idQuery === null) throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
-                else if (idQuery !== void 0) url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+                var url_ = this.baseUrl + "/api/modules/{id}/battery-level";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "GET",

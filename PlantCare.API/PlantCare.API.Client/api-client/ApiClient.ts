@@ -350,18 +350,13 @@ export class Client {
     }
 
     /**
-     * @param idQuery (optional) 
      * @return OK
      */
-    batteryLevel(idQuery: number | undefined, idPath: string, cancelToken?: CancelToken): Promise<number> {
-        let url_ = this.baseUrl + "/api/modules/{id}/battery-level?";
-        if (idPath === undefined || idPath === null)
-            throw new globalThis.Error("The parameter 'idPath' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
-        if (idQuery === null)
-            throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
-        else if (idQuery !== undefined)
-            url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+    batteryLevel(id: number, cancelToken?: CancelToken): Promise<number> {
+        let url_ = this.baseUrl + "/api/modules/{id}/battery-level";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: AxiosRequestConfig = {
