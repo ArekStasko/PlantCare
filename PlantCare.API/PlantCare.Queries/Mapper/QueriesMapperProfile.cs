@@ -28,7 +28,7 @@ public class QueriesMapperProfile : Profile
 
         CreateMap<Domain.Models.Module.Module, Module>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.isAvailable, opt => opt.MapFrom(src => src.Plant != null));
+            .ForMember(dest => dest.isAvailable, opt => opt.MapFrom(src => src.Plant == null));
 
         // PLACES MAPPINGS
 

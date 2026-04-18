@@ -16,9 +16,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -866,6 +868,7 @@
       <workItem from="1776192660647" duration="328000" />
       <workItem from="1776282853198" duration="961000" />
       <workItem from="1776283949286" duration="1066000" />
+      <workItem from="1776347072396" duration="1810000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
