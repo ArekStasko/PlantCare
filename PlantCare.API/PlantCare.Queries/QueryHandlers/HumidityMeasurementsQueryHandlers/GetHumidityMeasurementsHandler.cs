@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.HumidityMeasurements;
-using PlantCare.Queries.Responses.HumidityMeasurements;
 using HumidityMeasurement = PlantCare.Queries.Responses.HumidityMeasurements.HumidityMeasurement;
 
 namespace PlantCare.Queries.QueryHandlers.HumidityMeasurementsQueryHandlers;
@@ -42,6 +41,7 @@ public class GetHumidityMeasurementsHandler : IRequestHandler<GetHumidityMeasure
                     response.Add(new HumidityMeasurement()
                     {
                         Humidity = measurement.Humidity,
+                        BatteryLevel = measurement.BatteryLevel,
                         Date = measurement.MeasurementDate
                     });
                 }

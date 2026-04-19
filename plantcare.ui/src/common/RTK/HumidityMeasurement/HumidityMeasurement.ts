@@ -1,6 +1,6 @@
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
-import { AverageHumidity, IHumidityMeasurement } from '@arekstasko/plantcare-api-client';
+import { AverageHumidity, HumidityMeasurement } from '@arekstasko/plantcare-api-client';
 
 export class GetHumidityMeasurementsApiParameters {
   moduleId!: number;
@@ -31,7 +31,7 @@ const getAverageHumidityMeasurements = async (params: GetHumidityMeasurementsApi
 export const HumidityMeasurementsApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     getHumidityMeasurements: build.query<
-      IHumidityMeasurement[],
+      HumidityMeasurement[],
       GetHumidityMeasurementsApiParameters
     >({
       queryFn: getHumidityMeasurements

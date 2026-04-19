@@ -15,7 +15,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,13 +89,13 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Extentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Module/GetModuleResponse.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -114,7 +120,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
     &quot;fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/api-client-correct-implementation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/BirdsDiarySzkolenie/BirdsDiary1/BirdsDiary.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -857,6 +863,12 @@
       <workItem from="1775077436515" duration="587000" />
       <workItem from="1775078041823" duration="745000" />
       <workItem from="1775158498564" duration="1108000" />
+      <workItem from="1775913127476" duration="1135000" />
+      <workItem from="1776011701462" duration="2402000" />
+      <workItem from="1776192660647" duration="328000" />
+      <workItem from="1776282853198" duration="961000" />
+      <workItem from="1776283949286" duration="1066000" />
+      <workItem from="1776347072396" duration="1810000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

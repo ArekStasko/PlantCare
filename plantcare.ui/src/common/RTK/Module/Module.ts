@@ -32,6 +32,16 @@ const createModule = async (request: CreateModuleRequest) =>
       error: err
     }));
 
+const getBatteryLevel = async (id: number) =>
+  plantcareApi
+    .batteryLevel(id)
+    .then((result) => ({
+      data: result
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
 export const ModulesApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     getModules: build.query<Module[], void>({
@@ -42,6 +52,10 @@ export const ModulesApi = emptyApi.injectEndpoints({
       queryFn: getModule,
       providesTags: ['Modules']
     }),
+    getBatteryLevel: build.query<number, number>({
+      queryFn: getBatteryLevel,
+      providesTags: ['Modules']
+    }),
     createModule: build.mutation<boolean, CreateModuleRequest>({
       queryFn: createModule,
       invalidatesTags: ['Modules']
@@ -50,4 +64,4 @@ export const ModulesApi = emptyApi.injectEndpoints({
   overrideExisting: false
 });
 
-export const { useGetModulesQuery, useGetModuleQuery, useCreateModuleMutation } = ModulesApi;
+export const { useGetModulesQuery, useGetModuleQuery, useCreateModuleMutation, useGetBatteryLevelQuery } = ModulesApi;

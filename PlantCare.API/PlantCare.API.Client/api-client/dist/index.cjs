@@ -553,6 +553,66 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
+   */ key: "batteryLevel",
+            value: function batteryLevel(id, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/modules/{id}/battery-level";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processBatteryLevel(_response);
+                });
+            }
+        },
+        {
+            key: "processBatteryLevel",
+            value: function processBatteryLevel(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @return OK
    */ key: "modulesGET",
             value: function modulesGET(id, cancelToken) {
                 var _this = this;

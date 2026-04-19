@@ -91,7 +91,7 @@ export class Client {
      * @param toDate (optional) 
      * @return OK
      */
-    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]> {
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<HumidityMeasurement[]> {
         let url_ = this.baseUrl + "/api/humidity-measurements/{id}?";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -126,7 +126,7 @@ export class Client {
         });
     }
 
-    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]> {
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<HumidityMeasurement[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -141,7 +141,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<IHumidityMeasurement[]>(result200);
+            return Promise.resolve<HumidityMeasurement[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -154,7 +154,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<IHumidityMeasurement[]>(null as any);
+        return Promise.resolve<HumidityMeasurement[]>(null as any);
     }
 
     /**
@@ -347,6 +347,67 @@ export class Client {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<Module[]>(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    batteryLevel(id: number, cancelToken?: CancelToken): Promise<number> {
+        let url_ = this.baseUrl + "/api/modules/{id}/battery-level";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processBatteryLevel(_response);
+        });
+    }
+
+    protected processBatteryLevel(response: AxiosResponse): Promise<number> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<number>(result200);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<number>(null as any);
     }
 
     /**
@@ -969,6 +1030,7 @@ export class Client {
 export interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
+    batteryLevel?: number;
     measurementDate?: Date;
     error?: string | undefined;
 }
@@ -1018,11 +1080,10 @@ export enum PlantType {
     _2 = 2,
 }
 
-export interface IHumidityMeasurement {
-    id?: number;
-    moduleId?: number;
+export interface HumidityMeasurement {
     humidity?: number;
-    measurementDate?: Date;
+    batteryLevel?: number;
+    date?: Date;
 }
 
 export interface Module {

@@ -1,10 +1,9 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Domain.Dto;
-using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Queries.Queries.HumidityMeasurements;
+using PlantCare.Queries.Responses.HumidityMeasurements;
 
 namespace PlantCare.API.Controllers;
 
@@ -29,7 +28,7 @@ public class HumidityMeasurementController : ControllerAuth
     }
 
     [HttpGet("{id:int}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<IHumidityMeasurement>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<HumidityMeasurement>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get(int id, [FromQuery] DateTime fromDate, [FromQuery] DateTime toDate)
     {

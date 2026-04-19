@@ -30,6 +30,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BatteryLevel")
+                        .HasColumnType("int");
+
                     b.Property<int>("Humidity")
                         .HasColumnType("int");
 
@@ -51,13 +54,6 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsMonitoring")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

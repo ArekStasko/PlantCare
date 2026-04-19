@@ -16,8 +16,8 @@ declare class Client {
      * @param toDate (optional)
      * @return OK
      */
-    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<IHumidityMeasurement[]>;
-    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<IHumidityMeasurement[]>;
+    humidityMeasurementsAll(id: number, fromDate: Date | undefined, toDate: Date | undefined, cancelToken?: CancelToken): Promise<HumidityMeasurement[]>;
+    protected processHumidityMeasurementsAll(response: AxiosResponse): Promise<HumidityMeasurement[]>;
     /**
      * @param fromDate (optional)
      * @param toDate (optional)
@@ -36,6 +36,11 @@ declare class Client {
      */
     modulesAll(cancelToken?: CancelToken): Promise<Module[]>;
     protected processModulesAll(response: AxiosResponse): Promise<Module[]>;
+    /**
+     * @return OK
+     */
+    batteryLevel(id: number, cancelToken?: CancelToken): Promise<number>;
+    protected processBatteryLevel(response: AxiosResponse): Promise<number>;
     /**
      * @return OK
      */
@@ -96,6 +101,7 @@ declare class Client {
 interface AddHumidityMeasurementCommand {
     moduleId?: number;
     humidity?: number;
+    batteryLevel?: number;
     measurementDate?: Date;
     error?: string | undefined;
 }
@@ -137,11 +143,10 @@ declare enum PlantType {
     _1 = 1,
     _2 = 2
 }
-interface IHumidityMeasurement {
-    id?: number;
-    moduleId?: number;
+interface HumidityMeasurement {
     humidity?: number;
-    measurementDate?: Date;
+    batteryLevel?: number;
+    date?: Date;
 }
 interface Module {
     id?: number;
@@ -764,4 +769,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type ICustomAttributeProvider, type IHumidityMeasurement, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type Module2, type ModuleHandle, ParameterAttributes, type ParameterInfo, type Place, type Plant, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type HumidityMeasurement, type ICustomAttributeProvider, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type Module2, type ModuleHandle, ParameterAttributes, type ParameterInfo, type Place, type Plant, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
