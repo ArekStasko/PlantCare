@@ -10,5 +10,7 @@ public interface IPlant : IUserAssignable
     int ModuleId { get; set; }
     string Name { get; set; }
     string Description { get; set; }
+    int? minHumidity { get; set; }
+    int? maxHumidity { get; set; }
     PlantType Type { get; set; }
 }

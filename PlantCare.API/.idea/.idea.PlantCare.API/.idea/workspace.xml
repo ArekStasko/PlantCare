@@ -16,11 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Module/Module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/plantDetails/details/Details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Dto/PlantDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Dto/PlantDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +90,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModulesQuery.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -110,29 +109,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.PlantCare.API: http.executor&quot;: &quot;Run&quot;,
-    &quot;ATTACH_DIALOG_SELECTED_CONTAINER&quot;: &quot;plantcare-api&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowNuGet.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
-    &quot;fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/BirdsDiarySzkolenie/BirdsDiary1/BirdsDiary.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Client/api-client/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.PlantCare.API: http.executor": "Run",
+    "ATTACH_DIALOG_SELECTED_CONTAINER": "plantcare-api",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowNuGet.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.49723756",
+    "fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor": "Debug",
+    "git-widget-placeholder": "feature/measurement-status",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/arekstasko/sources/repos/BirdsDiarySzkolenie/BirdsDiary1/BirdsDiary.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
+    "ts.external.directory.path": "/home/arekstasko/sources/repos/PlantCare/PlantCare.API/PlantCare.API.Client/api-client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.PlantCare.API: http">
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile">
@@ -869,6 +868,7 @@
       <workItem from="1776282853198" duration="961000" />
       <workItem from="1776283949286" duration="1066000" />
       <workItem from="1776347072396" duration="1810000" />
+      <workItem from="1776704368916" duration="393000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

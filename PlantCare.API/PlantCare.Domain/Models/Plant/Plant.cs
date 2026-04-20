@@ -10,5 +10,9 @@ public class Plant : IPlant
     public int ModuleId { get; set; }
     public string Name { get; set; } = "Name";
     public string Description { get; set; } = "Description";
+    
+    public int? minHumidity { get; set; }
+    
+    public int? maxHumidity { get; set; }
     public PlantType Type { get; set; }
 }
