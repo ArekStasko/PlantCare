@@ -16,11 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.Domain/Enums/HumidityStatus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/Place/GetHumidityStatusForPlacePlants.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries/Responses/Plants/PlantHumidityStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlaceController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Plant/UpdatePlantHumidityValues.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/PlantController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +81,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.API/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Commands.Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Commands/Commands/Plant/CreatePlantCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Commands/Commands/Plant/UpdatePlantCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.ConsistencyManager/Services/PlaceConsistencyService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MessageBroker/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Extentions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -871,7 +869,7 @@
       <workItem from="1776282853198" duration="961000" />
       <workItem from="1776283949286" duration="1066000" />
       <workItem from="1776347072396" duration="1810000" />
-      <workItem from="1776704368916" duration="1184000" />
+      <workItem from="1776704368916" duration="1496000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

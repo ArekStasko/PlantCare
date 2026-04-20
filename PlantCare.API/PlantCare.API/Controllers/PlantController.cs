@@ -52,6 +52,17 @@ public class PlantController : ControllerAuth
         var result = await _mediator.Send(command);
         return result.ToOk();
     }
+    
+    [HttpPut("{id:int}/set-humidity-values")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Update([FromQuery] int id, UpdatePlantHumidityValues command)
+    {
+        command.UserId = UserId;
+        command.PlantId = id;
+        var result = await _mediator.Send(command);
+        return result.ToOk();
+    }
 
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Plant))]
