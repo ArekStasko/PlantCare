@@ -5,6 +5,7 @@ using PlantCare.Commands.Commands.Place;
 using PlantCare.Domain.Models.Place;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Queries.Queries.Place;
+using PlantCare.Queries.Responses.HumidityMeasurements;
 using PlantCare.Queries.Responses.Place;
 using Place = PlantCare.Queries.Responses.Place.Place;
 
@@ -30,10 +31,8 @@ public class PlaceController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreatePlaceCommand command)
     {
-        _logger.LogInformation("Create place controller method start processing");
         command.UserId = UserId;
         var result = await _mediator.Send(command);
-        _logger.LogInformation("Create place controller method ends processing");
         return result.ToOk();
     }
 
@@ -42,11 +41,9 @@ public class PlaceController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Delete([FromQuery] int id)
     {
-        _logger.LogInformation("Delete place controller method start processing");
         var deletePlaceCommand = _mapper.Map<DeletePlaceCommand>(id);
         deletePlaceCommand.UserId = UserId;
         var result = await _mediator.Send(deletePlaceCommand);
-        _logger.LogInformation("Delete place controller method ends processing");
         return result.ToOk();
     }
 
@@ -55,10 +52,8 @@ public class PlaceController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Update(UpdatePlaceCommand command)
     {
-        _logger.LogInformation("Edit place controller method start processing");
         command.UserId = UserId;
         var result = await _mediator.Send(command);
-        _logger.LogInformation("Edit place controller method ends processing");
         return result.ToOk();
     }
 
@@ -67,13 +62,25 @@ public class PlaceController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {
-        _logger.LogInformation("GetAll places controller method start processing");
         var getPlacesQuery = new GetPlacesQuery()
         {
             UserId = UserId
         };
         var result = await _mediator.Send(getPlacesQuery);
-        _logger.LogInformation("GetAll places controller method ends processing");
+        return result.ToOk();
+    }
+    
+    [HttpGet("{id:int}/plants/humidity-status")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PlantHumidityStatus>))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Get([FromRoute] int id)
+    {
+        var getHumidityStatusForPlacePlantsQuery = new GetHumidityStatusForPlacePlants()
+        {
+            UserId = UserId,
+            Id = id
+        };
+        var result = await _mediator.Send(getHumidityStatusForPlacePlantsQuery);
         return result.ToOk();
     }
 }
