@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.Domain.Dto;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.MessageBroker.Messages;
 using PlantCare.MessageBroker.Producer;
 using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 using Plant = PlantCare.MessageBroker.Messages.Plant;
@@ -35,7 +36,17 @@ public class UpdatePlantHumidityValuesHandler : IRequestHandler<UpdatePlantHumid
             {
                 if (succ)
                 {
-                    
+                    var plantMessage = new Plant()
+                    {
+                        Action = ActionType.UpdateHumidityValues,
+                        PlantData = new PlantDto()
+                        {
+                            Id = command.PlantId,
+                            minHumidity = command.minHumidity,
+                            maxHumidity = command.maxHumidity
+                        }
+                    };
+                    _queueProducer.PublishMessage(plantMessage);
                 }
                 return succ;
             }, err =>

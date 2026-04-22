@@ -15,14 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlantCommandHandlers/UpdatePlantHumidityValuesHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/PlantCommandHandlers/UpdatePlantHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Commands/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWritePlantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/PlantRepository.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -875,7 +868,7 @@
       <workItem from="1776283949286" duration="1066000" />
       <workItem from="1776347072396" duration="1810000" />
       <workItem from="1776704368916" duration="2303000" />
-      <workItem from="1776801765372" duration="1037000" />
+      <workItem from="1776801765372" duration="1585000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

@@ -60,7 +60,7 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
             
                 if (plantToUpdate == null)
                 {
-                    _logger.LogError("There is no plant to edit with {plantId} Id", plant.Id);
+                    _logger.LogError("There is no plant to update with {plantId} Id", plant.Id);
                     return;
                 }
 
@@ -71,6 +71,24 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 await _context.SaveChangesAsync();
                 string singlePlantKey = $"Plant-{plant.Id}-{plant.UserId}";
                 await ResetPlantCache(plant.UserId);
+                await _cache.RemoveAsync(singlePlantKey);
+                return;
+            }
+            case ActionType.UpdateHumidityValues:
+            {
+                var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == message.PlantData.Id);
+                if (plantToUpdate == null)
+                {
+                    _logger.LogError("There is no plant to update with {plantId} Id", message.PlantData.Id);
+                    return;
+                }
+
+                plantToUpdate.minHumidity = message.PlantData.minHumidity;
+                plantToUpdate.maxHumidity = message.PlantData.maxHumidity;
+                
+                await _context.SaveChangesAsync();
+                string singlePlantKey = $"Plant-{plantToUpdate.Id}-{plantToUpdate.UserId}";
+                await ResetPlantCache(plantToUpdate.UserId);
                 await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
