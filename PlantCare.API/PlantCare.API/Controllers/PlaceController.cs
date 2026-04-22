@@ -75,7 +75,7 @@ public class PlaceController : ControllerAuth
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromRoute] int id)
     {
-        var getHumidityStatusForPlacePlantsQuery = new GetHumidityStatusForPlacePlants()
+        var getHumidityStatusForPlacePlantsQuery = new GetHumidityStatusForPlacePlantsQuery()
         {
             UserId = UserId,
             Id = id
