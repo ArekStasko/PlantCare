@@ -13,12 +13,14 @@ namespace PlantCare.Queries.QueryHandlers.PlaceQueryHandlers;
 public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumidityStatusForPlacePlantsQuery, Result<IReadOnlyCollection<PlantHumidityStatus>>>
 {
     private readonly IReadPlantRepository _repository;
+    private readonly IReadHumidityMeasurementRepository _repositoryHumidityMeasurement;
     private readonly IMapper _mapper;
     private readonly ILogger<PlaceQueryHandler> _logger;
 
-    public HumidityStatusForPlacePlantsHandler(IReadPlantRepository repository, IMapper mapper, ILogger<PlaceQueryHandler> logger)
+    public HumidityStatusForPlacePlantsHandler(IReadPlantRepository repository, IReadHumidityMeasurementRepository repositoryHumidityMeasurement, IMapper mapper, ILogger<PlaceQueryHandler> logger)
     {
         _repository = repository;
+        _repositoryHumidityMeasurement = repositoryHumidityMeasurement;
         _mapper = mapper;
         _logger = logger;
     }
@@ -37,7 +39,13 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
                         throw err;
                     });
             
+            List<Task<int>> tasks = new List<Task<int>>();
+            foreach (var plant in plants)
+            {
+                tasks.Add(_repositoryHumidityMeasurement.GetStatus(plant.Id));
+            }
             
+            var result = await Task.WhenAll(tasks);
         }
         catch (Exception e)
         {
