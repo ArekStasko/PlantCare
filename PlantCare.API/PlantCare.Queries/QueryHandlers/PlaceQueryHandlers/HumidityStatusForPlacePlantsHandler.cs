@@ -2,6 +2,7 @@ using AutoMapper;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using PlantCare.Domain.Enums;
 using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.Place;
@@ -39,18 +40,44 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
                         throw err;
                     });
             
-            List<Task<int>> tasks = new List<Task<int>>();
+            List<Task<Result<(int, int)>>> tasks = new List<Task<Result<(int, int)>>>();
             foreach (var plant in plants)
             {
-                tasks.Add(_repositoryHumidityMeasurement.GetStatus(plant.Id));
+                tasks.Add(_repositoryHumidityMeasurement.GetLatest(plant.Id));
             }
             
-            var result = await Task.WhenAll(tasks);
+            var statuses = await Task.WhenAll(tasks);
+            List<PlantHumidityStatus> result = new List<PlantHumidityStatus>();
+
+            foreach (var status in statuses)
+            {
+                status.Match(succ =>
+                {
+                    result.Add(new PlantHumidityStatus()
+                    {
+                        PlantId = succ.Item1,
+                        Status = succ.Item2
+                    });
+                }, err =>
+                {
+                    _logger.LogError("Get latest humidity record failed for plant in {Id} place", query.Id);
+                });
+            }
+
+            return result;
         }
         catch (Exception e)
         {
             _logger.LogError("Exception has been thrown in HumidityStatusForPlacePlantsHandler: {exception}", e.Message);
             return new Result<IReadOnlyCollection<PlantHumidityStatus>>(e);
+        }
+    }
+
+    private HumidityStatus GetHumidityStatus(int humidity)
+    {
+        switch (humidity)
+        {
+            
         }
     }
 }

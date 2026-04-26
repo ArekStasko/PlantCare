@@ -41,7 +41,7 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
         }
     }
 
-    public async ValueTask<Result<int>> GetLatest(int id)
+    public async Task<Result<(int, int)>> GetLatest(int id)
     {
         try
         {
@@ -51,16 +51,16 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
             if (humidityMeasurements == null)
             {
                 _logger.LogError("There is no humidity measurements for module with {Id} id", id);
-                return -1;
+                return (id, -1);
             }
 
             var humidityMeasurement = humidityMeasurements.OrderBy(h => h.MeasurementDate).FirstOrDefault();
-            return new Result<int>(humidityMeasurement.Humidity);
+            return new Result<(int, int)>((id, humidityMeasurement.Humidity));
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new Result<int>(e);
+            return new Result<(int, int)>(e);
         }
     }
 }

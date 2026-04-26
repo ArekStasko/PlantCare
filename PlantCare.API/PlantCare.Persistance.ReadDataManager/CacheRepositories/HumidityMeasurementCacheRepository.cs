@@ -35,7 +35,7 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
         return new Result<IReadOnlyCollection<IHumidityMeasurement>>(data!);
     }
 
-    public async ValueTask<Result<int>> GetLatest(int id)
+    public async Task<Result<(int, int)>> GetLatest(int id)
     {
         string humidityMeasurementLatestKey = $"HumidityMeasurementLatest-{id}";
         int data = await _cache.GetRecordAsync<int>(humidityMeasurementLatestKey);
@@ -47,6 +47,6 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
             return await humidityMeasurement.ProcessCacheResult(_cache, humidityMeasurementLatestKey);
         }
 
-        return new Result<int>(data!);
+        return new Result<(int, int)>((id, data!));
     }
 }
