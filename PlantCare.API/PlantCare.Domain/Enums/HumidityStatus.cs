@@ -4,5 +4,6 @@ public enum HumidityStatus
 {
     Ok = 1,
     Warning = 2,
-    Critical = 3
+    Critical = 3,
+    NoData = 4
 }

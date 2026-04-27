@@ -1,4 +1,5 @@
 using AutoMapper;
+using LanguageExt;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -7,7 +8,6 @@ using PlantCare.Domain.Models.Plant;
 using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.Place;
 using PlantCare.Queries.Responses.HumidityMeasurements;
-using PlantCare.Queries.Responses.Place;
 
 namespace PlantCare.Queries.QueryHandlers.PlaceQueryHandlers;
 
@@ -46,21 +46,36 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
                 tasks.Add(_repositoryHumidityMeasurement.GetLatest(plant.Id));
             }
             
-            var statuses = await Task.WhenAll(tasks);
+            var lastMeasurements = await Task.WhenAll(tasks);
             List<PlantHumidityStatus> result = new List<PlantHumidityStatus>();
 
-            foreach (var status in statuses)
+            foreach (var lastMeasurement in lastMeasurements)
             {
-                status.Match(succ =>
+                _ = lastMeasurement.Match(succ =>
                 {
+                    var plant = plants.FirstOrDefault(p => p.Id == succ.Item1);
+
+                    if (plant == null)
+                    {
+                        result.Add(new PlantHumidityStatus()
+                        {
+                            PlantId = succ.Item1,
+                            Status = HumidityStatus.NoData
+                        });
+                        return succ;
+                    }
+                    
                     result.Add(new PlantHumidityStatus()
                     {
                         PlantId = succ.Item1,
-                        Status = succ.Item2
+                        Status = GetHumidityStatus(succ.Item2, plant.maxHumidity, plant.minHumidity)
                     });
+
+                    return succ;
                 }, err =>
                 {
                     _logger.LogError("Get latest humidity record failed for plant in {Id} place", query.Id);
+                    return (0, 0);
                 });
             }
 
@@ -73,11 +88,35 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
         }
     }
 
-    private HumidityStatus GetHumidityStatus(int humidity)
+    private HumidityStatus GetHumidityStatus(int humidity, int? max, int? min)
     {
-        switch (humidity)
+        if (!max.HasValue || !min.HasValue)
+            return HumidityStatus.NoData;
+
+        if (humidity >= min.Value && humidity <= max.Value)
+            return HumidityStatus.Ok;
+
+        var range = max.Value - min.Value;
+
+        if (humidity < min.Value)
         {
-            
+            var diff = min.Value - humidity;
+
+            return diff > range * 0.2 
+                ? HumidityStatus.Critical 
+                : HumidityStatus.Warning;
         }
+
+        if (humidity > max.Value)
+        {
+            var diff = humidity - max.Value;
+
+            return diff > range * 0.2 
+                ? HumidityStatus.Critical 
+                : HumidityStatus.Warning;
+        }
+
+        return HumidityStatus.NoData;
+
     }
 }
