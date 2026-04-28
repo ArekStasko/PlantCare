@@ -16,7 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/ApiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/api-client/ApiClient.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -880,7 +880,7 @@
       <workItem from="1777149661686" duration="242000" />
       <workItem from="1777213002662" duration="1618000" />
       <workItem from="1777309007763" duration="2944000" />
-      <workItem from="1777406760988" duration="1269000" />
+      <workItem from="1777406760988" duration="1641000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

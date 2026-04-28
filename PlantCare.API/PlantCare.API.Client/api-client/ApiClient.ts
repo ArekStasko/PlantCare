@@ -719,6 +719,67 @@ export class Client {
     }
 
     /**
+     * @return OK
+     */
+    humidityStatus(id: number, cancelToken?: CancelToken): Promise<PlantHumidityStatus[]> {
+        let url_ = this.baseUrl + "/api/places/{id}/plants/humidity-status";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processHumidityStatus(_response);
+        });
+    }
+
+    protected processHumidityStatus(response: AxiosResponse): Promise<PlantHumidityStatus[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<PlantHumidityStatus[]>(result200);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<PlantHumidityStatus[]>(null as any);
+    }
+
+    /**
      * @param body (optional) 
      * @return OK
      */
@@ -966,6 +1027,77 @@ export class Client {
     }
 
     /**
+     * @param idQuery (optional) 
+     * @param body (optional) 
+     * @return OK
+     */
+    setHumidityValues(idQuery: number | undefined, idPath: string, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values?";
+        if (idPath === undefined || idPath === null)
+            throw new globalThis.Error("The parameter 'idPath' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
+        if (idQuery === null)
+            throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
+        else if (idQuery !== undefined)
+            url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processSetHumidityValues(_response);
+        });
+    }
+
+    protected processSetHumidityValues(response: AxiosResponse): Promise<boolean> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<boolean>(result200);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<boolean>(null as any);
+    }
+
+    /**
      * @return OK
      */
     plantsGET(id: number, cancelToken?: CancelToken): Promise<Plant> {
@@ -1065,6 +1197,13 @@ export interface UpdatePlantCommand {
     moduleId?: number | undefined;
 }
 
+export interface UpdatePlantHumidityValues {
+    userId?: number;
+    plantId?: number;
+    minHumidity?: number;
+    maxHumidity?: number;
+}
+
 export interface AverageHumidity {
     date?: string | undefined;
     humidity?: number;
@@ -1074,16 +1213,28 @@ export interface CreateModuleRequest {
     name?: string | undefined;
 }
 
-export enum PlantType {
-    _0 = 0,
+export enum HumidityStatus {
     _1 = 1,
     _2 = 2,
+    _3 = 3,
+    _4 = 4,
+}
+
+export enum PlantType {
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export interface HumidityMeasurement {
     humidity?: number;
     batteryLevel?: number;
     date?: Date;
+}
+
+export interface PlantHumidityStatus {
+    plantId?: number;
+    status?: HumidityStatus;
 }
 
 export interface Module {

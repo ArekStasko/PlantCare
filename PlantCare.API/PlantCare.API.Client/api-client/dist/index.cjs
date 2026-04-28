@@ -197,6 +197,9 @@ __export(index_exports, {
     GenericParameterAttributes: function() {
         return GenericParameterAttributes;
     },
+    HumidityStatus: function() {
+        return HumidityStatus;
+    },
     LayoutKind: function() {
         return LayoutKind;
     },
@@ -915,6 +918,66 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
+   * @return OK
+   */ key: "humidityStatus",
+            value: function humidityStatus(id, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/places/{id}/plants/humidity-status";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processHumidityStatus(_response);
+                });
+            }
+        },
+        {
+            key: "processHumidityStatus",
+            value: function processHumidityStatus(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
    * @param body (optional) 
    * @return OK
    */ key: "plantsPOST",
@@ -1158,6 +1221,73 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
+   * @param idQuery (optional) 
+   * @param body (optional) 
+   * @return OK
+   */ key: "setHumidityValues",
+            value: function setHumidityValues(idQuery, idPath, body, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values?";
+                if (idPath === void 0 || idPath === null) throw new globalThis.Error("The parameter 'idPath' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
+                if (idQuery === null) throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
+                else if (idQuery !== void 0) url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+                url_ = url_.replace(/[?&]$/, "");
+                var content_ = JSON.stringify(body);
+                var options_ = {
+                    data: content_,
+                    method: "PUT",
+                    url: url_,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processSetHumidityValues(_response);
+                });
+            }
+        },
+        {
+            key: "processSetHumidityValues",
+            value: function processSetHumidityValues(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
    * @return OK
    */ key: "plantsGET",
             value: function plantsGET(id, cancelToken) {
@@ -1219,10 +1349,17 @@ var Client = /*#__PURE__*/ function() {
     ]);
     return Client;
 }();
+var HumidityStatus = /* @__PURE__ */ function(HumidityStatus2) {
+    HumidityStatus2[HumidityStatus2["_1"] = 1] = "_1";
+    HumidityStatus2[HumidityStatus2["_2"] = 2] = "_2";
+    HumidityStatus2[HumidityStatus2["_3"] = 3] = "_3";
+    HumidityStatus2[HumidityStatus2["_4"] = 4] = "_4";
+    return HumidityStatus2;
+}(HumidityStatus || {});
 var PlantType = /* @__PURE__ */ function(PlantType2) {
-    PlantType2[PlantType2["_0"] = 0] = "_0";
     PlantType2[PlantType2["_1"] = 1] = "_1";
     PlantType2[PlantType2["_2"] = 2] = "_2";
+    PlantType2[PlantType2["_3"] = 3] = "_3";
     return PlantType2;
 }(PlantType || {});
 var CallingConventions = /* @__PURE__ */ function(CallingConventions2) {
@@ -1431,6 +1568,7 @@ function isAxiosError(obj) {
     EventAttributes: EventAttributes,
     FieldAttributes: FieldAttributes,
     GenericParameterAttributes: GenericParameterAttributes,
+    HumidityStatus: HumidityStatus,
     LayoutKind: LayoutKind,
     MemberTypes: MemberTypes,
     MethodAttributes: MethodAttributes,
