@@ -56,7 +56,7 @@ public class PlantController : ControllerAuth
     [HttpPut("{id:int}/set-humidity-values")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Update([FromRoute] int id, UpdatePlantHumidityValues command)
+    public async ValueTask<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlantHumidityValues command)
     {
         command.UserId = UserId;
         command.PlantId = id;

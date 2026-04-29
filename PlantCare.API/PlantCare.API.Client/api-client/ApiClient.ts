@@ -1027,19 +1027,14 @@ export class Client {
     }
 
     /**
-     * @param idQuery (optional) 
      * @param body (optional) 
      * @return OK
      */
-    setHumidityValues(idQuery: number | undefined, idPath: string, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean> {
-        let url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values?";
-        if (idPath === undefined || idPath === null)
-            throw new globalThis.Error("The parameter 'idPath' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
-        if (idQuery === null)
-            throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
-        else if (idQuery !== undefined)
-            url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+    setHumidityValues(id: number, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);

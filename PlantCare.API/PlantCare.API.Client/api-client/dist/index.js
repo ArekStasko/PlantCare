@@ -1110,17 +1110,14 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
-   * @param idQuery (optional) 
    * @param body (optional) 
    * @return OK
    */ key: "setHumidityValues",
-            value: function setHumidityValues(idQuery, idPath, body, cancelToken) {
+            value: function setHumidityValues(id, body, cancelToken) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values?";
-                if (idPath === void 0 || idPath === null) throw new globalThis.Error("The parameter 'idPath' must be defined.");
-                url_ = url_.replace("{id}", encodeURIComponent("" + idPath));
-                if (idQuery === null) throw new globalThis.Error("The parameter 'idQuery' cannot be null.");
-                else if (idQuery !== void 0) url_ += "id=" + encodeURIComponent("" + idQuery) + "&";
+                var url_ = this.baseUrl + "/api/plants/{id}/set-humidity-values";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 url_ = url_.replace(/[?&]$/, "");
                 var content_ = JSON.stringify(body);
                 var options_ = {

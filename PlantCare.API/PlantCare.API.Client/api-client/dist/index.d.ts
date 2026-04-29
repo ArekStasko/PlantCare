@@ -98,11 +98,10 @@ declare class Client {
     plantsAll(cancelToken?: CancelToken): Promise<Plant[]>;
     protected processPlantsAll(response: AxiosResponse): Promise<Plant[]>;
     /**
-     * @param idQuery (optional)
      * @param body (optional)
      * @return OK
      */
-    setHumidityValues(idQuery: number | undefined, idPath: string, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    setHumidityValues(id: number, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean>;
     protected processSetHumidityValues(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
