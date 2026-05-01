@@ -22,11 +22,11 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
 
   const getImage = (plantType?: PlantType) => {
     switch (plantType) {
-      case PlantType._0:
-        return Decorative;
       case PlantType._1:
-        return Fruit;
+        return Decorative;
       case PlantType._2:
+        return Fruit;
+      case PlantType._3:
         return Vegetable;
       default:
         return 'Not Specified';

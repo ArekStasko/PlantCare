@@ -72,7 +72,7 @@ export const PlaceApi = emptyApi.injectEndpoints({
     }),
     getHumidityStatus: build.query<PlantHumidityStatus[], number>({
       queryFn: getHumidityStatus,
-      providesTags: ['Humidity', 'Places']
+      providesTags: ['Places']
     })
   }),
   overrideExisting: false
