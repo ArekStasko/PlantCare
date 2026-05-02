@@ -8,6 +8,7 @@ import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import React, { useState } from "react";
 import { Module, Plant, PlantType } from "@arekstasko/plantcare-api-client";
 import { useGetBatteryLevelQuery } from "../../../common/RTK/Module/Module";
+import { HumidityRange } from "./HumidityRange";
 
 export type PlantDetailsProps = {
   plant?: Plant;
@@ -101,6 +102,7 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
             </Tooltip>
           </Paper>
       </Box>
+      <HumidityRange onOpenChange={(v) => setOpenHumidityRange(v)} open={openHumidityRange} id={plant.id!} />
     </>
   ) : (
     <>
