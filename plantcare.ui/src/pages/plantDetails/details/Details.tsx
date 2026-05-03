@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Paper, Tooltip, Typography } from "@mui/material";
-import styles from "../statisticts/statistics.styles";
+import styles from "./details.styles";
 import Vegetable from "../../../app/images/Vegetable.png";
 import Fruit from "../../../app/images/Fruit.png";
 import Decorative from "../../../app/images/Decorative.png";
