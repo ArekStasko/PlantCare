@@ -63,7 +63,7 @@ const humidityRangeWrapper = {
   display: 'flex',
   flexDirection: 'column',
   mt: '50px'
-}
+};
 
 export default {
   plantTitleWrapper,
@@ -74,4 +74,4 @@ export default {
   moduleIdCard,
   typeCard,
   humidityRangeWrapper
-}
+};

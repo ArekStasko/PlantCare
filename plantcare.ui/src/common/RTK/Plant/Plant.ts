@@ -4,7 +4,7 @@ import {
   Plant,
   UpdatePlantCommand,
   UpdatePlantHumidityValues
-} from "@arekstasko/plantcare-api-client";
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 const createPlant = async (request: CreatePlantCommand) =>
@@ -65,7 +65,7 @@ const setHumidityValues = async (body: UpdatePlantHumidityValues) =>
     }))
     .catch((err) => ({
       error: err
-    }))
+    }));
 
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -102,5 +102,6 @@ export const {
   useDeletePlantMutation,
   useGetPlantQuery,
   useGetPlantsQuery,
-  useUpdatePlantMutation
+  useUpdatePlantMutation,
+  useSetHumidityValuesMutation
 } = PlantApi;

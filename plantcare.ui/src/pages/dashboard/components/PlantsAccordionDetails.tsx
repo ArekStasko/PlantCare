@@ -1,4 +1,11 @@
-import { AccordionDetails, Box, IconButton, Tooltip, Typography } from '@mui/material';
+import {
+  AccordionDetails,
+  Box,
+  CircularProgress,
+  IconButton,
+  Tooltip,
+  Typography
+} from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
@@ -11,12 +18,15 @@ import styles from '../dashboard.styles';
 import RoutingConstants from '../../../app/routing/routingConstants';
 import PlantActionsMenu from '../../plantActionsMenu/PlantActionsMenu';
 import { Plant, PlantType } from '@arekstasko/plantcare-api-client';
+import { useGetHumidityStatusQuery } from '../../../common/RTK/Place/Place';
 
 interface PlantsAccordionDetailsProps {
   plants: Plant[];
+  placeId: number;
 }
 
 export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
+  const { data: humidityStatuses, isLoading } = useGetHumidityStatusQuery(props.placeId);
   const navigate = useNavigate();
   const [openPlantId, setOpenPlantId] = React.useState<number>();
 
@@ -33,7 +43,9 @@ export const PlantsAccordionDetails = (props: PlantsAccordionDetailsProps) => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <CircularProgress />
+  ) : (
     <>
       {props.plants!.map((plant) => (
         <AccordionDetails key={plant.id} sx={styles.plantsAccordionDetailsWrapper}>

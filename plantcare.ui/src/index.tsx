@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import RoutingConstants from './app/routing/routingConstants';
 import ExpirationBanner from './pages/expirationBanner/expirationBanner';
 import IdpClient from 'identity-provider-client';
-import emptyApi from "./common/RTK/emptyApi";
+import emptyApi from './common/RTK/emptyApi';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

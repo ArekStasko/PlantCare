@@ -1,4 +1,9 @@
-import { CreatePlaceCommand, Place, PlantHumidityStatus, UpdatePlaceCommand } from "@arekstasko/plantcare-api-client";
+import {
+  CreatePlaceCommand,
+  Place,
+  PlantHumidityStatus,
+  UpdatePlaceCommand
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
 
@@ -50,7 +55,7 @@ const getHumidityStatus = (id: number) =>
     }))
     .catch((err) => ({
       error: err
-    }))
+    }));
 
 export const PlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -82,5 +87,6 @@ export const {
   useUpdatePlaceMutation,
   useGetPlacesQuery,
   useDeletePlaceMutation,
-  useCreatePlaceMutation
+  useCreatePlaceMutation,
+  useGetHumidityStatusQuery
 } = PlaceApi;
