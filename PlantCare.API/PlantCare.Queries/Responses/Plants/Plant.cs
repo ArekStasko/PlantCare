@@ -9,5 +9,7 @@ public record Plant
     public int ModuleId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
+    public int? minHumidity { get; set; }
+    public int? maxHumidity { get; set; }
     public PlantType Type { get; set; }
 };

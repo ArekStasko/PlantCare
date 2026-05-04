@@ -3,7 +3,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.Queries.Queries.Place;
 using PlantCare.Queries.Queries.Plant;
+using PlantCare.Queries.Responses.HumidityMeasurements;
 using PlantCare.Queries.Responses.Plants;
 using Plant = PlantCare.Queries.Responses.Plants.Plant;
 
@@ -88,4 +90,5 @@ public class PlantController : ControllerAuth
         var result = await _mediator.Send(getPlantsQuery);
         return result.ToOk();
     }
+    
 }

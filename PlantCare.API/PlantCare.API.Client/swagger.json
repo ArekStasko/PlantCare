@@ -1479,6 +1479,16 @@
             "type": "string",
             "nullable": true
           },
+          "minHumidity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "maxHumidity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "type": {
             "$ref": "#/components/schemas/PlantCare.Domain.Enums.PlantType"
           }
