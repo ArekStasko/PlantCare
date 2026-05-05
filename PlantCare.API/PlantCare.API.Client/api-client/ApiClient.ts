@@ -1251,6 +1251,8 @@ export interface Plant {
     moduleId?: number;
     name?: string | undefined;
     description?: string | undefined;
+    minHumidity?: number | undefined;
+    maxHumidity?: number | undefined;
     type?: PlantType;
 }
 

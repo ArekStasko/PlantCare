@@ -38,15 +38,15 @@ public class HumidityMeasurementCacheRepository : IReadHumidityMeasurementReposi
     public async Task<Result<(int, int)>> GetLatest(int id)
     {
         string humidityMeasurementLatestKey = $"HumidityMeasurementLatest-{id}";
-        int data = await _cache.GetRecordAsync<int>(humidityMeasurementLatestKey);
+        var data = await _cache.GetRecordAsync<(int, int)>(humidityMeasurementLatestKey);
         
-        if (data == 0)
+        if (data == default)
         {
             _logger.LogInformation("Saving Latest Humidity Measurement to cache");
             var humidityMeasurement = await _repository.GetLatest(id);
             return await humidityMeasurement.ProcessCacheResult(_cache, humidityMeasurementLatestKey);
         }
 
-        return new Result<(int, int)>((id, data!));
+        return new Result<(int, int)>(data);
     }
 }

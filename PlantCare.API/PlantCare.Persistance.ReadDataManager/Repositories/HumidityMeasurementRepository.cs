@@ -48,13 +48,19 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
             var humidityMeasurements = await _context.HumidityMeasurements.Where(hm => hm.ModuleId == id)
                 .ToListAsync<IHumidityMeasurement>();
 
-            if (humidityMeasurements == null)
+            if (humidityMeasurements.Any())
             {
                 _logger.LogError("There is no humidity measurements for module with {Id} id", id);
                 return (id, -1);
             }
 
-            var humidityMeasurement = humidityMeasurements.OrderBy(h => h.MeasurementDate).FirstOrDefault();
+            var humidityMeasurement = humidityMeasurements.OrderByDescending(h => h.MeasurementDate).FirstOrDefault();
+            
+            if (humidityMeasurement == null)
+            {
+                return (id, -1);
+            }
+            
             return new Result<(int, int)>((id, humidityMeasurement.Humidity));
         }
         catch (Exception e)
