@@ -37,6 +37,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
           sx={{
             border: '1px solid black'
           }}
+          slotProps={{ transition: { unmountOnExit: true } }}
           expanded={currentAccordion == place.id}
           onChange={(e) => {
             if (currentAccordion == place.id) setCurrentAccordion(undefined);
