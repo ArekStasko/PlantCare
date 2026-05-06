@@ -109,6 +109,8 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
         onOpenChange={(v) => setOpenHumidityRange(v)}
         open={openHumidityRange}
         id={plant.id!}
+        min={plant.minHumidity}
+        max={plant.maxHumidity}
       />
     </>
   ) : (

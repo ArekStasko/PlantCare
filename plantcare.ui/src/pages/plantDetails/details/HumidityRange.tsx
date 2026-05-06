@@ -11,7 +11,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './details.styles';
 import { useSetHumidityValuesMutation } from '../../../common/RTK/Plant/Plant';
 import { UpdatePlantHumidityValues } from '@arekstasko/plantcare-api-client';
@@ -20,11 +20,13 @@ interface HumidityRangeProps {
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   id: number;
+  min?: number;
+  max?: number;
 }
 
-export const HumidityRange = ({ onOpenChange, open, id }: HumidityRangeProps) => {
+export const HumidityRange = ({ onOpenChange, open, id, min, max }: HumidityRangeProps) => {
   const [setHumidityValues, { isLoading }] = useSetHumidityValuesMutation();
-  const [value, setValue] = React.useState<number[]>([0, 100]);
+  const [value, setValue] = React.useState<number[]>([min ?? 0, max ?? 100]);
 
   const handleChange = (event: Event, value: number | number[], activeThumb: number) => {
     if (typeof value === 'number') {
@@ -42,6 +44,8 @@ export const HumidityRange = ({ onOpenChange, open, id }: HumidityRangeProps) =>
     } as UpdatePlantHumidityValues;
     await setHumidityValues(body);
   };
+
+  const disableConfirm = useMemo(() => value[0] === min && value[1] === max, [value]);
 
   return (
     <Dialog open={open} onClose={() => onOpenChange(false)}>
@@ -67,7 +71,12 @@ export const HumidityRange = ({ onOpenChange, open, id }: HumidityRangeProps) =>
         {isLoading ? (
           <CircularProgress />
         ) : (
-          <Button variant="outlined" color="success" onClick={async () => await onConfirm()}>
+          <Button
+            variant="outlined"
+            color="success"
+            onClick={async () => await onConfirm()}
+            disabled={disableConfirm}
+          >
             Confirm
           </Button>
         )}
