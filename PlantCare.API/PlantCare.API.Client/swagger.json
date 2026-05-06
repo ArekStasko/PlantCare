@@ -1425,16 +1425,6 @@
           "isAvailable": {
             "type": "boolean"
           },
-          "requiredMoistureLevel": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "criticalMoistureLevel": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "name": {
             "type": "string",
             "nullable": true

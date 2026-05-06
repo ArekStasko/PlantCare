@@ -98,6 +98,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/HumidityStatusForPlacePlantsHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/PlaceQueryHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlantQueryHandlers/GetPlantsHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Plants/PlantHumidityStatus.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -884,6 +885,7 @@
       <workItem from="1777560227361" duration="1122000" />
       <workItem from="1777824016998" duration="1405000" />
       <workItem from="1777920573999" duration="487000" />
+      <workItem from="1777996794601" duration="2322000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
