@@ -43,7 +43,7 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
             List<Task<Result<(int, int)>>> tasks = new List<Task<Result<(int, int)>>>();
             foreach (var plant in plants)
             {
-                tasks.Add(_repositoryHumidityMeasurement.GetLatest(plant.Id));
+                tasks.Add(_repositoryHumidityMeasurement.GetLatest(plant.ModuleId));
             }
             
             var lastMeasurements = await Task.WhenAll(tasks);
@@ -65,6 +65,7 @@ public class HumidityStatusForPlacePlantsHandler : IRequestHandler<GetHumiditySt
                         return succ;
                     }
                     
+                    _logger.LogInformation("Running get humidity status for data: {1}, {2}, {3}", succ.Item2, plant.maxHumidity, plant.minHumidity);
                     result.Add(new PlantHumidityStatus()
                     {
                         PlantId = succ.Item1,
