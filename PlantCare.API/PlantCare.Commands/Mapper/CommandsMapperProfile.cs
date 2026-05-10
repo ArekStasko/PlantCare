@@ -1,4 +1,5 @@
 using AutoMapper;
+using PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 using PlantCare.Commands.Commands.HumidityMeasurements;
 using PlantCare.Commands.Commands.Module;
 using PlantCare.Commands.Commands.Place;
@@ -40,6 +41,11 @@ public class CommandsMapperProfile : Profile
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
 
+        CreateMap<UpdatePlantHumidityValues, PlantHumidityValuesDto>()
+            .ForMember(dest => dest.maxHumidity, opt => opt.MapFrom(src => src.maxHumidity))
+            .ForMember(dest => dest.minHumidity, opt => opt.MapFrom(src => src.minHumidity))
+            .ForMember(dest => dest.PlantId, opt => opt.MapFrom(src => src.PlantId));
+        
         // HUMIDITY MEASUREMENTS MAPPINGS
         CreateMap<AddHumidityMeasurementCommand, HumidityMeasurement>()
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))

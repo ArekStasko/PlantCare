@@ -25,12 +25,9 @@ public class PlaceQueryHandler : IRequestHandler<GetPlacesQuery, Result<IReadOnl
     {
         try
         {
-            _logger.LogInformation("GetPlacesHandler handles request");
-
             var place = await _repository.Get(query.UserId);
             return place.Match(succ =>
             {
-                _logger.LogInformation("GetPlacesHandler successfully processed the request");
                 IReadOnlyCollection<Place> places = succ.Select(place => _mapper.Map<Place>(place)).ToList();
                 return new Result<IReadOnlyCollection<Place>>(places);
             }, err =>

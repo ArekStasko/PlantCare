@@ -70,6 +70,11 @@ declare class Client {
     placesAll(cancelToken?: CancelToken): Promise<Place[]>;
     protected processPlacesAll(response: AxiosResponse): Promise<Place[]>;
     /**
+     * @return OK
+     */
+    humidityStatus(id: number, cancelToken?: CancelToken): Promise<PlantHumidityStatus[]>;
+    protected processHumidityStatus(response: AxiosResponse): Promise<PlantHumidityStatus[]>;
+    /**
      * @param body (optional)
      * @return OK
      */
@@ -92,6 +97,12 @@ declare class Client {
      */
     plantsAll(cancelToken?: CancelToken): Promise<Plant[]>;
     protected processPlantsAll(response: AxiosResponse): Promise<Plant[]>;
+    /**
+     * @param body (optional)
+     * @return OK
+     */
+    setHumidityValues(id: number, body: UpdatePlantHumidityValues | undefined, cancelToken?: CancelToken): Promise<boolean>;
+    protected processSetHumidityValues(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
      */
@@ -131,6 +142,12 @@ interface UpdatePlantCommand {
     type?: PlantType;
     moduleId?: number | undefined;
 }
+interface UpdatePlantHumidityValues {
+    userId?: number;
+    plantId?: number;
+    minHumidity?: number;
+    maxHumidity?: number;
+}
 interface AverageHumidity {
     date?: string | undefined;
     humidity?: number;
@@ -138,15 +155,25 @@ interface AverageHumidity {
 interface CreateModuleRequest {
     name?: string | undefined;
 }
-declare enum PlantType {
-    _0 = 0,
+declare enum HumidityStatus {
     _1 = 1,
-    _2 = 2
+    _2 = 2,
+    _3 = 3,
+    _4 = 4
+}
+declare enum PlantType {
+    _1 = 1,
+    _2 = 2,
+    _3 = 3
 }
 interface HumidityMeasurement {
     humidity?: number;
     batteryLevel?: number;
     date?: Date;
+}
+interface PlantHumidityStatus {
+    plantId?: number;
+    status?: HumidityStatus;
 }
 interface Module {
     id?: number;
@@ -165,6 +192,8 @@ interface Plant {
     moduleId?: number;
     name?: string | undefined;
     description?: string | undefined;
+    minHumidity?: number | undefined;
+    maxHumidity?: number | undefined;
     type?: PlantType;
 }
 interface Exception {
@@ -769,4 +798,4 @@ declare class ApiException extends Error {
     static isApiException(obj: any): obj is ApiException;
 }
 
-export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type HumidityMeasurement, type ICustomAttributeProvider, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type Module2, type ModuleHandle, ParameterAttributes, type ParameterInfo, type Place, type Plant, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand };
+export { type AddHumidityMeasurementCommand, ApiException, type Assembly, type AverageHumidity, CallingConventions, Client, type ConstructorInfo, type CreateModuleRequest, type CreatePlaceCommand, type CreatePlantCommand, type CustomAttributeData, type CustomAttributeNamedArgument, type CustomAttributeTypedArgument, EventAttributes, type EventInfo, type Exception, FieldAttributes, type FieldInfo, GenericParameterAttributes, type HumidityMeasurement, HumidityStatus, type ICustomAttributeProvider, type IntPtr, LayoutKind, type MemberInfo, MemberTypes, MethodAttributes, type MethodBase, MethodImplAttributes, type MethodInfo, type Module, type Module2, type ModuleHandle, ParameterAttributes, type ParameterInfo, type Place, type Plant, type PlantHumidityStatus, PlantType, PropertyAttributes, type PropertyInfo, type RuntimeFieldHandle, type RuntimeMethodHandle, type RuntimeTypeHandle, SecurityRuleSet, type StructLayoutAttribute, type Type, TypeAttributes, type TypeInfo, type UpdatePlaceCommand, type UpdatePlantCommand, type UpdatePlantHumidityValues };

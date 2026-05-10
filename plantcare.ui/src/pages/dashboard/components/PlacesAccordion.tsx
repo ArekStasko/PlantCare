@@ -37,6 +37,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
           sx={{
             border: '1px solid black'
           }}
+          slotProps={{ transition: { unmountOnExit: true } }}
           expanded={currentAccordion == place.id}
           onChange={(e) => {
             if (currentAccordion == place.id) setCurrentAccordion(undefined);
@@ -72,7 +73,7 @@ export const PlacesAccordion = (props: PlaceAccordionProps) => {
             />
           </AccordionSummary>
           {props.plants && filterPlantsByPlaceId(place.id).length !== 0 ? (
-            <PlantsAccordionDetails plants={filterPlantsByPlaceId(place.id)!} />
+            <PlantsAccordionDetails plants={filterPlantsByPlaceId(place.id)!} placeId={place.id!} />
           ) : (
             <AccordionDetails>
               <Alert variant="outlined" severity="warning">

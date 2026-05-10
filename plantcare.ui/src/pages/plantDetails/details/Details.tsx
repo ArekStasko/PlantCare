@@ -1,14 +1,14 @@
-import { Box, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
-import styles from '../statisticts/statistics.styles';
-import { PlantType } from '../../../common/models/plantTypes';
+import { Box, Button, CircularProgress, Paper, Tooltip, Typography } from '@mui/material';
+import styles from './details.styles';
 import Vegetable from '../../../app/images/Vegetable.png';
 import Fruit from '../../../app/images/Fruit.png';
 import Decorative from '../../../app/images/Decorative.png';
 import MemoryIcon from '@mui/icons-material/Memory';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
-import React from 'react';
-import { Module, Plant } from '@arekstasko/plantcare-api-client';
-import { useGetBatteryLevelQuery } from "../../../common/RTK/Module/Module";
+import React, { useState } from 'react';
+import { Module, Plant, PlantType } from '@arekstasko/plantcare-api-client';
+import { useGetBatteryLevelQuery } from '../../../common/RTK/Module/Module';
+import { HumidityRange } from './HumidityRange';
 
 export type PlantDetailsProps = {
   plant?: Plant;
@@ -17,9 +17,14 @@ export type PlantDetailsProps = {
 };
 
 export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
-  const { data: batteryLevel, isFetching: isBatteryLevelFetching } = useGetBatteryLevelQuery(+module!.id!, {
-    skip: !module
-  });
+  const { data: batteryLevel, isFetching: isBatteryLevelFetching } = useGetBatteryLevelQuery(
+    +module!.id!,
+    {
+      skip: !module
+    }
+  );
+
+  const [openHumidityRange, setOpenHumidityRange] = useState(false);
 
   return plant && module && !isLoading ? (
     <>
@@ -39,7 +44,13 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
               borderRadius: 2
             }}
             alt="Plant_Type"
-            src={plant.type === 0 ? Vegetable : plant.type === 1 ? Fruit : Decorative}
+            src={
+              plant.type === PlantType._1
+                ? Vegetable
+                : plant.type === PlantType._2
+                  ? Fruit
+                  : Decorative
+            }
           />
         </Paper>
       </Box>
@@ -69,7 +80,7 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
         </Tooltip>
       </Box>
       <Box sx={styles.moduleIdWrapper}>
-        <Tooltip placement="top-end" title="Module ID" arrow>
+        <Tooltip placement="top-end" title="Battery Level" arrow>
           <Paper sx={styles.moduleIdCard}>
             <BatteryChargingFullIcon
               sx={{
@@ -79,16 +90,28 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
                 maxWidth: { xs: 35, md: 35 }
               }}
             />
-            {
-              isBatteryLevelFetching ? (
-                <CircularProgress />
-              ) : (
-                <Typography variant="h6">{batteryLevel}%</Typography>
-              )
-            }
+            {isBatteryLevelFetching ? (
+              <CircularProgress />
+            ) : (
+              <Typography variant="h6">{batteryLevel}%</Typography>
+            )}
           </Paper>
         </Tooltip>
       </Box>
+      <Box sx={styles.moduleIdWrapper}>
+        <Paper sx={styles.moduleIdCard}>
+          <Tooltip placement="top-end" title="Change humidity range values">
+            <Button onClick={() => setOpenHumidityRange(!openHumidityRange)}>Humidity Range</Button>
+          </Tooltip>
+        </Paper>
+      </Box>
+      <HumidityRange
+        onOpenChange={(v) => setOpenHumidityRange(v)}
+        open={openHumidityRange}
+        id={plant.id!}
+        min={plant.minHumidity}
+        max={plant.maxHumidity}
+      />
     </>
   ) : (
     <>

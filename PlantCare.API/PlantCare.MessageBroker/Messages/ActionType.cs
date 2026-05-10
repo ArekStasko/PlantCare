@@ -4,5 +4,6 @@ public enum ActionType
 {
     Delete,
     Update,
+    UpdateHumidityValues,
     Add,
 }

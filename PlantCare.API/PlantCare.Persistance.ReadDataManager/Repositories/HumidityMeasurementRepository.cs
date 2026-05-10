@@ -25,9 +25,9 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
         {
             var humidityMeasurements = await _context.HumidityMeasurements.Where(hm => hm.ModuleId == id).ToListAsync<IHumidityMeasurement>();
 
-            if (humidityMeasurements == null)
+            if (!humidityMeasurements.Any())
             {
-                _logger.LogError("There is no humidity measurements for module with {Id} id", id);
+                _logger.LogError("There are no humidity measurements for module with {Id} id", id);
                 return new Result<IReadOnlyCollection<IHumidityMeasurement>>(new NullReferenceException());
             }
 
@@ -38,6 +38,35 @@ public class HumidityMeasurementRepository : IReadHumidityMeasurementRepository
         {
             _logger.LogError(e.Message);
             return new Result<IReadOnlyCollection<IHumidityMeasurement>>(e);
+        }
+    }
+
+    public async Task<Result<(int, int)>> GetLatest(int id)
+    {
+        try
+        {
+            var humidityMeasurements = await _context.HumidityMeasurements.Where(hm => hm.ModuleId == id)
+                .ToListAsync<IHumidityMeasurement>();
+
+            if (!humidityMeasurements.Any())
+            {
+                _logger.LogError("There are no humidity measurements for module with {Id} id", id);
+                return (id, -1);
+            }
+
+            var humidityMeasurement = humidityMeasurements.OrderByDescending(h => h.MeasurementDate).FirstOrDefault();
+            
+            if (humidityMeasurement == null)
+            {
+                return (id, -1);
+            }
+            
+            return new Result<(int, int)>((id, humidityMeasurement.Humidity));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<(int, int)>(e);
         }
     }
 }

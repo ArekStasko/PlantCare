@@ -1,5 +1,10 @@
 import emptyApi from '../emptyApi';
-import { CreatePlantCommand, Plant, UpdatePlantCommand } from '@arekstasko/plantcare-api-client';
+import {
+  CreatePlantCommand,
+  Plant,
+  UpdatePlantCommand,
+  UpdatePlantHumidityValues
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 
 const createPlant = async (request: CreatePlantCommand) =>
@@ -52,6 +57,16 @@ const updatePlant = async (request: UpdatePlantCommand) =>
       error: err
     }));
 
+const setHumidityValues = async (body: UpdatePlantHumidityValues) =>
+  plantcareApi
+    .setHumidityValues(body.plantId!, body)
+    .then((result) => ({
+      data: result ?? false
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
 export const PlantApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     createPlant: build.mutation<boolean, CreatePlantCommand>({
@@ -73,6 +88,10 @@ export const PlantApi = emptyApi.injectEndpoints({
     updatePlant: build.mutation<boolean, UpdatePlantCommand>({
       queryFn: updatePlant,
       invalidatesTags: ['Plants', 'Modules']
+    }),
+    setHumidityValues: build.mutation<boolean, UpdatePlantHumidityValues>({
+      queryFn: setHumidityValues,
+      invalidatesTags: ['Plants']
     })
   }),
   overrideExisting: false
@@ -83,5 +102,6 @@ export const {
   useDeletePlantMutation,
   useGetPlantQuery,
   useGetPlantsQuery,
-  useUpdatePlantMutation
+  useUpdatePlantMutation,
+  useSetHumidityValuesMutation
 } = PlantApi;
