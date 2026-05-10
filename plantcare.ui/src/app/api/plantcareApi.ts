@@ -8,7 +8,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   const token = getToken();
-  console.log("TOKEN:", token);
+  console.log('TOKEN:', token);
   if (token) {
     config.headers = {
       ...config.headers,

@@ -85,4 +85,30 @@ public class PlantRepository : IWritePlantRepository
             return new Result<bool>(e);
         }
     }
+    
+    public virtual async ValueTask<Result<bool>> UpdateHumidityValues(int id, int min, int max)
+    {
+        try
+        {
+            var plantToUpdate = await _context.Plants.SingleOrDefaultAsync(plt => plt.Id == id);
+            
+            if (plantToUpdate == null)
+            {
+                _logger.LogError("There is no plant to update with {plantId} Id", id);
+                return new Result<bool>(new NullReferenceException());
+            }
+            
+            plantToUpdate.maxHumidity = max;
+            plantToUpdate.minHumidity = min;
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("Humidity values for plant with {plantId} successfully updated", id);
+            
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<bool>(e);
+        }
+    }
 }

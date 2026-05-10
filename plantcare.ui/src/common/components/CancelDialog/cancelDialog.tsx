@@ -4,8 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  Typography
+  DialogTitle
 } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router';

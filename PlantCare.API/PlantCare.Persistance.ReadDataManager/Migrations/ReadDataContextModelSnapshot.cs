@@ -103,6 +103,12 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("maxHumidity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("minHumidity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ModuleId")

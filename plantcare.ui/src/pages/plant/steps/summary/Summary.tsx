@@ -76,11 +76,11 @@ const Summary = ({ wizardController }: WizardStepProps<PlantContext>) => {
 
   const plantTypeToImage = (type?: PlantType) => {
     switch (type) {
-      case PlantType._0:
-        return Decorative;
       case PlantType._1:
-        return Vegetable;
+        return Decorative;
       case PlantType._2:
+        return Vegetable;
+      case PlantType._3:
         return Fruit;
       default:
         return '';

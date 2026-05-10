@@ -1,4 +1,9 @@
-import { CreatePlaceCommand, Place, UpdatePlaceCommand } from '@arekstasko/plantcare-api-client';
+import {
+  CreatePlaceCommand,
+  Place,
+  PlantHumidityStatus,
+  UpdatePlaceCommand
+} from '@arekstasko/plantcare-api-client';
 import plantcareApi from '../../../app/api/plantcareApi';
 import emptyApi from '../emptyApi';
 
@@ -42,6 +47,16 @@ const createPlace = (request: CreatePlaceCommand) =>
       error: err
     }));
 
+const getHumidityStatus = (id: number) =>
+  plantcareApi
+    .humidityStatus(id)
+    .then((result) => ({
+      data: result ?? []
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
 export const PlaceApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
     updatePlace: build.mutation<boolean, UpdatePlaceCommand>({
@@ -59,6 +74,10 @@ export const PlaceApi = emptyApi.injectEndpoints({
     createPlace: build.mutation<boolean, CreatePlaceCommand>({
       queryFn: createPlace,
       invalidatesTags: ['Places']
+    }),
+    getHumidityStatus: build.query<PlantHumidityStatus[], number>({
+      queryFn: getHumidityStatus,
+      providesTags: ['Places']
     })
   }),
   overrideExisting: false
@@ -68,5 +87,6 @@ export const {
   useUpdatePlaceMutation,
   useGetPlacesQuery,
   useDeletePlaceMutation,
-  useCreatePlaceMutation
+  useCreatePlaceMutation,
+  useGetHumidityStatusQuery
 } = PlaceApi;

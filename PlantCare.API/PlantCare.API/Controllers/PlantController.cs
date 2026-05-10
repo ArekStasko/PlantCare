@@ -3,7 +3,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Plant;
 using PlantCare.Domain.Models.Plant;
+using PlantCare.Queries.Queries.Place;
 using PlantCare.Queries.Queries.Plant;
+using PlantCare.Queries.Responses.HumidityMeasurements;
 using PlantCare.Queries.Responses.Plants;
 using Plant = PlantCare.Queries.Responses.Plants.Plant;
 
@@ -52,6 +54,17 @@ public class PlantController : ControllerAuth
         var result = await _mediator.Send(command);
         return result.ToOk();
     }
+    
+    [HttpPut("{id:int}/set-humidity-values")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlantHumidityValues command)
+    {
+        command.UserId = UserId;
+        command.PlantId = id;
+        var result = await _mediator.Send(command);
+        return result.ToOk();
+    }
 
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Plant))]
@@ -77,4 +90,5 @@ public class PlantController : ControllerAuth
         var result = await _mediator.Send(getPlantsQuery);
         return result.ToOk();
     }
+    
 }

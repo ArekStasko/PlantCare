@@ -94,7 +94,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                 error={!!errors.plantType}
                 labelId="SelectType"
               >
-                <MenuItem value={PlantType._0}>
+                <MenuItem value={PlantType._1}>
                   <Box sx={styles.option}>
                     <Typography>Vegetable</Typography>
                     <Box
@@ -111,7 +111,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                     />
                   </Box>
                 </MenuItem>
-                <MenuItem value={PlantType._1}>
+                <MenuItem value={PlantType._2}>
                   <Box sx={styles.option}>
                     <Typography>Fruit</Typography>
                     <Box
@@ -128,7 +128,7 @@ const Details = ({ wizardController }: WizardStepProps<PlantContext>) => {
                     />
                   </Box>
                 </MenuItem>
-                <MenuItem value={PlantType._2}>
+                <MenuItem value={PlantType._3}>
                   <Box sx={styles.option}>
                     <Typography>Decorative</Typography>
                     <Box

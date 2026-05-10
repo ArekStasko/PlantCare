@@ -12,14 +12,14 @@ using Plant = PlantCare.MessageBroker.Messages.Plant;
 
 namespace PlantCare.Commands.CommandHandlers.PlantCommandHandlers;
 
-public class UpdatePlantHandler: IRequestHandler<UpdatePlantCommand, Result<bool>>
+public class UpdatePlantHumidityValuesHandler : IRequestHandler<UpdatePlantHumidityValues, Result<bool>>
 {
     private readonly IWritePlantRepository _repository;
     private readonly IMapper _mapper;
     private readonly IQueueProducer<Plant> _queueProducer;
     private readonly ILogger<UpdatePlantHandler> _logger;
-
-    public UpdatePlantHandler(IWritePlantRepository repository, IMapper mapper, IQueueProducer<Plant> queueProducer, ILogger<UpdatePlantHandler> logger)
+    
+    public UpdatePlantHumidityValuesHandler(IWritePlantRepository repository, IMapper mapper, IQueueProducer<Plant> queueProducer, ILogger<UpdatePlantHandler> logger)
     {
         _repository = repository;
         _mapper = mapper;
@@ -27,36 +27,38 @@ public class UpdatePlantHandler: IRequestHandler<UpdatePlantCommand, Result<bool
         _logger = logger;
     }
 
-    public async Task<Result<bool>> Handle(UpdatePlantCommand command, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(UpdatePlantHumidityValues command, CancellationToken cancellationToken)
     {
         try
         {
-            IPlant plantToUpdate = _mapper.Map<Domain.Models.Plant.Plant>(command);
-            var result = await _repository.Update(plantToUpdate);
+            var result = await _repository.UpdateHumidityValues(command.PlantId, command.minHumidity, command.maxHumidity);
             return result.Match(succ =>
             {
                 if (succ)
                 {
                     var plantMessage = new Plant()
                     {
-                        Action = ActionType.Update,
-                        PlantData = _mapper.Map<PlantDto>(plantToUpdate)
+                        Action = ActionType.UpdateHumidityValues,
+                        PlantData = new PlantDto()
+                        {
+                            Id = command.PlantId,
+                            minHumidity = command.minHumidity,
+                            maxHumidity = command.maxHumidity
+                        }
                     };
                     _queueProducer.PublishMessage(plantMessage);
-                    
-                    return new Result<bool>(succ);
                 }
-                
-                return new Result<bool>(false);
+                return succ;
             }, err =>
             {
-                _logger.LogError("Error has occured during UpdatePlantHandler handling: {err}", err);
+                _logger.LogError($"Failed to update humidity values: {err}", err);
                 return new Result<bool>(err);
             });
+
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception has been thrown in UpdatePlantHandler: {e}", e);
+            _logger.LogError("Update plant humidity values failed with error: {e}", e);
             return new Result<bool>(e);
         }
     }
