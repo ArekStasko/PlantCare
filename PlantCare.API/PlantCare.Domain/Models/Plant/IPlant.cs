@@ -8,6 +8,7 @@ public interface IPlant : IUserAssignable
     int Id { get; set; }
     int PlaceId { get; set; }
     int ModuleId { get; set; }
+    int DistributorId { get; set; }
     string Name { get; set; }
     string Description { get; set; }
     int? minHumidity { get; set; }

@@ -8,6 +8,7 @@ public class Plant : IPlant
     public int UserId { get; set; }
     public int PlaceId { get; set; }
     public int ModuleId { get; set; }
+    public int DistributorId { get; set; }
     public string Name { get; set; } = "Name";
     public string Description { get; set; } = "Description";
     public int? minHumidity { get; set; }

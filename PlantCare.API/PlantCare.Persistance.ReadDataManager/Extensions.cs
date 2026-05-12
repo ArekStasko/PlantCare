@@ -36,6 +36,7 @@ public static class Extensions
         services.AddScoped<IPlantReadContext, ReadDataContext>();
         services.AddScoped<IModuleReadContext, ReadDataContext>();
         services.AddScoped<IHumidityMeasurementReadContext, ReadDataContext>();
+        services.AddScoped<IDistributorReadContext, ReadDataContext>();
 
         services.AddScoped<IHumidityMeasurementsConsistencyContext, ReadDataContext>();
         services.AddScoped<IPlaceConsistencyContext, ReadDataContext>();
@@ -46,11 +47,13 @@ public static class Extensions
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
         services.AddScoped<IReadPlaceRepository, PlaceRepository>();
         services.AddScoped<IReadModuleRepository, ModuleRepository>();
+        services.AddScoped<IReadDistributorRepository, DistributorRepository>();
 
         services.Decorate<IReadPlantRepository, PlantCacheRepository>();
         services.Decorate<IReadHumidityMeasurementRepository, HumidityMeasurementCacheRepository>();
         services.Decorate<IReadPlaceRepository, PlaceCacheRepository>();
         services.Decorate<IReadModuleRepository, ModuleCacheRepository>();
+        services.Decorate<IReadDistributorRepository, DistributorCacheRepository>();
     }
 
     private static string GetConnectionString()
