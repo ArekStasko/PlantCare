@@ -15,7 +15,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +98,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModulesHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/HumidityStatusForPlacePlantsHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/HumidityStatusForPlacePlantsHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/PlaceQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlantQueryHandlers/GetPlantsHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Plants/Plant.cs" root0="SKIP_HIGHLIGHTING" />
@@ -889,6 +891,8 @@
       <workItem from="1777996794601" duration="2322000" />
       <workItem from="1778083247623" duration="2265000" />
       <workItem from="1778161975995" duration="2791000" />
+      <workItem from="1778349528869" duration="1992000" />
+      <workItem from="1778422992331" duration="602000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
