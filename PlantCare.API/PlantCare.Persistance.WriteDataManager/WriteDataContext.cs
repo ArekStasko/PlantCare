@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PlantCare.Domain.Models.Distributor;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -7,7 +8,7 @@ using PlantCare.Persistance.WriteDataManager.Interfaces;
 
 namespace PlantCare.Persistance.WriteDataManager;
 
-public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContext, IModuleWriteContext, IHumidityMeasurementWriteContext
+public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContext, IModuleWriteContext, IHumidityMeasurementWriteContext, IDistributorContext
 {
     public WriteDataContext(){}
 
@@ -18,6 +19,8 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
     public virtual DbSet<Place> Places { get; set; } = null!;
 
     public virtual DbSet<Module> Modules { get; set; } = null!;
+
+    public virtual DbSet<Distributor> Distributors { get; set; } = null!;
 
     public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
 
@@ -53,5 +56,11 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
             .WithOne()
             .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
+
+        modelBuilder.Entity<Distributor>()
+            .HasMany(e => e.Plants)
+            .WithOne(e => e.Distributor)
+            .HasForeignKey(e => e.Distributor)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

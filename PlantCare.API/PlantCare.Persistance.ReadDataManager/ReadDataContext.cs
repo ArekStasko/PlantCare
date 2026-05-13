@@ -79,7 +79,9 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
             .ValueGeneratedNever();
 
         modelBuilder.Entity<Distributor>()
-            .HasMany<Plant>()
-            .WithOne();
+            .HasMany(e => e.Plants)
+            .WithOne(e => e.Distributor)
+            .HasForeignKey(e => e.Distributor)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

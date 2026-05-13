@@ -16,7 +16,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Interfaces/IDistributorContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/DistributorRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Repositories/Interfaces/IWriteDistributorRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/IPlant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Domain/Models/Plant/Plant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/ReadDataContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/WriteDataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.WriteDataManager/WriteDataContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +135,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49723756&quot;,
     &quot;fbef02f9-cf13-45a7-b627-3474c8b97e5e.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/measurement-status&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/distributer-api&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/arekstasko/sources/repos/BirdsDiarySzkolenie/BirdsDiary1/BirdsDiary.sln&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -893,6 +901,8 @@
       <workItem from="1778161975995" duration="2791000" />
       <workItem from="1778349528869" duration="1992000" />
       <workItem from="1778422992331" duration="602000" />
+      <workItem from="1778599817238" duration="3106000" />
+      <workItem from="1778691927039" duration="1892000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
