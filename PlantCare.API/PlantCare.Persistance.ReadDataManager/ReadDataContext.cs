@@ -9,7 +9,7 @@ using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
-public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext, IModuleConsistencyContext, IPlantConsistencyContext, IPlaceConsistencyContext, IHumidityMeasurementsConsistencyContext, IDistributorReadContext
+public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext, IModuleConsistencyContext, IPlantConsistencyContext, IPlaceConsistencyContext, IHumidityMeasurementsConsistencyContext, IDistributorReadContext, IDistributorConsistencyContext
 {
     public ReadDataContext(){}
 

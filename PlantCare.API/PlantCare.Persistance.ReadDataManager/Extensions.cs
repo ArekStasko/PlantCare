@@ -42,6 +42,7 @@ public static class Extensions
         services.AddScoped<IPlaceConsistencyContext, ReadDataContext>();
         services.AddScoped<IPlantConsistencyContext, ReadDataContext>();
         services.AddScoped<IModuleConsistencyContext, ReadDataContext>();
+        services.AddScoped<IDistributorConsistencyContext, ReadDataContext>();
         
         services.AddScoped<IReadPlantRepository, PlantRepository>();
         services.AddScoped<IReadHumidityMeasurementRepository, HumidityMeasurementRepository>();
