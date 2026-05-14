@@ -1,4 +1,5 @@
 using LanguageExt.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Models.Distributor;
 using PlantCare.Persistance.WriteDataManager.Interfaces;
@@ -27,32 +28,6 @@ public class DistributorRepository(IDistributorContext context, ILogger<Distribu
         {
             logger.LogError(e.Message);
             return new Result<int>(e);
-        }
-    }
-
-    public ValueTask<Result<bool>> AddPlant(int userId, int distributorId, int plantId)
-    {
-        try
-        {
-            
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-    public ValueTask<Result<bool>> RemovePlant(int userId, int distributorId, int plantId)
-    {
-        try
-        {
-            
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
         }
     }
 }
