@@ -13,7 +13,8 @@ public static class Extensions
                 typeof(CommandHandlers.PlaceCommandHandlers.CreatePlaceHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.ModuleCommandHandlers.CreateModuleHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.HumidityMeasurementCommandHandlers.AddHumidityMeasurementHandler).GetTypeInfo().Assembly,
-                typeof(CommandHandlers.PlantCommandHandlers.UpdatePlantHumidityValuesHandler).GetTypeInfo().Assembly
+                typeof(CommandHandlers.PlantCommandHandlers.UpdatePlantHumidityValuesHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.DistributorCommandHandlers.AddDistributorHandler).GetTypeInfo().Assembly
                 ));
     }
     

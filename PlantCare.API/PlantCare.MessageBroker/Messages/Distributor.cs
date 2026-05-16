@@ -8,5 +8,5 @@ public class Distributor : IQueueMessage
     public TimeSpan TimeToLive { get; set; } = TimeSpan.FromHours(24);
     public string QueueName { get; set; } = "Distributor";
     public ActionType Action { get; set; }
-    public DistributorDto DistributorData { get; set; }
+    public DistributorDto DistributorDto { get; set; }
 }

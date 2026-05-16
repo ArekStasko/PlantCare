@@ -15,7 +15,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PlantCare.Commands/CommandHandlers/DistributorCommandHandlers/AddDistributorHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlantCare.Commands/Commands/Distributor/AddDistributorCommand.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -893,6 +896,7 @@
       <workItem from="1778422992331" duration="602000" />
       <workItem from="1778599817238" duration="3106000" />
       <workItem from="1778691927039" duration="2841000" />
+      <workItem from="1778788797519" duration="3142000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

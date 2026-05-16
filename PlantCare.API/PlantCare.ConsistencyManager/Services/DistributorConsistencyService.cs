@@ -19,7 +19,7 @@ public class DistributorConsistencyService(
                 {
                     case ActionType.Add:
                     {
-                        var distributor = mapper.Map<PlantCare.Domain.Models.Distributor.Distributor>(message.DistributorData);
+                        var distributor = mapper.Map<PlantCare.Domain.Models.Distributor.Distributor>(message.DistributorDto);
                         await context.Distributors.AddAsync(distributor);
                         await context.SaveChangesAsync();
                         await ResetCacheDistributor(distributor.UserId);
