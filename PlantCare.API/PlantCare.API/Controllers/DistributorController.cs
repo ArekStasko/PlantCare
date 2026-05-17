@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Distributor;
 using PlantCare.Domain.Dto;
+using PlantCare.Queries.Queries.Distributor;
 
 namespace PlantCare.API.Controllers;
 
@@ -26,9 +27,16 @@ public class DistributorController(
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public ValueTask<IActionResult> Get([FromRoute] int id)
+    public async ValueTask<IActionResult> Get([FromRoute] int id)
     {
-        throw new NotImplementedException();
+        GetDistributorByIdQuery query = new GetDistributorByIdQuery()
+        {
+            UserId = UserId,
+            Id = id
+        };
+        var result = await _mediator.Send(query);
+        return result.ToOk();
+
     }
     
     [HttpPost]

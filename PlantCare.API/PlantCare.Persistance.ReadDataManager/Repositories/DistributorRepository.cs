@@ -15,11 +15,11 @@ public class DistributorRepository(
     : IReadDistributorRepository
 {
 
-    public async Task<Result<IDistributor>> GetDistributor(int id)
+    public async Task<Result<IDistributor>> GetDistributor(int id, int userId)
     {
         try
         {
-            var distributor = await context.Distributors.SingleOrDefaultAsync(d => d.Id == id);
+            var distributor = await context.Distributors.SingleOrDefaultAsync(d => d.Id == id && d.UserId == userId);
             if (distributor == null)
             {
                 logger.LogError("There is no distributor with id : {id}", id);

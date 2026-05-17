@@ -13,7 +13,7 @@ public class DistributorCacheRepository(
     : IReadDistributorRepository
 {
 
-    public async Task<Result<IDistributor>> GetDistributor(int id)
+    public async Task<Result<IDistributor>> GetDistributor(int id, int userId)
     {
         string distributorKey = $"distributor_{id}";
         IDistributor data = await cache.GetRecordAsync<Distributor>(distributorKey);
@@ -21,7 +21,7 @@ public class DistributorCacheRepository(
         if (data == null)
         {
             logger.LogInformation("Saving Distributor to cache");
-            var distributor = await readRepository.GetDistributor(id);
+            var distributor = await readRepository.GetDistributor(id, userId);
             return await distributor.ProcessCacheResult(cache, distributorKey);
         }
 
