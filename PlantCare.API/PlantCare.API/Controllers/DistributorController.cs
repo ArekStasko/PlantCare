@@ -14,14 +14,19 @@ public class DistributorController(
     ILogger<ModuleController> logger)
     : ControllerAuth(httpContextAccessor, logger)
 {
-    private readonly IMediator _mediator = mediator;
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> Get()
     {
-        throw new NotImplementedException();
+        GetDistributorsQuery query = new()
+        {
+            UserId = UserId
+        };
+        
+        var result = await mediator.Send(query);
+        return result.ToOk();
     }
     
     [HttpGet("{id}")]
@@ -34,9 +39,8 @@ public class DistributorController(
             UserId = UserId,
             Id = id
         };
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return result.ToOk();
-
     }
     
     [HttpPost]
@@ -49,7 +53,7 @@ public class DistributorController(
             Name = request.Name,
             UserId = UserId
         };
-        var result = await _mediator.Send(command);
+        var result = await mediator.Send(command);
         return result.ToOk();
     }
     
