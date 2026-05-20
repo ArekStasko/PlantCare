@@ -178,8 +178,6 @@ interface PlantHumidityStatus {
 interface Module {
     id?: number;
     isAvailable?: boolean;
-    requiredMoistureLevel?: number | undefined;
-    criticalMoistureLevel?: number | undefined;
     name?: string | undefined;
 }
 interface Place {

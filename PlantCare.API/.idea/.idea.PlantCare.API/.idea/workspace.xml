@@ -15,7 +15,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/ApiClient.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/dist/index.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/dist/index.d.cts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API.Client/api-client/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,8 +96,10 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Extentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorsQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModulesQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Place/GetHumidityStatusForPlacePlantsQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -900,6 +910,8 @@
       <workItem from="1778951366533" duration="1430000" />
       <workItem from="1779033946362" duration="1576000" />
       <workItem from="1779125979702" duration="1220000" />
+      <workItem from="1779213124050" duration="213000" />
+      <workItem from="1779306552695" duration="683000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
