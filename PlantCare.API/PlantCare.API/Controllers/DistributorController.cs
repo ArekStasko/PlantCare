@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Distributor;
 using PlantCare.Domain.Dto;
 using PlantCare.Queries.Queries.Distributor;
+using PlantCare.Queries.Responses.Distributor;
 
 namespace PlantCare.API.Controllers;
 
-[Route("api/distributer/")]
+[Route("api/distributor/")]
 [ApiController]
 public class DistributorController(
     IHttpContextAccessor httpContextAccessor,
@@ -16,7 +17,7 @@ public class DistributorController(
 {
 
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyList<Distributor>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
     {
@@ -30,7 +31,7 @@ public class DistributorController(
     }
     
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Distributor))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromRoute] int id)
     {
