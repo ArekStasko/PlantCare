@@ -26,7 +26,7 @@ export class Client {
     /**
      * @return OK
      */
-    distributorGET( cancelToken?: CancelToken): Promise<boolean> {
+    distributorAll( cancelToken?: CancelToken): Promise<Distributor[]> {
         let url_ = this.baseUrl + "/api/distributor";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -46,11 +46,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDistributorGET(_response);
+            return this.processDistributorAll(_response);
         });
     }
 
-    protected processDistributorGET(response: AxiosResponse): Promise<boolean> {
+    protected processDistributorAll(response: AxiosResponse): Promise<Distributor[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -65,7 +65,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<boolean>(result200);
+            return Promise.resolve<Distributor[]>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -78,7 +78,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<boolean>(null as any);
+        return Promise.resolve<Distributor[]>(null as any);
     }
 
     /**
@@ -147,7 +147,7 @@ export class Client {
     /**
      * @return OK
      */
-    distributorGET2(id: number, cancelToken?: CancelToken): Promise<boolean> {
+    distributorGET(id: number, cancelToken?: CancelToken): Promise<Distributor> {
         let url_ = this.baseUrl + "/api/distributor/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -170,11 +170,85 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDistributorGET2(_response);
+            return this.processDistributorGET(_response);
         });
     }
 
-    protected processDistributorGET2(response: AxiosResponse): Promise<boolean> {
+    protected processDistributorGET(response: AxiosResponse): Promise<Distributor> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<Distributor>(result200);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Distributor>(null as any);
+    }
+
+    /**
+     * @param distributorIdQuery (optional) 
+     * @param plantIdQuery (optional) 
+     * @return OK
+     */
+    add(distributorIdQuery: number | undefined, plantIdQuery: number | undefined, distributorIdPath: string, plantIdPath: string, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add?";
+        if (distributorIdPath === undefined || distributorIdPath === null)
+            throw new globalThis.Error("The parameter 'distributorIdPath' must be defined.");
+        url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorIdPath));
+        if (plantIdPath === undefined || plantIdPath === null)
+            throw new globalThis.Error("The parameter 'plantIdPath' must be defined.");
+        url_ = url_.replace("{plantId}", encodeURIComponent("" + plantIdPath));
+        if (distributorIdQuery === null)
+            throw new globalThis.Error("The parameter 'distributorIdQuery' cannot be null.");
+        else if (distributorIdQuery !== undefined)
+            url_ += "distributorId=" + encodeURIComponent("" + distributorIdQuery) + "&";
+        if (plantIdQuery === null)
+            throw new globalThis.Error("The parameter 'plantIdQuery' cannot be null.");
+        else if (plantIdQuery !== undefined)
+            url_ += "plantId=" + encodeURIComponent("" + plantIdQuery) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processAdd(_response);
+        });
+    }
+
+    protected processAdd(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -1469,6 +1543,11 @@ export enum PlantType {
     _1 = 1,
     _2 = 2,
     _3 = 3,
+}
+
+export interface Distributor {
+    readonly id?: number;
+    name?: string | undefined;
 }
 
 export interface HumidityMeasurement {

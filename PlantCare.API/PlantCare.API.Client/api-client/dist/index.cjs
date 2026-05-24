@@ -242,8 +242,8 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "distributorGET",
-            value: function distributorGET(cancelToken) {
+   */ key: "distributorAll",
+            value: function distributorAll(cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/distributor";
                 url_ = url_.replace(/[?&]$/, "");
@@ -262,13 +262,13 @@ var Client = /*#__PURE__*/ function() {
                         throw _error;
                     }
                 }).then(function(_response) {
-                    return _this.processDistributorGET(_response);
+                    return _this.processDistributorAll(_response);
                 });
             }
         },
         {
-            key: "processDistributorGET",
-            value: function processDistributorGET(response) {
+            key: "processDistributorAll",
+            value: function processDistributorAll(response) {
                 var status = response.status;
                 var _headers = {};
                 if (response.headers && _type_of(response.headers) === "object") {
@@ -362,8 +362,8 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "distributorGET2",
-            value: function distributorGET2(id, cancelToken) {
+   */ key: "distributorGET",
+            value: function distributorGET(id, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/distributor/{id}";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -384,13 +384,81 @@ var Client = /*#__PURE__*/ function() {
                         throw _error;
                     }
                 }).then(function(_response) {
-                    return _this.processDistributorGET2(_response);
+                    return _this.processDistributorGET(_response);
                 });
             }
         },
         {
-            key: "processDistributorGET2",
-            value: function processDistributorGET2(response) {
+            key: "processDistributorGET",
+            value: function processDistributorGET(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @param distributorIdQuery (optional) 
+   * @param plantIdQuery (optional) 
+   * @return OK
+   */ key: "add",
+            value: function add(distributorIdQuery, plantIdQuery, distributorIdPath, plantIdPath, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add?";
+                if (distributorIdPath === void 0 || distributorIdPath === null) throw new globalThis.Error("The parameter 'distributorIdPath' must be defined.");
+                url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorIdPath));
+                if (plantIdPath === void 0 || plantIdPath === null) throw new globalThis.Error("The parameter 'plantIdPath' must be defined.");
+                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantIdPath));
+                if (distributorIdQuery === null) throw new globalThis.Error("The parameter 'distributorIdQuery' cannot be null.");
+                else if (distributorIdQuery !== void 0) url_ += "distributorId=" + encodeURIComponent("" + distributorIdQuery) + "&";
+                if (plantIdQuery === null) throw new globalThis.Error("The parameter 'plantIdQuery' cannot be null.");
+                else if (plantIdQuery !== void 0) url_ += "plantId=" + encodeURIComponent("" + plantIdQuery) + "&";
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "POST",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processAdd(_response);
+                });
+            }
+        },
+        {
+            key: "processAdd",
+            value: function processAdd(response) {
                 var status = response.status;
                 var _headers = {};
                 if (response.headers && _type_of(response.headers) === "object") {

@@ -10,13 +10,13 @@ using PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 namespace PlantCare.Commands.CommandHandlers.DistributorCommandHandlers;
 
-public class AddDistributorHandler(
+public class CreateDistributorHandler(
         IWriteDistributorRepository repository,
         IQueueProducer<Distributor> producer,
-        ILogger<AddDistributorHandler> logger
-    ) : IRequestHandler<AddDistributorCommand, Result<int>>
+        ILogger<CreateDistributorHandler> logger
+    ) : IRequestHandler<CreateDistributorCommand, Result<int>>
 {
-    public async Task<Result<int>> Handle(AddDistributorCommand request, CancellationToken cancellationToken)
+    public async Task<Result<int>> Handle(CreateDistributorCommand request, CancellationToken cancellationToken)
     {
         try
         {
