@@ -56,11 +56,9 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
             .WithOne()
             .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
-
+        
         modelBuilder.Entity<Distributor>()
-            .HasMany(e => e.Plants)
-            .WithOne(e => e.Distributor)
-            .HasForeignKey(e => e.Distributor)
-            .OnDelete(DeleteBehavior.SetNull);
+            .Property(d => d.Id)
+            .ValueGeneratedNever();
     }
 }

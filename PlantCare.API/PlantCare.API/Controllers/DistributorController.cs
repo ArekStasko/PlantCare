@@ -47,12 +47,27 @@ public class DistributorController(
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> Add(CreateDistributorRequest request)
+    public async ValueTask<IActionResult> Create(CreateDistributorRequest request)
     {
-        AddDistributorCommand command = new AddDistributorCommand()
+        CreateDistributorCommand command = new CreateDistributorCommand()
         {
             Name = request.Name,
             UserId = UserId
+        };
+        var result = await mediator.Send(command);
+        return result.ToOk();
+    }
+
+    [HttpPost("{distributorId}/{plantId}/add")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> AddPlantToDistributor([FromQuery] int distributorId, [FromQuery] int plantId)
+    {
+        AddPlantToDistributorCommand command = new()
+        {
+            UserId = UserId,
+            DistributorId = distributorId,
+            PlantId = plantId
         };
         var result = await mediator.Send(command);
         return result.ToOk();

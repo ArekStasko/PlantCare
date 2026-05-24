@@ -10,7 +10,7 @@ namespace PlantCare.Persistance.WriteDataManager.Repositories;
 public class DistributorRepository(IDistributorContext context, ILogger<DistributorRepository> logger)
     : IWriteDistributorRepository
 {
-    public async ValueTask<Result<int>> Add(int userId, string name)
+    public async ValueTask<Result<int>> Create(int userId, string name)
     {
         try
         {

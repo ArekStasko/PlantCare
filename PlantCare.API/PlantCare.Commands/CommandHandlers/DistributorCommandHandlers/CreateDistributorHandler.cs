@@ -20,7 +20,7 @@ public class CreateDistributorHandler(
     {
         try
         {
-            var result = await repository.Add(request.UserId, request.Name);
+            var result = await repository.Create(request.UserId, request.Name);
             int id = result.Match<int>(succ => succ, err =>
             {
                 logger.LogError("Something went wrong while adding new distributor");

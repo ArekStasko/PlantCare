@@ -9,4 +9,5 @@ public interface IWritePlantRepository
     ValueTask<Result<bool>> Delete(int id, int userId);
     ValueTask<Result<bool>> Update(IPlant plant);
     ValueTask<Result<bool>> UpdateHumidityValues(int id, int min, int max);
+    ValueTask<Result<bool>> AddDistributor(int plantId, int distributorId, int userId);
 }

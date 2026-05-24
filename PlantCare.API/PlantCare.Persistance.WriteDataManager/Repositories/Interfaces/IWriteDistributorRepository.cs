@@ -4,5 +4,5 @@ namespace PlantCare.Persistance.WriteDataManager.Repositories.Interfaces;
 
 public interface IWriteDistributorRepository
 {
-    ValueTask<Result<int>> Add(int userId, string name);
+    ValueTask<Result<int>> Create(int userId, string name);
 }

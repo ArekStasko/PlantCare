@@ -7,5 +7,4 @@ public class Distributor : IDistributor
     public int Id { get; }
     public int UserId { get; set; }
     public string Name { get; set; }
-    public List<IPlant> Plants { get; }
 }
