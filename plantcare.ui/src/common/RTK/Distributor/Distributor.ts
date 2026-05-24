@@ -1,11 +1,25 @@
 import plantcareApi from "../../../app/api/plantcareApi";
-import { Place } from "@arekstasko/plantcare-api-client";
+import {
+  CreateDistributorRequest,
+  Distributor,
+  Place,
+} from "@arekstasko/plantcare-api-client";
 import emptyApi from "../emptyApi";
 
 
 const getDistributors = () =>
   plantcareApi
-    .d()
+    .distributorAll()
+    .then((result) => ({
+      data: result ?? ([] as Distributor[])
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
+const getDistributor = (id: number) =>
+  plantcareApi
+    .distributorGET(id)
     .then((result) => ({
       data: result ?? ([] as Place[])
     }))
@@ -13,9 +27,36 @@ const getDistributors = () =>
       error: err
     }));
 
+const createDistributor = (request: CreateDistributorRequest) =>
+  plantcareApi
+    .distributorPOST(request)
+    .then((result) => ({
+      data: result ?? ([] as Place[])
+    }))
+    .catch((err) => ({
+      error: err
+    }));
 
 export const DistributorApi = emptyApi.injectEndpoints({
-  endpoint: (build) => ({
-    getDistributors: build.query<>()
-  })
-})
+  endpoints: (build) => ({
+    getDistributors: build.query<Distributor[], void>({
+      queryFn: getDistributors,
+      providesTags: ['Distributors']
+    }),
+    getDistributor: build.query<Distributor, number>({
+      queryFn: getDistributor,
+      providesTags: ['Distributors']
+    }),
+    createDistributor: build.mutation<boolean, CreateDistributorRequest>({
+      queryFn: createDistributor,
+      invalidatesTags: ['Places']
+    }),
+  }),
+  overrideExisting: false
+});
+
+export const {
+  useGetDistributorsQuery,
+  useGetDistributorQuery,
+  useCreateDistributorMutation
+} = DistributorApi;

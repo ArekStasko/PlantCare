@@ -17,6 +17,7 @@ public class DistributorController(
 {
 
     [HttpGet]
+    [EndpointName("GetDistributors")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyList<Distributor>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()
@@ -31,6 +32,7 @@ public class DistributorController(
     }
     
     [HttpGet("{id}")]
+    [EndpointName("GetDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Distributor))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromRoute] int id)
@@ -45,6 +47,7 @@ public class DistributorController(
     }
     
     [HttpPost]
+    [EndpointName("CreateDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreateDistributorRequest request)
@@ -59,6 +62,7 @@ public class DistributorController(
     }
 
     [HttpPost("{distributorId}/{plantId}/add")]
+    [EndpointName("AddPlantToDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> AddPlantToDistributor([FromQuery] int distributorId, [FromQuery] int plantId)
@@ -74,6 +78,7 @@ public class DistributorController(
     }
     
     [HttpPost("{id}/{plantId}/water-supply")]
+    [EndpointName("WaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public ValueTask<IActionResult> RunWaterSupply()
