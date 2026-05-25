@@ -64,9 +64,9 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           <Typography>{plant.description}</Typography>
         </Paper>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
+      <Box sx={styles.details_paper}>
         <Tooltip placement="top-end" title="Module ID" arrow>
-          <Paper sx={styles.moduleIdCard}>
+          <Paper sx={styles.details_card}>
             <MemoryIcon
               sx={{
                 height: 35,
@@ -79,9 +79,9 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           </Paper>
         </Tooltip>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
+      <Box sx={styles.details_paper}>
         <Tooltip placement="top-end" title="Battery Level" arrow>
-          <Paper sx={styles.moduleIdCard}>
+          <Paper sx={styles.details_card}>
             <BatteryChargingFullIcon
               sx={{
                 height: 35,
@@ -98,10 +98,17 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           </Paper>
         </Tooltip>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
-        <Paper sx={styles.moduleIdCard}>
+      <Box sx={styles.details_paper}>
+        <Paper sx={styles.details_card}>
           <Tooltip placement="top-end" title="Change humidity range values">
             <Button onClick={() => setOpenHumidityRange(!openHumidityRange)}>Humidity Range</Button>
+          </Tooltip>
+        </Paper>
+      </Box>
+      <Box sx={styles.details_paper}>
+        <Paper sx={styles.details_card}>
+          <Tooltip placement="top-end" title="Add distributor">
+            <Button onClick={() => console.log("add distributor action")}>Add distributor</Button>
           </Tooltip>
         </Paper>
       </Box>
