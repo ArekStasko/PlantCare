@@ -1,17 +1,24 @@
-import { AccordionDetails, Box, CircularProgress, IconButton, Tooltip, Typography } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import Decorative from "../../../app/images/Decorative.png";
-import EditIcon from "@mui/icons-material/Edit";
-import Fruit from "../../../app/images/Fruit.png";
-import Vegetable from "../../../app/images/Vegetable.png";
-import { ShrinkText } from "../../../common/services/TextService";
-import styles from "../dashboard.styles";
-import RoutingConstants from "../../../app/routing/routingConstants";
-import PlantActionsMenu from "../../plantActionsMenu/PlantActionsMenu";
-import { HumidityStatus, Plant, PlantType } from "@arekstasko/plantcare-api-client";
-import { useGetHumidityStatusQuery } from "../../../common/RTK/Place/Place";
+import {
+  AccordionDetails,
+  Box,
+  CircularProgress,
+  IconButton,
+  Tooltip,
+  Typography
+} from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+import Decorative from '../../../app/images/Decorative.png';
+import EditIcon from '@mui/icons-material/Edit';
+import Fruit from '../../../app/images/Fruit.png';
+import Vegetable from '../../../app/images/Vegetable.png';
+import { ShrinkText } from '../../../common/services/TextService';
+import styles from '../dashboard.styles';
+import RoutingConstants from '../../../app/routing/routingConstants';
+import PlantActionsMenu from '../../plantActionsMenu/PlantActionsMenu';
+import { HumidityStatus, Plant, PlantType } from '@arekstasko/plantcare-api-client';
+import { useGetHumidityStatusQuery } from '../../../common/RTK/Place/Place';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';

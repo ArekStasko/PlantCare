@@ -1,15 +1,11 @@
-import plantcareApi from "../../../app/api/plantcareApi";
-import {
-  CreateDistributorRequest,
-  Distributor,
-  Place,
-} from "@arekstasko/plantcare-api-client";
-import emptyApi from "../emptyApi";
+import plantcareApi from '../../../app/api/plantcareApi';
+import { CreateDistributorRequest, Distributor, Place } from '@arekstasko/plantcare-api-client';
+import emptyApi from '../emptyApi';
 
 type DistributorPlantRequest = {
   id: string;
   plantId: string;
-}
+};
 
 const getDistributors = () =>
   plantcareApi
@@ -68,7 +64,7 @@ export const DistributorApi = emptyApi.injectEndpoints({
     waterSupply: build.mutation<boolean, DistributorPlantRequest>({
       queryFn: waterSupply,
       invalidatesTags: ['Distributors']
-    }),
+    })
   }),
   overrideExisting: false
 });

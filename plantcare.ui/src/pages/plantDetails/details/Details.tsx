@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { Module, Plant, PlantType } from '@arekstasko/plantcare-api-client';
 import { useGetBatteryLevelQuery } from '../../../common/RTK/Module/Module';
 import { HumidityRange } from './HumidityRange';
+import { useGetDistributorQuery } from '../../../common/RTK/Distributor/Distributor';
 
 export type PlantDetailsProps = {
   plant?: Plant;
@@ -21,6 +22,13 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
     +module!.id!,
     {
       skip: !module
+    }
+  );
+
+  const { data: distributor, isFetching: isDistributorFetching } = useGetDistributorQuery(
+    +plant?.id!,
+    {
+      skip: !plant
     }
   );
 
@@ -107,9 +115,17 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
       </Box>
       <Box sx={styles.details_paper}>
         <Paper sx={styles.details_card}>
-          <Tooltip placement="top-end" title="Add distributor">
-            <Button onClick={() => console.log("add distributor action")}>Add distributor</Button>
-          </Tooltip>
+          {isDistributorFetching ? (
+            <CircularProgress />
+          ) : distributor ? (
+            <Tooltip placement="top-end" title="Run hydration">
+              <Button onClick={() => console.log('run hydration action')}>Hydrate</Button>
+            </Tooltip>
+          ) : (
+            <Tooltip placement="top-end" title="Add distributor">
+              <Button onClick={() => console.log('add distributor action')}>Add distributor</Button>
+            </Tooltip>
+          )}
         </Paper>
       </Box>
       <HumidityRange
