@@ -21,7 +21,7 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   const { data: batteryLevel, isFetching: isBatteryLevelFetching } = useGetBatteryLevelQuery(
     +module!.id!,
     {
-      skip: !module
+      skip: !modulex
     }
   );
 
