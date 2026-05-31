@@ -10,9 +10,9 @@ import { Module, Plant, PlantType } from '@arekstasko/plantcare-api-client';
 import { useGetBatteryLevelQuery } from '../../../common/RTK/Module/Module';
 import { HumidityRange } from './HumidityRange';
 import { useGetDistributorQuery } from '../../../common/RTK/Distributor/Distributor';
-import { useNavigate } from "react-router";
-import RoutingPaths from "../../../app/routing/routingConstants";
-import RoutingConstants from "../../../app/routing/routingConstants";
+import { useNavigate } from 'react-router';
+import RoutingPaths from '../../../app/routing/routingConstants';
+import RoutingConstants from '../../../app/routing/routingConstants';
 
 export type PlantDetailsProps = {
   plant?: Plant;
@@ -127,7 +127,13 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
             </Tooltip>
           ) : (
             <Tooltip placement="top-end" title="Add distributor">
-              <Button onClick={() => navigate(`${RoutingPaths.addDistributor}/${plant?.id}/${module?.id}`)}>Add distributor</Button>
+              <Button
+                onClick={() =>
+                  navigate(`${RoutingPaths.addDistributor}/${plant?.id}/${module?.id}`)
+                }
+              >
+                Add distributor
+              </Button>
             </Tooltip>
           )}
         </Paper>

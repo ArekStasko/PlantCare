@@ -1,14 +1,14 @@
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Box, IconButton, TextField, Typography } from '@mui/material';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import validators from "../../../../common/services/Validators";
-import { GetName } from "namee";
-import styles from "../../../addModule/steps/nameForm/nameForm.styles";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import React from "react";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validators from '../../../../common/services/Validators';
+import { GetName } from 'namee';
+import styles from '../../../addModule/steps/nameForm/nameForm.styles';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import React from 'react';
 
 const NameForm = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const methods = useForm({

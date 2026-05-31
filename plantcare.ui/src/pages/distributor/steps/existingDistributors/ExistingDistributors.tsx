@@ -1,10 +1,9 @@
-import { WizardStepProps } from "../../../../common/wizard/interfaces";
-import { AddDistributorContext } from "../../interfaces";
-import { WizardStep } from "../../../../common/wizard/components/wizardStep/WizardStep";
-import { Typography } from "@mui/material";
-import { useNavigate } from "react-router";
-import RoutingPaths from "../../../../app/routing/routingConstants";
-
+import { WizardStepProps } from '../../../../common/wizard/interfaces';
+import { AddDistributorContext } from '../../interfaces';
+import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
+import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router';
+import RoutingPaths from '../../../../app/routing/routingConstants';
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
   return (
     <WizardStep
       nextButton={{
-        onClick: () => console.log("ExistingDistributors next btn click"),
+        onClick: () => console.log('ExistingDistributors next btn click'),
         isDisabled: false,
         title: 'Next'
       }}
@@ -23,17 +22,17 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       }}
       backButton={{
         onClick: () =>
-          navigate(`${RoutingPaths.plantDetails}/${wizardController.context.plantId}/${wizardController.context.moduleId}`),
+          navigate(
+            `${RoutingPaths.plantDetails}/${wizardController.context.plantId}/${wizardController.context.moduleId}`
+          ),
         isDisabled: false,
         title: 'Back'
       }}
       title={'Distributors'}
     >
-      <Typography>
-        Existing distributors list
-      </Typography>
+      <Typography>Existing distributors list</Typography>
     </WizardStep>
-  )
-}
+  );
+};
 
 export default ExistingDistributors;

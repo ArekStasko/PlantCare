@@ -10,7 +10,10 @@ export type SelectBleDeviceProps = {
   serviceUuid: string;
   saveWifiDataServiceCharacteristicUuid: string;
   title: string;
-  onDeviceSelection: (device?: BLEDevice, wifiDataService?: BluetoothRemoteGATTCharacteristic) => void;
+  onDeviceSelection: (
+    device?: BLEDevice,
+    wifiDataService?: BluetoothRemoteGATTCharacteristic
+  ) => void;
 };
 
 export const SelectBleDevice = ({

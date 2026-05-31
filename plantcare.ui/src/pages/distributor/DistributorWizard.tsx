@@ -8,13 +8,13 @@ import NameForm from './steps/nameForm/NameForm';
 import Summary from './steps/summary/Summary';
 import { AddDistributorContext } from './interfaces';
 import Wizard from '../../common/wizard/Wizard';
-import ExistingDistributors from "./steps/existingDistributors/ExistingDistributors";
-import { useParams } from "react-router";
+import ExistingDistributors from './steps/existingDistributors/ExistingDistributors';
+import { useParams } from 'react-router';
 
 const DistributorWizard = () => {
   let { moduleId, plantId } = useParams();
 
-  const initialContext = {moduleId, plantId} as AddDistributorContext;
+  const initialContext = { moduleId, plantId } as AddDistributorContext;
 
   const steps = [
     {

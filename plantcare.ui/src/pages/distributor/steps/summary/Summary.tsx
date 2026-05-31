@@ -1,13 +1,13 @@
-import { Box, Button, Card, Divider, Typography } from "@mui/material";
+import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import styles from "../../../addModule/steps/summary/summary.styles";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useEffect, useState } from "react";
-import { CreateDistributorRequest } from "@arekstasko/plantcare-api-client";
-import { useCreateDistributorMutation } from "../../../../common/RTK/Distributor/Distributor";
+import styles from '../../../addModule/steps/summary/summary.styles';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useEffect, useState } from 'react';
+import { CreateDistributorRequest } from '@arekstasko/plantcare-api-client';
+import { useCreateDistributorMutation } from '../../../../common/RTK/Distributor/Distributor';
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const [showPassword, setShowPassword] = useState(false);
