@@ -3,9 +3,10 @@ import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
 import React, { useCallback, useMemo } from 'react';
 import { SelectBleDevice } from '../../../../common/components/selectBleDevice/SelectBleDevice';
+import { BLEDevice } from "../../../../common/models/BLEDevice";
 
 const DeviceSelection = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
-  const onSelectDevice = useCallback((device, wifiDataService) => {
+  const onSelectDevice = useCallback((device?: BLEDevice, wifiDataService?: BluetoothRemoteGATTCharacteristic) => {
     wizardController.updateContext({
       ...wizardController.context,
       device: device,

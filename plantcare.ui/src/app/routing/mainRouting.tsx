@@ -8,6 +8,7 @@ import PlantDetails from '../../pages/plantDetails/PlantDetails';
 import AuthPage from '../../pages/authPage/authPage';
 import PlantWizard from '../../pages/plant/PlantWizard';
 import AddModuleWizard from '../../pages/addModule/AddModuleWizard';
+import DistributorWizard from "../../pages/distributor/DistributorWizard";
 
 export const MainRouting = () => {
   return (
@@ -50,6 +51,14 @@ export const MainRouting = () => {
         element={
           <BaseLayout>
             <AddModuleWizard />
+          </BaseLayout>
+        }
+      />
+      <Route
+        path={`${RoutingConstants.addDistributor}/:plantId/:moduleId`}
+        element={
+          <BaseLayout>
+            <DistributorWizard />
           </BaseLayout>
         }
       />

@@ -12,7 +12,8 @@ const RoutingPaths = {
   updatePlant: '/update-plant',
   plantDetails: '/plant/details',
   createPlace: '/create-place',
-  addModule: '/add-module'
+  addModule: '/add-module',
+  addDistributor: '/add-distributor',
 };
 
 export const ActionsTranslation: Dictionary<string> = {
@@ -26,7 +27,7 @@ export const ActionsToPerform = [
   RoutingPaths.root,
   RoutingPaths.plant,
   RoutingPaths.createPlace,
-  RoutingPaths.addModule
+  RoutingPaths.addModule,
 ];
 
 export default RoutingPaths;

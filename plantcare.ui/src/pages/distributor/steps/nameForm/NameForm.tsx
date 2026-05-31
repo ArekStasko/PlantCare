@@ -13,7 +13,7 @@ import React from "react";
 const NameForm = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const methods = useForm({
     mode: 'onChange',
-    resolver: yupResolver(validators.addModuleNameSchema),
+    resolver: yupResolver(validators.addDistributorNameSchema),
     defaultValues: {
       distributorName: wizardController.context.distributorName ?? GetName()
     }
@@ -62,10 +62,10 @@ const NameForm = ({ wizardController }: WizardStepProps<AddDistributorContext>) 
         <Box sx={styles.textFieldWrapper}>
           <TextField
             sx={styles.textfield}
-            id="moduleName"
+            id="distributorName"
             variant="standard"
-            error={!!errors.moduleName}
-            helperText={errors?.moduleName?.message?.toString()}
+            error={!!errors.distributorName}
+            helperText={errors?.distributorName?.message?.toString()}
             {...register('distributorName')}
           />
           <IconButton sx={styles.iconButton} onClick={() => resetName()}>

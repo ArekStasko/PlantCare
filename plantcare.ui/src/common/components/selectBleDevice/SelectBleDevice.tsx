@@ -10,7 +10,7 @@ export type SelectBleDeviceProps = {
   serviceUuid: string;
   saveWifiDataServiceCharacteristicUuid: string;
   title: string;
-  onDeviceSelection: (device, wifiDataService) => void;
+  onDeviceSelection: (device?: BLEDevice, wifiDataService?: BluetoothRemoteGATTCharacteristic) => void;
 };
 
 export const SelectBleDevice = ({
@@ -20,7 +20,7 @@ export const SelectBleDevice = ({
   onDeviceSelection
 }: SelectBleDeviceProps) => {
   const [selectingDevice, setSelectingDevice] = useState<boolean>(false);
-  const [device, setDevice] = useState<BLEDevice | undefined>(wizardController.context.device);
+  const [device, setDevice] = useState<BLEDevice | undefined>();
   const [alert, setAlert] = useState<string | undefined>();
 
   const selectDevice = async () => {

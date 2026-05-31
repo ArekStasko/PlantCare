@@ -8,41 +8,52 @@ import NameForm from './steps/nameForm/NameForm';
 import Summary from './steps/summary/Summary';
 import { AddDistributorContext } from './interfaces';
 import Wizard from '../../common/wizard/Wizard';
+import ExistingDistributors from "./steps/existingDistributors/ExistingDistributors";
+import { useParams } from "react-router";
 
 const DistributorWizard = () => {
-  const initialContext = {} as AddDistributorContext;
+  let { moduleId, plantId } = useParams();
+
+  const initialContext = {moduleId, plantId} as AddDistributorContext;
 
   const steps = [
     {
       order: 0,
+      title: 'Distributors',
+      getStep: (wizardController: WizardController<AddDistributorContext>) => (
+        <ExistingDistributors wizardController={wizardController} />
+      )
+    } as WizardStep<AddDistributorContext>,
+    {
+      order: 1,
       title: 'Device',
       getStep: (wizardController: WizardController<AddDistributorContext>) => (
         <DeviceSelection wizardController={wizardController} />
       )
     } as WizardStep<AddDistributorContext>,
     {
-      order: 1,
+      order: 2,
       title: 'Wifi',
       getStep: (wizardController: WizardController<AddDistributorContext>) => (
         <WifiForm wizardController={wizardController} />
       )
     } as WizardStep<AddDistributorContext>,
     {
-      order: 2,
+      order: 3,
       title: 'Address',
       getStep: (wizardController: WizardController<AddDistributorContext>) => (
         <Address wizardController={wizardController} />
       )
     } as WizardStep<AddDistributorContext>,
     {
-      order: 3,
+      order: 4,
       title: 'Name',
       getStep: (wizardController: WizardController<AddDistributorContext>) => (
         <NameForm wizardController={wizardController} />
       )
     } as WizardStep<AddDistributorContext>,
     {
-      order: 4,
+      order: 5,
       title: 'Summary',
       getStep: (wizardController: WizardController<AddDistributorContext>) => (
         <Summary wizardController={wizardController} />
