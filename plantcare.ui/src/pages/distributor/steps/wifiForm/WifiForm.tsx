@@ -2,7 +2,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import styles from "../../../addModule/steps/wifiForm/wifiForm.styles";
+import styles from './wifiForm.styles'
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
