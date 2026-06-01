@@ -1,12 +1,15 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from "@mui/material";
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
+import { useGetDistributorsQuery } from "../../../../common/RTK/Distributor/Distributor";
+import { DistributorFlowResolver } from "./components/DistributorFlowResolver";
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
+  const {data: distributors, isFetching: isDistributorsLoading} = useGetDistributorsQuery();
 
   return (
     <WizardStep
@@ -30,6 +33,13 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       }}
       title={'Distributors'}
     >
+      {
+        isDistributorsLoading ? (
+          <CircularProgress/>
+        ) : (
+          <DistributorFlowResolver distributors={distributors} />
+        )
+      }
       <Typography>Existing distributors list</Typography>
     </WizardStep>
   );

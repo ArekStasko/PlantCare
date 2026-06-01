@@ -12,7 +12,6 @@ import { HumidityRange } from './HumidityRange';
 import { useGetDistributorQuery } from '../../../common/RTK/Distributor/Distributor';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../app/routing/routingConstants';
-import RoutingConstants from '../../../app/routing/routingConstants';
 
 export type PlantDetailsProps = {
   plant?: Plant;
