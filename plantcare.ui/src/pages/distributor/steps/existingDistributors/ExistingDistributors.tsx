@@ -1,27 +1,30 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
-import { useGetDistributorsQuery } from "../../../../common/RTK/Distributor/Distributor";
-import { DistributorFlowResolver } from "./components/DistributorFlowResolver";
-import { useMemo } from "react";
+import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
+import { DistributorFlowResolver } from './components/DistributorFlowResolver';
+import { useMemo } from 'react';
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
-  const {data: distributors, isFetching: isDistributorsLoading} = useGetDistributorsQuery();
+  const { data: distributors, isFetching: isDistributorsLoading } = useGetDistributorsQuery();
 
   const isBtnDisabled = useMemo(() => {
-    return isDistributorsLoading || (distributors.length !== 0 && wizardController.context.distributorId === undefined)
-  }, [distributors, isDistributorsLoading])
+    return (
+      isDistributorsLoading ||
+      (distributors.length !== 0 && wizardController.context.distributorId === undefined)
+    );
+  }, [distributors, isDistributorsLoading]);
 
   const onDistributorSelect = (id: number) => {
     wizardController.updateContext({
       ...wizardController.context,
       distributorId: id
-    })
-  }
+    });
+  };
 
   return (
     <WizardStep
@@ -45,13 +48,15 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       }}
       title={'Distributors'}
     >
-      {
-        isDistributorsLoading ? (
-          <CircularProgress/>
-        ) : (
-          <DistributorFlowResolver distributors={distributors} onDistributorSelect={onDistributorSelect} distributorId={wizardController.context.distributorId} />
-        )
-      }
+      {isDistributorsLoading ? (
+        <CircularProgress />
+      ) : (
+        <DistributorFlowResolver
+          distributors={distributors}
+          onDistributorSelect={onDistributorSelect}
+          distributorId={wizardController.context.distributorId}
+        />
+      )}
       <Typography>Existing distributors list</Typography>
     </WizardStep>
   );
