@@ -6,6 +6,7 @@ export interface AddDistributorContext {
   wifiName?: string;
   wifiPassword?: string;
   address?: string;
+  distributorId?: number;
   distributorName?: string;
   moduleId?: string;
   plantId?: string;

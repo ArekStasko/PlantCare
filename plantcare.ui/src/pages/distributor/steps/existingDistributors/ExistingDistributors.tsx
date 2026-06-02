@@ -6,16 +6,28 @@ import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from "../../../../common/RTK/Distributor/Distributor";
 import { DistributorFlowResolver } from "./components/DistributorFlowResolver";
+import { useMemo } from "react";
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
   const {data: distributors, isFetching: isDistributorsLoading} = useGetDistributorsQuery();
 
+  const isBtnDisabled = useMemo(() => {
+    return isDistributorsLoading || (distributors.length !== 0 && wizardController.context.distributorId === undefined)
+  }, [distributors, isDistributorsLoading])
+
+  const onDistributorSelect = (id: number) => {
+    wizardController.updateContext({
+      ...wizardController.context,
+      distributorId: id
+    })
+  }
+
   return (
     <WizardStep
       nextButton={{
         onClick: () => console.log('ExistingDistributors next btn click'),
-        isDisabled: false,
+        isDisabled: isBtnDisabled,
         title: 'Next'
       }}
       cancelButton={{
@@ -37,7 +49,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
         isDistributorsLoading ? (
           <CircularProgress/>
         ) : (
-          <DistributorFlowResolver distributors={distributors} />
+          <DistributorFlowResolver distributors={distributors} onDistributorSelect={onDistributorSelect} distributorId={wizardController.context.distributorId} />
         )
       }
       <Typography>Existing distributors list</Typography>

@@ -18,6 +18,10 @@ const selectPlaceSchema = yup.object().shape({
   place: yup.string().required()
 });
 
+const selectDistributorSchema = yup.object().shape({
+  distributor: yup.string().required()
+});
+
 const selectModuleSchema = yup.object().shape({
   module: yup.string().required()
 });
@@ -69,5 +73,6 @@ export default {
   selectModuleSchema,
   addModuleNameSchema,
   addModuleAddressSchema,
-  addDistributorNameSchema
+  addDistributorNameSchema,
+  selectDistributorSchema
 };
