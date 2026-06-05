@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
 import { useMemo } from 'react';
-import { SelectDistributor } from "./components/SelectDistributor";
+import { SelectDistributor } from './components/SelectDistributor';
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();

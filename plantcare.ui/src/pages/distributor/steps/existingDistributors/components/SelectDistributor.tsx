@@ -13,10 +13,10 @@ type SelectDistributorProps = {
 };
 
 export const SelectDistributor = ({
-                                          distributors,
-                                          onDistributorSelect,
-                                          distributorId
-                                        }: SelectDistributorProps) => {
+  distributors,
+  onDistributorSelect,
+  distributorId
+}: SelectDistributorProps) => {
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.selectDistributorSchema),
@@ -33,28 +33,28 @@ export const SelectDistributor = ({
 
   return (
     <Box>
-          <InputLabel id="SelectDistributor">
-            Choose a distributor to which your plant will be assigned
-          </InputLabel>
-          <Controller
-            control={control}
-            name="distributorId"
-            render={({ field: { onChange, value }, formState: { errors } }) => (
-              <Select
-                sx={styles.typeSelect}
-                onChange={onChange}
-                value={value}
-                defaultValue={distributorId ?? ''}
-                id="distributorId"
-                error={!!errors.place}
-                labelId="SelectDistributor"
-              >
-                {distributors!.map((d) => (
-                  <MenuItem value={d.id}>{d.name}</MenuItem>
-                ))}
-              </Select>
-            )}
-          />
+      <InputLabel id="SelectDistributor">
+        Choose a distributor to which your plant will be assigned
+      </InputLabel>
+      <Controller
+        control={control}
+        name="distributorId"
+        render={({ field: { onChange, value }, formState: { errors } }) => (
+          <Select
+            sx={styles.typeSelect}
+            onChange={onChange}
+            value={value}
+            defaultValue={distributorId ?? ''}
+            id="distributorId"
+            error={!!errors.place}
+            labelId="SelectDistributor"
+          >
+            {distributors!.map((d) => (
+              <MenuItem value={d.id}>{d.name}</MenuItem>
+            ))}
+          </Select>
+        )}
+      />
     </Box>
   );
 };
