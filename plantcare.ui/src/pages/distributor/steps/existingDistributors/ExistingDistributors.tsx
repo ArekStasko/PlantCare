@@ -5,8 +5,8 @@ import { CircularProgress, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
-import { DistributorFlowResolver } from './components/DistributorFlowResolver';
 import { useMemo } from 'react';
+import { SelectDistributor } from "./components/SelectDistributor";
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       {isDistributorsLoading ? (
         <CircularProgress />
       ) : (
-        <DistributorFlowResolver
+        <SelectDistributor
           distributors={distributors}
           onDistributorSelect={onDistributorSelect}
           distributorId={wizardController.context.distributorId}

@@ -6,17 +6,17 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validators from '../../../../../common/services/Validators';
 
-type DistributorFlowResolverProps = {
+type SelectDistributorProps = {
   distributors: Distributor[];
   onDistributorSelect: (id: number) => void;
   distributorId?: number;
 };
 
-export const DistributorFlowResolver = ({
-  distributors,
-  onDistributorSelect,
-  distributorId
-}: DistributorFlowResolverProps) => {
+export const SelectDistributor = ({
+                                          distributors,
+                                          onDistributorSelect,
+                                          distributorId
+                                        }: SelectDistributorProps) => {
   const methods = useForm({
     mode: 'onChange',
     resolver: yupResolver(validators.selectDistributorSchema),
@@ -33,10 +33,6 @@ export const DistributorFlowResolver = ({
 
   return (
     <Box>
-      {distributors.length === 0 ? (
-        <Box></Box>
-      ) : (
-        <Box>
           <InputLabel id="SelectDistributor">
             Choose a distributor to which your plant will be assigned
           </InputLabel>
@@ -59,8 +55,6 @@ export const DistributorFlowResolver = ({
               </Select>
             )}
           />
-        </Box>
-      )}
     </Box>
   );
 };
