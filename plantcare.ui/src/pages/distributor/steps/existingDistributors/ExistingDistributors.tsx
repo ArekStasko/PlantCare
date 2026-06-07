@@ -1,7 +1,7 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
@@ -25,6 +25,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       distributorId: id
     });
   };
+
 
   return (
     <WizardStep
@@ -51,13 +52,20 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       {isDistributorsLoading ? (
         <CircularProgress />
       ) : (
-        <SelectDistributor
-          distributors={distributors}
-          onDistributorSelect={onDistributorSelect}
-          distributorId={wizardController.context.distributorId}
-        />
+        <Box>
+          {
+            distributors.length === 0 ? (
+              <Typography>There are no existing distributors list</Typography>
+            ) : (
+              <SelectDistributor
+                distributors={distributors}
+                onDistributorSelect={onDistributorSelect}
+                distributorId={wizardController.context.distributorId}
+              />
+            )
+          }
+        </Box>
       )}
-      <Typography>Existing distributors list</Typography>
     </WizardStep>
   );
 };
