@@ -12,6 +12,8 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
   const navigate = useNavigate();
   const { data: distributors, isFetching: isDistributorsLoading } = useGetDistributorsQuery();
 
+  const areThereAnyDistributors = useMemo(() => distributors.length > 0, [distributors]);
+
   const isBtnDisabled = useMemo(() => {
     return (
       isDistributorsLoading ||
@@ -26,6 +28,19 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
     });
   };
 
+  const activeComponent = useMemo(() => {
+    if(areThereAnyDistributors) return (
+      <SelectDistributor
+        distributors={distributors}
+        onDistributorSelect={onDistributorSelect}
+        distributorId={wizardController.context.distributorId}
+      />
+    )
+
+    return (
+      <Typography>There are no existing distributors list</Typography>
+    )
+  }, [areThereAnyDistributors])
 
   return (
     <WizardStep
@@ -49,23 +64,13 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       }}
       title={'Distributors'}
     >
-      {isDistributorsLoading ? (
-        <CircularProgress />
-      ) : (
-        <Box>
-          {
-            distributors.length === 0 ? (
-              <Typography>There are no existing distributors list</Typography>
-            ) : (
-              <SelectDistributor
-                distributors={distributors}
-                onDistributorSelect={onDistributorSelect}
-                distributorId={wizardController.context.distributorId}
-              />
-            )
-          }
-        </Box>
-      )}
+      <Box>
+        {
+          isDistributorsLoading ? (
+            <CircularProgress />
+          ) : activeComponent
+        }
+      </Box>
     </WizardStep>
   );
 };
