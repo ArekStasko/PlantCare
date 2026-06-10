@@ -6,12 +6,12 @@ import styles from './wizard.styles';
 import { WizardProgressStep } from './components/wizardProgress/interfaces';
 import CancelDialog from '../components/CancelDialog/cancelDialog';
 
-const Wizard = <T,>({ initialContext, steps, visibleSteps }: WizardProps<T>) => {
+const Wizard = <T,>({ initialContext, steps, stepsToShow }: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
-  const [visibleSteps, setVisibleSteps] = useState<number[]>(visibleSteps);
+  const [visibleSteps, setVisibleSteps] = useState<number[]>(stepsToShow);
 
   const wizardController: WizardController<T> = {
     context: context,

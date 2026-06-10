@@ -14,6 +14,10 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
 
   useEffect(() => {
     wizardController.onLoading(areDistributorsLoading);
+    if (!distributors) return;
+    if (distributors.length === 0) {
+      wizardController.onVisibleStepsChange([0, 1, 2, 3, 4, 5]);
+    }
   }, [areDistributorsLoading]);
 
   const areThereAnyDistributors = useMemo(() => distributors.length > 0, [distributors]);

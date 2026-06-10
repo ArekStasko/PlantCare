@@ -43,5 +43,5 @@ export interface WizardController<T> {
 export interface WizardProps<T> {
   initialContext: T;
   steps: WizardStep<T>[];
-  visibleSteps: number[];
+  stepsToShow: number[];
 }

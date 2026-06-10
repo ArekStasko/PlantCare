@@ -61,7 +61,13 @@ const DistributorWizard = () => {
     } as WizardStep<AddDistributorContext>
   ];
 
-  return <Wizard<AddDistributorContext> initialContext={initialContext} steps={steps} />;
+  return (
+    <Wizard<AddDistributorContext>
+      initialContext={initialContext}
+      steps={steps}
+      stepsToShow={[0, 5]}
+    />
+  );
 };
 
 export default DistributorWizard;
