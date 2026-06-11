@@ -20,7 +20,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
     }
   }, [areDistributorsLoading]);
 
-  const areThereAnyDistributors = useMemo(() => distributors.length > 0, [distributors]);
+  const areThereAnyDistributors = useMemo(() => distributors !== undefined && distributors.length > 0, [distributors]);
 
   const isBtnDisabled = useMemo(() => {
     return (
@@ -70,7 +70,7 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       <Box>
         {areThereAnyDistributors ? (
           <SelectDistributor
-            distributors={distributors}
+            distributors={distributors!}
             onDistributorSelect={onDistributorSelect}
           />
         ) : (

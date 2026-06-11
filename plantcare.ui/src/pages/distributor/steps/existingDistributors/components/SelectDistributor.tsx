@@ -21,7 +21,7 @@ export const SelectDistributor = ({
     mode: 'onChange',
     resolver: yupResolver(validators.selectDistributorSchema),
     defaultValues: {
-      distributor: distributorId ?? ''
+      distributor: distributorId?.toString() ?? ''
     }
   });
 
@@ -38,15 +38,15 @@ export const SelectDistributor = ({
       </InputLabel>
       <Controller
         control={control}
-        name="distributorId"
+        name="distributor"
         render={({ field: { onChange, value }, formState: { errors } }) => (
           <Select
             sx={styles.typeSelect}
             onChange={onChange}
             value={value}
             defaultValue={distributorId ?? ''}
-            id="distributorId"
-            error={!!errors.place}
+            id="distributor"
+            error={!!errors.distributor}
             labelId="SelectDistributor"
           >
             {distributors!.map((d) => (

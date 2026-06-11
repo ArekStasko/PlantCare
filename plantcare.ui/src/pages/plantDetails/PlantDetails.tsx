@@ -1,5 +1,4 @@
-//supawork.ai/ai-video-face-swap
-https: import { Box, Card, CircularProgress, Typography } from '@mui/material';
+import { Box, Card, CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router';
 import styles from './statisticts/statistics.styles';

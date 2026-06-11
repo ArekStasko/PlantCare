@@ -32,7 +32,7 @@ const Wizard = <T,>({ initialContext, steps, stepsToShow }: WizardProps<T>) => {
 
   const stepsToDisplayInProgress = useMemo(() => {
     return steps
-      .filter((s) => visibleSteps.find((v) => v === s.order))
+      .filter((s) => visibleSteps.includes(s.order))
       .map(
         (s) =>
           ({
