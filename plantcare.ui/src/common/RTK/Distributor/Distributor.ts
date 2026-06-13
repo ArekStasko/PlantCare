@@ -21,7 +21,7 @@ const getDistributor = (id: number) =>
   plantcareApi
     .distributorGET(id)
     .then((result) => ({
-      data: result ?? ([] as Place[])
+      data: result
     }))
     .catch((err) => ({
       error: err
@@ -31,7 +31,7 @@ const createDistributor = (request: CreateDistributorRequest) =>
   plantcareApi
     .distributorPOST(request)
     .then((result) => ({
-      data: result ?? ([] as Place[])
+      data: result
     }))
     .catch((err) => ({
       error: err
@@ -41,7 +41,7 @@ const waterSupply = (request: DistributorPlantRequest) =>
   plantcareApi
     .waterSupply(request.id, request.plantId)
     .then((result) => ({
-      data: result ?? ([] as Place[])
+      data: result
     }))
     .catch((err) => ({
       error: err
