@@ -26,7 +26,7 @@ export class Client {
     /**
      * @return OK
      */
-    distributorAll( cancelToken?: CancelToken): Promise<Distributor[]> {
+    getDistributors( cancelToken?: CancelToken): Promise<Distributor[]> {
         let url_ = this.baseUrl + "/api/distributor";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -46,11 +46,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDistributorAll(_response);
+            return this.processGetDistributors(_response);
         });
     }
 
-    protected processDistributorAll(response: AxiosResponse): Promise<Distributor[]> {
+    protected processGetDistributors(response: AxiosResponse): Promise<Distributor[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -85,7 +85,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    distributorPOST(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<boolean> {
+    createDistributor(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/distributor";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -109,11 +109,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDistributorPOST(_response);
+            return this.processCreateDistributor(_response);
         });
     }
 
-    protected processDistributorPOST(response: AxiosResponse): Promise<boolean> {
+    protected processCreateDistributor(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -147,7 +147,7 @@ export class Client {
     /**
      * @return OK
      */
-    distributorGET(id: number, cancelToken?: CancelToken): Promise<Distributor> {
+    getDistributor(id: number, cancelToken?: CancelToken): Promise<Distributor> {
         let url_ = this.baseUrl + "/api/distributor/{id}";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -170,11 +170,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processDistributorGET(_response);
+            return this.processGetDistributor(_response);
         });
     }
 
-    protected processDistributorGET(response: AxiosResponse): Promise<Distributor> {
+    protected processGetDistributor(response: AxiosResponse): Promise<Distributor> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -210,7 +210,7 @@ export class Client {
      * @param plantIdQuery (optional) 
      * @return OK
      */
-    add(distributorIdQuery: number | undefined, plantIdQuery: number | undefined, distributorIdPath: string, plantIdPath: string, cancelToken?: CancelToken): Promise<boolean> {
+    addPlantToDistributor(distributorIdQuery: number | undefined, plantIdQuery: number | undefined, distributorIdPath: string, plantIdPath: string, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add?";
         if (distributorIdPath === undefined || distributorIdPath === null)
             throw new globalThis.Error("The parameter 'distributorIdPath' must be defined.");
@@ -244,11 +244,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processAdd(_response);
+            return this.processAddPlantToDistributor(_response);
         });
     }
 
-    protected processAdd(response: AxiosResponse): Promise<boolean> {
+    protected processAddPlantToDistributor(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {

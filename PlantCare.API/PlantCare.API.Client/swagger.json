@@ -10,7 +10,6 @@
         "tags": [
           "Distributor"
         ],
-        "operationId": "GetDistributors",
         "responses": {
           "200": {
             "description": "OK",
