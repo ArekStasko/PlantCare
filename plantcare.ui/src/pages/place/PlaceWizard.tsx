@@ -36,7 +36,9 @@ const PlaceWizard = () => {
     } as WizardStep<PlaceContext>
   ];
 
-  return <Wizard<PlaceContext> initialContext={initialContext} steps={steps} stepsToShow={[0,1]} />;
+  return (
+    <Wizard<PlaceContext> initialContext={initialContext} steps={steps} stepsToShow={[0, 1]} />
+  );
 };
 
 export default PlaceWizard;

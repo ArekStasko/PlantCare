@@ -48,7 +48,13 @@ const AddModuleWizard = () => {
     } as WizardStep<AddModuleContext>
   ];
 
-  return <Wizard<AddModuleContext> initialContext={initialContext} steps={steps} stepsToShow={[0,1,2,3,4]} />;
+  return (
+    <Wizard<AddModuleContext>
+      initialContext={initialContext}
+      steps={steps}
+      stepsToShow={[0, 1, 2, 3, 4]}
+    />
+  );
 };
 
 export default AddModuleWizard;

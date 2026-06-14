@@ -13,7 +13,7 @@ import DistributorWizard from '../../pages/distributor/DistributorWizard';
 export const MainRouting = () => {
   return (
     <Routes>
-      <Route path={RoutingConstants.auth} element={<AuthPage />} />
+      <Route path={RoutingConstants.authBasic} element={<AuthPage />} />
       <Route
         path={RoutingConstants.root}
         element={

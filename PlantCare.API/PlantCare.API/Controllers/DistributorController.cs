@@ -17,7 +17,6 @@ public class DistributorController(
 {
 
     [HttpGet]
-    [EndpointName("GetDistributors")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyList<Distributor>))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get()

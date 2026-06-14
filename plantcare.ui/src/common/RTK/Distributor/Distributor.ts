@@ -9,7 +9,7 @@ type DistributorPlantRequest = {
 
 const getDistributors = () =>
   plantcareApi
-    .distributorAll()
+    .getDistributors()
     .then((result) => ({
       data: result ?? ([] as Distributor[])
     }))
@@ -19,7 +19,7 @@ const getDistributors = () =>
 
 const getDistributor = (id: number) =>
   plantcareApi
-    .distributorGET(id)
+    .getDistributor(id)
     .then((result) => ({
       data: result
     }))
@@ -29,7 +29,7 @@ const getDistributor = (id: number) =>
 
 const createDistributor = (request: CreateDistributorRequest) =>
   plantcareApi
-    .distributorPOST(request)
+    .createDistributor(request)
     .then((result) => ({
       data: result
     }))

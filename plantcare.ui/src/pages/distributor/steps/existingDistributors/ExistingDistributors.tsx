@@ -1,12 +1,13 @@
 import { WizardStepProps } from '../../../../common/wizard/interfaces';
 import { AddDistributorContext } from '../../interfaces';
 import { WizardStep } from '../../../../common/wizard/components/wizardStep/WizardStep';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
 import { useEffect, useMemo } from 'react';
 import { SelectDistributor } from './components/SelectDistributor';
+import styles from './existingDistributors.styles';
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
@@ -20,7 +21,10 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
     }
   }, [areDistributorsLoading]);
 
-  const areThereAnyDistributors = useMemo(() => distributors !== undefined && distributors.length > 0, [distributors]);
+  const areThereAnyDistributors = useMemo(
+    () => distributors !== undefined && distributors.length > 0,
+    [distributors]
+  );
 
   const isBtnDisabled = useMemo(() => {
     return (
@@ -67,14 +71,20 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
       }}
       title={'Distributors'}
     >
-      <Box>
+      <Box sx={styles.container}>
         {areThereAnyDistributors ? (
           <SelectDistributor
             distributors={distributors!}
             onDistributorSelect={onDistributorSelect}
           />
         ) : (
-          <Typography>There are no existing distributors</Typography>
+          <Box sx={styles.noDistributorsWrapper}>
+            <Typography>There are no existing distributors</Typography>
+            <Alert severity="info">
+              By continuing you will be able to add a new distributor by making a Bluetooth
+              connection with it and providing the required information
+            </Alert>
+          </Box>
         )}
       </Box>
     </WizardStep>

@@ -52,7 +52,13 @@ const PlantWizard = () => {
     } as WizardStep<PlantContext>
   ];
 
-  return <Wizard<PlantContext> initialContext={initialContext} steps={steps} stepsToShow={[0,1,2,3]} />;
+  return (
+    <Wizard<PlantContext>
+      initialContext={initialContext}
+      steps={steps}
+      stepsToShow={[0, 1, 2, 3]}
+    />
+  );
 };
 
 export default PlantWizard;

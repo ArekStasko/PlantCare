@@ -6,14 +6,13 @@ const RoutingPaths = {
   site: 'http://localhost:3001/auth',
   idp: 'http://localhost:3000/idp',
   authBasic: '/auth',
-  auth: '/auth/:id?/:token?',
   root: '/dashboard',
   plant: '/create-plant',
   updatePlant: '/update-plant',
   plantDetails: '/plant/details',
   createPlace: '/create-place',
   addModule: '/add-module',
-  addDistributor: '/add-distributor'
+  addDistributor: '/distributor/create'
 };
 
 export const ActionsTranslation: Dictionary<string> = {

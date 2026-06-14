@@ -4,13 +4,14 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using PlantCare.Domain.Dto;
 using PlantCare.Persistance.ReadDataManager.Repositories;
+using PlantCare.Persistance.ReadDataManager.Repositories.Interfaces;
 using PlantCare.Queries.Queries.Distributor;
 using PlantCare.Queries.Responses.Distributor;
 
 namespace PlantCare.Queries.QueryHandlers.DistributorQueryHandlers;
 
 public class GetDistributorsHandler(
-    DistributorRepository repository,
+    IReadDistributorRepository repository,
     IMapper mapper,
     ILogger<GetDistributorsHandler> logger
     ) : IRequestHandler<GetDistributorsQuery, Result<IReadOnlyList<Distributor>>>
