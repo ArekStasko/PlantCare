@@ -15,20 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../plantcare.ui/src/pages/distributor/steps/existingDistributors/existingDistributors.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/app/routing/mainRouting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/app/routing/mainRouting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/app/routing/routingConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/app/routing/routingConstants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Distributor/Distributor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/src/common/RTK/Distributor/Distributor.ts" afterDir="false" />
-    </list>
+    <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -921,7 +908,7 @@
       <workItem from="1779637255768" duration="5022000" />
       <workItem from="1781208446448" duration="1842000" />
       <workItem from="1781360934034" duration="1970000" />
-      <workItem from="1781452454510" duration="1922000" />
+      <workItem from="1781452454510" duration="2019000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>

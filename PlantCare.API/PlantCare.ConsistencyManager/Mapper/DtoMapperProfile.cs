@@ -1,5 +1,6 @@
 using AutoMapper;
 using PlantCare.Domain.Dto;
+using PlantCare.Domain.Models.Distributor;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -15,7 +16,7 @@ public class DtoMapperProfile : Profile
         CreateMap<PlantDto, Plant>();
         CreateMap<PlaceDto, Place>();
         CreateMap<HumidityMeasurementDto, HumidityMeasurement>();
-        
+        CreateMap<DistributorDto, Distributor>();
         CreateMap<ModuleDto, Module>();
     }
 }

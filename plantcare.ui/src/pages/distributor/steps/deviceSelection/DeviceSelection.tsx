@@ -44,8 +44,8 @@ const DeviceSelection = ({ wizardController }: WizardStepProps<AddDistributorCon
       title={'DeviceSelection'}
     >
       <SelectBleDevice
-        serviceUuid=""
-        saveWifiDataServiceCharacteristicUuid=""
+        serviceUuid="00000180-0000-1000-8000-00805f9b34fb"
+        saveWifiDataServiceCharacteristicUuid="0000dead-0000-1000-8000-00805f9b34fb"
         title="Select Plantcare Distributor device from list"
         onDeviceSelection={onSelectDevice}
       />

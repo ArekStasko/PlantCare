@@ -33,7 +33,7 @@ const Address = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
   return (
     <WizardStep
       nextButton={{
-        onClick: async () => console.log('address submit'),
+        onClick: async () => onNext(),
         isDisabled: !isValid,
         title: 'Next'
       }}
