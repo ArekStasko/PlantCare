@@ -22,11 +22,9 @@ declare class Client {
     getDistributor(id: number, cancelToken?: CancelToken): Promise<Distributor>;
     protected processGetDistributor(response: AxiosResponse): Promise<Distributor>;
     /**
-     * @param distributorIdQuery (optional)
-     * @param plantIdQuery (optional)
      * @return OK
      */
-    addPlantToDistributor(distributorIdQuery: number | undefined, plantIdQuery: number | undefined, distributorIdPath: string, plantIdPath: string, cancelToken?: CancelToken): Promise<boolean>;
+    addPlantToDistributor(distributorId: number, plantId: number, cancelToken?: CancelToken): Promise<boolean>;
     protected processAddPlantToDistributor(response: AxiosResponse): Promise<boolean>;
     /**
      * @return OK
@@ -223,6 +221,7 @@ interface Plant {
     id?: number;
     placeId?: number;
     moduleId?: number;
+    distributorId?: number;
     name?: string | undefined;
     description?: string | undefined;
     minHumidity?: number | undefined;

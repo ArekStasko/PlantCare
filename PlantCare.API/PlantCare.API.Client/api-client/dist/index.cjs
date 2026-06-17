@@ -421,21 +421,15 @@ var Client = /*#__PURE__*/ function() {
         },
         {
             /**
-   * @param distributorIdQuery (optional) 
-   * @param plantIdQuery (optional) 
    * @return OK
    */ key: "addPlantToDistributor",
-            value: function addPlantToDistributor(distributorIdQuery, plantIdQuery, distributorIdPath, plantIdPath, cancelToken) {
+            value: function addPlantToDistributor(distributorId, plantId, cancelToken) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add?";
-                if (distributorIdPath === void 0 || distributorIdPath === null) throw new globalThis.Error("The parameter 'distributorIdPath' must be defined.");
-                url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorIdPath));
-                if (plantIdPath === void 0 || plantIdPath === null) throw new globalThis.Error("The parameter 'plantIdPath' must be defined.");
-                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantIdPath));
-                if (distributorIdQuery === null) throw new globalThis.Error("The parameter 'distributorIdQuery' cannot be null.");
-                else if (distributorIdQuery !== void 0) url_ += "distributorId=" + encodeURIComponent("" + distributorIdQuery) + "&";
-                if (plantIdQuery === null) throw new globalThis.Error("The parameter 'plantIdQuery' cannot be null.");
-                else if (plantIdQuery !== void 0) url_ += "plantId=" + encodeURIComponent("" + plantIdQuery) + "&";
+                var url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add";
+                if (distributorId === void 0 || distributorId === null) throw new globalThis.Error("The parameter 'distributorId' must be defined.");
+                url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorId));
+                if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
+                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "POST",

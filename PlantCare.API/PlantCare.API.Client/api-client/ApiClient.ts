@@ -206,26 +206,16 @@ export class Client {
     }
 
     /**
-     * @param distributorIdQuery (optional) 
-     * @param plantIdQuery (optional) 
      * @return OK
      */
-    addPlantToDistributor(distributorIdQuery: number | undefined, plantIdQuery: number | undefined, distributorIdPath: string, plantIdPath: string, cancelToken?: CancelToken): Promise<boolean> {
-        let url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add?";
-        if (distributorIdPath === undefined || distributorIdPath === null)
-            throw new globalThis.Error("The parameter 'distributorIdPath' must be defined.");
-        url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorIdPath));
-        if (plantIdPath === undefined || plantIdPath === null)
-            throw new globalThis.Error("The parameter 'plantIdPath' must be defined.");
-        url_ = url_.replace("{plantId}", encodeURIComponent("" + plantIdPath));
-        if (distributorIdQuery === null)
-            throw new globalThis.Error("The parameter 'distributorIdQuery' cannot be null.");
-        else if (distributorIdQuery !== undefined)
-            url_ += "distributorId=" + encodeURIComponent("" + distributorIdQuery) + "&";
-        if (plantIdQuery === null)
-            throw new globalThis.Error("The parameter 'plantIdQuery' cannot be null.");
-        else if (plantIdQuery !== undefined)
-            url_ += "plantId=" + encodeURIComponent("" + plantIdQuery) + "&";
+    addPlantToDistributor(distributorId: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add";
+        if (distributorId === undefined || distributorId === null)
+            throw new globalThis.Error("The parameter 'distributorId' must be defined.");
+        url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorId));
+        if (plantId === undefined || plantId === null)
+            throw new globalThis.Error("The parameter 'plantId' must be defined.");
+        url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: AxiosRequestConfig = {
@@ -1576,6 +1566,7 @@ export interface Plant {
     id?: number;
     placeId?: number;
     moduleId?: number;
+    distributorId?: number;
     name?: string | undefined;
     description?: string | undefined;
     minHumidity?: number | undefined;
