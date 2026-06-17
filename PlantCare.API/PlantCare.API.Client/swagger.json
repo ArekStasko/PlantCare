@@ -200,7 +200,8 @@
         "parameters": [
           {
             "name": "distributorId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -208,26 +209,11 @@
           },
           {
             "name": "plantId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "distributorId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "plantId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -1821,6 +1807,10 @@
             "format": "int32"
           },
           "moduleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "distributorId": {
             "type": "integer",
             "format": "int32"
           },

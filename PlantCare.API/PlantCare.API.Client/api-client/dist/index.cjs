@@ -242,8 +242,8 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "getDistributors",
-            value: function getDistributors(cancelToken) {
+   */ key: "distributor",
+            value: function distributor(cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/distributor";
                 url_ = url_.replace(/[?&]$/, "");
@@ -262,13 +262,13 @@ var Client = /*#__PURE__*/ function() {
                         throw _error;
                     }
                 }).then(function(_response) {
-                    return _this.processGetDistributors(_response);
+                    return _this.processDistributor(_response);
                 });
             }
         },
         {
-            key: "processGetDistributors",
-            value: function processGetDistributors(response) {
+            key: "processDistributor",
+            value: function processDistributor(response) {
                 var status = response.status;
                 var _headers = {};
                 if (response.headers && _type_of(response.headers) === "object") {

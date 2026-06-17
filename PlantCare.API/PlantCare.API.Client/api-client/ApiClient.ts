@@ -26,7 +26,7 @@ export class Client {
     /**
      * @return OK
      */
-    getDistributors( cancelToken?: CancelToken): Promise<Distributor[]> {
+    distributor( cancelToken?: CancelToken): Promise<Distributor[]> {
         let url_ = this.baseUrl + "/api/distributor";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -46,11 +46,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processGetDistributors(_response);
+            return this.processDistributor(_response);
         });
     }
 
-    protected processGetDistributors(response: AxiosResponse): Promise<Distributor[]> {
+    protected processDistributor(response: AxiosResponse): Promise<Distributor[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {

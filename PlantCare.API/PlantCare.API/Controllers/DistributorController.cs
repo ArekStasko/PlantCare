@@ -64,7 +64,7 @@ public class DistributorController(
     [EndpointName("AddPlantToDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> AddPlantToDistributor([FromQuery] int distributorId, [FromQuery] int plantId)
+    public async ValueTask<IActionResult> AddPlantToDistributor([FromRoute] int distributorId, [FromRoute] int plantId)
     {
         AddPlantToDistributorCommand command = new()
         {

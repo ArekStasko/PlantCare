@@ -8,8 +8,8 @@ declare class Client {
     /**
      * @return OK
      */
-    getDistributors(cancelToken?: CancelToken): Promise<Distributor[]>;
-    protected processGetDistributors(response: AxiosResponse): Promise<Distributor[]>;
+    distributor(cancelToken?: CancelToken): Promise<Distributor[]>;
+    protected processDistributor(response: AxiosResponse): Promise<Distributor[]>;
     /**
      * @param body (optional)
      * @return OK
