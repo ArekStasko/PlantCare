@@ -7,15 +7,31 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useEffect, useState } from 'react';
 import { CreateDistributorRequest } from '@arekstasko/plantcare-api-client';
-import { useCreateDistributorMutation } from '../../../../common/RTK/Distributor/Distributor';
+import {
+  DistributorPlantRequest,
+  useAddPlantToDistributorMutation,
+  useCreateDistributorMutation
+} from "../../../../common/RTK/Distributor/Distributor";
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [createDistributor, { isLoading: loading }] = useCreateDistributorMutation();
+  const [createDistributor, { data: createDistributorResult, isLoading: createDistributorLoading }] = useCreateDistributorMutation();
+  const [addPlantToDistributor, { isLoading: addPlantToDistributorLoading }] = useAddPlantToDistributorMutation();
 
   useEffect(() => {
+    const loading = createDistributorLoading || addPlantToDistributorLoading;
     wizardController.onLoading(loading);
-  }, [loading]);
+  }, [createDistributorLoading, addPlantToDistributorLoading]);
+
+  useEffect(() => {
+    if(createDistributorResult){
+      const request = {
+        id: createDistributorResult.id,
+        plantId: wizardController.context.plantId,
+      } as DistributorPlantRequest;
+      addPlantToDistributor(request)
+    }
+  }, [createDistributorLoading]);
 
   const onSubmit = async () => {
     try {
