@@ -47,7 +47,7 @@ public class DistributorController(
     
     [HttpPost]
     [EndpointName("CreateDistributor")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Create(CreateDistributorRequest request)
     {
