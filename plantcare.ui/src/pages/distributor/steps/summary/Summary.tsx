@@ -26,8 +26,8 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
   useEffect(() => {
     if(createDistributorResult){
       const request = {
-        id: createDistributorResult.id,
-        plantId: wizardController.context.plantId,
+        id: createDistributorResult.id?.toString(),
+        plantId: wizardController.context.plantId?.toString(),
       } as DistributorPlantRequest;
       addPlantToDistributor(request)
     }

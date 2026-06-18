@@ -9,7 +9,7 @@ export type DistributorPlantRequest = {
 
 const getDistributors = () =>
   plantcareApi
-    .getDistributors()
+    .distributor()
     .then((result) => ({
       data: result ?? ([] as Distributor[])
     }))
@@ -49,7 +49,7 @@ const waterSupply = (request: DistributorPlantRequest) =>
 
 const addPlantToDistributor = (request: DistributorPlantRequest) =>
   plantcareApi
-    .addPlantToDistributor(request.id, request.plantId)
+    .addPlantToDistributor(+request.id, +request.plantId)
     .then((result) => ({
       data: result
     }))
