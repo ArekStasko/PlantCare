@@ -85,7 +85,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    createDistributor(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<boolean> {
+    createDistributor(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<number> {
         let url_ = this.baseUrl + "/api/distributor";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -113,7 +113,7 @@ export class Client {
         });
     }
 
-    protected processCreateDistributor(response: AxiosResponse): Promise<boolean> {
+    protected processCreateDistributor(response: AxiosResponse): Promise<number> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -128,7 +128,7 @@ export class Client {
             let result200: any = null;
             let resultData200  = _responseText;
             result200 = JSON.parse(resultData200);
-            return Promise.resolve<boolean>(result200);
+            return Promise.resolve<number>(result200);
 
         } else if (status === 500) {
             const _responseText = response.data;
@@ -141,7 +141,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<boolean>(null as any);
+        return Promise.resolve<number>(null as any);
     }
 
     /**

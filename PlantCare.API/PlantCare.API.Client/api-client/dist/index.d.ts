@@ -14,8 +14,8 @@ declare class Client {
      * @param body (optional)
      * @return OK
      */
-    createDistributor(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<boolean>;
-    protected processCreateDistributor(response: AxiosResponse): Promise<boolean>;
+    createDistributor(body: CreateDistributorRequest | undefined, cancelToken?: CancelToken): Promise<number>;
+    protected processCreateDistributor(response: AxiosResponse): Promise<number>;
     /**
      * @return OK
      */
