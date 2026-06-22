@@ -11,49 +11,48 @@ import {
   DistributorPlantRequest,
   useAddPlantToDistributorMutation,
   useCreateDistributorMutation
-} from "../../../../common/RTK/Distributor/Distributor";
+} from '../../../../common/RTK/Distributor/Distributor';
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [createDistributor, { data: createDistributorResult, isLoading: createDistributorLoading }] = useCreateDistributorMutation();
-  const [addPlantToDistributor, { isLoading: addPlantToDistributorLoading }] = useAddPlantToDistributorMutation();
+  const [createDistributor, { isLoading: createDistributorLoading }] =
+    useCreateDistributorMutation();
+  const [addPlantToDistributor, { isLoading: addPlantToDistributorLoading }] =
+    useAddPlantToDistributorMutation();
 
   useEffect(() => {
     const loading = createDistributorLoading || addPlantToDistributorLoading;
     wizardController.onLoading(loading);
   }, [createDistributorLoading, addPlantToDistributorLoading]);
 
-  useEffect(() => {
-    if(createDistributorResult){
-      const request = {
-        id: createDistributorResult.id?.toString(),
-        plantId: wizardController.context.plantId?.toString(),
-      } as DistributorPlantRequest;
-      addPlantToDistributor(request)
-    }
-  }, [createDistributorLoading]);
+  const performAddPlantToDistributor = async (distributorId: string) => {
+    const request = {
+      id: distributorId,
+      plantId: wizardController.context.plantId?.toString()
+    } as DistributorPlantRequest;
+    await addPlantToDistributor(request);
+  };
 
   const onSubmit = async () => {
-    try {
-      const request = {
-        name: wizardController.context.distributorName
-      } as CreateDistributorRequest;
-      const result = await createDistributor(request);
-      if ('data' in result) {
-        const crc = wizardController.context.wifiDataService;
-        if (crc) {
-          const name = wizardController.context.wifiName;
-          const psw = wizardController.context.wifiPassword;
-          const address = wizardController.context.address;
-          const encoder = new TextEncoder();
-          const data = encoder.encode(`${name}|${psw}|${result.data}|${address}`);
+    const request = {
+      name: wizardController.context.distributorName
+    } as CreateDistributorRequest;
+    const result = await createDistributor(request);
+    if ('data' in result) {
+      const crc = wizardController.context.wifiDataService;
+      if (crc) {
+        const name = wizardController.context.wifiName;
+        const psw = wizardController.context.wifiPassword;
+        const address = wizardController.context.address;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(`${name}|${psw}|${result.data}|${address}`);
+        try {
           await crc.writeValue(data);
+        } catch (err) {
+          console.log(err);
         }
-        return { data: true };
       }
-      return { data: false };
-    } catch (error) {
-      return { data: false };
+      await performAddPlantToDistributor(result.data.toString());
     }
   };
 

@@ -55,7 +55,7 @@ const addPlantToDistributor = (request: DistributorPlantRequest) =>
     }))
     .catch((err) => ({
       error: err
-    }))
+    }));
 
 export const DistributorApi = emptyApi.injectEndpoints({
   endpoints: (build) => ({
@@ -67,7 +67,7 @@ export const DistributorApi = emptyApi.injectEndpoints({
       queryFn: getDistributor,
       providesTags: ['Distributors']
     }),
-    createDistributor: build.mutation<boolean, CreateDistributorRequest>({
+    createDistributor: build.mutation<number, CreateDistributorRequest>({
       queryFn: createDistributor,
       invalidatesTags: ['Distributors']
     }),
