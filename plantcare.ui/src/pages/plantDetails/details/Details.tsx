@@ -29,7 +29,7 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   );
 
   const { data: distributor, isFetching: isDistributorFetching } = useGetDistributorQuery(
-    +plant?.id!,
+    +plant?.distributorId!,
     {
       skip: !plant
     }

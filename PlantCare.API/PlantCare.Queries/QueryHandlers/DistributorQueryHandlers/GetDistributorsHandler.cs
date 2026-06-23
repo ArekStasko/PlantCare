@@ -27,7 +27,7 @@ public class GetDistributorsHandler(
                 return new Result<IReadOnlyList<Distributor>>(result);
             }, err =>
             {
-                logger.LogError("Something went wrong while fetching distributors");
+                logger.LogError("Something went wrong while executing get distributors repository method: {err}", err);
                 return new Result<IReadOnlyList<Distributor>>(err);
             });
         }

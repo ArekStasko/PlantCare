@@ -29,7 +29,7 @@ public class DistributorRepository(
         }
         catch (Exception e)
         {
-            logger.LogError("Something went wrong while fetching distributor with id: {id}", id);
+            logger.LogError("Something went wrong while fetching distributor with id: {id}; Exception: {e}", id, e);
             return new Result<IDistributor>(e);
         }
     }
@@ -43,7 +43,7 @@ public class DistributorRepository(
         }
         catch (Exception e)
         {
-            logger.LogError("Something went wrong while fetching distributors");
+            logger.LogError("Something went wrong while fetching distributors from database: {e}", e);
             return new Result<IReadOnlyCollection<IDistributor>>(e);
         }
     }
