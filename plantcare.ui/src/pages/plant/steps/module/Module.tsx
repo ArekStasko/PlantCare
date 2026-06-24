@@ -62,24 +62,18 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
       }}
       title={'Module'}
     >
-      <Box sx={styles.moduleSelectWrapper}>
+      <Box sx={styles.moduleContainer}>
         {!modules || modulesLoading ? (
           <CircularProgress />
-        ) : (
-          <>
-            {modules!.filter((m) => m.isAvailable).length == 0 ? (
-              <>
-                s
+        ) : modules!.filter((m) => m.isAvailable).length == 0 ? (
                 <CustomAlert
                   type={'error' as AlertColor}
                   message={
-                    "You don't have any module without plant assinged to it. To create new plant,\n" +
-                    '                  please add new module.'
+                    "You don't have any module without plant assinged to it. To create new plant, please add new module."
                   }
                 />
-              </>
             ) : (
-              <>
+              <Box sx={styles.moduleSelectWrapper}>
                 <InputLabel id="SelectPlantModule">
                   Choose a module that will monitor your plant moisture
                 </InputLabel>
@@ -102,9 +96,7 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
                     </Select>
                   )}
                 />
-              </>
-            )}
-          </>
+              </Box>
         )}
       </Box>
     </WizardStep>

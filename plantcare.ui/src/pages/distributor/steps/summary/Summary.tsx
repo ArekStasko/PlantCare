@@ -5,16 +5,19 @@ import { WizardStep } from '../../../../common/wizard/components/wizardStep/Wiza
 import styles from '../../../addModule/steps/summary/summary.styles';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CreateDistributorRequest } from '@arekstasko/plantcare-api-client';
 import {
   DistributorPlantRequest,
   useAddPlantToDistributorMutation,
   useCreateDistributorMutation
 } from '../../../../common/RTK/Distributor/Distributor';
+import Popup, { PopupStatus } from "../../../../common/components/popup/Popup";
+import RoutingConstants from "../../../../app/routing/routingConstants";
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [status, setStatus] = useState<boolean | undefined>(undefined);
   const [createDistributor, { isLoading: createDistributorLoading }] =
     useCreateDistributorMutation();
   const [addPlantToDistributor, { isLoading: addPlantToDistributorLoading }] =
@@ -30,7 +33,8 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
       id: distributorId,
       plantId: wizardController.context.plantId?.toString()
     } as DistributorPlantRequest;
-    await addPlantToDistributor(request);
+    const result = await addPlantToDistributor(request);
+    setStatus(result.data);
   };
 
   const onSubmit = async () => {
@@ -74,6 +78,20 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
         title: 'Back'
       }}
       title={'Summary'}
+      popup={
+        <Popup
+          titleText={status ? 'Success' : 'Error'}
+          contentText={
+            status
+              ? 'The new distributor has been added successfully.'
+              : 'An error occurred while adding a new distributor, please try again later.'
+          }
+          openPopup={!status}
+          confirmText={'Go to plant details'}
+          confirmAction={() => navigate(RoutingConstants.root)}
+          status={status ? PopupStatus.success : PopupStatus.failure}
+        />
+      }
     >
       <Card elevation={5} sx={styles.summaryList}>
         <Box sx={styles.summaryListElement}>

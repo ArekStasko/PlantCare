@@ -1,4 +1,5 @@
 using AutoMapper;
+using PlantCare.Domain.Models.Distributor;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -7,6 +8,7 @@ using PlantCare.Queries.Queries.Plant;
 using PlantCare.Queries.Responses.Module;
 using PlantCare.Queries.Responses.Place;
 using PlantCare.Queries.Responses.Plants;
+using Distributor = PlantCare.Queries.Responses.Distributor.Distributor;
 using Module = PlantCare.Queries.Responses.Module.Module;
 using Place = PlantCare.Queries.Responses.Place.Place;
 using Plant = PlantCare.Queries.Responses.Plants.Plant;
@@ -40,5 +42,9 @@ public class QueriesMapperProfile : Profile
         CreateMap<IPlace, Place>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
+        // DISTRIBUTOR MAPPINGS
+        
+        CreateMap<IDistributor, Distributor>();
     }
 }

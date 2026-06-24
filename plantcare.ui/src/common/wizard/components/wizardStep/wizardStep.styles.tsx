@@ -1,7 +1,7 @@
 const stepWrapper = {
   flexGrow: 1,
   display: 'flex',
-  justifyContent: 'space-evenly'
+  justifyContent: 'space-evenly',
 };
 
 const wizardNavigation = {

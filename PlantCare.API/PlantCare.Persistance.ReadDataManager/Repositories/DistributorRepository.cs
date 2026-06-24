@@ -15,7 +15,7 @@ public class DistributorRepository(
     : IReadDistributorRepository
 {
 
-    public async Task<Result<IDistributor>> GetDistributor(int id, int userId)
+    public async Task<Result<IDistributor?>> GetDistributor(int id, int userId)
     {
         try
         {
@@ -23,14 +23,14 @@ public class DistributorRepository(
             if (distributor == null)
             {
                 logger.LogError("There is no distributor with id : {id}", id);
-                return new Result<IDistributor>(new NullReferenceException());
+                return new Result<IDistributor?>();
             }
-            return new Result<IDistributor>(distributor);
+            return new Result<IDistributor?>(distributor);
         }
         catch (Exception e)
         {
             logger.LogError("Something went wrong while fetching distributor with id: {id}; Exception: {e}", id, e);
-            return new Result<IDistributor>(e);
+            return new Result<IDistributor?>(e);
         }
     }
 

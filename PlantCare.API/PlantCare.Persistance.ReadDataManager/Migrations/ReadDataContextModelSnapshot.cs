@@ -104,7 +104,7 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DistributorId")
+                    b.Property<int?>("DistributorId")
                         .HasColumnType("int");
 
                     b.Property<int>("ModuleId")

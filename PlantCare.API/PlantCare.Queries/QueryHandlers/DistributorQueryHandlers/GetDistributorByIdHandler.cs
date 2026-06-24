@@ -12,22 +12,26 @@ public class GetDistributorByIdHandler(
     IReadDistributorRepository repository,
     IMapper mapper,
     ILogger<GetDistributorByIdHandler> logger
-    ) : IRequestHandler<GetDistributorByIdQuery, Result<Distributor>>
+    ) : IRequestHandler<GetDistributorByIdQuery, Result<Distributor?>>
 {
 
-    public async Task<Result<Distributor>> Handle(GetDistributorByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Result<Distributor?>> Handle(GetDistributorByIdQuery request, CancellationToken cancellationToken)
     {
         try
         {
             var distributor = await repository.GetDistributor(request.Id, request.UserId);
             return distributor.Match(succ =>
             {
-                var result = mapper.Map<Distributor>(succ);
-                return new Result<Distributor>(result);
+                if (succ is null)
+                {
+                    return new Result<Distributor?>();
+                }
+                var result = mapper.Map<Distributor?>(succ);
+                return new Result<Distributor?>(result);
             }, err =>
             {
                 logger.LogError($"Error occured while getting distributor {request.Id}");
-                return new Result<Distributor>(err);
+                return new Result<Distributor?>(err);
             });
         }
         catch (Exception e)
