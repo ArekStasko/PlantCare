@@ -14,8 +14,11 @@ import {
 } from '../../../../common/RTK/Distributor/Distributor';
 import Popup, { PopupStatus } from "../../../../common/components/popup/Popup";
 import RoutingConstants from "../../../../app/routing/routingConstants";
+import { useNavigate } from "react-router";
+import RoutingPaths from "../../../../app/routing/routingConstants";
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState<boolean | undefined>(undefined);
   const [createDistributor, { isLoading: createDistributorLoading }] =
@@ -34,7 +37,9 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
       plantId: wizardController.context.plantId?.toString()
     } as DistributorPlantRequest;
     const result = await addPlantToDistributor(request);
-    setStatus(result.data);
+    if ('data' in result) {
+      setStatus(result.data);
+    }
   };
 
   const onSubmit = async () => {
@@ -80,16 +85,18 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
       title={'Summary'}
       popup={
         <Popup
-          titleText={status ? 'Success' : 'Error'}
+          titleText={(status !== undefined && status) ? 'Success' : 'Error'}
           contentText={
-            status
+            (status !== undefined && status)
               ? 'The new distributor has been added successfully.'
               : 'An error occurred while adding a new distributor, please try again later.'
           }
-          openPopup={!status}
+          openPopup={status !== undefined}
           confirmText={'Go to plant details'}
-          confirmAction={() => navigate(RoutingConstants.root)}
-          status={status ? PopupStatus.success : PopupStatus.failure}
+          confirmAction={() => navigate(
+            `${RoutingPaths.plantDetails}/${wizardController.context.plantId}/${wizardController.context.moduleId}`
+          )}
+          status={(status !== undefined && status)  ? PopupStatus.success : PopupStatus.failure}
         />
       }
     >
