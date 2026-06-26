@@ -295,15 +295,18 @@ var Client = /*#__PURE__*/ function() {
                     var resultData200 = _responseText;
                     result200 = JSON.parse(resultData200);
                     return Promise.resolve(result200);
-                } else if (status === 500) {
+                } else if (status === 204) {
                     var _responseText1 = response.data;
-                    var result500 = null;
-                    var resultData500 = _responseText1;
-                    result500 = JSON.parse(resultData500);
-                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
-                } else if (status !== 200 && status !== 204) {
+                    return throwException("No Content", status, _responseText1, _headers);
+                } else if (status === 500) {
                     var _responseText2 = response.data;
-                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                    var result500 = null;
+                    var resultData500 = _responseText2;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText2, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText3 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText3, _headers);
                 }
                 return Promise.resolve(null);
             }

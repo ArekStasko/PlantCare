@@ -191,6 +191,10 @@ export class Client {
             result200 = JSON.parse(resultData200);
             return Promise.resolve<Distributor>(result200);
 
+        } else if (status === 204) {
+            const _responseText = response.data;
+            return throwException("No Content", status, _responseText, _headers);
+
         } else if (status === 500) {
             const _responseText = response.data;
             let result500: any = null;

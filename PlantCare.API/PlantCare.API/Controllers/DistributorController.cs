@@ -33,6 +33,7 @@ public class DistributorController(
     [HttpGet("{id}")]
     [EndpointName("GetDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Distributor))]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public async ValueTask<IActionResult> Get([FromRoute] int id)
     {
