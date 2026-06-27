@@ -28,15 +28,17 @@ public class CommandsMapperProfile : Profile
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
-            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
-
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+            .ForMember(dest => dest.DistributorId, opt => opt.Ignore());
+        
         CreateMap<UpdatePlantCommand, Plant>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.ModuleId, opt => opt.MapFrom(src => src.ModuleId))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.PlaceId, opt => opt.MapFrom(src => src.PlaceId))
-            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+            .ForMember(dest => dest.DistributorId, opt => opt.Ignore());
 
         CreateMap<int, DeletePlantCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src));
