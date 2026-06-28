@@ -63,6 +63,10 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
             .ValueGeneratedNever();
         
         modelBuilder.Entity<Plant>()
+            .Property(p => p.DistributorId)
+            .IsRequired(false);
+        
+        modelBuilder.Entity<Plant>()
             .Property(p => p.Id)
             .ValueGeneratedNever();
         

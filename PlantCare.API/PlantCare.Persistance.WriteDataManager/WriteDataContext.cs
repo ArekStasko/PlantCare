@@ -42,6 +42,10 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Plant>()
+            .Property(p => p.DistributorId)
+            .IsRequired(false);
+        
         modelBuilder.Entity<Place>()
             .HasMany(e => e.Plants)
             .WithOne()
