@@ -13,7 +13,9 @@ public class DtoMapperProfile : Profile
     public DtoMapperProfile()
     {
         // DTO MAPPINGS
-        CreateMap<PlantDto, Plant>();
+        CreateMap<PlantDto, Plant>()
+            .ForMember(dest => dest.DistributorId, opt => opt.Ignore());
+
         CreateMap<PlaceDto, Place>();
         CreateMap<HumidityMeasurementDto, HumidityMeasurement>();
         CreateMap<DistributorDto, Distributor>();

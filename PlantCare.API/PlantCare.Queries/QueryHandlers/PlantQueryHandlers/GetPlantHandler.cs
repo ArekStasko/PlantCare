@@ -25,22 +25,20 @@ public class GetPlantHandler : IRequestHandler<GetPlantQuery, Result<Plant>>
     {
         try
         {
-            _logger.LogInformation("GetPlantHandler handles request");
             var plant = await _repository.Get(query.Id, query.UserId);
             return plant.Match(succ =>
             {
-                _logger.LogInformation("GetPlantHandler successfully processed the request");
                 var plant = _mapper.Map<Plant>(succ);
                 return new Result<Plant>(plant);
             }, err =>
             {
-                _logger.LogError("Something went wrong while processing GetPlantHandler request");
+                _logger.LogError("Something went wrong while processing GetPlantHandler request: {exception}", err);
                 return new Result<Plant>(err);
             });
         }
         catch (Exception e)
         {
-            _logger.LogError("Exception has been thrown in GetPlantHandler: {exception}", e.Message);
+            _logger.LogError("Exception has been thrown in GetPlantHandler: {exception}", e);
             return new Result<Plant>(e);
         }
     }
