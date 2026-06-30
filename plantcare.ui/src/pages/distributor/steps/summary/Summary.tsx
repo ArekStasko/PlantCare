@@ -13,7 +13,6 @@ import {
   useCreateDistributorMutation
 } from '../../../../common/RTK/Distributor/Distributor';
 import Popup, { PopupStatus } from "../../../../common/components/popup/Popup";
-import RoutingConstants from "../../../../app/routing/routingConstants";
 import { useNavigate } from "react-router";
 import RoutingPaths from "../../../../app/routing/routingConstants";
 

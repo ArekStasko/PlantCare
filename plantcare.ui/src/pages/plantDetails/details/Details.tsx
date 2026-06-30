@@ -9,7 +9,11 @@ import React, { useState } from 'react';
 import { Module, Plant, PlantType } from '@arekstasko/plantcare-api-client';
 import { useGetBatteryLevelQuery } from '../../../common/RTK/Module/Module';
 import { HumidityRange } from './HumidityRange';
-import { useGetDistributorQuery } from '../../../common/RTK/Distributor/Distributor';
+import {
+  DistributorPlantRequest,
+  useGetDistributorQuery,
+  useWaterSupplyMutation
+} from "../../../common/RTK/Distributor/Distributor";
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../app/routing/routingConstants';
 
@@ -21,6 +25,7 @@ export type PlantDetailsProps = {
 
 export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   const navigate = useNavigate();
+  const [supplyWater, { isLoading: isWaterSupplyLoading }] = useWaterSupplyMutation();
   const { data: batteryLevel, isFetching: isBatteryLevelFetching } = useGetBatteryLevelQuery(
     +module!.id!,
     {
@@ -36,6 +41,16 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   );
 
   const [openHumidityRange, setOpenHumidityRange] = useState(false);
+
+  const performWaterSupply = async () => {
+    if(!plant || !plant.distributorId || !plant.id) return;
+    const request = {
+      id: plant.distributorId.toString(),
+      plantId: plant.id.toString()
+    } as DistributorPlantRequest;
+
+    await supplyWater(request);
+  }
 
   return plant && module && !isLoading ? (
     <>
@@ -118,11 +133,11 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
       </Box>
       <Box sx={styles.details_paper}>
         <Paper sx={styles.details_card}>
-          {isDistributorFetching ? (
+          {isDistributorFetching || isWaterSupplyLoading ? (
             <CircularProgress />
           ) : distributor ? (
             <Tooltip placement="top-end" title="Run hydration">
-              <Button onClick={() => console.log('run hydration action')}>Hydrate</Button>
+              <Button onClick={() => performWaterSupply()}>Hydrate</Button>
             </Tooltip>
           ) : (
             <Tooltip placement="top-end" title="Add distributor">
