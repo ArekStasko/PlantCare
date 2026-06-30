@@ -77,11 +77,11 @@ public class DistributorController(
         return result.ToOk();
     }
     
-    [HttpPost("{id}/{plantId}/water-supply")]
+    [HttpPost("{id:int}/{plantId:int}/water-supply")]
     [EndpointName("WaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public ValueTask<IActionResult> RunWaterSupply()
+    public ValueTask<IActionResult> RunWaterSupply([FromRoute] int Id, [FromRoute] int PlantId)
     {
         throw new NotImplementedException();
     }

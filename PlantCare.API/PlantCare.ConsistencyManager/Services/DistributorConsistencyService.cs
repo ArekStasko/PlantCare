@@ -25,6 +25,19 @@ public class DistributorConsistencyService(
                         await ResetCacheDistributor(distributor.UserId);
                         return;
                     }
+                    case ActionType.WaterSupply:
+                    {
+                        var distributor = context.Distributors.FirstOrDefault(x => x.UserId == message.DistributorDto.UserId && x.Id == message.DistributorDto.Id);
+                        if (distributor == null)
+                        {
+                            logger.LogError("Distributor with id: {id} does not exists", message.DistributorDto.Id);
+                            return;
+                        }
+                        distributor.WaterSupply = true;
+                        await context.SaveChangesAsync();
+                        await ResetCacheDistributor(distributor.UserId);
+                        return;
+                    }
                     default:
                     {
                         logger.LogError("Distributor Consistency service executes for not existing action: {action}", message.Action);

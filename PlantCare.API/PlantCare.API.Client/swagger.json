@@ -1818,7 +1818,8 @@
           },
           "distributorId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "name": {
             "type": "string",

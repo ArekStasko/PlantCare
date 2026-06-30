@@ -30,4 +30,25 @@ public class DistributorRepository(IDistributorContext context, ILogger<Distribu
             return new Result<int>(e);
         }
     }
+
+    public async ValueTask<Result<bool>> WaterSupply(int userId, int distributorId)
+    {
+        try
+        {
+            var distributor = await context.Distributors.FirstOrDefaultAsync(d => d.UserId == userId && d.Id == distributorId);
+            if (distributor == null)
+            {
+                logger.LogError("There is no distributor with {distributorId}", distributorId);
+                return new Result<bool>(false);
+            }
+            distributor.WaterSupply = true;
+            await context.SaveChangesAsync();
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            logger.LogError("Something went wrong while running water supply for distributor {distributorId}: {e}", distributorId, e);
+            return new Result<bool>(e);
+        }
+    }
 }
