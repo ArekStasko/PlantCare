@@ -23,6 +23,7 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
     public virtual DbSet<Distributor> Distributors { get; set; } = null!;
 
     public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
+    public virtual DbSet<WaterSupply> WaterSupplies { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -62,6 +63,10 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
             .IsRequired();
         
         modelBuilder.Entity<Distributor>()
+            .Property(d => d.Id)
+            .ValueGeneratedNever();
+        
+        modelBuilder.Entity<WaterSupply>()
             .Property(d => d.Id)
             .ValueGeneratedNever();
     }

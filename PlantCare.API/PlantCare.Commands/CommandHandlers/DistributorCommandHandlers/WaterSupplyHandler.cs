@@ -11,7 +11,7 @@ namespace PlantCare.Commands.CommandHandlers.DistributorCommandHandlers;
 
 public class WaterSupplyHandler(
         IWriteDistributorRepository repository,
-        IQueueProducer<Distributor> producer,
+        IQueueProducer<WaterSupply> producer,
         ILogger<CreateDistributorHandler> logger
     ) : IRequestHandler<WaterSupplyCommand, Result<bool>>
 {
@@ -19,7 +19,7 @@ public class WaterSupplyHandler(
     {
         try
         {
-            var result = await repository.WaterSupply(request.UserId, request.DistributorId);
+            var result = await repository.WaterSupply(request.UserId, request.DistributorId, request.PlantId);
             _ = result.Match(succ =>
             {
                 if (!succ)
@@ -35,19 +35,20 @@ public class WaterSupplyHandler(
                 throw err;
             });
             
-            var distributorDto = new DistributorDto()
+            var waterSupplyDto = new Domain.Models.Distributor.WaterSupply()
             {
-                Id = request.DistributorId,
+                DistributorId = request.DistributorId,
+                PlantId = request.PlantId,
                 UserId = request.UserId,
             };
 
-            var distributorMessage = new Distributor()
+            var waterSupplyMessage = new WaterSupply()
             {
-                Action = ActionType.WaterSupply,
-                DistributorDto = distributorDto
+                Action = ActionType.Add,
+                WaterSupplyDto = waterSupplyDto
             };
 
-            producer.PublishMessage(distributorMessage);
+            producer.PublishMessage(waterSupplyMessage);
             return new Result<bool>(true);
         }
         catch (Exception e)

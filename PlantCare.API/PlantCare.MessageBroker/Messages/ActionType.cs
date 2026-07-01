@@ -5,7 +5,6 @@ public enum ActionType
     Delete,
     Update,
     UpdateHumidityValues,
-    WaterSupply,
     AddPlantDistributor,
     Add,
 }

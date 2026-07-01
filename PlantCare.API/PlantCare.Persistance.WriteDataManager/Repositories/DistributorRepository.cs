@@ -31,17 +31,17 @@ public class DistributorRepository(IDistributorContext context, ILogger<Distribu
         }
     }
 
-    public async ValueTask<Result<bool>> WaterSupply(int userId, int distributorId)
+    public async ValueTask<Result<bool>> WaterSupply(int userId, int distributorId, int plantId)
     {
         try
         {
-            var distributor = await context.Distributors.FirstOrDefaultAsync(d => d.UserId == userId && d.Id == distributorId);
-            if (distributor == null)
+            var waterSupply = new WaterSupply()
             {
-                logger.LogError("There is no distributor with {distributorId}", distributorId);
-                return new Result<bool>(false);
-            }
-            distributor.WaterSupply = true;
+                DistributorId = distributorId,
+                PlantId = plantId,
+                UserId = userId
+            };
+            await context.WaterSupplies.AddAsync(waterSupply);
             await context.SaveChangesAsync();
             return new Result<bool>(true);
         }
