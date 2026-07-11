@@ -12,9 +12,9 @@ import {
   useAddPlantToDistributorMutation,
   useCreateDistributorMutation
 } from '../../../../common/RTK/Distributor/Distributor';
-import Popup, { PopupStatus } from "../../../../common/components/popup/Popup";
-import { useNavigate } from "react-router";
-import RoutingPaths from "../../../../app/routing/routingConstants";
+import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
+import { useNavigate } from 'react-router';
+import RoutingPaths from '../../../../app/routing/routingConstants';
 
 const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
@@ -84,18 +84,20 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
       title={'Summary'}
       popup={
         <Popup
-          titleText={(status !== undefined && status) ? 'Success' : 'Error'}
+          titleText={status !== undefined && status ? 'Success' : 'Error'}
           contentText={
-            (status !== undefined && status)
+            status !== undefined && status
               ? 'The new distributor has been added successfully.'
               : 'An error occurred while adding a new distributor, please try again later.'
           }
           openPopup={status !== undefined}
           confirmText={'Go to plant details'}
-          confirmAction={() => navigate(
-            `${RoutingPaths.plantDetails}/${wizardController.context.plantId}/${wizardController.context.moduleId}`
-          )}
-          status={(status !== undefined && status)  ? PopupStatus.success : PopupStatus.failure}
+          confirmAction={() =>
+            navigate(
+              `${RoutingPaths.plantDetails}/${wizardController.context.plantId}/${wizardController.context.moduleId}`
+            )
+          }
+          status={status !== undefined && status ? PopupStatus.success : PopupStatus.failure}
         />
       }
     >

@@ -13,7 +13,7 @@ import {
   DistributorPlantRequest,
   useGetDistributorQuery,
   useWaterSupplyMutation
-} from "../../../common/RTK/Distributor/Distributor";
+} from '../../../common/RTK/Distributor/Distributor';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../app/routing/routingConstants';
 
@@ -43,14 +43,14 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   const [openHumidityRange, setOpenHumidityRange] = useState(false);
 
   const performWaterSupply = async () => {
-    if(!plant || !plant.distributorId || !plant.id) return;
+    if (!plant || !plant.distributorId || !plant.id) return;
     const request = {
       id: plant.distributorId.toString(),
       plantId: plant.id.toString()
     } as DistributorPlantRequest;
 
     await supplyWater(request);
-  }
+  };
 
   return plant && module && !isLoading ? (
     <>

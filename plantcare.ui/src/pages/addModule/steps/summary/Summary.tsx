@@ -5,13 +5,20 @@ import styles from './summary.styles';
 import { Box, Button, Card, Divider, Typography } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CreateModuleRequest } from '@arekstasko/plantcare-api-client';
 import { useCreateModuleMutation } from '../../../../common/RTK/Module/Module';
+import Popup, { PopupStatus } from '../../../../common/components/popup/Popup';
+import RoutingPaths from '../../../../app/routing/routingConstants';
+import { useNavigate } from 'react-router';
 
 const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
   const [showPassword, setShowPassword] = useState(false);
   const [createModule, { isLoading: loading }] = useCreateModuleMutation();
+  const [success, setSuccess] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     wizardController.onLoading(loading);
@@ -33,12 +40,12 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
           const data = encoder.encode(`${name}|${psw}|${result.data}|${address}`);
           await crc.writeValue(data);
         }
-        return { data: true };
+        setSuccess(true);
+        return;
       }
-      return { data: false };
-    } catch (error) {
-      return { data: false };
-    }
+      setSuccess(false);
+    } catch (error) {}
+    setShowPopup(true);
   };
 
   return (
@@ -59,6 +66,20 @@ const Summary = ({ wizardController }: WizardStepProps<AddModuleContext>) => {
         title: 'Back'
       }}
       title={'Summary'}
+      popup={
+        <Popup
+          titleText={success ? 'Success' : 'Error'}
+          contentText={
+            success
+              ? 'The new module has been added successfully.'
+              : 'An error occurred while adding a new module, please try again later.'
+          }
+          openPopup={showPopup}
+          confirmText={'Go to dashboard'}
+          confirmAction={() => navigate(`${RoutingPaths.root}`)}
+          status={success ? PopupStatus.success : PopupStatus.failure}
+        />
+      }
     >
       <Card elevation={5} sx={styles.summaryList}>
         <Box sx={styles.summaryListElement}>
