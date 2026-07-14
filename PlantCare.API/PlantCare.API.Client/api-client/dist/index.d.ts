@@ -29,8 +29,13 @@ declare class Client {
     /**
      * @return OK
      */
-    waterSupply(id: string, plantId: string, cancelToken?: CancelToken): Promise<boolean>;
-    protected processWaterSupply(response: AxiosResponse): Promise<boolean>;
+    waterSupplyPOST(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean>;
+    protected processWaterSupplyPOST(response: AxiosResponse): Promise<boolean>;
+    /**
+     * @return OK
+     */
+    waterSupplyGET(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean>;
+    protected processWaterSupplyGET(response: AxiosResponse): Promise<boolean>;
     /**
      * @param body (optional)
      * @return OK
@@ -221,7 +226,7 @@ interface Plant {
     id?: number;
     placeId?: number;
     moduleId?: number;
-    distributorId?: number;
+    distributorId?: number | undefined;
     name?: string | undefined;
     description?: string | undefined;
     minHumidity?: number | undefined;
