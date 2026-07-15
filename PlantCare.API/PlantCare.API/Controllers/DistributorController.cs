@@ -81,7 +81,23 @@ public class DistributorController(
     [EndpointName("WaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public ValueTask<IActionResult> RunWaterSupply([FromRoute] int Id, [FromRoute] int PlantId)
+    public async ValueTask<IActionResult> RunWaterSupply([FromRoute] int Id, [FromRoute] int PlantId)
+    {
+        var command = new WaterSupplyCommand
+        {
+            DistributorId = Id,
+            PlantId = PlantId,
+            UserId = UserId
+        };
+        var result = await mediator.Send(command);
+        return result.ToOk();
+    }
+    
+    [HttpGet("{id:int}/{plantId:int}/water-supply")]
+    [EndpointName("WaterSupply")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public ValueTask<IActionResult> GetWaterSupplyStatus([FromRoute] int Id, [FromRoute] int PlantId)
     {
         throw new NotImplementedException();
     }

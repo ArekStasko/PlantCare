@@ -39,7 +39,7 @@ const createDistributor = (request: CreateDistributorRequest) =>
 
 const waterSupply = (request: DistributorPlantRequest) =>
   plantcareApi
-    .waterSupply(request.id, request.plantId)
+    .waterSupplyPOST(+request.id, +request.plantId)
     .then((result) => ({
       data: result
     }))
