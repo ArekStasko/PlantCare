@@ -335,12 +335,14 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/distributor/{id}/{plantId}/water-supply/status": {
       "get": {
         "tags": [
           "Distributor"
         ],
-        "operationId": "WaterSupply",
+        "operationId": "WaterSupplyStatus",
         "parameters": [
           {
             "name": "Id",

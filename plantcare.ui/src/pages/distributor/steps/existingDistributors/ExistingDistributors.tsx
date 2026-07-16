@@ -5,13 +5,14 @@ import { Alert, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import RoutingPaths from '../../../../app/routing/routingConstants';
 import { useGetDistributorsQuery } from '../../../../common/RTK/Distributor/Distributor';
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { SelectDistributor } from './components/SelectDistributor';
 import styles from './existingDistributors.styles';
+import CustomAlert from "../../../../common/components/customAlert/customAlert";
 
 const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistributorContext>) => {
   const navigate = useNavigate();
-  const { data: distributors, isFetching: areDistributorsLoading } = useGetDistributorsQuery();
+  const { data: distributors, isFetching: areDistributorsLoading, isError } = useGetDistributorsQuery();
 
   useEffect(() => {
     wizardController.onLoading(areDistributorsLoading);
@@ -70,6 +71,12 @@ const ExistingDistributors = ({ wizardController }: WizardStepProps<AddDistribut
         title: 'Back'
       }}
       title={'Distributors'}
+      errorAlert={isError ? (
+        <CustomAlert
+          message={"Something went wrong while fetching distributors, please try again later"}
+          type={'error'}
+        />
+      ) : undefined}
     >
       <Box sx={styles.container}>
         {areThereAnyDistributors ? (

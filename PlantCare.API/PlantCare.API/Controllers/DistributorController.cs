@@ -93,8 +93,8 @@ public class DistributorController(
         return result.ToOk();
     }
     
-    [HttpGet("{id:int}/{plantId:int}/water-supply")]
-    [EndpointName("WaterSupply")]
+    [HttpGet("{id:int}/{plantId:int}/water-supply/status")]
+    [EndpointName("WaterSupplyStatus")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
     public ValueTask<IActionResult> GetWaterSupplyStatus([FromRoute] int Id, [FromRoute] int PlantId)
