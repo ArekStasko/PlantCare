@@ -6,18 +6,48 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PlantCare.Persistance.WriteDataManager.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeModuleType : Migration
+    public partial class reinit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Distributors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Distributors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HumidityMeasurements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ModuleId = table.Column<int>(type: "int", nullable: false),
+                    Humidity = table.Column<int>(type: "int", nullable: false),
+                    BatteryLevel = table.Column<int>(type: "int", nullable: false),
+                    MeasurementDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HumidityMeasurements", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Modules",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,6 +69,20 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WaterSupplies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    DistributorId = table.Column<int>(type: "int", nullable: false),
+                    PlantId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WaterSupplies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Plants",
                 columns: table => new
                 {
@@ -47,8 +91,11 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     PlaceId = table.Column<int>(type: "int", nullable: false),
                     ModuleId = table.Column<int>(type: "int", nullable: false),
+                    DistributorId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    minHumidity = table.Column<int>(type: "int", nullable: true),
+                    maxHumidity = table.Column<int>(type: "int", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -68,43 +115,6 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "HumidityMeasurements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ModuleId = table.Column<int>(type: "int", nullable: false),
-                    Humidity = table.Column<int>(type: "int", nullable: false),
-                    MeasurementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PlantId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HumidityMeasurements", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HumidityMeasurements_Modules_ModuleId",
-                        column: x => x.ModuleId,
-                        principalTable: "Modules",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HumidityMeasurements_Plants_PlantId",
-                        column: x => x.PlantId,
-                        principalTable: "Plants",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HumidityMeasurements_ModuleId",
-                table: "HumidityMeasurements",
-                column: "ModuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HumidityMeasurements_PlantId",
-                table: "HumidityMeasurements",
-                column: "PlantId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Plants_ModuleId",
                 table: "Plants",
@@ -121,10 +131,16 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Distributors");
+
+            migrationBuilder.DropTable(
                 name: "HumidityMeasurements");
 
             migrationBuilder.DropTable(
                 name: "Plants");
+
+            migrationBuilder.DropTable(
+                name: "WaterSupplies");
 
             migrationBuilder.DropTable(
                 name: "Modules");

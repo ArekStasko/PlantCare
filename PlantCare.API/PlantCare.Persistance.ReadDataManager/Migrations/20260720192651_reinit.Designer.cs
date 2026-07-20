@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PlantCare.Persistance.WriteDataManager;
+using PlantCare.Persistance.ReadDataManager;
 
 #nullable disable
 
-namespace PlantCare.Persistance.WriteDataManager.Migrations
+namespace PlantCare.Persistance.ReadDataManager.Migrations
 {
-    [DbContext(typeof(WriteDataContext))]
-    [Migration("20260628205236_distributor-optional-id-plant-model")]
-    partial class distributoroptionalidplantmodel
+    [DbContext(typeof(ReadDataContext))]
+    [Migration("20260720192651_reinit")]
+    partial class reinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,13 +42,29 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.ToTable("Distributors");
                 });
 
+            modelBuilder.Entity("PlantCare.Domain.Models.Distributor.WaterSupply", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DistributorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaterSupplies");
+                });
+
             modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BatteryLevel")
                         .HasColumnType("int");
@@ -70,10 +86,7 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -90,10 +103,7 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Place.Place", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -110,10 +120,7 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()

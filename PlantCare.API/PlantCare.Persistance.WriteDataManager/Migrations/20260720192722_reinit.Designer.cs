@@ -12,8 +12,8 @@ using PlantCare.Persistance.WriteDataManager;
 namespace PlantCare.Persistance.WriteDataManager.Migrations
 {
     [DbContext(typeof(WriteDataContext))]
-    [Migration("20241231121510_Change-Module-Type")]
-    partial class ChangeModuleType
+    [Migration("20260720192722_reinit")]
+    partial class reinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,42 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("PlantCare.Domain.Models.Distributor.Distributor", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Distributors");
+                });
+
+            modelBuilder.Entity("PlantCare.Domain.Models.Distributor.WaterSupply", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DistributorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaterSupplies");
+                });
+
             modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +68,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BatteryLevel")
+                        .HasColumnType("int");
 
                     b.Property<int>("Humidity")
                         .HasColumnType("int");
@@ -42,14 +81,7 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.Property<int>("ModuleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ModuleId");
-
-                    b.HasIndex("PlantId");
 
                     b.ToTable("HumidityMeasurements");
                 });
@@ -61,6 +93,10 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -102,6 +138,9 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DistributorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ModuleId")
                         .HasColumnType("int");
 
@@ -118,6 +157,12 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("maxHumidity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("minHumidity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ModuleId")
@@ -126,19 +171,6 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
                     b.HasIndex("PlaceId");
 
                     b.ToTable("Plants");
-                });
-
-            modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
-                {
-                    b.HasOne("PlantCare.Domain.Models.Module.Module", null)
-                        .WithMany("HumidityMeasurements")
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PlantCare.Domain.Models.Plant.Plant", null)
-                        .WithMany("HumidityMeasurements")
-                        .HasForeignKey("PlantId");
                 });
 
             modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
@@ -158,19 +190,12 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
 
             modelBuilder.Entity("PlantCare.Domain.Models.Module.Module", b =>
                 {
-                    b.Navigation("HumidityMeasurements");
-
                     b.Navigation("Plant");
                 });
 
             modelBuilder.Entity("PlantCare.Domain.Models.Place.Place", b =>
                 {
                     b.Navigation("Plants");
-                });
-
-            modelBuilder.Entity("PlantCare.Domain.Models.Plant.Plant", b =>
-                {
-                    b.Navigation("HumidityMeasurements");
                 });
 #pragma warning restore 612, 618
         }
