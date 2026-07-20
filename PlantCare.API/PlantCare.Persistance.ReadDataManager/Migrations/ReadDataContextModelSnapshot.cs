@@ -39,6 +39,25 @@ namespace PlantCare.Persistance.ReadDataManager.Migrations
                     b.ToTable("Distributors");
                 });
 
+            modelBuilder.Entity("PlantCare.Domain.Models.Distributor.WaterSupply", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DistributorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaterSupplies");
+                });
+
             modelBuilder.Entity("PlantCare.Domain.Models.HumidityMeasurement.HumidityMeasurement", b =>
                 {
                     b.Property<int>("Id")

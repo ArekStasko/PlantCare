@@ -276,7 +276,7 @@ export class Client {
     /**
      * @return OK
      */
-    waterSupplyPOST(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
+    waterSupply(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -302,11 +302,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processWaterSupplyPOST(_response);
+            return this.processWaterSupply(_response);
         });
     }
 
-    protected processWaterSupplyPOST(response: AxiosResponse): Promise<boolean> {
+    protected processWaterSupply(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -340,8 +340,8 @@ export class Client {
     /**
      * @return OK
      */
-    waterSupplyGET(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
-        let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
+    waterSupplyStatus(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply/status";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{Id}", encodeURIComponent("" + id));
@@ -366,11 +366,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processWaterSupplyGET(_response);
+            return this.processWaterSupplyStatus(_response);
         });
     }
 
-    protected processWaterSupplyGET(response: AxiosResponse): Promise<boolean> {
+    protected processWaterSupplyStatus(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
