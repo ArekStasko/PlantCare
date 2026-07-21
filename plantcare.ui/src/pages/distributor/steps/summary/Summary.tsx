@@ -32,8 +32,8 @@ const Summary = ({ wizardController }: WizardStepProps<AddDistributorContext>) =
 
   const performAddPlantToDistributor = async (distributorId: string) => {
     const request = {
-      id: distributorId,
-      plantId: wizardController.context.plantId?.toString()
+      id: +distributorId,
+      plantId: +wizardController.context.plantId!
     } as DistributorPlantRequest;
     const result = await addPlantToDistributor(request);
     if ('data' in result) {

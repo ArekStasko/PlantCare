@@ -43,10 +43,9 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
   const [openHumidityRange, setOpenHumidityRange] = useState(false);
 
   const performWaterSupply = async () => {
-    if (!plant || !plant.distributorId || !plant.id) return;
     const request = {
-      id: plant.distributorId.toString(),
-      plantId: plant.id.toString()
+      id: plant?.distributorId,
+      plantId: plant?.id
     } as DistributorPlantRequest;
 
     await supplyWater(request);

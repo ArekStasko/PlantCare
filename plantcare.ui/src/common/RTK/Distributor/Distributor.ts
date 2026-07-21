@@ -3,8 +3,8 @@ import { CreateDistributorRequest, Distributor, Place } from '@arekstasko/plantc
 import emptyApi from '../emptyApi';
 
 export type DistributorPlantRequest = {
-  id: string;
-  plantId: string;
+  id: number;
+  plantId: number;
 };
 
 const getDistributors = () =>
@@ -39,7 +39,7 @@ const createDistributor = (request: CreateDistributorRequest) =>
 
 const waterSupply = (request: DistributorPlantRequest) =>
   plantcareApi
-    .waterSupplyPOST(+request.id, +request.plantId)
+    .waterSupply(request.id, request.plantId)
     .then((result) => ({
       data: result
     }))
@@ -49,7 +49,7 @@ const waterSupply = (request: DistributorPlantRequest) =>
 
 const addPlantToDistributor = (request: DistributorPlantRequest) =>
   plantcareApi
-    .addPlantToDistributor(+request.id, +request.plantId)
+    .addPlantToDistributor(request.id, request.plantId)
     .then((result) => ({
       data: result
     }))
