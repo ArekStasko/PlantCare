@@ -376,8 +376,8 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "waterSupplyPOST",
-            value: function waterSupplyPOST(id, plantId, cancelToken) {
+   */ key: "waterSupply",
+            value: function waterSupply(id, plantId, cancelToken) {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
@@ -400,13 +400,13 @@ var Client = /*#__PURE__*/ function() {
                         throw _error;
                     }
                 }).then(function(_response) {
-                    return _this.processWaterSupplyPOST(_response);
+                    return _this.processWaterSupply(_response);
                 });
             }
         },
         {
-            key: "processWaterSupplyPOST",
-            value: function processWaterSupplyPOST(response) {
+            key: "processWaterSupply",
+            value: function processWaterSupply(response) {
                 var status = response.status;
                 var _headers = {};
                 if (response.headers && _type_of(response.headers) === "object") {
@@ -438,10 +438,10 @@ var Client = /*#__PURE__*/ function() {
         {
             /**
    * @return OK
-   */ key: "waterSupplyGET",
-            value: function waterSupplyGET(id, plantId, cancelToken) {
+   */ key: "waterSupplyStatus",
+            value: function waterSupplyStatus(id, plantId, cancelToken) {
                 var _this = this;
-                var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
+                var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply/status";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
                 url_ = url_.replace("{Id}", encodeURIComponent("" + id));
                 if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
@@ -462,13 +462,13 @@ var Client = /*#__PURE__*/ function() {
                         throw _error;
                     }
                 }).then(function(_response) {
-                    return _this.processWaterSupplyGET(_response);
+                    return _this.processWaterSupplyStatus(_response);
                 });
             }
         },
         {
-            key: "processWaterSupplyGET",
-            value: function processWaterSupplyGET(response) {
+            key: "processWaterSupplyStatus",
+            value: function processWaterSupplyStatus(response) {
                 var status = response.status;
                 var _headers = {};
                 if (response.headers && _type_of(response.headers) === "object") {

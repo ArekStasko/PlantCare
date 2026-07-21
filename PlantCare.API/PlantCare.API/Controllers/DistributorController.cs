@@ -81,12 +81,12 @@ public class DistributorController(
     [EndpointName("WaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> RunWaterSupply([FromRoute] int Id, [FromRoute] int PlantId)
+    public async ValueTask<IActionResult> RunWaterSupply([FromRoute] int id, [FromRoute] int plantId)
     {
         var command = new WaterSupplyCommand
         {
-            DistributorId = Id,
-            PlantId = PlantId,
+            DistributorId = id,
+            PlantId = plantId,
             UserId = UserId
         };
         var result = await mediator.Send(command);

@@ -275,7 +275,7 @@
         "operationId": "WaterSupply",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -284,7 +284,7 @@
             }
           },
           {
-            "name": "PlantId",
+            "name": "plantId",
             "in": "path",
             "required": true,
             "schema": {
