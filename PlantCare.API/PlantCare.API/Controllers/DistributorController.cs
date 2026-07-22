@@ -77,7 +77,7 @@ public class DistributorController(
         return result.ToOk();
     }
     
-    [HttpPost("{id:int}/{plantId:int}/water-supply")]
+    [HttpPost("{id}/{plantId}/water-supply")]
     [EndpointName("WaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]

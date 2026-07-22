@@ -381,9 +381,9 @@ var Client = /*#__PURE__*/ function() {
                 var _this = this;
                 var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
                 if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
-                url_ = url_.replace("{Id}", encodeURIComponent("" + id));
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
                 if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
-                url_ = url_.replace("{PlantId}", encodeURIComponent("" + plantId));
+                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
                 url_ = url_.replace(/[?&]$/, "");
                 var options_ = {
                     method: "POST",
