@@ -25,7 +25,10 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Distributor.Distributor", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,7 +45,10 @@ namespace PlantCare.Persistance.WriteDataManager.Migrations
             modelBuilder.Entity("PlantCare.Domain.Models.Distributor.WaterSupply", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("DistributorId")
                         .HasColumnType("int");

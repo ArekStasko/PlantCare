@@ -61,13 +61,5 @@ public class WriteDataContext : DbContext, IPlantWriteContext, IPlaceWriteContex
             .WithOne()
             .HasForeignKey<Plant>(e => e.ModuleId)
             .IsRequired();
-        
-        modelBuilder.Entity<Distributor>()
-            .Property(d => d.Id)
-            .ValueGeneratedNever();
-        
-        modelBuilder.Entity<WaterSupply>()
-            .Property(d => d.Id)
-            .ValueGeneratedNever();
     }
 }
