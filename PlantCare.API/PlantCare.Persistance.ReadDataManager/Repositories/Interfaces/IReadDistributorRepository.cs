@@ -7,4 +7,5 @@ public interface IReadDistributorRepository
 {
     public Task<Result<IDistributor?>> GetDistributor(int id, int userId);
     public Task<Result<IReadOnlyCollection<IDistributor>>> GetDistributors(int userId);
+    public Task<Result<WaterSupply?>> GetFirstWaterSupplyByDistributorId(int id, int userId);
 }

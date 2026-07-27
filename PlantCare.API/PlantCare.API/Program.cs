@@ -70,6 +70,7 @@ if (!isSwagger)
     builder.Services.AddQueueMessageConsumer<PlaceConsistencyService, Place>();
     builder.Services.AddQueueMessageConsumer<PlantConsistencyService, Plant>();
     builder.Services.AddQueueMessageConsumer<DistributorConsistencyService, Distributor>();
+    builder.Services.AddQueueMessageConsumer<WaterSupplyConsistencyService, WaterSupply>();
 }
 
 var logger = new LoggerConfiguration()

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlantCare.Commands.Commands.Distributor;
 using PlantCare.Domain.Dto;
 using PlantCare.Queries.Queries.Distributor;
+using PlantCare.Queries.Queries.WaterSupply;
 using PlantCare.Queries.Responses.Distributor;
 
 namespace PlantCare.API.Controllers;
@@ -93,12 +94,19 @@ public class DistributorController(
         return result.ToOk();
     }
     
-    [HttpGet("{id:int}/{plantId:int}/water-supply/status")]
+    [HttpGet("{id}/water-supply/status")]
     [EndpointName("WaterSupplyStatus")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public ValueTask<IActionResult> GetWaterSupplyStatus([FromRoute] int Id, [FromRoute] int PlantId)
+    public async ValueTask<IActionResult> GetWaterSupplyStatus([FromRoute] int id)
     {
-        throw new NotImplementedException();
+        var query = new GetWaterSupplyByDistributorId()
+        {
+            UserId = UserId,
+            DistributorId = id
+        };
+        
+        var result = await mediator.Send(query);
+        return result.ToOk();
     }
 }
