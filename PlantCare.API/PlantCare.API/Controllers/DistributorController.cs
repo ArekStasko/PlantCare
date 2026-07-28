@@ -109,4 +109,13 @@ public class DistributorController(
         var result = await mediator.Send(query);
         return result.ToOk();
     }
+    
+    [HttpPost("{id}/water-supply/status")]
+    [EndpointName("SetWaterSupplyStatus")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> SetWaterSupplyStatus([FromRoute] int id)
+    {
+        throw new NotImplementedException();
+    }
 }
