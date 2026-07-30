@@ -110,12 +110,19 @@ public class DistributorController(
         return result.ToOk();
     }
     
-    [HttpPost("{id}/water-supply/status")]
-    [EndpointName("SetWaterSupplyStatus")]
+    [HttpDelete("{id}/{plantId}/water-supply")]
+    [EndpointName("RemoveWaterSupply")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
-    public async ValueTask<IActionResult> SetWaterSupplyStatus([FromRoute] int id)
+    public async ValueTask<IActionResult> RemoveWaterSupply([FromRoute] int id, [FromRoute] int plantId)
     {
-        throw new NotImplementedException();
+        var command = new DeleteWaterSupplyCommand()
+        {
+            UserId = UserId,
+            DistributorId = id,
+            PlantId = plantId
+        };
+        var result = await mediator.Send(command);
+        return result.ToOk();
     }
 }

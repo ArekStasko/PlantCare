@@ -18,8 +18,6 @@
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../plantcare.ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plantcare.ui/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -939,7 +937,8 @@
       <workItem from="1784825311511" duration="4806000" />
       <workItem from="1784992902238" duration="1395000" />
       <workItem from="1785176213737" duration="2898000" />
-      <workItem from="1785254272986" duration="919000" />
+      <workItem from="1785254272986" duration="956000" />
+      <workItem from="1785440995720" duration="332000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
