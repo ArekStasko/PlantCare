@@ -34,11 +34,13 @@ public static class Extensions
         services.AddScoped<IPlantWriteContext, WriteDataContext>();
         services.AddScoped<IModuleWriteContext, WriteDataContext>();
         services.AddScoped<IHumidityMeasurementWriteContext, WriteDataContext>();
+        services.AddScoped<IDistributorContext, WriteDataContext>();
 
         services.AddScoped<IWritePlantRepository, PlantRepository>();
         services.AddScoped<IWritePlaceRepository, PlaceRepository>();
         services.AddScoped<IWriteModuleRepository, ModuleRepository>();
         services.AddScoped<IWriteHumidityMeasurementRepository, HumidityMeasurementRepository>();
+        services.AddScoped<IWriteDistributorRepository, DistributorRepository>();
     }
 
     private static string GetConnectionString()

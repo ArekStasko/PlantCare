@@ -6,7 +6,7 @@ const emptyApi = createApi({
   reducerPath: 'emptyApi',
   baseQuery: fetchBaseQuery(),
   endpoints: (build) => ({}),
-  tagTypes: ['Plants', 'Modules', 'Places']
+  tagTypes: ['Plants', 'Modules', 'Places', 'Distributors']
 });
 
 export default emptyApi;

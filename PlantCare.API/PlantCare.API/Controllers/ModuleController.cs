@@ -15,7 +15,7 @@ public class ModuleController : ControllerAuth
 {
     private readonly IMediator _mediator;
 
-    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<PlaceController> logger) : base(httpContextAccessor, logger)
+    public ModuleController(IHttpContextAccessor httpContextAccessor, IMediator mediator, ILogger<ModuleController> logger) : base(httpContextAccessor, logger)
     {
         _mediator = mediator;
     }

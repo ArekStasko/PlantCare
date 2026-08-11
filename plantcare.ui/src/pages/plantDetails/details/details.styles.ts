@@ -34,7 +34,7 @@ const descriptionCard = {
   textAlign: 'start'
 };
 
-const moduleIdWrapper = {
+const details_paper = {
   width: '100%',
   height: '10%',
   display: 'flex',
@@ -42,7 +42,7 @@ const moduleIdWrapper = {
   justifyContent: 'space-around'
 };
 
-const moduleIdCard = {
+const details_card = {
   width: '90%',
   p: 1,
   display: 'flex',
@@ -70,8 +70,8 @@ export default {
   plantDescriptionWrapper,
   titleCard,
   descriptionCard,
-  moduleIdWrapper,
-  moduleIdCard,
+  details_paper,
+  details_card,
   typeCard,
   humidityRangeWrapper
 };

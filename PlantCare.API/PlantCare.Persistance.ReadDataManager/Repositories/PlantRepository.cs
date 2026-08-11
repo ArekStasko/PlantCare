@@ -22,7 +22,6 @@ public class PlantRepository : IReadPlantRepository
         try
         {
             var plants = await _context.Plants.Where(p => p.UserId == userId).ToListAsync<IPlant>();
-            _logger.LogInformation("Successfull get opreation");
             return new Result<IReadOnlyCollection<IPlant>>(plants);
         }
         catch (Exception e)

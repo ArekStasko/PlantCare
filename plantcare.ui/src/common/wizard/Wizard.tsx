@@ -6,11 +6,12 @@ import styles from './wizard.styles';
 import { WizardProgressStep } from './components/wizardProgress/interfaces';
 import CancelDialog from '../components/CancelDialog/cancelDialog';
 
-const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
+const Wizard = <T,>({ initialContext, steps, stepsToShow }: WizardProps<T>) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [openCancelDialog, setOpenCancelDialog] = useState(false);
   const [context, setContext] = useState<T>(initialContext);
   const [loading, setLoading] = useState<boolean>(false);
+  const [visibleSteps, setVisibleSteps] = useState<number[]>(stepsToShow);
 
   const wizardController: WizardController<T> = {
     context: context,
@@ -20,7 +21,8 @@ const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
     goToNextStep: () => setCurrentStep((prev) => prev + 1),
     goToPreviousStep: () => setCurrentStep((prev) => prev - 1),
     goToStep: (step: number) => setCurrentStep(step),
-    onCancel: () => setOpenCancelDialog(true)
+    onCancel: () => setOpenCancelDialog(true),
+    onVisibleStepsChange: (steps: number[]) => setVisibleSteps(steps)
   };
 
   const Step = useMemo(
@@ -29,14 +31,16 @@ const Wizard = <T,>({ initialContext, steps }: WizardProps<T>) => {
   );
 
   const stepsToDisplayInProgress = useMemo(() => {
-    return steps.map(
-      (s) =>
-        ({
-          title: s.title,
-          order: s.order
-        }) as WizardProgressStep
-    );
-  }, [steps]);
+    return steps
+      .filter((s) => visibleSteps.includes(s.order))
+      .map(
+        (s) =>
+          ({
+            title: s.title,
+            order: s.order
+          }) as WizardProgressStep
+      );
+  }, [steps, visibleSteps]);
 
   return (
     <Box sx={styles.wizard}>

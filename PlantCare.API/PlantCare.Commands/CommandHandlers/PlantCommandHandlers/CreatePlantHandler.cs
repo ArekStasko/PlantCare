@@ -31,7 +31,6 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
     {
         try
         {
-            _logger.LogInformation("AddPlantHandler handles request");
             IPlant plantToCreate = _mapper.Map<Domain.Models.Plant.Plant>(command);
             var result = await _plantRepository.Create(plantToCreate);
             return result.Match(succ =>
@@ -45,7 +44,6 @@ public class CreatePlantHandler : IRequestHandler<CreatePlantCommand, Result<boo
                     };
                     _queueProducer.PublishMessage(plantMessage);
                     
-                    _logger.LogInformation("Operation succesfully completed");
                     return new Result<bool>(true);
             }, err =>
             {

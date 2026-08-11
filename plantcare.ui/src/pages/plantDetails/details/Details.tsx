@@ -9,6 +9,13 @@ import React, { useState } from 'react';
 import { Module, Plant, PlantType } from '@arekstasko/plantcare-api-client';
 import { useGetBatteryLevelQuery } from '../../../common/RTK/Module/Module';
 import { HumidityRange } from './HumidityRange';
+import {
+  DistributorPlantRequest,
+  useGetDistributorQuery,
+  useWaterSupplyMutation
+} from '../../../common/RTK/Distributor/Distributor';
+import { useNavigate } from 'react-router';
+import RoutingPaths from '../../../app/routing/routingConstants';
 
 export type PlantDetailsProps = {
   plant?: Plant;
@@ -17,6 +24,8 @@ export type PlantDetailsProps = {
 };
 
 export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
+  const navigate = useNavigate();
+  const [supplyWater, { isLoading: isWaterSupplyLoading }] = useWaterSupplyMutation();
   const { data: batteryLevel, isFetching: isBatteryLevelFetching } = useGetBatteryLevelQuery(
     +module!.id!,
     {
@@ -24,7 +33,23 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
     }
   );
 
+  const { data: distributor, isFetching: isDistributorFetching } = useGetDistributorQuery(
+    +plant?.distributorId!,
+    {
+      skip: !plant
+    }
+  );
+
   const [openHumidityRange, setOpenHumidityRange] = useState(false);
+
+  const performWaterSupply = async () => {
+    const request = {
+      id: plant?.distributorId,
+      plantId: plant?.id
+    } as DistributorPlantRequest;
+
+    await supplyWater(request);
+  };
 
   return plant && module && !isLoading ? (
     <>
@@ -64,9 +89,9 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           <Typography>{plant.description}</Typography>
         </Paper>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
+      <Box sx={styles.details_paper}>
         <Tooltip placement="top-end" title="Module ID" arrow>
-          <Paper sx={styles.moduleIdCard}>
+          <Paper sx={styles.details_card}>
             <MemoryIcon
               sx={{
                 height: 35,
@@ -79,9 +104,9 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           </Paper>
         </Tooltip>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
+      <Box sx={styles.details_paper}>
         <Tooltip placement="top-end" title="Battery Level" arrow>
-          <Paper sx={styles.moduleIdCard}>
+          <Paper sx={styles.details_card}>
             <BatteryChargingFullIcon
               sx={{
                 height: 35,
@@ -98,11 +123,32 @@ export const Details = ({ plant, module, isLoading }: PlantDetailsProps) => {
           </Paper>
         </Tooltip>
       </Box>
-      <Box sx={styles.moduleIdWrapper}>
-        <Paper sx={styles.moduleIdCard}>
+      <Box sx={styles.details_paper}>
+        <Paper sx={styles.details_card}>
           <Tooltip placement="top-end" title="Change humidity range values">
             <Button onClick={() => setOpenHumidityRange(!openHumidityRange)}>Humidity Range</Button>
           </Tooltip>
+        </Paper>
+      </Box>
+      <Box sx={styles.details_paper}>
+        <Paper sx={styles.details_card}>
+          {isDistributorFetching || isWaterSupplyLoading ? (
+            <CircularProgress />
+          ) : distributor ? (
+            <Tooltip placement="top-end" title="Run hydration">
+              <Button onClick={() => performWaterSupply()}>Hydrate</Button>
+            </Tooltip>
+          ) : (
+            <Tooltip placement="top-end" title="Add distributor">
+              <Button
+                onClick={() =>
+                  navigate(`${RoutingPaths.addDistributor}/${plant?.id}/${module?.id}`)
+                }
+              >
+                Add distributor
+              </Button>
+            </Tooltip>
+          )}
         </Paper>
       </Box>
       <HumidityRange

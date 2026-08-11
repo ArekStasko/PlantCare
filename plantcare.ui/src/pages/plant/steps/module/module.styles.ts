@@ -1,3 +1,11 @@
+const moduleContainer = {
+  width: '100%',
+  height: '70%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start'
+};
+
 const moduleSelectWrapper = {
   width: '80%',
   height: '70%',
@@ -14,6 +22,7 @@ const typeSelect = {
 };
 
 export default {
+  moduleContainer,
   moduleSelectWrapper,
   typeSelect
 };

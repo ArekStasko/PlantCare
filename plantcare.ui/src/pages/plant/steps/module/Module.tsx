@@ -62,49 +62,41 @@ const Module = ({ wizardController }: WizardStepProps<PlantContext>) => {
       }}
       title={'Module'}
     >
-      <Box sx={styles.moduleSelectWrapper}>
+      <Box sx={styles.moduleContainer}>
         {!modules || modulesLoading ? (
           <CircularProgress />
+        ) : modules!.filter((m) => m.isAvailable).length == 0 ? (
+          <CustomAlert
+            type={'error' as AlertColor}
+            message={
+              "You don't have any module without plant assinged to it. To create new plant, please add new module."
+            }
+          />
         ) : (
-          <>
-            {modules!.filter((m) => m.isAvailable).length == 0 ? (
-              <>
-                s
-                <CustomAlert
-                  type={'error' as AlertColor}
-                  message={
-                    "You don't have any module without plant assinged to it. To create new plant,\n" +
-                    '                  please add new module.'
-                  }
-                />
-              </>
-            ) : (
-              <>
-                <InputLabel id="SelectPlantModule">
-                  Choose a module that will monitor your plant moisture
-                </InputLabel>
-                <Controller
-                  control={control}
-                  name="module"
-                  render={({ field: { onChange, value }, formState: { errors } }) => (
-                    <Select
-                      sx={styles.typeSelect}
-                      onChange={onChange}
-                      value={value}
-                      id="plantModule"
-                      labelId="SelectPlantPlace"
-                    >
-                      {filteredModules!.map((m) => (
-                        <MenuItem value={m.id}>
-                          {m.name} - {m.id}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-              </>
-            )}
-          </>
+          <Box sx={styles.moduleSelectWrapper}>
+            <InputLabel id="SelectPlantModule">
+              Choose a module that will monitor your plant moisture
+            </InputLabel>
+            <Controller
+              control={control}
+              name="module"
+              render={({ field: { onChange, value }, formState: { errors } }) => (
+                <Select
+                  sx={styles.typeSelect}
+                  onChange={onChange}
+                  value={value}
+                  id="plantModule"
+                  labelId="SelectPlantPlace"
+                >
+                  {filteredModules!.map((m) => (
+                    <MenuItem value={m.id}>
+                      {m.name} - {m.id}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+          </Box>
         )}
       </Box>
     </WizardStep>

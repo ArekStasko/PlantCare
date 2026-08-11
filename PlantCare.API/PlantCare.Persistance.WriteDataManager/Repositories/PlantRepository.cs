@@ -111,4 +111,27 @@ public class PlantRepository : IWritePlantRepository
             return new Result<bool>(e);
         }
     }
+
+    public async ValueTask<Result<bool>> AddDistributor(int plantId, int distributorId, int userId)
+    {
+        try
+        {
+            var plant = await _context.Plants.SingleOrDefaultAsync(plant => plant.Id == plantId && plant.UserId == userId);
+            
+            if (plant == null)
+            {
+                _logger.LogError("There is no plant with id: {plantId} for user: {userId}", plantId, userId);
+                return new Result<bool>(new NullReferenceException());
+            }
+            
+            plant.DistributorId = distributorId;
+            await _context.SaveChangesAsync();
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return new Result<bool>(e);
+        }
+    }
 }
