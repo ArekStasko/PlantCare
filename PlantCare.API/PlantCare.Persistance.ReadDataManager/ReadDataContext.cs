@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PlantCare.Domain.CommonContexts.ConsistencyManagerContexts;
+using PlantCare.Domain.Models.Distributor;
 using PlantCare.Domain.Models.HumidityMeasurement;
 using PlantCare.Domain.Models.Module;
 using PlantCare.Domain.Models.Place;
@@ -8,7 +9,7 @@ using PlantCare.Persistance.ReadDataManager.Interfaces;
 
 namespace PlantCare.Persistance.ReadDataManager;
 
-public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext, IModuleConsistencyContext, IPlantConsistencyContext, IPlaceConsistencyContext, IHumidityMeasurementsConsistencyContext
+public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, IModuleReadContext, IHumidityMeasurementReadContext, IModuleConsistencyContext, IPlantConsistencyContext, IPlaceConsistencyContext, IHumidityMeasurementsConsistencyContext, IDistributorReadContext, IDistributorConsistencyContext
 {
     public ReadDataContext(){}
 
@@ -21,6 +22,10 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
     public virtual DbSet<Module> Modules { get; set; } = null!;
 
     public virtual DbSet<HumidityMeasurement> HumidityMeasurements { get; set; } = null!;
+    
+    public virtual DbSet<Distributor> Distributors { get; set; } = null!;
+    
+    public virtual DbSet<WaterSupply> WaterSupplies { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -60,6 +65,10 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
             .ValueGeneratedNever();
         
         modelBuilder.Entity<Plant>()
+            .Property(p => p.DistributorId)
+            .IsRequired(false);
+        
+        modelBuilder.Entity<Plant>()
             .Property(p => p.Id)
             .ValueGeneratedNever();
         
@@ -69,6 +78,14 @@ public class ReadDataContext : DbContext, IPlantReadContext, IPlaceReadContext, 
         
         modelBuilder.Entity<HumidityMeasurement>()
             .Property(p => p.Id)
+            .ValueGeneratedNever();
+
+        modelBuilder.Entity<Distributor>()
+            .Property(d => d.Id)
+            .ValueGeneratedNever();
+        
+        modelBuilder.Entity<WaterSupply>()
+            .Property(d => d.Id)
             .ValueGeneratedNever();
     }
 }

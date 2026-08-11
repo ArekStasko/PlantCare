@@ -22,7 +22,6 @@ public class ModuleRepository : IReadModuleRepository
         try
         {
             var modules = await _context.Modules.ToListAsync<IModule>();
-            _logger.LogInformation("Successfully loaded all modules");
             return new Result<IReadOnlyCollection<IModule>>(modules);
         }
         catch (Exception e)

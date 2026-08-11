@@ -92,6 +92,23 @@ public class PlantConsistencyService : IQueueConsumer<Plant>
                 await _cache.RemoveAsync(singlePlantKey);
                 return;
             }
+            case ActionType.AddPlantDistributor:
+            {
+                var plant = await _context.Plants.SingleOrDefaultAsync(plant => plant.Id == message.PlantData.Id && plant.UserId == message.PlantData.UserId);
+            
+                if (plant == null)
+                {
+                    _logger.LogError("There is no plant with id: {plantId} for user: {userId}", message.PlantData.Id, message.PlantData.UserId);
+                    return ;
+                }
+            
+                plant.DistributorId = message.PlantData.DistributorId;
+                await _context.SaveChangesAsync();
+                string singlePlantKey = $"Plant-{plant.Id}-{plant.UserId}";
+                await ResetPlantCache(plant.UserId);
+                await _cache.RemoveAsync(singlePlantKey);
+                return;
+            }
             default:
             {
                 _logger.LogError("Plant Consistency service executes for not existing action: {action}",

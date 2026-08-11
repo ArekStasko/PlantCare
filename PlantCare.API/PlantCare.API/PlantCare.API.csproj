@@ -46,6 +46,15 @@
         <SwaggerInputs Update="..\PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleBatteryLevelHandler.cs">
           <Link>PlantCare.Queries\QueryHandlers\ModuleQueryHandlers\GetModuleBatteryLevelHandler.cs</Link>
         </SwaggerInputs>
+        <SwaggerInputs Update="..\PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\WaterSupplyHandler.cs">
+          <Link>PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\WaterSupplyHandler.cs</Link>
+        </SwaggerInputs>
+        <SwaggerInputs Update="..\PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\dupa.cs">
+          <Link>PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\dupa.cs</Link>
+        </SwaggerInputs>
+        <SwaggerInputs Update="..\PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\WaterSupplyHandler.cs">
+          <Link>PlantCare.Commands\CommandHandlers\DistributorCommandHandlers\WaterSupplyHandler.cs</Link>
+        </SwaggerInputs>
     </ItemGroup>
 
     <Target 

@@ -241,6 +241,375 @@ var Client = /*#__PURE__*/ function() {
     _create_class(Client, [
         {
             /**
+   * @return OK
+   */ key: "distributor",
+            value: function distributor(cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor";
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processDistributor(_response);
+                });
+            }
+        },
+        {
+            key: "processDistributor",
+            value: function processDistributor(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @param body (optional) 
+   * @return OK
+   */ key: "createDistributor",
+            value: function createDistributor(body, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor";
+                url_ = url_.replace(/[?&]$/, "");
+                var content_ = JSON.stringify(body);
+                var options_ = {
+                    data: content_,
+                    method: "POST",
+                    url: url_,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processCreateDistributor(_response);
+                });
+            }
+        },
+        {
+            key: "processCreateDistributor",
+            value: function processCreateDistributor(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @return OK
+   */ key: "getDistributor",
+            value: function getDistributor(id, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor/{id}";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processGetDistributor(_response);
+                });
+            }
+        },
+        {
+            key: "processGetDistributor",
+            value: function processGetDistributor(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 204) {
+                    var _responseText1 = response.data;
+                    return throwException("No Content", status, _responseText1, _headers);
+                } else if (status === 500) {
+                    var _responseText2 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText2;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText2, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText3 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText3, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @return OK
+   */ key: "addPlantToDistributor",
+            value: function addPlantToDistributor(distributorId, plantId, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add";
+                if (distributorId === void 0 || distributorId === null) throw new globalThis.Error("The parameter 'distributorId' must be defined.");
+                url_ = url_.replace("{distributorId}", encodeURIComponent("" + distributorId));
+                if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
+                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "POST",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processAddPlantToDistributor(_response);
+                });
+            }
+        },
+        {
+            key: "processAddPlantToDistributor",
+            value: function processAddPlantToDistributor(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @return OK
+   */ key: "waterSupply",
+            value: function waterSupply(id, plantId, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{id}", encodeURIComponent("" + id));
+                if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
+                url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "POST",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processWaterSupply(_response);
+                });
+            }
+        },
+        {
+            key: "processWaterSupply",
+            value: function processWaterSupply(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
+   * @return OK
+   */ key: "waterSupplyStatus",
+            value: function waterSupplyStatus(id, plantId, cancelToken) {
+                var _this = this;
+                var url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply/status";
+                if (id === void 0 || id === null) throw new globalThis.Error("The parameter 'id' must be defined.");
+                url_ = url_.replace("{Id}", encodeURIComponent("" + id));
+                if (plantId === void 0 || plantId === null) throw new globalThis.Error("The parameter 'plantId' must be defined.");
+                url_ = url_.replace("{PlantId}", encodeURIComponent("" + plantId));
+                url_ = url_.replace(/[?&]$/, "");
+                var options_ = {
+                    method: "GET",
+                    url: url_,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cancelToken: cancelToken
+                };
+                return this.instance.request(options_).catch(function(_error) {
+                    if (isAxiosError(_error) && _error.response) {
+                        return _error.response;
+                    } else {
+                        throw _error;
+                    }
+                }).then(function(_response) {
+                    return _this.processWaterSupplyStatus(_response);
+                });
+            }
+        },
+        {
+            key: "processWaterSupplyStatus",
+            value: function processWaterSupplyStatus(response) {
+                var status = response.status;
+                var _headers = {};
+                if (response.headers && _type_of(response.headers) === "object") {
+                    for(var k in response.headers){
+                        if (response.headers.hasOwnProperty(k)) {
+                            _headers[k] = response.headers[k];
+                        }
+                    }
+                }
+                if (status === 200) {
+                    var _responseText = response.data;
+                    var result200 = null;
+                    var resultData200 = _responseText;
+                    result200 = JSON.parse(resultData200);
+                    return Promise.resolve(result200);
+                } else if (status === 500) {
+                    var _responseText1 = response.data;
+                    var result500 = null;
+                    var resultData500 = _responseText1;
+                    result500 = JSON.parse(resultData500);
+                    return throwException("Internal Server Error", status, _responseText1, _headers, result500);
+                } else if (status !== 200 && status !== 204) {
+                    var _responseText2 = response.data;
+                    return throwException("An unexpected server error occurred.", status, _responseText2, _headers);
+                }
+                return Promise.resolve(null);
+            }
+        },
+        {
+            /**
    * @param body (optional) 
    * @return OK
    */ key: "humidityMeasurements",

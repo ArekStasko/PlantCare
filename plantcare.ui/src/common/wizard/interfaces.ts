@@ -37,9 +37,11 @@ export interface WizardController<T> {
   goToPreviousStep: () => void;
   goToStep: (step: number) => void;
   onCancel: () => void;
+  onVisibleStepsChange: (steps: number[]) => void;
 }
 
 export interface WizardProps<T> {
   initialContext: T;
   steps: WizardStep<T>[];
+  stepsToShow: number[];
 }
