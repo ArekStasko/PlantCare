@@ -48,11 +48,11 @@ public class DistributorRepository(
         }
     }
 
-    public async Task<Result<WaterSupply?>> GetFirstWaterSupplyByDistributorId(int id, int userId)
+    public async Task<Result<WaterSupply?>> GetFirstWaterSupplyByDistributorId(int id)
     {
         try
         {
-            var waterSupplies = await context.WaterSupplies.Where(d => d.DistributorId == id && d.UserId == userId).ToListAsync();
+            var waterSupplies = await context.WaterSupplies.Where(d => d.DistributorId == id).ToListAsync();
             return new Result<WaterSupply?>(waterSupplies.FirstOrDefault());
         }
         catch (Exception e)

@@ -102,7 +102,6 @@ public class DistributorController(
     {
         var query = new GetWaterSupplyByDistributorId()
         {
-            UserId = UserId,
             DistributorId = id
         };
         

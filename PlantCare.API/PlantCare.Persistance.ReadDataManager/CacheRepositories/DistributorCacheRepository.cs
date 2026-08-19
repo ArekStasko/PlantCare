@@ -43,6 +43,6 @@ public class DistributorCacheRepository(
         return new Result<IReadOnlyCollection<IDistributor>>(data!);
     }
 
-    public async Task<Result<WaterSupply?>> GetFirstWaterSupplyByDistributorId(int id, int userId)
-        => await readRepository.GetFirstWaterSupplyByDistributorId(id, userId);
+    public async Task<Result<WaterSupply?>> GetFirstWaterSupplyByDistributorId(int id)
+        => await readRepository.GetFirstWaterSupplyByDistributorId(id);
 }

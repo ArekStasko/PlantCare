@@ -15,7 +15,7 @@ public class GetWaterSupplyByDistributorIdHandler(
     {
         try
         {
-            var result = await repository.GetFirstWaterSupplyByDistributorId(request.DistributorId, request.UserId);
+            var result = await repository.GetFirstWaterSupplyByDistributorId(request.DistributorId);
             return result.Match(succ =>
             {
                 if (succ != null) return succ.PlantId;
