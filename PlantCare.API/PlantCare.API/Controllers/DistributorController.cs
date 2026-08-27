@@ -117,7 +117,6 @@ public class DistributorController(
     {
         var command = new DeleteWaterSupplyCommand()
         {
-            UserId = UserId,
             DistributorId = id,
             PlantId = plantId
         };

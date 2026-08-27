@@ -4,5 +4,4 @@ public class DeleteWaterSupplyCommand : IHttpPostCommand
 {
     public int DistributorId { get; set; }
     public int PlantId { get; set; }
-    public int UserId { get; set; }
 }

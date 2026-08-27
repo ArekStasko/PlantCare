@@ -22,6 +22,22 @@ public class WaterSupplyConsistencyService(
                 await context.SaveChangesAsync();
                 return;
             }
+            case ActionType.Delete:
+            {
+                var distributorId = message.WaterSupplyDto.DistributorId;
+                var plantId = message.WaterSupplyDto.PlantId;
+                var waterSupply = context.WaterSupplies.SingleOrDefault(w => w.DistributorId == distributorId && w.PlantId == plantId);
+
+                if (waterSupply == null)
+                {
+                    logger.LogError("Water supply not found in consistency manager");
+                    return;
+                }
+
+                context.WaterSupplies.Remove(waterSupply);
+                await context.SaveChangesAsync();
+                return;
+            }
             default:
             {
                 logger.LogError("Distributor Consistency service executes for not existing action: {action}", message.Action);

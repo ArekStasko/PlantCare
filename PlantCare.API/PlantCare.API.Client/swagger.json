@@ -335,17 +335,15 @@
             }
           }
         }
-      }
-    },
-    "/api/distributor/{id}/{plantId}/water-supply/status": {
-      "get": {
+      },
+      "delete": {
         "tags": [
           "Distributor"
         ],
-        "operationId": "WaterSupplyStatus",
+        "operationId": "RemoveWaterSupply",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -354,7 +352,7 @@
             }
           },
           {
-            "name": "PlantId",
+            "name": "plantId",
             "in": "path",
             "required": true,
             "schema": {
@@ -380,6 +378,70 @@
               "text/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/distributor/{id}/water-supply/status": {
+      "get": {
+        "tags": [
+          "Distributor"
+        ],
+        "operationId": "WaterSupplyStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
                 }
               }
             }

@@ -51,4 +51,27 @@ public class DistributorRepository(IDistributorContext context, ILogger<Distribu
             return new Result<bool>(e);
         }
     }
+    
+    public async ValueTask<Result<bool>> RemoveWaterSupply(int distributorId, int plantId)
+    {
+        try
+        {
+            var waterSupplyToDelete = context.WaterSupplies.SingleOrDefault(w => w.DistributorId == distributorId && w.PlantId == plantId);
+
+            if (waterSupplyToDelete == null)
+            {
+                logger.LogError("There is no water supply for distributor: {distributorId} with plant: {plantId}", distributorId, plantId);
+                return new Result<bool>(false);
+            }
+            
+            context.WaterSupplies.Remove(waterSupplyToDelete);
+            await context.SaveChangesAsync();
+            return new Result<bool>(true);
+        }
+        catch (Exception e)
+        {
+            logger.LogError("Something went wrong while running water supply for distributor {distributorId}: {e}", distributorId, e);
+            return new Result<bool>(e);
+        }
+    }
 }

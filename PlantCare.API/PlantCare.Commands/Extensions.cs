@@ -15,7 +15,9 @@ public static class Extensions
                 typeof(CommandHandlers.HumidityMeasurementCommandHandlers.AddHumidityMeasurementHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.PlantCommandHandlers.UpdatePlantHumidityValuesHandler).GetTypeInfo().Assembly,
                 typeof(CommandHandlers.DistributorCommandHandlers.CreateDistributorHandler).GetTypeInfo().Assembly,
-                typeof(CommandHandlers.DistributorCommandHandlers.AddPlantToDistributorHandler).GetTypeInfo().Assembly
+                typeof(CommandHandlers.DistributorCommandHandlers.AddPlantToDistributorHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.DistributorCommandHandlers.RemoveWaterSupplyHandler).GetTypeInfo().Assembly,
+                typeof(CommandHandlers.DistributorCommandHandlers.WaterSupplyHandler).GetTypeInfo().Assembly
                 ));
     }
     
