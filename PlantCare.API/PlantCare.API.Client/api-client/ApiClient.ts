@@ -340,18 +340,18 @@ export class Client {
     /**
      * @return OK
      */
-    waterSupplyStatus(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
-        let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply/status";
+    removeWaterSupply(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
+        let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}/water-supply";
         if (id === undefined || id === null)
             throw new globalThis.Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{Id}", encodeURIComponent("" + id));
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         if (plantId === undefined || plantId === null)
             throw new globalThis.Error("The parameter 'plantId' must be defined.");
-        url_ = url_.replace("{PlantId}", encodeURIComponent("" + plantId));
+        url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: AxiosRequestConfig = {
-            method: "GET",
+            method: "DELETE",
             url: url_,
             headers: {
                 "Accept": "application/json"
@@ -366,11 +366,11 @@ export class Client {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processWaterSupplyStatus(_response);
+            return this.processRemoveWaterSupply(_response);
         });
     }
 
-    protected processWaterSupplyStatus(response: AxiosResponse): Promise<boolean> {
+    protected processRemoveWaterSupply(response: AxiosResponse): Promise<boolean> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -399,6 +399,67 @@ export class Client {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<boolean>(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    waterSupplyStatus(id: number, cancelToken?: CancelToken): Promise<number> {
+        let url_ = this.baseUrl + "/api/distributor/{id}/water-supply/status";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processWaterSupplyStatus(_response);
+        });
+    }
+
+    protected processWaterSupplyStatus(response: AxiosResponse): Promise<number> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<number>(result200);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<number>(null as any);
     }
 
     /**

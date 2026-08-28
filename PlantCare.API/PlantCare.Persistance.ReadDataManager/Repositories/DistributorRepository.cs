@@ -61,4 +61,18 @@ public class DistributorRepository(
             return new Result<WaterSupply?>(e);
         }
     }
+    
+    public async Task<Result<WaterSupply?>> GetWaterSupplyByDistributorIdAndPlantId(int id, int plantId)
+    {
+        try
+        {
+            var waterSupplies = await context.WaterSupplies.Where(d => d.DistributorId == id && d.PlantId == plantId).ToListAsync();
+            return new Result<WaterSupply?>(waterSupplies.FirstOrDefault());
+        }
+        catch (Exception e)
+        {
+            logger.LogError("Something went wrong while fetching water supplies from database: {e}", e);
+            return new Result<WaterSupply?>(e);
+        }
+    }
 }

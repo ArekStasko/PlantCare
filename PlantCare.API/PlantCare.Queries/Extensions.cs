@@ -19,7 +19,8 @@ public static class Extensions
                 typeof(QueryHandlers.ModuleQueryHandlers.GetModuleBatteryLevelHandler).GetTypeInfo().Assembly,
                 typeof(QueryHandlers.DistributorQueryHandlers.GetDistributorByIdHandler).GetTypeInfo().Assembly,
                 typeof(QueryHandlers.DistributorQueryHandlers.GetDistributorsHandler).GetTypeInfo().Assembly,
-                typeof(QueryHandlers.DistributorQueryHandlers.GetWaterSupplyByDistributorIdHandler).GetTypeInfo().Assembly
+                typeof(QueryHandlers.DistributorQueryHandlers.GetWaterSupplyByDistributorIdHandler).GetTypeInfo().Assembly,
+                typeof(QueryHandlers.DistributorQueryHandlers.GetDistributorWithWaterSupplyHandler).GetTypeInfo().Assembly
             ));
     }
     

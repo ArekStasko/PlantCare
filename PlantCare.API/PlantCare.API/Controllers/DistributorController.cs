@@ -47,6 +47,23 @@ public class DistributorController(
         return result.ToOk();
     }
     
+    [HttpGet("{id}/{plantId}")]
+    [EndpointName("GetDistributorWithWaterSupplyData")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DistributorWithWaterSupply))]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
+    public async ValueTask<IActionResult> GetDistributorWithWaterSupplyData([FromRoute] int id, [FromRoute] int plantId)
+    {
+        GetDistributorWithWaterSupplyDataQuery query = new GetDistributorWithWaterSupplyDataQuery()
+        {
+            UserId = UserId,
+            Id = id,
+            PlantId = plantId
+        };
+        var result = await mediator.Send(query);
+        return result.ToOk();
+    }
+    
     [HttpPost]
     [EndpointName("CreateDistributor")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]

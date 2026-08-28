@@ -34,8 +34,13 @@ declare class Client {
     /**
      * @return OK
      */
-    waterSupplyStatus(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean>;
-    protected processWaterSupplyStatus(response: AxiosResponse): Promise<boolean>;
+    removeWaterSupply(id: number, plantId: number, cancelToken?: CancelToken): Promise<boolean>;
+    protected processRemoveWaterSupply(response: AxiosResponse): Promise<boolean>;
+    /**
+     * @return OK
+     */
+    waterSupplyStatus(id: number, cancelToken?: CancelToken): Promise<number>;
+    protected processWaterSupplyStatus(response: AxiosResponse): Promise<number>;
     /**
      * @param body (optional)
      * @return OK

@@ -197,6 +197,79 @@
         }
       }
     },
+    "/api/distributor/{id}/{plantId}": {
+      "get": {
+        "tags": [
+          "Distributor"
+        ],
+        "operationId": "GetDistributorWithWaterSupplyData",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "plantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantCare.Queries.Responses.Distributor.DistributorWithWaterSupply"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantCare.Queries.Responses.Distributor.DistributorWithWaterSupply"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantCare.Queries.Responses.Distributor.DistributorWithWaterSupply"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/System.Exception"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/distributor/{distributorId}/{plantId}/add": {
       "post": {
         "tags": [
@@ -1869,6 +1942,23 @@
           "name": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlantCare.Queries.Responses.Distributor.DistributorWithWaterSupply": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isWaterSupplyActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
