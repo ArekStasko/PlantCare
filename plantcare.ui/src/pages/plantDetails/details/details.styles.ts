@@ -65,6 +65,22 @@ const humidityRangeWrapper = {
   mt: '50px'
 };
 
+const waterSupplyProgress = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}
+
+const progress = {
+  mt: 1,
+  mb: 1,
+  width: '80%',
+  height: '100%',
+}
+
 export default {
   plantTitleWrapper,
   plantDescriptionWrapper,
@@ -73,5 +89,7 @@ export default {
   details_paper,
   details_card,
   typeCard,
-  humidityRangeWrapper
+  humidityRangeWrapper,
+  waterSupplyProgress,
+  progress
 };

@@ -1,5 +1,9 @@
 import plantcareApi from '../../../app/api/plantcareApi';
-import { CreateDistributorRequest, Distributor, Place } from '@arekstasko/plantcare-api-client';
+import {
+  CreateDistributorRequest,
+  Distributor,
+  DistributorWithWaterSupply,
+} from "@arekstasko/plantcare-api-client";
 import emptyApi from '../emptyApi';
 
 export type DistributorPlantRequest = {
@@ -27,9 +31,9 @@ const getDistributor = (id: number) =>
       error: err
     }));
 
-const getDistributorWithWaterSupply = (id: number, plantId: number) =>
+const getDistributorWithWaterSupply = (request: DistributorPlantRequest) =>
   plantcareApi
-    .getDistributor(id)
+    .getDistributorWithWaterSupplyData(request.id, request.plantId)
     .then((result) => ({
       data: result
     }))
@@ -77,6 +81,10 @@ export const DistributorApi = emptyApi.injectEndpoints({
       queryFn: getDistributor,
       providesTags: ['Distributors']
     }),
+    getDistributorWithWaterSupply: build.query<DistributorWithWaterSupply, DistributorPlantRequest>({
+      queryFn: getDistributorWithWaterSupply,
+      providesTags: ['Distributors']
+    }),
     createDistributor: build.mutation<number, CreateDistributorRequest>({
       queryFn: createDistributor,
       invalidatesTags: ['Distributors']
@@ -97,6 +105,7 @@ export const {
   useGetDistributorsQuery,
   useGetDistributorQuery,
   useCreateDistributorMutation,
+  useGetDistributorWithWaterSupplyQuery,
   useWaterSupplyMutation,
   useAddPlantToDistributorMutation
 } = DistributorApi;
