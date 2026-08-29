@@ -212,6 +212,74 @@ export class Client {
     /**
      * @return OK
      */
+    getDistributorWithWaterSupplyData(id: number, plantId: number, cancelToken?: CancelToken): Promise<DistributorWithWaterSupply> {
+        let url_ = this.baseUrl + "/api/distributor/{id}/{plantId}";
+        if (id === undefined || id === null)
+            throw new globalThis.Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (plantId === undefined || plantId === null)
+            throw new globalThis.Error("The parameter 'plantId' must be defined.");
+        url_ = url_.replace("{plantId}", encodeURIComponent("" + plantId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGetDistributorWithWaterSupplyData(_response);
+        });
+    }
+
+    protected processGetDistributorWithWaterSupplyData(response: AxiosResponse): Promise<DistributorWithWaterSupply> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (const k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<DistributorWithWaterSupply>(result200);
+
+        } else if (status === 204) {
+            const _responseText = response.data;
+            return throwException("No Content", status, _responseText, _headers);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = JSON.parse(resultData500);
+            return throwException("Internal Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<DistributorWithWaterSupply>(null as any);
+    }
+
+    /**
+     * @return OK
+     */
     addPlantToDistributor(distributorId: number, plantId: number, cancelToken?: CancelToken): Promise<boolean> {
         let url_ = this.baseUrl + "/api/distributor/{distributorId}/{plantId}/add";
         if (distributorId === undefined || distributorId === null)
@@ -1667,6 +1735,12 @@ export enum PlantType {
 export interface Distributor {
     readonly id?: number;
     name?: string | undefined;
+}
+
+export interface DistributorWithWaterSupply {
+    id?: number;
+    name?: string | undefined;
+    isWaterSupplyActive?: boolean;
 }
 
 export interface HumidityMeasurement {

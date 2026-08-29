@@ -27,6 +27,16 @@ const getDistributor = (id: number) =>
       error: err
     }));
 
+const getDistributorWithWaterSupply = (id: number, plantId: number) =>
+  plantcareApi
+    .getDistributor(id)
+    .then((result) => ({
+      data: result
+    }))
+    .catch((err) => ({
+      error: err
+    }));
+
 const createDistributor = (request: CreateDistributorRequest) =>
   plantcareApi
     .createDistributor(request)
