@@ -16,15 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorWithWaterSupplyDataQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorWithWaterSupplyHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlantCare.Queries/Responses/Distributor/DistributorWithWaterSupply.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.API/Controllers/DistributorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/DistributorCacheRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/CacheRepositories/DistributorCacheRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/DistributorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/DistributorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadDistributorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/Repositories/Interfaces/IReadDistributorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +103,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorByIdQuery.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorWithWaterSupplyDataQuery.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorWithWaterSupplyDataQuery.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorsQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModuleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Module/GetModulesQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,7 +113,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/WaterSupply/GetWaterSupplyByDistributorId.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorByIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorWithWaterSupplyHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -963,6 +956,8 @@
       <workItem from="1787865381355" duration="732000" />
       <workItem from="1787920279350" duration="537000" />
       <workItem from="1787920829914" duration="1100000" />
+      <workItem from="1788009503833" duration="1588000" />
+      <workItem from="1788892255006" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
