@@ -17,8 +17,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a66df779-c7b2-44e8-b0b8-89598f49fa1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlantCare.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/Queries/WaterSupply/GetWaterSupplyByDistributorId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/Queries/WaterSupply/GetWaterSupplyByDistributorId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Extentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.MonitoringEngine/Jobs/MonitorHumidityModuleData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Persistance.ReadDataManager/DatabaseMigrationService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Mapper/QueriesMapperProfile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorByIdQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/Distributor/GetDistributorWithWaterSupplyDataQuery.cs" root0="SKIP_HIGHLIGHTING" />
@@ -114,7 +112,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Queries/WaterSupply/GetWaterSupplyByDistributorId.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorByIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetDistributorWithWaterSupplyHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/DistributorQueryHandlers/GetWaterSupplyByDistributorIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/HumidityMeasurementsQueryHandlers/GetHumidityMeasurementsHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleBatteryLevelHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/ModuleQueryHandlers/GetModuleByIdHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -123,7 +121,7 @@
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlaceQueryHandlers/PlaceQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/QueryHandlers/PlantQueryHandlers/GetPlantsHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Distributor/DistributorWithWaterSupply.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Distributor/WaterSupplyWithPlant.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Distributor/WaterSupplyWithPlant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Plants/Plant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PlantCare.Queries/Responses/Plants/PlantHumidityStatus.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -962,7 +960,11 @@
       <workItem from="1788009503833" duration="1588000" />
       <workItem from="1788892255006" duration="458000" />
       <workItem from="1789237411362" duration="24000" />
-      <workItem from="1789304854885" duration="648000" />
+      <workItem from="1789304854885" duration="2725000" />
+      <workItem from="1789483709843" duration="1033000" />
+      <workItem from="1789671452884" duration="713000" />
+      <workItem from="1789745482382" duration="3072000" />
+      <workItem from="1789764604442" duration="844000" />
     </task>
     <task id="LOCAL-00001" summary="Add File Structure">
       <created>1692287593234</created>
